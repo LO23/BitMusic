@@ -8,5 +8,5 @@ Logiciel de partage de musique décentralisé sur un réseau local, conçu et d�
 
 1) Lire le git-flow expliqué : https://github.com/LO23/BitMusic/wiki/LO23-:-Git-flow
 
-2) Lire Git avec NetBeas : TO-DO
+2) Lire Git avec NetBeans : TO-DO
 
