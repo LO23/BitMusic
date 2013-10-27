@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame {
        /**
      *
+     * MainWindow constructor
      * @author gtanguy
      */
     public MainWindow() {
