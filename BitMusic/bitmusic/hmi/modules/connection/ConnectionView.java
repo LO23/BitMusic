@@ -1,45 +1,33 @@
-package hmi;
-
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+package hmi.modules.connection;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import hmi.others.AbstractView;
+
 /**
  *
- * @author Kevin
+ * @author hebergui, unkedeuxke
  */
-public class MainWindow extends JFrame {
-       /**
-     *
-     * MainWindow constructor
-     * @author gtanguy
-     */
-    public MainWindow() {
+public class ConnectionView extends AbstractView {
+    private ConnectionController connectionController;
 
-        this.setTitle("BitMusic");
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension dim = toolkit.getScreenSize();
-        this.setSize(dim.width, dim.height);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);       
-        
+    public ConnectionView(ConnectionController connectionController) {
+        initPanel();
     }
-    
-    public void initialize() {
-        // TODO code application logic here
+
+    @Override
+    protected void initPanel() {
         JPanel window = new JPanel();
         //JFrame frame = new JFrame();
         //thi.setSize(500, 500);
@@ -89,9 +77,6 @@ public class MainWindow extends JFrame {
         window.add(createAccountButton);
         
         this.add(window);
-        this.show();
     }
-    
-    
     
 }
