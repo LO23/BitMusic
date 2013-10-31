@@ -9,8 +9,9 @@ package hmi.mainwindow;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import hmi.others.AbstractController;
-import hmi.others.Observer;
+import javax.swing.JPanel;
+import hmi.patterns.AbstractController;
+import hmi.patterns.Observer;
 
 /**
  *
@@ -18,6 +19,7 @@ import hmi.others.Observer;
  */
 public class WindowView extends JFrame implements Observer {
     private AbstractController windowController;
+    private JPanel mainPanel;
     
     public WindowView(AbstractController windowController) {
         this.setTitle("BitMusic");
@@ -26,6 +28,11 @@ public class WindowView extends JFrame implements Observer {
         this.setSize(dim.width, dim.height);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+    
+    public void addPanel(JPanel panel) {      
+        this.getContentPane().add(panel);
         this.setVisible(true);
     }
       
