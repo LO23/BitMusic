@@ -4,17 +4,17 @@
  * and open the template in the editor.
  */
 
-
-
-import hmi.mainwindow.WindowComponent;
+package hmi.others;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Application is running !");
-        WindowComponent win = new WindowComponent();
+public abstract class AbstractController {
+ 
+    protected AbstractModel abstractModel;
+    
+    public AbstractController(AbstractModel abstractModel) {
+        
     }
 }
