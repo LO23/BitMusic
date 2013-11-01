@@ -14,11 +14,11 @@ import hmi.patterns.AbstractModel;
  * @author hebergui, unkedeuxke
  */
 class WindowModel extends AbstractModel {
-    
+
     public WindowModel() {
         
     }
-    
+
     public void addComponent(AbstractModuleComponent component){
         
     }

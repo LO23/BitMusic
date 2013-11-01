@@ -11,12 +11,13 @@ package hmi.patterns;
  * @author hebergui, unkedeuxke
  */
 public abstract class AbstractModuleComponent extends AbstractComponent {
+
     protected AbstractModel model;
     protected AbstractView view;
     protected AbstractController controller;
-    
+
     public AbstractModel getModel() {
-        return model;
+        return this.model;
     }
 
     public void setModel(AbstractModel model) {
@@ -24,7 +25,7 @@ public abstract class AbstractModuleComponent extends AbstractComponent {
     }
 
     public AbstractView getView() {
-        return view;
+        return this.view;
     }
 
     public void setView(AbstractView view) {
@@ -32,11 +33,10 @@ public abstract class AbstractModuleComponent extends AbstractComponent {
     }
 
     public AbstractController getController() {
-        return controller;
+        return this.controller;
     }
 
     public void setController(AbstractController controller) {
         this.controller = controller;
     }
-
 }

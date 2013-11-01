@@ -20,12 +20,13 @@ import hmi.patterns.AbstractView;
  * @author hebergui, unkedeuxke
  */
 public class ConnectionView extends AbstractView {
+
     private ConnectionController connectionController;
-    
+
     public ConnectionView(AbstractController connectionController) {
-        initPanel();
+        this.initPanel();
     }
-    
+
     @Override
     protected void initPanel() {
         System.out.println("[ConnectionView] - Création de la connectionView");
@@ -64,10 +65,5 @@ public class ConnectionView extends AbstractView {
         JPasswordField passwordField = new JPasswordField("");
         passwordField.setColumns(10);
         this.panel.add(passwordField);
-        
-        
-        //panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        //panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
     }
-    
 }

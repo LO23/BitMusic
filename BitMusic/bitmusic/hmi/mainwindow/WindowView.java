@@ -18,9 +18,10 @@ import hmi.patterns.Observer;
  * @author hebergui, unkedeuxke
  */
 public class WindowView extends JFrame implements Observer {
+
     private AbstractController windowController;
     private JPanel mainPanel;
-    
+
     public WindowView(AbstractController windowController) {
         this.setTitle("BitMusic");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -30,10 +31,9 @@ public class WindowView extends JFrame implements Observer {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-    
-    public void addPanel(JPanel panel) {      
+
+    public void addPanel(JPanel panel) {
         this.getContentPane().add(panel);
         this.setVisible(true);
     }
-      
 }
