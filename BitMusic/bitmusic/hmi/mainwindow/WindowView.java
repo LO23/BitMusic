@@ -22,7 +22,9 @@ public class WindowView extends JFrame implements Observer {
     private AbstractController windowController;
     private JPanel mainPanel;
 
-    public WindowView(AbstractController windowController) {
+    public WindowView(AbstractController abstractController) {
+        this.windowController = abstractController;
+        
         this.setTitle("BitMusic");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();

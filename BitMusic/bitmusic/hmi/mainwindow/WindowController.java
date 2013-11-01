@@ -16,6 +16,5 @@ public class WindowController extends AbstractController {
 
     public WindowController(WindowModel model) {
         super(model);
-        
     }
 }

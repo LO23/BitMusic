@@ -21,16 +21,13 @@ import hmi.patterns.AbstractView;
  */
 public class ConnectionView extends AbstractView {
 
-    private ConnectionController connectionController;
-
-    public ConnectionView(AbstractController connectionController) {
+    public ConnectionView(AbstractController abstractController) {
+        super(abstractController);
         this.initPanel();
     }
 
     @Override
     protected void initPanel() {
-        System.out.println("[ConnectionView] - Création de la connectionView");
-        
         this.panel = new JPanel();
         Dimension d = new Dimension(80, 20);
         
