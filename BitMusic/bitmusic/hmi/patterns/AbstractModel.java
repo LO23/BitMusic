@@ -4,16 +4,18 @@
  * and open the template in the editor.
  */
 
-package hmi.others;
+package hmi.patterns;
 
 import java.util.ArrayList;
+import hmi.patterns.Observable;
+import hmi.patterns.Observer;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
 public abstract class AbstractModel implements Observable {
-	private ArrayList<Observer> listObserver = new ArrayList<>();
+	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 
         //Implémentation du pattern observer
         public void addObserver(Observer obs) {
@@ -25,6 +27,6 @@ public abstract class AbstractModel implements Observable {
         }
 
         public void removeObserver() {
-            listObserver = new ArrayList<>();
+            listObserver = new ArrayList<Observer>();
         }  
 }

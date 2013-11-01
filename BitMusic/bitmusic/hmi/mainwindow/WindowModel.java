@@ -4,18 +4,22 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.connection;
+package hmi.mainwindow;
 
+import hmi.patterns.AbstractModuleComponent;
 import hmi.patterns.AbstractModel;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionModel extends AbstractModel {
-
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+class WindowModel extends AbstractModel {
+    
+    public WindowModel() {
+        
     }
     
+    public void addComponent(AbstractModuleComponent component){
+        
+    }
 }

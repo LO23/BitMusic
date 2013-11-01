@@ -6,8 +6,8 @@
 
 package hmi.modules.connection;
 
-import hmi.others.AbstractController;
-import hmi.others.AbstractModel;
+import hmi.patterns.AbstractController;
+import hmi.patterns.AbstractModel;
 
 /**
  *
