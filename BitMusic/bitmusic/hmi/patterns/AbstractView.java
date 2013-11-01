@@ -16,6 +16,8 @@ import javax.swing.JPanel;
  */
 public abstract class AbstractView extends JPanel implements Observer {
 
+    protected AbstractController abstractController;
+
     protected JPanel panel = new JPanel();
     protected Dimension dim;
     protected final Font comics30 = new Font("Comics Sans MS", Font.BOLD, 30);
@@ -25,9 +27,13 @@ public abstract class AbstractView extends JPanel implements Observer {
     protected final Font dialog = new Font("Dialog", Font.BOLD + Font.ITALIC, 15);
 
     protected abstract void initPanel();
-    
+
+    public AbstractView(AbstractController abstractController) {
+        this.abstractController = abstractController;
+    }
+
     public JPanel getPanel() {
-        return panel;
+        return this.panel;
     }
 
     public void setPanel(JPanel panel) {
@@ -35,7 +41,7 @@ public abstract class AbstractView extends JPanel implements Observer {
     }
 
     public Dimension getDim() {
-        return dim;
+        return this.dim;
     }
 
     public void setDim(Dimension dim) {

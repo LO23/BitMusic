@@ -7,26 +7,29 @@
 package hmi.patterns;
 
 import java.util.ArrayList;
-import hmi.patterns.Observable;
-import hmi.patterns.Observer;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
 public abstract class AbstractModel implements Observable {
-	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 
-        //Implémentation du pattern observer
-        public void addObserver(Observer obs) {
-            this.listObserver.add(obs);
-        }
+    private ArrayList<Observer> listObserver;
 
-        public void notifyObserver() {
+    public AbstractModel() {
+        this.listObserver = new ArrayList<>();
+    }
 
-        }
+    //Implémentation du pattern observer
+    public void addObserver(Observer obs) {
+        this.listObserver.add(obs);
+    }
 
-        public void removeObserver() {
-            listObserver = new ArrayList<Observer>();
-        }  
+    public void notifyObserver() {
+
+    }
+
+    public void removeObserver() {
+        this.listObserver = new ArrayList<>();
+    }
 }

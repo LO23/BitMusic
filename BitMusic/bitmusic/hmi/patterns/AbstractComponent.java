@@ -13,16 +13,17 @@ import java.util.ArrayList;
  * @author hebergui, unkedeuxke
  */
 public abstract class AbstractComponent {
-    protected ArrayList<AbstractModuleComponent> listComponent = new ArrayList<>();
-    
+
+    protected ArrayList<AbstractModuleComponent> listComponent;
+
     public AbstractComponent() {
-        
+        this.listComponent = new ArrayList<>();
     }
-    
+
     protected void addComponent(AbstractModuleComponent component) {
         this.listComponent.add(component);
     }
-    
+
     protected void removeComponent(AbstractModuleComponent component) {
         this.listComponent.remove(component);
     }

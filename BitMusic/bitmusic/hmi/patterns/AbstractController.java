@@ -11,10 +11,10 @@ package hmi.patterns;
  * @author hebergui, unkedeuxke
  */
 public abstract class AbstractController {
- 
+
     protected AbstractModel abstractModel;
-    
+
     public AbstractController(AbstractModel abstractModel) {
-        
+        this.abstractModel = abstractModel;
     }
 }

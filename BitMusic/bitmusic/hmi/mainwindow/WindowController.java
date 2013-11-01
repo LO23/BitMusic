@@ -13,10 +13,8 @@ import hmi.patterns.AbstractController;
  * @author hebergui, unkedeuxke
  */
 public class WindowController extends AbstractController {
-    
-    
+
     public WindowController(WindowModel model) {
         super(model);
-        
     }
 }
