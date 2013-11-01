@@ -4,12 +4,17 @@
  * and open the template in the editor.
  */
 
-package hmi.others;
+package hmi.patterns;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public interface Observable {
-    
+public abstract class AbstractController {
+
+    protected AbstractModel abstractModel;
+
+    public AbstractController(AbstractModel abstractModel) {
+        this.abstractModel = abstractModel;
+    }
 }

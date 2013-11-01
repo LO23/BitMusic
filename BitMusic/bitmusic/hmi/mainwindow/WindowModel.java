@@ -4,18 +4,22 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.connection;
+package hmi.mainwindow;
 
-import hmi.patterns.AbstractController;
+import hmi.patterns.AbstractModuleComponent;
 import hmi.patterns.AbstractModel;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionController extends AbstractController {
+class WindowModel extends AbstractModel {
 
-    public ConnectionController(AbstractModel abstractModel) {
-        super(abstractModel);
+    public WindowModel() {
+        
+    }
+
+    public void addComponent(AbstractModuleComponent component){
+        
     }
 }

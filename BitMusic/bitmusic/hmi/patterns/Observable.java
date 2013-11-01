@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package hmi.others;
+package hmi.patterns;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public interface Observer {
+public interface Observable {
     
 }

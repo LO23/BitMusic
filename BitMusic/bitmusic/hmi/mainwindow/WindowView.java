@@ -9,17 +9,22 @@ package hmi.mainwindow;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import hmi.others.AbstractController;
-import hmi.others.Observer;
+import javax.swing.JPanel;
+import hmi.patterns.AbstractController;
+import hmi.patterns.Observer;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
 public class WindowView extends JFrame implements Observer {
+
     private AbstractController windowController;
-    
-    public WindowView(AbstractController windowController) {
+    private JPanel mainPanel;
+
+    public WindowView(AbstractController abstractController) {
+        this.windowController = abstractController;
+        
         this.setTitle("BitMusic");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
@@ -28,5 +33,9 @@ public class WindowView extends JFrame implements Observer {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-      
+
+    public void addPanel(JPanel panel) {
+        this.getContentPane().add(panel);
+        this.setVisible(true);
+    }
 }

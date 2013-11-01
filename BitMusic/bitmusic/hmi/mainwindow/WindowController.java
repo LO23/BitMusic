@@ -6,16 +6,15 @@
 
 package hmi.mainwindow;
 
-import hmi.others.AbstractController;
-import hmi.others.AbstractModel;
+import hmi.patterns.AbstractController;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
 public class WindowController extends AbstractController {
-    
-    public WindowController(AbstractModel abstractModel) {
-        super(abstractModel);
+
+    public WindowController(WindowModel model) {
+        super(model);
     }
 }

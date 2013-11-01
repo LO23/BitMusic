@@ -7,76 +7,96 @@
 package hmi.modules.connection;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import hmi.others.AbstractView;
+import hmi.patterns.AbstractController;
+import hmi.patterns.AbstractView;
+import javax.swing.GroupLayout;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
 public class ConnectionView extends AbstractView {
-    private ConnectionController connectionController;
 
-    public ConnectionView(ConnectionController connectionController) {
-        initPanel();
+    public ConnectionView(AbstractController abstractController) {
+        super(abstractController);
+        this.initPanel();
     }
 
     @Override
     protected void initPanel() {
-        JPanel window = new JPanel();
-        //JFrame frame = new JFrame();
-        //thi.setSize(500, 500);
-        
+        this.panel = new JPanel();
         Dimension d = new Dimension(80, 20);
         
-        String connection = "Connexion";
-        String pseudo = "Pseudo: ";
-        String password = "Mot de passe: ";
-        String connect = "Se connecter";
-        String reset = "Reinitialiser";
-        String createAccount = "Creer un compte";
+        JLabel connectionLabel = new JLabel("Connexion");
+        connectionLabel.setSize(d);
         
-        JLabel titleLabel = new JLabel(connection);
+        JLabel loginLabel = new JLabel("Pseudo");
+        loginLabel.setSize(d);
         
-        JLabel passwordLabel = new JLabel(password);
-        JLabel pseudoLabel = new JLabel(pseudo);
-        titleLabel.setSize(d);
-        pseudoLabel.setSize(d);
-        passwordLabel.setSize(d);       
+        JLabel passwordLabel = new JLabel("Password");
+        passwordLabel.setSize(d);
         
-        JButton connectButton = new JButton(connect);
-        JButton resetButton = new JButton(reset);
-        JButton createAccountButton = new JButton(createAccount);
+        JButton connectButton = new JButton("Se connecter");
         connectButton.setSize(d);
+        
+        JButton resetButton = new JButton("Réinitialiser");
         resetButton.setSize(d);
-        createAccountButton.setSize(d);
         
-        JTextField pseudoTextField = new JTextField("");
-        pseudoTextField.setColumns(10);
-        JTextField passwordTextField = new JTextField("kkajk");
-        //passwordTextField.setSize(d);
-        passwordTextField.setColumns(10);
+        JButton createUserButton = new JButton("Créer un compte");
+        createUserButton.setSize(d);
         
-        window.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        //window.setLayout(new GridLayout(3, 2, 20, 20));
-        window.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
+        JTextField loginField = new JTextField("");
+        loginField.setColumns(10);
         
-        //window.set
-        window.add(titleLabel);
-        window.add(pseudoLabel);
-        window.add(pseudoTextField);
-        window.add(passwordLabel);
-        window.add(passwordTextField);
-        window.add(connectButton);
-        window.add(resetButton);
-        window.add(createAccountButton);
+        JPasswordField passwordField = new JPasswordField("");
+        passwordField.setColumns(10);
         
-        this.add(window);
+        GroupLayout layout = new GroupLayout(this.panel);
+        this.panel.setLayout(layout);
+        
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        
+        layout.setHorizontalGroup(
+            layout.createSequentialGroup()
+                .addComponent(connectionLabel)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(loginLabel)
+                    .addComponent(passwordLabel)
+                    .addComponent(connectButton)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(loginField)
+                    .addComponent(passwordField)
+                    .addComponent(resetButton)
+                )
+                .addComponent(createUserButton)
+        );
+        layout.setVerticalGroup(
+            layout.createSequentialGroup()
+               .addComponent(connectionLabel)
+               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginLabel)
+                    .addComponent(loginField)
+               )
+               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordField)
+               )
+               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(connectButton)
+                    .addComponent(resetButton)
+               )
+               .addComponent(createUserButton)
+        );
+        
+        layout.linkSize(SwingConstants.HORIZONTAL, loginLabel, loginField);
+        layout.linkSize(SwingConstants.HORIZONTAL, passwordLabel, passwordField);
     }
-    
 }
