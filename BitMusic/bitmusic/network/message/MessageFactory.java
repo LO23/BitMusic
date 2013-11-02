@@ -40,37 +40,53 @@ public final class MessageFactory {
      */
     public static AbstractMessage createMessage(final EnumTypeMessage type/*,
     passage d'un objet sérialisé contenant les arguments ?*/) {
+        AbstractMessage message = null;
         switch (type) {
             case AddComment :
-                return new MessageAddComment();
+                message =  new MessageAddComment();
+                break;
             case ErrorNotification :
-                return new MessageErrorNotification();
+                message = new MessageErrorNotification();
+                break;
             case GetSongFile :
-                return new MessageGetSongFile();
+                message = new MessageGetSongFile();
+                break;
             case GetSongsByUser :
-                return new MessageGetSongsByUser();
+                message = new MessageGetSongsByUser();
+                break;
             case GetUser :
-                return new MessageGetUser();
+                message = new MessageGetUser();
+                break;
             case LogOut :
-                return new MessageLogOut();
+                message = new MessageLogOut();
+                break;
             case NotifyNewConnection :
-                return new MessageNotifyNewConnection();
+                message = new MessageNotifyNewConnection();
+                break;
             case ReplyConnectionUser :
-                return new MessageReplyConnectionUser();
+                message = new MessageReplyConnectionUser();
+                break;
             case SearchSongsByTag :
-                return new MessageSearchSongsByTag();
+                message = new MessageSearchSongsByTag();
+                break;
             case SendSongList :
-                return new MessageSendSongList();
+                message = new MessageSendSongList();
+                break;
             case SendUser :
-                return new MessageSendUser();
+                message = new MessageSendUser();
+                break;
             case SendSongFile :
-                return new MessageSendSongFile();
+                message = new MessageSendSongFile();
+                break;
             case TagRequest :
-                return new MessageTagRequest();
+                message = new MessageTagRequest();
+                break;
             case UpdateCommentNotification :
-                return new MessageUpdateCommentNotification();
+                message = new MessageUpdateCommentNotification();
+                break;
             default :
-                return null;
+                break;
         }
+        return message;
     }
 }
