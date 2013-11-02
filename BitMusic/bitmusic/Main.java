@@ -12,7 +12,7 @@ import hmi.mainwindow.WindowComponent;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Application is running !");
+        System.out.println("- Application BitMusic");
         WindowComponent win = new WindowComponent();
     }
 }

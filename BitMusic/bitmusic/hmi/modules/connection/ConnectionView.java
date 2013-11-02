@@ -30,6 +30,7 @@ public class ConnectionView extends AbstractView {
 
     @Override
     protected void initPanel() {
+        System.out.println("--- ConnectionView.initPanel()");
         this.panel = new JPanel();
         Dimension d = new Dimension(80, 20);
         

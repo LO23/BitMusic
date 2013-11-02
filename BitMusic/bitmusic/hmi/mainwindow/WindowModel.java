@@ -19,7 +19,4 @@ class WindowModel extends AbstractModel {
         
     }
 
-    public void addComponent(AbstractModuleComponent component){
-        
-    }
 }
