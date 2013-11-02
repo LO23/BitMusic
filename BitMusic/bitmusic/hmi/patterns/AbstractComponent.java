@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public abstract class AbstractComponent {
 
-    protected ArrayList<AbstractModuleComponent> listComponent;
+    protected ArrayList<AbstractModuleComponent> listComponent = new ArrayList<>();
 
     public AbstractComponent() {
-        this.listComponent = new ArrayList<>();
+        
     }
 
     protected void addComponent(AbstractModuleComponent component) {
