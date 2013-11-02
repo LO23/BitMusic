@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public abstract class AbstractModel implements Observable {
 
-    private ArrayList<Observer> listObserver;
+    private ArrayList<Observer> listObserver = new ArrayList<>();
 
     public AbstractModel() {
-        this.listObserver = new ArrayList<>();
+        
     }
 
     //Implémentation du pattern observer
@@ -30,6 +30,6 @@ public abstract class AbstractModel implements Observable {
     }
 
     public void removeObserver() {
-        this.listObserver = new ArrayList<>();
+        
     }
 }

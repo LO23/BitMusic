@@ -27,6 +27,9 @@ public class WindowComponent extends AbstractComponent {
         this.model.addObserver(this.view);
 
         AbstractModuleComponent connectionComponent = new ConnectionComponent();
-        this.view.addPanel(connectionComponent.getView().getPanel());
+        this.addComponent(connectionComponent);
+        this.view.addView(connectionComponent.getView());
     }
+    
+    
 }
