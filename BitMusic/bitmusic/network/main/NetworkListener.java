@@ -6,17 +6,29 @@
 
 package network.main;
 
-import java.util.List;
+import network.message.*;
 
 /**
  *
- * @author florian
+ * @author Pak
  */
 public class NetworkListener {
-    /**
-     * List which contains the instanciated workers
-     * (Due to the composition link on the class diagram)
-     */
-    private List<network.main.Worker> workers;
+    /*
+    * Singleton implementation
+    */
+    private static final NetworkListener NETLISTENER = new NetworkListener();
+    private NetworkListener(){};
+    public static NetworkListener getInstance(){
+        return NETLISTENER;
+    }
     
+    /*
+    *Upon receiving a task (a message), schedule this task to a worker thanks to the work manager
+    *@param a message from a subclass of AbstractMessage
+    */
+    public void scheduleTask(AbstractMessage task){
+        
+    WorkManagement.getInstance().assignTaskToWorker(task);
+        
+    }
 }
