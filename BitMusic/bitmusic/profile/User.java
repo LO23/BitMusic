@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.profile;
+package profile;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,7 +29,7 @@ public class User {
             throw new ProfileExceptions(0);
         }
         else if(password == null) {
-            throw new ProfileExceptions(0);
+            throw new ProfileExceptions(1);
         }
 
         this.login = login;

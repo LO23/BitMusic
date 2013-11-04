@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.profile;
+package profile;
 
 import java.util.Date;
 
