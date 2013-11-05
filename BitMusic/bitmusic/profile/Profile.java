@@ -11,4 +11,5 @@ package bitmusic.profile;
  */
 public class Profile {
     private User currentUser;
+
 }

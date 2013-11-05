@@ -16,15 +16,18 @@ public class Rights {
     private boolean canRate;
     private boolean canComment;
 
-    public Rights(boolean canReadInfo, boolean canPlay, boolean canRate, boolean canComment){
+    Rights(){
+        this.canReadInfo = true;
+        this.canPlay = true;
+        this.canRate = true;
+        this.canComment = true;
+    }
+
+    public void updateRights( boolean canReadInfo, boolean canPlay, boolean canRate, boolean canComment){
         this.canReadInfo = canReadInfo;
         this.canPlay = canPlay;
         this.canRate = canRate;
         this.canComment = canComment;
-    }
-
-    public void updateRights(String songId, boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment){
-
     }
 
 
