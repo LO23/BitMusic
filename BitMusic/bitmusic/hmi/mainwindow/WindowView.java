@@ -10,8 +10,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import hmi.patterns.AbstractController;
+import hmi.patterns.AbstractView;
 import hmi.patterns.Observer;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,12 +20,25 @@ import hmi.patterns.Observer;
  */
 public class WindowView extends JFrame implements Observer {
 
-    private AbstractController windowController;
-    private JPanel mainPanel;
+    private WindowController windowController;
 
-    public WindowView(AbstractController abstractController) {
-        this.windowController = abstractController;
-        
+    private JPanel mainPanel = new JPanel();
+    private ArrayList<AbstractView> listView = new ArrayList<>();
+
+    public WindowView() {
+        this.initFrame();
+    }
+
+    public WindowController getWindowController() {
+        return this.windowController;
+    }
+
+    public void setWindowController(WindowController windowController) {
+        this.windowController = windowController;
+    }
+
+    public void initFrame() {
+        System.out.println("-- WindowView.initFrame()");
         this.setTitle("BitMusic");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
@@ -37,5 +51,14 @@ public class WindowView extends JFrame implements Observer {
     public void addPanel(JPanel panel) {
         this.getContentPane().add(panel);
         this.setVisible(true);
+    }
+
+    public void addView(AbstractView view) {
+        this.listView.add(view);
+        this.addPanel(view.getPanel());
+    }
+
+    public void removeView(AbstractView view) {
+        this.listView.remove(view);
     }
 }

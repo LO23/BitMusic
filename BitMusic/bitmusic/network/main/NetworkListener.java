@@ -4,19 +4,41 @@
  * and open the template in the editor.
  */
 
-package network.main;
+package bitmusic.network.main;
 
-import java.util.List;
+import bitmusic.network.message.AbstractMessage;
+
 
 /**
  *
- * @author florian
+ * @author Pak
  */
-public class NetworkListener {
+public final class NetworkListener {
     /**
-     * List which contains the instanciated workers
-     * (Due to the composition link on the class diagram)
+    * Singleton implementation.
+    */
+    private static final NetworkListener NETLISTENER = new NetworkListener();
+
+    /**
+     * default constructor.
      */
-    private List<network.main.Worker> workers;
-    
+    private NetworkListener() { };
+
+    /**
+     *
+     * @return unique instance of NetworkListener
+     */
+    public static NetworkListener getInstance() {
+        return NETLISTENER;
+    }
+
+    /**
+    * Upon receiving a task (a message),
+    * schedule this task to a worker thanks to the work manager.
+    * @param task is a message
+    */
+    public void scheduleTask(final AbstractMessage task) {
+        WorkManagement.getInstance().assignTaskToWorker(task);
+    }
 }
+

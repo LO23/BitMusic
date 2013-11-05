@@ -4,12 +4,59 @@
  * and open the template in the editor.
  */
 
-package network.main;
+package bitmusic.network.main;
+
+import bitmusic.network.message.AbstractMessage;
+import bitmusic.network.message.MessageAddComment;
+import bitmusic.network.message.MessageErrorNotification;
+import bitmusic.network.message.MessageGetSongFile;
+import bitmusic.network.message.MessageGetSongsByUser;
+import bitmusic.network.message.MessageGetUser;
+import bitmusic.network.message.MessageLogOut;
+import bitmusic.network.message.MessageNotifyNewConnection;
+import bitmusic.network.message.MessageReplyConnectionUser;
+import bitmusic.network.message.MessageSearchSongsByTag;
+import bitmusic.network.message.MessageSendSongFile;
+import bitmusic.network.message.MessageSendSongList;
+import bitmusic.network.message.MessageSendUser;
+import bitmusic.network.message.MessageTagRequest;
+import bitmusic.network.message.MessageUpdateCommentNotification;
 
 /**
- *
- * @author florian
+ *@author Pak
+ * A worker thread must implement Thread or Runnable.
+ * Worker manages INCOMING message as tasks.
  */
-public class Worker {
-    
+public class Worker implements Runnable {
+
+    /**
+     * message.
+     */
+    private AbstractMessage message;
+
+    /**
+    *@param task task to do
+    */
+    Worker(final AbstractMessage task) {
+          message = task;
+    }
+
+    /**
+     * Thread running behavior (task to complete).
+     */
+    @Override
+    public void run() {
+        //use strategy to achieve task here
+    }
+
+    /**
+     *
+     * @return message
+     */
+    public final AbstractMessage getMessage() {
+        return message;
+    }
+
+
 }
+

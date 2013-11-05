@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package network.api;
+package bitmusic.network.api;
 
 /**
  *
  * @author florian
  */
 public class ApiExceptionImpl {
-    
+
 }
