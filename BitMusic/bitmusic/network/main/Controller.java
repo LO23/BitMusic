@@ -36,9 +36,12 @@ public class Controller {
     /**
      * References the network listener (Due to the composition link on the class diagram)
      */
-    private NetworkListener networkListener;
+    private TCPNetworkListener TCPNETLISTENER;
+
+    private UDPNetworkListener UDPNETLISTER;
+
     /**
-     * List which contains the instanciated workers
+     * List which contains the instantiated workers
      * (Due to the composition link on the class diagram)
      */
     private List<Worker> workers;

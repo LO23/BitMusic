@@ -10,26 +10,29 @@ import bitmusic.network.message.AbstractMessage;
 
 
 /**
+ * TCP network listener.
  *
  * @author Pak
  */
-public final class NetworkListener {
+public final class TCPNetworkListener implements Runnable {
+
     /**
-    * Singleton implementation.
+    * Singleton thread implementation.
     */
-    private static final NetworkListener NETLISTENER = new NetworkListener();
+    private static final TCPNetworkListener
+            TCPNETLISTENER = new TCPNetworkListener();
 
     /**
      * default constructor.
      */
-    private NetworkListener() { };
+    private TCPNetworkListener() { };
 
     /**
      *
      * @return unique instance of NetworkListener
      */
-    public static NetworkListener getInstance() {
-        return NETLISTENER;
+    public static TCPNetworkListener getInstance() {
+        return TCPNETLISTENER;
     }
 
     /**
@@ -40,5 +43,14 @@ public final class NetworkListener {
     public void scheduleTask(final AbstractMessage task) {
         WorkManagement.getInstance().assignTaskToWorker(task);
     }
+
+      /**
+     * TCP network listening behavior.
+     */
+    @Override
+    public void run() {
+
+    }
+
 }
 

@@ -46,7 +46,7 @@ public class Worker implements Runnable {
      */
     @Override
     public void run() {
-        //use strategy to achieve task here
+        //achieve task here
     }
 
     /**
