@@ -12,14 +12,24 @@ package hmi.patterns;
  */
 public abstract class AbstractController {
 
-    protected AbstractModel abstractModel;
-    protected AbstractView abstractView;
+    private AbstractModuleComponent abstractModuleComponent;
+    private AbstractModel abstractModel;
+    private AbstractView abstractView;
 
-    public AbstractController(AbstractModel abstractModel, AbstractView abstractView) {
+    public AbstractController(AbstractModuleComponent abstractModuleComponent, AbstractModel abstractModel, AbstractView abstractView) {
+        this.abstractModuleComponent = abstractModuleComponent;
         this.abstractModel = abstractModel;
         this.abstractView = abstractView;
     }
 
+    public AbstractModuleComponent getAbstractModuleComponent() {
+        return this.abstractModuleComponent;
+    }
+
+    public void setAbstractModuleComponent(AbstractModuleComponent abstractModuleComponent) {
+        this.abstractModuleComponent = abstractModuleComponent;
+    }
+    
     public AbstractModel getAbstractModel() {
         return this.abstractModel;
     }
