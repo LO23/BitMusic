@@ -12,10 +12,10 @@ package bitmusic.music.data;
  */
 public class Rights {
     
-    public boolean canPlay;
-    public boolean canReadInfo;
-    public boolean canRate;
-    public boolean canComment;
+    private boolean canPlay;
+    private boolean canReadInfo;
+    private boolean canRate;
+    private boolean canComment;
     
     public Rights(boolean canPlayValue, boolean canReadInfoValue, boolean canRateValue, boolean canCommentValue)
          {
