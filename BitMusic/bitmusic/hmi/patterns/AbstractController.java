@@ -29,7 +29,7 @@ public abstract class AbstractController {
     public void setAbstractModuleComponent(AbstractModuleComponent abstractModuleComponent) {
         this.abstractModuleComponent = abstractModuleComponent;
     }
-    
+
     public AbstractModel getAbstractModel() {
         return this.abstractModel;
     }

@@ -21,14 +21,14 @@ import java.util.ArrayList;
 public class WindowView extends JFrame implements Observer {
 
     private WindowController windowController;
-    
-    private JPanel mainPanel = new JPanel(); 
+
+    private JPanel mainPanel = new JPanel();
     private ArrayList<AbstractView> listView = new ArrayList<>();
 
     public WindowView() {
         this.initFrame();
     }
-    
+
     public WindowController getWindowController() {
         return this.windowController;
     }
@@ -36,7 +36,7 @@ public class WindowView extends JFrame implements Observer {
     public void setWindowController(WindowController windowController) {
         this.windowController = windowController;
     }
-    
+
     public void initFrame() {
         System.out.println("-- WindowView.initFrame()");
         this.setTitle("BitMusic");

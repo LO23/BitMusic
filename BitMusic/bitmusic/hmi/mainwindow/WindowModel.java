@@ -17,9 +17,9 @@ import java.util.ArrayList;
 class WindowModel implements Observable {
 
     private ArrayList<Observer> listObserver = new ArrayList<>();
-    
+
     public WindowModel() {
-        
+
     }
 
     //Implémentation du pattern observer
@@ -32,6 +32,6 @@ class WindowModel implements Observable {
     }
 
     public void removeObserver() {
-        
+
     }
 }
