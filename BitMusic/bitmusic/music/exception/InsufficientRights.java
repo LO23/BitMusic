@@ -4,21 +4,23 @@
  * and open the template in the editor.
  */
 
-package bitmusic.network.exception;
+package music.exception;
 
 /**
- *
- * @author florian
+ * Class which allows to manage exception when a user have not enough rights.
+ * @author Thomas
  */
-public class NetworkException extends Exception {
+public class InsufficientRights extends Exception {
+     
     /**
      * Constructs a new exception with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by a
      * call to Throwable.initCause(java.lang.Throwable).
      */
-    public NetworkException() {
+    public InsufficientRights() {
         super();
     }
+    
     /**
      * Constructs a new exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized
@@ -26,11 +28,12 @@ public class NetworkException extends Exception {
      * @param message The detail message. The detail message is saved for
      * later retrieval by the Throwable.getMessage() method.
      */
-    public NetworkException(final String message) {
+    public InsufficientRights(final String message) {
         super(message);
     }
+    
     /**
-     * Constructs a new network exception with the specified detail message
+     * Constructs a new exception with the specified detail message
      * and cause.
      * @param message the detail message (which is saved for later retrieval
      * by the Throwable.getMessage() method).
@@ -38,18 +41,19 @@ public class NetworkException extends Exception {
      * Throwable.getCause() method). (A null value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
      */
-    public NetworkException(final String message, final Throwable cause) {
+    public InsufficientRights(final String message, final Throwable cause) {
         super(message, cause);
     }
+    
     /**
-     * Constructs a new network exception with the specified cause and a
+     * Constructs a new exception with the specified cause and a
      * detail message of (cause==null ? null : cause.toString())
      * (which typically contains the class and detail message of cause).
      * @param cause The cause (which is saved for later retrieval by the
      * Throwable.getCause() method). (A null value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
      */
-    public NetworkException(final Throwable cause) {
+    public InsufficientRights(final Throwable cause) {
         super(cause);
     }
 }

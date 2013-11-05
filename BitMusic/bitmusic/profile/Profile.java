@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 
-package profile;
+package bitmusic.profile;
 
 /**
  *
  * @author reaneyol
  */
 public class Profile {
-    User currentUser;
+    private User currentUser;
 }

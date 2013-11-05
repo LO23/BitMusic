@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package profile;
+package bitmusic.profile;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,6 +43,6 @@ public class User {
 
     @Override
     public String toString() {
-        return new String("Login : " + this.login + "\nUserID : " + this.userId + "\n" );
+        return "Login : " + this.login + "\nUserID : " + this.userId + "\n";
     }
 }
