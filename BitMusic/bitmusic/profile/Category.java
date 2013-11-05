@@ -24,7 +24,7 @@ public class Category {
     public Category(String name) {
         this.contacts = new ArrayList<User>();
         this.name = name;
-        this.rights = new Rights(1,1,1,1);
+        this.rights = new Rights();
     }
 
     /**
