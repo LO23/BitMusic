@@ -11,5 +11,5 @@ package hmi.patterns;
  * @author hebergui, unkedeuxke
  */
 public interface Observer {
-    
+
 }

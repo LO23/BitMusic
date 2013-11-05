@@ -17,7 +17,7 @@ public abstract class AbstractModel implements Observable {
     private ArrayList<Observer> listObserver = new ArrayList<>();
 
     public AbstractModel() {
-        
+
     }
 
     //Implémentation du pattern observer
@@ -30,6 +30,6 @@ public abstract class AbstractModel implements Observable {
     }
 
     public void removeObserver() {
-        
+
     }
 }

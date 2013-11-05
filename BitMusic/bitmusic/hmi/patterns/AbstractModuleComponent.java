@@ -17,7 +17,7 @@ public abstract class AbstractModuleComponent {
     protected AbstractController controller;
 
     public AbstractModuleComponent() {
-        
+
     }
 
     public AbstractModel getModel() {

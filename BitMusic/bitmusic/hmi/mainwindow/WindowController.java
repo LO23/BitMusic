@@ -11,10 +11,10 @@ package hmi.mainwindow;
  * @author hebergui, unkedeuxke
  */
 public class WindowController {
-    
+
     protected WindowModel windowModel;
     protected WindowView windowView;
-    
+
     public WindowController(WindowModel model, WindowView view) {
         this.windowModel = windowModel;
         this.windowView = windowView;
@@ -35,6 +35,6 @@ public class WindowController {
     public void setWindowView(WindowView windowView) {
         this.windowView = windowView;
     }
-    
-    
+
+
 }
