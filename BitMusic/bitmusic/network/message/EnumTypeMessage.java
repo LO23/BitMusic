@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package network.message;
+package bitmusic.network.message;
 
 /**
  * Énumération des types possibles de Message.

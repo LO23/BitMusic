@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package network.main;
+package bitmusic.network.main;
 
 import java.util.List;
+import bitmusic.network.main.Worker;
 
 /**
  *
@@ -17,6 +18,6 @@ public class NetworkListener {
      * List which contains the instanciated workers
      * (Due to the composition link on the class diagram)
      */
-    private List<network.main.Worker> workers;
-    
+    private List<Worker> workers;
+
 }

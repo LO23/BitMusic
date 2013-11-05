@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-package network.main;
+package bitmusic.network.main;
 
 import java.util.List;
-import network.api.ApiExceptionImpl;
-import network.api.ApiHmiImpl;
-import network.api.ApiMusicImpl;
-import network.api.ApiProfileImpl;
+import bitmusic.network.api.ApiExceptionImpl;
+import bitmusic.network.api.ApiHmiImpl;
+import bitmusic.network.api.ApiMusicImpl;
+import bitmusic.network.api.ApiProfileImpl;
 
 /**
  *
@@ -20,28 +20,28 @@ public class Controller {
     /**
      * References the HMI API (Due to the composition link on the class diagram)
      */
-    private network.api.ApiHmiImpl apiHmi;
+    private ApiHmiImpl apiHmi;
     /**
      * References the Music API (Due to the composition link on the class diagram)
      */
-    private network.api.ApiMusicImpl apiMusic;
+    private ApiMusicImpl apiMusic;
     /**
      * References the Profile API (Due to the composition link on the class diagram)
      */
-    private network.api.ApiProfileImpl apiProfile;
+    private ApiProfileImpl apiProfile;
     /**
      * References the Exception API (Due to the composition link on the class diagram)
      */
-    private network.api.ApiExceptionImpl apiException;
+    private ApiExceptionImpl apiException;
     /**
      * References the network listener (Due to the composition link on the class diagram)
      */
-    private network.main.NetworkListener networkListener;
+    private NetworkListener networkListener;
     /**
      * List which contains the instanciated workers
      * (Due to the composition link on the class diagram)
      */
-    private List<network.main.Worker> workers;
-    
-    
+    private List<Worker> workers;
+
+
 }

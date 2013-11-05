@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package network.strategy;
+package bitmusic.network.strategy;
 
 /**
  *
  * @author alexis
  */
 public class StrategyGetSongsByUser implements Strategy {
-    
+
 }

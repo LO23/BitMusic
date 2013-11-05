@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package network.main;
+package bitmusic.network.main;
 
 /**
  *
  * @author florian
  */
 public class Worker {
-    
+
 }
