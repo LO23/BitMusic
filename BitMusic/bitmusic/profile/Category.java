@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author frogerfa, lesceuni, reaneyol
  */
 public class Category {
-    
+
     private String name;
     private ArrayList<User> contacts;
     private Rights rights;
@@ -24,7 +24,7 @@ public class Category {
     public Category(String name) {
         this.contacts = new ArrayList<User>();
         this.name = name;
-        this.rights = new Rights(1,1,1,1);
+        this.rights = new Rights();
     }
 
     /**
@@ -42,7 +42,7 @@ public class Category {
     public String getName() {
         return this.name;
     }
-    
+
     /**
      * Return the rights of the category
      * @return Rights of the category
@@ -50,7 +50,7 @@ public class Category {
     public Rights getRight() {
         return this.rights;
     }
-   
+
     /**
      * Update the rights of the category
      * @param canIReadInfo Right to read information
@@ -61,7 +61,7 @@ public class Category {
     public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
         this.rights = new Rights(canIReadInfo, canPlay, canRate, canComment);
     }
-    
+
     /**
      * Add a user in the contact list
      * @param user
@@ -69,9 +69,9 @@ public class Category {
      */
     public boolean addUser(User user){
         return contacts.add(user);
-        
+
     }
-    
+
     /**
      * Delete a user from the contact list
      * @param user
