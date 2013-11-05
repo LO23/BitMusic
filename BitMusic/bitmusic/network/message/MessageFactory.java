@@ -16,7 +16,7 @@ public final class MessageFactory {
     /**
      * The only instance of the MessageFactory class.
      */
-    private static MessageFactory instance = null;
+    private static MessageFactory INSTANCE = null;
     /**
      * The object constructor.
      */
@@ -28,10 +28,10 @@ public final class MessageFactory {
      * @return The only instance of the MessageFactory class.
      */
     public static MessageFactory getInstance() {
-         if (MessageFactory.instance == null) {
-            MessageFactory.instance = new MessageFactory();
+         if (MessageFactory.INSTANCE == null) {
+            MessageFactory.INSTANCE = new MessageFactory();
          }
-         return MessageFactory.instance;
+         return MessageFactory.INSTANCE;
      }
     /**
      * Function provided to easily create different kind of messages.
