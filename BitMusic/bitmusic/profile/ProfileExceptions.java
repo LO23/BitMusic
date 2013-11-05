@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package profile;
+package bitmusic.profile;
 
 /**
  *
@@ -12,7 +12,7 @@ package profile;
 public class ProfileExceptions extends Throwable {
     private String errorMessage;
 
-    ProfileExceptions(int type) {
+    public ProfileExceptions(int type) {
         switch(type) {
             case 0: {
                     this.errorMessage = "None login defined";
