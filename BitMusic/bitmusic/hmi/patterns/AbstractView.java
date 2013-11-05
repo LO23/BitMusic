@@ -28,7 +28,15 @@ public abstract class AbstractView extends JPanel implements Observer {
 
     protected abstract void initPanel();
 
-    public AbstractView(AbstractController abstractController) {
+    public AbstractView() {
+        super();
+    }
+
+    public AbstractController getAbstractController() {
+        return abstractController;
+    }
+
+    public void setAbstractController(AbstractController abstractController) {
         this.abstractController = abstractController;
     }
 
