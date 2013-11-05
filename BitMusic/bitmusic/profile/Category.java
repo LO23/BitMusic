@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package profile;
+package bitmusic.profile;
 
 import java.util.ArrayList;
 
@@ -13,8 +13,21 @@ import java.util.ArrayList;
  */
 public class Category {
 
-    String id;
-    String name;
-    ArrayList<User> contacts;
+    //private String id;
+    private String name;
+    private ArrayList<UserLight> contacts;
+
+    public Category(String name) {
+        this.contacts = new ArrayList<UserLight>();
+        this.name = name;
+    }
+
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 
 }
