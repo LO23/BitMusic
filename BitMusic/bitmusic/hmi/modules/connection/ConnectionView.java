@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import hmi.patterns.AbstractController;
 import hmi.patterns.AbstractView;
 import javax.swing.GroupLayout;
 import javax.swing.SwingConstants;
@@ -23,8 +22,8 @@ import javax.swing.SwingConstants;
  */
 public class ConnectionView extends AbstractView {
 
-    public ConnectionView(AbstractController abstractController) {
-        super(abstractController);
+    public ConnectionView() {
+        super();
         this.initPanel();
     }
 

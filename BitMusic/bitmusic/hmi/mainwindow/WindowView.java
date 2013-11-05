@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import hmi.patterns.AbstractController;
 import hmi.patterns.AbstractView;
 import hmi.patterns.Observer;
 import java.util.ArrayList;
@@ -21,13 +20,21 @@ import java.util.ArrayList;
  */
 public class WindowView extends JFrame implements Observer {
 
-    private AbstractController windowController;
+    private WindowController windowController;
+    
     private JPanel mainPanel = new JPanel(); 
     private ArrayList<AbstractView> listView = new ArrayList<>();
 
-    public WindowView(AbstractController abstractController) {
-        this.windowController = abstractController;
+    public WindowView() {
         this.initFrame();
+    }
+    
+    public WindowController getWindowController() {
+        return this.windowController;
+    }
+
+    public void setWindowController(WindowController windowController) {
+        this.windowController = windowController;
     }
     
     public void initFrame() {
@@ -45,12 +52,12 @@ public class WindowView extends JFrame implements Observer {
         this.getContentPane().add(panel);
         this.setVisible(true);
     }
-    
+
     public void addView(AbstractView view) {
         this.listView.add(view);
         this.addPanel(view.getPanel());
     }
-    
+
     public void removeView(AbstractView view) {
         this.listView.remove(view);
     }
