@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package network.main;
+package bitmusic.network.main;
 import java.util.List;
-import network.message.*;
+import bitmusic.network.message.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.ArrayList;

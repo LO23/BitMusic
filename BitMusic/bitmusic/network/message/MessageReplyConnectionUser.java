@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package network.message;
+package bitmusic.network.message;
 
 /**
  *
  * @author alexis
  */
 public class MessageReplyConnectionUser extends AbstractMessage {
-    
+
 }

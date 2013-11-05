@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package network.message;
+package bitmusic.network.message;
 
 /**
  * Class that implements the factory design pattern,
