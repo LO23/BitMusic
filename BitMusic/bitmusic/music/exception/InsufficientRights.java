@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package music.exception;
+package bitmusic.music.exception;
 
 /**
  * Class which allows to manage exception when a user have not enough rights.
