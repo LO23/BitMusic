@@ -12,23 +12,32 @@ import network.message.*;
  *
  * @author Pak
  */
-public class NetworkListener {
-    /*
-    * Singleton implementation
+public final class NetworkListener {
+    /**
+    * Singleton implementation.
     */
     private static final NetworkListener NETLISTENER = new NetworkListener();
-    private NetworkListener(){};
-    public static NetworkListener getInstance(){
+    /**
+     * default constructor.
+     */
+    private NetworkListener() { };
+    /**
+     *
+     * @return unique instance of NetworkListener
+     */
+    public static NetworkListener getInstance() {
         return NETLISTENER;
     }
-    
-    /*
-    *Upon receiving a task (a message), schedule this task to a worker thanks to the work manager
-    *@param a message from a subclass of AbstractMessage
+
+    /**
+    *Upon receiving a task (a message),
+    * schedule this task to a worker thanks to the work manager
+    *@param task is a message
     */
-    public void scheduleTask(AbstractMessage task){
-        
+    public void scheduleTask(final AbstractMessage task) {
+
     WorkManagement.getInstance().assignTaskToWorker(task);
-        
+
     }
 }
+
