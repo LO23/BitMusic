@@ -53,13 +53,13 @@ public class Category {
 
     /**
      * Update the rights of the category
-     * @param canIReadInfo Right to read information
+     * @param canReadInfo Right to read information
      * @param canPlay Right to play
      * @param canRate Right to play
      * @param canComment Right to comment
      */
-    public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
-        this.rights = new Rights(canIReadInfo, canPlay, canRate, canComment);
+    public void updateRight(boolean canReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
+        this.rights.updateRights(canReadInfo, canPlay, canRate, canComment);
     }
 
     /**
