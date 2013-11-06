@@ -38,9 +38,19 @@ public class SongLibrary
    //returns true if the song with the ID songId is in the list
    public boolean islocal(String songId)
    {
-       //RYM
-       return false;
-   }
+    
+    Iterator<Song> it=library.iterator();
+    
+    while (it.hasNext())
+      {  
+        Song s=it.Next();
+        if (s.getSongId().equals(songId))
+            return true;
+        else
+            return false;
+       }  
+    return false;
+ } 
    
    //returns the song songId
    public Song getSong(String songId)
@@ -62,10 +72,16 @@ public class SongLibrary
    }
    
    //adds the category name to each song of the list song
-   public void addCategory (String name)
+   public void addCategory (String name, Rights rights)
    {
-   //RYM
+   Iterator<Song> it=library.iterator();
+   while(it.hasNext())
+       {
+           Song song=it.Next();
+           song.updateCategory(name,rights);
+       }
    }
+   
    
    //removes the category name to each song of the list song
    public void removeCategory (String name)
