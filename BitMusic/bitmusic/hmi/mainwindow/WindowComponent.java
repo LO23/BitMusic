@@ -9,6 +9,9 @@ package hmi.mainwindow;
 import hmi.modules.connection.ConnectionComponent;
 import hmi.patterns.AbstractModuleComponent;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -47,6 +50,19 @@ public class WindowComponent {
 
     public void addComponent(AbstractModuleComponent component) {
         this.listComponent.add(component);
+    }
+
+    public ArrayList<AbstractModuleComponent> getComponent(String componentClass) {
+        ArrayList<AbstractModuleComponent> matches = new ArrayList<>();
+
+        Iterator<AbstractModuleComponent> iterator = this.listComponent.iterator();
+        while (iterator.hasNext()) {
+            AbstractModuleComponent current = iterator.next();
+            if (current.getClass().getSimpleName().equals(componentClass)) {
+                matches.add(current);
+            }
+        }
+        return matches;
     }
 
     public void removeComponent(AbstractModuleComponent component) {
