@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 
-package bitmusic.network.api;
-
-import bitmusic.network.exception.EnumTypeException;
+package bitmusic.network.exception;
 
 /**
  *
  * @author florian
  */
-public interface ApiException {
-    public void throwException(EnumTypeException type, String msg);
+public enum EnumTypeException {
+    /**
+     * Exception emitted by the package network due to an error occured
+     * with the directory.
+     */
+    NetworkDirectoryException;
 }

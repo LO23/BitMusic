@@ -28,7 +28,7 @@ public final class NetworkListener {
      *
      * @return unique instance of NetworkListener
      */
-    public static NetworkListener getInstance() {
+    protected static NetworkListener getInstance() {
         return NETLISTENER;
     }
 

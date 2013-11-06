@@ -56,7 +56,5 @@ public class Worker implements Runnable {
     public final AbstractMessage getMessage() {
         return message;
     }
-
-
 }
 
