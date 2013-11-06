@@ -22,8 +22,6 @@ public class WindowView extends JFrame implements Observer {
 
     private WindowController windowController;
 
-    private ArrayList<AbstractView> listView = new ArrayList<>();
-
     public WindowView() {
         this.initFrame();
     }
@@ -53,11 +51,10 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void addView(AbstractView view) {
-        this.listView.add(view);
         this.addPanel(view.getPanel());
     }
 
     public void removeView(AbstractView view) {
-        this.listView.remove(view);
+        
     }
 }
