@@ -22,7 +22,7 @@ public class WindowComponent {
 
     private ArrayList<AbstractModuleComponent> listComponent = new ArrayList<>();
 
-    public WindowComponent() {
+    private WindowComponent() {
         this.model = new WindowModel();
         this.view = new WindowView();
         this.controller = new WindowController(this.model, this.view);
@@ -34,11 +34,22 @@ public class WindowComponent {
         this.view.addView(connectionComponent.getView());
     }
 
-    protected void addComponent(AbstractModuleComponent component) {
+    /** Holder */
+    private static class WindowComponentHolder {
+        /** Instance unique non préinitialisée */
+        private final static WindowComponent instance = new WindowComponent();
+    }
+
+    /** Point d'accès pour l'instance unique du singleton */
+    public static WindowComponent getInstance() {
+            return WindowComponentHolder.instance;
+    }
+
+    public void addComponent(AbstractModuleComponent component) {
         this.listComponent.add(component);
     }
 
-    protected void removeComponent(AbstractModuleComponent component) {
+    public void removeComponent(AbstractModuleComponent component) {
         this.listComponent.remove(component);
     }
 }
