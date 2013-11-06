@@ -45,16 +45,12 @@ public class WindowView extends JFrame implements Observer {
         this.setVisible(true);
     }
 
-    public void addPanel(JPanel panel) {
-        this.getContentPane().add(panel);
+    public void addView(AbstractView view) {
+        this.getContentPane().add(view.getPanel());
         this.setVisible(true);
     }
 
-    public void addView(AbstractView view) {
-        this.addPanel(view.getPanel());
-    }
-
     public void removeView(AbstractView view) {
-        
+        this.getContentPane().remove(view.getPanel()); // TODO : détruire l'objet ? (ex : ConnectionComponent)
     }
 }
