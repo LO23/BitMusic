@@ -12,7 +12,7 @@ import hmi.patterns.AbstractComponent;
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionComponent extends AbstractComponent {
+public final class ConnectionComponent extends AbstractComponent {
 
     public ConnectionComponent() {
         this.model = new ConnectionModel();

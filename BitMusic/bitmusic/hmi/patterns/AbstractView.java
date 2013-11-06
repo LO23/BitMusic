@@ -32,27 +32,27 @@ public abstract class AbstractView extends JPanel implements Observer {
         super();
     }
 
-    public AbstractController getAbstractController() {
+    public final AbstractController getAbstractController() {
         return this.abstractController;
     }
 
-    public void setAbstractController(AbstractController abstractController) {
+    public final void setAbstractController(final AbstractController abstractController) {
         this.abstractController = abstractController;
     }
 
-    public JPanel getPanel() {
+    public final JPanel getPanel() {
         return this.panel;
     }
 
-    public void setPanel(JPanel panel) {
+    public final void setPanel(final JPanel panel) {
         this.panel = panel;
     }
 
-    public Dimension getDim() {
+    public final Dimension getDim() {
         return this.dim;
     }
 
-    public void setDim(Dimension dim) {
+    public final void setDim(final Dimension dim) {
         this.dim = dim;
     }
 }

@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionView extends AbstractView {
+public final class ConnectionView extends AbstractView {
 
     public ConnectionView() {
         super();
@@ -27,7 +27,7 @@ public class ConnectionView extends AbstractView {
     }
 
     @Override
-    protected void initPanel() {
+    public void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");
         Dimension d = new Dimension(80, 20);
 

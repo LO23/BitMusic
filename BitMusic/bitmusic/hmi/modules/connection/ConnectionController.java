@@ -14,9 +14,9 @@ import hmi.patterns.AbstractView;
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionController extends AbstractController {
+public final class ConnectionController extends AbstractController {
 
-    public ConnectionController(AbstractModel abstractModel, AbstractView abstractView) {
+    public ConnectionController(final AbstractModel abstractModel, final AbstractView abstractView) {
         super(abstractModel, abstractView);
     }
 }

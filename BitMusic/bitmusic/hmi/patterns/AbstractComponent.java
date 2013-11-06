@@ -20,27 +20,27 @@ public abstract class AbstractComponent {
 
     }
 
-    public AbstractModel getModel() {
+    public final AbstractModel getModel() {
         return this.model;
     }
 
-    public void setModel(AbstractModel model) {
+    public final void setModel(final AbstractModel model) {
         this.model = model;
     }
 
-    public AbstractView getView() {
+    public final AbstractView getView() {
         return this.view;
     }
 
-    public void setView(AbstractView view) {
+    public final void setView(final AbstractView view) {
         this.view = view;
     }
 
-    public AbstractController getController() {
+    public final AbstractController getController() {
         return this.controller;
     }
 
-    public void setController(AbstractController controller) {
+    public final void setController(final AbstractController controller) {
         this.controller = controller;
     }
 }
