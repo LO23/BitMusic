@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.categories;
+package hmi.modules.myprofile;
 
 import hmi.patterns.AbstractView;
 
@@ -12,16 +12,16 @@ import hmi.patterns.AbstractView;
  *
  * @author unkedeuxke
  */
-public final class CategoriesView extends AbstractView {
+public final class MyProfileView extends AbstractView {
 
-    public CategoriesView() {
+    public MyProfileView() {
         super();
         this.initPanel();
     }
 
     @Override
     public void initPanel() {
-        System.out.println("--- CategoriesView.initPanel()");
+        System.out.println("--- MyProfileView.initPanel()");
 
         // TODO
     }

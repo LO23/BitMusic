@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.categories;
+package hmi.modules.myprofile;
 
 import hmi.patterns.AbstractComponent;
 
@@ -12,12 +12,12 @@ import hmi.patterns.AbstractComponent;
  *
  * @author unkedeuxke
  */
-public final class CategoriesComponent extends AbstractComponent {
+public final class MyProfileComponent extends AbstractComponent {
 
-    public CategoriesComponent() {
-        this.model = new CategoriesModel();
-        this.view = new CategoriesView();
-        this.controller = new CategoriesController(this.model, this.view);
+    public MyProfileComponent() {
+        this.model = new MyProfileModel();
+        this.view = new MyProfileView();
+        this.controller = new MyProfileController(this.model, this.view);
         this.view.setAbstractController(this.controller);
         this.model.addObserver(this.view);
     }

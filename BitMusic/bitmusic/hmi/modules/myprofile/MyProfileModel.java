@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.categories;
+package hmi.modules.myprofile;
 
 import hmi.patterns.AbstractModel;
 
@@ -12,9 +12,9 @@ import hmi.patterns.AbstractModel;
  *
  * @author unkedeuxke
  */
-public final class CategoriesModel extends AbstractModel {
+public final class MyProfileModel extends AbstractModel {
 
-    public CategoriesModel() {
+    public MyProfileModel() {
         super();
     }
 
