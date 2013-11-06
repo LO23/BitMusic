@@ -17,7 +17,7 @@ public class ConnectionComponent extends AbstractModuleComponent {
     public ConnectionComponent() {
         this.model = new ConnectionModel();
         this.view = new ConnectionView();
-        this.controller = new ConnectionController(this, this.model, this.view);
+        this.controller = new ConnectionController(this.model, this.view);
         this.view.setAbstractController(this.controller);
         this.model.addObserver(this.view);
     }

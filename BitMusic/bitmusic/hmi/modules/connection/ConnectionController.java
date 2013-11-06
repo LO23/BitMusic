@@ -8,7 +8,6 @@ package hmi.modules.connection;
 
 import hmi.patterns.AbstractController;
 import hmi.patterns.AbstractModel;
-import hmi.patterns.AbstractModuleComponent;
 import hmi.patterns.AbstractView;
 
 /**
@@ -17,7 +16,7 @@ import hmi.patterns.AbstractView;
  */
 public class ConnectionController extends AbstractController {
 
-    public ConnectionController(AbstractModuleComponent abstractModuleComponent, AbstractModel abstractModel, AbstractView abstractView) {
-        super(abstractModuleComponent, abstractModel, abstractView);
+    public ConnectionController(AbstractModel abstractModel, AbstractView abstractView) {
+        super(abstractModel, abstractView);
     }
 }
