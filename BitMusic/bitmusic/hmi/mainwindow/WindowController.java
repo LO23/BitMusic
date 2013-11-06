@@ -12,8 +12,8 @@ package hmi.mainwindow;
  */
 public class WindowController {
 
-    protected WindowModel windowModel;
-    protected WindowView windowView;
+    private WindowModel windowModel;
+    private WindowView windowView;
 
     public WindowController(WindowModel model, WindowView view) {
         this.windowModel = windowModel;

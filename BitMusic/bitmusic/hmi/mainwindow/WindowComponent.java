@@ -7,11 +7,9 @@
 package hmi.mainwindow;
 
 import hmi.modules.connection.ConnectionComponent;
-import hmi.patterns.AbstractModuleComponent;
+import hmi.patterns.AbstractComponent;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -23,7 +21,7 @@ public class WindowComponent {
     private WindowView view;
     private WindowController controller;
 
-    private ArrayList<AbstractModuleComponent> listComponent = new ArrayList<>();
+    private ArrayList<AbstractComponent> listComponent = new ArrayList<>();
 
     private WindowComponent() {
         this.model = new WindowModel();
@@ -48,16 +46,16 @@ public class WindowComponent {
             return WindowComponentHolder.instance;
     }
 
-    public void addComponent(AbstractModuleComponent component) {
+    public void addComponent(AbstractComponent component) {
         this.listComponent.add(component);
     }
 
-    public ArrayList<AbstractModuleComponent> getComponent(String componentClass) {
-        ArrayList<AbstractModuleComponent> matches = new ArrayList<>();
+    public ArrayList<AbstractComponent> getComponent(String componentClass) {
+        ArrayList<AbstractComponent> matches = new ArrayList<>();
 
-        Iterator<AbstractModuleComponent> iterator = this.listComponent.iterator();
+        Iterator<AbstractComponent> iterator = this.listComponent.iterator();
         while (iterator.hasNext()) {
-            AbstractModuleComponent current = iterator.next();
+            AbstractComponent current = iterator.next();
             if (current.getClass().getSimpleName().equals(componentClass)) {
                 matches.add(current);
             }
@@ -65,7 +63,7 @@ public class WindowComponent {
         return matches;
     }
 
-    public void removeComponent(AbstractModuleComponent component) {
+    public void removeComponent(AbstractComponent component) {
         this.listComponent.remove(component);
     }
 }

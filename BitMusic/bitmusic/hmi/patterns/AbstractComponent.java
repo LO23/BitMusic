@@ -10,13 +10,13 @@ package hmi.patterns;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractModuleComponent {
+public abstract class AbstractComponent {
 
     protected AbstractModel model;
     protected AbstractView view;
     protected AbstractController controller;
 
-    public AbstractModuleComponent() {
+    public AbstractComponent() {
 
     }
 

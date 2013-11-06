@@ -14,6 +14,10 @@ import hmi.patterns.AbstractModel;
  */
 public class ConnectionModel extends AbstractModel {
 
+    public ConnectionModel () {
+        super();
+    }
+    
     public void doConnection() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

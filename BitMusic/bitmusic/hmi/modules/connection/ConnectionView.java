@@ -9,7 +9,6 @@ package hmi.modules.connection;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import hmi.patterns.AbstractView;
@@ -30,7 +29,6 @@ public class ConnectionView extends AbstractView {
     @Override
     protected void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");
-        this.panel = new JPanel();
         Dimension d = new Dimension(80, 20);
 
         JLabel connectionLabel = new JLabel("Connexion");
@@ -57,8 +55,8 @@ public class ConnectionView extends AbstractView {
         JPasswordField passwordField = new JPasswordField("");
         passwordField.setColumns(10);
 
-        GroupLayout layout = new GroupLayout(this.panel);
-        this.panel.setLayout(layout);
+        GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
 
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);

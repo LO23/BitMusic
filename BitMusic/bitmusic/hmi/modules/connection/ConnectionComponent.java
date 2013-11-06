@@ -6,13 +6,13 @@
 
 package hmi.modules.connection;
 
-import hmi.patterns.AbstractModuleComponent;
+import hmi.patterns.AbstractComponent;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionComponent extends AbstractModuleComponent {
+public class ConnectionComponent extends AbstractComponent {
 
     public ConnectionComponent() {
         this.model = new ConnectionModel();
