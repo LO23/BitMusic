@@ -22,7 +22,6 @@ public class WindowView extends JFrame implements Observer {
 
     private WindowController windowController;
 
-    private JPanel mainPanel = new JPanel();
     private ArrayList<AbstractView> listView = new ArrayList<>();
 
     public WindowView() {
