@@ -17,6 +17,11 @@ public class ApiProfileImpl {
     private static final ApiProfileImpl APIPROFILEHMI = new ApiProfileImpl();
 
     /**
+     * Private constructor for singleton pattern.
+     */
+    private ApiProfileImpl() { }
+
+    /**
      * .
      * @return Unique instance of ApiProfileImpl
      */

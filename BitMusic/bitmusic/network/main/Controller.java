@@ -57,7 +57,7 @@ public class Controller {
     /**
      * Construct a new controller and links all the singleton's instances.
      */
-    public Controller() {
+    private Controller() {
         //Create the directory
         directory = new HashMap<String, String>();
 

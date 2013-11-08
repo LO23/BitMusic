@@ -10,11 +10,16 @@ package bitmusic.network.main;
  *
  * @author florian
  */
-public class ApiHmiImpl {
+public final class ApiHmiImpl {
     /**
     * Singleton implementation.
     */
     private static final ApiHmiImpl APIHMIIMPL = new ApiHmiImpl();
+
+    /**
+     * Private constructor for singleton pattern.
+     */
+    private ApiHmiImpl() { }
 
     /**
      * .
@@ -23,4 +28,5 @@ public class ApiHmiImpl {
     protected static ApiHmiImpl getInstance() {
         return APIHMIIMPL;
     }
+
 }
