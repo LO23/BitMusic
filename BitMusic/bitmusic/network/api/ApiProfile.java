@@ -25,6 +25,8 @@ public interface ApiProfile {
     * Notify connection of a user and pass his profile to broadcast it.
     *
     * @param idUser the id of the user who just connected
+    * @throws Exception throws an exception when the given user isn't
+    * registered in the directory
     */
-    void notifyNewConnection(final User idUser);
+    void notifyNewConnection(final User idUser) throws Exception;
 }
