@@ -15,7 +15,7 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
     /**
      * The profile we send to the newly connected user.
      */
-    private User myProfile;
+    private User profile;
 
     /**
      * Constructor.
@@ -28,7 +28,7 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
             final String paramIpSource, final String paramIpDest,
             final User paramUser) {
         super(paramType, paramIpSource, paramIpDest);
-        myProfile = paramUser;
+        profile = paramUser;
     }
 
     /**
@@ -40,19 +40,19 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
     }
 
     /**
-     * Setter of myProfile attribute.
-     * @param paramMyProfile The profile to set
+     * Setter of profile attribute.
+     * @param paramProfile The profile to set
      */
-    public void setMyProfile(final User paramMyProfile) {
-        this.myProfile = paramMyProfile;
+    public void setProfile(final User paramProfile) {
+        this.profile = paramProfile;
     }
 
     /**
      * Getter of myProfile attribute.
      * @return User The profile we are about to send
      */
-    public User getMyProfile() {
-        return myProfile;
+    public User getProfile() {
+        return profile;
     }
 
 }
