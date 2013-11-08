@@ -6,11 +6,13 @@
 
 package bitmusic.network.main;
 
+import bitmusic.network.api.ApiProfile;
+import bitmusic.profile.User;
 /**
  *
  * @author florian
  */
-public class ApiProfileImpl {
+public final class ApiProfileImpl implements ApiProfile {
     /**
     * Singleton implementation.
     */
@@ -27,5 +29,31 @@ public class ApiProfileImpl {
      */
     protected static ApiProfileImpl getInstance() {
         return APIPROFILEHMI;
+    }
+
+    /*########################################################################*/
+    /* IMPLEMENTED METHODS */
+    /*########################################################################*/
+    /**
+     * Get the profile of a distant user.
+     *
+     * @param userId the id of the user whose profile we want.
+     * @return profile of the distant user, null if no such user found
+    */
+    @Override
+    public User getUser(final String userId) {
+        User user = null;
+
+        return user;
+    }
+
+    /**
+    * Notify connection of a user and pass his profile to broadcast it.
+    *
+    * @param idUser the id of the user who just connected
+    */
+    @Override
+    public void notifyNewConnection(final User idUser) {
+
     }
 }
