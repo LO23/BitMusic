@@ -115,7 +115,10 @@ public class Controller {
     public static String getNetworkAddress() {
         return networkAddress;
     }
-
+    /**
+     * Get the ApiHmiImpl.
+     * @return instance of ApiHmiImpl
+     */
     public final ApiHmiImpl getApiHmi() {
         return apiHmi;
     }
