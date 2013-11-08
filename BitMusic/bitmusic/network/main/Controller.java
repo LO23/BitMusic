@@ -14,7 +14,7 @@ import bitmusic.network.api.ApiProfileImpl;
 
 /**
  *
- * @author florian
+ * @author florian, Pak
  */
 public class Controller {
     /**
