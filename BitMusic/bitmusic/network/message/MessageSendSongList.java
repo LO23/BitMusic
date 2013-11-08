@@ -11,5 +11,22 @@ package bitmusic.network.message;
  * @author alexis
  */
 public class MessageSendSongList extends AbstractMessage {
+    /**
+     * Constructor.
+     * @param paramType Type of the message
+     * @param paramIpSource IP address of the sender
+     * @param paramIpDest IP address of the receiver
+     */
+    public MessageSendSongList(final EnumTypeMessage paramType,
+            final String paramIpSource, final String paramIpDest) {
+        super(paramType, paramIpSource, paramIpDest);
+    }
 
+    /**
+     * .
+     */
+    @Override
+    public void treatment() {
+
+    }
 }
