@@ -6,42 +6,158 @@
 
 package bitmusic.network.main;
 
-import java.util.List;
-import bitmusic.network.api.ApiExceptionImpl;
-import bitmusic.network.api.ApiHmiImpl;
-import bitmusic.network.api.ApiMusicImpl;
-import bitmusic.network.api.ApiProfileImpl;
+import bitmusic.network.exception.EnumTypeException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author florian
  */
 public class Controller {
+    private static final Controller CONTROLLER = new Controller();
     /**
-     * References the HMI API (Due to the composition link on the class diagram)
+     * References the HMI API
+     * (Due to the composition link on the class diagram).
      */
     private ApiHmiImpl apiHmi;
     /**
-     * References the Music API (Due to the composition link on the class diagram)
+     * References the Music API
+     * (Due to the composition link on the class diagram).
      */
     private ApiMusicImpl apiMusic;
     /**
-     * References the Profile API (Due to the composition link on the class diagram)
+     * References the Profile API
+     * (Due to the composition link on the class diagram).
      */
     private ApiProfileImpl apiProfile;
     /**
-     * References the Exception API (Due to the composition link on the class diagram)
+     * References the Exception API
+     * (Due to the composition link on the class diagram).
      */
     private ApiExceptionImpl apiException;
     /**
-     * References the network listener (Due to the composition link on the class diagram)
+     * References the network listener
+     * (Due to the composition link on the class diagram).
      */
     private NetworkListener networkListener;
     /**
-     * List which contains the instanciated workers
-     * (Due to the composition link on the class diagram)
+     * References the worker manage
+     * (Due to the composition link on the class diagram).
      */
-    private List<Worker> workers;
+    private WorkManagement workManager;
+    /**
+     * Contains the correspondance between UserId and Ips.
+     */
+    private Map<String, String> directory;
 
+    /*########################################################################*/
+    /* CONSTRUCTORS */
+    /*########################################################################*/
+    /**
+     * Construct a new controller and links all the singleton's instances.
+     */
+    public Controller() {
+        //Create the directory
+        directory = new HashMap<String, String>();
 
+        //Contains all the API's instances
+        apiException = bitmusic.network.main.ApiExceptionImpl.getInstance();
+        apiHmi = bitmusic.network.main.ApiHmiImpl.getInstance();
+        apiMusic = bitmusic.network.main.ApiMusicImpl.getInstance();
+        apiProfile = bitmusic.network.main.ApiProfileImpl.getInstance();
+
+        //Contains the NetworkListener instance
+        networkListener = bitmusic.network.main.NetworkListener.getInstance();
+
+        //Contains the WorkManager instance
+        //workManager = bitmusic.network.main.WorkManagement.getInstance();
+        workManager = null;
+    }
+
+    /**
+     * Implements the singleton pattern.
+     * @return The controller
+     */
+    public static Controller getInstance() {
+        return CONTROLLER;
+    }
+
+    /*########################################################################*/
+    /* GETTERS */
+    /*########################################################################*/
+    /**
+     * Get the ApiHmiImpl.
+     * @return instance of ApiHmiImpl
+     */
+    public final ApiHmiImpl getApiHmi() {
+        return apiHmi;
+    }
+    /**
+     * Get the ApiMusicImpl.
+     * @return instance of ApiMusicImpl
+     */
+    public final ApiMusicImpl getApiMusic() {
+        return apiMusic;
+    }
+    /**
+     * Get the ApiProfileImpl.
+     * @return instance of ApiProfileImpl
+     */
+    public final ApiProfileImpl getApiProfile() {
+        return apiProfile;
+    }
+    /**
+     * Get the ApiExceptionImpl.
+     * @return instance of ApiExceptionImpl
+     */
+    public final ApiExceptionImpl getApiException() {
+        return apiException;
+    }
+    /**
+     * Get the NetworkListener.
+     * @return instance of NetworkListener
+     */
+    public final NetworkListener getNetworkListener() {
+        return networkListener;
+    }
+    /**
+     * Get the WorkManager.
+     * @return instance of WorkManager
+     */
+    public final WorkManagement getWorkManager() {
+        return workManager;
+    }
+    /*########################################################################*/
+    /* METHODS */
+    /*########################################################################*/
+    /**
+     * Add a user to the directory.
+     * @param userId Id of the user
+     * @param ipAddress Ip address of the user
+     * @throws Exception An exception is thrown if the userId already exist
+     */
+    public final void addUserToDirectory(final String userId,
+            final String ipAddress) throws Exception {
+        if (directory.containsKey(userId)) {
+            apiException.throwException(
+                    EnumTypeException.NetworkDirectoryException,
+                    "The user is already in the directory.");
+        }
+        directory.put(userId, ipAddress);
+    }
+    /**
+     * .
+     * @param userId Id of the user
+     * @throws Exception An exception is thrown if the userId doesn't exist
+     */
+    public final void removeUserFromDirectory(final String userId)
+            throws Exception {
+        if (!directory.containsKey(userId)) {
+            apiException.throwException(
+                    EnumTypeException.NetworkDirectoryException,
+                    "The user " + userId + " doesn't exist in the directory.");
+        }
+        directory.remove(userId);
+    }
 }

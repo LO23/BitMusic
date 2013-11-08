@@ -11,5 +11,5 @@ package bitmusic.network.api;
  * @author florian
  */
 public interface ApiMusic {
-
+    
 }
