@@ -12,4 +12,22 @@ package bitmusic.network.message;
  */
 public class MessageAddComment extends AbstractMessage {
 
+    /**
+     * Constructor.
+     * @param paramType Type of the message
+     * @param paramIpSource IP address of the sender
+     * @param paramIpDest IP address of the receiver
+     */
+    public MessageAddComment(final EnumTypeMessage paramType,
+            final String paramIpSource, final String paramIpDest) {
+        super(paramType, paramIpSource, paramIpDest);
+    }
+
+    /**
+     * .
+     */
+    @Override
+    public void treatment() {
+
+    }
 }
