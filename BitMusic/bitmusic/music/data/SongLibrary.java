@@ -15,35 +15,51 @@ public class SongLibrary
     
    private ArrayList<Song> library; 
 
-  
-   // constructor  
+   /**
+    * constructor.
+    * 
+    * @param songs 
+    */
    SongLibrary(ArrayList<Song> songs)
    {
     library = new ArrayList<>();
-    library=songs;
+    library = songs;
    }
    
-   //returns the list of song
+   /**
+    * Returns the list of songs.
+    * 
+    * @return library
+    */
    public ArrayList<Song> getlibrary()
    {
        return library;
    }
    
-   //set the list of song
+   /**
+    * Set the list of songs.
+    * 
+    * @param lib 
+    */
    public void setlibrary (ArrayList<Song> lib)
    {
-       library=lib;
+       library = lib;
    }
    
-   //returns true if the song with the ID songId is in the list
+   /**
+    * Returns true if the song with the ID songID is in the list.
+    * 
+    * @param songId
+    * @return bool
+    */
    public boolean islocal(String songId)
    {
     
-    Iterator<Song> it=library.iterator();
+    Iterator<Song> it = library.iterator();
     
     while (it.hasNext())
       {  
-        Song s=it.Next();
+        Song s = it.Next();
         if (s.getSongId().equals(songId))
             return true;
         else
@@ -52,44 +68,64 @@ public class SongLibrary
     return false;
  } 
    
-   //returns the song songId
+   /**
+    * returns the songID of a song.
+    * @param songId
+    * @return 
+    */
    public Song getSong(String songId)
    {
        Song s = new Song();
        return s;//BRUNO 
    }
    
-   //removes the song songId
+   /**
+    * Removes the song songId.
+    * 
+    * @param songId 
+    */
    public void removeSong (String songId)
    {
        //DOHA 
    }
    
-   //adds song to the song list
+   /**
+    * Adds song to the song list.
+    * 
+    * @param song 
+    */
    public void addSong(Song song)
-   {
-    //JB
+   {       
+       this.library.add(song);       
    }
    
-   //adds the category name to each song of the list song
+   /**
+    * Adds the category name to each song og the list song.
+    * 
+    * @param name
+    * @param rights 
+    */
    public void addCategory (String name, Rights rights)
    {
-   Iterator<Song> it=library.iterator();
+   Iterator<Song> it = library.iterator();
    while(it.hasNext())
        {
-           Song song=it.Next();
-           song.updateCategory(name,rights);
+           Song song = it.Next();
+           song.updateCategory(name, rights);
        }
    }
    
-   
-   //removes the category name to each song of the list song
+   /**
+    * Removes the category name to each song of the song list.
+    * 
+    * @param name 
+    */
    public void removeCategory (String name)
    {
-   Iterator<Song> it=library.iterator();
+   Iterator<Song> it = library.iterator();
    while(it.hasNext()) //while there is still a song in the library
     {
-       Song song=it.next();
+       Song song = it.next();
        song.deleteCategory(name);// put default parameters to category name
    
     }
