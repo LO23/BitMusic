@@ -15,50 +15,51 @@ import java.util.Map;
  * @author florian
  */
 public class Controller {
+    private static final Controller CONTROLLER = new Controller();
     /**
      * References the HMI API
      * (Due to the composition link on the class diagram).
      */
-    private final ApiHmiImpl apiHmi;
+    private ApiHmiImpl apiHmi;
     /**
      * References the Music API
      * (Due to the composition link on the class diagram).
      */
-    private final ApiMusicImpl apiMusic;
+    private ApiMusicImpl apiMusic;
     /**
      * References the Profile API
      * (Due to the composition link on the class diagram).
      */
-    private final ApiProfileImpl apiProfile;
+    private ApiProfileImpl apiProfile;
     /**
      * References the Exception API
      * (Due to the composition link on the class diagram).
      */
-    private final ApiExceptionImpl apiException;
+    private ApiExceptionImpl apiException;
     /**
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
-    private final NetworkListener networkListener;
+    private NetworkListener networkListener;
     /**
      * References the worker manage
      * (Due to the composition link on the class diagram).
      */
-    private final WorkManagement workManager;
+    private WorkManagement workManager;
     /**
      * Contains the correspondance between UserId and Ips.
      */
-    private final Map<String, String> directory;
+    private Map<String, String> directory;
 
     /*########################################################################*/
     /* CONSTRUCTORS */
     /*########################################################################*/
     /**
-     * Construct a new controller and links all the singleton's instances
+     * Construct a new controller and links all the singleton's instances.
      */
     public Controller() {
         //Create the directory
-        directory = new HashMap<>();
+        directory = new HashMap<String, String>();
 
         //Contains all the API's instances
         apiException = bitmusic.network.main.ApiExceptionImpl.getInstance();
@@ -70,7 +71,16 @@ public class Controller {
         networkListener = bitmusic.network.main.NetworkListener.getInstance();
 
         //Contains the WorkManager instance
-        workManager = bitmusic.network.main.WorkManagement.getInstance();
+        //workManager = bitmusic.network.main.WorkManagement.getInstance();
+        workManager = null;
+    }
+
+    /**
+     * Implements the singleton pattern.
+     * @return The controller
+     */
+    public static Controller getInstance() {
+        return CONTROLLER;
     }
 
     /*########################################################################*/

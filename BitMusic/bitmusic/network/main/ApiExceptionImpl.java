@@ -17,7 +17,8 @@ public class ApiExceptionImpl {
     /**
     * Singleton implementation.
     */
-    private static final ApiExceptionImpl APIEXCEPTIONIMPL = new ApiExceptionImpl();
+    private static final ApiExceptionImpl APIEXCEPTIONIMPL =
+            new ApiExceptionImpl();
 
     /**
      * .
@@ -27,8 +28,14 @@ public class ApiExceptionImpl {
         return APIEXCEPTIONIMPL;
     }
 
-
-    public void throwException(EnumTypeException type, String msg) throws Exception {
-        throw ExceptionFactory.getInstance().createException(type, msg);
+    /**
+     * .
+     * @param type
+     * @param msg
+     * @throws Exception
+     */
+    public final void throwException(final EnumTypeException type, final String msg)
+            throws Exception {
+        throw ExceptionFactory.createException(type, msg);
     }
 }
