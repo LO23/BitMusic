@@ -15,11 +15,11 @@ public class ProfileExceptions extends Throwable {
     public ProfileExceptions(int type) {
         switch(type) {
             case 0: {
-                    this.errorMessage = "None login defined";
+                    this.errorMessage = "No login defined";
                     break;
             }
             case 1: {
-                    this.errorMessage = "None password defined";
+                    this.errorMessage = "No password defined";
                     break;
             }
             default : {

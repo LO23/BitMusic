@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+package bitmusic;
+
 import hmi.mainwindow.WindowComponent;
 
 /**
@@ -13,6 +15,6 @@ import hmi.mainwindow.WindowComponent;
 public class Main {
     public static void main(String[] args) {
         System.out.println("- Application BitMusic");
-        WindowComponent win = new WindowComponent();
+        WindowComponent win = WindowComponent.getInstance();
     }
 }

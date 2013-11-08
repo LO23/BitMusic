@@ -1,4 +1,4 @@
-package music.data;
+package bitmusic.music.data;
 
 import java.util.HashMap;
 import java.util.LinkedList;

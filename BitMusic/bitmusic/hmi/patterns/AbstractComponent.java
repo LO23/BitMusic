@@ -6,25 +6,41 @@
 
 package hmi.patterns;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author hebergui, unkedeuxke
  */
 public abstract class AbstractComponent {
 
-    protected ArrayList<AbstractModuleComponent> listComponent = new ArrayList<>();
+    protected AbstractModel model;
+    protected AbstractView view;
+    protected AbstractController controller;
 
     public AbstractComponent() {
-        
+
     }
 
-    protected void addComponent(AbstractModuleComponent component) {
-        this.listComponent.add(component);
+    public final AbstractModel getModel() {
+        return this.model;
     }
 
-    protected void removeComponent(AbstractModuleComponent component) {
-        this.listComponent.remove(component);
+    public final void setModel(final AbstractModel model) {
+        this.model = model;
+    }
+
+    public final AbstractView getView() {
+        return this.view;
+    }
+
+    public final void setView(final AbstractView view) {
+        this.view = view;
+    }
+
+    public final AbstractController getController() {
+        return this.controller;
+    }
+
+    public final void setController(final AbstractController controller) {
+        this.controller = controller;
     }
 }

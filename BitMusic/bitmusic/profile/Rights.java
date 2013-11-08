@@ -11,7 +11,24 @@ package bitmusic.profile;
  * @author Holywa
  */
 public class Rights {
+    private boolean canReadInfo;
+    private boolean canPlay;
+    private boolean canRate;
+    private boolean canComment;
 
+    Rights(){
+        this.canReadInfo = true;
+        this.canPlay = true;
+        this.canRate = true;
+        this.canComment = true;
+    }
+
+    public void updateRights( boolean canReadInfo, boolean canPlay, boolean canRate, boolean canComment){
+        this.canReadInfo = canReadInfo;
+        this.canPlay = canPlay;
+        this.canRate = canRate;
+        this.canComment = canComment;
+    }
 
 
 }

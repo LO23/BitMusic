@@ -6,19 +6,19 @@
 
 package hmi.modules.connection;
 
-import hmi.patterns.AbstractModuleComponent;
+import hmi.patterns.AbstractComponent;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionComponent extends AbstractModuleComponent {
+public final class ConnectionComponent extends AbstractComponent {
 
     public ConnectionComponent() {
         this.model = new ConnectionModel();
-        this.controller = new ConnectionController(this.model);
-        this.view = new ConnectionView(this.controller);
+        this.view = new ConnectionView();
+        this.controller = new ConnectionController(this.model, this.view);
+        this.view.setAbstractController(this.controller);
         this.model.addObserver(this.view);
-        this.view.setVisible(true);
     }
 }

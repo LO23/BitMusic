@@ -6,17 +6,32 @@
 
 package hmi.mainwindow;
 
-import hmi.patterns.AbstractModuleComponent;
-import hmi.patterns.AbstractModel;
+import hmi.patterns.Observable;
+import hmi.patterns.Observer;
+import java.util.ArrayList;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-class WindowModel extends AbstractModel {
+class WindowModel implements Observable {
+
+    private ArrayList<Observer> listObserver = new ArrayList<>();
 
     public WindowModel() {
-        
+
     }
 
+    //Implémentation du pattern observer
+    public void addObserver(Observer obs) {
+        this.listObserver.add(obs);
+    }
+
+    public void notifyObserver() {
+
+    }
+
+    public void removeObserver() {
+
+    }
 }

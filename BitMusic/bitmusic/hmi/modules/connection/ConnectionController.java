@@ -8,14 +8,15 @@ package hmi.modules.connection;
 
 import hmi.patterns.AbstractController;
 import hmi.patterns.AbstractModel;
+import hmi.patterns.AbstractView;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionController extends AbstractController {
+public final class ConnectionController extends AbstractController {
 
-    public ConnectionController(AbstractModel abstractModel) {
-        super(abstractModel);
+    public ConnectionController(final AbstractModel abstractModel, final AbstractView abstractView) {
+        super(abstractModel, abstractView);
     }
 }
