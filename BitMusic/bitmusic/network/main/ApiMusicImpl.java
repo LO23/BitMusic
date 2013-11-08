@@ -17,6 +17,11 @@ public class ApiMusicImpl {
     private static final ApiMusicImpl APIMUSICIMPL = new ApiMusicImpl();
 
     /**
+     * Private constructor for singleton pattern.
+     */
+    private ApiMusicImpl() { }
+
+    /**
      * .
      * @return Unique instance of ApiMusicImpl
      */

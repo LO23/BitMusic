@@ -21,6 +21,11 @@ public class ApiExceptionImpl {
             new ApiExceptionImpl();
 
     /**
+     * Private constructor for singleton pattern.
+     */
+    private ApiExceptionImpl() { }
+
+    /**
      * .
      * @return Unique instance of ApiExceptionImpl
      */
