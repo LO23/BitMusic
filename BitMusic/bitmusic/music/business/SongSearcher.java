@@ -42,7 +42,7 @@ public class SongSearcher {
      * @param userId requester's user id
      * @return SongLibrary containing only the songs which requester can access
      */
-    public SongLibrary getSongsByUser(String userId){
+    public SongLibrary getSongsByUser(String searchId, String userId){
         ArrayList<Song> songsFromMyLibrary = songLibrary.getlibrary(); //songs avec des droits à 1 partout
         ArrayList<Song> songsForRequester = new ArrayList<Song>();
         SongLibrary songLibForRequester = null;
@@ -59,12 +59,15 @@ public class SongSearcher {
     }
     
     /**
-     * 
+     * Search all the songs with at least one of the tags from tagList. 
+     * Look up in local library and returns local songs with requested tags, 
+     * and in all the libraries from connected users via network
      * @param searchId
      * @param tagList
      * @return 
      */
-    public void searchSongByTags(String searchId, List<String> tagList){
+    public SongLibrary searchSongByTags(String searchId, List<String> tagList){
+        SongLibrary myTaggedSongs = null  ;  
         //besoin de l'implémentation de la méthode getSongsByUser(final User askedUser, final String researchId)
         //le premier argument doit être un "String userId"
         // ApiMusic apiMusic = new ApiMusicImpl();
@@ -72,12 +75,26 @@ public class SongSearcher {
         // for (userIdDest : connectedUsers) {
         //  apiMusic.searchSongsByTags(userIdDest, searchId, tagList)
         // }
+        myTaggedSongs = this.getSongsByTag(searchId, tagList);
+        return myTaggedSongs;
     }
     
-    public SongLibrary getSongsByTag(){
+    public SongLibrary getSongsByTag(String searchId, List<String> tagList){
+        ArrayList<Song> songsWithCorrectTags = new ArrayList<Song>();
+        ArrayList<Song> songFromMyLibrary = songLibrary.getlibrary();
+        SongLibrary songLibraryForRequester = null;
+        Iterator<Song> it = songFromMyLibrary.iterator();
         
+        //iterate over local songLibrary - fetches only the songs with at least one tag from tagList
+        while(it.hasNext()){
+            Song currentSong = it.next();
+            if(currentSong.hasTag(tagList)){
+                songsWithCorrectTags.add(currentSong);
+            }
+        }
         
-        return null;
+        songLibraryForRequester = new SongLibrary(songsWithCorrectTags);
+        return songLibraryForRequester;
     }
     
     /**
