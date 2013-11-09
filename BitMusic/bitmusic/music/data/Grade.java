@@ -27,7 +27,7 @@ public class Grade {
      * @param author    CurrentUserId
      * @param newgrade  Grade given by user
      */
-    Grade(String author, int newgrade) {
+    public Grade(String author, int newgrade) {
         this.authorId = author;
         this.grade = newgrade;
     }

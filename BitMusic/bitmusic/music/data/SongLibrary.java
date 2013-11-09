@@ -52,18 +52,18 @@ public class SongLibrary
     * @param songId
     * @return bool
     */
-   public boolean islocal(String songId)
-   {
+    public boolean islocal(String songId)
+    {
     
     Iterator<Song> it = library.iterator();
     
     while (it.hasNext())
-      {  
+    {  
         Song s = it.next();
         if (s.getSongId().equals(songId))
             return true;
  
-       }  
+        }  
     return false;
  } 
    

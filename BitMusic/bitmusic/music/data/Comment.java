@@ -34,10 +34,10 @@ public class Comment {
      * @param author    CurrentUserId
      * @param comment   Comment given by user
      */
-    Comment(String author, String comment) {
+    public Comment(String author, String comment) {
         this.authorId = author;
         this.commentText = comment;
-		this.commentDate = new Date();
+        this.commentDate = new Date();
     }
 	
     /**
