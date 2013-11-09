@@ -48,14 +48,13 @@ public class SongSearcher {
         SongLibrary songLibForRequester = null;
         
         Iterator<Song> it = songsFromMyLibrary.iterator();
-        //give the songs in library with the correct rights for the User userId
+        //give the songs from local library with the correct rights for the User userId
         while(it.hasNext()){
             Song currentSong = it.next();
             songsForRequester.add(currentSong.getLightSong(userId)); //songs avec les droits ajustés pour userId
         }
-        
+        //build the SongLibrary to be returned
         songLibForRequester = new SongLibrary(songsForRequester);
-        
         return songLibForRequester;
     }
     
@@ -76,6 +75,8 @@ public class SongSearcher {
     }
     
     public SongLibrary getSongsByTag(){
+        
+        
         return null;
     }
     
