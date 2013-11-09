@@ -59,11 +59,10 @@ public class SongLibrary
     
     while (it.hasNext())
       {  
-        Song s = it.Next();
+        Song s = it.next();
         if (s.getSongId().equals(songId))
             return true;
-        else
-            return false;
+ 
        }  
     return false;
  } 
@@ -86,7 +85,14 @@ public class SongLibrary
     */
    public void removeSong (String songId)
    {
-       //DOHA 
+   Iterator<Song> it=library.iterator();
+   while(it.hasNext()) //while there is still a song in the library
+    {
+       Song song=it.next();
+       if(song.getSongId().equals(songId))
+       library.remove(song); //removes the song with the id songId from the library
+   
+   }
    }
    
    /**
@@ -110,7 +116,7 @@ public class SongLibrary
    Iterator<Song> it = library.iterator();
    while(it.hasNext())
        {
-           Song song = it.Next();
+           Song song = it.next();
            song.updateCategory(name, rights);
        }
    }
