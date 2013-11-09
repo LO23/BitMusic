@@ -72,11 +72,20 @@ public class SongLibrary
     * @param songId
     * @return 
     */
-   public Song getSong(String songId)
-   {
-       Song s = new Song();
-       return s;//BRUNO 
-   }
+    public Song getSong(String songId)
+    {
+	Iterator<Song> it = library.iterator();
+		
+	while (it.hasNext())
+	{  
+            Song s = it.next();
+            if (s.getSongId().equals(songId))
+		return s;
+	}  
+	return null;
+       //Song s = new Song();
+       //return s;//BRUNO 
+    }
    
    /**
     * Removes the song songId.
