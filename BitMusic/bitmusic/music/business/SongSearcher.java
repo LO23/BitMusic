@@ -65,11 +65,19 @@ public class SongSearcher {
      * @param tagList
      * @return 
      */
-    public SongLibrary searchSongByTags(String searchId, List<String> tagList){
-        return null;
+    public void searchSongByTags(String searchId, List<String> tagList){
+        //besoin de l'implémentation de la méthode getSongsByUser(final User askedUser, final String researchId)
+        //le premier argument doit être un "String userId"
+        // ApiMusic apiMusic = new ApiMusicImpl();
+        // List<String> connectedUsers =  apiMusic.getAllUserId()
+        // for (userIdDest : connectedUsers) {
+        //  apiMusic.searchSongsByTags(userIdDest, searchId, tagList)
+        // }
     }
     
-    
+    public SongLibrary getSongsByTag(){
+        return null;
+    }
     
     /**
      * 
