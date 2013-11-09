@@ -2,7 +2,7 @@ package bitmusic.music.data;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Class which allows to manage a song.
@@ -238,5 +238,17 @@ public class Song {
      */
     public Rights getLocalRights() {
         return localRights;
+    }
+    
+    public boolean hasTag(List<String> tagList){
+        
+        Iterator<String> it = tagList.iterator();
+        while(it.hasNext()){
+            String currentTag = it.next();
+            if(this.tags.contains((currentTag))){
+                return true;
+            }
+        }
+        return false;
     }
 }
