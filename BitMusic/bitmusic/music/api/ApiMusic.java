@@ -73,7 +73,7 @@ public interface ApiMusic {
     * @param rights 
     */
     
-    public void changeRigthsOfThisSong (String songid, Rights rights);
+    public void changeRightsOfThisSong (String songid, Rights rights);
     
     /**
      * play a song from a distant user
