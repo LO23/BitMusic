@@ -43,8 +43,20 @@ public class SongSearcher {
      * @return SongLibrary containing only the songs which requester can access
      */
     public SongLibrary getSongsByUser(String userId){
+        ArrayList<Song> songsFromMyLibrary = songLibrary.getlibrary(); //songs avec des droits à 1 partout
+        ArrayList<Song> songsForRequester = new ArrayList<Song>();
+        SongLibrary songLibForRequester = null;
         
-        return null;
+        Iterator<Song> it = songsFromMyLibrary.iterator();
+        
+        while(it.hasNext()){
+            Song currentSong = it.next();
+            songsForRequester.add(currentSong.getLightSong(userId)); //songs avec les droits ajustés pour userId
+        }
+        
+        songLibForRequester = new SongLibrary(songsForRequester);
+        
+        return songLibForRequester;
     }
     
     /**
