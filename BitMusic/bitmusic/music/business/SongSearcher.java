@@ -13,6 +13,7 @@ public class SongSearcher {
     HashMap<String, List<String>> tagIndex; // tag -> list de song id 
     HashMap<String, List<String>> userIndex; // userId -> list de song id
     SongLibrary songLibrary; // library of local user's songs
+    
     /**
      * 
      * @param songLib 
@@ -43,8 +44,18 @@ public class SongSearcher {
      * @return SongLibrary containing only the songs which requester can access
      */
     public SongLibrary getSongsByUser(String userId){
+        ArrayList<Song> songsForRequester = new ArrayList<Song>();
+        //itérer sur ma song library et remplir songsForRequester avec les chansons dont le requester possède les droits
         
-        return null;
+        ArrayList songsFromMyLibrary = songLibrary.getlibrary();
+        Iterator<Song> it = songsFromMyLibrary.iterator();
+        while(it.hasNext()){
+            Song currentSong = it.next();
+            
+            //User myself = ??
+            //
+        }
+        return songLibrary;
     }
     
     /**
