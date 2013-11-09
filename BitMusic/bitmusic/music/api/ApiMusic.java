@@ -7,7 +7,8 @@
 package bitmusic.music.api;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Comment;
-import java.util.ArrayList;
+import bitmusic.music.data.SongLibrary;
+import java.util.*;
 
 /**
  *
@@ -46,6 +47,12 @@ public interface ApiMusic {
     
     
     public void searchSongsByUser(String userID, String searchId);  
+    
+    
+    /**
+     * 
+     */
+    public SongLibrary searchSongsByTags(List<String> tagList);
     
      /** 
     * Add a song to SongLibrary
