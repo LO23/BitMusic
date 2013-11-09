@@ -83,8 +83,6 @@ public class SongLibrary
 		return s;
 	}  
 	return null;
-       //Song s = new Song();
-       //return s;//BRUNO 
     }
    
    /**

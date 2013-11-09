@@ -1,5 +1,6 @@
 package bitmusic.music.data;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -46,7 +47,7 @@ public class Song {
     /**
      * References the song grades.
      */
-    private LinkedList<Grade> grades;
+    private HashMap<String,Grade> grades;
     
     /**
      * References the owner id.
@@ -67,23 +68,58 @@ public class Song {
     //######################### CONSTRUCTORS ###########################//
     //##################################################################//
         
+    /**
+     * Basic constructor of a Song.
+     * @param songId References the songId.
+     * @param title References the title.
+     * @param artist References the artist.
+     * @param album References the album.
+     * @param tags References the list of tag.
+     * @param rightsByCategory References a map of rightsByCategory.
+     */
+    public Song(String songId, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rightsByCategory) {
+        this.songId = songId;
+        this.title = title;
+        this.album = album;
+        this.artist = artist;
+        this.tags = tags;
+        this.rightsByCategory = rightsByCategory;
+        this.localRights = new Rights(true, true, true, true);
+    }
+    
     //##################################################################//
     //########################### METHODS ##############################//
     //##################################################################//
+    
+    /**
+     * Get a lightSong with the localSong attribute for the user with userId
+     * @param authorId The authorId
+     * @return A light song with attribute modified for the autorId.
+     */
+    public Song getLightSong(String userId) {
+        Song lightSong = new Song( songId, title, artist, album, tags, rightsByCategory);
+        lightSong.rightsByCategory = null;
+        
+        
+        return lightSong;
+    }
     
     /**
      * Add or replace a comment on a song.
      * @param comment The comment to add.
      */
     public void addComment(Comment comment) {
+        comments.add(comment);
     }
     
     /**
      * Delete a comment from a song.
      * @param authorId The author of the song.
      */
-    public void deleteComment(String authorId) {
-        
+    public void deleteComment(String authorId, Date date) {
+        for (Comment comment : comments) {
+            
+        }
     }
     
     /**
@@ -91,6 +127,7 @@ public class Song {
      * @param grade The grade to add or replace.
      */
     public void addGrade(Grade grade) {
+        grades.put(grade.getAuthorId(), grade);
     }
     
     /**
@@ -98,6 +135,7 @@ public class Song {
      * @param authorId The author of the grade.
      */
     public void deleteGrade(String authorId) {
+        grades.remove(authorId);
     }
     
     /**
@@ -182,7 +220,7 @@ public class Song {
      * Getter of the attribute grades.
      * @return The list of grades.
      */
-    public LinkedList<Grade> getGrades() {
+    public HashMap<String,Grade> getGrades() {
         return grades;
     }
 
