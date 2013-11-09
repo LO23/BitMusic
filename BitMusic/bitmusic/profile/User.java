@@ -9,8 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
-import music.data.Song;
-import music.data.SongLibrary;
+import bitmusic.music.data.Song;
+import bitmusic.music.data.SongLibrary;
 import sun.awt.shell.ShellFolder;
 
 /**
