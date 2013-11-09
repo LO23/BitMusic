@@ -7,7 +7,8 @@
 package bitmusic.music.api;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Comment;
-import java.util.ArrayList;
+import bitmusic.music.data.SongLibrary;
+import java.util.*;
 
 /**
  *
@@ -47,6 +48,12 @@ public interface ApiMusic {
     
     public void searchSongsByUser(String userID, String searchId);  
     
+    
+    /**
+     * 
+     */
+    public SongLibrary searchSongsByTags(List<String> tagList);
+    
      /** 
     * Add a song to SongLibrary
     * 
@@ -66,7 +73,7 @@ public interface ApiMusic {
     * @param rights 
     */
     
-    public void changeRigthsOfThisSong (String songid, Rights rights);
+    public void changeRightsOfThisSong (String songid, Rights rights);
     
     /**
      * play a song from a distant user
