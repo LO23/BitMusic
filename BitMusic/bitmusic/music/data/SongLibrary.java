@@ -20,7 +20,7 @@ public class SongLibrary
     * 
     * @param songs 
     */
-   SongLibrary(ArrayList<Song> songs)
+   public SongLibrary(ArrayList<Song> songs)
    {
     library = new ArrayList<>();
     library = songs;
