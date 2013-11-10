@@ -22,10 +22,9 @@ import javax.swing.SwingConstants;
 public final class MyProfileView extends AbstractView<MyProfileController> {
 
     private static final String type = "NORTH";
-    
+
     public MyProfileView() {
         super();
-        this.initPanel();
     }
 
     @Override
@@ -54,9 +53,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
         JButton connectButton = new JButton("Se connecter");
         connectButton.setSize(d);
-
-
-
+        
         JButton resetButton = new JButton("Réinitialiser");
         resetButton.setSize(d);
 

@@ -6,9 +6,6 @@
 
 package bitmusic.hmi.modules.connection;
 
-import bitmusic.hmi.modules.connection.ConnectionController.ConnectionListener;
-import bitmusic.hmi.modules.connection.ConnectionController.CreateNewUserListener;
-import bitmusic.hmi.modules.connection.ConnectionController.ResetListener;
 import bitmusic.hmi.patterns.AbstractView;
 import java.awt.Dimension;
 import javax.swing.JButton;
@@ -25,16 +22,15 @@ import javax.swing.SwingConstants;
 public final class ConnectionView extends AbstractView<ConnectionController> {
 
     private static final String type = "CONNECTION";
-    
+
     public ConnectionView() {
         super();
-        this.initPanel();
     }
-    
+
     public String getType(){
         return type;
     }
-    
+
     @Override
     public void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");
@@ -51,15 +47,15 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
         JButton connectButton = new JButton("Se connecter");
         connectButton.setSize(d);
-        connectButton.addActionListener(new ConnectionListener());
+        connectButton.addActionListener(this.getController().new ConnectionListener());
 
         JButton resetButton = new JButton("Réinitialiser");
         resetButton.setSize(d);
-        resetButton.addActionListener(new ResetListener());
+        resetButton.addActionListener(this.getController().new ResetListener());
 
         JButton createUserButton = new JButton("Créer un compte");
         createUserButton.setSize(d);
-        createUserButton.addActionListener(new CreateNewUserListener());
+        createUserButton.addActionListener(this.getController().new CreateNewUserListener());
 
         JTextField loginField = new JTextField("");
         loginField.setColumns(10);

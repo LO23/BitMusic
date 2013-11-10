@@ -19,6 +19,7 @@ public final class OnlineUsersComponent extends AbstractComponent<OnlineUsersMod
         this.view = new OnlineUsersView();
         this.controller = new OnlineUsersController(this.model, this.view);
         this.view.setController(this.controller);
+        this.view.initPanel();
         this.model.addObserver(this.view);
     }
 }

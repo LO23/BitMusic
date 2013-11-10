@@ -18,7 +18,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     public OnlineUsersView() {
         super();
-        this.initPanel();
     }
 
     @Override

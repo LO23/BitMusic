@@ -15,10 +15,9 @@ import bitmusic.hmi.patterns.AbstractView;
 public final class CategoriesView extends AbstractView<CategoriesController> {
 
     private static final String type = "EAST";
-    
+
     public CategoriesView() {
         super();
-        this.initPanel();
     }
 
     @Override
@@ -32,5 +31,5 @@ public final class CategoriesView extends AbstractView<CategoriesController> {
     public String getType() {
         return type;
     }
-    
+
 }

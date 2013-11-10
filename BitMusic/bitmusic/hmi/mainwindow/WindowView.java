@@ -23,7 +23,7 @@ public class WindowView extends JFrame implements Observer {
     private WindowController windowController;
 
     public WindowView() {
-        this.initFrame();
+        
     }
 
     public WindowController getWindowController() {
@@ -46,7 +46,7 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void addView(AbstractView view) {
-        
+
         if (view.getType() == "CONNECTION"){
             this.getContentPane().add(view.getPanel());
             pack();
@@ -55,10 +55,10 @@ public class WindowView extends JFrame implements Observer {
         else {
             JPanel contentPanel = new JPanel(new BorderLayout());
             this.getContentPane().add(contentPanel);
-            
+
             if (view.getType() == "WEST") {
                 contentPanel.add(view.getPanel(), BorderLayout.WEST);
-                
+
             }
             else if (view.getType() == "SOUTH") {
                contentPanel.add(view.getPanel(), BorderLayout.SOUTH);

@@ -19,6 +19,7 @@ public final class SearchBarComponent extends AbstractComponent<SearchBarModel, 
         this.view = new SearchBarView();
         this.controller = new SearchBarController(this.model, this.view);
         this.view.setController(this.controller);
+        this.view.initPanel();
         this.model.addObserver(this.view);
     }
 }

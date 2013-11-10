@@ -20,24 +20,30 @@ public final class ConnectionController extends AbstractController<ConnectionMod
         super(model, view);
     }
 
-    public static class ConnectionListener implements ActionListener {
+    public class ConnectionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Connection");
-            // TODO : implémenter la logique (appels aux méthodes du Model)
+
+            ConnectionModel model = ConnectionController.this.getModel();
+            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
         }
     }
 
-    public static class ResetListener implements ActionListener {
+    public class ResetListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Reset");
-            // TODO : implémenter la logique (appels aux méthodes du Model)
+
+            ConnectionModel model = ConnectionController.this.getModel();
+            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
         }
     }
 
-    public static class CreateNewUserListener implements ActionListener {
+    public class CreateNewUserListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton CreateNewUser");
-            // TODO : implémenter la logique (appels aux méthodes du Model)
+            
+            ConnectionModel model = ConnectionController.this.getModel();
+            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
         }
     }
 }

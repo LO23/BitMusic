@@ -19,6 +19,7 @@ public final class MyProfileComponent extends AbstractComponent<MyProfileModel, 
         this.view = new MyProfileView();
         this.controller = new MyProfileController(this.model, this.view);
         this.view.setController(this.controller);
+        this.view.initPanel();
         this.model.addObserver(this.view);
     }
 }
