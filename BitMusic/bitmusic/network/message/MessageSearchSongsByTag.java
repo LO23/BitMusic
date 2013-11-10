@@ -8,10 +8,15 @@ package bitmusic.network.message;
 import java.util.ArrayList;
 
 /**
- * Message used to search songs with tags.
+ * Message used to search songs with tags on the LAN.
  * @author alexis
  */
 public final class MessageSearchSongsByTag extends AbstractMessage {
+    /**
+     * ID of the user that asked for the search.
+     */
+    private String operator;
+
     /**
      * ID of the search.
      */
@@ -29,13 +34,16 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
      * @param paramIpDest IP address of the receiver
      * @param paramSearchId ID of the search
      * @param paramTagList List of tags
+     * @param paramUserId ID the user that asked for the search
      */
     public MessageSearchSongsByTag(final EnumTypeMessage paramType,
             final String paramIpSource, final String paramIpDest,
-            final String paramSearchId, final ArrayList<String> paramTagList) {
+            final String paramSearchId, final ArrayList<String> paramTagList,
+            final String paramUserId) {
         super(paramType, paramIpSource, paramIpDest);
         searchId = paramSearchId;
         tagList = paramTagList;
+        operator = paramUserId;
     }
 
     /**
@@ -63,6 +71,14 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
     }
 
     /**
+     * Setter of the operator attribute.
+     * @param paramOperator ID of the user that asked for the search
+     */
+    public void setOperator(final String paramOperator) {
+        this.operator = paramOperator;
+    }
+
+    /**
      * Getter of the searchId attribute.
      * @return String ID of the search
      */
@@ -78,5 +94,11 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
         return tagList;
     }
 
-
+    /**
+     * Getter of the operator attribute.
+     * @return String ID of the user that asked for the search
+     */
+    public String getOperator() {
+        return operator;
+    }
 }
