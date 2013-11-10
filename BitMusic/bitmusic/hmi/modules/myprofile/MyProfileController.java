@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.myprofile;
+package bitmusic.hmi.modules.myprofile;
 
-import hmi.patterns.AbstractController;
-import hmi.patterns.AbstractModel;
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.hmi.patterns.AbstractView;
 
 /**
  *

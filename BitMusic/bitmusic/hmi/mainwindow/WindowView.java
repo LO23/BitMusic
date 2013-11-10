@@ -4,15 +4,13 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
+import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observer;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import hmi.patterns.AbstractView;
-import hmi.patterns.Observer;
-import java.util.ArrayList;
 
 /**
  *

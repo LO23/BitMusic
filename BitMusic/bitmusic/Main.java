@@ -6,7 +6,7 @@
 
 package bitmusic;
 
-import hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.mainwindow.WindowComponent;
 
 /**
  *

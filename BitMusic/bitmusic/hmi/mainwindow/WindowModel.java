@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
-import hmi.patterns.Observable;
-import hmi.patterns.Observer;
+import bitmusic.hmi.patterns.Observable;
+import bitmusic.hmi.patterns.Observer;
 import java.util.ArrayList;
 
 /**
