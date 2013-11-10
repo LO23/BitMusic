@@ -72,7 +72,7 @@ public final class ApiMusicImpl implements ApiMusic {
      * keyword match
      */
     @Override
-    public void tagRequest(final User operator, final User askedUser,
+    public void tagRequest(final String operator, final String askedUser,
             final String idResearch, final List<String> keywordsList,
             final int option) {
 
@@ -88,7 +88,7 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param keywordsList keywords searched
      */
     @Override
-    public void tagRequest(final User operator, final User askedUser,
+    public void tagRequest(final String operator, final String askedUser,
             final String idResearch, final List<String> keywordsList) {
         this.tagRequest(operator, askedUser, idResearch, keywordsList, 0);
     }
