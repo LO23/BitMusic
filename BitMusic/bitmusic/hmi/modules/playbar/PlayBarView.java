@@ -15,10 +15,9 @@ import bitmusic.hmi.patterns.AbstractView;
 public final class PlayBarView extends AbstractView<PlayBarController> {
 
     private static final String type = "SOUTH";
-    
+
     public PlayBarView() {
         super();
-        this.initPanel();
     }
 
     @Override
