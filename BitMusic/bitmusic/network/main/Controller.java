@@ -157,6 +157,14 @@ public class Controller {
     public final WorkManagement getWorkManager() {
         return workManager;
     }
+    /**
+     * Get the Directory.
+     * @return the user directory
+     */
+    public Map<String, String> getDirectory() {
+        return directory;
+    }
+
     /*########################################################################*/
     /* METHODS */
     /*########################################################################*/

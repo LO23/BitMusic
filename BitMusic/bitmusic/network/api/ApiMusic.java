@@ -29,7 +29,7 @@ public interface ApiMusic {
     */
     void addComment(final Song song, final Comment comment);
     /**
-     * Ask a distant user to search for keywords in his tags.
+     * Ask a distant user to search     for keywords in his tags.
      * This is an asynchrounous call
      *
      * @param operator user operating the research
@@ -60,7 +60,7 @@ public interface ApiMusic {
      * @param askedUser user to ask
      * @param researchId id of the research
      */
-    void getSongsByUser(final User askedUser, final String researchId);
+    void getSongsByUser(final String askedUser, final String researchId);
     /**
      * Search songs in the LAN  with tag specified in the search.
      *

@@ -28,5 +28,5 @@ public interface ApiProfile {
     * @throws Exception throws an exception when the given user isn't
     * registered in the directory
     */
-    void notifyNewConnection(final User idUser) throws Exception;
+    void notifyNewConnection(final String idUser) throws Exception;
 }

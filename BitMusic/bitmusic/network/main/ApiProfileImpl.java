@@ -58,13 +58,13 @@ public final class ApiProfileImpl implements ApiProfile {
     * the directory
     */
     @Override
-    public void notifyNewConnection(final User idUser) throws Exception {
+    public void notifyNewConnection(final String idUser) throws Exception {
         //Get the source address
         String sourceAddress;
 
         //Warning, it may emmit an exception thrown to the calling method!
         sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(idUser.getUserId());
+                getUserIpFromDirectory(idUser);
 
         //Construct the message
         final AbstractMessage message = new MessageNotifyNewConnection(
