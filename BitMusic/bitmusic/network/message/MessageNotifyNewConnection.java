@@ -16,7 +16,7 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
     /**
      * The profile we send to the newly connected user.
      */
-    private String userId;
+    private User user;
 
     /**
      * True if we the distant user to send back his profile.
@@ -33,9 +33,9 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
      */
     public MessageNotifyNewConnection(final EnumTypeMessage paramType,
             final String paramIpSource, final String paramIpDest,
-            final String paramUserId, final boolean paramGiveProfile) {
+            final User paramUser, final boolean paramGiveProfile) {
         super(paramType, paramIpSource, paramIpDest);
-        userId = paramUserId;
+        user = paramUser;
         giveMeYourProfile = paramGiveProfile;
     }
 
@@ -49,18 +49,18 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
 
     /**
      * Setter of profile attribute.
-     * @param paramProfile The profile to set
+     * @param paramUser The user object to set
      */
-    public void setUserId(final String paramUserId) {
-        this.userId = paramUserId;
+    public void setUser(final User paramUser) {
+        this.user = paramUser;
     }
 
     /**
      * Getter of myProfile attribute.
-     * @return User The profile we are about to send
+     * @return User The user we are about to send
      */
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     /**
