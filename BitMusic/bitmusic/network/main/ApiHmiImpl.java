@@ -116,7 +116,7 @@ public final class ApiHmiImpl implements ApiHmi {
      * @return  True if the request was correctly sent
      */
     @Override
-    public boolean getSong(final User userAsked, final Song requestedSong,
+    public boolean getSong(final String userAsked, final Song requestedSong,
             final boolean temporary) {
         boolean bool = false;
 
@@ -131,7 +131,7 @@ public final class ApiHmiImpl implements ApiHmi {
      * @return  True if the request was correctly sent
      */
     @Override
-    public boolean getSong(final User userAsked, final Song requestedSong) {
+    public boolean getSong(final String userAsked, final Song requestedSong) {
         return this.getSong(userAsked, requestedSong, true);
     }
     /**
