@@ -7,16 +7,14 @@
 package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.patterns.AbstractModel;
-import bitmusic.hmi.patterns.AbstractView;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class OnlineUsersController extends AbstractController {
+public final class OnlineUsersController extends AbstractController<OnlineUsersModel, OnlineUsersView> {
 
-    public OnlineUsersController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
+        super(model, view);
     }
 }

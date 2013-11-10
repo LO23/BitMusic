@@ -12,7 +12,7 @@ import bitmusic.hmi.patterns.AbstractView;
  *
  * @author unkedeuxke
  */
-public final class CategoriesView extends AbstractView {
+public final class CategoriesView extends AbstractView<CategoriesController> {
 
     private static final String type = "EAST";
     

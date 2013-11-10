@@ -7,16 +7,14 @@
 package bitmusic.hmi.modules.categories;
 
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.patterns.AbstractModel;
-import bitmusic.hmi.patterns.AbstractView;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class CategoriesController extends AbstractController {
+public final class CategoriesController extends AbstractController<CategoriesModel, CategoriesView> {
 
-    public CategoriesController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public CategoriesController(final CategoriesModel model, final CategoriesView view) {
+        super(model, view);
     }
 }

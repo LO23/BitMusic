@@ -10,29 +10,29 @@ package bitmusic.hmi.patterns;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractController {
+public abstract class AbstractController<M extends AbstractModel, V extends AbstractView> {
 
-    private AbstractModel abstractModel;
-    private AbstractView abstractView;
+    private M model;
+    private V view;
 
-    public AbstractController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        this.abstractModel = abstractModel;
-        this.abstractView = abstractView;
+    public AbstractController(final M model, final V view) {
+        this.model = model;
+        this.view = view;
     }
 
-    public final AbstractModel getModel() {
-        return this.abstractModel;
+    public final M getModel() {
+        return this.model;
     }
 
-    public final void setModel(final AbstractModel abstractModel) {
-        this.abstractModel = abstractModel;
+    public final void setModel(final M model) {
+        this.model = model;
     }
 
-    public final AbstractView getView() {
-        return this.abstractView;
+    public final V getView() {
+        return this.view;
     }
 
-    public final void setView(final AbstractView abstractView) {
-        this.abstractView = abstractView;
+    public final void setView(final V view) {
+        this.view = view;
     }
 }

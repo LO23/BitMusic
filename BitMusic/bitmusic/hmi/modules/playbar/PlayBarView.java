@@ -12,7 +12,7 @@ import bitmusic.hmi.patterns.AbstractView;
  *
  * @author unkedeuxke
  */
-public final class PlayBarView extends AbstractView {
+public final class PlayBarView extends AbstractView<PlayBarController> {
 
     private static final String type = "SOUTH";
     

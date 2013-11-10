@@ -12,8 +12,8 @@ import bitmusic.hmi.patterns.AbstractView;
  *
  * @author unkedeuxke
  */
-public final class OnlineUsersView extends AbstractView {
-    
+public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
+
     private static final String type = "WEST";
 
     public OnlineUsersView() {

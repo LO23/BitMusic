@@ -7,16 +7,14 @@
 package bitmusic.hmi.modules.searchbar;
 
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.patterns.AbstractModel;
-import bitmusic.hmi.patterns.AbstractView;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class SearchBarController extends AbstractController {
+public final class SearchBarController extends AbstractController<SearchBarModel, SearchBarView> {
 
-    public SearchBarController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public SearchBarController(final SearchBarModel model, final SearchBarView view) {
+        super(model, view);
     }
 }

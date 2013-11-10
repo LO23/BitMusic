@@ -12,7 +12,7 @@ import bitmusic.hmi.patterns.AbstractComponent;
  *
  * @author unkedeuxke
  */
-public final class CategoriesComponent extends AbstractComponent {
+public final class CategoriesComponent extends AbstractComponent<CategoriesModel, CategoriesView, CategoriesController> {
 
     public CategoriesComponent() {
         this.model = new CategoriesModel();

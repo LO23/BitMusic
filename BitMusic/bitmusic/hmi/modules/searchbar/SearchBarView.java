@@ -12,7 +12,7 @@ import bitmusic.hmi.patterns.AbstractView;
  *
  * @author unkedeuxke
  */
-public final class SearchBarView extends AbstractView {
+public final class SearchBarView extends AbstractView<SearchBarController> {
 
     private static final String type = "NORTH";
     
