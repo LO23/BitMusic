@@ -20,19 +20,19 @@ public abstract class AbstractController {
         this.abstractView = abstractView;
     }
 
-    public final AbstractModel getAbstractModel() {
+    public final AbstractModel getModel() {
         return this.abstractModel;
     }
 
-    public final void setAbstractModel(final AbstractModel abstractModel) {
+    public final void setModel(final AbstractModel abstractModel) {
         this.abstractModel = abstractModel;
     }
 
-    public final AbstractView getAbstractView() {
+    public final AbstractView getView() {
         return this.abstractView;
     }
 
-    public final void setAbstractView(final AbstractView abstractView) {
+    public final void setView(final AbstractView abstractView) {
         this.abstractView = abstractView;
     }
 }

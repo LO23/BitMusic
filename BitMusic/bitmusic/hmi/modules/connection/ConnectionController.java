@@ -22,21 +22,24 @@ public final class ConnectionController extends AbstractController {
         super(abstractModel, abstractView);
     }
 
-    public class ConnectionListener implements ActionListener {
+    public static class ConnectionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("---- Clic sur le bouton Connection");
+            // TODO : implémenter la logique (appels aux méthodes du Model)
         }
     }
 
-    public class ResetListener implements ActionListener {
+    public static class ResetListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("---- Clic sur le bouton Reset");
+            // TODO : implémenter la logique (appels aux méthodes du Model)
         }
     }
 
-    public class CreateNewUserListener implements ActionListener {
+    public static class CreateNewUserListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("---- Clic sur le bouton CreateNewUser");
+            // TODO : implémenter la logique (appels aux méthodes du Model)
         }
     }
 }

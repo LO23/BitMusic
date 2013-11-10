@@ -6,6 +6,9 @@
 
 package bitmusic.hmi.modules.connection;
 
+import bitmusic.hmi.modules.connection.ConnectionController.ConnectionListener;
+import bitmusic.hmi.modules.connection.ConnectionController.CreateNewUserListener;
+import bitmusic.hmi.modules.connection.ConnectionController.ResetListener;
 import bitmusic.hmi.patterns.AbstractView;
 import java.awt.Dimension;
 import javax.swing.JButton;
@@ -42,12 +45,15 @@ public final class ConnectionView extends AbstractView {
 
         JButton connectButton = new JButton("Se connecter");
         connectButton.setSize(d);
+        connectButton.addActionListener(new ConnectionListener());
 
         JButton resetButton = new JButton("Réinitialiser");
         resetButton.setSize(d);
+        resetButton.addActionListener(new ResetListener());
 
         JButton createUserButton = new JButton("Créer un compte");
         createUserButton.setSize(d);
+        createUserButton.addActionListener(new CreateNewUserListener());
 
         JTextField loginField = new JTextField("");
         loginField.setColumns(10);
