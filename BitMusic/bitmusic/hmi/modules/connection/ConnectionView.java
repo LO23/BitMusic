@@ -24,11 +24,17 @@ import javax.swing.SwingConstants;
  */
 public final class ConnectionView extends AbstractView<ConnectionController> {
 
+    private static final String type = "CONNECTION";
+    
     public ConnectionView() {
         super();
         this.initPanel();
     }
-
+    
+    public String getType(){
+        return type;
+    }
+    
     @Override
     public void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");

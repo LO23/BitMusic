@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
  */
 public final class MyProfileView extends AbstractView<MyProfileController> {
 
+    private static final String type = "NORTH";
+    
     public MyProfileView() {
         super();
         this.initPanel();
@@ -136,6 +138,11 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         layout.linkSize(SwingConstants.HORIZONTAL, prenomLabel, prenomField);
         layout.linkSize(SwingConstants.HORIZONTAL, nomLabel, nomField);
 
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 }
 
