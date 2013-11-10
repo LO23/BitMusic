@@ -9,7 +9,7 @@ import bitmusic.music.data.Song;
 import bitmusic.music.data.Comment;
 
 /**
- *
+ * Message used to send a comment on a specific song.
  * @author alexis
  */
 public final class MessageAddComment extends AbstractMessage {
