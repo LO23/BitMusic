@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.connection;
+package bitmusic.hmi.modules.connection;
 
+import bitmusic.hmi.patterns.AbstractView;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import hmi.patterns.AbstractView;
 import javax.swing.GroupLayout;
 import javax.swing.SwingConstants;
 

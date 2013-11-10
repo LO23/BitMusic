@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.playbar;
+package bitmusic.hmi.modules.playbar;
 
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractView;
 
 /**
  *
