@@ -7,16 +7,14 @@
 package bitmusic.hmi.modules.myprofile;
 
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.patterns.AbstractModel;
-import bitmusic.hmi.patterns.AbstractView;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class MyProfileController extends AbstractController {
+public final class MyProfileController extends AbstractController<MyProfileModel, MyProfileView> {
 
-    public MyProfileController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public MyProfileController(final MyProfileModel model, final MyProfileView view) {
+        super(model, view);
     }
 }

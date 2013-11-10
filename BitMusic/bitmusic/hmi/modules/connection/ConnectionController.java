@@ -7,8 +7,6 @@
 package bitmusic.hmi.modules.connection;
 
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.patterns.AbstractModel;
-import bitmusic.hmi.patterns.AbstractView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,10 +14,10 @@ import java.awt.event.ActionListener;
  *
  * @author hebergui, unkedeuxke
  */
-public final class ConnectionController extends AbstractController {
+public final class ConnectionController extends AbstractController<ConnectionModel, ConnectionView> {
 
-    public ConnectionController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public ConnectionController(final ConnectionModel model, final ConnectionView view) {
+        super(model, view);
     }
 
     public static class ConnectionListener implements ActionListener {

@@ -14,9 +14,9 @@ import javax.swing.JPanel;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractView extends JPanel implements Observer {
+public abstract class AbstractView<C extends AbstractController> extends JPanel implements Observer {
 
-    private AbstractController abstractController;
+    private C abstractController;
 
     private JPanel panel = new JPanel();
     private Dimension dim;
@@ -32,11 +32,11 @@ public abstract class AbstractView extends JPanel implements Observer {
         super();
     }
 
-    public final AbstractController getController() {
+    public final C getController() {
         return this.abstractController;
     }
 
-    public final void setController(final AbstractController abstractController) {
+    public final void setController(final C abstractController) {
         this.abstractController = abstractController;
     }
 

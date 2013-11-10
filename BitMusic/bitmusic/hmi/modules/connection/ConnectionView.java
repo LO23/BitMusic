@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
  *
  * @author hebergui, unkedeuxke
  */
-public final class ConnectionView extends AbstractView {
+public final class ConnectionView extends AbstractView<ConnectionController> {
 
     public ConnectionView() {
         super();

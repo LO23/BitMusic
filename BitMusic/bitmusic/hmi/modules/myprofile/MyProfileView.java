@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
  *
  * @author unkedeuxke
  */
-public final class MyProfileView extends AbstractView {
+public final class MyProfileView extends AbstractView<MyProfileController> {
 
     public MyProfileView() {
         super();
@@ -40,20 +40,20 @@ public final class MyProfileView extends AbstractView {
 
         JLabel passwordLabel = new JLabel("Mot de passe (*)");
         passwordLabel.setSize(d);
-        
+
         JLabel confirmationLabel = new JLabel("Confirmation (*)");
         confirmationLabel.setSize(d);
-        
+
         JLabel prenomLabel = new JLabel("Prénom ");
         prenomLabel.setSize(d);
-        
+
         JLabel nomLabel = new JLabel("Nom ");
         nomLabel.setSize(d);
 
         JButton connectButton = new JButton("Se connecter");
         connectButton.setSize(d);
-        
-        
+
+
 
         JButton resetButton = new JButton("Réinitialiser");
         resetButton.setSize(d);
@@ -63,13 +63,13 @@ public final class MyProfileView extends AbstractView {
 
         JPasswordField passwordField = new JPasswordField("");
         passwordField.setColumns(10);
-        
+
         JPasswordField confirmationField = new JPasswordField("");
         confirmationField.setColumns(10);
-        
+
         JTextField prenomField = new JTextField("");
         prenomField.setColumns(10);
-        
+
         JTextField nomField = new JTextField("");
         nomField.setColumns(10);
 
@@ -98,7 +98,7 @@ public final class MyProfileView extends AbstractView {
                     .addComponent(nomField)
                     .addComponent(resetButton)
                 )
-                
+
         );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
@@ -114,7 +114,7 @@ public final class MyProfileView extends AbstractView {
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmationLabel)
                     .addComponent(confirmationField)
-               )     
+               )
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(prenomLabel)
                     .addComponent(prenomField)
@@ -127,7 +127,7 @@ public final class MyProfileView extends AbstractView {
                     .addComponent(connectButton)
                     .addComponent(resetButton)
                )
-               
+
         );
 
         layout.linkSize(SwingConstants.HORIZONTAL, loginLabel, loginField);
@@ -135,7 +135,7 @@ public final class MyProfileView extends AbstractView {
         layout.linkSize(SwingConstants.HORIZONTAL, confirmationLabel, confirmationField);
         layout.linkSize(SwingConstants.HORIZONTAL, prenomLabel, prenomField);
         layout.linkSize(SwingConstants.HORIZONTAL, nomLabel, nomField);
-        
+
     }
 }
 
