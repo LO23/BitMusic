@@ -8,9 +8,11 @@ package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observer;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -44,8 +46,36 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void addView(AbstractView view) {
-        this.getContentPane().add(view.getPanel());
-        this.setVisible(true);
+        
+        if (view.getType() == "CONNECTION"){
+            this.getContentPane().add(view.getPanel());
+            pack();
+            this.setVisible(true);
+        }
+        else {
+            JPanel contentPanel = new JPanel(new BorderLayout());
+            this.getContentPane().add(contentPanel);
+            
+            if (view.getType() == "WEST") {
+                contentPanel.add(view.getPanel(), BorderLayout.WEST);
+                
+            }
+            else if (view.getType() == "SOUTH") {
+               contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
+            }
+            else if (view.getType() == "NORTH") {
+                contentPanel.add(view.getPanel(), BorderLayout.NORTH);
+            }
+            else if (view.getType() == "EAST") {
+                contentPanel.add(view.getPanel(), BorderLayout.CENTER);
+            }
+            else if (view.getType() == "CENTER"){
+               contentPanel.add(view.getPanel(), BorderLayout.CENTER);
+            }
+            else {
+                System.out.println("Error le type du panel (north, south, east... non définie");
+            }
+        }
     }
 
     public void removeView(AbstractView view) {

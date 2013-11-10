@@ -14,6 +14,8 @@ import bitmusic.hmi.patterns.AbstractView;
  */
 public final class SearchBarView extends AbstractView {
 
+    private static final String type = "NORTH";
+    
     public SearchBarView() {
         super();
         this.initPanel();
@@ -24,5 +26,10 @@ public final class SearchBarView extends AbstractView {
         System.out.println("--- SearchBarView.initPanel()");
 
         // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 }
