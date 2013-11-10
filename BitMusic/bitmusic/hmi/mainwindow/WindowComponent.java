@@ -32,13 +32,9 @@ public class WindowComponent {
         this.view.initFrame();
         this.model.addObserver(this.view);
 
-        //ConnectionComponent connectionComponent = new ConnectionComponent();
-        //this.addComponent(connectionComponent);
-        //this.view.addView(connectionComponent.getView());
-        
-        MyProfileComponent myProfileComponent = new MyProfileComponent();
-        this.addComponent(myProfileComponent);
-        this.view.addView(myProfileComponent.getView());
+        ConnectionComponent connectionComponent = new ConnectionComponent();
+        this.addComponent(connectionComponent);
+        this.view.addView(connectionComponent.getView());
     }
 
     /** Holder */
