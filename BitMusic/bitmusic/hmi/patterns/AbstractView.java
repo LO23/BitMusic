@@ -27,6 +27,7 @@ public abstract class AbstractView extends JPanel implements Observer {
     private final Font dialog = new Font("Dialog", Font.BOLD + Font.ITALIC, 15);
 
     protected abstract void initPanel();
+    public abstract String getType();
 
     public AbstractView() {
         super();
@@ -55,4 +56,5 @@ public abstract class AbstractView extends JPanel implements Observer {
     public final void setDim(final Dimension dim) {
         this.dim = dim;
     }
+    
 }

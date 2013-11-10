@@ -13,6 +13,8 @@ import bitmusic.hmi.patterns.AbstractView;
  * @author unkedeuxke
  */
 public final class OnlineUsersView extends AbstractView {
+    
+    private static final String type = "WEST";
 
     public OnlineUsersView() {
         super();
@@ -24,5 +26,10 @@ public final class OnlineUsersView extends AbstractView {
         System.out.println("--- OnlineUsersView.initPanel()");
 
         // TODO
+    }
+
+    @Override
+    public String getType() {
+       return type;
     }
 }
