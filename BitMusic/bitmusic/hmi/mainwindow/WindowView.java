@@ -67,7 +67,7 @@ public class WindowView extends JFrame implements Observer {
                 contentPanel.add(view.getPanel(), BorderLayout.NORTH);
             }
             else if (view.getType() == "EAST") {
-                contentPanel.add(view.getPanel(), BorderLayout.CENTER);
+                contentPanel.add(view.getPanel(), BorderLayout.EAST);
             }
             else if (view.getType() == "CENTER"){
                contentPanel.add(view.getPanel(), BorderLayout.CENTER);
@@ -75,6 +75,8 @@ public class WindowView extends JFrame implements Observer {
             else {
                 System.out.println("Error le type du panel (north, south, east... non définie");
             }
+            pack();
+            this.setVisible(true);
         }
     }
 
