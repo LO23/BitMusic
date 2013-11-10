@@ -18,7 +18,7 @@ public final class PlayBarComponent extends AbstractComponent {
         this.model = new PlayBarModel();
         this.view = new PlayBarView();
         this.controller = new PlayBarController(this.model, this.view);
-        this.view.setAbstractController(this.controller);
+        this.view.setController(this.controller);
         this.model.addObserver(this.view);
     }
 }

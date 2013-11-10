@@ -18,7 +18,7 @@ public final class CategoriesComponent extends AbstractComponent {
         this.model = new CategoriesModel();
         this.view = new CategoriesView();
         this.controller = new CategoriesController(this.model, this.view);
-        this.view.setAbstractController(this.controller);
+        this.view.setController(this.controller);
         this.model.addObserver(this.view);
     }
 }
