@@ -7,6 +7,7 @@
 package bitmusic.hmi.patterns;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -20,13 +21,32 @@ public abstract class AbstractModel implements Observable {
 
     }
 
-    //Implémentation du pattern observer (fonctions communes à tous les models)
-    public void addObserver(Observer obs) {
-        this.listObserver.add(obs);
+    public ArrayList<Observer> getObserver(String observerClass) {
+        ArrayList<Observer> matches = new ArrayList<>();
+
+        Iterator<Observer> iterator = this.listObserver.iterator();
+        while (iterator.hasNext()) {
+            Observer current = iterator.next();
+            if (current.getClass().getSimpleName().equals(observerClass)) {
+                matches.add(current);
+            }
+        }
+        return matches;
     }
 
-    public void notifyObserver() {
+    public void removeObserver(Observer observer) {
+        this.listObserver.remove(observer);
+    }
 
+    //Implémentation du pattern observer (fonctions communes à tous les models)
+    public void addObserver(Observer observer) {
+        this.listObserver.add(observer);
+    }
+
+    public void notifyObserver(String str) {
+        for (Observer observer : listObserver) {
+             observer.update(this, str);
+        }
     }
 
     public void removeAllObserver() {
