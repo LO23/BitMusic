@@ -7,6 +7,8 @@
 package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.profile.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +16,12 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class OnlineUsersModel extends AbstractModel {
 
+    private static ArrayList<User> listUsersOnline = new ArrayList<>();
+
     public OnlineUsersModel() {
         super();
+    }
+     public void addUser(User user) {
+        this.listUsersOnline.add(user);
     }
 }
