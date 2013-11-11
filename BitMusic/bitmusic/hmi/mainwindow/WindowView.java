@@ -7,6 +7,7 @@
 package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -23,7 +24,7 @@ public class WindowView extends JFrame implements Observer {
     private WindowController windowController;
 
     public WindowView() {
-        
+
     }
 
     public WindowController getWindowController() {
@@ -82,5 +83,9 @@ public class WindowView extends JFrame implements Observer {
 
     public void removeView(AbstractView view) {
         this.getContentPane().remove(view.getPanel()); // TODO : détruire l'objet ? (ex : ConnectionComponent)
+    }
+
+    public void update(Observable obj, String str) {
+        System.out.println("----- WindowView.update()");
     }
 }
