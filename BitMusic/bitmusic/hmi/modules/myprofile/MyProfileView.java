@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.myprofile;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -53,7 +54,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
         JButton connectButton = new JButton("Se connecter");
         connectButton.setSize(d);
-        
+
         JButton resetButton = new JButton("Réinitialiser");
         resetButton.setSize(d);
 
@@ -140,6 +141,11 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     @Override
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- MyProfileView.update()");
     }
 }
 

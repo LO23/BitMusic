@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -30,5 +31,10 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     @Override
     public String getType() {
        return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- OnlineUsersView.update()");
     }
 }

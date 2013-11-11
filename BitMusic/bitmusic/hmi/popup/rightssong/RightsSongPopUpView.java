@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.rightssong;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -32,4 +33,8 @@ public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpContr
         return type;
     }
 
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- RightsSongPopUpView.update()");
+    }
 }
