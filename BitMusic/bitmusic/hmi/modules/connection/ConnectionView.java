@@ -23,6 +23,15 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     private static final String type = "CONNECTION";
 
+    private JLabel connectionLabel = new JLabel("Connexion");
+    private JLabel loginLabel = new JLabel("Pseudo");
+    private JLabel passwordLabel = new JLabel("Password");
+    private JButton connectButton = new JButton("Se connecter");
+    private JButton resetButton = new JButton("Réinitialiser");
+    private JButton createUserButton = new JButton("Créer un compte");
+    private JTextField loginField = new JTextField("");
+    private JPasswordField passwordField = new JPasswordField("");
+
     public ConnectionView() {
         super();
     }
@@ -34,34 +43,21 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     @Override
     public void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");
+
         Dimension d = new Dimension(80, 20);
+        this.connectionLabel.setSize(d);
+        this.loginLabel.setSize(d);
+        this.passwordLabel.setSize(d);
+        this.connectButton.setSize(d);
+        this.resetButton.setSize(d);
+        this.createUserButton.setSize(d);
 
-        JLabel connectionLabel = new JLabel("Connexion");
-        connectionLabel.setSize(d);
+        this.loginField.setColumns(10);
+        this.passwordField.setColumns(10);
 
-        JLabel loginLabel = new JLabel("Pseudo");
-        loginLabel.setSize(d);
-
-        JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setSize(d);
-
-        JButton connectButton = new JButton("Se connecter");
-        connectButton.setSize(d);
-        connectButton.addActionListener(this.getController().new ConnectionListener());
-
-        JButton resetButton = new JButton("Réinitialiser");
-        resetButton.setSize(d);
-        resetButton.addActionListener(this.getController().new ResetListener());
-
-        JButton createUserButton = new JButton("Créer un compte");
-        createUserButton.setSize(d);
-        createUserButton.addActionListener(this.getController().new CreateNewUserListener());
-
-        JTextField loginField = new JTextField("");
-        loginField.setColumns(10);
-
-        JPasswordField passwordField = new JPasswordField("");
-        passwordField.setColumns(10);
+        this.connectButton.addActionListener(this.getController().new ConnectionListener());
+        this.resetButton.addActionListener(this.getController().new ResetListener());
+        this.createUserButton.addActionListener(this.getController().new CreateNewUserListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -104,5 +100,69 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
         layout.linkSize(SwingConstants.HORIZONTAL, loginLabel, loginField);
         layout.linkSize(SwingConstants.HORIZONTAL, passwordLabel, passwordField);
+    }
+
+    public JLabel getConnectionLabel() {
+        return this.connectionLabel;
+    }
+
+    public void setConnectionLabel(JLabel connectionLabel) {
+        this.connectionLabel = connectionLabel;
+    }
+
+    public JLabel getLoginLabel() {
+        return this.loginLabel;
+    }
+
+    public void setLoginLabel(JLabel loginLabel) {
+        this.loginLabel = loginLabel;
+    }
+
+    public JLabel getPasswordLabel() {
+        return this.passwordLabel;
+    }
+
+    public void setPasswordLabel(JLabel passwordLabel) {
+        this.passwordLabel = passwordLabel;
+    }
+
+    public JButton getConnectButton() {
+        return this.connectButton;
+    }
+
+    public void setConnectButton(JButton connectButton) {
+        this.connectButton = connectButton;
+    }
+
+    public JButton getResetButton() {
+        return this.resetButton;
+    }
+
+    public void setResetButton(JButton resetButton) {
+        this.resetButton = resetButton;
+    }
+
+    public JButton getCreateUserButton() {
+        return this.createUserButton;
+    }
+
+    public void setCreateUserButton(JButton createUserButton) {
+        this.createUserButton = createUserButton;
+    }
+
+    public JTextField getLoginField() {
+        return this.loginField;
+    }
+
+    public void setLoginField(JTextField loginField) {
+        this.loginField = loginField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return this.passwordField;
+    }
+
+    public void setPasswordField(JPasswordField passwordField) {
+        this.passwordField = passwordField;
     }
 }
