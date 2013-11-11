@@ -35,14 +35,4 @@ public final class OnlineUsersModel extends AbstractModel {
         this.listUsersOnline = listUsersOnline;
     }
 
-    @Override
-    public void removeObserver() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void notifyObserver(Object o, String str) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

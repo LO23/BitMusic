@@ -8,6 +8,11 @@ package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
