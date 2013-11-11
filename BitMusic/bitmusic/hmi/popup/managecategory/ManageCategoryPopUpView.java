@@ -15,7 +15,7 @@ import bitmusic.hmi.patterns.Observable;
  */
 public final class ManageCategoryPopUpView extends AbstractView<ManageCategoryPopUpController> {
 
-    private static final String type = "POPUP";
+    private final String type = "POPUP";
 
     public ManageCategoryPopUpView() {
         super();

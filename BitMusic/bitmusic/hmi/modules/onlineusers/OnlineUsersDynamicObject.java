@@ -22,18 +22,22 @@ public class OnlineUsersDynamicObject extends AbstractTableModel {
         super();
     }
 
+    @Override
     public int getRowCount() {
         return listUsers.size();
     }
 
+    @Override
     public int getColumnCount() {
         return header.length;
     }
 
+    @Override
     public String getColumnName(int columnIndex) {
         return header[columnIndex];
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:

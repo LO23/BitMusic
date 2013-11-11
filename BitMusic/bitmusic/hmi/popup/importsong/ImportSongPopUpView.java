@@ -15,7 +15,7 @@ import bitmusic.hmi.patterns.Observable;
  */
 public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpController> {
 
-    private static final String type = "POPUP";
+    private final String type = "POPUP";
 
     public ImportSongPopUpView() {
         super();
