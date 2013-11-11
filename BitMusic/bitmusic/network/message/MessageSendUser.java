@@ -5,21 +5,37 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.profile.User;
 
 /**
- *
+ * Message used to send our asked Profile.
  * @author alexis
  */
-public class MessageSendUser extends AbstractMessage {
+public final class MessageSendUser extends AbstractMessage {
+    /**
+     * The asked profile.
+     */
+    private User user;
+
+    /**
+     * ID of the search.
+     */
+    private String searchId;
+
     /**
      * Constructor.
      * @param paramType Type of the message
      * @param paramIpSource IP address of the sender
      * @param paramIpDest IP address of the receiver
+     * @param paramUser The asked profile
+     * @param paramSearchId ID of the search
      */
     public MessageSendUser(final EnumTypeMessage paramType,
-            final String paramIpSource, final String paramIpDest) {
+            final String paramIpSource, final String paramIpDest,
+            final User paramUser, final String paramSearchId) {
         super(paramType, paramIpSource, paramIpDest);
+        user = paramUser;
+        searchId = paramSearchId;
     }
 
     /**
@@ -29,4 +45,37 @@ public class MessageSendUser extends AbstractMessage {
     public void treatment() {
 
     }
+
+    /**
+     * Setter of the user attribute.
+     * @param paramUser The asked profile
+     */
+    public void setUser(final User paramUser) {
+        this.user = paramUser;
+    }
+
+    /**
+     * Setter of the searchId attribute.
+     * @param paramSearchId ID of the search
+     */
+    public void setSearchId(final String paramSearchId) {
+        this.searchId = paramSearchId;
+    }
+
+    /**
+     * Getter of the user attribute.
+     * @return User The asked profile
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Getter of the searchId attribute.
+     * @return String ID of the search
+     */
+    public String getSearchId() {
+        return searchId;
+    }
+
 }
