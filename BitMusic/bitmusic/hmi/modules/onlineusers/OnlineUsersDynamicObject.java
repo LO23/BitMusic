@@ -14,62 +14,60 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author hebergui <hebergui.utc@gmail.com>
  */
-public class OnlineUsersDynamiqueObjet extends AbstractTableModel {
-    private ArrayList<User> users = new ArrayList<User>();
-    private final String[] entetes = {"Login", "MdP"};
+public class OnlineUsersDynamicObject extends AbstractTableModel {
+    private ArrayList<User> listUsers = new ArrayList<User>();
+    private final String[] header = {"Login", "MdP"};
 
-    public OnlineUsersDynamiqueObjet() {
+    public OnlineUsersDynamicObject() {
         super();
-        users.add(new User("User 1", "MdP Test"));
-        users.add(new User("User 2", "MdP Test"));
     }
 
     public int getRowCount() {
-        return users.size();
+        return listUsers.size();
     }
 
     public int getColumnCount() {
-        return entetes.length;
+        return header.length;
     }
 
     public String getColumnName(int columnIndex) {
-        return entetes[columnIndex];
+        return header[columnIndex];
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return users.get(rowIndex).getLogin();
+                return listUsers.get(rowIndex).getLogin();
             case 1:
-                return users.get(rowIndex).getPassword();
+                return listUsers.get(rowIndex).getPassword();
             default:
                 return null; //Ne devrait jamais arriver
         }
     }
 
     public void addUser(User ami) {
-        users.add(ami);
+        listUsers.add(ami);
 
-        fireTableRowsInserted(users.size() -1, users.size() -1);
+        fireTableRowsInserted(listUsers.size() -1, listUsers.size() -1);
     }
 
     public void removeUser(int rowIndex) {
-        users.remove(rowIndex);
+        listUsers.remove(rowIndex);
 
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
     public void removeAllUsers() {
-        for (int i=0; i<this.users.size(); i++)
+        for (int i=0; i<this.listUsers.size(); i++)
             this.removeUser(i);
     }
 
     public ArrayList<User> getUsers() {
-        return this.users;
+        return this.listUsers;
     }
 
     public void setListUsersOnline(ArrayList<User> users) {
         this.removeAllUsers();
-        this.users = users;
+        this.listUsers = users;
     }
 }
