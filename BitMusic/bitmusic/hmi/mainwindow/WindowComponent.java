@@ -7,7 +7,6 @@
 package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.modules.connection.ConnectionComponent;
-import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.patterns.AbstractComponent;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,6 +34,7 @@ public class WindowComponent {
         ConnectionComponent connectionComponent = new ConnectionComponent();
         this.addComponent(connectionComponent);
         this.view.addView(connectionComponent.getView());
+        
     }
 
     /** Holder */
@@ -68,4 +68,8 @@ public class WindowComponent {
     public void removeComponent(AbstractComponent component) {
         this.listComponent.remove(component);
     }
+    
+    public WindowView getWindowView() {
+        return this.view;
+    } 
 }
