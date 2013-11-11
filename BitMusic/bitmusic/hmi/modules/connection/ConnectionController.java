@@ -33,6 +33,10 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
 
             if(model.doConnection() == true ){
+
+                WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
+                WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
+
                 OnlineUsersComponent onlineUsersComponent = new OnlineUsersComponent();
                 WindowComponent.getInstance().addComponent(onlineUsersComponent);
                 WindowComponent.getInstance().getWindowView().addView(onlineUsersComponent.getView());
