@@ -25,6 +25,7 @@ public final class OnlineUsersModel extends AbstractModel {
 
     public void addUser(User user) {
         this.listUsersOnline.add(user);
+        this.notifyObservers("ADD_ONLINE_USER");
     }
 
     public ArrayList<User> getListUsersOnline() {

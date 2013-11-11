@@ -45,7 +45,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
                 // TODO : supprimer les deux lignes ci-dessous (utilisées pour tester)
                 ApiHmi apiHmi = new ApiHmi();
-                apiHmi.notifyNewConnection(new User("Germain","Leouf"));
+                apiHmi.notifyNewConnection(new User("MonLogin","MonMdP"));
             } else {
                 JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
             }

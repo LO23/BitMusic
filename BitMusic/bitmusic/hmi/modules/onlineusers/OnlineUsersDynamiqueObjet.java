@@ -20,8 +20,8 @@ public class OnlineUsersDynamiqueObjet extends AbstractTableModel {
 
     public OnlineUsersDynamiqueObjet() {
         super();
-        users.add(new User("User 1", "Test"));
-        users.add(new User("User 2", "Test"));
+        users.add(new User("User 1", "MdP Test"));
+        users.add(new User("User 2", "MdP Test"));
     }
 
     public int getRowCount() {
@@ -59,11 +59,17 @@ public class OnlineUsersDynamiqueObjet extends AbstractTableModel {
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
+    public void removeAllUsers() {
+        for (int i=0; i<this.users.size(); i++)
+            this.removeUser(i);
+    }
+
     public ArrayList<User> getUsers() {
         return this.users;
     }
 
     public void setListUsersOnline(ArrayList<User> users) {
+        this.removeAllUsers();
         this.users = users;
     }
 }

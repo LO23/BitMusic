@@ -8,6 +8,7 @@ package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import bitmusic.profile.User;
 import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -71,6 +72,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- OnlineUsersView.update()");
+        System.out.println("----- OnlineUsersView.update() : " + str);
+        this.modeleTableau.setListUsersOnline(this.getController().getModel().getListUsersOnline());
     }
 }
