@@ -25,15 +25,15 @@ public class Profile {
     }
     public void saveUser(User user){
     }*/
-    
+
     public static User getCurrentUser() {
         return Profile.currentUser;
     }
-    
+
     public static void setCurrentUser(User newUser) {
         Profile.currentUser = newUser;
     }
-    
+
     /*public User getCurrentUser(String userId){
         if(currentUser.getUserId()==userId){
             return this.currentUser;

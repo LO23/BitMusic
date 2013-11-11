@@ -21,7 +21,17 @@ import java.nio.file.Path;
  * @author Holywa
  */
 public class UserSaver {
+    //########################## ATTRIBUTES ##########################//
+    /**
+     *
+     */
     private Path defaultPath;
+
+    /**
+     *
+     */
+
+    //######################### CONSTRUCTORS ###########################//
 
     public UserSaver() {
         //TODO
@@ -29,6 +39,12 @@ public class UserSaver {
         this.defaultPath = FileSystems.getDefault().getPath("");
     }
 
+    //########################### METHODS ##############################//
+
+    /**
+     *
+     * @throws ProfileExceptions
+     */
     public void saveUser() throws ProfileExceptions {
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath.toString());
@@ -45,6 +61,10 @@ public class UserSaver {
         }
     }
 
+    /**
+     *
+     * @throws ProfileExceptions
+     */
     public void saveAuthFile() throws ProfileExceptions {
         try {
             FileOutputStream authFile = new FileOutputStream(defaultPath.toString());
