@@ -6,10 +6,30 @@
 
 package bitmusic.hmi.modules.accountcreation;
 
+import bitmusic.hmi.patterns.AbstractView;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class AccountCreationView {
-    
+public final class AccountCreationView extends AbstractView<AccountCreationController> {
+
+    private static final String type = "ACCOUNTCREATION";
+
+    public AccountCreationView() {
+        super();
+    }
+
+    @Override
+    public void initPanel() {
+        System.out.println("--- AccountCreationView.initPanel()");
+
+        // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
 }

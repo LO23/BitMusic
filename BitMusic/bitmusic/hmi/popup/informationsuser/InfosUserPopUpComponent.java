@@ -6,10 +6,20 @@
 
 package bitmusic.hmi.popup.informationsuser;
 
+import bitmusic.hmi.patterns.AbstractComponent;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class InfosUserPopUpComponent {
-    
+public final class InfosUserPopUpComponent extends AbstractComponent<InfosUserPopUpModel, InfosUserPopUpView, InfosUserPopUpController> {
+
+    public InfosUserPopUpComponent() {
+        this.model = new InfosUserPopUpModel();
+        this.view = new InfosUserPopUpView();
+        this.controller = new InfosUserPopUpController(this.model, this.view);
+        this.view.setController(this.controller);
+        this.view.initPanel();
+        this.model.addObserver(this.view);
+    }
 }

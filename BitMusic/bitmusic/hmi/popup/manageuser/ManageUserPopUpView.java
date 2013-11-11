@@ -6,10 +6,30 @@
 
 package bitmusic.hmi.popup.manageuser;
 
+import bitmusic.hmi.patterns.AbstractView;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ManageUserPopUpView {
-    
+public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpController> {
+
+    private static final String type = "POPUP";
+
+    public ManageUserPopUpView() {
+        super();
+    }
+
+    @Override
+    public void initPanel() {
+        System.out.println("--- ManageUserPopUpView.initPanel()");
+
+        // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
 }

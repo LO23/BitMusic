@@ -6,10 +6,15 @@
 
 package bitmusic.hmi.popup.managecategory;
 
+import bitmusic.hmi.patterns.AbstractController;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ManageCategoryPopUpController {
-    
+public final class ManageCategoryPopUpController extends AbstractController<ManageCategoryPopUpModel, ManageCategoryPopUpView> {
+
+    public ManageCategoryPopUpController(final ManageCategoryPopUpModel model, final ManageCategoryPopUpView view) {
+        super(model, view);
+    }
 }

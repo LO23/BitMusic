@@ -6,10 +6,19 @@
 
 package bitmusic.hmi.popup.ratesong;
 
+import bitmusic.hmi.patterns.AbstractModel;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class RateSongPopUpModel {
-    
+public final class RateSongPopUpModel extends AbstractModel {
+
+    public RateSongPopUpModel() {
+        super();
+    }
+
+    public void doConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

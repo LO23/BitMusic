@@ -6,10 +6,20 @@
 
 package bitmusic.hmi.popup.manageuser;
 
+import bitmusic.hmi.patterns.AbstractComponent;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ManageUserPopUpComponent {
-    
+public final class ManageUserPopUpComponent extends AbstractComponent<ManageUserPopUpModel, ManageUserPopUpView, ManageUserPopUpController> {
+
+    public ManageUserPopUpComponent() {
+        this.model = new ManageUserPopUpModel();
+        this.view = new ManageUserPopUpView();
+        this.controller = new ManageUserPopUpController(this.model, this.view);
+        this.view.setController(this.controller);
+        this.view.initPanel();
+        this.model.addObserver(this.view);
+    }
 }

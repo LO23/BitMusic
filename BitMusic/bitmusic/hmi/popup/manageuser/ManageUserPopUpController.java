@@ -6,10 +6,15 @@
 
 package bitmusic.hmi.popup.manageuser;
 
+import bitmusic.hmi.patterns.AbstractController;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ManageUserPopUpController {
-    
+public final class ManageUserPopUpController extends AbstractController<ManageUserPopUpModel, ManageUserPopUpView> {
+
+    public ManageUserPopUpController(final ManageUserPopUpModel model, final ManageUserPopUpView view) {
+        super(model, view);
+    }
 }

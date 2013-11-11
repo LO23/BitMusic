@@ -6,10 +6,30 @@
 
 package bitmusic.hmi.popup.modifyprofile;
 
+import bitmusic.hmi.patterns.AbstractView;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ModifyProfilePopUpView {
-    
+public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopUpController> {
+
+    private static final String type = "POPUP";
+
+    public ModifyProfilePopUpView() {
+        super();
+    }
+
+    @Override
+    public void initPanel() {
+        System.out.println("--- ModifyProfilePopUpView.initPanel()");
+
+        // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
 }

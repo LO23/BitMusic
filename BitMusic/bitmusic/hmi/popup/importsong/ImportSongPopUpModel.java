@@ -6,10 +6,19 @@
 
 package bitmusic.hmi.popup.importsong;
 
+import bitmusic.hmi.patterns.AbstractModel;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ImportSongPopUpModel {
-    
+public final class ImportSongPopUpModel extends AbstractModel {
+
+    public ImportSongPopUpModel() {
+        super();
+    }
+
+    public void doConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

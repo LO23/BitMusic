@@ -6,10 +6,15 @@
 
 package bitmusic.hmi.popup.modifyprofile;
 
+import bitmusic.hmi.patterns.AbstractController;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ModifyProfilePopUpController {
-    
+public final class ModifyProfilePopUpController extends AbstractController<ModifyProfilePopUpModel, ModifyProfilePopUpView> {
+
+    public ModifyProfilePopUpController(final ModifyProfilePopUpModel model, final ModifyProfilePopUpView view) {
+        super(model, view);
+    }
 }

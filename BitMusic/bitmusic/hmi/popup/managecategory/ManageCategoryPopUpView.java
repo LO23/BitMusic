@@ -6,10 +6,30 @@
 
 package bitmusic.hmi.popup.managecategory;
 
+import bitmusic.hmi.patterns.AbstractView;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ManageCategoryPopUpView {
-    
+public final class ManageCategoryPopUpView extends AbstractView<ManageCategoryPopUpController> {
+
+    private static final String type = "POPUP";
+
+    public ManageCategoryPopUpView() {
+        super();
+    }
+
+    @Override
+    public void initPanel() {
+        System.out.println("--- ManageCategoryPopUpView.initPanel()");
+
+        // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
 }

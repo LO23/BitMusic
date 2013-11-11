@@ -6,10 +6,30 @@
 
 package bitmusic.hmi.popup.importsong;
 
+import bitmusic.hmi.patterns.AbstractView;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ImportSongPopUpView {
-    
+public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpController> {
+
+    private static final String type = "POPUP";
+
+    public ImportSongPopUpView() {
+        super();
+    }
+
+    @Override
+    public void initPanel() {
+        System.out.println("--- ImportSongPopUpView.initPanel()");
+
+        // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
 }
