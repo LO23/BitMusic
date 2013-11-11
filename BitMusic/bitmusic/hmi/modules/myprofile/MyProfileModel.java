@@ -17,8 +17,4 @@ public final class MyProfileModel extends AbstractModel {
     public MyProfileModel() {
         super();
     }
-
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
