@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.profile;
+package bitmusic.profile.classes;
 
 import java.util.ArrayList;
 
@@ -53,13 +53,18 @@ public class Category {
 
     /**
      * Update the rights of the category
-     * @param canReadInfo Right to read information
+     * @param canIReadInfo Right to read information
      * @param canPlay Right to play
      * @param canRate Right to play
      * @param canComment Right to comment
      */
-    public void updateRight(boolean canReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
-        this.rights.updateRights(canReadInfo, canPlay, canRate, canComment);
+    public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
+        if(this.rights != null) {
+            this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
+        }
+        else {
+            this.rights = new Rights();
+        }
     }
 
     /**
