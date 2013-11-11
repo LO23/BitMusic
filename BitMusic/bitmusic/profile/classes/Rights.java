@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.profile;
+package bitmusic.profile.classes;
 
 /**
  *
@@ -123,4 +123,4 @@ public class Rights {
     }
 
 
-}
+    }

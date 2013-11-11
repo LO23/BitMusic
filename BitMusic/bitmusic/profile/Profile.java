@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bitmusic.profile;
+
+import bitmusic.profile.classes.User;
 
 import bitmusic.music.data.Song;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class Profile {
     //########################## ATTRIBUTES ##########################//
 
-    private User currentUser;
+    private static User currentUser;
 
     //########################### METHODS ##############################//
     /*
@@ -23,8 +24,17 @@ public class Profile {
         return true;
     }
     public void saveUser(User user){
+    }*/
+    
+    public static User getCurrentUser() {
+        return Profile.currentUser;
     }
-    public User getCurrentUser(String userId){
+    
+    public static void setCurrentUser(User newUser) {
+        Profile.currentUser = newUser;
+    }
+    
+    /*public User getCurrentUser(String userId){
         if(currentUser.getUserId()==userId){
             return this.currentUser;
         }
