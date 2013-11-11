@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.onlineusers;
+package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.profile.User;
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author hebergui <hebergui.utc@gmail.com>
  */
-public class OnlineUserDynamiqueObjet extends AbstractTableModel {
+public class OnlineUsersDynamiqueObjet extends AbstractTableModel {
     private ArrayList<User> users = new ArrayList<User>();
     private final String[] entetes = {"Login", "MdP"};
 
-    public OnlineUserDynamiqueObjet() {
+    public OnlineUsersDynamiqueObjet() {
         super();
-        users.add(new User("Johnathan", "MDP"));
-        users.add(new User("Nicolas", "MdPamoi"));
+        users.add(new User("User 1", "Test"));
+        users.add(new User("User 2", "Test"));
     }
 
     public int getRowCount() {

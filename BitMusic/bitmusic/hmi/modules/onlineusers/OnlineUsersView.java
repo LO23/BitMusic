@@ -7,6 +7,12 @@
 package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.profile.User;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -14,7 +20,9 @@ import bitmusic.hmi.patterns.AbstractView;
  */
 public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
-    private static final String type = "WEST";
+    private final String type = "WEST";
+    private OnlineUsersDynamiqueObjet modeleTableau = new OnlineUsersDynamiqueObjet();
+    private JTable tableau;
 
     public OnlineUsersView() {
         super();
@@ -24,11 +32,41 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     public void initPanel() {
         System.out.println("--- OnlineUsersView.initPanel()");
 
-        // TODO
+        Dimension d = new Dimension(80, 20);
+
+        JLabel onlineUsersLabel = new JLabel("En ligne :");
+        onlineUsersLabel.setSize(d);
+
+        tableau = new JTable(modeleTableau);
+        JScrollPane tableauPane = new JScrollPane(tableau);
+
+        GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
+
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setHorizontalGroup(
+            layout.createSequentialGroup()
+                .addComponent(onlineUsersLabel)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(tableauPane)
+                )
+         );
+        layout.setVerticalGroup(
+            layout.createSequentialGroup()
+               .addComponent(onlineUsersLabel)
+               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(tableauPane)
+               )
+        );
+
+
     }
 
     @Override
     public String getType() {
        return type;
     }
+
 }
