@@ -22,19 +22,22 @@ public class WindowModel extends Observable {
 
     }
 
-    // Implémentation du design pattern Observer
+    @Override
     public void addObserver(Observer obs) {
         this.listObservers.add(obs);
     }
 
+    @Override
     public void removeObserver(Observer obs) {
         this.listObservers.remove(obs);
     }
 
+    @Override
     public void removeAllObservers() {
         this.listObservers = new ArrayList<>();
     }
 
+    @Override
     public void notifyObservers(String str) {
         for (Observer obs:this.listObservers) {
             obs.update(this, str);

@@ -15,7 +15,7 @@ import bitmusic.hmi.patterns.Observable;
  */
 public final class SearchBarView extends AbstractView<SearchBarController> {
 
-    private static final String type = "NORTH";
+    private final String type = "NORTH";
 
     public SearchBarView() {
         super();

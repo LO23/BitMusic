@@ -7,7 +7,6 @@
 package bitmusic.hmi.patterns;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
@@ -21,19 +20,22 @@ public abstract class AbstractModel extends Observable {
 
     }
 
-    // Implémentation du design pattern observer
+    @Override
     public void addObserver(Observer obs) {
         this.listObservers.add(obs);
     }
 
+    @Override
     public void removeObserver(Observer obs) {
         this.listObservers.remove(obs);
     }
 
+    @Override
     public void removeAllObservers() {
         this.listObservers = new ArrayList<>();
     }
 
+    @Override
     public void notifyObservers(String str) {
         for (Observer obs:this.listObservers) {
             obs.update(this, str);

@@ -15,7 +15,7 @@ import bitmusic.hmi.patterns.Observable;
  */
 public final class PlayBarView extends AbstractView<PlayBarController> {
 
-    private static final String type = "SOUTH";
+    private final String type = "SOUTH";
 
     public PlayBarView() {
         super();

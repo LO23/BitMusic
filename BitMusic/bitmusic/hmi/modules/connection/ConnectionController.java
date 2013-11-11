@@ -27,6 +27,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
 
     public class ConnectionListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Connection");
 
@@ -43,7 +44,8 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                 WindowComponent.getInstance().addComponent(onlineUsersComponent);
                 WindowComponent.getInstance().getWindowView().addView(onlineUsersComponent.getView());
 
-                // TODO : supprimer les deux lignes ci-dessous (utilisées pour tester)
+                // TODO : Appel d'une méthode du model qui fait appel à une méthode de API network
+                //         pour récupérer une liste des utilisateurs connectés
                 ApiHmi apiHmi = new ApiHmi();
                 apiHmi.notifyNewConnection(new User("MonLogin","MonMdP"));
             } else {
@@ -53,6 +55,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
     }
 
     public class ResetListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Reset");
 
@@ -63,6 +66,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
     }
 
     public class CreateNewUserListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton CreateNewUser");
 

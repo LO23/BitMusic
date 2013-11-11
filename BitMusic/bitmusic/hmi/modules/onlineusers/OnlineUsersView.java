@@ -22,8 +22,8 @@ import javax.swing.JTable;
 public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     private final String type = "WEST";
-    private OnlineUsersDynamiqueObjet modeleTableau = new OnlineUsersDynamiqueObjet();
-    private JTable tableau;
+    private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
+    private JTable table;
 
     public OnlineUsersView() {
         super();
@@ -38,8 +38,8 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         JLabel onlineUsersLabel = new JLabel("En ligne :");
         onlineUsersLabel.setSize(d);
 
-        tableau = new JTable(modeleTableau);
-        JScrollPane tableauPane = new JScrollPane(tableau);
+        table = new JTable(modeleTable);
+        JScrollPane tableauPane = new JScrollPane(table);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -73,6 +73,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- OnlineUsersView.update() : " + str);
-        this.modeleTableau.setListUsersOnline(this.getController().getModel().getListUsersOnline());
+        this.modeleTable.setListUsersOnline(this.getController().getModel().getListUsersOnline());
     }
 }

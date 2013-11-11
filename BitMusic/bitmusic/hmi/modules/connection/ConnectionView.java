@@ -22,21 +22,21 @@ import javax.swing.SwingConstants;
  */
 public final class ConnectionView extends AbstractView<ConnectionController> {
 
-    private static final String type = "CONNECTION";
-
-    private JLabel connectionLabel = new JLabel("Connexion");
-    private JLabel loginLabel = new JLabel("Pseudo");
-    private JLabel passwordLabel = new JLabel("Mot de passe");
-    private JButton connectButton = new JButton("Se connecter");
-    private JButton resetButton = new JButton("Réinitialiser");
-    private JButton createUserButton = new JButton("Créer un compte");
-    private JTextField loginField = new JTextField("");
-    private JPasswordField passwordField = new JPasswordField("");
+    private final String type = "CONNECTION";
+    private final JLabel connectionLabel = new JLabel("Connexion");
+    private final JLabel loginLabel = new JLabel("Pseudo");
+    private final JLabel passwordLabel = new JLabel("Mot de passe");
+    private final JButton connectButton = new JButton("Se connecter");
+    private final JButton resetButton = new JButton("Réinitialiser");
+    private final JButton createUserButton = new JButton("Créer un compte");
+    private final JTextField loginField = new JTextField("");
+    private final JPasswordField passwordField = new JPasswordField("");
 
     public ConnectionView() {
         super();
     }
 
+    @Override
     public String getType(){
         return type;
     }
@@ -107,64 +107,32 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
         return this.connectionLabel;
     }
 
-    public void setConnectionLabel(JLabel connectionLabel) {
-        this.connectionLabel = connectionLabel;
-    }
-
     public JLabel getLoginLabel() {
         return this.loginLabel;
-    }
-
-    public void setLoginLabel(JLabel loginLabel) {
-        this.loginLabel = loginLabel;
     }
 
     public JLabel getPasswordLabel() {
         return this.passwordLabel;
     }
 
-    public void setPasswordLabel(JLabel passwordLabel) {
-        this.passwordLabel = passwordLabel;
-    }
-
     public JButton getConnectButton() {
         return this.connectButton;
-    }
-
-    public void setConnectButton(JButton connectButton) {
-        this.connectButton = connectButton;
     }
 
     public JButton getResetButton() {
         return this.resetButton;
     }
 
-    public void setResetButton(JButton resetButton) {
-        this.resetButton = resetButton;
-    }
-
     public JButton getCreateUserButton() {
         return this.createUserButton;
-    }
-
-    public void setCreateUserButton(JButton createUserButton) {
-        this.createUserButton = createUserButton;
     }
 
     public JTextField getLoginField() {
         return this.loginField;
     }
 
-    public void setLoginField(JTextField loginField) {
-        this.loginField = loginField;
-    }
-
     public JPasswordField getPasswordField() {
         return this.passwordField;
-    }
-
-    public void setPasswordField(JPasswordField passwordField) {
-        this.passwordField = passwordField;
     }
 
     @Override

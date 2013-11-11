@@ -15,7 +15,7 @@ import bitmusic.hmi.patterns.Observable;
  */
 public final class AccountCreationView extends AbstractView<AccountCreationController> {
 
-    private static final String type = "ACCOUNTCREATION";
+    private final String type = "ACCOUNTCREATION";
 
     public AccountCreationView() {
         super();
