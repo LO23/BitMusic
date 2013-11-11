@@ -7,6 +7,7 @@
 package bitmusic.hmi.patterns;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *

@@ -16,12 +16,24 @@ import java.util.ArrayList;
  */
 public final class OnlineUsersModel extends AbstractModel {
 
-    private static ArrayList<User> listUsersOnline = new ArrayList<>();
+    private ArrayList<User> listUsersOnline = new ArrayList<>();
+
 
     public OnlineUsersModel() {
         super();
     }
-     public void addUser(User user) {
+
+    public void addUser(User user) {
         this.listUsersOnline.add(user);
+        this.notifyObservers("ADD_ONLINE_USER");
     }
+
+    public ArrayList<User> getListUsersOnline() {
+        return listUsersOnline;
+    }
+
+    public void setListUsersOnline(ArrayList<User> listUsersOnline) {
+        this.listUsersOnline = listUsersOnline;
+    }
+
 }
