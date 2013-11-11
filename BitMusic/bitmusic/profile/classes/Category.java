@@ -13,9 +13,13 @@ import java.util.ArrayList;
  */
 public class Category {
 
+    //########################## ATTRIBUTES ##########################//
+
     private String name;
     private ArrayList<User> contacts;
     private Rights rights;
+
+    //######################### CONSTRUCTORS ###########################//
 
     /**
      * Constructor : Create a category
@@ -27,6 +31,8 @@ public class Category {
         this.rights = new Rights();
     }
 
+    //########################### METHODS ##############################//
+    
     /**
      * Change the name of the category
      * @param newName New name of the category

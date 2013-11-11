@@ -25,12 +25,27 @@ import java.nio.file.Path;
  * @author Holywa
  */
 public class UserParser {
+    //########################## ATTRIBUTES ##########################//
+
+    /**
+     *
+     */
     private Path defaultPath;
-    
+
+    //######################### CONSTRUCTORS ###########################//
+    /**
+     *
+     */
     public UserParser() {
         this.defaultPath = FileSystems.getDefault().getPath("");
     }
-    
+
+    //########################### METHODS ##############################//
+
+    /**
+     * 
+     * @throws ProfileExceptions
+     */
     public void loadUser() throws ProfileExceptions {
         try {
             FileInputStream saveFile = new FileInputStream(defaultPath.toString());
@@ -65,5 +80,5 @@ public class UserParser {
             throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
         }
     }*/
-    
+
 }

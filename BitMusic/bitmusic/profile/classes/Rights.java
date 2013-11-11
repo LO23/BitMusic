@@ -40,16 +40,17 @@ public class Rights {
         this.canRate = true;
         this.canComment = true;
     }
-    
+
 //########################### METHODS ##############################//
     /**
      * Update rights.
-     * @param canReadInfo.
-     * @param canPlay.
-     * @param canRate.
-     * @param canComment.
+     * @param canReadInfo boolean on reading right.
+     * @param canPlay boolean on playing right.
+     * @param canRate boolean in rating right.
+     * @param canComment boolean on commenting right.
      */
-    public void updateRights( boolean canReadInfo, boolean canPlay, boolean canRate, boolean canComment){
+    public void updateRights(final boolean canReadInfo, final boolean canPlay,
+            final boolean canRate, final boolean canComment) {
         this.canReadInfo = canReadInfo;
         this.canPlay = canPlay;
         this.canRate = canRate;
@@ -57,70 +58,68 @@ public class Rights {
     }
     /**
      * Get right to play.
-     * @returns boolean, if the user has the right or not to play.
+     * @return boolean, if the user has the right or not to play.
      */
     public boolean getcanPlay(){
-            return(canPlay);
+            return(this.canPlay);
     }
 
     /**
      * Get right if user can read info or not.
-     * @returns boolean, if the user has the right or not to read info.
+     * @return boolean, if the user has the right or not to read info.
      */
-    public boolean getcanReadInfo(){
-            return(canReadInfo);
+    public boolean getcanReadInfo() {
+            return(this.canReadInfo);
     }
 
     /**
      * Get right if user can rate or not.
      * @returns boolean, if the user has the right or not to rate.
      */
-    public boolean getcanRate(){
-            return(canRate);
+    public boolean getcanRate() {
+            return(this.canRate);
     }
 
     /**
      * Get right if user can comment or not.
-     * @returns boolean, if the user has the right or not to comment.
+     * @return boolean, if the user has the right or not to comment.
      */
-    public boolean getcanComment(){
-            return(canComment);
+    public boolean getcanComment() {
+            return(this.canComment);
     }
 
     /**
      * Set right if users can play or not.
-     * @param canPlayValue
+     * @param canPlayValue new value on playing right.
      */
-    public void setcanPlay(boolean canPlayValue) {
-           canPlay=canPlayValue;
+    public void setcanPlay(final boolean canPlayValue) {
+           this.canPlay=canPlayValue;
     }
 
     /**
      * Set right if users can read info or not.
-     * @param canReadInfoValue
+     * @param canReadInfoValue new value on reading info right.
      */
-    public void setcanReadInfo(boolean canReadInfoValue) {
+    public void setcanReadInfo(final boolean canReadInfoValue) {
 
-           canReadInfo=canReadInfoValue;
+           this.canReadInfo=canReadInfoValue;
     }
 
     /**
      * Set right if users can rate or not.
-     * @param canRateValue
+     * @param canRateValue new value on rating right.
      */
-    public void setcanRate(boolean canRateValue) {
+    public void setcanRate(final boolean canRateValue) {
 
-           canRate=canRateValue;
+           this.canRate=canRateValue;
     }
 
     /**
      * Set right if users can comment or not.
-     * @param canCommentValue
+     * @param canCommentValue new value on commenting right.
      */
-    public void setcanComment(boolean canCommentValue) {
+    public void setcanComment(final boolean canCommentValue) {
 
-           canComment=canCommentValue;
+           this.canComment=canCommentValue;
     }
-
-
-    }
+}
