@@ -13,6 +13,7 @@ import bitmusic.hmi.api.ApiHmi;
 import bitmusic.profile.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,20 +31,23 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             System.out.println("---- Clic sur le bouton Connection");
 
             ConnectionModel model = ConnectionController.this.getModel();
-            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
 
-            if(model.doConnection() == true ){
-
+            if (model.doConnection() == true) {
+                // On enlève le ConnectionComponent et la ConnectionView des "objets utilisés"
                 WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
                 WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
+                // TODO : les supprimer ? (object = null;)
 
+                // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"
                 OnlineUsersComponent onlineUsersComponent = new OnlineUsersComponent();
                 WindowComponent.getInstance().addComponent(onlineUsersComponent);
                 WindowComponent.getInstance().getWindowView().addView(onlineUsersComponent.getView());
 
-                // IL FAUT VIRER CES DEUX PROCHAINES LINES!!
+                // TODO : supprimer les deux lignes ci-dessous (utilisées pour tester)
                 ApiHmi apiHmi = new ApiHmi();
                 apiHmi.notifyNewConnection(new User("Germain","Leouf"));
+            } else {
+                JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

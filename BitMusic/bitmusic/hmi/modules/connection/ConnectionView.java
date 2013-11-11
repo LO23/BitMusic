@@ -25,7 +25,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     private JLabel connectionLabel = new JLabel("Connexion");
     private JLabel loginLabel = new JLabel("Pseudo");
-    private JLabel passwordLabel = new JLabel("Password");
+    private JLabel passwordLabel = new JLabel("Mot de passe");
     private JButton connectButton = new JButton("Se connecter");
     private JButton resetButton = new JButton("Réinitialiser");
     private JButton createUserButton = new JButton("Créer un compte");
