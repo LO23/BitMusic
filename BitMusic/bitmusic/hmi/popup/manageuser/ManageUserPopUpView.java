@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.manageuser;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -32,4 +33,8 @@ public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpContr
         return type;
     }
 
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- ManageUserPopUpView.update()");
+    }
 }

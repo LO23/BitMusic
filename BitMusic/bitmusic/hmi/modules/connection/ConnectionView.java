@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.connection;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -164,5 +165,10 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     public void setPasswordField(JPasswordField passwordField) {
         this.passwordField = passwordField;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- ConnectionView.update()");
     }
 }

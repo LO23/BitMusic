@@ -7,12 +7,7 @@
 package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractView;
-import bitmusic.profile.User;
-import java.awt.Dimension;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -69,4 +64,8 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
        return type;
     }
 
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- OnlineUsersView.update()");
+    }
 }

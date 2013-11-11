@@ -13,43 +13,30 @@ import java.util.Iterator;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractModel implements Observable {
+public abstract class AbstractModel extends Observable {
 
-    private ArrayList<Observer> listObserver = new ArrayList<>();
+    private ArrayList<Observer> listObservers = new ArrayList<>();
 
     public AbstractModel() {
 
     }
 
-    public ArrayList<Observer> getObserver(String observerClass) {
-        ArrayList<Observer> matches = new ArrayList<>();
+    // Implémentation du design pattern observer
+    public void addObserver(Observer obs) {
+        this.listObservers.add(obs);
+    }
 
-        Iterator<Observer> iterator = this.listObserver.iterator();
-        while (iterator.hasNext()) {
-            Observer current = iterator.next();
-            if (current.getClass().getSimpleName().equals(observerClass)) {
-                matches.add(current);
-            }
+    public void removeObserver(Observer obs) {
+        this.listObservers.remove(obs);
+    }
+
+    public void removeAllObservers() {
+        this.listObservers = new ArrayList<>();
+    }
+
+    public void notifyObservers(String str) {
+        for (Observer obs:this.listObservers) {
+            obs.update(this, str);
         }
-        return matches;
-    }
-
-    public void removeObserver(Observer observer) {
-        this.listObserver.remove(observer);
-    }
-
-    //Implémentation du pattern observer (fonctions communes à tous les models)
-    public void addObserver(Observer observer) {
-        this.listObserver.add(observer);
-    }
-
-    public void notifyObserver(String str) {
-        for (Observer observer : listObserver) {
-             observer.update(this, str);
-        }
-    }
-
-    public void removeAllObserver() {
-        listObserver = new ArrayList<>();
     }
 }

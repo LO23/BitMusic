@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.modifyprofile;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -32,4 +33,8 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         return type;
     }
 
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- ModifyProfilePopUpView.update()");
+    }
 }

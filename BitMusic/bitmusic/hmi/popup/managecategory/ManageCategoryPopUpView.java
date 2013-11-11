@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.managecategory;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -32,4 +33,8 @@ public final class ManageCategoryPopUpView extends AbstractView<ManageCategoryPo
         return type;
     }
 
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- ManageCategoryPopUpView.update()");
+    }
 }
