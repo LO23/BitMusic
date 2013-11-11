@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.patterns;
+package bitmusic.hmi.patterns;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public abstract class AbstractModel implements Observable {
 
     }
 
-    //Implémentation du pattern observer
+    //Implémentation du pattern observer (fonctions communes à tous les models)
     public void addObserver(Observer obs) {
         this.listObserver.add(obs);
     }
@@ -29,7 +29,7 @@ public abstract class AbstractModel implements Observable {
 
     }
 
-    public void removeObserver() {
-
+    public void removeAllObserver() {
+        listObserver = new ArrayList<>();
     }
 }

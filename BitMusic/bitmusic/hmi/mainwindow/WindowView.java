@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
+import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observer;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import hmi.patterns.AbstractView;
-import hmi.patterns.Observer;
-import java.util.ArrayList;
 
 /**
  *
@@ -22,11 +22,8 @@ public class WindowView extends JFrame implements Observer {
 
     private WindowController windowController;
 
-    private JPanel mainPanel = new JPanel();
-    private ArrayList<AbstractView> listView = new ArrayList<>();
-
     public WindowView() {
-        this.initFrame();
+        
     }
 
     public WindowController getWindowController() {
@@ -48,17 +45,42 @@ public class WindowView extends JFrame implements Observer {
         this.setVisible(true);
     }
 
-    public void addPanel(JPanel panel) {
-        this.getContentPane().add(panel);
-        this.setVisible(true);
-    }
-
     public void addView(AbstractView view) {
-        this.listView.add(view);
-        this.addPanel(view.getPanel());
+
+        if (view.getType() == "CONNECTION"){
+            this.getContentPane().add(view.getPanel());
+            pack();
+            this.setVisible(true);
+        }
+        else {
+            JPanel contentPanel = new JPanel(new BorderLayout());
+            this.getContentPane().add(contentPanel);
+
+            if (view.getType() == "WEST") {
+                contentPanel.add(view.getPanel(), BorderLayout.WEST);
+
+            }
+            else if (view.getType() == "SOUTH") {
+               contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
+            }
+            else if (view.getType() == "NORTH") {
+                contentPanel.add(view.getPanel(), BorderLayout.NORTH);
+            }
+            else if (view.getType() == "EAST") {
+                contentPanel.add(view.getPanel(), BorderLayout.EAST);
+            }
+            else if (view.getType() == "CENTER"){
+               contentPanel.add(view.getPanel(), BorderLayout.CENTER);
+            }
+            else {
+                System.out.println("Error le type du panel (north, south, east... non définie");
+            }
+            pack();
+            this.setVisible(true);
+        }
     }
 
     public void removeView(AbstractView view) {
-        this.listView.remove(view);
+        this.getContentPane().remove(view.getPanel()); // TODO : détruire l'objet ? (ex : ConnectionComponent)
     }
 }

@@ -27,7 +27,7 @@ public final class WorkManagement {
     /**
      * @return unique instance of WorkManagement
      */
-    public static WorkManagement getInstance() {
+    protected static WorkManagement getInstance() {
         return WORKMANAGER;
     }
     /**

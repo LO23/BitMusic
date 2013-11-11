@@ -4,21 +4,22 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.connection;
+package bitmusic.hmi.modules.connection;
 
-import hmi.patterns.AbstractModuleComponent;
+import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionComponent extends AbstractModuleComponent {
+public final class ConnectionComponent extends AbstractComponent<ConnectionModel, ConnectionView, ConnectionController> {
 
     public ConnectionComponent() {
         this.model = new ConnectionModel();
         this.view = new ConnectionView();
-        this.controller = new ConnectionController(this, this.model, this.view);
-        this.view.setAbstractController(this.controller);
+        this.controller = new ConnectionController(this.model, this.view);
+        this.view.setController(this.controller);
+        this.view.initPanel();
         this.model.addObserver(this.view);
     }
 }

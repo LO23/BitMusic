@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.patterns;
+package bitmusic.hmi.patterns;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,45 +14,47 @@ import javax.swing.JPanel;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractView extends JPanel implements Observer {
+public abstract class AbstractView<C extends AbstractController> extends JPanel implements Observer {
 
-    protected AbstractController abstractController;
+    private C abstractController;
 
-    protected JPanel panel = new JPanel();
-    protected Dimension dim;
-    protected final Font comics30 = new Font("Comics Sans MS", Font.BOLD, 30);
-    protected final Font comics40 = new Font("Comics Sans MS", Font.BOLD, 40);
-    protected final Font comics20 = new Font("Comics Sans MS", Font.BOLD, 20);
-    protected final Font arial = new Font("Arial", Font.BOLD, 15);
-    protected final Font dialog = new Font("Dialog", Font.BOLD + Font.ITALIC, 15);
+    private JPanel panel = new JPanel();
+    private Dimension dim;
+    private final Font comics30 = new Font("Comics Sans MS", Font.BOLD, 30);
+    private final Font comics40 = new Font("Comics Sans MS", Font.BOLD, 40);
+    private final Font comics20 = new Font("Comics Sans MS", Font.BOLD, 20);
+    private final Font arial = new Font("Arial", Font.BOLD, 15);
+    private final Font dialog = new Font("Dialog", Font.BOLD + Font.ITALIC, 15);
 
     protected abstract void initPanel();
+    public abstract String getType();
 
     public AbstractView() {
         super();
     }
 
-    public AbstractController getAbstractController() {
-        return abstractController;
+    public final C getController() {
+        return this.abstractController;
     }
 
-    public void setAbstractController(AbstractController abstractController) {
+    public final void setController(final C abstractController) {
         this.abstractController = abstractController;
     }
 
-    public JPanel getPanel() {
+    public final JPanel getPanel() {
         return this.panel;
     }
 
-    public void setPanel(JPanel panel) {
+    public final void setPanel(final JPanel panel) {
         this.panel = panel;
     }
 
-    public Dimension getDim() {
+    public final Dimension getDim() {
         return this.dim;
     }
 
-    public void setDim(Dimension dim) {
+    public final void setDim(final Dimension dim) {
         this.dim = dim;
     }
+    
 }

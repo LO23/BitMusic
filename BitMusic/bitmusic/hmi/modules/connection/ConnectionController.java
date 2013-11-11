@@ -4,20 +4,46 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.connection;
+package bitmusic.hmi.modules.connection;
 
-import hmi.patterns.AbstractController;
-import hmi.patterns.AbstractModel;
-import hmi.patterns.AbstractModuleComponent;
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public class ConnectionController extends AbstractController {
+public final class ConnectionController extends AbstractController<ConnectionModel, ConnectionView> {
 
-    public ConnectionController(AbstractModuleComponent abstractModuleComponent, AbstractModel abstractModel, AbstractView abstractView) {
-        super(abstractModuleComponent, abstractModel, abstractView);
+    public ConnectionController(final ConnectionModel model, final ConnectionView view) {
+        super(model, view);
+    }
+
+    public class ConnectionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Connection");
+
+            ConnectionModel model = ConnectionController.this.getModel();
+            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+        }
+    }
+
+    public class ResetListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Reset");
+
+            ConnectionModel model = ConnectionController.this.getModel();
+            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+        }
+    }
+
+    public class CreateNewUserListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton CreateNewUser");
+            
+            ConnectionModel model = ConnectionController.this.getModel();
+            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+        }
     }
 }

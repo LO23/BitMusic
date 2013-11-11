@@ -2,15 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bitmusic.profile;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
-import music.data.Song;
-import music.data.SongLibrary;
+import bitmusic.music.data.Song;
+import bitmusic.music.data.SongLibrary;
 import sun.awt.shell.ShellFolder;
 
 /**
@@ -18,6 +17,7 @@ import sun.awt.shell.ShellFolder;
  * @author reaneyol
  */
 public class User {
+
     private String userId;
     private String login;
     private String password;
@@ -27,7 +27,7 @@ public class User {
     private String avatarPath;
     private SongLibrary localSongs;
 
-    private static final File myDocumentsFolder = (File)ShellFolder.get("fileChooserDefaultFolder");
+    private static final File myDocumentsFolder = (File) ShellFolder.get("fileChooserDefaultFolder");
 
     public SongLibrary getLocalSongs() {
         return localSongs;
@@ -118,39 +118,41 @@ public class User {
         this(login, password, null, null, null, null);
     }
 
-    public User getContact(String userId){
+    public User getContact(String userId) {
         return null;
-    };
+    }
 
-    public void addCategory(String name){
+    ;
+
+    public void addCategory(String name) {
         categories.add(new Category(name));
     }
 
-    public void updateCategory(int id, String newName){
+    public void updateCategory(int id, String newName) {
         categories.get(id).setName(newName);
     }
 
-    public void deleteCategory(int id){
+    public void deleteCategory(int id) {
         categories.remove(id);
     }
 
-    public void addContact(User user, int idCategory){
+    public void addContact(User user, int idCategory) {
         categories.get(idCategory).addUser(user);
     }
 
-    public void removeContact(User user, int idCategory){
+    public void removeContact(User user, int idCategory) {
         categories.get(idCategory).deleteUser(user);
     }
 
-    public SongLibrary getSongs(){
+    public SongLibrary getSongs() {
         return localSongs;
     }
 
-    public void addSong(Song song){
+    public void addSong(Song song) {
         //localSongs.addSong(song);
     }
 
-    public void deleteSong(Song song){
+    public void deleteSong(Song song) {
         //localSongs.deleteSong(song);
     }
 

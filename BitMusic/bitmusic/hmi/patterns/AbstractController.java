@@ -4,45 +4,35 @@
  * and open the template in the editor.
  */
 
-package hmi.patterns;
+package bitmusic.hmi.patterns;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractController {
+public abstract class AbstractController<M extends AbstractModel, V extends AbstractView> {
 
-    private AbstractModuleComponent abstractModuleComponent;
-    private AbstractModel abstractModel;
-    private AbstractView abstractView;
+    private M model;
+    private V view;
 
-    public AbstractController(AbstractModuleComponent abstractModuleComponent, AbstractModel abstractModel, AbstractView abstractView) {
-        this.abstractModuleComponent = abstractModuleComponent;
-        this.abstractModel = abstractModel;
-        this.abstractView = abstractView;
+    public AbstractController(final M model, final V view) {
+        this.model = model;
+        this.view = view;
     }
 
-    public AbstractModuleComponent getAbstractModuleComponent() {
-        return this.abstractModuleComponent;
+    public final M getModel() {
+        return this.model;
     }
 
-    public void setAbstractModuleComponent(AbstractModuleComponent abstractModuleComponent) {
-        this.abstractModuleComponent = abstractModuleComponent;
+    public final void setModel(final M model) {
+        this.model = model;
     }
 
-    public AbstractModel getAbstractModel() {
-        return this.abstractModel;
+    public final V getView() {
+        return this.view;
     }
 
-    public void setAbstractModel(AbstractModel abstractModel) {
-        this.abstractModel = abstractModel;
-    }
-
-    public AbstractView getAbstractView() {
-        return this.abstractView;
-    }
-
-    public void setAbstractView(AbstractView abstractView) {
-        this.abstractView = abstractView;
+    public final void setView(final V view) {
+        this.view = view;
     }
 }
