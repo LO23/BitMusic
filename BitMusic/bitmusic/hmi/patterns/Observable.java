@@ -11,7 +11,8 @@ package bitmusic.hmi.patterns;
  * @author hebergui, unkedeuxke
  */
 public interface Observable {
-    public void addObserver(Observer obs);
-    public void removeObserver();
-    public void notifyObserver(Object obj, String str);
+    public void addObserver(Observer observer);
+    public void removeObserver(Observer observer);
+    public void notifyObserver(String str);
+    public void removeAllObserver();
 }
