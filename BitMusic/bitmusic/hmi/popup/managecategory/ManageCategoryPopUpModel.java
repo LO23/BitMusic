@@ -17,8 +17,4 @@ public final class ManageCategoryPopUpModel extends AbstractModel {
     public ManageCategoryPopUpModel() {
         super();
     }
-
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

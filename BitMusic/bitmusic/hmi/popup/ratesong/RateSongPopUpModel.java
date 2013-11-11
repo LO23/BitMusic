@@ -17,8 +17,4 @@ public final class RateSongPopUpModel extends AbstractModel {
     public RateSongPopUpModel() {
         super();
     }
-
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
