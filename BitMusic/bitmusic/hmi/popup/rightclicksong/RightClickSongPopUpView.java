@@ -6,10 +6,30 @@
 
 package bitmusic.hmi.popup.rightclicksong;
 
+import bitmusic.hmi.patterns.AbstractView;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class RightClickSongPopUpView {
-    
+public final class RightClickSongPopUpView extends AbstractView<RightClickSongPopUpController> {
+
+    private static final String type = "POPUP";
+
+    public RightClickSongPopUpView() {
+        super();
+    }
+
+    @Override
+    public void initPanel() {
+        System.out.println("--- RightClickSongPopUpView.initPanel()");
+
+        // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
 }

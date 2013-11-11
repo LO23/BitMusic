@@ -6,10 +6,30 @@
 
 package bitmusic.hmi.popup.commentsong;
 
+import bitmusic.hmi.patterns.AbstractView;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class CommentSongPopUpView {
-    
+public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpController> {
+
+    private static final String type = "POPUP";
+
+    public CommentSongPopUpView() {
+        super();
+    }
+
+    @Override
+    public void initPanel() {
+        System.out.println("--- CommentSongPopUpView.initPanel()");
+
+        // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
 }

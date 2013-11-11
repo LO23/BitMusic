@@ -6,10 +6,15 @@
 
 package bitmusic.hmi.popup.importsong;
 
+import bitmusic.hmi.patterns.AbstractController;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ImportSongPopUpController {
-    
+public final class ImportSongPopUpController extends AbstractController<ImportSongPopUpModel, ImportSongPopUpView> {
+
+    public ImportSongPopUpController(final ImportSongPopUpModel model, final ImportSongPopUpView view) {
+        super(model, view);
+    }
 }

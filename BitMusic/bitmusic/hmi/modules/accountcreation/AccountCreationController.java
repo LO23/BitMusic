@@ -6,10 +6,15 @@
 
 package bitmusic.hmi.modules.accountcreation;
 
+import bitmusic.hmi.patterns.AbstractController;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class AccountCreationController {
-    
+public final class AccountCreationController extends AbstractController<AccountCreationModel, AccountCreationView> {
+
+    public AccountCreationController(final AccountCreationModel model, final AccountCreationView view) {
+        super(model, view);
+    }
 }

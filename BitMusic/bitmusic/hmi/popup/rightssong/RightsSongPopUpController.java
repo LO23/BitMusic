@@ -6,10 +6,15 @@
 
 package bitmusic.hmi.popup.rightssong;
 
+import bitmusic.hmi.patterns.AbstractController;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class RightsSongPopUpController {
-    
+public final class RightsSongPopUpController extends AbstractController<RightsSongPopUpModel, RightsSongPopUpView> {
+
+    public RightsSongPopUpController(final RightsSongPopUpModel model, final RightsSongPopUpView view) {
+        super(model, view);
+    }
 }

@@ -6,10 +6,20 @@
 
 package bitmusic.hmi.popup.rightclicksong;
 
+import bitmusic.hmi.patterns.AbstractComponent;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class RightClickSongPopUpComponent {
-    
+public final class RightClickSongPopUpComponent extends AbstractComponent<RightClickSongPopUpModel, RightClickSongPopUpView, RightClickSongPopUpController> {
+
+    public RightClickSongPopUpComponent() {
+        this.model = new RightClickSongPopUpModel();
+        this.view = new RightClickSongPopUpView();
+        this.controller = new RightClickSongPopUpController(this.model, this.view);
+        this.view.setController(this.controller);
+        this.view.initPanel();
+        this.model.addObserver(this.view);
+    }
 }

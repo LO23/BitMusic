@@ -6,10 +6,19 @@
 
 package bitmusic.hmi.modules.accountcreation;
 
+import bitmusic.hmi.patterns.AbstractModel;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class AccountCreationModel {
-    
+public final class AccountCreationModel extends AbstractModel {
+
+    public AccountCreationModel() {
+        super();
+    }
+
+    public void doConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

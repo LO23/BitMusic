@@ -6,10 +6,19 @@
 
 package bitmusic.hmi.popup.informationsuser;
 
+import bitmusic.hmi.patterns.AbstractModel;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class InfosUserPopUpModel {
-    
+public final class InfosUserPopUpModel extends AbstractModel {
+
+    public InfosUserPopUpModel() {
+        super();
+    }
+
+    public void doConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

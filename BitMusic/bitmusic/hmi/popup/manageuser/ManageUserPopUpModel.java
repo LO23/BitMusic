@@ -6,10 +6,19 @@
 
 package bitmusic.hmi.popup.manageuser;
 
+import bitmusic.hmi.patterns.AbstractModel;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class ManageUserPopUpModel {
-    
+public final class ManageUserPopUpModel extends AbstractModel {
+
+    public ManageUserPopUpModel() {
+        super();
+    }
+
+    public void doConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

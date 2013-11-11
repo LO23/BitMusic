@@ -6,10 +6,20 @@
 
 package bitmusic.hmi.popup.editsong;
 
+import bitmusic.hmi.patterns.AbstractComponent;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class EditSongPopUpComponent {
-    
+public final class EditSongPopUpComponent extends AbstractComponent<EditSongPopUpModel, EditSongPopUpView, EditSongPopUpController> {
+
+    public EditSongPopUpComponent() {
+        this.model = new EditSongPopUpModel();
+        this.view = new EditSongPopUpView();
+        this.controller = new EditSongPopUpController(this.model, this.view);
+        this.view.setController(this.controller);
+        this.view.initPanel();
+        this.model.addObserver(this.view);
+    }
 }

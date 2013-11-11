@@ -6,10 +6,15 @@
 
 package bitmusic.hmi.popup.ratesong;
 
+import bitmusic.hmi.patterns.AbstractController;
+
 /**
  *
- * @author gtanguy
+ * @author unkedeuxke
  */
-public class RateSongPopUpController {
-    
+public final class RateSongPopUpController extends AbstractController<RateSongPopUpModel, RateSongPopUpView> {
+
+    public RateSongPopUpController(final RateSongPopUpModel model, final RateSongPopUpView view) {
+        super(model, view);
+    }
 }
