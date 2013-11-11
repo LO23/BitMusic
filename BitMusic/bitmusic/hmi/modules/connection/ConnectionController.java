@@ -52,8 +52,9 @@ public final class ConnectionController extends AbstractController<ConnectionMod
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Reset");
 
-            ConnectionModel model = ConnectionController.this.getModel();
-            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+            // Pas besoin du Model ici : on agit directement sur la View
+            ConnectionController.super.getView().getLoginField().setText("");
+            ConnectionController.super.getView().getPasswordField().setText("");
         }
     }
 
