@@ -34,6 +34,7 @@ public class WindowComponent {
 
     private WindowComponent() {
         this.apiHmi = new ApiHmiImpl();
+        this.apiProfile = new ApiProfileImpl(); // à supprimer dès que possible (utiliser leur getter)
         this.model = new WindowModel();
         this.view = new WindowView();
         this.controller = new WindowController(this.model, this.view);
