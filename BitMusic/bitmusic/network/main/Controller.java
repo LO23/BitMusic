@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  *
- * @author florian
+ * @author florian, Pak
  */
 public class Controller {
     /**
@@ -51,7 +51,9 @@ public class Controller {
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
-    private NetworkListener networkListener;
+    private NetworkListener NETLISTENER;
+
+
     /**
      * References the worker manage
      * (Due to the composition link on the class diagram).
@@ -197,6 +199,7 @@ public class Controller {
         }
         directory.remove(userId);
     }
+
     /**
      * .
      * @param userId Id of the user
@@ -213,3 +216,4 @@ public class Controller {
         return directory.get(userId);
     }
 }
+
