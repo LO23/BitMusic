@@ -6,10 +6,10 @@
 
 package bitmusic.network.main;
 
-import bitmusic.music.api.ApiMusic;
+import bitmusic.network.api.ApiMusic;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +44,7 @@ public final class ApiMusicImpl implements ApiMusic {
      *
      * @return list of all connected users
      */
+    @Override
     public List<User> getListUser() {
         List<User> userList = new ArrayList<User>();
 
@@ -55,6 +56,7 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param song song concerned
      * @param comment the new comment to add
     */
+    @Override
     public void addComment(final Song song, final Comment comment){
 
     }
@@ -69,7 +71,8 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param option 0 = ALL keywords must match (default), 1 = ANY
      * keyword match
      */
-    public void tagRequest(final User operator, final User askedUser,
+    @Override
+    public void tagRequest(final String operator, final String askedUser,
             final String idResearch, final List<String> keywordsList,
             final int option) {
 
@@ -84,7 +87,8 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param idResearch the id of the research
      * @param keywordsList keywords searched
      */
-    public void tagRequest(final User operator, final User askedUser,
+    @Override
+    public void tagRequest(final String operator, final String askedUser,
             final String idResearch, final List<String> keywordsList) {
         this.tagRequest(operator, askedUser, idResearch, keywordsList, 0);
     }
@@ -94,7 +98,8 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param askedUser user to ask
      * @param researchId id of the research
      */
-    public void getSongsByUser(final User askedUser, final String researchId) {
+    @Override
+    public void getSongsByUser(final String askedUser, final String researchId) {
 
     }
     /**
@@ -104,6 +109,7 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param searchId id of the research
      * @param tagList list of tags
      */
+    @Override
     public void searchSongsByTags(final String userIdDest,
             final String searchId, final List<String> tagList) {
 
@@ -113,9 +119,11 @@ public final class ApiMusicImpl implements ApiMusic {
      *
      * @return listUserId
      */
+    @Override
     public List<String> getAllUserId() {
         List<String> userIdList = new ArrayList<String>();
 
         return userIdList;
     }
+
 }

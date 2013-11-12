@@ -4,21 +4,22 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.myprofile;
+package bitmusic.hmi.modules.myprofile;
 
-import hmi.patterns.AbstractComponent;
+import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class MyProfileComponent extends AbstractComponent {
+public final class MyProfileComponent extends AbstractComponent<MyProfileModel, MyProfileView, MyProfileController> {
 
     public MyProfileComponent() {
         this.model = new MyProfileModel();
         this.view = new MyProfileView();
         this.controller = new MyProfileController(this.model, this.view);
-        this.view.setAbstractController(this.controller);
+        this.view.setController(this.controller);
+        this.view.initPanel();
         this.model.addObserver(this.view);
     }
 }

@@ -7,14 +7,26 @@
 package bitmusic.network.main;
 
 import bitmusic.network.exception.EnumTypeException;
+import bitmusic.network.exception.NetworkException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  *
- * @author florian
+ * @author florian, Pak
  */
 public class Controller {
+    /**
+     * The broadcast address of the network.
+     */
+    private static String broadcastAddress;
+    /**
+     * The network address of the network.
+     */
+    private static String networkAddress;
+    /**
+     * Contains the singleton instance.
+     */
     private static final Controller CONTROLLER = new Controller();
     /**
      * References the HMI API
@@ -40,7 +52,9 @@ public class Controller {
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
-    private NetworkListener networkListener;
+    private NetworkListener NETLISTENER;
+
+
     /**
      * References the worker manage
      * (Due to the composition link on the class diagram).
@@ -58,6 +72,10 @@ public class Controller {
      * Construct a new controller and links all the singleton's instances.
      */
     private Controller() {
+        //Initialisation of IP addresses
+        broadcastAddress = "127.0.0.255";
+        networkAddress = "127.0.0.1";
+
         //Create the directory
         directory = new HashMap<String, String>();
 
@@ -68,7 +86,7 @@ public class Controller {
         apiProfile = bitmusic.network.main.ApiProfileImpl.getInstance();
 
         //Contains the NetworkListener instance
-        networkListener = bitmusic.network.main.NetworkListener.getInstance();
+        NETLISTENER = bitmusic.network.main.NetworkListener.getInstance();
 
         //Contains the WorkManager instance
         //workManager = bitmusic.network.main.WorkManagement.getInstance();
@@ -86,6 +104,20 @@ public class Controller {
     /*########################################################################*/
     /* GETTERS */
     /*########################################################################*/
+    /**
+     * Get the broadcast address.
+     * @return the broadcast address
+     */
+    public static String getBroadcastAddress() {
+        return broadcastAddress;
+    }
+    /**
+     * Get the network address.
+     * @return the broadcast address
+     */
+    public static String getNetworkAddress() {
+        return networkAddress;
+    }
     /**
      * Get the ApiHmiImpl.
      * @return instance of ApiHmiImpl
@@ -119,7 +151,7 @@ public class Controller {
      * @return instance of NetworkListener
      */
     public final NetworkListener getNetworkListener() {
-        return networkListener;
+        return NETLISTENER;
     }
     /**
      * Get the WorkManager.
@@ -128,6 +160,14 @@ public class Controller {
     public final WorkManagement getWorkManager() {
         return workManager;
     }
+    /**
+     * Get the Directory.
+     * @return the user directory
+     */
+    public Map<String, String> getDirectory() {
+        return directory;
+    }
+
     /*########################################################################*/
     /* METHODS */
     /*########################################################################*/
@@ -149,15 +189,49 @@ public class Controller {
     /**
      * .
      * @param userId Id of the user
-     * @throws Exception An exception is thrown if the userId doesn't exist
+     * @throws NetworkException An exception is thrown if the userId doesn't exist
      */
     public final void removeUserFromDirectory(final String userId)
-            throws Exception {
+            throws NetworkException {
         if (!directory.containsKey(userId)) {
             apiException.throwException(
                     EnumTypeException.NetworkDirectoryException,
                     "The user " + userId + " doesn't exist in the directory.");
         }
         directory.remove(userId);
+    }
+
+    /**
+     * .
+     * @param userId Id of the user
+     * @return the Ip corresponding to the userId given
+     * @throws NetworkException An exception is thrown if the userId
+     * doesn't exist
+     */
+    public final String getUserIpFromDirectory(final String userId)
+            throws NetworkException {
+        if (!directory.containsKey(userId)) {
+            apiException.throwException(
+                    EnumTypeException.NetworkDirectoryException,
+                    "The user " + userId + " doesn't exist in the directory.");
+        }
+        return directory.get(userId);
+    }
+
+    // ##################################
+    // ## ##       TEST TOOLS       ## ##
+    // ##################################
+
+    /**
+     * Prepare the app for test.
+     */
+    public final void prepareForTest() {
+        this.getWorkManager().prepareForTest();
+    }
+    /**
+     * Undo prepareForTest().
+     */
+    public void endTest() {
+        this.getWorkManager().endTest();
     }
 }

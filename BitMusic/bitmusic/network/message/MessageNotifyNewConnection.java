@@ -6,7 +6,7 @@
 
 package bitmusic.network.message;
 
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 
 /**
  * Message to notify to distant user that we are logged in.
@@ -16,7 +16,7 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
     /**
      * The profile we send to the newly connected user.
      */
-    private User profile;
+    private User user;
 
     /**
      * True if we the distant user to send back his profile.
@@ -35,7 +35,7 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
             final String paramIpSource, final String paramIpDest,
             final User paramUser, final boolean paramGiveProfile) {
         super(paramType, paramIpSource, paramIpDest);
-        profile = paramUser;
+        user = paramUser;
         giveMeYourProfile = paramGiveProfile;
     }
 
@@ -49,18 +49,18 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
 
     /**
      * Setter of profile attribute.
-     * @param paramProfile The profile to set
+     * @param paramUser The user object to set
      */
-    public void setProfile(final User paramProfile) {
-        this.profile = paramProfile;
+    public void setUser(final User paramUser) {
+        this.user = paramUser;
     }
 
     /**
      * Getter of myProfile attribute.
-     * @return User The profile we are about to send
+     * @return User The user we are about to send
      */
-    public User getProfile() {
-        return profile;
+    public User getUser() {
+        return user;
     }
 
     /**

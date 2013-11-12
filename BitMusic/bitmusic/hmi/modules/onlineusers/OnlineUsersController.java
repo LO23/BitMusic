@@ -4,19 +4,17 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.onlineusers;
+package bitmusic.hmi.modules.onlineusers;
 
-import hmi.patterns.AbstractController;
-import hmi.patterns.AbstractModel;
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractController;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class OnlineUsersController extends AbstractController {
+public final class OnlineUsersController extends AbstractController<OnlineUsersModel, OnlineUsersView> {
 
-    public OnlineUsersController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
+        super(model, view);
     }
 }

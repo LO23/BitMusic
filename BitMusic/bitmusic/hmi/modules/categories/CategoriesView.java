@@ -4,19 +4,21 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.categories;
+package bitmusic.hmi.modules.categories;
 
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class CategoriesView extends AbstractView {
+public final class CategoriesView extends AbstractView<CategoriesController> {
+
+    private static final String type = "EAST";
 
     public CategoriesView() {
         super();
-        this.initPanel();
     }
 
     @Override
@@ -24,5 +26,15 @@ public final class CategoriesView extends AbstractView {
         System.out.println("--- CategoriesView.initPanel()");
 
         // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- CategoriesView.update()");
     }
 }

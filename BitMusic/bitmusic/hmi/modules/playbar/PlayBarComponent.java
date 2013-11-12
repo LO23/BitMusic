@@ -4,21 +4,22 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.playbar;
+package bitmusic.hmi.modules.playbar;
 
-import hmi.patterns.AbstractComponent;
+import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class PlayBarComponent extends AbstractComponent {
+public final class PlayBarComponent extends AbstractComponent<PlayBarModel, PlayBarView, PlayBarController> {
 
     public PlayBarComponent() {
         this.model = new PlayBarModel();
         this.view = new PlayBarView();
         this.controller = new PlayBarController(this.model, this.view);
-        this.view.setAbstractController(this.controller);
+        this.view.setController(this.controller);
+        this.view.initPanel();
         this.model.addObserver(this.view);
     }
 }

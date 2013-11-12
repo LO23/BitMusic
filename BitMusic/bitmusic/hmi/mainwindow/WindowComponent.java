@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
-import hmi.modules.connection.ConnectionComponent;
-import hmi.patterns.AbstractComponent;
+import bitmusic.hmi.api.ApiHmiImpl;
+import bitmusic.music.api.ApiMusicImpl;
+//import bitmusic.music.api.ApiNetworkImpl;
+import bitmusic.hmi.modules.connection.ConnectionComponent;
+import bitmusic.hmi.patterns.AbstractComponent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -20,19 +23,25 @@ public class WindowComponent {
     private WindowModel model;
     private WindowView view;
     private WindowController controller;
+    private ApiHmiImpl apiHmi;
+//    private ApiProfileImpl apiProfile;
+    private ApiMusicImpl apiMusic;
 
     private ArrayList<AbstractComponent> listComponent = new ArrayList<>();
 
     private WindowComponent() {
+        this.apiHmi = new ApiHmiImpl();
         this.model = new WindowModel();
         this.view = new WindowView();
         this.controller = new WindowController(this.model, this.view);
         this.view.setWindowController(this.controller);
+        this.view.initFrame();
         this.model.addObserver(this.view);
 
         ConnectionComponent connectionComponent = new ConnectionComponent();
         this.addComponent(connectionComponent);
         this.view.addView(connectionComponent.getView());
+
     }
 
     /** Holder */
@@ -65,5 +74,33 @@ public class WindowComponent {
 
     public void removeComponent(AbstractComponent component) {
         this.listComponent.remove(component);
+    }
+
+    public WindowView getWindowView() {
+        return this.view;
+    }
+
+    public ApiHmiImpl getApiHmi() {
+        return apiHmi;
+    }
+
+    public void setApiHmi(ApiHmiImpl apiHmi) {
+        this.apiHmi = apiHmi;
+    }
+
+//    public ApiProfileImpl getApiProfile() {
+//        return apiProfile;
+//    }
+//
+//    public void setApiProfile(ApiProfileImpl apiProfile) {
+//        this.apiProfile = apiProfile;
+//    }
+
+    public ApiMusicImpl getApiMusic() {
+        return apiMusic;
+    }
+
+    public void setApiMusic(ApiMusicImpl apiMusic) {
+        this.apiMusic = apiMusic;
     }
 }

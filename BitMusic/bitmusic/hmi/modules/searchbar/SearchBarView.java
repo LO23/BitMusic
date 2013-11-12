@@ -4,19 +4,21 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.searchbar;
+package bitmusic.hmi.modules.searchbar;
 
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class SearchBarView extends AbstractView {
+public final class SearchBarView extends AbstractView<SearchBarController> {
+
+    private final String type = "NORTH";
 
     public SearchBarView() {
         super();
-        this.initPanel();
     }
 
     @Override
@@ -24,5 +26,15 @@ public final class SearchBarView extends AbstractView {
         System.out.println("--- SearchBarView.initPanel()");
 
         // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- SearchBarView.update()");
     }
 }

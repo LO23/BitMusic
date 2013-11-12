@@ -4,19 +4,28 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.myprofile;
+package bitmusic.hmi.modules.myprofile;
 
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class MyProfileView extends AbstractView {
+public final class MyProfileView extends AbstractView<MyProfileController> {
+
+    private static final String type = "NORTH";
 
     public MyProfileView() {
         super();
-        this.initPanel();
     }
 
     @Override
@@ -25,4 +34,15 @@ public final class MyProfileView extends AbstractView {
 
         // TODO
     }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- MyProfileView.update()");
+    }
 }
+

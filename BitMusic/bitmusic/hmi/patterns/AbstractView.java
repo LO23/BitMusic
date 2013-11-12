@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.patterns;
+package bitmusic.hmi.patterns;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,9 +14,9 @@ import javax.swing.JPanel;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractView extends JPanel implements Observer {
+public abstract class AbstractView<C extends AbstractController> extends JPanel implements Observer {
 
-    private AbstractController abstractController;
+    private C abstractController;
 
     private JPanel panel = new JPanel();
     private Dimension dim;
@@ -27,16 +27,17 @@ public abstract class AbstractView extends JPanel implements Observer {
     private final Font dialog = new Font("Dialog", Font.BOLD + Font.ITALIC, 15);
 
     protected abstract void initPanel();
+    public abstract String getType();
 
     public AbstractView() {
         super();
     }
 
-    public final AbstractController getAbstractController() {
+    public final C getController() {
         return this.abstractController;
     }
 
-    public final void setAbstractController(final AbstractController abstractController) {
+    public final void setController(final C abstractController) {
         this.abstractController = abstractController;
     }
 
@@ -55,4 +56,7 @@ public abstract class AbstractView extends JPanel implements Observer {
     public final void setDim(final Dimension dim) {
         this.dim = dim;
     }
+
+    @Override
+    public abstract void update(Observable obj, String str);
 }

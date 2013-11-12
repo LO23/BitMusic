@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
 /**
  *
@@ -16,8 +16,8 @@ public class WindowController {
     private WindowView windowView;
 
     public WindowController(WindowModel model, WindowView view) {
-        this.windowModel = windowModel;
-        this.windowView = windowView;
+        this.windowModel = model;
+        this.windowView = view;
     }
 
     public WindowModel getWindowModel() {

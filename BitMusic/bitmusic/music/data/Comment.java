@@ -14,17 +14,17 @@ import java.util.Date;
 public class Comment {
     
     /**
-     * Song's comment (out of 5).
+     * Song's comment.
      */
 	private String commentText;
 	
     /**
-     * Comment's author (out of 5).
+     * Comment's author.
      */
 	private String authorId;
 	
     /**
-     * Comment's date (out of 5).
+     * Comment's date.
      */
 	private Date commentDate;
 	
@@ -42,23 +42,23 @@ public class Comment {
 	
     /**
      * CommentText Getter.
-     * @return this grade
+     * @return this commentText
      */
     public String getComment() {
         return this.commentText;
     }
 	
     /**
-     * Grade Getter.
-     * @return this grade
+     * Author Getter.
+     * @return this authorId
      */
     public String getAuthor() {
         return this.authorId;
     }
 	
     /**
-     * Grade Getter.
-     * @return this grade
+     * Date Getter.
+     * @return this commentDate
      */
     public Date getDate() {
         return this.commentDate;

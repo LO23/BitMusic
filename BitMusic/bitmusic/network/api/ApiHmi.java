@@ -7,7 +7,7 @@
 package bitmusic.network.api;
 
 import bitmusic.music.data.Song;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 
 /**
  *
@@ -47,7 +47,7 @@ public interface ApiHmi {
      * false if you want to keep the song
      * @return  True if the request was correctly sent
      */
-    boolean getSong(final User userAsked, final Song requestedSong,
+    boolean getSong(final String userAsked, final Song requestedSong,
             final boolean temporary);
     /**
      * Request a distant user to send one of his song.
@@ -57,7 +57,7 @@ public interface ApiHmi {
      * false if you want to keep the song
      * @return  True if the request was correctly sent
      */
-    boolean getSong(final User userAsked, final Song requestedSong);
+    boolean getSong(final String userAsked, final Song requestedSong);
     /**
      * Ask for a remote song file.
      *

@@ -4,12 +4,18 @@
  * and open the template in the editor.
  */
 
-package hmi.api;
+package bitmusic.hmi.api;
+
+import bitmusic.music.data.SongLibrary;
+import bitmusic.profile.classes.User;
 
 /**
  *
- * @author unkedeuxke
+ * @author hebergui <hebergui.utc@gmail.com>
  */
-public final class ApiHmi {
-
+public interface ApiHmi {
+    public abstract void notifyLightProfile(User user, String searchId);
+    public abstract void notifyNewConnection(User lightUserLan);
+    public abstract void notifySongListByUserId(String userID, SongLibrary songLibrary);
+    public abstract void notifySongListBySearchId(String searchId, SongLibrary songList);
 }

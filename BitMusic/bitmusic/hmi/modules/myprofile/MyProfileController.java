@@ -4,19 +4,17 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.myprofile;
+package bitmusic.hmi.modules.myprofile;
 
-import hmi.patterns.AbstractController;
-import hmi.patterns.AbstractModel;
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractController;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class MyProfileController extends AbstractController {
+public final class MyProfileController extends AbstractController<MyProfileModel, MyProfileView> {
 
-    public MyProfileController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public MyProfileController(final MyProfileModel model, final MyProfileView view) {
+        super(model, view);
     }
 }
