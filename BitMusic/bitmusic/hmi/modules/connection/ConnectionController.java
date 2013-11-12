@@ -76,7 +76,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
 
             WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
-                WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
+            WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
                 // TODO : les supprimer ? (object = null;)
 
                 // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"

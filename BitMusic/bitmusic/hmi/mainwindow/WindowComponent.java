@@ -10,6 +10,7 @@ import bitmusic.hmi.api.ApiHmiImpl;
 import bitmusic.music.api.ApiMusicImpl;
 //import bitmusic.music.api.ApiNetworkImpl;
 import bitmusic.hmi.modules.connection.ConnectionComponent;
+import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.patterns.AbstractComponent;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -103,4 +104,5 @@ public class WindowComponent {
     public void setApiMusic(ApiMusicImpl apiMusic) {
         this.apiMusic = apiMusic;
     }
+
 }

@@ -8,6 +8,7 @@ package bitmusic.music.business;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
+import java.util.*;
 
 /**
  *
@@ -61,5 +62,35 @@ public class SongCommenter {
         mySong.addComment(commentText);
 
         return true;
+    }
+    
+    /**
+     * Remove a comment.
+     *
+     * @param songId Song ID
+     * @param authorId author ID
+     * @param date Date of the comment to remove (Comment)
+     *
+     * @return true
+     */
+    public boolean deleteComment(String songId, String authorId, Date date) {
+        Song mySong = songLib.getSong(songId);
+
+        mySong.deleteComment(authorId, date);
+
+        return true;
+    }
+    
+    /**
+     * Get comments.
+     *
+     * @param songId Song ID
+     *
+     * @return true
+     */
+    public LinkedList<Comment> getComments(String songId) {
+        Song mySong = songLib.getSong(songId);
+
+        return mySong.getComments();
     }
 }
