@@ -55,12 +55,12 @@ public final class MessageGetUser extends AbstractMessage {
         /**
          * @TODO change getCurrentLightUser with actual method from Profile
          */
-        User currentUser = getCurrentLightUser();
+        /*User currentUser = getCurrentLightUser();
         if(this.askedUser.equals(currentUser.getUserId())){
             MessageSendUser message = new MessageSendUser(
                     EnumTypeMessage.SendUser, ipDest, 
                     ipSource, currentUser, researchId);
-            
+          */  
             // Send message...
         }
     }
