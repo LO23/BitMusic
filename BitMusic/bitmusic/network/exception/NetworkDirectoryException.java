@@ -10,7 +10,7 @@ package bitmusic.network.exception;
  *
  * @author florian
  */
-public final class NetworkDirectoryException extends Exception {
+public final class NetworkDirectoryException extends NetworkException {
     /**
      * Constructs a new exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized
