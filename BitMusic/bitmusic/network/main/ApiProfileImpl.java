@@ -10,7 +10,8 @@ import bitmusic.network.api.ApiProfile;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageNotifyNewConnection;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
+
 /**
  *
  * @author florian

@@ -7,7 +7,7 @@
 package bitmusic.network.api;
 
 import bitmusic.music.data.Song;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 
 /**
  *
