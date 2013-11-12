@@ -4,27 +4,43 @@
  * and open the template in the editor.
  */
 
-package hmi.patterns;
-
-import java.util.ArrayList;
+package bitmusic.hmi.patterns;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractComponent {
+public abstract class AbstractComponent<M extends AbstractModel, V extends AbstractView, C extends AbstractController> {
 
-    protected ArrayList<AbstractModuleComponent> listComponent = new ArrayList<>();
+    protected M model;
+    protected V view;
+    protected C controller;
 
     public AbstractComponent() {
-        
+
     }
 
-    protected void addComponent(AbstractModuleComponent component) {
-        this.listComponent.add(component);
+    public final M getModel() {
+        return this.model;
     }
 
-    protected void removeComponent(AbstractModuleComponent component) {
-        this.listComponent.remove(component);
+    public final void setModel(final M model) {
+        this.model = model;
+    }
+
+    public final V getView() {
+        return this.view;
+    }
+
+    public final void setView(final V view) {
+        this.view = view;
+    }
+
+    public final C getController() {
+        return this.controller;
+    }
+
+    public final void setController(final C controller) {
+        this.controller = controller;
     }
 }

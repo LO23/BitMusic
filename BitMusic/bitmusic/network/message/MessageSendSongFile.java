@@ -4,12 +4,29 @@
  * and open the template in the editor.
  */
 
-package network.message;
+package bitmusic.network.message;
 
 /**
  *
  * @author alexis
  */
 public class MessageSendSongFile extends AbstractMessage {
-    
+    /**
+     * Constructor.
+     * @param paramType Type of the message
+     * @param paramIpSource IP address of the sender
+     * @param paramIpDest IP address of the receiver
+     */
+    public MessageSendSongFile(final EnumTypeMessage paramType,
+            final String paramIpSource, final String paramIpDest) {
+        super(paramType, paramIpSource, paramIpDest);
+    }
+
+    /**
+     * .
+     */
+    @Override
+    public void treatment() {
+
+    }
 }

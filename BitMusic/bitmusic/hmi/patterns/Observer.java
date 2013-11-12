@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package hmi.patterns;
+package bitmusic.hmi.patterns;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
 public interface Observer {
-    
+    public void update(Observable obj, String str);
 }

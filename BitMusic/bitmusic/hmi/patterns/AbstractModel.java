@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hmi.patterns;
+package bitmusic.hmi.patterns;
 
 import java.util.ArrayList;
 
@@ -12,24 +12,33 @@ import java.util.ArrayList;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractModel implements Observable {
+public abstract class AbstractModel extends Observable {
 
-    private ArrayList<Observer> listObserver = new ArrayList<>();
+    private ArrayList<Observer> listObservers = new ArrayList<>();
 
     public AbstractModel() {
-        
+
     }
 
-    //Implémentation du pattern observer
+    @Override
     public void addObserver(Observer obs) {
-        this.listObserver.add(obs);
+        this.listObservers.add(obs);
     }
 
-    public void notifyObserver() {
-
+    @Override
+    public void removeObserver(Observer obs) {
+        this.listObservers.remove(obs);
     }
 
-    public void removeObserver() {
-        
+    @Override
+    public void removeAllObservers() {
+        this.listObservers = new ArrayList<>();
+    }
+
+    @Override
+    public void notifyObservers(String str) {
+        for (Observer obs:this.listObservers) {
+            obs.update(this, str);
+        }
     }
 }

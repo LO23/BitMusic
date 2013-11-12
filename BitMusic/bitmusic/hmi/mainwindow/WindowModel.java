@@ -4,19 +4,43 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
-import hmi.patterns.AbstractModuleComponent;
-import hmi.patterns.AbstractModel;
+import bitmusic.hmi.patterns.Observable;
+import bitmusic.hmi.patterns.Observer;
+import java.util.ArrayList;
 
 /**
  *
  * @author hebergui, unkedeuxke
  */
-class WindowModel extends AbstractModel {
+public class WindowModel extends Observable {
+
+    private ArrayList<Observer> listObservers = new ArrayList<>();
 
     public WindowModel() {
-        
+
     }
 
+    @Override
+    public void addObserver(Observer obs) {
+        this.listObservers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(Observer obs) {
+        this.listObservers.remove(obs);
+    }
+
+    @Override
+    public void removeAllObservers() {
+        this.listObservers = new ArrayList<>();
+    }
+
+    @Override
+    public void notifyObservers(String str) {
+        for (Observer obs:this.listObservers) {
+            obs.update(this, str);
+        }
+    }
 }

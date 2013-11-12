@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package network.main;
+package bitmusic.network.main;
 
-import network.message.*;
+import bitmusic.network.message.AbstractMessage;
+
 
 /**
  *
@@ -17,10 +18,12 @@ public final class NetworkListener {
     * Singleton implementation.
     */
     private static final NetworkListener NETLISTENER = new NetworkListener();
+
     /**
      * default constructor.
      */
     private NetworkListener() { };
+
     /**
      *
      * @return unique instance of NetworkListener
@@ -30,14 +33,12 @@ public final class NetworkListener {
     }
 
     /**
-    *Upon receiving a task (a message),
-    * schedule this task to a worker thanks to the work manager
-    *@param task is a message
+    * Upon receiving a task (a message),
+    * schedule this task to a worker thanks to the work manager.
+    * @param task is a message
     */
     public void scheduleTask(final AbstractMessage task) {
-
-    WorkManagement.getInstance().assignTaskToWorker(task);
-
+        WorkManagement.getInstance().assignTaskToWorker(task);
     }
 }
 
