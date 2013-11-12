@@ -10,8 +10,8 @@ import bitmusic.hmi.api.ApiHmiImpl;
 import bitmusic.music.api.ApiMusicImpl;
 //import bitmusic.music.api.ApiNetworkImpl;
 import bitmusic.hmi.modules.connection.ConnectionComponent;
-import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.patterns.AbstractComponent;
+import bitmusic.profile.api.ApiProfileImpl;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -25,7 +25,7 @@ public class WindowComponent {
     private WindowView view;
     private WindowController controller;
     private ApiHmiImpl apiHmi;
-//    private ApiProfileImpl apiProfile;
+    private ApiProfileImpl apiProfile;
     private ApiMusicImpl apiMusic;
 
     private ArrayList<AbstractComponent> listComponent = new ArrayList<>();
@@ -90,13 +90,13 @@ public class WindowComponent {
         this.apiHmi = apiHmi;
     }
 
-//    public ApiProfileImpl getApiProfile() {
-//        return apiProfile;
-//    }
-//
-//    public void setApiProfile(ApiProfileImpl apiProfile) {
-//        this.apiProfile = apiProfile;
-//    }
+    public ApiProfileImpl getApiProfile() {
+        return apiProfile;
+    }
+
+    public void setApiProfile(ApiProfileImpl apiProfile) {
+        this.apiProfile = apiProfile;
+    }
 
     public ApiMusicImpl getApiMusic() {
         return apiMusic;
