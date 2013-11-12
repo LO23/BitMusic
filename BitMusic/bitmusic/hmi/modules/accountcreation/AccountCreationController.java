@@ -6,7 +6,7 @@
 
 package bitmusic.hmi.modules.accountcreation;
 
-import bitmusic.hmi.api.ApiHmi;
+import bitmusic.hmi.api.ApiHmiImpl;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.connection.ConnectionController;
 import bitmusic.hmi.modules.connection.ConnectionModel;
