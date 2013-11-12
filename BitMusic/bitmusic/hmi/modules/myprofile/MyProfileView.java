@@ -9,6 +9,7 @@ package bitmusic.hmi.modules.myprofile;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,14 +25,65 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     private static final String type = "NORTH";
 
+    private final JButton myProfileButton = new JButton("Mon Profil");
+    private final JButton mySongsButton = new JButton("Mes morceaux");
+    private final JButton disconnectButton = new JButton("Déconnexion");
+    private final JButton importSongButton = new JButton("Importer un titre");
+    // TO DO : ajouter l'image de l'avatar
+
     public MyProfileView() {
         super();
+    }
+
+    public JButton getMyProfileButton() {
+        return myProfileButton;
+    }
+
+    public JButton getMySongsButton() {
+        return mySongsButton;
+    }
+
+    public JButton getDisconnectButton() {
+        return disconnectButton;
+    }
+
+    public JButton getImportSongButton() {
+        return importSongButton;
     }
 
     @Override
     public void initPanel() {
         System.out.println("--- MyProfileView.initPanel()");
 
+        Dimension d = new Dimension(80, 20);
+
+        this.myProfileButton.setSize(d);
+        this.mySongsButton.setSize(d);
+        this.disconnectButton.setSize(d);
+        this.importSongButton.setSize(d);
+
+        this.myProfileButton.addActionListener(this.getController().new DisconnectListener());
+
+        GridLayout layout = new GridLayout(0,2);
+        this.getPanel().setLayout(layout);
+        this.getPanel().add(myProfileButton);
+        this.getPanel().add(mySongsButton);
+        this.getPanel().add(disconnectButton);
+        this.getPanel().add(importSongButton);
+
+
+        /*GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
+
+        layout.setVerticalGroup(
+            layout.createSequentialGroup()
+                .addComponent(myProfileButton)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(mySongsButton)
+                ).addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE))
+                .addComponent(disconnectButton)
+                    .addComponent(importSongButton)
+        );*/
         // TODO
     }
 
