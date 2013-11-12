@@ -28,11 +28,9 @@ public final class OnlineUsersModel extends AbstractModel {
         this.notifyObservers("ADD_ONLINE_USER");
     }
 
-    /// Ajouté par Abdoul
     public void removeUser(User user) {
         boolean userRemoved = false;
         for ( int i=0; i<listUsersOnline.size(); i++) {
-            // verifier à combien commencent les index d'éléments dans la liste
             if (this.listUsersOnline.get(i).equals(user)) {
                 this.listUsersOnline.remove(i);
                 userRemoved = true;
@@ -42,7 +40,6 @@ public final class OnlineUsersModel extends AbstractModel {
             System.out.println("--- Error: User doesn't exist, or is not online");
         }
         this.notifyObservers("REMOVE_ONLINE_USER");
-        // Abdoul : qu'est ce que notifyObservers fait exactement ?
     }
 
     public ArrayList<User> getListUsersOnline() {

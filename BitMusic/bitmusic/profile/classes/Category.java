@@ -6,6 +6,7 @@
 package bitmusic.profile.classes;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Category
@@ -15,6 +16,7 @@ public class Category {
 
     //########################## ATTRIBUTES ##########################//
 
+    private String id;
     private String name;
     private ArrayList<User> contacts;
     private Rights rights;
@@ -26,6 +28,7 @@ public class Category {
      * @param name  Name of the category
      */
     public Category(String name) {
+        this.id = UUID.randomUUID().toString();
         this.contacts = new ArrayList<User>();
         this.name = name;
         this.rights = new Rights();

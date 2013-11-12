@@ -49,8 +49,8 @@ public class OnlineUsersDynamicObject extends AbstractTableModel {
         }
     }
 
-    public void addUser(User ami) {
-        listUsers.add(ami);
+    public void addUser(User user) {
+        listUsers.add(user);
 
         fireTableRowsInserted(listUsers.size() -1, listUsers.size() -1);
     }
