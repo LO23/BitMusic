@@ -86,7 +86,7 @@ public class Controller {
         apiProfile = bitmusic.network.main.ApiProfileImpl.getInstance();
 
         //Contains the NetworkListener instance
-        networkListener = bitmusic.network.main.NetworkListener.getInstance();
+        NETLISTENER = bitmusic.network.main.NetworkListener.getInstance();
 
         //Contains the WorkManager instance
         //workManager = bitmusic.network.main.WorkManagement.getInstance();
@@ -151,7 +151,7 @@ public class Controller {
      * @return instance of NetworkListener
      */
     public final NetworkListener getNetworkListener() {
-        return networkListener;
+        return NETLISTENER;
     }
     /**
      * Get the WorkManager.
@@ -189,13 +189,12 @@ public class Controller {
     /**
      * .
      * @param userId Id of the user
-     * @throws Exception An exception is thrown if the userId doesn't exist
+     * @throws NetworkDirectoryException An exception is thrown if the userId doesn't exist
      */
     public final void removeUserFromDirectory(final String userId)
-            throws Exception {
+            throws NetworkDirectoryException {
         if (!directory.containsKey(userId)) {
-            apiException.throwException(
-                    EnumTypeException.NetworkDirectoryException,
+            throw new NetworkDirectoryException(
                     "The user " + userId + " doesn't exist in the directory.");
         }
         directory.remove(userId);
@@ -205,16 +204,32 @@ public class Controller {
      * .
      * @param userId Id of the user
      * @return the Ip corresponding to the userId given
-     * @throws Exception An exception is thrown if the userId doesn't exist
+     * @throws NetworkDirectoryException An exception is thrown if the userId
+     * doesn't exist
      */
     public final String getUserIpFromDirectory(final String userId)
-            throws Exception {
+            throws NetworkDirectoryException {
         if (!directory.containsKey(userId)) {
-            apiException.throwException(
-                    EnumTypeException.NetworkDirectoryException,
+            throw new NetworkDirectoryException(
                     "The user " + userId + " doesn't exist in the directory.");
         }
         return directory.get(userId);
     }
-}
 
+    // ##################################
+    // ## ##       TEST TOOLS       ## ##
+    // ##################################
+
+    /**
+     * Prepare the app for test.
+     */
+    public final void prepareForTest() {
+        this.getWorkManager().prepareForTest();
+    }
+    /**
+     * Undo prepareForTest().
+     */
+    public void endTest() {
+        this.getWorkManager().endTest();
+    }
+}
