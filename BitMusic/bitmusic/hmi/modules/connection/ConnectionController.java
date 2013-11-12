@@ -9,7 +9,6 @@ package bitmusic.hmi.modules.connection;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.api.ApiHmiImpl;
 import bitmusic.hmi.modules.accountcreation.AccountCreationComponent;
 import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
