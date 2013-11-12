@@ -4,6 +4,8 @@
  */
 package bitmusic.profile.api;
 
+import bitmusic.music.data.Rights;
+import bitmusic.music.data.Song;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import java.util.ArrayList;
@@ -103,37 +105,43 @@ public interface ApiProfile {
      */
     public void moveContact(String userId, int categoryId);
 
+    /**
+     * Returns the rights associated to a song
+     *
+     * @param songId
+     * @return Rights rights
+     */
+    public Rights getRights(String songId);
 
-    /*public User getCurrentUser(String userId){
-        if(currentUser.getUserId()==userId){
-            return this.currentUser;
-        }
-    }
-    public void createUser(){
-    }
-    public ArrayList<String> getCategoriesNameByUserId(){
-    }
-    public ArrayList<Category> getCategories(){
-    }
-    public void addCategory(String name){
-    }
-    public void updateCategory(int categoryId, String newName){
-    }
-    public void deleteCategory(int categoryId){
-    }
-    public void addUserToCategory(String userId,int categoryId){
-    }
-    public void moveContact(String userId, int categoryId){
-    }
-    public Rights getRights(String songId){
-    }
-    public void updateRights(){
-    }
-    public ArrayList<Song> getSongs(){
-    }
-    public void addSong(String songId){
-    }
-    public void deleteSong(String songId){
-    }
-    */
+    /**
+     * Updates the rights associated to a song
+     *
+     * @param songId
+     * @return
+     */
+    public void updateRights(String songId);
+
+    /**
+     * Returns the songs of the current user
+     *
+     * @return ArrayList<Song> songs
+     */
+    public ArrayList<Song> getSongs();
+
+    /**
+     * Returns the songs of the current user
+     *
+     * @param songId
+     * @return
+     */
+    public void addSong(String songId);
+
+    /**
+     * Deletes the song of the current user
+     *
+     * @param songId
+     * @return
+     */
+    public void deleteSong(String songId);
+
 }
