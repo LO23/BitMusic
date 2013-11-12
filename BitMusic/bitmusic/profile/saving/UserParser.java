@@ -6,7 +6,6 @@
 
 package bitmusic.profile.saving;
 
-import bitmusic.profile.Profile;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
@@ -43,7 +42,7 @@ public class UserParser {
     //########################### METHODS ##############################//
 
     /**
-     * 
+     *
      * @throws ProfileExceptions
      */
     public void loadUser() throws ProfileExceptions {
@@ -51,7 +50,7 @@ public class UserParser {
             FileInputStream saveFile = new FileInputStream(defaultPath.toString());
             ObjectInputStream ois = new ObjectInputStream(saveFile);
             User loadedUser = (User) ois.readObject();
-            Profile.setCurrentUser(loadedUser);
+            //Profile.setCurrentUser(loadedUser);
             ois.close();
         }
         catch(FileNotFoundException eFound) {
