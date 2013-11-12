@@ -5,6 +5,8 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.profile.classes.User;
+
 
 /**
  * Message to ask a distant user to send his profile.
@@ -46,11 +48,21 @@ public final class MessageGetUser extends AbstractMessage {
     }
 
     /**
-     * .
+     * Send the current profile to the user requesting it over the network
      */
     @Override
     public void treatment() {
-
+        /**
+         * @TODO change getCurrentLightUser with actual method from Profile
+         */
+        User currentUser = getCurrentLightUser();
+        if(this.askedUser.equals(currentUser.getUserId())){
+            MessageSendUser message = new MessageSendUser(
+                    EnumTypeMessage.SendUser, ipDest, 
+                    ipSource, currentUser, researchId);
+            
+            // Send message...
+        }
     }
 
     /**

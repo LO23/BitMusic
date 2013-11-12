@@ -19,12 +19,12 @@ public abstract class AbstractMessage {
     /**
      * IP address of the sender.
      */
-    private String ipSource;
+    protected String ipSource;
 
     /**
      * IP address of the receiver.
      */
-    private String ipDest;
+    protected String ipDest;
 
     /**
      * Constructor.
