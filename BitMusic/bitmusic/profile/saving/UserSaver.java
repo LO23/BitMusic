@@ -7,8 +7,8 @@
 package bitmusic.profile.saving;
 
 import bitmusic.profile.classes.User;
-import bitmusic.profile.utilities.ProfileExceptions;
-import bitmusic.profile.utilities.ProfileExceptionType;
+import bitmusic.profile.utilities.*;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class UserSaver {
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath.toString());
             ObjectOutputStream oos = new ObjectOutputStream(saveFile);
-            //oos.writeObject(Profile.getCurrentUser());
+            // TO DO oos.writeObject(Profile.getCurrentUser());
             oos.flush();
             oos.close();
         }
@@ -87,7 +87,7 @@ public class UserSaver {
         try {
             FileOutputStream authFile = new FileOutputStream(defaultPath.toString());
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
-            //oos.writeObject(Profile.getCurrentUser());
+            // TO DO oos.writeObject(Profile.getCurrentUser());
             oos.flush();
             oos.close();
         }
