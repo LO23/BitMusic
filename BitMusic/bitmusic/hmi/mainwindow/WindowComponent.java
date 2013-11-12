@@ -7,11 +7,11 @@
 package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.api.ApiHmiImpl;
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.music.api.ApiMusicImpl;
 //import bitmusic.music.api.ApiNetworkImpl;
 import bitmusic.hmi.modules.connection.ConnectionComponent;
 import bitmusic.hmi.patterns.AbstractComponent;
-import bitmusic.profile.api.ApiProfileImpl;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -24,9 +24,11 @@ public class WindowComponent {
     private WindowModel model;
     private WindowView view;
     private WindowController controller;
+
     private ApiHmiImpl apiHmi;
     private ApiProfileImpl apiProfile;
     private ApiMusicImpl apiMusic;
+    //private ApiNetworkImpl apiNetwork;
 
     private ArrayList<AbstractComponent> listComponent = new ArrayList<>();
 
@@ -83,7 +85,7 @@ public class WindowComponent {
     }
 
     public ApiHmiImpl getApiHmi() {
-        return apiHmi;
+        return this.apiHmi;
     }
 
     public void setApiHmi(ApiHmiImpl apiHmi) {
@@ -91,7 +93,7 @@ public class WindowComponent {
     }
 
     public ApiProfileImpl getApiProfile() {
-        return apiProfile;
+        return this.apiProfile;
     }
 
     public void setApiProfile(ApiProfileImpl apiProfile) {
@@ -99,11 +101,18 @@ public class WindowComponent {
     }
 
     public ApiMusicImpl getApiMusic() {
-        return apiMusic;
+        return this.apiMusic;
     }
 
-    public void setApiMusic(ApiMusicImpl apiMusic) {
+    public void setApiMusic(ApiMusicImpl apiNetwork) {
         this.apiMusic = apiMusic;
     }
 
+    /*public ApiNetworkImpl getApiNetwork() {
+        return this.apiNetwork;
+    }*/
+
+    /*public void setApiNetwork(ApiNetworkImpl apiNetwork) {
+        this.apiNetwork = apiNetwork;
+    }*/
 }
