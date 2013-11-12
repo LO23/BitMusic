@@ -11,7 +11,7 @@ import bitmusic.network.message.AbstractMessage;
 
 /**
  * TCP network listener.
- * ("Server"-side)
+ * "Server" process waiting for TCP clients connections
  * @author Pak
  */
 public final class TCPNetworkListener implements Runnable {
