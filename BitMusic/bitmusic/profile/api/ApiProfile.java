@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bitmusic.profile;
+package bitmusic.profile.api;
 
 import bitmusic.profile.classes.User;
 
