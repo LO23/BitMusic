@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * Category
- * @author frogerfa, lesceuni, reaneyol
+ * @author frogerfa, lesceuni, reaneyol, MilioPeralta
  */
 public class Category {
 
@@ -32,7 +32,7 @@ public class Category {
         this.id = UUID.randomUUID().toString();
         this.contacts = new ArrayList<User>();
         this.name = name;
-        //this.rights = new Rights();
+        // TO DO this.rights = new Rights();
     }
 
     //########################### METHODS ##############################//
@@ -70,10 +70,10 @@ public class Category {
      */
     public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
         if(this.rights != null) {
-            //this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
+            // TO DO this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
         }
         else {
-            //this.rights = new Rights();
+            // TO DO this.rights = new Rights();
         }
     }
 

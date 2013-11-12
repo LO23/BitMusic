@@ -21,7 +21,7 @@ import java.nio.file.Path;
 
 /**
  *
- * @author Holywa
+ * @author Holywa, MilioPeralta
  */
 public class UserParser {
     //########################## ATTRIBUTES ##########################//
@@ -50,7 +50,7 @@ public class UserParser {
             FileInputStream saveFile = new FileInputStream(defaultPath.toString());
             ObjectInputStream ois = new ObjectInputStream(saveFile);
             User loadedUser = (User) ois.readObject();
-            //Profile.setCurrentUser(loadedUser);
+            // TO DO Profile.setCurrentUser(loadedUser);
             ois.close();
         }
         catch(FileNotFoundException eFound) {

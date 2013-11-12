@@ -18,7 +18,7 @@ import sun.awt.shell.ShellFolder;
 
 /**
  *
- * @author reaneyol
+ * @author reaneyol, MilioPeralta
  */
 public class User {
 

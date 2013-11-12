@@ -18,7 +18,7 @@ import java.nio.file.Path;
 
 /**
  *
- * @author Holywa
+ * @author Holywa, MilioPeralta
  */
 public class UserSaver {
     //########################## ATTRIBUTES ##########################//
@@ -50,7 +50,7 @@ public class UserSaver {
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath.toString());
             ObjectOutputStream oos = new ObjectOutputStream(saveFile);
-            //oos.writeObject(Profile.getCurrentUser());
+            // TO DO oos.writeObject(Profile.getCurrentUser());
             oos.flush();
             oos.close();
         }
@@ -87,7 +87,7 @@ public class UserSaver {
         try {
             FileOutputStream authFile = new FileOutputStream(defaultPath.toString());
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
-            //oos.writeObject(Profile.getCurrentUser());
+            // TO DO oos.writeObject(Profile.getCurrentUser());
             oos.flush();
             oos.close();
         }
