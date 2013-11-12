@@ -257,6 +257,9 @@ public class User {
      * @return
      */
     public User getContact(String userId) {
+
+        // TODO
+
         return null;
     }
 
