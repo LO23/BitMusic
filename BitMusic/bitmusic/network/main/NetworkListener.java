@@ -45,7 +45,7 @@ public final class NetworkListener implements Runnable {
     /**
      * default constructor.
      */
-    private TCPNetworkListener(int portToListen)
+    private NetworkListener(int portToListen)
 
     {
         PORTLISTENED=portToListen;
@@ -60,7 +60,7 @@ public final class NetworkListener implements Runnable {
          */
         TCPSERVER.configureBlocking(false);
         UDPSERVER.configureBlocking(false);
-        
+
     }
 
     /**
