@@ -45,6 +45,13 @@ public interface ApiProfile {
     public User getCurrentUser();
 
     /**
+     * Set the current user as the one read in the file
+     *
+     * @param User newUser
+     */
+    public void setCurrentUser(User newUser);
+    
+    /**
      * Returns the folder of the current user
      *
      * @return String folderName

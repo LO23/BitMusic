@@ -9,7 +9,7 @@ package bitmusic.profile.classes;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -157,8 +157,8 @@ public class UserTest {
     public void testGetBirthDate() {
         System.out.println("getBirthDate");
         User instance = null;
-        Date expResult = null;
-        Date result = instance.getBirthDate();
+        Calendar expResult = null;
+        Calendar result = instance.getBirthDate();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -170,7 +170,7 @@ public class UserTest {
     @Test
     public void testSetBirthDate() {
         System.out.println("setBirthDate");
-        Date birthDate = null;
+        Calendar birthDate = null;
         User instance = null;
         instance.setBirthDate(birthDate);
         // TODO review the generated test code and remove the default call to fail.
