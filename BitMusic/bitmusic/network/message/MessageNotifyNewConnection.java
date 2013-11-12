@@ -7,6 +7,12 @@
 package bitmusic.network.message;
 
 import bitmusic.profile.classes.User;
+import bitmusic.network.main.Controller;
+import bitmusic.hmi.api.ApiHmi;
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.network.exception.NetworkDirectoryException;
+
+
 
 /**
  * Message to notify to distant user that we are logged in.
@@ -43,9 +49,39 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
      * .
      */
     @Override
-    public void treatment() {
+public void treatment() {
+       try {
+           //Add user to the directory
+           Controller.getInstance()
+                   .addUserToDirectory(this.user.getUserId(),
+                                       this.getIpSource());
+           //Instanciation of the API HMI
+           final ApiHmi apiHmi = WindowComponent.getInstance().getApiHmi();
+           //Notify user connecxion to HMI
+           apiHmi.notifyNewConnection(this.user);
 
-    }
+           //Build an answer message to the new user
+           MessageReplyConnectionUser message = null;
+           //User currentUser = Profile.getInstance().getCurrentUser();
+
+           /*message = new MessageReplyConnectionUser(
+                   //Type of Message
+                   EnumTypeMessage.ReplyConnectionUser,
+                   //IP Source
+                   this.getIpDest(),
+                   //IP Dest
+                   this.getIpSource(),
+                   //User Profile
+                   currentUser);*/
+
+           Controller.getInstance().getWorkManager()
+                                   .assignTaskToWorker(message);
+
+       } catch (NetworkDirectoryException exception) {
+               //Send to Controller?
+       }
+
+   }
 
     /**
      * Setter of profile attribute.
