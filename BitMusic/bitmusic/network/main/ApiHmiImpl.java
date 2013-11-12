@@ -11,7 +11,7 @@ import bitmusic.network.api.ApiHmi;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageLogOut;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 import java.util.Map;
 
 /**

@@ -6,7 +6,7 @@
 
 package bitmusic.network.api;
 
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 
 /**
  *
