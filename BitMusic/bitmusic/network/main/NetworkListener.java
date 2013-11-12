@@ -7,15 +7,17 @@
 package bitmusic.network.main;
 
 import bitmusic.network.message.AbstractMessage;
-import java.net.InetSocketAddress;
+
 import java.net.SocketAddress;
-import java.nio.channels.Channel;
-import java.nio.channels.DatagramChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
-import java.util.Iterator;
+import java.nio.channels.DatagramChannel;
+import java.net.InetSocketAddress;
+import java.io.IOException;
+import java.nio.channels.Selector;
+import java.nio.channels.SelectionKey;
 import java.util.Set;
+import java.util.Iterator;
+import java.nio.channels.Channel;
 
 
 /**
@@ -49,7 +51,7 @@ public final class NetworkListener implements Runnable {
     * Singleton thread implementation.
     */
     private static final NetworkListener
-            NETLISTENER = new NetworkListener();
+            NETLISTENER = new NetworkListener(4444);
 
     /**
      * default constructor.
@@ -57,8 +59,10 @@ public final class NetworkListener implements Runnable {
     private NetworkListener(int portToListen)
 
     {
-        PORTLISTENED=portToListen;
+        PORTLISTENED= portToListen;
         LOCALPORT = new InetSocketAddress(PORTLISTENED);
+
+        try{
         TCPSERVER = ServerSocketChannel.open();
         TCPSERVER.socket().bind(LOCALPORT);
         UDPSERVER = DatagramChannel.open();
@@ -69,6 +73,10 @@ public final class NetworkListener implements Runnable {
          */
         TCPSERVER.configureBlocking(false);
         UDPSERVER.configureBlocking(false);
+
+        } catch (IOException e ){
+            e.printStackTrace();
+        }
 
     }
 
@@ -95,13 +103,15 @@ public final class NetworkListener implements Runnable {
     @Override
     public void run() {
 
+        try{
+
         Selector selector = Selector.open();
         TCPSERVER.register(selector, SelectionKey.OP_ACCEPT);
         UDPSERVER.register(selector, SelectionKey.OP_READ);
 
         //Loop forever, processing connections
 
-          while(1) {
+          while(true){
             try {
                 selector.select();
                 Set<SelectionKey> keys = selector.selectedKeys();
@@ -127,6 +137,10 @@ public final class NetworkListener implements Runnable {
                 e.printStackTrace();
             }
         }
+
+    } catch (Exception e){
+        e.printStackTrace();
+    }
 
     }
 
