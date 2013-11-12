@@ -6,6 +6,9 @@
 
 package bitmusic.hmi.mainwindow;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 /**
  *
  * @author hebergui, unkedeuxke
@@ -16,8 +19,34 @@ public class WindowController {
     private WindowView windowView;
 
     public WindowController(WindowModel model, WindowView view) {
-        this.windowModel = windowModel;
-        this.windowView = windowView;
+        this.windowModel = model;
+        this.windowView = view;
+    }
+
+    public class WindowComponentListener implements WindowListener {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            System.out.println("- Fermeture de l'application");
+            // TODO : avertir le Network de notre déconnexion (via leur API)
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {}
+
+        @Override
+        public void windowDeactivated(WindowEvent e){}
+
+        @Override
+        public void windowActivated(WindowEvent e){}
+
+        @Override
+        public void windowOpened(WindowEvent e) {}
+
+        @Override
+        public void windowIconified(WindowEvent e) {}
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {}
     }
 
     public WindowModel getWindowModel() {

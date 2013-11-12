@@ -6,9 +6,14 @@
 
 package bitmusic.hmi.modules.connection;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.modules.accountcreation.AccountCreationComponent;
+import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,30 +25,63 @@ public final class ConnectionController extends AbstractController<ConnectionMod
         super(model, view);
     }
 
+
     public class ConnectionListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Connection");
 
             ConnectionModel model = ConnectionController.this.getModel();
-            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+
+            if (model.doConnection() == true) {
+                // On enlève le ConnectionComponent et la ConnectionView des "objets utilisés"
+                WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
+                WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
+                // TODO : les supprimer ? (object = null;)
+
+                // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"
+                OnlineUsersComponent onlineUsersComponent = new OnlineUsersComponent();
+                WindowComponent.getInstance().addComponent(onlineUsersComponent);
+                WindowComponent.getInstance().getWindowView().addView(onlineUsersComponent.getView());
+
+                // TODO : Appel d'une méthode du model qui fait appel à une méthode de API network
+                //         pour récupérer une liste des utilisateurs connectés
+                WindowComponent.getInstance().getApiHmi().notifyNewConnection(new User("MonLogin","MonMdP"));
+
+            } else {
+                JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
     public class ResetListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Reset");
 
-            ConnectionModel model = ConnectionController.this.getModel();
-            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+            // Pas besoin du Model ici : on agit directement sur la View
+            ConnectionController.super.getView().getLoginField().setText("");
+            ConnectionController.super.getView().getPasswordField().setText("");
         }
     }
 
+    /// listener du bouton 'creer un compte'
     public class CreateNewUserListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton CreateNewUser");
-            
+
             ConnectionModel model = ConnectionController.this.getModel();
             // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+
+            WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
+            WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
+                // TODO : les supprimer ? (object = null;)
+
+                // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"
+                AccountCreationComponent accountCreationComponent = new AccountCreationComponent();
+                WindowComponent.getInstance().addComponent(accountCreationComponent);
+                WindowComponent.getInstance().getWindowView().addView(accountCreationComponent.getView());
         }
     }
 }

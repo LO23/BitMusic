@@ -8,7 +8,7 @@ package bitmusic.network.api;
 
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 import java.util.List;
 /**
  *

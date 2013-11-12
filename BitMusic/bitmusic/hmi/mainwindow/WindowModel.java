@@ -14,24 +14,33 @@ import java.util.ArrayList;
  *
  * @author hebergui, unkedeuxke
  */
-class WindowModel implements Observable {
+public class WindowModel extends Observable {
 
-    private ArrayList<Observer> listObserver = new ArrayList<>();
+    private ArrayList<Observer> listObservers = new ArrayList<>();
 
     public WindowModel() {
 
     }
 
-    //Implémentation du pattern observer
+    @Override
     public void addObserver(Observer obs) {
-        this.listObserver.add(obs);
+        this.listObservers.add(obs);
     }
 
-    public void notifyObserver() {
-
+    @Override
+    public void removeObserver(Observer obs) {
+        this.listObservers.remove(obs);
     }
 
-    public void removeObserver() {
+    @Override
+    public void removeAllObservers() {
+        this.listObservers = new ArrayList<>();
+    }
 
+    @Override
+    public void notifyObservers(String str) {
+        for (Observer obs:this.listObservers) {
+            obs.update(this, str);
+        }
     }
 }

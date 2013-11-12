@@ -3,29 +3,39 @@
  * and open the template in the editor.
  */
 
-package bitmusic.profile;
+package bitmusic.profile.classes;
 
+import bitmusic.music.data.Rights;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Category
- * @author frogerfa, lesceuni, reaneyol
+ * @author frogerfa, lesceuni, reaneyol, MilioPeralta
  */
 public class Category {
 
+    //########################## ATTRIBUTES ##########################//
+
+    private String id;
     private String name;
     private ArrayList<User> contacts;
     private Rights rights;
+
+    //######################### CONSTRUCTORS ###########################//
 
     /**
      * Constructor : Create a category
      * @param name  Name of the category
      */
     public Category(String name) {
+        this.id = UUID.randomUUID().toString();
         this.contacts = new ArrayList<User>();
         this.name = name;
-        this.rights = new Rights();
+        // TO DO this.rights = new Rights();
     }
+
+    //########################### METHODS ##############################//
 
     /**
      * Change the name of the category
@@ -53,13 +63,18 @@ public class Category {
 
     /**
      * Update the rights of the category
-     * @param canReadInfo Right to read information
+     * @param canIReadInfo Right to read information
      * @param canPlay Right to play
      * @param canRate Right to play
      * @param canComment Right to comment
      */
-    public void updateRight(boolean canReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
-        this.rights.updateRights(canReadInfo, canPlay, canRate, canComment);
+    public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
+        if(this.rights != null) {
+            // TO DO this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
+        }
+        else {
+            // TO DO this.rights = new Rights();
+        }
     }
 
     /**

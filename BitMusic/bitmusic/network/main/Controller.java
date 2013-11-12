@@ -7,12 +7,13 @@
 package bitmusic.network.main;
 
 import bitmusic.network.exception.EnumTypeException;
+import bitmusic.network.exception.NetworkDirectoryException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  *
- * @author florian
+ * @author florian, Pak
  */
 public class Controller {
     /**
@@ -51,7 +52,9 @@ public class Controller {
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
-    private NetworkListener networkListener;
+    private NetworkListener NETLISTENER;
+
+
     /**
      * References the worker manage
      * (Due to the composition link on the class diagram).
@@ -83,7 +86,7 @@ public class Controller {
         apiProfile = bitmusic.network.main.ApiProfileImpl.getInstance();
 
         //Contains the NetworkListener instance
-        networkListener = bitmusic.network.main.NetworkListener.getInstance();
+        NETLISTENER = bitmusic.network.main.NetworkListener.getInstance();
 
         //Contains the WorkManager instance
         //workManager = bitmusic.network.main.WorkManagement.getInstance();
@@ -148,7 +151,7 @@ public class Controller {
      * @return instance of NetworkListener
      */
     public final NetworkListener getNetworkListener() {
-        return networkListener;
+        return NETLISTENER;
     }
     /**
      * Get the WorkManager.
@@ -175,41 +178,58 @@ public class Controller {
      * @throws Exception An exception is thrown if the userId already exist
      */
     public final void addUserToDirectory(final String userId,
-            final String ipAddress) throws Exception {
-        if (directory.containsKey(userId)) {
-            apiException.throwException(
-                    EnumTypeException.NetworkDirectoryException,
-                    "The user is already in the directory.");
-        }
-        directory.put(userId, ipAddress);
-    }
+               final String ipAddress) throws NetworkDirectoryException {
+           if (directory.containsKey(userId)) {
+               throw new NetworkDirectoryException(
+                           "The user is already in the directory."
+               );
+           }
+           directory.put(userId, ipAddress);
+       }
     /**
      * .
      * @param userId Id of the user
-     * @throws Exception An exception is thrown if the userId doesn't exist
+     * @throws NetworkDirectoryException An exception is thrown if the userId doesn't exist
      */
     public final void removeUserFromDirectory(final String userId)
-            throws Exception {
+            throws NetworkDirectoryException {
         if (!directory.containsKey(userId)) {
-            apiException.throwException(
-                    EnumTypeException.NetworkDirectoryException,
+            throw new NetworkDirectoryException(
                     "The user " + userId + " doesn't exist in the directory.");
         }
         directory.remove(userId);
     }
+
     /**
      * .
      * @param userId Id of the user
      * @return the Ip corresponding to the userId given
-     * @throws Exception An exception is thrown if the userId doesn't exist
+     * @throws NetworkDirectoryException An exception is thrown if the userId
+     * doesn't exist
      */
     public final String getUserIpFromDirectory(final String userId)
-            throws Exception {
+            throws NetworkDirectoryException {
         if (!directory.containsKey(userId)) {
-            apiException.throwException(
-                    EnumTypeException.NetworkDirectoryException,
+            throw new NetworkDirectoryException(
                     "The user " + userId + " doesn't exist in the directory.");
         }
         return directory.get(userId);
+    }
+
+    // ##################################
+    // ## ##       TEST TOOLS       ## ##
+    // ##################################
+
+    /**
+     * Prepare the app for test.
+     */
+    public final void prepareForTest() {
+        this.getWorkManager().prepareForTest();
+    }
+    /**
+     * Undo prepareForTest().
+     */
+    public void endTest() {
+        this.getWorkManager().endTest();
     }
 }

@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.informationssong;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -14,7 +15,7 @@ import bitmusic.hmi.patterns.AbstractView;
  */
 public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpController> {
 
-    private static final String type = "POPUP";
+    private final String type = "POPUP";
 
     public InfosSongPopUpView() {
         super();
@@ -32,4 +33,8 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         return type;
     }
 
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- InfosSongPopUpView.update()");
+    }
 }

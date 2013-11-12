@@ -56,5 +56,7 @@ public abstract class AbstractView<C extends AbstractController> extends JPanel 
     public final void setDim(final Dimension dim) {
         this.dim = dim;
     }
-    
+
+    @Override
+    public abstract void update(Observable obj, String str);
 }

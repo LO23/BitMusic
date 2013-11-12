@@ -12,24 +12,33 @@ import java.util.ArrayList;
  *
  * @author hebergui, unkedeuxke
  */
-public abstract class AbstractModel implements Observable {
+public abstract class AbstractModel extends Observable {
 
-    private ArrayList<Observer> listObserver = new ArrayList<>();
+    private ArrayList<Observer> listObservers = new ArrayList<>();
 
     public AbstractModel() {
 
     }
 
-    //Implémentation du pattern observer (fonctions communes à tous les models)
+    @Override
     public void addObserver(Observer obs) {
-        this.listObserver.add(obs);
+        this.listObservers.add(obs);
     }
 
-    public void notifyObserver() {
-
+    @Override
+    public void removeObserver(Observer obs) {
+        this.listObservers.remove(obs);
     }
 
-    public void removeAllObserver() {
-        listObserver = new ArrayList<>();
+    @Override
+    public void removeAllObservers() {
+        this.listObservers = new ArrayList<>();
+    }
+
+    @Override
+    public void notifyObservers(String str) {
+        for (Observer obs:this.listObservers) {
+            obs.update(this, str);
+        }
     }
 }

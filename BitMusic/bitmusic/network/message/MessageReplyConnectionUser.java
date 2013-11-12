@@ -5,39 +5,51 @@
  */
 
 package bitmusic.network.message;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
+import bitmusic.network.main.Controller;
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.api.ApiHmi;
+import bitmusic.network.exception.NetworkDirectoryException;
+
 
 /**
- * Message to send our profile to a newly connected user.
- * @author alexis
- */
+* Message to send our profile to a newly connected user.
+* @author alexis
+*/
 public final class MessageReplyConnectionUser extends AbstractMessage {
-    /**
-     * The profile we send to the newly connected user.
-     */
-    private User profile;
+   /**
+    * The profile we send to the newly connected user.
+    */
+   private User profile;
 
-    /**
-     * Constructor.
-     * @param paramType Type of the message
-     * @param paramIpSource IP address of the sender
-     * @param paramIpDest IP address of the receiver
-     * @param paramUser The profile we send
-     */
-    public MessageReplyConnectionUser(final EnumTypeMessage paramType,
-            final String paramIpSource, final String paramIpDest,
-            final User paramUser) {
-        super(paramType, paramIpSource, paramIpDest);
-        profile = paramUser;
-    }
+   /**
+    * Constructor.
+    * @param paramType Type of the message
+    * @param paramIpSource IP address of the sender
+    * @param paramIpDest IP address of the receiver
+    * @param paramUser The profile we send
+    */
+   public MessageReplyConnectionUser(final EnumTypeMessage paramType,
+           final String paramIpSource, final String paramIpDest,
+           final User paramUser) {
+       super(paramType, paramIpSource, paramIpDest);
+       profile = paramUser;
+   }
 
-    /**
-     * .
-     */
-    @Override
-    public void treatment() {
-
-    }
+   /**
+    * Adds the distant user to the directory after it has replied
+    */
+   @Override
+   public void treatment() {
+       try{
+           Controller.getInstance().addUserToDirectory(this.profile.getUserId(), this.getIpSource());
+           final ApiHmi apiHmi = WindowComponent.getInstance().getApiHmi();
+           apiHmi.notifyNewConnection(this.profile);
+       }
+       catch(NetworkDirectoryException exception){
+           //process exception
+       }
+   }
 
     /**
      * Setter of profile attribute.

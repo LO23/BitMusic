@@ -11,5 +11,5 @@ package bitmusic.hmi.patterns;
  * @author hebergui, unkedeuxke
  */
 public interface Observer {
-
+    public void update(Observable obj, String str);
 }

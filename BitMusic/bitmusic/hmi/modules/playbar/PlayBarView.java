@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.playbar;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
@@ -14,7 +15,7 @@ import bitmusic.hmi.patterns.AbstractView;
  */
 public final class PlayBarView extends AbstractView<PlayBarController> {
 
-    private static final String type = "SOUTH";
+    private final String type = "SOUTH";
 
     public PlayBarView() {
         super();
@@ -30,5 +31,10 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     @Override
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- PlayBarView.update()");
     }
 }

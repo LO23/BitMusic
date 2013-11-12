@@ -7,7 +7,9 @@
 package bitmusic.hmi.modules.myprofile;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,8 +25,30 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     private static final String type = "NORTH";
 
+    private final JButton myProfileButton = new JButton("Mon Profil");
+    private final JButton mySongsButton = new JButton("Mes morceaux");
+    private final JButton disconnectButton = new JButton("Déconnexion");
+    private final JButton importSongButton = new JButton("Importer un titre");
+    // TO DO : ajouter l'image de l'avatar
+
     public MyProfileView() {
         super();
+    }
+
+    public JButton getMyProfileButton() {
+        return myProfileButton;
+    }
+
+    public JButton getMySongsButton() {
+        return mySongsButton;
+    }
+
+    public JButton getDisconnectButton() {
+        return disconnectButton;
+    }
+
+    public JButton getImportSongButton() {
+        return importSongButton;
     }
 
     @Override
@@ -33,113 +57,44 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
         Dimension d = new Dimension(80, 20);
 
-        JLabel createAccountLabel = new JLabel("Créer un compte");
-        createAccountLabel.setSize(d);
+        this.myProfileButton.setSize(d);
+        this.mySongsButton.setSize(d);
+        this.disconnectButton.setSize(d);
+        this.importSongButton.setSize(d);
 
-        JLabel loginLabel = new JLabel("Pseudo (*)");
-        loginLabel.setSize(d);
+        this.myProfileButton.addActionListener(this.getController().new DisconnectListener());
 
-        JLabel passwordLabel = new JLabel("Mot de passe (*)");
-        passwordLabel.setSize(d);
+        GridLayout layout = new GridLayout(0,2);
+        this.getPanel().setLayout(layout);
+        this.getPanel().add(myProfileButton);
+        this.getPanel().add(mySongsButton);
+        this.getPanel().add(disconnectButton);
+        this.getPanel().add(importSongButton);
 
-        JLabel confirmationLabel = new JLabel("Confirmation (*)");
-        confirmationLabel.setSize(d);
 
-        JLabel prenomLabel = new JLabel("Prénom ");
-        prenomLabel.setSize(d);
-
-        JLabel nomLabel = new JLabel("Nom ");
-        nomLabel.setSize(d);
-
-        JButton connectButton = new JButton("Se connecter");
-        connectButton.setSize(d);
-        
-        JButton resetButton = new JButton("Réinitialiser");
-        resetButton.setSize(d);
-
-        JTextField loginField = new JTextField("");
-        loginField.setColumns(10);
-
-        JPasswordField passwordField = new JPasswordField("");
-        passwordField.setColumns(10);
-
-        JPasswordField confirmationField = new JPasswordField("");
-        confirmationField.setColumns(10);
-
-        JTextField prenomField = new JTextField("");
-        prenomField.setColumns(10);
-
-        JTextField nomField = new JTextField("");
-        nomField.setColumns(10);
-
-        GroupLayout layout = new GroupLayout(this.getPanel());
+        /*GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-
-        layout.setHorizontalGroup(
-            layout.createSequentialGroup()
-                .addComponent(createAccountLabel)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(loginLabel)
-                    .addComponent(passwordLabel)
-                    .addComponent(confirmationLabel)
-                    .addComponent(prenomLabel)
-                    .addComponent(nomLabel)
-                    .addComponent(connectButton)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(loginField)
-                    .addComponent(passwordField)
-                    .addComponent(confirmationField)
-                    .addComponent(prenomField)
-                    .addComponent(nomField)
-                    .addComponent(resetButton)
-                )
-
-        );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
-               .addComponent(createAccountLabel)
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(loginLabel)
-                    .addComponent(loginField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordLabel)
-                    .addComponent(passwordField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmationLabel)
-                    .addComponent(confirmationField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(prenomLabel)
-                    .addComponent(prenomField)
-               )
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomLabel)
-                    .addComponent(nomField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(connectButton)
-                    .addComponent(resetButton)
-               )
-
-        );
-
-        layout.linkSize(SwingConstants.HORIZONTAL, loginLabel, loginField);
-        layout.linkSize(SwingConstants.HORIZONTAL, passwordLabel, passwordField);
-        layout.linkSize(SwingConstants.HORIZONTAL, confirmationLabel, confirmationField);
-        layout.linkSize(SwingConstants.HORIZONTAL, prenomLabel, prenomField);
-        layout.linkSize(SwingConstants.HORIZONTAL, nomLabel, nomField);
-
+                .addComponent(myProfileButton)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(mySongsButton)
+                ).addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE))
+                .addComponent(disconnectButton)
+                    .addComponent(importSongButton)
+        );*/
+        // TODO
     }
 
     @Override
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- MyProfileView.update()");
     }
 }
 

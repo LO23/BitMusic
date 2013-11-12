@@ -7,10 +7,13 @@
 package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,12 +21,12 @@ import javax.swing.JPanel;
  *
  * @author hebergui, unkedeuxke
  */
-public class WindowView extends JFrame implements Observer {
+public class WindowView extends JFrame implements Observer, WindowListener {
 
     private WindowController windowController;
 
     public WindowView() {
-        
+      // this.addWindowListener(this);
     }
 
     public WindowController getWindowController() {
@@ -47,7 +50,7 @@ public class WindowView extends JFrame implements Observer {
 
     public void addView(AbstractView view) {
 
-        if (view.getType() == "CONNECTION"){
+        if ("CONNECTION".equals(view.getType())){
             this.getContentPane().add(view.getPanel());
             pack();
             this.setVisible(true);
@@ -55,25 +58,25 @@ public class WindowView extends JFrame implements Observer {
         else {
             JPanel contentPanel = new JPanel(new BorderLayout());
             this.getContentPane().add(contentPanel);
-
-            if (view.getType() == "WEST") {
-                contentPanel.add(view.getPanel(), BorderLayout.WEST);
-
-            }
-            else if (view.getType() == "SOUTH") {
-               contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
-            }
-            else if (view.getType() == "NORTH") {
-                contentPanel.add(view.getPanel(), BorderLayout.NORTH);
-            }
-            else if (view.getType() == "EAST") {
-                contentPanel.add(view.getPanel(), BorderLayout.EAST);
-            }
-            else if (view.getType() == "CENTER"){
-               contentPanel.add(view.getPanel(), BorderLayout.CENTER);
-            }
-            else {
-                System.out.println("Error le type du panel (north, south, east... non définie");
+            switch (view.getType()) {
+                case "WEST":
+                    contentPanel.add(view.getPanel(), BorderLayout.WEST);
+                    break;
+                case "SOUTH":
+                    contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
+                    break;
+                case "NORTH":
+                    contentPanel.add(view.getPanel(), BorderLayout.NORTH);
+                    break;
+                case "EAST":
+                    contentPanel.add(view.getPanel(), BorderLayout.EAST);
+                    break;
+                case "CENTER":
+                    contentPanel.add(view.getPanel(), BorderLayout.CENTER);
+                    break;
+                default:
+                    System.out.println("Error le type du panel (north, south, east... non définie");
+                    break;
             }
             pack();
             this.setVisible(true);
@@ -82,5 +85,49 @@ public class WindowView extends JFrame implements Observer {
 
     public void removeView(AbstractView view) {
         this.getContentPane().remove(view.getPanel()); // TODO : détruire l'objet ? (ex : ConnectionComponent)
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- WindowView.update()");
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        this.windowController.getWindowModel().notifyObservers("DECONNECTION");
+        this.dispose();
+        System.out.println("----- WindowView.windowClosing()");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
