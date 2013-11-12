@@ -8,6 +8,7 @@ package bitmusic.music.business;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
+import java.util.*;
 
 /**
  *
@@ -62,4 +63,34 @@ public class SongRater {
 
         return true;
     }
+    
+    /**
+     * Remove a grade.
+     *
+     * @param songId Song ID
+     * @param authorId author ID
+     *
+     * @return true
+     */
+    public boolean deleteGrade(String songId, String authorId) {
+        Song mySong = songLib.getSong(songId);
+
+        mySong.deleteGrade(authorId);
+
+        return true;
+    }
+    
+    /**
+     * Get grades.
+     *
+     * @param songId Song ID
+     *
+     * @return true
+     */
+    public HashMap<String,Grade> getGrades(String songId) {
+        Song mySong = songLib.getSong(songId);
+
+        return mySong.getGrades();
+    }
 }
+
