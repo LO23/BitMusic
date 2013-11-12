@@ -9,6 +9,7 @@ package bitmusic.hmi.modules.myprofile;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -33,7 +34,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     public MyProfileView() {
         super();
     }
-    
+
     public JButton getMyProfileButton() {
         return myProfileButton;
     }
@@ -61,8 +62,28 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         this.disconnectButton.setSize(d);
         this.importSongButton.setSize(d);
 
+        this.myProfileButton.addActionListener(this.getController().new DisconnectListener());
+
+        GridLayout layout = new GridLayout(0,2);
+        this.getPanel().setLayout(layout);
+        this.getPanel().add(myProfileButton);
+        this.getPanel().add(mySongsButton);
+        this.getPanel().add(disconnectButton);
+        this.getPanel().add(importSongButton);
 
 
+        /*GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
+
+        layout.setVerticalGroup(
+            layout.createSequentialGroup()
+                .addComponent(myProfileButton)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(mySongsButton)
+                ).addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE))
+                .addComponent(disconnectButton)
+                    .addComponent(importSongButton)
+        );*/
         // TODO
     }
 
