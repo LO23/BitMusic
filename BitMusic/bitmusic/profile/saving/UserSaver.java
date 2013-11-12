@@ -7,8 +7,8 @@
 package bitmusic.profile.saving;
 
 import bitmusic.profile.classes.User;
-import bitmusic.profile.utilities.*;
-
+import bitmusic.profile.utilities.ProfileExceptions;
+import bitmusic.profile.utilities.ProfileExceptionType;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
