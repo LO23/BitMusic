@@ -49,7 +49,7 @@ public final class MessageLogOut extends AbstractMessage {
         try {
             Controller.getInstance().removeUserFromDirectory(this.getUserId());
             final ApiHmi apiHmi = WindowComponent.getInstance().getApiHmi();
-            apiHmi.removeUserFromOnlineUsers(this.getUserId());
+            //apiHmi.removeUserFromOnlineUsers(this.getUserId());
 
         } catch(NetworkDirectoryException exception) {
 
