@@ -53,7 +53,6 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public void saveUser(User user) throws ProfileExceptions {
-        
         UserSaver userSaver = new UserSaver();
         userSaver.saveUser(currentUser);
     }
