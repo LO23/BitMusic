@@ -35,4 +35,9 @@ public final class ApiHmiImpl implements ApiHmi {
         //TODO
     }
 
+    @Override
+    public void removeUserFromOnlineUsersId(String userId) {
+        //TODO
+    }
+
 }
