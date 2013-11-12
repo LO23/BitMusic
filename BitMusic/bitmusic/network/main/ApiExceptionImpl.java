@@ -8,6 +8,7 @@ package bitmusic.network.main;
 
 import bitmusic.network.exception.EnumTypeException;
 import bitmusic.network.exception.ExceptionFactory;
+import bitmusic.network.exception.NetworkException;
 
 /**
  *
@@ -40,7 +41,7 @@ public class ApiExceptionImpl {
      * @throws Exception
      */
     public final void throwException(final EnumTypeException type, final String msg)
-            throws Exception {
+            throws NetworkException {
         throw ExceptionFactory.createException(type, msg);
     }
 }

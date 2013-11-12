@@ -7,6 +7,7 @@
 package bitmusic.network.main;
 
 import bitmusic.network.api.ApiProfile;
+import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageNotifyNewConnection;
@@ -55,11 +56,11 @@ public final class ApiProfileImpl implements ApiProfile {
     * Notify connection of a user and pass his profile to broadcast it.
     *
     * @param user the complete user who just connected
-    * @throws Exception throws an exception when the given idUser isn't in
+    * @throws NetworkException throws an exception when the given idUser isn't in
     * the directory
     */
     @Override
-    public void notifyNewConnection(final User user) throws Exception {
+    public void notifyNewConnection(final User user) throws NetworkException {
         //Get the source address
         String sourceAddress;
 
