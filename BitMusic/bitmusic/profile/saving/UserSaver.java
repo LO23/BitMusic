@@ -6,7 +6,6 @@
 
 package bitmusic.profile.saving;
 
-import bitmusic.profile.Profile;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.*;
 
@@ -51,7 +50,7 @@ public class UserSaver {
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath.toString());
             ObjectOutputStream oos = new ObjectOutputStream(saveFile);
-            oos.writeObject(Profile.getCurrentUser());
+            //oos.writeObject(Profile.getCurrentUser());
             oos.flush();
             oos.close();
         }
@@ -88,7 +87,7 @@ public class UserSaver {
         try {
             FileOutputStream authFile = new FileOutputStream(defaultPath.toString());
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
-            oos.writeObject(Profile.getCurrentUser());
+            //oos.writeObject(Profile.getCurrentUser());
             oos.flush();
             oos.close();
         }
