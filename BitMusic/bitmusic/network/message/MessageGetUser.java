@@ -6,6 +6,8 @@
 
 package bitmusic.network.message;
 import bitmusic.profile.classes.User;
+import bitmusic.network.message.AbstractMessage;
+import bitmusic.network.message.MessageSendUser;
 
 
 /**
@@ -60,9 +62,9 @@ public final class MessageGetUser extends AbstractMessage {
             MessageSendUser message = new MessageSendUser(
                     EnumTypeMessage.SendUser, ipDest, 
                     ipSource, currentUser, researchId);
-          */  
+            
             // Send message...
-        }
+        }*/
     }
 
     /**
