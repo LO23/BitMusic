@@ -24,13 +24,44 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     private static final String type = "NORTH";
 
+    private final JButton myProfileButton = new JButton("Mon Profil");
+    private final JButton mySongsButton = new JButton("Mes morceaux");
+    private final JButton disconnectButton = new JButton("Déconnexion");
+    private final JButton importSongButton = new JButton("Importer un titre");
+    // TO DO : ajouter l'image de l'avatar
+
     public MyProfileView() {
         super();
+    }
+    
+    public JButton getMyProfileButton() {
+        return myProfileButton;
+    }
+
+    public JButton getMySongsButton() {
+        return mySongsButton;
+    }
+
+    public JButton getDisconnectButton() {
+        return disconnectButton;
+    }
+
+    public JButton getImportSongButton() {
+        return importSongButton;
     }
 
     @Override
     public void initPanel() {
         System.out.println("--- MyProfileView.initPanel()");
+
+        Dimension d = new Dimension(80, 20);
+
+        this.myProfileButton.setSize(d);
+        this.mySongsButton.setSize(d);
+        this.disconnectButton.setSize(d);
+        this.importSongButton.setSize(d);
+
+
 
         // TODO
     }
