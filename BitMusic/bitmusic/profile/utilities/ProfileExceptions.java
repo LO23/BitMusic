@@ -43,6 +43,10 @@ public class ProfileExceptions extends Throwable {
             }
     }
 
+    public ProfileExceptionType getType() {
+        return this.type;
+    }
+
     @Override
     public String toString() {
         return errorMessage;
