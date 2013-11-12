@@ -38,6 +38,7 @@ public class WindowComponent {
         this.view.setWindowController(this.controller);
         this.view.initFrame();
         this.model.addObserver(this.view);
+        this.view.addWindowListener(this.controller.new WindowComponentListener());
 
         ConnectionComponent connectionComponent = new ConnectionComponent();
         this.addComponent(connectionComponent);
