@@ -59,7 +59,7 @@ public final class NetworkListener implements Runnable {
     private NetworkListener(int portToListen)
 
     {
-        PORTLISTENED=portToListen;
+        PORTLISTENED= portToListen;
         LOCALPORT = new InetSocketAddress(PORTLISTENED);
 
         try{
