@@ -8,7 +8,6 @@ package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
-import bitmusic.profile.User;
 import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
