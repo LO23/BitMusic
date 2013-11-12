@@ -26,7 +26,7 @@ public class WindowController {
     public class WindowComponentListener implements WindowListener {
         @Override
         public void windowClosing(WindowEvent e) {
-            System.out.println("---- Fermeture de l'application");
+            System.out.println("- Fermeture de l'application");
             // TODO : avertir le Network de notre déconnexion (via leur API)
         }
 
