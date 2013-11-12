@@ -19,7 +19,7 @@ import java.util.Date;
 
 /**
  *
- * @author Milio
+ * @author MilioPeralta
  */
 public class ApiProfileImpl implements ApiProfile {
     private static ApiProfileImpl currentApi;

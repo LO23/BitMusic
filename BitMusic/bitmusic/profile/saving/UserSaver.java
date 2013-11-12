@@ -18,7 +18,7 @@ import java.nio.file.Path;
 
 /**
  *
- * @author Holywa
+ * @author Holywa, MilioPeralta
  */
 public class UserSaver {
     //########################## ATTRIBUTES ##########################//

@@ -8,7 +8,7 @@ package bitmusic.profile.utilities;
 
 /**
  *
- * @author Holywa
+ * @author Holywa, MilioPeralta
  */
 public enum ProfileExceptionType {
     LoginNull,

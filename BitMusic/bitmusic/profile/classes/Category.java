@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * Category
- * @author frogerfa, lesceuni, reaneyol
+ * @author frogerfa, lesceuni, reaneyol, MilioPeralta
  */
 public class Category {
 
