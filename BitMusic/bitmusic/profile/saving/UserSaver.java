@@ -6,15 +6,14 @@
 
 package bitmusic.profile.saving;
 
-import bitmusic.profile.classes.User;
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.utilities.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 
 /**
  *
@@ -25,7 +24,8 @@ public class UserSaver {
     /**
      *
      */
-    private Path defaultPath;
+    private final String defaultPath;
+    private final String dirPath;
 
     /**
      *
@@ -36,8 +36,10 @@ public class UserSaver {
     public UserSaver() {
         //TODO
         //Check where is the default path to got through user docs
-        this.defaultPath = FileSystems.getDefault().getPath(null);
-        System.out.println("Default path : " + this.defaultPath.toString());
+        this.dirPath = ApiProfileImpl.getApiProfile().getCurrentUser().getLogin() + "_" + ApiProfileImpl.getApiProfile().getCurrentUser().getTransformedBirthday() + "\\";
+        this.defaultPath = new File("").getAbsolutePath().toString() + "\\" + this.dirPath;
+
+        System.out.println("Default path : " + this.defaultPath);
     }
 
     //########################### METHODS ##############################//
@@ -48,34 +50,20 @@ public class UserSaver {
      */
     public void saveUser() throws ProfileExceptions {
         try {
-            FileOutputStream saveFile = new FileOutputStream(defaultPath.toString());
-            ObjectOutputStream oos = new ObjectOutputStream(saveFile);
-            // TO DO oos.writeObject(Profile.getCurrentUser());
-            oos.flush();
-            oos.close();
+            FileOutputStream saveFile = new FileOutputStream(this.defaultPath + "user.ser");
+            try (ObjectOutputStream oos = new ObjectOutputStream(saveFile)) {
+                oos.writeObject(ApiProfileImpl.getApiProfile().getCurrentUser());
+                oos.flush();
+            }
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(ProfileExceptionType.CreationFileError);
         }
         catch(IOException eIO) {
             throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
-        }
-    }
 
-    //To test
-    public void saveUser(User userToSave) throws ProfileExceptions {
-        try {
-            FileOutputStream saveFile = new FileOutputStream(defaultPath.toString());
-            ObjectOutputStream oos = new ObjectOutputStream(saveFile);
-            oos.writeObject(userToSave);
-            oos.flush();
-            oos.close();
-        }
-        catch(FileNotFoundException eFound) {
-            throw new ProfileExceptions(ProfileExceptionType.CreationFileError);
-        }
-        catch(IOException eIO) {
-            throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
+
+
         }
     }
 
@@ -85,32 +73,15 @@ public class UserSaver {
      */
     public void saveAuthFile() throws ProfileExceptions {
         try {
-            FileOutputStream authFile = new FileOutputStream(defaultPath.toString());
-            ObjectOutputStream oos = new ObjectOutputStream(authFile);
-            // TO DO oos.writeObject(Profile.getCurrentUser());
-            oos.flush();
-            oos.close();
-        }
-        catch(FileNotFoundException eFound) {
-            throw new ProfileExceptions(ProfileExceptionType.CreationFileError);
-        }
-        catch(IOException eIO) {
-            throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
-        }
-    }
+            FileOutputStream authFile = new FileOutputStream(this.defaultPath + "auth");
 
-    /**
-     *
-     * @throws ProfileExceptions
-     */
-    public void saveAuthFile(User userAuth) throws ProfileExceptions {
-        try {
-            FileOutputStream authFile = new FileOutputStream(defaultPath.toString());
 
-            ObjectOutputStream oos = new ObjectOutputStream(authFile);
-            oos.writeObject(userAuth);
-            oos.flush();
-            oos.close();
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(authFile)) {
+                oos.writeUTF(ApiProfileImpl.getApiProfile().getCurrentUser().getLogin());
+                oos.writeUTF(ApiProfileImpl.getApiProfile().getCurrentUser().getPassword());
+                oos.flush();
+            }
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(ProfileExceptionType.CreationFileError);

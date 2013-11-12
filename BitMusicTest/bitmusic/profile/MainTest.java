@@ -16,5 +16,7 @@ public class MainTest {
     public static void main(String[] args) {
         System.out.println("Testing profile");
         UserSaverTest test = new UserSaverTest();
+        test.testSaveUser();
+        test.testSaveAuthFile();
     }
 }
