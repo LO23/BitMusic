@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.categories;
+package bitmusic.hmi.modules.categories;
 
-import hmi.patterns.AbstractModel;
+import bitmusic.hmi.patterns.AbstractModel;
 
 /**
  *
@@ -16,9 +16,5 @@ public final class CategoriesModel extends AbstractModel {
 
     public CategoriesModel() {
         super();
-    }
-
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

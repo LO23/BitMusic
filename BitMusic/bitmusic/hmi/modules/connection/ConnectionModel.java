@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.connection;
+package bitmusic.hmi.modules.connection;
 
-import hmi.patterns.AbstractModel;
+import bitmusic.hmi.patterns.AbstractModel;
 
 /**
  *
@@ -18,7 +18,8 @@ public final class ConnectionModel extends AbstractModel {
         super();
     }
 
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    // A IMPLEMENTER !!!!! VERIFIER SI LA CONNECTION EST VALIDE SINON RETOURN FALSE
+    public boolean doConnection() {
+        return true;
     }
 }

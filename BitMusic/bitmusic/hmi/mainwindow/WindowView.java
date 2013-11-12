@@ -4,15 +4,16 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
+import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
+import bitmusic.hmi.patterns.Observer;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import hmi.patterns.AbstractView;
-import hmi.patterns.Observer;
-import java.util.ArrayList;
 
 /**
  *
@@ -23,7 +24,7 @@ public class WindowView extends JFrame implements Observer {
     private WindowController windowController;
 
     public WindowView() {
-        this.initFrame();
+
     }
 
     public WindowController getWindowController() {
@@ -46,11 +47,46 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void addView(AbstractView view) {
-        this.getContentPane().add(view.getPanel());
-        this.setVisible(true);
+
+        if ("CONNECTION".equals(view.getType())){
+            this.getContentPane().add(view.getPanel());
+            pack();
+            this.setVisible(true);
+        }
+        else {
+            JPanel contentPanel = new JPanel(new BorderLayout());
+            this.getContentPane().add(contentPanel);
+            switch (view.getType()) {
+                case "WEST":
+                    contentPanel.add(view.getPanel(), BorderLayout.WEST);
+                    break;
+                case "SOUTH":
+                    contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
+                    break;
+                case "NORTH":
+                    contentPanel.add(view.getPanel(), BorderLayout.NORTH);
+                    break;
+                case "EAST":
+                    contentPanel.add(view.getPanel(), BorderLayout.EAST);
+                    break;
+                case "CENTER":
+                    contentPanel.add(view.getPanel(), BorderLayout.CENTER);
+                    break;
+                default:
+                    System.out.println("Error le type du panel (north, south, east... non définie");
+                    break;
+            }
+            pack();
+            this.setVisible(true);
+        }
     }
 
     public void removeView(AbstractView view) {
         this.getContentPane().remove(view.getPanel()); // TODO : détruire l'objet ? (ex : ConnectionComponent)
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- WindowView.update()");
     }
 }

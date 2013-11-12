@@ -4,19 +4,21 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.playbar;
+package bitmusic.hmi.modules.playbar;
 
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.Observable;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class PlayBarView extends AbstractView {
+public final class PlayBarView extends AbstractView<PlayBarController> {
+
+    private final String type = "SOUTH";
 
     public PlayBarView() {
         super();
-        this.initPanel();
     }
 
     @Override
@@ -24,5 +26,15 @@ public final class PlayBarView extends AbstractView {
         System.out.println("--- PlayBarView.initPanel()");
 
         // TODO
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void update(Observable obj, String str) {
+        System.out.println("----- PlayBarView.update()");
     }
 }

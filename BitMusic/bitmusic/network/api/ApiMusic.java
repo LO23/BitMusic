@@ -29,7 +29,7 @@ public interface ApiMusic {
     */
     void addComment(final Song song, final Comment comment);
     /**
-     * Ask a distant user to search for keywords in his tags.
+     * Ask a distant user to search     for keywords in his tags.
      * This is an asynchrounous call
      *
      * @param operator user operating the research
@@ -39,7 +39,7 @@ public interface ApiMusic {
      * @param option 0 = ALL keywords must match (default), 1 = ANY
      * keyword match
      */
-    void tagRequest(final User operator, final User askedUser,
+    void tagRequest(final String operator, final String askedUser,
             final String idResearch, final List<String> keywordsList,
             final int option);
     /**
@@ -52,7 +52,7 @@ public interface ApiMusic {
      * @param idResearch the id of the research
      * @param keywordsList keywords searched
      */
-    void tagRequest(final User operator, final User askedUser,
+    void tagRequest(final String operator, final String askedUser,
             final String idResearch, final List<String> keywordsList);
     /**
      * Network message send to a distant user to ask him to send his songList.
@@ -60,7 +60,7 @@ public interface ApiMusic {
      * @param askedUser user to ask
      * @param researchId id of the research
      */
-    void getSongsByUser(final User askedUser, final String researchId);
+    void getSongsByUser(final String askedUser, final String researchId);
     /**
      * Search songs in the LAN  with tag specified in the search.
      *

@@ -62,6 +62,21 @@ public class ControllerTest extends TestCase {
     }
 
     @Test
+    public void testgetUserFromDirectory() {
+        String userId = "123";
+        try {
+            Controller.getInstance().getUserIpFromDirectory(userId);
+            assertTrue("Get user from the directory OK!", true);
+
+            userId =  Integer.toString(Integer.MAX_VALUE);
+            Controller.getInstance().getUserIpFromDirectory(userId);
+            fail();
+        } catch (Exception ex) {
+            assertTrue("Get unknown userId from the directory OK!", true);
+        }
+    }
+    
+    @Test
     public void testremoveUserFromDirectory() {
         String userId = "123";
         try {

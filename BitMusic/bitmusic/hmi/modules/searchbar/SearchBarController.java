@@ -4,19 +4,17 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.searchbar;
+package bitmusic.hmi.modules.searchbar;
 
-import hmi.patterns.AbstractController;
-import hmi.patterns.AbstractModel;
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractController;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class SearchBarController extends AbstractController {
+public final class SearchBarController extends AbstractController<SearchBarModel, SearchBarView> {
 
-    public SearchBarController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public SearchBarController(final SearchBarModel model, final SearchBarView view) {
+        super(model, view);
     }
 }

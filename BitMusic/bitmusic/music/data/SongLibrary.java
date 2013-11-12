@@ -20,7 +20,7 @@ public class SongLibrary
     * 
     * @param songs 
     */
-   SongLibrary(ArrayList<Song> songs)
+   public SongLibrary(ArrayList<Song> songs)
    {
     library = new ArrayList<>();
     library = songs;
@@ -52,19 +52,18 @@ public class SongLibrary
     * @param songId
     * @return bool
     */
-   public boolean islocal(String songId)
-   {
+    public boolean islocal(String songId)
+    {
     
     Iterator<Song> it = library.iterator();
     
     while (it.hasNext())
-      {  
-        Song s = it.Next();
+    {  
+        Song s = it.next();
         if (s.getSongId().equals(songId))
             return true;
-        else
-            return false;
-       }  
+ 
+        }  
     return false;
  } 
    
@@ -73,11 +72,18 @@ public class SongLibrary
     * @param songId
     * @return 
     */
-   public Song getSong(String songId)
-   {
-       Song s = new Song();
-       return s;//BRUNO 
-   }
+    public Song getSong(String songId)
+    {
+	Iterator<Song> it = library.iterator();
+		
+	while (it.hasNext())
+	{  
+            Song s = it.next();
+            if (s.getSongId().equals(songId))
+		return s;
+	}  
+	return null;
+    }
    
    /**
     * Removes the song songId.
@@ -86,7 +92,14 @@ public class SongLibrary
     */
    public void removeSong (String songId)
    {
-       //DOHA 
+   Iterator<Song> it=library.iterator();
+   while(it.hasNext()) //while there is still a song in the library
+    {
+       Song song=it.next();
+       if(song.getSongId().equals(songId))
+       library.remove(song); //removes the song with the id songId from the library
+   
+   }
    }
    
    /**
@@ -110,7 +123,7 @@ public class SongLibrary
    Iterator<Song> it = library.iterator();
    while(it.hasNext())
        {
-           Song song = it.Next();
+           Song song = it.next();
            song.updateCategory(name, rights);
        }
    }

@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.onlineusers;
+package bitmusic.hmi.modules.onlineusers;
 
-import hmi.patterns.AbstractModel;
+import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.profile.classes.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,11 +16,24 @@ import hmi.patterns.AbstractModel;
  */
 public final class OnlineUsersModel extends AbstractModel {
 
+    private ArrayList<User> listUsersOnline = new ArrayList<>();
+
+
     public OnlineUsersModel() {
         super();
     }
 
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addUser(User user) {
+        this.listUsersOnline.add(user);
+        this.notifyObservers("ADD_ONLINE_USER");
     }
+
+    public ArrayList<User> getListUsersOnline() {
+        return listUsersOnline;
+    }
+
+    public void setListUsersOnline(ArrayList<User> listUsersOnline) {
+        this.listUsersOnline = listUsersOnline;
+    }
+
 }

@@ -4,19 +4,17 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.categories;
+package bitmusic.hmi.modules.categories;
 
-import hmi.patterns.AbstractController;
-import hmi.patterns.AbstractModel;
-import hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.AbstractController;
 
 /**
  *
  * @author unkedeuxke
  */
-public final class CategoriesController extends AbstractController {
+public final class CategoriesController extends AbstractController<CategoriesModel, CategoriesView> {
 
-    public CategoriesController(final AbstractModel abstractModel, final AbstractView abstractView) {
-        super(abstractModel, abstractView);
+    public CategoriesController(final CategoriesModel model, final CategoriesView view) {
+        super(model, view);
     }
 }

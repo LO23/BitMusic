@@ -15,6 +15,17 @@ import java.util.Map;
  * @author florian, Pak
  */
 public class Controller {
+    /**
+     * The broadcast address of the network.
+     */
+    private static String broadcastAddress;
+    /**
+     * The network address of the network.
+     */
+    private static String networkAddress;
+    /**
+     * Contains the singleton instance.
+     */
     private static final Controller CONTROLLER = new Controller();
     /**
      * References the HMI API
@@ -61,6 +72,10 @@ public class Controller {
      * Construct a new controller and links all the singleton's instances.
      */
     private Controller() {
+        //Initialisation of IP addresses
+        broadcastAddress = "127.0.0.255";
+        networkAddress = "127.0.0.1";
+
         //Create the directory
         directory = new HashMap<String, String>();
 
@@ -89,6 +104,20 @@ public class Controller {
     /*########################################################################*/
     /* GETTERS */
     /*########################################################################*/
+    /**
+     * Get the broadcast address.
+     * @return the broadcast address
+     */
+    public static String getBroadcastAddress() {
+        return broadcastAddress;
+    }
+    /**
+     * Get the network address.
+     * @return the broadcast address
+     */
+    public static String getNetworkAddress() {
+        return networkAddress;
+    }
     /**
      * Get the ApiHmiImpl.
      * @return instance of ApiHmiImpl
@@ -131,6 +160,14 @@ public class Controller {
     public final WorkManagement getWorkManager() {
         return workManager;
     }
+    /**
+     * Get the Directory.
+     * @return the user directory
+     */
+    public Map<String, String> getDirectory() {
+        return directory;
+    }
+
     /*########################################################################*/
     /* METHODS */
     /*########################################################################*/
@@ -163,4 +200,21 @@ public class Controller {
         }
         directory.remove(userId);
     }
+
+    /**
+     * .
+     * @param userId Id of the user
+     * @return the Ip corresponding to the userId given
+     * @throws Exception An exception is thrown if the userId doesn't exist
+     */
+    public final String getUserIpFromDirectory(final String userId)
+            throws Exception {
+        if (!directory.containsKey(userId)) {
+            apiException.throwException(
+                    EnumTypeException.NetworkDirectoryException,
+                    "The user " + userId + " doesn't exist in the directory.");
+        }
+        return directory.get(userId);
+    }
 }
+

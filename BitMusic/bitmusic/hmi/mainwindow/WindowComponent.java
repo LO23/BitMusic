@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package hmi.mainwindow;
+package bitmusic.hmi.mainwindow;
 
-import hmi.modules.connection.ConnectionComponent;
-import hmi.patterns.AbstractComponent;
+import bitmusic.hmi.modules.connection.ConnectionComponent;
+import bitmusic.hmi.patterns.AbstractComponent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -28,11 +28,13 @@ public class WindowComponent {
         this.view = new WindowView();
         this.controller = new WindowController(this.model, this.view);
         this.view.setWindowController(this.controller);
+        this.view.initFrame();
         this.model.addObserver(this.view);
 
         ConnectionComponent connectionComponent = new ConnectionComponent();
         this.addComponent(connectionComponent);
         this.view.addView(connectionComponent.getView());
+        
     }
 
     /** Holder */
@@ -66,4 +68,8 @@ public class WindowComponent {
     public void removeComponent(AbstractComponent component) {
         this.listComponent.remove(component);
     }
+    
+    public WindowView getWindowView() {
+        return this.view;
+    } 
 }

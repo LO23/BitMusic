@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package hmi.modules.playbar;
+package bitmusic.hmi.modules.playbar;
 
-import hmi.patterns.AbstractModel;
+import bitmusic.hmi.patterns.AbstractModel;
 
 /**
  *
@@ -16,9 +16,5 @@ public final class PlayBarModel extends AbstractModel {
 
     public PlayBarModel() {
         super();
-    }
-
-    public void doConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

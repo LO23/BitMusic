@@ -8,7 +8,11 @@ package bitmusic.network.main;
 
 import bitmusic.music.data.Song;
 import bitmusic.network.api.ApiHmi;
+import bitmusic.network.message.AbstractMessage;
+import bitmusic.network.message.EnumTypeMessage;
+import bitmusic.network.message.MessageLogOut;
 import bitmusic.profile.User;
+import java.util.Map;
 
 /**
  *
@@ -44,7 +48,35 @@ public final class ApiHmiImpl implements ApiHmi {
      */
     @Override
     public void logOut(final String userId) throws Exception {
+        //Get the source address
+        String sourceAddress;
 
+        //Warning, it may emmit an exception thrown to the calling method!
+        sourceAddress = Controller.getInstance().
+                getUserIpFromDirectory(userId);
+
+        AbstractMessage message = null;
+        //Loop on the directory
+        Map<String, String> userDirectory = Controller.getInstance().getDirectory();
+        for (Map.Entry<String, String> entry : userDirectory.entrySet()) {
+            //entry.getValue()) contains remote user IP
+
+            //Construct a message
+            message = new MessageLogOut(
+                //Type of message
+                EnumTypeMessage.LogOut,
+                //Source address
+                sourceAddress,
+                //Destination address
+                entry.getValue(),
+                //userId
+                userId,
+                //Remote userId
+                entry.getKey());
+
+            //Give the message to a worker...
+            Controller.getInstance().getWorkManager().assignTaskToWorker(message);
+        }
     }
     /**
      * Save, on local user machine, a song from a distant user machine.
@@ -84,7 +116,7 @@ public final class ApiHmiImpl implements ApiHmi {
      * @return  True if the request was correctly sent
      */
     @Override
-    public boolean getSong(final User userAsked, final Song requestedSong,
+    public boolean getSong(final String userAsked, final Song requestedSong,
             final boolean temporary) {
         boolean bool = false;
 
@@ -99,7 +131,7 @@ public final class ApiHmiImpl implements ApiHmi {
      * @return  True if the request was correctly sent
      */
     @Override
-    public boolean getSong(final User userAsked, final Song requestedSong) {
+    public boolean getSong(final String userAsked, final Song requestedSong) {
         return this.getSong(userAsked, requestedSong, true);
     }
     /**
