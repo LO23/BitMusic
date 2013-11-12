@@ -21,6 +21,7 @@ import javax.swing.JTable;
 public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     private final String type = "WEST";
+    private final JLabel onlineUsersLabel = new JLabel("En ligne :");
     private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
     private JTable table;
 
@@ -34,11 +35,10 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
         Dimension d = new Dimension(80, 20);
 
-        JLabel onlineUsersLabel = new JLabel("En ligne :");
-        onlineUsersLabel.setSize(d);
+        this.onlineUsersLabel.setSize(d);
 
-        table = new JTable(modeleTable);
-        JScrollPane tableauPane = new JScrollPane(table);
+        this.table = new JTable(this.modeleTable);
+        JScrollPane tablePane = new JScrollPane(this.table);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -50,14 +50,14 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
             layout.createSequentialGroup()
                 .addComponent(onlineUsersLabel)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(tableauPane)
+                    .addComponent(tablePane)
                 )
          );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
                .addComponent(onlineUsersLabel)
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(tableauPane)
+                    .addComponent(tablePane)
                )
         );
 
