@@ -81,7 +81,7 @@ public class SongRater {
     }
     
     /**
-     * Get comments.
+     * Get grades.
      *
      * @param songId Song ID
      *
