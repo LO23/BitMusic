@@ -9,7 +9,7 @@ package bitmusic.network.main;
 import bitmusic.network.api.ApiMusic;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 import java.util.ArrayList;
 import java.util.List;
 

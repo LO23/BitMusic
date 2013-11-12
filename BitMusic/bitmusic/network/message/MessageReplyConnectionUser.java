@@ -5,7 +5,7 @@
  */
 
 package bitmusic.network.message;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 
 /**
  * Message to send our profile to a newly connected user.

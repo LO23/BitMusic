@@ -6,7 +6,7 @@
 
 package bitmusic.network.message;
 
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 
 /**
  * Message to notify to distant user that we are logged in.
