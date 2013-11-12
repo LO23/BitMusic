@@ -23,7 +23,7 @@ public class WindowModel extends Observable {
     }
 
     public void logOut() {
-        String myId = WindowComponent.getInstance().getApiProfile().getCurrentUser().getUserId();
+        // String myId = WindowComponent.getInstance().getApiProfile().getCurrentUser().getUserId();
         // WindowComponent.getInstance().getApiNetwork().logOut(myId);
         this.notifyObservers("DECONNECTION");
     }

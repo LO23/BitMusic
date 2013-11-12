@@ -26,7 +26,7 @@ public class WindowController {
     public class WindowComponentListener implements WindowListener {
         @Override
         public void windowClosing(WindowEvent e) {
-            System.out.println("- Fermeture de l'application");
+            System.out.println("- Fermeture de l'application en cours...");
 
             WindowModel model = WindowController.this.getWindowModel();
             model.logOut();
