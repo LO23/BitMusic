@@ -46,7 +46,7 @@ public class ApiProfileImpl implements ApiProfile {
             throw new ProfileExceptions(ProfileExceptionType.PasswordNull);
         }
 
-        currentUser = new User(login, password, firstName, lastName, birthDate, avatarPath);
+        //currentUser = new User(login, password, firstName, lastName, birthDate, avatarPath);
 
     }
 
