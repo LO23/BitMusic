@@ -99,12 +99,15 @@ public class WindowView extends JFrame implements Observer, WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
+
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
+        this.windowController.getWindowModel().notifyObservers("DECONNECTION");
+        this.dispose();
+        System.out.println("----- WindowView.windowClosing()");
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
