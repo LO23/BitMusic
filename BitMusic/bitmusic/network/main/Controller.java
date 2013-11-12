@@ -51,9 +51,8 @@ public class Controller {
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
-    private TCPNetworkListener TCPNETLISTENER;
+    private NetworkListener NETLISTENER;
 
-    private UDPNetworkListener UDPNETLISTER;
 
     /**
      * References the worker manage
