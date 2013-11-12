@@ -8,7 +8,7 @@ package bitmusic.hmi.api;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersModel;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 
 /**
  *

@@ -7,7 +7,7 @@
 package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractModel;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 import java.util.ArrayList;
 
 /**

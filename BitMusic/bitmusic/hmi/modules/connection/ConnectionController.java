@@ -10,7 +10,7 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.api.ApiHmi;
-import bitmusic.profile.User;
+import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
