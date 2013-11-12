@@ -4,14 +4,18 @@
  * and open the template in the editor.
  */
 
-package bitmusic.profile.xml;
+package bitmusic.profile.saving;
 
 import bitmusic.profile.Profile;
-import bitmusic.profile.utilities.*;
+import bitmusic.profile.classes.User;
+import bitmusic.profile.utilities.ProfileExceptionType;
+import bitmusic.profile.utilities.ProfileExceptions;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -20,52 +24,48 @@ import java.nio.file.Path;
  *
  * @author Holywa
  */
-public class UserSaver {
+public class UserParser {
     //########################## ATTRIBUTES ##########################//
+
     /**
      *
      */
     private Path defaultPath;
 
+    //######################### CONSTRUCTORS ###########################//
     /**
      *
      */
-
-    //######################### CONSTRUCTORS ###########################//
-
-    public UserSaver() {
-        //TODO
-        //Check where is the default path to got through user docs
+    public UserParser() {
         this.defaultPath = FileSystems.getDefault().getPath("");
     }
 
     //########################### METHODS ##############################//
 
     /**
-     *
+     * 
      * @throws ProfileExceptions
      */
-    public void saveUser() throws ProfileExceptions {
+    public void loadUser() throws ProfileExceptions {
         try {
-            FileOutputStream saveFile = new FileOutputStream(defaultPath.toString());
-            ObjectOutputStream oos = new ObjectOutputStream(saveFile);
-            oos.writeObject(Profile.getCurrentUser());
-            oos.flush();
-            oos.close();
+            FileInputStream saveFile = new FileInputStream(defaultPath.toString());
+            ObjectInputStream ois = new ObjectInputStream(saveFile);
+            User loadedUser = (User) ois.readObject();
+            Profile.setCurrentUser(loadedUser);
+            ois.close();
         }
         catch(FileNotFoundException eFound) {
-            throw new ProfileExceptions(ProfileExceptionType.CreationFileError);
+            throw new ProfileExceptions(ProfileExceptionType.ExistingFileError);
         }
         catch(IOException eIO) {
-            throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
+            throw new ProfileExceptions(ProfileExceptionType.ReadingFileError);
+        }
+        catch(ClassNotFoundException eClass) {
+            throw new ProfileExceptions(ProfileExceptionType.FindingClassUserError);
         }
     }
 
-    /**
-     *
-     * @throws ProfileExceptions
-     */
-    public void saveAuthFile() throws ProfileExceptions {
+    /*public void saveAuthFile() throws ProfileExceptions {
         try {
             FileOutputStream authFile = new FileOutputStream(defaultPath.toString());
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
@@ -79,6 +79,6 @@ public class UserSaver {
         catch(IOException eIO) {
             throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
         }
-    }
+    }*/
 
 }

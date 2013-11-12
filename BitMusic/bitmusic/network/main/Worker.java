@@ -24,7 +24,6 @@ import bitmusic.network.message.MessageUpdateCommentNotification;
 
 /**
  *@author Pak
- * A worker thread must implement Thread or Runnable.
  * Worker manages INCOMING message as tasks.
  */
 public class Worker implements Runnable {
@@ -46,7 +45,7 @@ public class Worker implements Runnable {
      */
     @Override
     public void run() {
-        //use strategy to achieve task here
+        //achieve task here
     }
 
     /**

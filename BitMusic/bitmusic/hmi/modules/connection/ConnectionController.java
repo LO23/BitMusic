@@ -9,7 +9,7 @@ package bitmusic.hmi.modules.connection;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.api.ApiHmi;
+import bitmusic.hmi.api.ApiHmiImpl;
 import bitmusic.hmi.modules.accountcreation.AccountCreationComponent;
 import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
@@ -47,8 +47,8 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
                 // TODO : Appel d'une méthode du model qui fait appel à une méthode de API network
                 //         pour récupérer une liste des utilisateurs connectés
-                ApiHmi apiHmi = new ApiHmi();
-                apiHmi.notifyNewConnection(new User("MonLogin","MonMdP"));
+                WindowComponent.getInstance().getApiHmi().notifyNewConnection(new User("MonLogin","MonMdP"));
+
             } else {
                 JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
             }

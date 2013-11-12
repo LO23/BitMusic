@@ -5,8 +5,8 @@
  */
 
 package bitmusic.network.main;
+import bitmusic.network.message.AbstractMessage;
 import java.util.List;
-import bitmusic.network.message.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.ArrayList;
@@ -17,34 +17,35 @@ import java.util.ArrayList;
  */
 public final class WorkManagement {
     /**
-    * singleton implementation
+    * singleton implementation.
     */
     private static final WorkManagement WORKMANAGER = new WorkManagement();
     /**
-     * Constructor initialize workers list
+     * executor.
      */
-    private WorkManagement(){ workers = new ArrayList<Runnable>(); }
-    /**
-     * @return unique instance of WorkManagement
-     */
-    protected static WorkManagement getInstance() {
-        return WORKMANAGER;
-    }
-    /**
-    * list of current workers
-    */
-    private List<Runnable> workers;
+    private final transient ExecutorService executorService
+            = Executors.newFixedThreadPool(NWORKERS, null);
 
     /**
-    * Threads pool size
+    * list of current workers.
+    */
+    private final transient List<Runnable> workers = new ArrayList();
+    /**
+    * Threads pool size.
     */
     private static final int NWORKERS = 10;
 
     /**
-     * executor
+     * Constructor initialize workers list.
      */
-    private final ExecutorService executorService
-            = Executors.newFixedThreadPool(NWORKERS, null);
+    private WorkManagement() { }
+    /**
+     * @return unique instance of WorkManagement.
+     */
+    protected static WorkManagement getInstance() {
+        return WORKMANAGER;
+    }
+
 
     /**
     * Creates a worker (thread) and initiate it with a message.
@@ -54,14 +55,48 @@ public final class WorkManagement {
     * At the end of run(), the worker destroys itself.
     * @param task message treated as a task
     */
-    public void assignTaskToWorker(AbstractMessage task){
-
+    public void assignTaskToWorker(final AbstractMessage task) {
+        if (weAreTesting()) {
+            task.setIpDest(LOOP_ADRESS);
+        }
         final Runnable worker = new Worker(task);
         workers.add(worker);
         executorService.execute(worker);
-
     }
 
 
+
+
+    // ##################################
+    // ## ##       TEST TOOLS       ## ##
+    // ##################################
+
+    /**
+     * must be true when testing the app.
+     */
+    private transient boolean testContext = false;
+    /**
+     * Common loop ip adress for network.
+     */
+    private static final String LOOP_ADRESS = "127.0.0.1";
+    /**
+     * (QUALITY) Prepare the workManager for some tests.
+     */
+    public void prepareForTest() {
+        this.testContext = true;
+    }
+    /**
+     * (QUALITY) Undo prepareForTest().
+     */
+    public void endTest() {
+        this.testContext = false;
+    }
+    /**
+     * Are we testing the app ?.
+     * @return true if we are testing the app
+     */
+    private boolean weAreTesting() {
+        return this.testContext;
+    }
 
 }
