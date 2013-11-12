@@ -6,7 +6,16 @@
 
 package bitmusic.hmi.modules.accountcreation;
 
+import bitmusic.hmi.api.ApiHmi;
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.connection.ConnectionController;
+import bitmusic.hmi.modules.connection.ConnectionModel;
+import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.profile.classes.User;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
