@@ -11,6 +11,7 @@ import bitmusic.network.main.Controller;
 import bitmusic.hmi.api.ApiHmi;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.exception.NetworkDirectoryException;
+import bitmusic.profile.api.ApiProfileImpl;
 
 
 
@@ -49,7 +50,7 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
      * .
      */
     @Override
-public void treatment() {
+    public void treatment() {
        try {
            //Add user to the directory
            Controller.getInstance()
@@ -60,11 +61,10 @@ public void treatment() {
            //Notify user connecxion to HMI
            apiHmi.notifyNewConnection(this.user);
 
-           //Build an answer message to the new user
-           MessageReplyConnectionUser message = null;
-           //User currentUser = Profile.getInstance().getCurrentUser();
+           final User currentUser = ApiProfileImpl.getApiProfile().getCurrentUser();
 
-           /*message = new MessageReplyConnectionUser(
+           //Build an answer message to the new user
+           MessageReplyConnectionUser message = new MessageReplyConnectionUser(
                    //Type of Message
                    EnumTypeMessage.ReplyConnectionUser,
                    //IP Source
@@ -72,10 +72,10 @@ public void treatment() {
                    //IP Dest
                    this.getIpSource(),
                    //User Profile
-                   currentUser);*/
+                   currentUser);
 
-           Controller.getInstance().getWorkManager()
-                                   .assignTaskToWorker(message);
+           Controller.getInstance().getThreadManager()
+                                   .assignTaskToHermes(message);
 
        } catch (NetworkDirectoryException exception) {
                //Send to Controller?

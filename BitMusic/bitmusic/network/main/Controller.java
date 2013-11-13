@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author florian, Pak
  */
-public class Controller {
+public final class Controller {
     /**
      * The broadcast address of the network.
      */
@@ -59,7 +59,7 @@ public class Controller {
      * References the worker manage
      * (Due to the composition link on the class diagram).
      */
-    private WorkManagement workManager;
+    private ThreadManager threadManager;
     /**
      * Contains the correspondance between UserId and Ips.
      */
@@ -89,8 +89,8 @@ public class Controller {
         NETLISTENER = bitmusic.network.main.NetworkListener.getInstance();
 
         //Contains the WorkManager instance
-        //workManager = bitmusic.network.main.WorkManagement.getInstance();
-        workManager = null;
+        threadManager = bitmusic.network.main.ThreadManager.getInstance();
+
     }
 
     /**
@@ -157,8 +157,8 @@ public class Controller {
      * Get the WorkManager.
      * @return instance of WorkManager
      */
-    public final WorkManagement getWorkManager() {
-        return workManager;
+    public final ThreadManager getThreadManager() {
+        return threadManager;
     }
     /**
      * Get the Directory.
@@ -175,7 +175,7 @@ public class Controller {
      * Add a user to the directory.
      * @param userId Id of the user
      * @param ipAddress Ip address of the user
-     * @throws Exception An exception is thrown if the userId already exist
+     * @throws NetworkDirectoryException An exception is thrown if the userId already exist
      */
     public final void addUserToDirectory(final String userId,
                final String ipAddress) throws NetworkDirectoryException {
@@ -224,12 +224,12 @@ public class Controller {
      * Prepare the app for test.
      */
     public final void prepareForTest() {
-        this.getWorkManager().prepareForTest();
+        this.getThreadManager().prepareForTest();
     }
     /**
      * Undo prepareForTest().
      */
     public void endTest() {
-        this.getWorkManager().endTest();
+        this.getThreadManager().endTest();
     }
 }
