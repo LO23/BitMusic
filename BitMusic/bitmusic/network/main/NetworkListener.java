@@ -18,6 +18,7 @@ import java.nio.channels.SelectionKey;
 import java.util.Set;
 import java.util.Iterator;
 import java.nio.channels.Channel;
+import java.nio.channels.SocketChannel;
 
 
 /**
@@ -40,12 +41,12 @@ public final class NetworkListener implements Runnable {
     /**
      * TCP channel
      */
-    private final ServerSocketChannel TCPSERVER;
+    private ServerSocketChannel TCPSERVER;
 
     /**
      * UDP channel
      */
-    private final DatagramChannel UDPSERVER;
+    private DatagramChannel UDPSERVER;
 
     /**
     * Singleton thread implementation.
@@ -54,19 +55,19 @@ public final class NetworkListener implements Runnable {
             NETLISTENER = new NetworkListener(4444);
 
     /**
-     * default constructor.
+     * Default constructor.
+     * @param portToListen The port number
      */
-    private NetworkListener(int portToListen)
-
-    {
-        PORTLISTENED= portToListen;
+    private NetworkListener(final int portToListen) {
+        PORTLISTENED = portToListen;
         LOCALPORT = new InetSocketAddress(PORTLISTENED);
-
-        try{
-        TCPSERVER = ServerSocketChannel.open();
-        TCPSERVER.socket().bind(LOCALPORT);
-        UDPSERVER = DatagramChannel.open();
-        UDPSERVER.socket().bind(LOCALPORT);
+        TCPSERVER = null;
+        UDPSERVER = null;
+        try {
+            TCPSERVER = ServerSocketChannel.open();
+            TCPSERVER.socket().bind(LOCALPORT);
+            UDPSERVER = DatagramChannel.open();
+            UDPSERVER.socket().bind(LOCALPORT);
         /**
          * configure blocking mode to false
          * since our Selector will do blocking for us
@@ -74,10 +75,13 @@ public final class NetworkListener implements Runnable {
         TCPSERVER.configureBlocking(false);
         UDPSERVER.configureBlocking(false);
 
-        } catch (IOException e ){
+        } catch (IOException e ) {
             e.printStackTrace();
         }
+    }
 
+    public int getPORTLISTENED() {
+        return PORTLISTENED;
     }
 
     /**
@@ -89,15 +93,6 @@ public final class NetworkListener implements Runnable {
     }
 
     /**
-    * Upon receiving a task (a message),
-    * schedule this task to a worker thanks to the work manager.
-    * @param task is a message
-    */
-    public void scheduleTask(final AbstractMessage task) {
-        WorkManagement.getInstance().assignTaskToWorker(task);
-    }
-
-      /**
      * TCP network listening behavior.
      */
     @Override
@@ -121,16 +116,9 @@ public final class NetworkListener implements Runnable {
                     SelectionKey key = i.next();
                     i.remove();
 
-                    Channel c = key.channel();
-
-                    if (key.isAcceptable() && c == TCPSERVER) {
-                        /**
-                         * TODO: create a thread processing this TCP connection
-                         */
-                    } else if (key.isReadable() && c == UDPSERVER) {
-                        /**
-                         * TODO: create a thread processing this UDP connection
-                         */
+                    if (key.isAcceptable() || key.isReadable()) {
+                        SocketChannel sc = (SocketChannel) key.channel();
+                        Controller.getInstance().getThreadManager().assignTaskToWorker(sc.socket());
                     }
                 }
             } catch (Exception e) {

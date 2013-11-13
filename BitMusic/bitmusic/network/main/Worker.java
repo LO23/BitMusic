@@ -7,37 +7,27 @@
 package bitmusic.network.main;
 
 import bitmusic.network.message.AbstractMessage;
-import bitmusic.network.message.MessageAddComment;
-import bitmusic.network.message.MessageErrorNotification;
-import bitmusic.network.message.MessageGetSongFile;
-import bitmusic.network.message.MessageGetSongsByUser;
-import bitmusic.network.message.MessageGetUser;
-import bitmusic.network.message.MessageLogOut;
-import bitmusic.network.message.MessageNotifyNewConnection;
-import bitmusic.network.message.MessageReplyConnectionUser;
-import bitmusic.network.message.MessageSearchSongsByTag;
-import bitmusic.network.message.MessageSendSongFile;
-import bitmusic.network.message.MessageSendSongList;
-import bitmusic.network.message.MessageSendUser;
-import bitmusic.network.message.MessageTagRequest;
-import bitmusic.network.message.MessageUpdateCommentNotification;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 /**
  *@author Pak
  * Worker manages INCOMING message as tasks.
  */
-public class Worker implements Runnable {
+public class Worker extends AbstractManageable {
 
     /**
      * message.
      */
-    private AbstractMessage message;
+    private Socket socket;
 
     /**
     *@param task task to do
     */
-    Worker(final AbstractMessage task) {
-          message = task;
+    Worker(final Socket paramSocket) {
+          socket = paramSocket;
     }
 
     /**
@@ -45,15 +35,28 @@ public class Worker implements Runnable {
      */
     @Override
     public void run() {
-        //achieve task here
+        try {
+
+            final ObjectInputStream ois = new ObjectInputStream(
+                    socket.getInputStream());
+            try {
+                AbstractMessage message = (AbstractMessage) ois.readObject();
+
+                message.treatment();
+            } catch (ClassNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
      *
      * @return message
      */
-    public final AbstractMessage getMessage() {
-        return message;
+    public final Socket getSocket() {
+        return socket;
     }
 }
 
