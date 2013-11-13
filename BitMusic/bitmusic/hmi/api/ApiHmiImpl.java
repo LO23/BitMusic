@@ -36,8 +36,9 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void removeUserFromOnlineUsersId(String userId) {
-        //TODO
+    public void removeUserFromOnlineUsers(String userId) {// pourquoi ne pas passer un User lightUserLan en argument directement ? et pourquoi ne pas encore + simplement utiliser la méthode getListUser de apiNetwork ?
+        OnlineUsersModel onlineUsersModel = (OnlineUsersModel) WindowComponent.getInstance().getComponent("OnlineUsersComponent").get(0).getModel();
+        onlineUsersModel.removeUser(userId);
     }
 
 }

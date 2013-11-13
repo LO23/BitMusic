@@ -28,10 +28,12 @@ public final class OnlineUsersModel extends AbstractModel {
         this.notifyObservers("ADD_ONLINE_USER");
     }
 
-    public void removeUser(User user) {
+    public void removeUser(String userId) {
         boolean userRemoved = false;
+        User tempUser;
         for ( int i=0; i<listUsersOnline.size(); i++) {
-            if (this.listUsersOnline.get(i).equals(user)) {
+            tempUser = this.listUsersOnline.get(i).getContact(userId); // méthode de apiNetwork (getContact)
+            if (this.listUsersOnline.get(i).equals(tempUser)) {
                 this.listUsersOnline.remove(i);
                 userRemoved = true;
             }
