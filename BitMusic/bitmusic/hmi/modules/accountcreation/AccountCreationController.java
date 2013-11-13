@@ -28,7 +28,7 @@ public final class AccountCreationController extends AbstractController<AccountC
     public AccountCreationController(final AccountCreationModel model, final AccountCreationView view) {
         super(model, view);
     }
-    public class AccountCreationListener implements ActionListener {
+    public class AvatarBrowseListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Parcourir");
@@ -36,9 +36,9 @@ public final class AccountCreationController extends AbstractController<AccountC
             JLabel path = new JLabel();
             int returnVal = file.showSaveDialog(null);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("---- OK");
-            path.setText(file.getSelectedFile().getPath());
+                System.out.println("---- OK");
+                path.setText(file.getSelectedFile().getPath());
             }
         }
-}
+    }
 }

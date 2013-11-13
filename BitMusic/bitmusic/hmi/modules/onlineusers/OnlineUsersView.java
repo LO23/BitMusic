@@ -24,6 +24,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     private final JLabel onlineUsersLabel = new JLabel("En ligne :");
     private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
     private JTable table;
+    private JScrollPane onlineUsersTablePane;
 
     public OnlineUsersView() {
         super();
@@ -38,7 +39,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         this.onlineUsersLabel.setSize(d);
 
         this.table = new JTable(this.modeleTable);
-        JScrollPane tablePane = new JScrollPane(this.table);
+        this.onlineUsersTablePane = new JScrollPane(this.table);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -50,14 +51,14 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
             layout.createSequentialGroup()
                 .addComponent(onlineUsersLabel)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(tablePane)
+                    .addComponent(onlineUsersTablePane)
                 )
          );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
                .addComponent(onlineUsersLabel)
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(tablePane)
+                    .addComponent(onlineUsersTablePane)
                )
         );
 

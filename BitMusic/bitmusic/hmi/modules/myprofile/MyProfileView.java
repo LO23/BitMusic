@@ -10,12 +10,7 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 /**
  *

@@ -83,10 +83,10 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
 
         //JDateChooser picker = new JDateChooser();
 
-        JButton browseButton = new JButton("Parcourir...");
-        browseButton.setSize(d);
+        JButton avatarbrowseButton = new JButton("Parcourir...");
+        avatarbrowseButton.setSize(d);
         //final JLabel path = new JLabel();
-        browseButton.addActionListener(this.getController().new AccountCreationListener());
+        avatarbrowseButton.addActionListener(this.getController().new AvatarBrowseListener());
         //file.showSaveDialog(this);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
@@ -115,7 +115,7 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
                     .addComponent(prenomField)
                     .addComponent(nomField)
                     //.addComponent(picker)
-                    .addComponent(browseButton)
+                    .addComponent(avatarbrowseButton)
                     .addComponent(resetButton)
                 )
 
@@ -149,7 +149,7 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
                )
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(avatarLabel)
-                    .addComponent(browseButton)
+                    .addComponent(avatarbrowseButton)
                )
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(connectButton)
@@ -164,7 +164,7 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
         layout.linkSize(SwingConstants.HORIZONTAL, prenomLabel, prenomField);
         layout.linkSize(SwingConstants.HORIZONTAL, nomLabel, nomField);
         //layout.linkSize(SwingConstants.HORIZONTAL, birthLabel, picker);
-        layout.linkSize(SwingConstants.HORIZONTAL, avatarLabel, browseButton);
+        layout.linkSize(SwingConstants.HORIZONTAL, avatarLabel, avatarbrowseButton);
 
         // TO FINISH AND TEST
     }
