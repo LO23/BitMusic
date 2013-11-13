@@ -97,39 +97,35 @@ public final class NetworkListener implements Runnable {
      */
     @Override
     public void run() {
-
         try{
+            Selector selector = Selector.open();
+            TCPSERVER.register(selector, SelectionKey.OP_ACCEPT);
+            UDPSERVER.register(selector, SelectionKey.OP_READ);
 
-        Selector selector = Selector.open();
-        TCPSERVER.register(selector, SelectionKey.OP_ACCEPT);
-        UDPSERVER.register(selector, SelectionKey.OP_READ);
+            //Loop forever, processing connections
 
-        //Loop forever, processing connections
+            while(true){
+              try {
+                  selector.select();
+                  Set<SelectionKey> keys = selector.selectedKeys();
 
-          while(true){
-            try {
-                selector.select();
-                Set<SelectionKey> keys = selector.selectedKeys();
+                  // Iterate through the Set of keys.
+                  for (Iterator<SelectionKey> i = keys.iterator(); i.hasNext();) {
+                      SelectionKey key = i.next();
+                      i.remove();
 
-                // Iterate through the Set of keys.
-                for (Iterator<SelectionKey> i = keys.iterator(); i.hasNext();) {
-                    SelectionKey key = i.next();
-                    i.remove();
-
-                    if (key.isAcceptable() || key.isReadable()) {
-                        SocketChannel sc = (SocketChannel) key.channel();
-                        Controller.getInstance().getThreadManager().assignTaskToWorker(sc.socket());
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-    } catch (Exception e){
-        e.printStackTrace();
-    }
-
+                      if (key.isAcceptable() || key.isReadable()) {
+                          SocketChannel sc = (SocketChannel) key.channel();
+                          Controller.getInstance().getThreadManager().assignTaskToWorker(sc.socket());
+                      }
+                  }
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+          }
+      } catch (Exception e){
+          e.printStackTrace();
+      }
     }
 
 }

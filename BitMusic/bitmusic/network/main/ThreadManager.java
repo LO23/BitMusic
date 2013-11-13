@@ -52,13 +52,21 @@ public final class ThreadManager {
     * executed if there is an available thread in the pool.
     * One message = one job = one worker
     * At the end of run(), the worker destroys itself.
-    * @param task message treated as a task
+    * @param socket socket treated as a task
     */
     public void assignTaskToWorker(final Socket socket) {
         final AbstractManageable worker = new Worker(socket);
         executorService.execute(worker);
     }
-
+    /**
+     *
+     * Creates an hermes messenger (thread) and initiate it with a message.
+     * The task will be scheduled and
+     * executed if there is an available thread in the pool.
+     * One message = one job = one hermes messenger
+     * At the end of run(), the hermes destroys itself.
+     * @param task
+     */
     public void assignTaskToHermes(final AbstractMessage task) {
         if (weAreTesting()) {
             task.setIpDest(LOOP_ADRESS);

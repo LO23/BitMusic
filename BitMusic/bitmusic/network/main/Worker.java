@@ -19,28 +19,30 @@ import java.net.Socket;
 public class Worker extends AbstractManageable {
 
     /**
-     * message.
+     * The socket use to exchange.
      */
-    private Socket socket;
+    private final transient Socket socket;
 
     /**
-    *@param task task to do
+    *@param paramSocket The socket
     */
     Worker(final Socket paramSocket) {
-          socket = paramSocket;
+        super();
+        socket = paramSocket;
     }
 
     /**
      * Thread running behavior (task to complete).
      */
     @Override
-    public void run() {
+    public final void run() {
         try {
 
             final ObjectInputStream ois = new ObjectInputStream(
                     socket.getInputStream());
             try {
-                AbstractMessage message = (AbstractMessage) ois.readObject();
+                AbstractMessage message;
+                message = (AbstractMessage) ois.readObject();
 
                 message.treatment();
             } catch (ClassNotFoundException e) {
@@ -53,7 +55,7 @@ public class Worker extends AbstractManageable {
 
     /**
      *
-     * @return message
+     * @return socket
      */
     public final Socket getSocket() {
         return socket;
