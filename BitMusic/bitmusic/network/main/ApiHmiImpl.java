@@ -75,7 +75,7 @@ public final class ApiHmiImpl implements ApiHmi {
                 entry.getKey());
 
             //Give the message to a worker...
-            Controller.getInstance().getWorkManager().assignTaskToWorker(message);
+            Controller.getInstance().getThreadManager().assignTaskToHermes(message);
         }
     }
     /**
