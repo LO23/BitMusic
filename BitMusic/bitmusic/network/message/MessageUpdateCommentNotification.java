@@ -54,8 +54,8 @@ public final class MessageUpdateCommentNotification extends AbstractMessage {
      */
     @Override
     public void treatment() {
-        WindowComponent.getInstance().updateCommentNotification(
-            this.song, this.comment);
+        //WindowComponent.getInstance().updateCommentNotification(
+          //  this.song, this.comment);
     }
 
     /**

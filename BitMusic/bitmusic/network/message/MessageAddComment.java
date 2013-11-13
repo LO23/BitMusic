@@ -56,6 +56,7 @@ public final class MessageAddComment extends AbstractMessage {
      */
     @Override
     public void treatment() {
+        final boolean right = true;//a supprimer quand api sera ompl
        // boolean right = ApiMusicImpl..addCommentFromNetwork(
          //       this.song.getSongId(), this.comment);
 
@@ -66,26 +67,27 @@ public final class MessageAddComment extends AbstractMessage {
             for (Map.Entry<String, String> entry : userDirectory.entrySet()) {
 
                 //construct a message
-                AbstractMessage message = new MessageUpdateCommentNotification(
-                        //type of message
-                        EnumTypeMessage.UpdateCommentNotification,
-                        //ip source
-                        Controller.getInstance().getNetworkAddress(),
-                        //ip dest
-                        entry.getValue(),
-                        //userID (who comment)
-                        this.userId,
-                        //songId
-                        this.song,
-                        //comment add
-                        this.comment);
+                final AbstractMessage message =
+                        new MessageUpdateCommentNotification(
+                            //type of message
+                            EnumTypeMessage.UpdateCommentNotification,
+                            //ip source
+                            Controller.getInstance().getNetworkAddress(),
+                            //ip dest
+                            entry.getValue(),
+                            //userID (who comment)
+                            this.userId,
+                            //songId
+                            this.song,
+                            //comment add
+                            this.comment);
                 //send update to all the user
 
                 Controller.getInstance().getThreadManager()
                         .assignTaskToHermes(message);
             }
         } else {
-            AbstractMessage message = new MessageErrorNotification(
+            final AbstractMessage message = new MessageErrorNotification(
                     //type of message
                     EnumTypeMessage.ErrorNotification,
                     //ip source
