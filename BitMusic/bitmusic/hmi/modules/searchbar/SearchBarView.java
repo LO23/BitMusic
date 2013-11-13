@@ -8,6 +8,16 @@ package bitmusic.hmi.modules.searchbar;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import bitmusic.hmi.patterns.AbstractView;
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.GroupLayout;
+import javax.swing.SwingConstants;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+
 
 /**
  *
@@ -16,6 +26,17 @@ import bitmusic.hmi.patterns.Observable;
 public final class SearchBarView extends AbstractView<SearchBarController> {
 
     private final String type = "NORTH";
+    private final JLabel filtreLabel = new JLabel("Filtre :");
+    private final JLabel searchLabel = new JLabel("Recherche...");
+    private final JTextField searchField = new JTextField("Recherche...");
+    private final JButton researchButton = new JButton("rechercher");
+    private final ButtonGroup groupeRadio = new ButtonGroup();
+    private final JRadioButton aucunButton = new JRadioButton("Aucun", true),
+                               titreButton = new JRadioButton("Par titre", false),
+                               auteurButton = new JRadioButton("Par auteur", false),
+                               tagButton = new JRadioButton("Par tag", false);
+
+
 
     public SearchBarView() {
         super();
@@ -25,9 +46,87 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     public void initPanel() {
         System.out.println("--- SearchBarView.initPanel()");
 
-        // TODO
+        Dimension d = new Dimension(80, 20);
+        this.filtreLabel.setSize(d);
+        this.searchField.setSize(d);
+        this.researchButton.setSize(d);
+        this.aucunButton.setSize(d);
+        this.titreButton.setSize(d);
+        this.auteurButton.setSize(d);
+        this.tagButton.setSize(d);
+
+        this.searchField.setColumns(10);
+
+        this.researchButton.addActionListener(this.getController().new ResearchListener());
+
+        GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
+
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+         layout.setHorizontalGroup(
+            layout.createSequentialGroup()
+//                .addComponent(searchField)
+//                .addComponent(researchButton)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(searchLabel)
+                    .addComponent(filtreLabel)
+
+
+
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                     .addComponent(searchField)
+                     .addComponent(researchButton)
+                     .addComponent(aucunButton)
+                     .addComponent(titreButton)
+                     .addComponent(auteurButton)
+                     .addComponent(tagButton)
+
+                )
+
+        );
+         layout.setVerticalGroup(
+            layout.createSequentialGroup()
+
+               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchLabel)
+                    .addComponent(searchField)
+                    .addComponent(researchButton)
+                    )
+               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(filtreLabel)
+                    .addComponent(aucunButton)
+                    .addComponent(titreButton)
+                    .addComponent(auteurButton)
+                    .addComponent(tagButton)
+                    )
+        );
+
+         layout.linkSize(SwingConstants.HORIZONTAL, searchLabel, searchField, researchButton);
+        layout.linkSize(SwingConstants.HORIZONTAL, filtreLabel, aucunButton, titreButton, auteurButton, tagButton);
+
     }
 
+     public JLabel getfiltreLabel() {
+        return this.filtreLabel;
+    }
+
+      public JLabel getsearchLabel() {
+        return this.searchLabel;
+    }
+
+      public JButton getresearchButton() {
+        return this.researchButton;
+    }
+
+      public JTextField getsearchField() {
+        return this.searchField;
+    }
+
+      // TO FINISH AND TEST
+      
     @Override
     public String getType() {
         return type;
