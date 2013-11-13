@@ -5,6 +5,7 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.Comment;
 
@@ -61,7 +62,7 @@ public final class MessageErrorNotification extends AbstractMessage {
      */
     @Override
     public void treatment() {
-
+        WindowComponent.getInstance().errorNotification(this.errorMessage);
     }
 
     /**
