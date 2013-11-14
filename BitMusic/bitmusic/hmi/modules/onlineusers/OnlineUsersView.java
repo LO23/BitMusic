@@ -10,6 +10,7 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,9 +23,9 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     private final String type = "WEST";
     private final JLabel onlineUsersLabel = new JLabel("En ligne :");
-    private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
-    private JTable table;
-    private JScrollPane onlineUsersTablePane;
+    private JTable table = new JTable();
+    private JScrollPane onlineUsersTablePane = new JScrollPane(this.table);
+    private final JButton connectUserButton = new JButton("Test connexion d'un user");
 
     public OnlineUsersView() {
         super();
@@ -36,10 +37,10 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
         Dimension d = new Dimension(80, 20);
 
-        this.onlineUsersLabel.setSize(d);
+        this.connectUserButton.setSize(d);
+        this.connectUserButton.addActionListener(this.getController().new ConnectUserListener());
 
-        this.table = new JTable(this.modeleTable);
-        this.onlineUsersTablePane = new JScrollPane(this.table);
+        this.onlineUsersLabel.setSize(d);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -53,6 +54,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(onlineUsersTablePane)
                 )
+                .addComponent(connectUserButton)
          );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
@@ -60,6 +62,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(onlineUsersTablePane)
                )
+               .addComponent(connectUserButton)
         );
 
 
@@ -73,6 +76,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- OnlineUsersView.update() : " + str);
-        this.modeleTable.setListUsersOnline(this.getController().getModel().getListUsersOnline());
+        this.table.setModel(this.getController().getModel().getModeleTable());
+        this.onlineUsersTablePane.setViewportView(this.table);
     }
 }
