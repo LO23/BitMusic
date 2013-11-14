@@ -6,6 +6,10 @@
 
 package bitmusic.network.message;
 
+import bitmusic.music.api.ApiMusicImpl;
+import bitmusic.music.data.SongLibrary;
+import bitmusic.network.main.Controller;
+
 /**
  * Message send to get the song list of a distant user.
  * @author alexis
@@ -50,6 +54,22 @@ public final class MessageGetSongsByUser extends AbstractMessage {
      */
     @Override
     public void treatment() {
+        SongLibrary songLib = null;
+               // songLib = ApiMusicImpl.getInstance().
+               // getSongsByUser(this.getAskedUser()); a remettre quand Music aura fait son API
+        AbstractMessage message = new MessageSendSongList(
+                //type of message
+                EnumTypeMessage.SendSongList,
+                //ip source
+                Controller.getNetworkAddress(),
+                //ip dest
+                this.getIpSource(),
+                //search ID
+                this.getResearchId(),
+                //song library
+                songLib);
+
+        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
 
     }
 
