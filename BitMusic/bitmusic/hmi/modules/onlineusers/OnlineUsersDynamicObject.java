@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  * @author hebergui <hebergui.utc@gmail.com>
  */
 public class OnlineUsersDynamicObject extends AbstractTableModel {
-    private ArrayList<User> listUsers = new ArrayList<User>();
+    private ArrayList<User> listUsers = new ArrayList<>();
     private final String[] header = {"Login", "MdP"};
 
     public OnlineUsersDynamicObject() {
