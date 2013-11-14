@@ -21,7 +21,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
         super(model, view);
     }
 
-    public class DisconnectListener implements ActionListener {
+    public class LogoutListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Disconnect");
