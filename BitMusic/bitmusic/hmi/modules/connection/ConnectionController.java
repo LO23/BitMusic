@@ -32,6 +32,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             System.out.println("---- Clic sur le bouton Connection");
 
             ConnectionModel model = ConnectionController.this.getModel();
+            ConnectionView view = ConnectionController.this.getView();
 
             if (model.doConnection() == true) {
                 // On enlève le ConnectionComponent et la ConnectionView des "objets utilisés"
@@ -46,7 +47,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
                 // TODO : Appel d'une méthode du model qui fait appel à une méthode de API network
                 //         pour récupérer une liste des utilisateurs connectés
-                WindowComponent.getInstance().getApiHmi().notifyNewConnection(new User("MonLogin","MonMdP"));
+                WindowComponent.getInstance().getApiHmi().notifyNewConnection(new User(view.getLoginField().getText(),view.getPasswordField().getText()));
 
             } else {
                 JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
