@@ -18,19 +18,23 @@ import bitmusic.profile.classes.User;
 public final class ApiHmiImpl implements ApiHmi {
 
 
+    @Override
     public void notifyLightProfile(User user, String searchId) {
         //TODO
     }
 
+    @Override
     public void notifyNewConnection(User lightUserLan){
         OnlineUsersModel onlineUsersModel = (OnlineUsersModel) WindowComponent.getInstance().getComponent("OnlineUsersComponent").get(0).getModel();
         onlineUsersModel.addUser(lightUserLan);
     }
 
+    @Override
     public void notifySongListByUserId(String userID, SongLibrary songLibrary) {
         //TODO
     }
 
+    @Override
     public void notifySongListBySearchId(String searchId, SongLibrary songList) {
         //TODO
     }
