@@ -22,7 +22,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     private final JButton myProfileButton = new JButton("Mon Profil");
     private final JButton mySongsButton = new JButton("Mes morceaux");
-    private final JButton disconnectButton = new JButton("Déconnexion");
+    private final JButton logoutButton = new JButton("Déconnexion");
     private final JButton importSongButton = new JButton("Importer un titre");
     // TO DO : ajouter l'image de l'avatar
 
@@ -39,7 +39,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     }
 
     public JButton getDisconnectButton() {
-        return disconnectButton;
+        return logoutButton;
     }
 
     public JButton getImportSongButton() {
@@ -50,20 +50,20 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     public void initPanel() {
         System.out.println("--- MyProfileView.initPanel()");
 
-        Dimension d = new Dimension(80, 20);
+        final Dimension d = new Dimension(80, 20);
 
         this.myProfileButton.setSize(d);
         this.mySongsButton.setSize(d);
-        this.disconnectButton.setSize(d);
+        this.logoutButton.setSize(d);
         this.importSongButton.setSize(d);
 
-        this.myProfileButton.addActionListener(this.getController().new DisconnectListener());
+        this.myProfileButton.addActionListener(this.getController().new LogoutListener());
 
         GridLayout layout = new GridLayout(0,2);
         this.getPanel().setLayout(layout);
         this.getPanel().add(myProfileButton);
         this.getPanel().add(mySongsButton);
-        this.getPanel().add(disconnectButton);
+        this.getPanel().add(logoutButton);
         this.getPanel().add(importSongButton);
 
 
