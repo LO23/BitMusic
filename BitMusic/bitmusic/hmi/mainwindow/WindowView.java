@@ -37,6 +37,7 @@ public class WindowView extends JFrame implements Observer {
 
     public void initFrame() {
         System.out.println("-- WindowView.initFrame()");
+        
         this.setTitle("BitMusic");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
