@@ -33,10 +33,8 @@ public final class OnlineUsersModel extends AbstractModel {
         ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
 
         boolean userRemoved = false;
-        User tempUser;
         for ( int i=0; i<listOnlineUsers.size(); i++) {
-            tempUser = listOnlineUsers.get(i).getContact(userId); // méthode de apiNetwork (getContact)
-            if (listOnlineUsers.get(i).equals(tempUser)) {
+            if (listOnlineUsers.get(i).getUserId().equals(userId)) {
                 listOnlineUsers.remove(i);
                 userRemoved = true;
             }
@@ -46,7 +44,7 @@ public final class OnlineUsersModel extends AbstractModel {
             this.notifyObservers("REMOVE_ONLINE_USER");
         }
         else {
-            System.out.println("--- Error: User doesn't exist, or is not online");
+            System.out.println("--- Error: User doesn't exist");
         }
     }
 
