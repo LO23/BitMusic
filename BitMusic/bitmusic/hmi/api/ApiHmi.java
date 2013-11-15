@@ -19,4 +19,5 @@ public interface ApiHmi {
     public abstract void notifySongListByUserId(String userID, SongLibrary songLibrary);
     public abstract void notifySongListBySearchId(String searchId, SongLibrary songList);
     public abstract void removeUserFromOnlineUsers(String userId);
+    public abstract void notifyNewTag(String tag);
 }

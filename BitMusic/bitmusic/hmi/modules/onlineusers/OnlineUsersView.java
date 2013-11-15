@@ -66,6 +66,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         );
 
 
+        this.update(null, type);
     }
 
     @Override
