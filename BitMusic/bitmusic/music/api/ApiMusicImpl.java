@@ -7,14 +7,40 @@
 package bitmusic.music.api;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
+import bitmusic.music.data.SongLibrary;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Doha
  */
 
-public class ApiMusicImpl implements ApiMusic {
+public final class ApiMusicImpl implements ApiMusic {
+    
+    /**
+    * Singleton implementation.
+    */
+    private static final ApiMusicImpl APIMUSICIMPL = new ApiMusicImpl();
+
+    /**
+     * Private constructor for singleton pattern.
+     */
+    private ApiMusicImpl() { }
+
+    /**
+     * .
+     * @return Unique instance of ApiMusicImpl
+     */
+    public static ApiMusicImpl getInstance() {
+        return APIMUSICIMPL;
+    }
+    
+    
+    
+    /*########################################################################*/
+    /* IMPLEMENTED METHODS */
+    /*########################################################################*/
     
     /**
      * add a comment to a local song
@@ -72,17 +98,6 @@ public class ApiMusicImpl implements ApiMusic {
    
    };
    
-   /**
-    * update a song rights
-    * 
-    * @param songid
-    * @param rights 
-    */
-    public void changeRigthsOfThisSong (String songid, Rights rights) {
-        
-        // TO DO
-    
-    };
     
     /**
      * play a song from a distant user
@@ -101,6 +116,22 @@ public class ApiMusicImpl implements ApiMusic {
         
     return songid;
     };
+
+    @Override
+    public SongLibrary searchSongsByTags(List<String> tagList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+    * update a song rights
+    * 
+    * @param songid
+    * @param rights 
+    */
+    @Override
+    public void changeRightsOfThisSong(String songid, Rights rights) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
