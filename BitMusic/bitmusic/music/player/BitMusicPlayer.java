@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package bitmusic.music.api.player;
+package bitmusic.music.player;
 
+import bitmusic.music.api.player.*;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
