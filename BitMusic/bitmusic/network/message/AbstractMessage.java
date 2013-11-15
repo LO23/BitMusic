@@ -6,11 +6,17 @@
 
 package bitmusic.network.message;
 
+import java.io.Serializable;
+
 /**
  * Abstract class for messages.
  * @author florian, alexis
  */
-public abstract class AbstractMessage {
+public abstract class AbstractMessage implements Serializable {
+    /**
+     * Serialization number.
+     */
+    private static final long serialVersionUID = 1L;
     /**
      * Type of the message.
      */

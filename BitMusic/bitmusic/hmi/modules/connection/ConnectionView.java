@@ -45,7 +45,8 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     public void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");
 
-        Dimension d = new Dimension(80, 20);
+        final Dimension d = new Dimension(80, 20);
+
         this.connectionLabel.setSize(d);
         this.loginLabel.setSize(d);
         this.passwordLabel.setSize(d);
