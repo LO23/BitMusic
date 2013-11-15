@@ -7,7 +7,6 @@ package bitmusic.music.business;
 
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
-import bitmusic.profile.classes.User;       //TODO: à modifier quand ProfileAPI créée
 import bitmusic.music.data.Rights;
 import bitmusic.music.exception.CopyMP3Exception;
 import bitmusic.profile.api.ApiProfileImpl;
