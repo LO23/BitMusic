@@ -14,11 +14,13 @@ import bitmusic.network.main.Controller;
  * @author Amina Bouabdallah - Mohamed Seffar
  */
 public class SongSearcher {
-
-    SongLibrary songLibrary; // library of local user's songs
+    /**
+     * library of local user's songs
+     */
+    SongLibrary songLibrary; 
 
     /**
-     *
+     *library of local user's songs
      * @param songLib
      */
     public SongSearcher(SongLibrary songLib) {
