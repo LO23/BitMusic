@@ -25,7 +25,6 @@ public class WindowModel extends Observable {
 
     public void logOut() {
         // si on est connecté, alors on doit avertir les autres, sinon on ferme simplement l'application
-        // TODO : mieux à faire ?
         User currentUser = WindowComponent.getInstance().getApiProfile().getCurrentUser();
         if (currentUser != null) {
             String myId = currentUser.getUserId();

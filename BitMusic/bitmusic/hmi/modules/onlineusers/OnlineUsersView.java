@@ -64,9 +64,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
                )
                .addComponent(connectUserButton)
         );
-
-
-        this.update(null, type);
     }
 
     @Override

@@ -10,7 +10,6 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.modules.accountcreation.AccountCreationComponent;
-import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -34,20 +33,25 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             ConnectionModel model = ConnectionController.this.getModel();
             ConnectionView view = ConnectionController.this.getView();
 
-            if (model.doConnection() == true) {
+            if (model.doConnection(view.getLoginField().getText(), view.getPasswordField().getText()) == true) {
                 // On enlève le ConnectionComponent et la ConnectionView des "objets utilisés"
                 WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
                 WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
-                // TODO : les supprimer ? (object = null;)
+
+                // TODO : Création des différents Components...
 
                 // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"
                 OnlineUsersComponent onlineUsersComponent = new OnlineUsersComponent();
                 WindowComponent.getInstance().addComponent(onlineUsersComponent);
                 WindowComponent.getInstance().getWindowView().addView(onlineUsersComponent.getView());
 
-                // TODO : Appel d'une méthode du model qui fait appel à une méthode de API network
-                //         pour récupérer une liste des utilisateurs connectés
-                WindowComponent.getInstance().getApiHmi().notifyNewConnection(new User(view.getLoginField().getText(),view.getPasswordField().getText()));
+                // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
+                // TODO : en attente de la disponibilité de la méthode dans l'API
+                // ArrayList<User> currentOnlineUsers = WindowComponent.getInstance().getApiNetwork().getListUser();
+                // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
+
+                // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
+                // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
 
             } else {
                 JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);

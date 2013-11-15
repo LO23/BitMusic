@@ -175,8 +175,8 @@ public final class ApiMusicImpl implements ApiMusic {
     }
     
     public String getSongFile(String songid) {
-
-        return songid;
+        SongLoader songLoader = new SongLoader();
+        return songLoader.getSongPath(songid);
     }
 
     /**
