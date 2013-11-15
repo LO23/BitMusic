@@ -54,6 +54,7 @@ public final class OnlineUsersModel extends AbstractModel {
 
     public void setListUsersOnline(ArrayList<User> listOnlineUsers) {
         this.modeleTable.setListUsers(listOnlineUsers);
+        this.notifyObservers("SET_LIST_ONLINE_USERS");
     }
 
     public OnlineUsersDynamicObject getModeleTable() {
