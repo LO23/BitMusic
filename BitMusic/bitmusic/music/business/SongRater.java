@@ -9,6 +9,7 @@ import bitmusic.music.data.SongLibrary;
 import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import java.util.*;
+import bitmusic.profile.api.ApiProfileImpl;
 
 /**
  *
@@ -40,7 +41,8 @@ public class SongRater {
      */
     public boolean addGradeFromHMI(String songId, int grade) {
         Song mySong = songLib.getSong(songId);
-        String author = "blabla"; //To Do
+        ApiProfileImpl apiProfil = ApiProfileImpl.getApiProfile();
+        String author = apiProfil.getCurrentUser().getLogin();
         Grade myGrade = new Grade(author, grade);
 
         mySong.addGrade(myGrade);

@@ -6,13 +6,19 @@
 
 package bitmusic.music.data;
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  *
  * @author Bruno
  */
-public class Comment {
+public class Comment implements Serializable{
     
+    /**
+     * Serialization UID, between 300 and 399 for the mp3 group.
+     */
+    private static final long serialVersionUID = 370L;
+            
     /**
      * Song's comment.
      */

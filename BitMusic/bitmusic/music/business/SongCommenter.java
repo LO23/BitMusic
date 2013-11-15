@@ -9,6 +9,7 @@ import bitmusic.music.data.SongLibrary;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
 import java.util.*;
+import bitmusic.profile.api.ApiProfileImpl;
 
 /**
  *
@@ -40,7 +41,8 @@ public class SongCommenter {
      */
     public boolean addCommentFromHMI(String songId, String commentText) {
         Song mySong = songLib.getSong(songId);
-        String author = "blabla"; //To Do
+        ApiProfileImpl apiProfil = ApiProfileImpl.getApiProfile();
+        String author = apiProfil.getCurrentUser().getLogin();
         Comment myComment = new Comment(author, commentText);
 
         mySong.addComment(myComment);
