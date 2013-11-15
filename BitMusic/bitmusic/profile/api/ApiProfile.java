@@ -62,9 +62,10 @@ public interface ApiProfile {
     /**
      * Returns the categories names of an user
      *
+     * @param userId
      * @return ArrayList<String>
      */
-    public ArrayList<String> getCategoriesNameByUserId();
+    public ArrayList<String> getCategoriesNameByUserId(String userId);
 
     /**
      * Returns a category name of an user

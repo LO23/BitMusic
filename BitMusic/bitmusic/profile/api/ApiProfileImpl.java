@@ -7,7 +7,6 @@
 package bitmusic.profile.api;
 
 import bitmusic.music.data.Rights;
-import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
@@ -16,7 +15,6 @@ import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -74,7 +72,7 @@ public class ApiProfileImpl implements ApiProfile {
     }
 
     @Override
-    public ArrayList<String> getCategoriesNameByUserId() {
+    public ArrayList<String> getCategoriesNameByUserId(String userId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
