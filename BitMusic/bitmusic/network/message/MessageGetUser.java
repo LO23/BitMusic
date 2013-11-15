@@ -58,8 +58,8 @@ public final class MessageGetUser extends AbstractMessage {
                                                         getCurrentUser();
         if (this.askedUser.equals(currentUser.getUserId())) {
             final MessageSendUser message = new MessageSendUser(
-                    EnumTypeMessage.SendUser, ipDest,
-                    ipSource, currentUser, researchId);
+                    EnumTypeMessage.SendUser, this.ipDest,
+                    this.ipSource, currentUser, this.researchId);
 
             Controller.getInstance().getThreadManager().
                     assignTaskToHermes(message);

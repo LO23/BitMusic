@@ -5,6 +5,7 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.profile.classes.User;
 
 /**
@@ -43,7 +44,11 @@ public final class MessageSendUser extends AbstractMessage {
      */
     @Override
     public void treatment() {
-
+        WindowComponent.getInstance().getApiHmi().notifyLightProfile(
+                //light Profile
+                this.getUser(),
+                //researchID
+                this.getSearchId());
     }
 
     /**
