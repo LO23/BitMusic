@@ -10,7 +10,6 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,7 +24,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     private final JLabel onlineUsersLabel = new JLabel("En ligne :");
     private JTable table = new JTable();
     private JScrollPane onlineUsersTablePane = new JScrollPane(this.table);
-    private final JButton connectUserButton = new JButton("Test connexion d'un user");
 
     public OnlineUsersView() {
         super();
@@ -36,9 +34,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         System.out.println("--- OnlineUsersView.initPanel()");
 
         Dimension d = new Dimension(80, 20);
-
-        this.connectUserButton.setSize(d);
-        this.connectUserButton.addActionListener(this.getController().new ConnectUserListener());
 
         this.onlineUsersLabel.setSize(d);
 
@@ -54,7 +49,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(onlineUsersTablePane)
                 )
-                .addComponent(connectUserButton)
          );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
@@ -62,7 +56,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(onlineUsersTablePane)
                )
-               .addComponent(connectUserButton)
         );
     }
 

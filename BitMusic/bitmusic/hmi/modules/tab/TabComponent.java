@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.popup.importsong;
+package bitmusic.hmi.modules.tab;
 
 import bitmusic.hmi.patterns.AbstractComponent;
 
@@ -12,12 +12,12 @@ import bitmusic.hmi.patterns.AbstractComponent;
  *
  * @author unkedeuxke
  */
-public final class ImportSongPopUpComponent extends AbstractComponent<ImportSongPopUpModel, ImportSongPopUpView, ImportSongPopUpController> {
+public final class TabComponent extends AbstractComponent<TabModel, TabView, TabController> {
 
-    public ImportSongPopUpComponent() {
-        this.model = new ImportSongPopUpModel();
-        this.view = new ImportSongPopUpView();
-        this.controller = new ImportSongPopUpController(this.model, this.view);
+    public TabComponent() {
+        this.model = new TabModel();
+        this.view = new TabView();
+        this.controller = new TabController(this.model, this.view);
         this.view.setController(this.controller);
         this.view.initPanel();
         this.model.addObserver(this.view);

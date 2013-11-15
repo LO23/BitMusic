@@ -23,9 +23,7 @@ public final class OnlineUsersModel extends AbstractModel {
     }
 
     public void addUser(User user) {
-        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
-
-        listOnlineUsers.add(user);
+        this.modeleTable.getListUsers().add(user);
         this.notifyObservers("ADD_ONLINE_USER");
     }
 
@@ -58,7 +56,7 @@ public final class OnlineUsersModel extends AbstractModel {
     }
 
     public OnlineUsersDynamicObject getModeleTable() {
-        return modeleTable;
+        return this.modeleTable;
     }
 
     public void setModeleTable(OnlineUsersDynamicObject modeleTable) {

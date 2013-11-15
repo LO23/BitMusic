@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.modules.onlineusers;
+package bitmusic.hmi.modules.centralarea;
 
 import bitmusic.hmi.patterns.AbstractController;
 
@@ -12,9 +12,9 @@ import bitmusic.hmi.patterns.AbstractController;
  *
  * @author unkedeuxke
  */
-public final class OnlineUsersController extends AbstractController<OnlineUsersModel, OnlineUsersView> {
+public final class CentralAreaController extends AbstractController<CentralAreaModel, CentralAreaView> {
 
-    public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
+    public CentralAreaController(final CentralAreaModel model, final CentralAreaView view) {
         super(model, view);
     }
 }
