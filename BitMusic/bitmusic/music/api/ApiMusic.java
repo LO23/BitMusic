@@ -64,7 +64,7 @@ public interface ApiMusic {
     * @param rights song rights
     */
     
-    public void importSong(String path, String title, String album, ArrayList<String> tags, Rights rights);
+    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rights);
      
    /**
     * update a song rights

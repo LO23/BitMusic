@@ -9,8 +9,13 @@ import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.SongLibrary;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import bitmusic.profile.api.ApiProfileImpl;
+import bitmusic.music.business.SongCommenter;
+import bitmusic.music.business.SongLoader;
+import bitmusic.music.business.SongSearcher;
+import bitmusic.music.exception.CopyMP3Exception;
+import java.io.IOException;
 
 /**
  *
@@ -49,10 +54,17 @@ public final class ApiMusicImpl implements ApiMusic {
      * update the song
      */
     public boolean addCommentFromHmi(String songID, String commentText) {
-        //SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().
-        //SongCommenter songCommenter = new SongCommenter(songLibrary);
+
+        SongCommenter songCommenter;
+        SongLibrary localSongLibrary;
+        boolean wasCommented = false;
+
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songCommenter = new SongCommenter(localSongLibrary);
+        wasCommented = songCommenter.addCommentFromHMI(songID, commentText);
+
         //besoin de récupérer la SongLibrary local - attente de Profile
-        return true;
+        return wasCommented;
     }
 
     /**
@@ -64,8 +76,16 @@ public final class ApiMusicImpl implements ApiMusic {
      * @return false in order to send a comment request to the distant user
      */
     public boolean addCommentFromNetwork(String songID, Comment commentText) {
-        // TO DO
-        return false;
+        SongCommenter songCommenter;
+        SongLibrary localSongLibrary;
+        boolean wasCommented = false;
+
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songCommenter = new SongCommenter(localSongLibrary);
+        wasCommented = songCommenter.addCommentFromNetwork(songID, commentText);
+
+        //besoin de récupérer la SongLibrary local - attente de Profile
+        return wasCommented;
     }
 
     ;
@@ -77,7 +97,11 @@ public final class ApiMusicImpl implements ApiMusic {
     * @param searchId 
     */
    public void searchSongsByUser(String userID, String searchId) {
+        SongLibrary localSongLibrary;
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
 
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        songSearcher.searchSongsbyUser(userID, searchId);
     }
 
     ;
@@ -91,8 +115,13 @@ public final class ApiMusicImpl implements ApiMusic {
     * @param tags  song tags
     * @param rights song rights
     */
-   public void importSong(String path, String title, String album, ArrayList<String> tags, Rights rights) {
-
+   public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
+        SongLoader songLoader = new SongLoader();
+        try{
+        songLoader.importSong(path, title, artist, album, tags, rights);
+        }catch(CopyMP3Exception|IOException excep){
+            System.out.println(excep.getMessage());
+        }
     }
 
     ;
@@ -103,7 +132,7 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param path song path
      */
     public void playSong(String path) {
-        // TO DO
+        
     }
 
     ;
