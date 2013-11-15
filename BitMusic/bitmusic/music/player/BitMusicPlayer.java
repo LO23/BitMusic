@@ -199,6 +199,17 @@ public class BitMusicPlayer extends PlaybackListener {
     public int getTotalFrame() {
         return totalFrame;
     }
+    
+    /**
+     * Get the current frame.
+     * @return 
+     */
+    public int getCurrentFrame() {
+            if (player == null) {
+                return 0;
+            }
+            return player.getCurrentFrame();
+    }
   
     /**
      * Event executed when the song is starded.

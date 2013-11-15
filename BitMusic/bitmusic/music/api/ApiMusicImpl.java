@@ -166,13 +166,12 @@ public final class ApiMusicImpl implements ApiMusic {
         }
     }
     
-    public int getNumberOfFramesSong() {
-        try {
-            return BitMusicPlayer.getInstance().getTotalFrame();
-        } catch (Exception e) {
-            System.out.println("Player : can't resume");
-        }
-        return 0;
+    public int getNumberOfFrame() {
+        return BitMusicPlayer.getInstance().getTotalFrame();
+    }
+    
+    public int getCurrentFrame() {
+        return BitMusicPlayer.getInstance().getCurrentFrame();
     }
     
     public String getSongFile(String songid) {
