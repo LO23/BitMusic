@@ -17,7 +17,7 @@ public class SongSearcher {
     /**
      * library of local user's songs
      */
-    SongLibrary songLibrary; 
+    private SongLibrary songLibrary; 
 
     /**
      *library of local user's songs
