@@ -6,7 +6,7 @@
 
 package bitmusic.music.player;
 
-import bitmusic.music.api.player.*;
+import bitmusic.music.player.*;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
