@@ -30,7 +30,7 @@ public class WindowModel extends Observable {
             String myId = currentUser.getUserId();
             // WindowComponent.getInstance().getApiNetwork().logOut(myId); // à décommenter dès que API Network en place
         }
-        this.notifyObservers("DECONNECTION");
+        this.notifyObservers("LOGOUT");
     }
 
     @Override

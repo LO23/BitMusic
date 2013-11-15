@@ -6,7 +6,6 @@
 
 package bitmusic.hmi.modules.myprofile;
 
-import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +28,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             // Pas besoin du Model ici : on agit directement sur la View
              MyProfileModel model = MyProfileController.this.getModel();
 
-             model.notifyObservers("DECONNECTION");
+             model.notifyObservers("LOGOUT");
 
             // WindowComponent.getInstance().getWindowView().dispose();
         }
