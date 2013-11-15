@@ -52,7 +52,7 @@ public interface ApiMusic {
     /**
      * 
      */
-    public SongLibrary searchSongsByTags(List<String> tagList);
+    public SongLibrary searchSongsByTags(String searchId, List<String> tagList);
     
      /** 
     * Add a song to SongLibrary
@@ -66,22 +66,18 @@ public interface ApiMusic {
     
     public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rights);
      
-   /**
-    * update a song rights
-    * 
-    * @param songid
-    * @param rights 
-    */
-    
-    public void changeRightsOfThisSong (String songid, Rights rights);
-    
+       
     /**
      * play a song from a distant user
      * 
      * @param path song path
      */
     
-    public void playSong (String path);
+    public void playSongFromStart (String path);
+    public void playSongFromSpecificTime(int frameNumber);
+    public void pauseOrStopSong();
+    public void resumeSong();
+    
     public String getSongFile (String songid);
        
 }

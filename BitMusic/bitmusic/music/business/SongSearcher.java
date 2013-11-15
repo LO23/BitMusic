@@ -82,7 +82,7 @@ public class SongSearcher {
      * @param tagList
      * @return
      */
-    public SongLibrary searchSongByTags(String searchId, List<String> tagList) {
+    public SongLibrary searchSongsByTags(String searchId, List<String> tagList) {
         SongLibrary myTaggedSongs;
         ApiMusicImpl apiMusicFromNetwork;
         List<String> connectedUsers;
@@ -136,13 +136,5 @@ public class SongSearcher {
         return songLibraryForRequester;
     }
 
-    /**
-     *
-     * @param songId
-     * @param rights
-     */
-    public void changeRightsOfThisSong(String songId, Rights rights) {
-
-    }
 
 }
