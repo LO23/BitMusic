@@ -7,8 +7,6 @@
 package bitmusic.hmi.api;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.modules.onlineusers.OnlineUsersModel;
-import bitmusic.hmi.popup.importsong.ImportSongPopUpModel;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.User;
 
@@ -18,16 +16,19 @@ import bitmusic.profile.classes.User;
  */
 public final class ApiHmiImpl implements ApiHmi {
 
+    @Override
+    public void notifyNewConnection(User lightUserLan){
+        WindowComponent.getInstance().getOnlineUsersComponent().getModel().addUser(lightUserLan);
+    }
+
+    @Override
+    public void removeUserFromOnlineUsers(String userId) {
+        WindowComponent.getInstance().getOnlineUsersComponent().getModel().removeUser(userId);
+    }
 
     @Override
     public void notifyLightProfile(User user, String searchId) {
         //TODO
-    }
-
-    @Override
-    public void notifyNewConnection(User lightUserLan){
-        OnlineUsersModel onlineUsersModel = (OnlineUsersModel) WindowComponent.getInstance().getComponent("OnlineUsersComponent").get(0).getModel();
-        onlineUsersModel.addUser(lightUserLan);
     }
 
     @Override
@@ -39,19 +40,4 @@ public final class ApiHmiImpl implements ApiHmi {
     public void notifySongListBySearchId(String searchId, SongLibrary songList) {
         //TODO
     }
-
-    @Override
-    public void removeUserFromOnlineUsers(String userId) {// pourquoi ne pas passer un User lightUserLan en argument directement ? et pourquoi ne pas encore + simplement utiliser la méthode getListUser de apiNetwork ?
-        OnlineUsersModel onlineUsersModel = (OnlineUsersModel) WindowComponent.getInstance().getComponent("OnlineUsersComponent").get(0).getModel();
-        onlineUsersModel.removeUser(userId);
-    }
-
-    @Override
-    public void notifyNewTag(String tag) {
-        ImportSongPopUpModel importSongPopUpModel = (ImportSongPopUpModel) WindowComponent.getInstance().getComponent("ImportSongPopUpComponent").get(0).getModel();
-        importSongPopUpModel.addTag(tag);
-    }
-
-
-
 }

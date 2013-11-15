@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.modules.onlineusers;
+package bitmusic.hmi.modules.centralarea;
 
 import bitmusic.hmi.patterns.AbstractComponent;
 
@@ -12,12 +12,12 @@ import bitmusic.hmi.patterns.AbstractComponent;
  *
  * @author unkedeuxke
  */
-public final class OnlineUsersComponent extends AbstractComponent<OnlineUsersModel, OnlineUsersView, OnlineUsersController> {
+public final class CentralAreaComponent extends AbstractComponent<CentralAreaModel, CentralAreaView, CentralAreaController> {
 
-    public OnlineUsersComponent() {
-        this.model = new OnlineUsersModel();
-        this.view = new OnlineUsersView();
-        this.controller = new OnlineUsersController(this.model, this.view);
+    public CentralAreaComponent() {
+        this.model = new CentralAreaModel();
+        this.view = new CentralAreaView();
+        this.controller = new CentralAreaController(this.model, this.view);
         this.view.setController(this.controller);
         this.view.initPanel();
         this.model.addObserver(this.view);

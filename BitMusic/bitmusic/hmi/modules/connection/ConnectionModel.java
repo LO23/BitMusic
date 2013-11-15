@@ -6,6 +6,7 @@
 
 package bitmusic.hmi.modules.connection;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractModel;
 
 /**
@@ -18,8 +19,8 @@ public final class ConnectionModel extends AbstractModel {
         super();
     }
 
-    // A IMPLEMENTER !!!!! VERIFIER SI LA CONNECTION EST VALIDE SINON RETOURN FALSE
-    public boolean doConnection() {
-        return true;
+    public boolean doConnection(String login, String password) {
+        //return WindowComponent.getInstance().getApiProfile().checkPassword(login, password); // TODO : en attente de la disponibilité de la méthode dans l'API
+        return true; // TODO : à virer
     }
 }

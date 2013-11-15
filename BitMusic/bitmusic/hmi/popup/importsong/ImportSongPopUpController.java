@@ -8,7 +8,6 @@ package bitmusic.hmi.popup.importsong;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
@@ -35,14 +34,6 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
                 System.out.println("---- OK");
                 path.setText(file.getSelectedFile().getPath());
             }
-        }
-    }
-
-    public class AddNewTagListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("---- AddNewTagListener");
-            WindowComponent.getInstance().getApiHmi().notifyNewTag("TestTag");
         }
     }
 }

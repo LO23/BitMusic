@@ -21,6 +21,5 @@ public final class ImportSongPopUpComponent extends AbstractComponent<ImportSong
         this.view.setController(this.controller);
         this.view.initPanel();
         this.model.addObserver(this.view);
-        this.model.notifyObservers("INIT");
     }
 }
