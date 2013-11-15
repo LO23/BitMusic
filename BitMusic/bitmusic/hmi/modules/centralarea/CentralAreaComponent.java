@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.popup.importsong;
+package bitmusic.hmi.modules.centralarea;
 
 import bitmusic.hmi.patterns.AbstractComponent;
 
@@ -12,12 +12,12 @@ import bitmusic.hmi.patterns.AbstractComponent;
  *
  * @author unkedeuxke
  */
-public final class ImportSongPopUpComponent extends AbstractComponent<ImportSongPopUpModel, ImportSongPopUpView, ImportSongPopUpController> {
+public final class CentralAreaComponent extends AbstractComponent<CentralAreaModel, CentralAreaView, CentralAreaController> {
 
-    public ImportSongPopUpComponent() {
-        this.model = new ImportSongPopUpModel();
-        this.view = new ImportSongPopUpView();
-        this.controller = new ImportSongPopUpController(this.model, this.view);
+    public CentralAreaComponent() {
+        this.model = new CentralAreaModel();
+        this.view = new CentralAreaView();
+        this.controller = new CentralAreaController(this.model, this.view);
         this.view.setController(this.controller);
         this.view.initPanel();
         this.model.addObserver(this.view);

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.modules.onlineusers;
+package bitmusic.hmi.modules.tab;
 
 import bitmusic.hmi.patterns.AbstractController;
 
@@ -12,9 +12,9 @@ import bitmusic.hmi.patterns.AbstractController;
  *
  * @author unkedeuxke
  */
-public final class OnlineUsersController extends AbstractController<OnlineUsersModel, OnlineUsersView> {
+public final class TabController extends AbstractController<TabModel, TabView> {
 
-    public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
+    public TabController(final TabModel model, final TabView view) {
         super(model, view);
     }
 }

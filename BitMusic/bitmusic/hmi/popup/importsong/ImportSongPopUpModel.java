@@ -6,9 +6,7 @@
 
 package bitmusic.hmi.popup.importsong;
 
-import bitmusic.hmi.modules.onlineusers.OnlineUsersDynamicObject;
 import bitmusic.hmi.patterns.AbstractModel;
-import bitmusic.profile.classes.User;
 import java.util.ArrayList;
 
 /**
@@ -66,5 +64,4 @@ public final class ImportSongPopUpModel extends AbstractModel {
     public void setModeleTable(ImportSongDynamicObject modeleTable) {
         this.modeleTable = modeleTable;
     }
-
 }

@@ -34,20 +34,19 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             ConnectionView view = ConnectionController.this.getView();
 
             if (model.doConnection(view.getLoginField().getText(), view.getPasswordField().getText()) == true) {
-                // On enlève le ConnectionComponent et la ConnectionView des "objets utilisés"
-                WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
-                WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
+                WindowComponent win = WindowComponent.getInstance();
+                // On enlève la ConnectionView des "objets utilisés"
+                win.getWindowView().removeView(ConnectionController.this.getView());
 
                 // TODO : Création des différents Components...
 
-                // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"
-                OnlineUsersComponent onlineUsersComponent = new OnlineUsersComponent();
-                WindowComponent.getInstance().addComponent(onlineUsersComponent);
-                WindowComponent.getInstance().getWindowView().addView(onlineUsersComponent.getView());
+                // Création du OnlineUsersComponent et attache de la View aux "objets utilisés"
+                win.setOnlineUsersComponent(new OnlineUsersComponent());
+                win.getWindowView().addView(win.getOnlineUsersComponent().getView());
 
                 // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
                 // TODO : en attente de la disponibilité de la méthode dans l'API
-                // ArrayList<User> currentOnlineUsers = WindowComponent.getInstance().getApiNetwork().getListUser();
+                // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
                 // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
 
                 // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
@@ -77,16 +76,14 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             System.out.println("---- Clic sur le bouton CreateNewUser");
 
             ConnectionModel model = ConnectionController.this.getModel();
-            // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
+            WindowComponent win = WindowComponent.getInstance();
 
-            WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
-            WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
-                // TODO : les supprimer ? (object = null;)
+            // On enlève la ConnectionView des "objets utilisés"
+            win.getWindowView().removeView(ConnectionController.this.getView());
 
-                // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"
-                AccountCreationComponent accountCreationComponent = new AccountCreationComponent();
-                WindowComponent.getInstance().addComponent(accountCreationComponent);
-                WindowComponent.getInstance().getWindowView().addView(accountCreationComponent.getView());
+            // Création du OnlineUsersComponent et attache de la View aux "objets utilisés"
+            win.setAccountCreationComponent(new AccountCreationComponent());
+            win.getWindowView().addView(win.getAccountCreationComponent().getView());
         }
     }
 }

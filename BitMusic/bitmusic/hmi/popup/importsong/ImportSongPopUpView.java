@@ -37,7 +37,6 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JButton fileBrowseButton = new JButton("Parcourir...");
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
-    private final JButton addTagButton = new JButton("Test ajout d'un tag");
 
 
     private JTable table = new JTable();
@@ -77,9 +76,6 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
 
         this.infoLabel.setSize(d);
 
-        this.addTagButton.setSize(d);
-        this.addTagButton.addActionListener(this.getController().new AddNewTagListener());
-
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
@@ -106,8 +102,6 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                     .addComponent(cancelButton)
                 )
                 .addComponent(infoLabel)
-                .addComponent(addTagButton)
-
         );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
@@ -137,8 +131,6 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                     .addComponent(cancelButton)
                )
                .addComponent(infoLabel)
-               .addComponent(addTagButton)
-
         );
 
         layout.linkSize(SwingConstants.HORIZONTAL, titleLabel, titleField);
