@@ -3,7 +3,9 @@ package bitmusic.music.business;
 import java.util.*;
 import java.lang.*;
 import bitmusic.music.data.*;
-import bitmusic.network.api.ApiMusic;
+import bitmusic.network.main.ApiMusicImpl;
+//porte d'entrée vers le module Network
+import bitmusic.network.main.Controller; 
 
 /**
  *
@@ -36,9 +38,10 @@ public class SongSearcher {
     public void searchSongsbyUser(String userID, String SearchID) {
         //besoin de l'implémentation de la méthode getSongsByUser(final User askedUser, final String researchId)
         //le premier argument doit être un "String userId"
-        // ApiMusic apiMusic = new ApiMusicImpl(); //impossible
-        // apiMusic.getSongsByUser(userID, SearchID)
-
+        //ApiMusic apiMusic = new ApiMusicImpl(); //à ne pas faire, faire appel au singleton
+        ApiMusicImpl apiMusic = Controller.getInstance().getApiMusic();
+        apiMusic.getSongsByUser(userID, SearchID);
+        return;
     }
 
     /**
