@@ -10,14 +10,14 @@ package bitmusic.music.exception;
  * Class which allows to manage exception when a user import a file which is not a mp3.
  * @author Jean-Baptiste
  */
-public class WrongFormatMP3Exception extends Exception{
+public class CopyMP3Exception extends Exception{
     
     /**
      * Constructs a new exception with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by a
      * call to Throwable.initCause(java.lang.Throwable).
      */
-    public WrongFormatMP3Exception() {
+    public CopyMP3Exception() {
         super();
     }
     
@@ -28,7 +28,7 @@ public class WrongFormatMP3Exception extends Exception{
      * @param message The detail message. The detail message is saved for
      * later retrieval by the Throwable.getMessage() method.
      */
-    public WrongFormatMP3Exception(final String message) {
+    public CopyMP3Exception(final String message) {
         super(message);
     }
     
@@ -41,7 +41,7 @@ public class WrongFormatMP3Exception extends Exception{
      * Throwable.getCause() method). (A null value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
      */
-    public WrongFormatMP3Exception(final String message, final Throwable cause) {
+    public CopyMP3Exception(final String message, final Throwable cause) {
         super(message, cause);
     }
     
@@ -53,7 +53,7 @@ public class WrongFormatMP3Exception extends Exception{
      * Throwable.getCause() method). (A null value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
      */
-    public WrongFormatMP3Exception(final Throwable cause) {
+    public CopyMP3Exception(final Throwable cause) {
         super(cause);
     }
 }

@@ -14,6 +14,7 @@ import javax.swing.table.AbstractTableModel;
  * @author hebergui <hebergui.utc@gmail.com>
  */
 public class ImportSongDynamicObject extends AbstractTableModel {
+
     private ArrayList<String> listTags = new ArrayList<>();
     private final String[] header = {"Tags"};
 
@@ -21,7 +22,6 @@ public class ImportSongDynamicObject extends AbstractTableModel {
         super();
         this.listTags.add("Tag1");
         this.listTags.add("Tag2");
-
     }
 
     @Override
@@ -66,7 +66,7 @@ public class ImportSongDynamicObject extends AbstractTableModel {
             this.removeTag(i);
     }
 
-    public ArrayList<String> getTags() {
+    public ArrayList<String> getListTags() {
         return this.listTags;
     }
 

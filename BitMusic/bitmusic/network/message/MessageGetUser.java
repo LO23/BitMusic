@@ -5,9 +5,9 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.network.main.Controller;
 import bitmusic.profile.classes.User;
-import bitmusic.network.message.AbstractMessage;
-import bitmusic.network.message.MessageSendUser;
+import bitmusic.profile.api.ApiProfileImpl;
 
 
 /**
@@ -49,22 +49,21 @@ public final class MessageGetUser extends AbstractMessage {
         researchId = paramResearchId;
     }
 
-    /**
+    /**.
      * Send the current profile to the user requesting it over the network
      */
     @Override
     public void treatment() {
-        /**
-         * @TODO change getCurrentLightUser with actual method from Profile
-         */
-        /*User currentUser = getCurrentLightUser();
-        if(this.askedUser.equals(currentUser.getUserId())){
-            MessageSendUser message = new MessageSendUser(
-                    EnumTypeMessage.SendUser, ipDest, 
-                    ipSource, currentUser, researchId);
-            
-            // Send message...
-        }*/
+        final User currentUser = ApiProfileImpl.getApiProfile().
+                                                        getCurrentUser();
+        if (this.askedUser.equals(currentUser.getUserId())) {
+            final MessageSendUser message = new MessageSendUser(
+                    EnumTypeMessage.SendUser, this.ipDest,
+                    this.ipSource, currentUser, this.researchId);
+
+            Controller.getInstance().getThreadManager().
+                    assignTaskToHermes(message);
+        }
     }
 
     /**

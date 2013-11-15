@@ -3,17 +3,18 @@ package bitmusic.music.data;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.*;
+import java.io.Serializable;
 
 /**
  * Class which allows to manage a song.
  * @author Elthum
  */
-public class Song {
+public class Song implements Serializable{
     
     //################################################################//
     //########################## ATTRIBUTES ##########################//
     //################################################################//
-    
+    private static final long serialVersionUID = 301L;
     /**
      * References the sond id.
      */

@@ -72,15 +72,15 @@ public final class MessageAddComment extends AbstractMessage {
                             //type of message
                             EnumTypeMessage.UpdateCommentNotification,
                             //ip source
-                            Controller.getInstance().getNetworkAddress(),
+                            Controller.getNetworkAddress(),
                             //ip dest
                             entry.getValue(),
                             //userID (who comment)
-                            this.userId,
+                            this.getUserId(),
                             //songId
-                            this.song,
+                            this.getSong(),
                             //comment add
-                            this.comment);
+                            this.getComment());
                 //send update to all the user
 
                 Controller.getInstance().getThreadManager()
@@ -91,15 +91,15 @@ public final class MessageAddComment extends AbstractMessage {
                     //type of message
                     EnumTypeMessage.ErrorNotification,
                     //ip source
-                    Controller.getInstance().getNetworkAddress(),
+                    Controller.getNetworkAddress(),
                     //ip dest
-                    this.ipSource,
+                    this.getIpSource(),
                     //userID (who comment)
-                    this.userId,
+                    this.getUserId(),
                     //songId
-                    this.song,
+                    this.getSong(),
                     //comment add
-                    this.comment,
+                    this.getComment(),
                     //Message erreur
                     "You don't have the right to comment this song");
             Controller.getInstance().getThreadManager()
@@ -137,5 +137,13 @@ public final class MessageAddComment extends AbstractMessage {
      */
     public Comment getComment() {
         return comment;
+    }
+
+    /**
+     * Getter for user id
+     * @return userId The id string of user
+     */
+    public String getUserId(){
+        return userId;
     }
 }

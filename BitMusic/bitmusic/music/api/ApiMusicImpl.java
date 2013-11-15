@@ -3,47 +3,93 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bitmusic.music.api;
+
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
+import bitmusic.music.data.SongLibrary;
 import java.util.ArrayList;
+import java.util.*;
+import bitmusic.profile.api.ApiProfileImpl;
+import bitmusic.music.business.SongCommenter;
+import bitmusic.music.business.SongLoader;
+import bitmusic.music.business.SongSearcher;
+import bitmusic.music.exception.CopyMP3Exception;
+import java.io.IOException;
+import bitmusic.music.player.BitMusicPlayer;
 
 /**
  *
  * @author Doha
  */
+public final class ApiMusicImpl implements ApiMusic {
 
-public class ApiMusicImpl implements ApiMusic {
-    
+    /**
+     * Singleton implementation.
+     */
+    private static final ApiMusicImpl APIMUSICIMPL = new ApiMusicImpl();
+
+    /**
+     * Private constructor for singleton pattern.
+     */
+    private ApiMusicImpl() {
+    }
+
+    /**
+     * .
+     * @return Unique instance of ApiMusicImpl
+     */
+    public static ApiMusicImpl getInstance() {
+        return APIMUSICIMPL;
+    }
+
+    /*########################################################################*/
+    /* IMPLEMENTED METHODS */
+    /*########################################################################*/
     /**
      * add a comment to a local song
-     * 
-     * @param songID 
+     *
+     * @param songID
      * @param commentText
-     * @return true to indicate to IHM that the song was local and it has to update the song
+     * @return true to indicate to IHM that the song was local and it has to
+     * update the song
      */
-   public boolean addCommentFromHmi(String songID, String commentText) {
-       
-       // TO DO
-    return true;
-    };
-   
-   /**
-    * 
-    * add a comment to a distant song
-    * 
-    * @param songID
-    * @param commentText
-    * @return false in order to send a comment request to the distant user 
-    */
- 
-   public boolean addCommentFromNetwork(String songID, Comment commentText) {
-       
-       // TO DO
-   
-       return false;
-   };
+    public boolean addCommentFromHmi(String songID, String commentText) {
+
+        SongCommenter songCommenter;
+        SongLibrary localSongLibrary;
+        boolean wasCommented = false;
+
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songCommenter = new SongCommenter(localSongLibrary);
+        wasCommented = songCommenter.addCommentFromHMI(songID, commentText);
+
+        //besoin de récupérer la SongLibrary local - attente de Profile
+        return wasCommented;
+    }
+
+    /**
+     *
+     * add a comment to a distant song
+     *
+     * @param songID
+     * @param commentText
+     * @return false in order to send a comment request to the distant user
+     */
+    public boolean addCommentFromNetwork(String songID, Comment commentText) {
+        SongCommenter songCommenter;
+        SongLibrary localSongLibrary;
+        boolean wasCommented = false;
+
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songCommenter = new SongCommenter(localSongLibrary);
+        wasCommented = songCommenter.addCommentFromNetwork(songID, commentText);
+
+        //besoin de récupérer la SongLibrary local - attente de Profile
+        return wasCommented;
+    }
+
+    ;
    
    /**
     * search a song by User 
@@ -52,55 +98,103 @@ public class ApiMusicImpl implements ApiMusic {
     * @param searchId 
     */
    public void searchSongsByUser(String userID, String searchId) {
-       
-       // TO DO
-   
-   };
-   
-   /** 
-    * Add a song to SongLibrary
-    * 
-    * @param path  song path
-    * @param title song title
-    * @param album song album
-    * @param tags  song tags
-    * @param rights song rights
-    */
-   public void importSong(String path, String title, String album, ArrayList<String> tags, Rights rights) {
-       
-       // TO DO
-   
-   };
-   
-   /**
-    * update a song rights
-    * 
-    * @param songid
-    * @param rights 
-    */
-    public void changeRigthsOfThisSong (String songid, Rights rights) {
-        
-        // TO DO
-    
-    };
-    
+        SongLibrary localSongLibrary;
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        songSearcher.searchSongsbyUser(userID, searchId);
+    }
+
+    /**
+     * Add a song to SongLibrary
+     *
+     * @param path song path
+     * @param title song title
+     * @param album song album
+     * @param tags song tags
+     * @param rights song rights
+     */
+    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
+        SongLoader songLoader = new SongLoader();
+        try {
+            songLoader.importSong(path, title, artist, album, tags, rights);
+        } catch (CopyMP3Exception | IOException excep) {
+            System.out.println(excep.getMessage());
+        }
+    }
+
     /**
      * play a song from a distant user
-     * 
+     *
      * @param path song path
      */
-    public void playSong (String path) {
-        
-        // TO DO
+    public void playSongFromStart(String path) {
+        try {
+            BitMusicPlayer.getInstance().play(path);
+        } catch (IOException ioe) {
+            System.out.println("Player : can't read file");
+        } catch (Exception e) {
+            System.out.println("Player : ca marche pas");
+        }
+    }
+
+    public void playSongFromSpecificTime(int frameNumber) {
+        try {
+            BitMusicPlayer.getInstance().play(frameNumber);
+        } catch (IOException ioe) {
+            System.out.println("Player : can't read file");
+        } catch (Exception e) {
+            System.out.println("Player : can't play");
+        }
+    }
     
-    };
+    public void pauseOrStopSong() {
+        try {
+            BitMusicPlayer.getInstance().pause();
+        } catch (Exception e) {
+            System.out.println("Player : can't pause");
+        }
+    }
     
-    public String getSongFile (String songid) {
-        
-        // TO DO
-        
-    return songid;
-    };
+    public void resumeSong() {
+        try {
+            BitMusicPlayer.getInstance().resume();
+        }catch(IOException ioe){
+            System.out.println("Player : can't read file");
+        } catch (Exception e) {
+            System.out.println("Player : can't resume");
+        }
+    }
     
+    public int getNumberOfFrame() {
+        return BitMusicPlayer.getInstance().getTotalFrame();
+    }
     
+    public int getCurrentFrame() {
+        return BitMusicPlayer.getInstance().getCurrentFrame();
+    }
+    
+    public String getSongFile(String songid) {
+        SongLoader songLoader = new SongLoader();
+        return songLoader.getSongPath(songid);
+    }
+
+    /**
+     *
+     * @param searchId
+     * @param tagList
+     * @return
+     */
+    @Override
+    public SongLibrary searchSongsByTags(String searchId, List<String> tagList) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SongLibrary localSongLibrary;
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        SongLibrary localTaggedSongs = songSearcher.searchSongsByTags(searchId, tagList);
+
+        return localTaggedSongs;
+    }
+
 }

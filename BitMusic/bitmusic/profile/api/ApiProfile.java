@@ -6,6 +6,7 @@ package bitmusic.profile.api;
 
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
+import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
@@ -50,7 +51,7 @@ public interface ApiProfile {
      * @param User newUser
      */
     public void setCurrentUser(User newUser);
-    
+
     /**
      * Returns the folder of the current user
      *
@@ -61,9 +62,10 @@ public interface ApiProfile {
     /**
      * Returns the categories names of an user
      *
+     * @param userId
      * @return ArrayList<String>
      */
-    public ArrayList<String> getCategoriesNameByUserId();
+    public ArrayList<String> getCategoriesNameByUserId(String userId);
 
     /**
      * Returns a category name of an user
@@ -135,7 +137,7 @@ public interface ApiProfile {
      *
      * @return ArrayList<Song> songs
      */
-    public ArrayList<Song> getSongs();
+    public SongLibrary getSongLibrary();
 
     /**
      * Returns the songs of the current user

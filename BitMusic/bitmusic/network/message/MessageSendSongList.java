@@ -5,6 +5,7 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.music.data.SongLibrary;
 
 /**
@@ -43,7 +44,10 @@ public final class MessageSendSongList extends AbstractMessage {
      */
     @Override
     public void treatment() {
-
+        WindowComponent.getInstance().getApiHmi().
+                notifySongListBySearchId(
+                        this.getSearchId(),
+                        this.getSongLibrary());
     }
 
     /**

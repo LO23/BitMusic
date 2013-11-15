@@ -8,6 +8,7 @@ package bitmusic.hmi.api;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersModel;
+import bitmusic.hmi.popup.importsong.ImportSongPopUpModel;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.User;
 
@@ -44,5 +45,13 @@ public final class ApiHmiImpl implements ApiHmi {
         OnlineUsersModel onlineUsersModel = (OnlineUsersModel) WindowComponent.getInstance().getComponent("OnlineUsersComponent").get(0).getModel();
         onlineUsersModel.removeUser(userId);
     }
+
+    @Override
+    public void notifyNewTag(String tag) {
+        ImportSongPopUpModel importSongPopUpModel = (ImportSongPopUpModel) WindowComponent.getInstance().getComponent("ImportSongPopUpComponent").get(0).getModel();
+        importSongPopUpModel.addTag(tag);
+    }
+
+
 
 }
