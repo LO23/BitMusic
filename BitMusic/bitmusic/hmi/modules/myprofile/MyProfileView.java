@@ -53,11 +53,12 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         final Dimension d = new Dimension(80, 20);
 
         this.myProfileButton.setSize(d);
+        this.myProfileButton.addActionListener(this.getController().new LogoutListener());
+
         this.mySongsButton.setSize(d);
         this.logoutButton.setSize(d);
         this.importSongButton.setSize(d);
-
-        this.myProfileButton.addActionListener(this.getController().new LogoutListener());
+        this.importSongButton.addActionListener(this.getController().new ImportNewSongListener());
 
         GridLayout layout = new GridLayout(0,2);
         this.getPanel().setLayout(layout);
