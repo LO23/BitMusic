@@ -6,7 +6,10 @@
 
 package bitmusic.hmi.modules.myprofile;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -16,5 +19,19 @@ public final class MyProfileController extends AbstractController<MyProfileModel
 
     public MyProfileController(final MyProfileModel model, final MyProfileView view) {
         super(model, view);
+    }
+
+    public class LogoutListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Disconnect");
+            System.out.println("---- Deconnexion en cours");
+            // Pas besoin du Model ici : on agit directement sur la View
+             MyProfileModel model = MyProfileController.this.getModel();
+
+             model.notifyObservers("DECONNECTION");
+
+            // WindowComponent.getInstance().getWindowView().dispose();
+        }
     }
 }

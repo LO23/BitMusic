@@ -9,7 +9,6 @@ package bitmusic.hmi.modules.connection;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.api.ApiHmi;
 import bitmusic.hmi.modules.accountcreation.AccountCreationComponent;
 import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
@@ -33,6 +32,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             System.out.println("---- Clic sur le bouton Connection");
 
             ConnectionModel model = ConnectionController.this.getModel();
+            ConnectionView view = ConnectionController.this.getView();
 
             if (model.doConnection() == true) {
                 // On enlève le ConnectionComponent et la ConnectionView des "objets utilisés"
@@ -47,8 +47,8 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
                 // TODO : Appel d'une méthode du model qui fait appel à une méthode de API network
                 //         pour récupérer une liste des utilisateurs connectés
-                ApiHmi apiHmi = new ApiHmi();
-                apiHmi.notifyNewConnection(new User("MonLogin","MonMdP"));
+                WindowComponent.getInstance().getApiHmi().notifyNewConnection(new User(view.getLoginField().getText(),view.getPasswordField().getText()));
+
             } else {
                 JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
             }
@@ -76,7 +76,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             // TODO : implémenter la logique (appels aux méthodes du Model, ex : model.method())
 
             WindowComponent.getInstance().removeComponent(WindowComponent.getInstance().getComponent("ConnectionComponent").get(0));
-                WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
+            WindowComponent.getInstance().getWindowView().removeView(ConnectionController.this.getView());
                 // TODO : les supprimer ? (object = null;)
 
                 // Création du OnlineUsersComponent et attache du Component et de la View aux "objets utilisés"

@@ -10,7 +10,7 @@ import bitmusic.music.data.SongLibrary;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.UUID;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
@@ -18,7 +18,7 @@ import sun.awt.shell.ShellFolder;
 
 /**
  *
- * @author reaneyol
+ * @author reaneyol, MilioPeralta
  */
 public class User {
 
@@ -41,7 +41,7 @@ public class User {
     /**
      *
      */
-    private Date birthDate;
+    private Calendar birthDate;
 
     /**
      *
@@ -84,7 +84,7 @@ public class User {
      * @param birthDate
      * @param avatarPath
      */
-    public User(String login, String password, String firstName, String lastName, Date birthDate, String avatarPath) {
+    public User(String login, String password, String firstName, String lastName, Calendar birthDate, String avatarPath) {
         this.userId = UUID.randomUUID().toString();
         this.login = login;
         this.password = password;
@@ -175,7 +175,7 @@ public class User {
      *
      * @return
      */
-    public Date getBirthDate() {
+    public Calendar getBirthDate() {
         return birthDate;
     }
 
@@ -183,7 +183,7 @@ public class User {
      *
      * @param birthDate
      */
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(Calendar birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -257,6 +257,9 @@ public class User {
      * @return
      */
     public User getContact(String userId) {
+
+        // TODO
+
         return null;
     }
 
@@ -343,5 +346,11 @@ public class User {
     @Override
     public String toString() {
         return "Login : " + this.login + "\nUserID : " + this.userId + "\n";
+    }
+	public String getTransformedBirthday() {
+        int year = this.birthDate.get(Calendar.YEAR);
+        int month = this.birthDate.get(Calendar.MONTH);
+        int day = this.birthDate.get(Calendar.DAY_OF_MONTH);
+        return Integer.toString(year) + Integer.toString(month) + Integer.toString(day);
     }
 }

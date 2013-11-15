@@ -5,16 +5,19 @@
 
 package bitmusic.profile.classes;
 
+import bitmusic.music.data.Rights;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Category
- * @author frogerfa, lesceuni, reaneyol
+ * @author frogerfa, lesceuni, reaneyol, MilioPeralta
  */
 public class Category {
 
     //########################## ATTRIBUTES ##########################//
 
+    private String id;
     private String name;
     private ArrayList<User> contacts;
     private Rights rights;
@@ -26,13 +29,14 @@ public class Category {
      * @param name  Name of the category
      */
     public Category(String name) {
+        this.id = UUID.randomUUID().toString();
         this.contacts = new ArrayList<User>();
         this.name = name;
-        this.rights = new Rights();
+        // TO DO this.rights = new Rights();
     }
 
     //########################### METHODS ##############################//
-    
+
     /**
      * Change the name of the category
      * @param newName New name of the category
@@ -66,10 +70,10 @@ public class Category {
      */
     public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
         if(this.rights != null) {
-            this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
+            // TO DO this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
         }
         else {
-            this.rights = new Rights();
+            // TO DO this.rights = new Rights();
         }
     }
 

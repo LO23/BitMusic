@@ -8,6 +8,7 @@ package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
+import bitmusic.profile.classes.User;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +21,17 @@ public class WindowModel extends Observable {
 
     public WindowModel() {
 
+    }
+
+    public void logOut() {
+        // si on est connecté, alors on doit avertir les autres, sinon on ferme simplement l'application
+        // TODO : mieux à faire ?
+        User currentUser = WindowComponent.getInstance().getApiProfile().getCurrentUser();
+        if (currentUser != null) {
+            String myId = currentUser.getUserId();
+            // WindowComponent.getInstance().getApiNetwork().logOut(myId); // à décommenter dès que API Network en place
+        }
+        this.notifyObservers("DECONNECTION");
     }
 
     @Override

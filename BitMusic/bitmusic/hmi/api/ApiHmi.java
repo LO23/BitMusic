@@ -6,20 +6,18 @@
 
 package bitmusic.hmi.api;
 
-import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.modules.onlineusers.OnlineUsersModel;
+import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.User;
 
 /**
  *
- * @author unkedeuxke
+ * @author hebergui <hebergui.utc@gmail.com>
  */
-public final class ApiHmi {
-
-
-    public void notifyNewConnection(User lightUserLan){
-        OnlineUsersModel onlineUsersModel = (OnlineUsersModel) WindowComponent.getInstance().getComponent("OnlineUsersComponent").get(0).getModel();
-        onlineUsersModel.addUser(lightUserLan);
-    }
-
+public interface ApiHmi {
+    public abstract void notifyLightProfile(User user, String searchId);
+    public abstract void notifyNewConnection(User lightUserLan);
+    public abstract void notifySongListByUserId(String userID, SongLibrary songLibrary);
+    public abstract void notifySongListBySearchId(String searchId, SongLibrary songList);
+    public abstract void removeUserFromOnlineUsers(String userId);
+    public abstract void notifyNewTag(String tag);
 }

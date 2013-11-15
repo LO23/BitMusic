@@ -16,41 +16,54 @@ import java.util.ArrayList;
  */
 public final class OnlineUsersModel extends AbstractModel {
 
-    private ArrayList<User> listUsersOnline = new ArrayList<>();
-
+    private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
 
     public OnlineUsersModel() {
         super();
     }
 
     public void addUser(User user) {
-        this.listUsersOnline.add(user);
+        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
+
+        listOnlineUsers.add(user);
         this.notifyObservers("ADD_ONLINE_USER");
     }
 
-    /// Ajouté par Abdoul
-    public void removeUser(User user) {
+    public void removeUser(String userId) {
+        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
+
         boolean userRemoved = false;
-        for ( int i=0; i<listUsersOnline.size(); i++) {
-            // verifier à combien commencent les index d'éléments dans la liste
-            if (this.listUsersOnline.get(i).equals(user)) {
-                this.listUsersOnline.remove(i);
+        User tempUser;
+        for ( int i=0; i<listOnlineUsers.size(); i++) {
+            tempUser = listOnlineUsers.get(i).getContact(userId); // méthode de apiNetwork (getContact)
+            if (listOnlineUsers.get(i).equals(tempUser)) {
+                listOnlineUsers.remove(i);
                 userRemoved = true;
             }
         }
-        if (userRemoved ==false) {
+
+        if (userRemoved == true) {
+            this.notifyObservers("REMOVE_ONLINE_USER");
+        }
+        else {
             System.out.println("--- Error: User doesn't exist, or is not online");
         }
-        this.notifyObservers("REMOVE_ONLINE_USER");
-        // Abdoul : qu'est ce que notifyObservers fait exactement ?
     }
 
-    public ArrayList<User> getListUsersOnline() {
-        return listUsersOnline;
+    public ArrayList<User> getListOnlineUsers() {
+        return this.modeleTable.getListUsers();
     }
 
-    public void setListUsersOnline(ArrayList<User> listUsersOnline) {
-        this.listUsersOnline = listUsersOnline;
+    public void setListUsersOnline(ArrayList<User> listOnlineUsers) {
+        this.modeleTable.setListUsers(listOnlineUsers);
+    }
+
+    public OnlineUsersDynamicObject getModeleTable() {
+        return modeleTable;
+    }
+
+    public void setModeleTable(OnlineUsersDynamicObject modeleTable) {
+        this.modeleTable = modeleTable;
     }
 
 }

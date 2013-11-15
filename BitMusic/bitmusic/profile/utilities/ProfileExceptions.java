@@ -7,7 +7,7 @@ package bitmusic.profile.utilities;
 
 /**
  *
- * @author reaneyol
+ * @author reaneyol, MilioPeralta
  */
 public class ProfileExceptions extends Throwable {
     private String errorMessage;
@@ -41,6 +41,10 @@ public class ProfileExceptions extends Throwable {
                 break;
                 }
             }
+    }
+
+    public ProfileExceptionType getType() {
+        return this.type;
     }
 
     @Override

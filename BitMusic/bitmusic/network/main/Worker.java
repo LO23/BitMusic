@@ -7,54 +7,58 @@
 package bitmusic.network.main;
 
 import bitmusic.network.message.AbstractMessage;
-import bitmusic.network.message.MessageAddComment;
-import bitmusic.network.message.MessageErrorNotification;
-import bitmusic.network.message.MessageGetSongFile;
-import bitmusic.network.message.MessageGetSongsByUser;
-import bitmusic.network.message.MessageGetUser;
-import bitmusic.network.message.MessageLogOut;
-import bitmusic.network.message.MessageNotifyNewConnection;
-import bitmusic.network.message.MessageReplyConnectionUser;
-import bitmusic.network.message.MessageSearchSongsByTag;
-import bitmusic.network.message.MessageSendSongFile;
-import bitmusic.network.message.MessageSendSongList;
-import bitmusic.network.message.MessageSendUser;
-import bitmusic.network.message.MessageTagRequest;
-import bitmusic.network.message.MessageUpdateCommentNotification;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 /**
  *@author Pak
- * A worker thread must implement Thread or Runnable.
  * Worker manages INCOMING message as tasks.
  */
-public class Worker implements Runnable {
+public class Worker extends AbstractManageable {
 
     /**
-     * message.
+     * The socket use to exchange.
      */
-    private AbstractMessage message;
+    private final transient Socket socket;
 
     /**
-    *@param task task to do
+    *@param paramSocket The socket
     */
-    Worker(final AbstractMessage task) {
-          message = task;
+    Worker(final Socket paramSocket) {
+        super();
+        socket = paramSocket;
     }
 
     /**
      * Thread running behavior (task to complete).
      */
     @Override
-    public void run() {
-        //use strategy to achieve task here
+    public final void run() {
+        try {
+
+            final ObjectInputStream ois = new ObjectInputStream(
+                    socket.getInputStream());
+            try {
+                AbstractMessage message;
+                message = (AbstractMessage) ois.readObject();
+
+                message.treatment();
+            } catch (ClassNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
      *
-     * @return message
+     * @return socket
      */
-    public final AbstractMessage getMessage() {
-        return message;
+    public final Socket getSocket() {
+        return socket;
     }
 }
 

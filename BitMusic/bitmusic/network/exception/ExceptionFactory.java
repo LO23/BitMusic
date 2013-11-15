@@ -39,9 +39,9 @@ public final class ExceptionFactory {
      * @param type : Type of the message we want.
      * @return The newly created message.
      */
-    public static Exception createException(final EnumTypeException type,
+    public static NetworkException createException(final EnumTypeException type,
             final String message) {
-        Exception exception = null;
+        NetworkException exception = null;
         switch (type) {
             case NetworkDirectoryException :
                 exception =  new NetworkDirectoryException(message);

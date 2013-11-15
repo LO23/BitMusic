@@ -5,6 +5,10 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.network.main.Controller;
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.api.ApiHmi;
+import bitmusic.network.exception.NetworkDirectoryException;
 
 /**
  *
@@ -42,7 +46,14 @@ public final class MessageLogOut extends AbstractMessage {
      */
     @Override
     public void treatment() {
+        try {
+            Controller.getInstance().removeUserFromDirectory(this.getUserId());
+            final ApiHmi apiHmi = WindowComponent.getInstance().getApiHmi();
+            //apiHmi.removeUserFromOnlineUsers(this.getUserId());
 
+        } catch(NetworkDirectoryException exception) {
+
+        }
     }
 
     /**
