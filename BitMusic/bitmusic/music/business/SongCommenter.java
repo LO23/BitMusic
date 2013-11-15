@@ -21,6 +21,11 @@ public class SongCommenter {
      * SongLibrary.
      */
     private SongLibrary songLib;
+    
+    /**
+     * Api Profile.
+     */
+    ApiProfileImpl apiProfil;
 
     /**
      * Class constructor.
@@ -29,6 +34,7 @@ public class SongCommenter {
      */
     public SongCommenter(SongLibrary lib) {
         this.songLib = lib;
+        apiProfil = ApiProfileImpl.getApiProfile();
     }
 
     /**
@@ -41,7 +47,6 @@ public class SongCommenter {
      */
     public boolean addCommentFromHMI(String songId, String commentText) {
         Song mySong = songLib.getSong(songId);
-        ApiProfileImpl apiProfil = ApiProfileImpl.getApiProfile();
         String author = apiProfil.getCurrentUser().getLogin();
         Comment myComment = new Comment(author, commentText);
 

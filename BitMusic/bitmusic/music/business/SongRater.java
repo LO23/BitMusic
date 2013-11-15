@@ -21,6 +21,11 @@ public class SongRater {
      * SongLibrary.
      */
     private SongLibrary songLib;
+    
+    /**
+     * Api Profile.
+     */
+    ApiProfileImpl apiProfil;
 
     /**
      * Class constructor.
@@ -29,6 +34,7 @@ public class SongRater {
      */
     public SongRater(SongLibrary lib) {
         this.songLib = lib;
+        apiProfil = ApiProfileImpl.getApiProfile();
     }
 
     /**
@@ -41,7 +47,6 @@ public class SongRater {
      */
     public boolean addGradeFromHMI(String songId, int grade) {
         Song mySong = songLib.getSong(songId);
-        ApiProfileImpl apiProfil = ApiProfileImpl.getApiProfile();
         String author = apiProfil.getCurrentUser().getLogin();
         Grade myGrade = new Grade(author, grade);
 
