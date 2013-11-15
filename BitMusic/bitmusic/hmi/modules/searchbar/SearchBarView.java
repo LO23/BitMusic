@@ -47,14 +47,15 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         System.out.println("--- SearchBarView.initPanel()");
 
         Dimension d = new Dimension(80, 20);
+
         this.filtreLabel.setSize(d);
-        this.searchField.setSize(d);
         this.researchButton.setSize(d);
         this.aucunButton.setSize(d);
         this.titreButton.setSize(d);
         this.auteurButton.setSize(d);
         this.tagButton.setSize(d);
 
+        this.searchLabel.setSize(d);
         this.searchField.setColumns(10);
 
         this.researchButton.addActionListener(this.getController().new ResearchListener());
@@ -126,7 +127,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     }
 
       // TO FINISH AND TEST
-      
+
     @Override
     public String getType() {
         return type;
