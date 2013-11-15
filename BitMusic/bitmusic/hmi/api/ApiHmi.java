@@ -14,9 +14,9 @@ import bitmusic.profile.classes.User;
  * @author hebergui <hebergui.utc@gmail.com>
  */
 public interface ApiHmi {
-    public abstract void notifyLightProfile(User user, String searchId);
     public abstract void notifyNewConnection(User lightUserLan);
+    public abstract void removeUserFromOnlineUsers(String userId);
+    public abstract void notifyLightProfile(User user, String searchId);
     public abstract void notifySongListByUserId(String userID, SongLibrary songLibrary);
     public abstract void notifySongListBySearchId(String searchId, SongLibrary songList);
-    public abstract void removeUserFromOnlineUsersId(String userId);
 }

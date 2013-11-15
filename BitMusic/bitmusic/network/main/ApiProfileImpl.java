@@ -82,6 +82,6 @@ public final class ApiProfileImpl implements ApiProfile {
                 true);
 
         //Give the message to a worker...
-        Controller.getInstance().getWorkManager().assignTaskToWorker(message);
+        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
     }
 }

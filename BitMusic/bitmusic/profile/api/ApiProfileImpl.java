@@ -7,7 +7,7 @@
 package bitmusic.profile.api;
 
 import bitmusic.music.data.Rights;
-import bitmusic.music.data.Song;
+import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.saving.UserSaver;
@@ -15,7 +15,6 @@ import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -54,7 +53,7 @@ public class ApiProfileImpl implements ApiProfile {
     @Override
     public void saveUser(User user) throws ProfileExceptions {
         UserSaver userSaver = new UserSaver();
-        userSaver.saveUser(currentUser);
+        userSaver.saveUser();
     }
 
     @Override
@@ -63,12 +62,17 @@ public class ApiProfileImpl implements ApiProfile {
     }
 
     @Override
+    public void setCurrentUser(User newUser) {
+        this.currentUser = newUser;
+    }
+
+    @Override
     public String getCurrentUserFolder() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<String> getCategoriesNameByUserId() {
+    public ArrayList<String> getCategoriesNameByUserId(String userId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -113,7 +117,7 @@ public class ApiProfileImpl implements ApiProfile {
     }
 
     @Override
-    public ArrayList<Song> getSongs() {
+    public SongLibrary getSongLibrary() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

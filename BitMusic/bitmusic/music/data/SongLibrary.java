@@ -8,12 +8,13 @@ package bitmusic.music.data;
  
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.Serializable;
 
 
-public class SongLibrary 
-{
+public class SongLibrary implements Serializable{
     
    private ArrayList<Song> library; 
+   private static final long serialVersionUID = 300L;
 
    /**
     * constructor.

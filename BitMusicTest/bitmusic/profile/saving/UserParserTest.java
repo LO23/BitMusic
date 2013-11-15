@@ -6,6 +6,9 @@
 
 package bitmusic.profile.saving;
 
+import bitmusic.profile.classes.User;
+import bitmusic.profile.utilities.ProfileExceptions;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,14 +43,19 @@ public class UserParserTest {
 
     /**
      * Test of loadUser method, of class UserParser.
+     * @throws java.lang.Exception
      */
     @Test
     public void testLoadUser() throws Exception {
         System.out.println("loadUser");
         UserParser instance = new UserParser();
-        instance.loadUser();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try {
+            User loadedUser = instance.loadUserForTest();
+            System.out.println("User loaded : " + loadedUser.toString() + "\n");
+        }
+        catch(ProfileExceptions e) {
+            fail(e.toString());
+        }
     }
 
 }

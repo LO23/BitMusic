@@ -6,8 +6,11 @@
 
 package bitmusic.profile.saving;
 
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,8 +26,6 @@ import static org.junit.Assert.*;
 public class UserSaverTest {
 
     public UserSaverTest() {
-        this.testSaveUser();
-        this.testSaveAuthFile();
     }
 
     @BeforeClass
@@ -49,23 +50,21 @@ public class UserSaverTest {
     @Test
     public void testSaveUser() {
         System.out.println("saveUser");
-        UserSaver instance = new UserSaver();
+
         User userToSave = new User("Olivia", "test");
+        Calendar birth = GregorianCalendar.getInstance();
+        birth.set(1990, 05, 02);
+        userToSave.setBirthDate(birth);
+
+        ApiProfileImpl.getApiProfile().setCurrentUser(userToSave);
+
+        UserSaver instance = new UserSaver();
+
         try {
-            instance.saveUser(userToSave);
+            instance.saveUser();
         }
         catch(ProfileExceptions e) {
-            switch(e.getType()) {
-                case CreationFileError:
-                    fail("Error occured while creating the file");
-                    break;
-                case WritingFileError:
-                    fail("Error occured while writing in file");
-                    break;
-                default :
-                    fail("Problem from Profile occured");
-                    break;
-            }
+            fail(e.toString());
         }
     }
 
@@ -78,23 +77,19 @@ public class UserSaverTest {
 
         User toAuth = new User("Olivia", "pwd");
 
+        Calendar birth = GregorianCalendar.getInstance();
+        birth.set(1990, 05, 02);
+        toAuth.setBirthDate(birth);
+
+        ApiProfileImpl.getApiProfile().setCurrentUser(toAuth);
+
         UserSaver instance = new UserSaver();
 
         try {
-        instance.saveAuthFile(toAuth);
+            instance.saveAuthFile();
         }
         catch(ProfileExceptions e) {
-            switch(e.getType()) {
-                case CreationFileError:
-                    fail("test");
-                    break;
-                case WritingFileError:
-                    fail("prout");
-                    break;
-                default :
-                    fail("dead");
-                    break;
-            }
+            fail(e.toString());
         }
     }
 

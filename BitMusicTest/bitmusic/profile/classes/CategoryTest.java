@@ -72,9 +72,9 @@ public class CategoryTest {
     public void testGetRight() {
         System.out.println("getRight");
         Category instance = null;
-        Rights expResult = null;
-        Rights result = instance.getRight();
-        assertEquals(expResult, result);
+        //Rights expResult = null;
+        //Rights result = instance.getRight();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

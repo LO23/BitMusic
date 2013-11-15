@@ -6,7 +6,6 @@
 
 package bitmusic.profile.api;
 
-import bitmusic.profile.Profile;
 import bitmusic.profile.classes.User;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -47,7 +46,7 @@ public class ApiProfileTest {
     public void testGetCurrentUser() {
         System.out.println("getCurrentUser");
         User expResult = null;
-        User result = Profile.getCurrentUser();
+        User result = ApiProfileImpl.getApiProfile().getCurrentUser();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -60,7 +59,7 @@ public class ApiProfileTest {
     public void testSetCurrentUser() {
         System.out.println("setCurrentUser");
         User newUser = null;
-        Profile.setCurrentUser(newUser);
+        ApiProfileImpl.getApiProfile().setCurrentUser(newUser);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

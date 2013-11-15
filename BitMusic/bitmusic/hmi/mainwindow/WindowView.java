@@ -12,8 +12,6 @@ import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,12 +19,12 @@ import javax.swing.JPanel;
  *
  * @author hebergui, unkedeuxke
  */
-public class WindowView extends JFrame implements Observer, WindowListener {
+public class WindowView extends JFrame implements Observer {
 
     private WindowController windowController;
 
     public WindowView() {
-      // this.addWindowListener(this);
+
     }
 
     public WindowController getWindowController() {
@@ -39,6 +37,7 @@ public class WindowView extends JFrame implements Observer, WindowListener {
 
     public void initFrame() {
         System.out.println("-- WindowView.initFrame()");
+        
         this.setTitle("BitMusic");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
@@ -90,44 +89,5 @@ public class WindowView extends JFrame implements Observer, WindowListener {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- WindowView.update()");
-    }
-
-    @Override
-    public void windowOpened(WindowEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-        this.windowController.getWindowModel().notifyObservers("DECONNECTION");
-        this.dispose();
-        System.out.println("----- WindowView.windowClosing()");
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

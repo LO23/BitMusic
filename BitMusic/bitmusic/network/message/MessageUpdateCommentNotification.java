@@ -5,6 +5,7 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.Comment;
 
@@ -53,7 +54,8 @@ public final class MessageUpdateCommentNotification extends AbstractMessage {
      */
     @Override
     public void treatment() {
-
+        //WindowComponent.getInstance().updateCommentNotification(
+          //  this.song, this.comment);
     }
 
     /**

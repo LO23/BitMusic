@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  * @author hebergui <hebergui.utc@gmail.com>
  */
 public class OnlineUsersDynamicObject extends AbstractTableModel {
-    private ArrayList<User> listUsers = new ArrayList<User>();
+    private ArrayList<User> listUsers = new ArrayList<>();
     private final String[] header = {"Login", "MdP"};
 
     public OnlineUsersDynamicObject() {
@@ -66,11 +66,11 @@ public class OnlineUsersDynamicObject extends AbstractTableModel {
             this.removeUser(i);
     }
 
-    public ArrayList<User> getUsers() {
+    public ArrayList<User> getListUsers() {
         return this.listUsers;
     }
 
-    public void setListUsersOnline(ArrayList<User> users) {
+    public void setListUsers(ArrayList<User> users) {
         this.removeAllUsers();
         this.listUsers = users;
     }

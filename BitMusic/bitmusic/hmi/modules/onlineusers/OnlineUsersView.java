@@ -22,8 +22,8 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     private final String type = "WEST";
     private final JLabel onlineUsersLabel = new JLabel("En ligne :");
-    private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
-    private JTable table;
+    private JTable table = new JTable();
+    private JScrollPane onlineUsersTablePane = new JScrollPane(this.table);
 
     public OnlineUsersView() {
         super();
@@ -37,9 +37,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
         this.onlineUsersLabel.setSize(d);
 
-        this.table = new JTable(this.modeleTable);
-        JScrollPane tablePane = new JScrollPane(this.table);
-
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
@@ -50,18 +47,16 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
             layout.createSequentialGroup()
                 .addComponent(onlineUsersLabel)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(tablePane)
+                    .addComponent(onlineUsersTablePane)
                 )
          );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
                .addComponent(onlineUsersLabel)
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(tablePane)
+                    .addComponent(onlineUsersTablePane)
                )
         );
-
-
     }
 
     @Override
@@ -72,6 +67,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- OnlineUsersView.update() : " + str);
-        this.modeleTable.setListUsersOnline(this.getController().getModel().getListUsersOnline());
+        this.table.setModel(this.getController().getModel().getModeleTable());
+        this.onlineUsersTablePane.setViewportView(this.table);
     }
 }

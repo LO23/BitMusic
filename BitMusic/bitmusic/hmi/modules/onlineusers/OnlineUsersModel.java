@@ -16,38 +16,51 @@ import java.util.ArrayList;
  */
 public final class OnlineUsersModel extends AbstractModel {
 
-    private ArrayList<User> listUsersOnline = new ArrayList<>();
-
+    private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
 
     public OnlineUsersModel() {
         super();
     }
 
     public void addUser(User user) {
-        this.listUsersOnline.add(user);
+        this.modeleTable.getListUsers().add(user);
         this.notifyObservers("ADD_ONLINE_USER");
     }
 
-    public void removeUser(User user) {
+    public void removeUser(String userId) {
+        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
+
         boolean userRemoved = false;
-        for ( int i=0; i<listUsersOnline.size(); i++) {
-            if (this.listUsersOnline.get(i).equals(user)) {
-                this.listUsersOnline.remove(i);
+        for ( int i=0; i<listOnlineUsers.size(); i++) {
+            if (listOnlineUsers.get(i).getUserId().equals(userId)) {
+                listOnlineUsers.remove(i);
                 userRemoved = true;
             }
         }
-        if (userRemoved ==false) {
-            System.out.println("--- Error: User doesn't exist, or is not online");
+
+        if (userRemoved == true) {
+            this.notifyObservers("REMOVE_ONLINE_USER");
         }
-        this.notifyObservers("REMOVE_ONLINE_USER");
+        else {
+            System.out.println("--- Error: User doesn't exist");
+        }
     }
 
-    public ArrayList<User> getListUsersOnline() {
-        return listUsersOnline;
+    public ArrayList<User> getListOnlineUsers() {
+        return this.modeleTable.getListUsers();
     }
 
-    public void setListUsersOnline(ArrayList<User> listUsersOnline) {
-        this.listUsersOnline = listUsersOnline;
+    public void setListUsersOnline(ArrayList<User> listOnlineUsers) {
+        this.modeleTable.setListUsers(listOnlineUsers);
+        this.notifyObservers("SET_LIST_ONLINE_USERS");
+    }
+
+    public OnlineUsersDynamicObject getModeleTable() {
+        return this.modeleTable;
+    }
+
+    public void setModeleTable(OnlineUsersDynamicObject modeleTable) {
+        this.modeleTable = modeleTable;
     }
 
 }
