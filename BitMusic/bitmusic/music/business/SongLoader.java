@@ -7,7 +7,6 @@ package bitmusic.music.business;
 
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
-import bitmusic.profile.classes.User;       //TODO: à modifier quand ProfileAPI créée
 import bitmusic.music.data.Rights;
 import bitmusic.music.exception.CopyMP3Exception;
 import bitmusic.profile.api.ApiProfileImpl;
@@ -49,7 +48,9 @@ public class SongLoader {
         }
         
         //Creating target directory
-        String fileDirectory = new String("Profiles/" + "GetUserDirectory/"+ "Music/Library/" + artist + "/" + album);
+        ApiProfileImpl ApiProfil = ApiProfileImpl.getApiProfile();
+        String fileDirectory = new String("Profiles/" + ApiProfil.getCurrentUserFolder()+ "/Music/Library/" + artist + "/" + album); //à tester
+        //String fileDirectory = new String("Profiles/" + "GetUserDirectory/"+ "Music/Library/" + artist + "/" + album);
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
@@ -86,7 +87,7 @@ public class SongLoader {
 
          //Creating song
         Song newsong = new Song(songId, title, album, artist, tags, rightsByCategory);
-        //ApiProfil.get.getSongs().add(newsong).getSongLibrary().addSong(newsong);
+        ApiProfil.getSongLibrary().addSong(newsong); //à tester
         
         this.copyMP3(path, title, artist, album);               
     }
