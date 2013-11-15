@@ -5,12 +5,18 @@
  */
 
 package bitmusic.music.data;
+import java.io.Serializable;
 
 /**
  *
  * @author Jean-Baptiste
  */
-public class Grade {
+public class Grade implements Serializable{
+    
+    /**
+     * Serialization UID, between 300 and 399 for the mp3 group.
+     */
+    private static final long serialVersionUID = 371L;
     /**
      * Song's grade (out of 5).
      */
