@@ -25,7 +25,7 @@ public class SongRater {
     /**
      * Api Profile.
      */
-    ApiProfileImpl apiProfil;
+    private ApiProfileImpl apiProfil;
 
     /**
      * Class constructor.
