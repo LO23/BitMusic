@@ -16,6 +16,7 @@ import bitmusic.music.business.SongLoader;
 import bitmusic.music.business.SongSearcher;
 import bitmusic.music.exception.CopyMP3Exception;
 import java.io.IOException;
+import bitmusic.music.player.BitMusicPlayer;
 
 /**
  *
@@ -104,61 +105,97 @@ public final class ApiMusicImpl implements ApiMusic {
         songSearcher.searchSongsbyUser(userID, searchId);
     }
 
-    ;
-   
-   /** 
-    * Add a song to SongLibrary
-    * 
-    * @param path  song path
-    * @param title song title
-    * @param album song album
-    * @param tags  song tags
-    * @param rights song rights
-    */
-   public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
+    /**
+     * Add a song to SongLibrary
+     *
+     * @param path song path
+     * @param title song title
+     * @param album song album
+     * @param tags song tags
+     * @param rights song rights
+     */
+    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
         SongLoader songLoader = new SongLoader();
-        try{
-        songLoader.importSong(path, title, artist, album, tags, rights);
-        }catch(CopyMP3Exception|IOException excep){
+        try {
+            songLoader.importSong(path, title, artist, album, tags, rights);
+        } catch (CopyMP3Exception | IOException excep) {
             System.out.println(excep.getMessage());
         }
     }
 
-    ;
-    
     /**
      * play a song from a distant user
-     * 
+     *
      * @param path song path
      */
-    public void playSong(String path) {
-        
+    public void playSongFromStart(String path) {
+        try {
+            BitMusicPlayer.getInstance().play(path);
+        } catch (IOException ioe) {
+            System.out.println("Player : can't read file");
+        } catch (Exception e) {
+            System.out.println("Player : ca marche pas");
+        }
     }
 
-    ;
+    public void playSongFromSpecificTime(int frameNumber) {
+        try {
+            BitMusicPlayer.getInstance().play(frameNumber);
+        } catch (IOException ioe) {
+            System.out.println("Player : can't read file");
+        } catch (Exception e) {
+            System.out.println("Player : can't play");
+        }
+    }
+    
+    public void pauseOrStopSong() {
+        try {
+            BitMusicPlayer.getInstance().pause();
+        } catch (Exception e) {
+            System.out.println("Player : can't pause");
+        }
+    }
+    
+    public void resumeSong() {
+        try {
+            BitMusicPlayer.getInstance().resume();
+        }catch(IOException ioe){
+            System.out.println("Player : can't read file");
+        } catch (Exception e) {
+            System.out.println("Player : can't resume");
+        }
+    }
+    
+    public int getNumberOfFramesSong() {
+        try {
+            return BitMusicPlayer.getInstance().getTotalFrame();
+        } catch (Exception e) {
+            System.out.println("Player : can't resume");
+        }
+        return 0;
+    }
     
     public String getSongFile(String songid) {
 
-        // TO DO
         return songid;
     }
 
-    ;
-
-    @Override
-    public SongLibrary searchSongsByTags(List<String> tagList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
-     * update a song rights
      *
-     * @param songid
-     * @param rights
+     * @param searchId
+     * @param tagList
+     * @return
      */
     @Override
-    public void changeRightsOfThisSong(String songid, Rights rights) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public SongLibrary searchSongsByTags(String searchId, List<String> tagList) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SongLibrary localSongLibrary;
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        SongLibrary localTaggedSongs = songSearcher.searchSongsByTags(searchId, tagList);
+
+        return localTaggedSongs;
     }
 
 }
