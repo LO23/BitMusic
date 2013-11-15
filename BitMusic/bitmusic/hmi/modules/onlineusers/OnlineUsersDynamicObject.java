@@ -66,11 +66,11 @@ public class OnlineUsersDynamicObject extends AbstractTableModel {
             this.removeUser(i);
     }
 
-    public ArrayList<User> getUsers() {
+    public ArrayList<User> getListUsers() {
         return this.listUsers;
     }
 
-    public void setListUsersOnline(ArrayList<User> users) {
+    public void setListUsers(ArrayList<User> users) {
         this.removeAllUsers();
         this.listUsers = users;
     }

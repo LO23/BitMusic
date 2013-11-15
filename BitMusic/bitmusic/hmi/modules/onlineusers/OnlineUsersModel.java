@@ -23,14 +23,14 @@ public final class OnlineUsersModel extends AbstractModel {
     }
 
     public void addUser(User user) {
-        ArrayList<User> listOnlineUsers = this.modeleTable.getUsers();
+        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
 
         listOnlineUsers.add(user);
         this.notifyObservers("ADD_ONLINE_USER");
     }
 
     public void removeUser(String userId) {
-        ArrayList<User> listOnlineUsers = this.modeleTable.getUsers();
+        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
 
         boolean userRemoved = false;
         User tempUser;
@@ -41,18 +41,21 @@ public final class OnlineUsersModel extends AbstractModel {
                 userRemoved = true;
             }
         }
-        if (userRemoved ==false) {
+
+        if (userRemoved == true) {
+            this.notifyObservers("REMOVE_ONLINE_USER");
+        }
+        else {
             System.out.println("--- Error: User doesn't exist, or is not online");
         }
-        this.notifyObservers("REMOVE_ONLINE_USER");
     }
 
     public ArrayList<User> getListOnlineUsers() {
-        return this.modeleTable.getUsers();
+        return this.modeleTable.getListUsers();
     }
 
     public void setListUsersOnline(ArrayList<User> listOnlineUsers) {
-        this.modeleTable.setListUsersOnline(listOnlineUsers);
+        this.modeleTable.setListUsers(listOnlineUsers);
     }
 
     public OnlineUsersDynamicObject getModeleTable() {

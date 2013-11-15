@@ -37,10 +37,12 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JButton fileBrowseButton = new JButton("Parcourir...");
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
+    private final JButton addTagButton = new JButton("Test ajout d'un tag");
 
-    private ImportSongDynamicObject modeleTable = new ImportSongDynamicObject();
-    private JTable table = new JTable(this.modeleTable);
-    private JScrollPane tagsTablePane;
+
+    private JTable table = new JTable();
+    private JScrollPane tagsTablePane = new JScrollPane(this.table);
+
 
     public ImportSongPopUpView() {
         super();
@@ -68,13 +70,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         this.fileBrowseButton.addActionListener(this.getController().new FileBrowseListener());
 
         this.tagLabel.setSize(d);
-        this.tagsTablePane = new JScrollPane(this.table);
 
         this.submitButton.setSize(d);
 
         this.cancelButton.setSize(d);
 
         this.infoLabel.setSize(d);
+
+        this.addTagButton.setSize(d);
+        this.addTagButton.addActionListener(this.getController().new AddNewTagListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -102,6 +106,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                     .addComponent(cancelButton)
                 )
                 .addComponent(infoLabel)
+                .addComponent(addTagButton)
 
         );
         layout.setVerticalGroup(
@@ -132,6 +137,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                     .addComponent(cancelButton)
                )
                .addComponent(infoLabel)
+               .addComponent(addTagButton)
 
         );
 
@@ -152,6 +158,8 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- ImportSongPopUpView.update()");
+        System.out.println("----- ImportSongPopUpView.update()" + str);
+        this.table.setModel(this.getController().getModel().getModeleTable());
+        this.tagsTablePane.setViewportView(this.table);
     }
 }
