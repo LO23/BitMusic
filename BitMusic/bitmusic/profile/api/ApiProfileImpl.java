@@ -8,6 +8,7 @@ package bitmusic.profile.api;
 
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
+import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.saving.UserSaver;
@@ -61,7 +62,7 @@ public class ApiProfileImpl implements ApiProfile {
     public User getCurrentUser() {
         return currentUser;
     }
-    
+
     @Override
     public void setCurrentUser(User newUser) {
         this.currentUser = newUser;
@@ -118,7 +119,7 @@ public class ApiProfileImpl implements ApiProfile {
     }
 
     @Override
-    public ArrayList<Song> getSongs() {
+    public SongLibrary getSongLibrary() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
