@@ -9,7 +9,8 @@ import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.User;       //TODO: à modifier quand ProfileAPI créée
 import bitmusic.music.data.Rights;
-import bitmusic.music.exception.WrongFormatMP3Exception;
+import bitmusic.music.exception.CopyMP3Exception;
+import bitmusic.profile.api.ApiProfileImpl;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,16 +36,16 @@ public class SongLoader {
      * @param artist    artist of the song
      * @param album     album of the song
      */
-    private void copyMP3(String path, String title, String artist, String album) throws WrongFormatMP3Exception, IOException{
+    private void copyMP3(String path, String title, String artist, String album) throws CopyMP3Exception, IOException{
         // If path is not a MP3 -> Exception
         if (!path.endsWith(".mp3")) {
-            throw new WrongFormatMP3Exception("This file is not a mp3");            
+            throw new CopyMP3Exception("This file is not a mp3");            
         }
         
         // If file to copy does not exist -> Exception        
         Path source = Paths.get(path);
         if (Files.notExists(source)){
-            throw new WrongFormatMP3Exception("File does not exist!");
+            throw new CopyMP3Exception("File does not exist!");
         }
         
         //Creating target directory
@@ -71,20 +72,22 @@ public class SongLoader {
      * @param tags tags of the song
      * @param rightsByCategory access rights of the song
      */
-    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rightsByCategory) throws WrongFormatMP3Exception, IOException{
+    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rightsByCategory) throws CopyMP3Exception, IOException{
 
-        // Ajout dans songLibrary
-        //Generating songId
+        //Getting current Date        
         DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
         Date date = new Date();
-        /* TODO : Finaliser avec API profile
-         String userId = new String(getCurrentUser().getUserId()); //TODO : waiting for Profile API
-         String songId = new String(userId + dateFormat.format(date));                        
+        
+        //Generating songId
+        ApiProfileImpl ApiProfil = ApiProfileImpl.getApiProfile();
+        ApiProfil.getCurrentUser().getUserId();
+        String userId = new String(ApiProfil.getCurrentUser().getUserId());
+        String songId = new String(userId + dateFormat.format(date));                        
 
          //Creating song
-         Song newsong = new Song(songId, title, album, artist, tags, rightsByCategory);
-         profileAPI.getSongLibrary().addSong(newsong);
-        */
+        Song newsong = new Song(songId, title, album, artist, tags, rightsByCategory);
+        //ApiProfil.get.getSongs().add(newsong).getSongLibrary().addSong(newsong);
+        
         this.copyMP3(path, title, artist, album);               
     }
 }
