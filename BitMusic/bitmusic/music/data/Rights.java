@@ -5,17 +5,18 @@
  */
 
 package bitmusic.music.data;
-
+import java.io.Serializable;
 /**
  *
  * @author Doha
  */
-public class Rights {
+public class Rights implements Serializable{
     
     private boolean canPlay;
     private boolean canReadInfo;
     private boolean canRate;
     private boolean canComment;
+    private static final long serialVersionUID = 302L;
     
     public Rights(boolean canPlayValue, boolean canReadInfoValue, boolean canRateValue, boolean canCommentValue)
          {

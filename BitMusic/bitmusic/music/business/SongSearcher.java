@@ -6,6 +6,7 @@ import bitmusic.music.data.*;
 import bitmusic.network.main.ApiMusicImpl;
 //porte d'entrée vers le module Network
 import bitmusic.network.main.Controller;
+import bitmusic.profile.api.ApiProfileImpl;
 
 /**
  * Class implementing the search feature of our application. The user can search
@@ -25,6 +26,7 @@ public class SongSearcher {
      */
     public SongSearcher(SongLibrary songLib) {
         songLibrary = songLib;
+        ApiProfileImpl bla = ApiProfileImpl.getApiProfile();
     }
 
     /**
