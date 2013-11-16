@@ -101,7 +101,7 @@ public class WindowComponent {
         return this.apiMusic;
     }
 
-    public void setApiMusic(ApiMusicImpl apiNetwork) {
+    public void setApiMusic(ApiMusicImpl apiMusic) {
         this.apiMusic = apiMusic;
     }
 
@@ -195,5 +195,37 @@ public class WindowComponent {
                 listTabsComponent.remove(i);
             }
         }
+    }
+
+    public void initAllComponents() {
+        // TODO : Création des différents Components...
+
+        //TODO
+//        this.setCategoriesComponent(new CategoriesComponent());
+//        this.getWindowView().addView(this.getCategoriesComponent().getView());
+
+        this.setMyProfileComponent(new MyProfileComponent());
+        this.getWindowView().addView(this.getMyProfileComponent().getView());
+
+        this.setOnlineUsersComponent(new OnlineUsersComponent());
+        this.getWindowView().addView(this.getOnlineUsersComponent().getView());
+        // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
+        // TODO : en attente de la disponibilité de la méthode dans l'API
+        // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
+        // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
+        // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
+        // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
+
+        // TODO
+//        this.setPlayBarComponent(new PlayBarComponent());
+//        this.getWindowView().addView(this.getPlayBarComponent().getView());
+
+        //TODO
+//        this.setSearchBarComponent(new SearchBarComponent());
+//        this.getWindowView().addView(this.getSearchBarComponent().getView());
+
+        //TODO
+//        this.setCentralAreaComponent(new CentralAreaComponent());
+//        this.getWindowView().addView(this.getCentralAreaComponent().getView());
     }
 }
