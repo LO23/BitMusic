@@ -38,19 +38,8 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                 // On enlève la ConnectionView des "objets utilisés"
                 win.getWindowView().removeView(ConnectionController.this.getView());
 
-                // TODO : Création des différents Components...
-
-                // Création du OnlineUsersComponent et attache de la View aux "objets utilisés"
-                win.setOnlineUsersComponent(new OnlineUsersComponent());
-                win.getWindowView().addView(win.getOnlineUsersComponent().getView());
-
-                // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
-                // TODO : en attente de la disponibilité de la méthode dans l'API
-                // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
-                // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
-
-                // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
-                // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
+                //On initialise tous les composants dans la vue principale
+                win.initAllComponents();
 
             } else {
                 JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
