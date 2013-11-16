@@ -7,6 +7,7 @@
 package bitmusic.network.api;
 
 import bitmusic.music.data.Song;
+import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
 
 /**
@@ -23,46 +24,55 @@ public interface ApiHmi {
     void logOut(final String userId) throws Exception;
     /**
      * Save, on local user machine, a song from a distant user machine.
+     * @param operator    local user ID who is requesting for the song
      * @param userId    distant user ID that owns the song
      * @param songId    song ID on the distant user machine
-     * @return True if the message was successfully sent, otherwise false
-     * @throws Exception thrown when saving fails
+     * @throws NetworkException thrown when saving fails
      */
-    boolean saveSong(final String userId, final String songId) throws Exception;
+    void saveSong(final String operator, final String userId,
+            final String songId) throws NetworkException;
     /**
      * Get the profile of a distant user.
      *
+     * @param operator    local user ID who is requesting for the song
      * @param userId    id of the user whose profile we want.
      * @param researchId    id of the research
-     * @return  User profile of the distant user, null if no such user found
-     * @throws Exception thrown when the get fail
+     * @throws NetworkException thrown when the get fail
      */
-    User getUser(final String userId, final String researchId) throws Exception;
+    void getUser(final String operator, final String userId,
+            final String researchId) throws NetworkException;
     /**
      * Request a distant user to send one of his song.
      *
+     * @param operator    local user ID who is requesting for the song
      * @param userAsked owner of the song
      * @param requestedSong song required
      * @param temporary true if it is a temporary download (default),
      * false if you want to keep the song
-     * @return  True if the request was correctly sent
+     * @throws NetworkException thrown when the get fail
      */
-    boolean getSong(final String userAsked, final Song requestedSong,
-            final boolean temporary);
+    void getSong(final String operator, final String userAsked,
+            final Song requestedSong, final boolean temporary)
+            throws NetworkException;
     /**
      * Request a distant user to send one of his song.
      * Implements the function with temporary = true (it's a temporary download)
+     * @param operator    local user ID who is requesting the song
      * @param userAsked owner of the song
      * @param requestedSong song required
      * false if you want to keep the song
-     * @return  True if the request was correctly sent
+     * @throws NetworkException thrown when the get fail
      */
-    boolean getSong(final String userAsked, final Song requestedSong);
+    void getSong(final String operator, final String userAsked,
+            final Song requestedSong) throws NetworkException;
     /**
      * Ask for a remote song file.
      *
+     * @param operator    local user ID who is requesting the song
      * @param userId distant user ID that owns the song
      * @param songId distant song ID that you want retrieve
+     * @throws NetworkException thrown when the get fail
     */
-    void getSongFile(final String userId, final String songId);
+    void getSongFile(final String operator, final String userId,
+            final String songId) throws NetworkException;
 }

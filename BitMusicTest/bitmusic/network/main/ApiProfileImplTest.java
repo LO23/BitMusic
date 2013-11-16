@@ -8,7 +8,6 @@ package bitmusic.network.main;
 
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
-import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -65,8 +64,8 @@ public class ApiProfileImplTest {
         String userId = "";
         ApiProfileImpl instance = null;
         User expResult = null;
-        User result = instance.getUser(userId);
-        assertEquals(expResult, result);
+        //User result = instance.getUser(userId);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -78,7 +77,7 @@ public class ApiProfileImplTest {
     public void testNotifyNewConnection() throws NetworkException {
         System.out.println("notifyNewConnection");
         final User user = new User("testLogin", "testPwd", "firstName", "lastName",
-                new Date(System.currentTimeMillis()), "/Path/avatar.png");
+                null, "/Path/avatar.png");
 
         final ApiProfileImpl instance = Controller.getInstance().getApiProfile();
         instance.notifyNewConnection(user);
@@ -90,5 +89,4 @@ public class ApiProfileImplTest {
         }
         assertTrue(true);
     }
-
 }

@@ -7,6 +7,7 @@
 package bitmusic.network.message;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Message to search songs with tags in a specific distant user library.
@@ -31,7 +32,7 @@ public final class MessageTagRequest extends AbstractMessage {
     /**
      * List of tags.
      */
-    private ArrayList<String> keywordsList;
+    private List<String> keywordsList;
 
     /**
      * Option.
@@ -46,7 +47,7 @@ public final class MessageTagRequest extends AbstractMessage {
      * @param paramType Type of the message
      * @param paramIpSource IP address of the sender
      * @param paramIpDest IP address of the receiver
-     * @param paramOperator ID of the user that asked fir the research
+     * @param paramOperator ID of the user that asked for the research
      * @param paramAskedUser ID of the user that owns the library
      * @param paramResearchId ID of the research
      * @param paramKeywordsList List of keywords
@@ -56,7 +57,7 @@ public final class MessageTagRequest extends AbstractMessage {
             final String paramIpSource, final String paramIpDest,
             final String paramOperator, final String paramAskedUser,
             final String paramResearchId,
-            final ArrayList<String> paramKeywordsList, final int paramOption) {
+            final List<String> paramKeywordsList, final int paramOption) {
         super(paramType, paramIpSource, paramIpDest);
         this.operator = paramOperator;
         this.askedUser = paramAskedUser;
@@ -165,7 +166,7 @@ public final class MessageTagRequest extends AbstractMessage {
      * Getter of the keywordsList attribute.
      * @return ArrayList<String> List of tags
      */
-    public ArrayList<String> getKeywordsList() {
+    public List<String> getKeywordsList() {
         return keywordsList;
     }
 
@@ -176,6 +177,4 @@ public final class MessageTagRequest extends AbstractMessage {
     public int getOption() {
         return option;
     }
-
-
 }

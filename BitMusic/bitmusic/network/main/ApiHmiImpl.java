@@ -8,10 +8,10 @@ package bitmusic.network.main;
 
 import bitmusic.music.data.Song;
 import bitmusic.network.api.ApiHmi;
+import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageLogOut;
-import bitmusic.profile.classes.User;
 import java.util.Map;
 
 /**
@@ -44,10 +44,10 @@ public final class ApiHmiImpl implements ApiHmi {
      * Notify every distant user that we are logging out.
      *
      * @param userId local user ID
-     * @throws Exception thrown when the logging out fails
+     * @throws NetworkException thrown when the user doesn't exist
      */
     @Override
-    public void logOut(final String userId) throws Exception {
+    public void logOut(final String userId) throws NetworkException {
         //Get the source address
         String sourceAddress;
 
@@ -56,8 +56,11 @@ public final class ApiHmiImpl implements ApiHmi {
                 getUserIpFromDirectory(userId);
 
         AbstractMessage message = null;
+
         //Loop on the directory
-        Map<String, String> userDirectory = Controller.getInstance().getDirectory();
+        final Map<String, String> userDirectory = Controller.getInstance().
+                getDirectory();
+
         for (Map.Entry<String, String> entry : userDirectory.entrySet()) {
             //entry.getValue()) contains remote user IP
 
@@ -75,73 +78,77 @@ public final class ApiHmiImpl implements ApiHmi {
                 entry.getKey());
 
             //Give the message to a worker...
-            Controller.getInstance().getThreadManager().assignTaskToHermes(message);
+            Controller.getInstance().getThreadManager().
+                    assignTaskToHermes(message);
         }
     }
     /**
      * Save, on local user machine, a song from a distant user machine.
+     * @param operator    local user ID who is requesting the song
      * @param userId    distant user ID that owns the song
      * @param songId    song ID on the distant user machine
-     * @return True if the message was successfully sent, otherwise false
-     * @throws Exception thrown when saving fails
+     * @throws NetworkException thrown when saving fails
      */
     @Override
-    public boolean saveSong(final String userId, final String songId)
-        throws Exception {
-        boolean bool = false;
+    public void saveSong(final String operator, final String userId,
+            final String songId) throws NetworkException {
 
-        return bool;
     }
     /**
      * Get the profile of a distant user.
      *
+     * @param operator    local user ID who is requesting the remote profile
      * @param userId    id of the user whose profile we want.
      * @param researchId    id of the research
-     * @return  User profile of the distant user, null if no such user found
-     * @throws Exception thrown when the get fail
+     * @throws NetworkException thrown when the get fail
      */
-    public User getUser(final String userId, final String researchId)
-            throws Exception {
-        User user = null;
-
-        return user;
+    @Override
+    public void getUser(final String operator, final String userId,
+            final String researchId) throws NetworkException {
+        Controller.getInstance().getApiProfile().
+                getUser(operator, userId, researchId);
     }
     /**
      * Request a distant user to send one of his song.
      *
+     * @param operator    local user ID who is requesting the song
      * @param userAsked owner of the song
      * @param requestedSong song required
      * @param temporary true if it is a temporary download (default),
      * false if you want to keep the song
-     * @return  True if the request was correctly sent
+     * @throws NetworkException thrown when the get fail
      */
     @Override
-    public boolean getSong(final String userAsked, final Song requestedSong,
-            final boolean temporary) {
-        boolean bool = false;
+    public void getSong(final String operator, final String userAsked,
+            final Song requestedSong, final boolean temporary)
+            throws NetworkException {
 
-        return bool;
     }
     /**
      * Request a distant user to send one of his song.
      * Implements the function with temporary = true (it's a temporary download)
+     * @param operator    local user ID who is requesting the song
      * @param userAsked owner of the song
      * @param requestedSong song required
      * false if you want to keep the song
-     * @return  True if the request was correctly sent
+     * @throws NetworkException thrown when the get fail
      */
     @Override
-    public boolean getSong(final String userAsked, final Song requestedSong) {
-        return this.getSong(userAsked, requestedSong, true);
+    public void getSong(final String operator, final String userAsked,
+            final Song requestedSong) throws NetworkException {
+        this.getSong(operator, userAsked, requestedSong, true);
     }
     /**
      * Ask for a remote song file.
      *
+     * @param operator    local user ID who is requesting the song
      * @param userId distant user ID that owns the song
      * @param songId distant song ID that you want retrieve
+     * @throws NetworkException thrown when the get fail
     */
     @Override
-    public void getSongFile(final String userId, final String songId) {
+    public void getSongFile(final String operator, final String userId,
+            final String songId) throws NetworkException{
 
     }
 }

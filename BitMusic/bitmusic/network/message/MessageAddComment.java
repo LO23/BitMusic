@@ -8,7 +8,6 @@ package bitmusic.network.message;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.Comment;
 import bitmusic.network.main.Controller;
-import bitmusic.profile.api.ApiProfileImpl;
 import java.util.Map;
 
 /**

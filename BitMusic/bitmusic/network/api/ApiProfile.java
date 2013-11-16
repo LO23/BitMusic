@@ -6,6 +6,7 @@
 
 package bitmusic.network.api;
 
+import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
 
 /**
@@ -16,17 +17,21 @@ public interface ApiProfile {
     /**
      * Get the profile of a distant user.
      *
+     * @param operator the id of the asking user.
      * @param userId the id of the user whose profile we want.
-     * @return profile of the distant user, null if no such user found
+     * @param searchId the id of research.
+     * @throws NetworkException throws an exception when the given idUser isn't
+     * in the directory
     */
-    User getUser(final String userId);
+    void getUser(final String operator, final String userId,
+            final String searchId) throws NetworkException;
 
     /**
     * Notify connection of a user and pass his profile to broadcast it.
     *
     * @param user the complete user who just connected
-    * @throws Exception throws an exception when the given user isn't
+    * @throws NetworkException throws an exception when the given user isn't
     * registered in the directory
     */
-    void notifyNewConnection(final User user) throws Exception;
+    void notifyNewConnection(final User user) throws NetworkException;
 }
