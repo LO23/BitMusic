@@ -6,10 +6,12 @@
 
 package bitmusic.network.main;
 
-import bitmusic.network.exception.EnumTypeException;
 import bitmusic.network.exception.NetworkDirectoryException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *
@@ -122,42 +124,42 @@ public final class Controller {
      * Get the ApiHmiImpl.
      * @return instance of ApiHmiImpl
      */
-    public final ApiHmiImpl getApiHmi() {
+    public ApiHmiImpl getApiHmi() {
         return apiHmi;
     }
     /**
      * Get the ApiMusicImpl.
      * @return instance of ApiMusicImpl
      */
-    public final ApiMusicImpl getApiMusic() {
+    public ApiMusicImpl getApiMusic() {
         return apiMusic;
     }
     /**
      * Get the ApiProfileImpl.
      * @return instance of ApiProfileImpl
      */
-    public final ApiProfileImpl getApiProfile() {
+    public ApiProfileImpl getApiProfile() {
         return apiProfile;
     }
     /**
      * Get the ApiExceptionImpl.
      * @return instance of ApiExceptionImpl
      */
-    public final ApiExceptionImpl getApiException() {
+    public ApiExceptionImpl getApiException() {
         return apiException;
     }
     /**
      * Get the NetworkListener.
      * @return instance of NetworkListener
      */
-    public final NetworkListener getNetworkListener() {
+    public NetworkListener getNetworkListener() {
         return NETLISTENER;
     }
     /**
      * Get the WorkManager.
      * @return instance of WorkManager
      */
-    public final ThreadManager getThreadManager() {
+    public ThreadManager getThreadManager() {
         return threadManager;
     }
     /**
@@ -175,9 +177,10 @@ public final class Controller {
      * Add a user to the directory.
      * @param userId Id of the user
      * @param ipAddress Ip address of the user
-     * @throws NetworkDirectoryException An exception is thrown if the userId already exist
+     * @throws NetworkDirectoryException An exception is thrown if the userId
+     * already exist
      */
-    public final void addUserToDirectory(final String userId,
+    public void addUserToDirectory(final String userId,
                final String ipAddress) throws NetworkDirectoryException {
            if (directory.containsKey(userId)) {
                throw new NetworkDirectoryException(
@@ -189,9 +192,10 @@ public final class Controller {
     /**
      * .
      * @param userId Id of the user
-     * @throws NetworkDirectoryException An exception is thrown if the userId doesn't exist
+     * @throws NetworkDirectoryException An exception is thrown if the userId
+     * doesn't exist
      */
-    public final void removeUserFromDirectory(final String userId)
+    public void removeUserFromDirectory(final String userId)
             throws NetworkDirectoryException {
         if (!directory.containsKey(userId)) {
             throw new NetworkDirectoryException(
@@ -207,13 +211,42 @@ public final class Controller {
      * @throws NetworkDirectoryException An exception is thrown if the userId
      * doesn't exist
      */
-    public final String getUserIpFromDirectory(final String userId)
+    public String getUserIpFromDirectory(final String userId)
             throws NetworkDirectoryException {
         if (!directory.containsKey(userId)) {
             throw new NetworkDirectoryException(
                     "The user " + userId + " doesn't exist in the directory.");
         }
         return directory.get(userId);
+    }
+
+    /**
+     * @return List containing all IP addresses contained in the directory
+     */
+    public List<String> getIpListFromDirectory() {
+        ArrayList<String> ipList;
+        ipList = new ArrayList();
+
+        for (Entry<String, String> entry : directory.entrySet()) {
+            ipList.add(entry.getValue());
+        }
+
+        return ipList;
+    }
+
+
+    /**
+     * @return List containing all IP addresses contained in the directory
+     */
+    public List<String> getUserListFromDirectory() {
+        ArrayList<String> userList;
+        userList = new ArrayList();
+
+        for (Entry<String, String> entry : directory.entrySet()) {
+            userList.add(entry.getKey());
+        }
+
+        return userList;
     }
 
     // ##################################
@@ -223,7 +256,7 @@ public final class Controller {
     /**
      * Prepare the app for test.
      */
-    public final void prepareForTest() {
+    public void prepareForTest() {
         this.getThreadManager().prepareForTest();
     }
     /**
