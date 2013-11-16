@@ -48,6 +48,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             JDialog jd = new JDialog(win.getWindowView(), "Importer une musique", true);
             jd.add(importSongPopUpComponent.getView().getPanel());
             jd.pack();
+            jd.show();
         }
     }
 }
