@@ -6,45 +6,44 @@
 
 package bitmusic.network.main;
 
-import bitmusic.network.message.AbstractMessage;
 
 import java.net.SocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.DatagramChannel;
 import java.net.InetSocketAddress;
 import java.io.IOException;
+import java.net.DatagramSocket;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.nio.channels.Selector;
 import java.nio.channels.SelectionKey;
 import java.util.Set;
 import java.util.Iterator;
-import java.nio.channels.Channel;
-import java.nio.channels.SocketChannel;
 
 
 /**
- * TCP network listener.
+ * TCP/UDP network listener.
  * "Server" process waiting for TCP clients connections
- * @author Pak
+ * @author Pak, Florian
  */
 public final class NetworkListener implements Runnable {
-
     /**
-    * port listened to by the listener
+    * port listened to by the listener.
     */
-    private final int PORTLISTENED;
+    private final int PORT_LISTENED;
 
     /**
-     * Socket address
+     * Socket address.
      */
     private final SocketAddress LOCALPORT;
 
     /**
-     * TCP channel
+     * TCP channel.
      */
     private ServerSocketChannel TCPSERVER;
 
     /**
-     * UDP channel
+     * UDP channel.
      */
     private DatagramChannel UDPSERVER;
 
@@ -59,8 +58,8 @@ public final class NetworkListener implements Runnable {
      * @param portToListen The port number
      */
     private NetworkListener(final int portToListen) {
-        PORTLISTENED = portToListen;
-        LOCALPORT = new InetSocketAddress(PORTLISTENED);
+        PORT_LISTENED = portToListen;
+        LOCALPORT = new InetSocketAddress(PORT_LISTENED);
         TCPSERVER = null;
         UDPSERVER = null;
         try {
@@ -68,32 +67,32 @@ public final class NetworkListener implements Runnable {
             TCPSERVER.socket().bind(LOCALPORT);
             UDPSERVER = DatagramChannel.open();
             UDPSERVER.socket().bind(LOCALPORT);
-        /**
-         * configure blocking mode to false
-         * since our Selector will do blocking for us
-         */
-        TCPSERVER.configureBlocking(false);
-        UDPSERVER.configureBlocking(false);
-
-        } catch (IOException e ) {
+            /**
+             * configure blocking mode to false
+             * since our Selector will do blocking for us
+             */
+            TCPSERVER.configureBlocking(false);
+            UDPSERVER.configureBlocking(false);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    /**
+     * @return return the listened port number.
+     */
     public int getPORTLISTENED() {
-        return PORTLISTENED;
+        return PORT_LISTENED;
     }
 
     /**
-     *
-     * @return unique instance of NetworkListener
+     * @return unique instance of NetworkListener.
      */
     public static NetworkListener getInstance() {
         return NETLISTENER;
     }
 
     /**
-     * TCP network listening behavior.
+     * TCP/UDP network listening behavior.
      */
     @Override
     public void run() {
@@ -103,30 +102,39 @@ public final class NetworkListener implements Runnable {
             UDPSERVER.register(selector, SelectionKey.OP_READ);
 
             //Loop forever, processing connections
-
             while(true){
-              try {
-                  selector.select();
-                  Set<SelectionKey> keys = selector.selectedKeys();
+                try {
+                    selector.select();
+                    final Set<SelectionKey> keys = selector.selectedKeys();
 
-                  // Iterate through the Set of keys.
-                  for (Iterator<SelectionKey> i = keys.iterator(); i.hasNext();) {
-                      SelectionKey key = i.next();
-                      i.remove();
+                    // Iterate through the Set of keys.
+                    for (final Iterator<SelectionKey> i = keys.iterator();
+                            i.hasNext();) {
+                        final SelectionKey key = i.next();
+                        i.remove();
+                        //######################################################
+                        //TCP CONNECTION ACCEPTED
+                        //######################################################
+                        if (key.isAcceptable()) {
+                            final ServerSocket servSocket = TCPSERVER.socket();
+                            final Socket connectionSocket = servSocket.accept();
 
-                      if (key.isAcceptable() || key.isReadable()) {
-                          SocketChannel sc = (SocketChannel) key.channel();
-                          Controller.getInstance().getThreadManager().assignTaskToWorker(sc.socket());
-                      }
-                  }
-              } catch (Exception e) {
-                  e.printStackTrace();
-              }
-          }
-      } catch (Exception e){
-          e.printStackTrace();
-      }
+                            Controller.getInstance().getThreadManager().
+                                    assignTaskToWorker(connectionSocket);
+                        //######################################################
+                        //UDP CONNECTION ACCEPTED
+                        //######################################################
+                        } else if (key.isReadable()) {
+                            final DatagramSocket connectionSocket = UDPSERVER.socket();
+                            //TO DO
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
-
 }
-
