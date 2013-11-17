@@ -64,8 +64,8 @@ public class WindowComponent {
 
         /*this.setConnectionComponent(new ConnectionComponent());
         this.view.addView(this.getConnectionComponent().getView());*/
-        this.setPlayBarComponent(new PlayBarComponent());
-        this.view.addView(this.getPlayBarComponent().getView());
+        this.setMyProfileComponent(new MyProfileComponent());
+        this.view.addView(this.getMyProfileComponent().getView());
     }
 
     /** Holder */
