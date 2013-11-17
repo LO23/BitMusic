@@ -10,6 +10,7 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 
 /**
@@ -53,33 +54,35 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         final Dimension d = new Dimension(80, 20);
 
         this.myProfileButton.setSize(d);
-        this.myProfileButton.addActionListener(this.getController().new LogoutListener());
+
 
         this.mySongsButton.setSize(d);
         this.logoutButton.setSize(d);
+        this.logoutButton.addActionListener(this.getController().new LogoutListener());
+
         this.importSongButton.setSize(d);
         this.importSongButton.addActionListener(this.getController().new ImportNewSongListener());
 
-        GridLayout layout = new GridLayout(0,2);
+        /*GridLayout layout = new GridLayout(0,2);
         this.getPanel().setLayout(layout);
         this.getPanel().add(myProfileButton);
         this.getPanel().add(mySongsButton);
         this.getPanel().add(logoutButton);
-        this.getPanel().add(importSongButton);
+        this.getPanel().add(importSongButton);*/
 
 
-        /*GroupLayout layout = new GroupLayout(this.getPanel());
+        GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
         layout.setVerticalGroup(
             layout.createSequentialGroup()
-                .addComponent(myProfileButton)
+                .addComponent(this.myProfileButton)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(mySongsButton)
+                    .addComponent(this.mySongsButton)
                 ).addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE))
-                .addComponent(disconnectButton)
-                    .addComponent(importSongButton)
-        );*/
+                .addComponent(this.logoutButton)
+                    .addComponent(this.importSongButton)
+        );
         // TODO
     }
 
