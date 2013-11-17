@@ -8,7 +8,6 @@ package bitmusic.network.message;
 
 import bitmusic.profile.classes.User;
 import bitmusic.network.main.Controller;
-import bitmusic.hmi.api.ApiHmi;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.exception.NetworkDirectoryException;
 import bitmusic.profile.api.ApiProfileImpl;
@@ -56,23 +55,24 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
            Controller.getInstance()
                    .addUserToDirectory(this.user.getUserId(),
                                        this.getIpSource());
-           //Instanciation of the API HMI
-           final ApiHmi apiHmi = WindowComponent.getInstance().getApiHmi();
            //Notify user connecxion to HMI
-           apiHmi.notifyNewConnection(this.user);
+           WindowComponent.getInstance().getApiHmi().
+                   notifyNewConnection(this.user);
 
-           final User currentUser = ApiProfileImpl.getApiProfile().getCurrentUser();
+           final User currentUser = ApiProfileImpl.getApiProfile().
+                   getCurrentUser();
 
            //Build an answer message to the new user
-           MessageReplyConnectionUser message = new MessageReplyConnectionUser(
-                   //Type of Message
-                   EnumTypeMessage.ReplyConnectionUser,
-                   //IP Source
-                   this.getIpDest(),
-                   //IP Dest
-                   this.getIpSource(),
-                   //User Profile
-                   currentUser);
+           final MessageReplyConnectionUser message =
+                   new MessageReplyConnectionUser(
+                    //Type of Message
+                    EnumTypeMessage.ReplyConnectionUser,
+                    //IP Source
+                    this.getIpDest(),
+                    //IP Dest
+                    this.getIpSource(),
+                    //User Profile
+                    currentUser);
 
            Controller.getInstance().getThreadManager()
                                    .assignTaskToHermes(message);
