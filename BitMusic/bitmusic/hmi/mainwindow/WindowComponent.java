@@ -62,8 +62,10 @@ public class WindowComponent {
         this.model.addObserver(this.view);
         this.view.addWindowListener(this.controller.new WindowComponentListener());
 
-        this.setConnectionComponent(new ConnectionComponent());
-        this.view.addView(this.getConnectionComponent().getView());
+        /*this.setConnectionComponent(new ConnectionComponent());
+        this.view.addView(this.getConnectionComponent().getView());*/
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.view.addView(this.getPlayBarComponent().getView());
     }
 
     /** Holder */
