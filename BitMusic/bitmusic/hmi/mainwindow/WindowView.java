@@ -11,6 +11,9 @@ import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +25,9 @@ import javax.swing.JPanel;
 public class WindowView extends JFrame implements Observer {
 
     private WindowController windowController;
+    private JPanel contentPanel = new JPanel(new BorderLayout());
+    private final JPanel jpanelNorth = new JPanel (new GridBagLayout());
+    private GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
     public WindowView() {
 
@@ -37,13 +43,10 @@ public class WindowView extends JFrame implements Observer {
 
     public void initFrame() {
         System.out.println("-- WindowView.initFrame()");
-        
+
         this.setTitle("BitMusic");
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension dim = toolkit.getScreenSize();
-        this.setSize(dim.width, dim.height);
-        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        contentPanel.add(jpanelNorth, BorderLayout.NORTH);
         this.setVisible(true);
     }
 
@@ -55,7 +58,7 @@ public class WindowView extends JFrame implements Observer {
             this.setVisible(true);
         }
         else {
-            JPanel contentPanel = new JPanel(new BorderLayout());
+
             this.getContentPane().add(contentPanel);
             switch (view.getType()) {
                 case "WEST":
@@ -65,7 +68,20 @@ public class WindowView extends JFrame implements Observer {
                     contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
                     break;
                 case "NORTH":
-                    contentPanel.add(view.getPanel(), BorderLayout.NORTH);
+                    System.out.println("dfffffff  "+ view.getClass().getSimpleName());
+                    if (view.getClass().getSimpleName().equalsIgnoreCase("MyProfileView")){
+                        gridBagConstraints.fill = GridBagConstraints.NONE;
+                        gridBagConstraints.anchor = GridBagConstraints.LINE_END;
+                        gridBagConstraints.weightx = 1;
+                        jpanelNorth.add(view.getPanel(), gridBagConstraints);
+                    }
+                    else if (view.getClass().getSimpleName().equalsIgnoreCase("SearchBarView")){
+                        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+                        gridBagConstraints.fill = GridBagConstraints.NONE;
+                        gridBagConstraints.weightx = 1;
+                        jpanelNorth.add(view.getPanel(),gridBagConstraints);
+                    }
+
                     break;
                 case "EAST":
                     contentPanel.add(view.getPanel(), BorderLayout.EAST);
@@ -77,7 +93,10 @@ public class WindowView extends JFrame implements Observer {
                     System.out.println("Error le type du panel (north, south, east... non définie");
                     break;
             }
-            pack();
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            Dimension dim = toolkit.getScreenSize();
+            this.setSize(dim.width, dim.height-20);
+            //this.setLocationRelativeTo(null);
             this.setVisible(true);
         }
     }
