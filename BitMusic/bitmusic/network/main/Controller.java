@@ -83,7 +83,7 @@ public final class Controller {
         this.broadcastAddress = "";
         try {
             this.networkAddress = InetAddress.getLocalHost().getHostAddress();
-            this.broadcastAddress = getBroadCastAddress();
+            this.broadcastAddress = findBroadCastAddress();
         }
         catch (UnknownHostException ex) {
         }
@@ -123,15 +123,15 @@ public final class Controller {
      * Get the broadcast address.
      * @return the broadcast address
      */
-    public String getBroadcastAddress() {
-        return broadcastAddress;
+    public static String getBroadcastAddress() {
+        return CONTROLLER.broadcastAddress;
     }
     /**
      * Get the network address.
      * @return the broadcast address
      */
-    public String getNetworkAddress() {
-        return networkAddress;
+    public static String getNetworkAddress() {
+        return CONTROLLER.networkAddress;
     }
     /**
      * Get the ApiHmiImpl.
@@ -263,7 +263,7 @@ public final class Controller {
     }
 
 
-    private String getBroadCastAddress(){
+    private String findBroadCastAddress(){
         String brcstAddr;
         try {
             brcstAddr = NetworkInterface
