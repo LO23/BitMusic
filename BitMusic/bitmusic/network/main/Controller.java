@@ -128,7 +128,7 @@ public final class Controller {
     }
     /**
      * Get the network address.
-     * @return the broadcast address
+     * @return the network address
      */
     public static String getNetworkAddress() {
         return CONTROLLER.networkAddress;
