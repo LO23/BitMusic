@@ -20,7 +20,7 @@ import javax.swing.JTable;
  */
 public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
-    private final String type = "WEST";
+    private final String type = "EAST";
     private final JLabel onlineUsersLabel = new JLabel("En ligne :");
     private JTable table = new JTable();
     private JScrollPane onlineUsersTablePane = new JScrollPane(this.table);
@@ -34,7 +34,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         System.out.println("--- OnlineUsersView.initPanel()");
 
         Dimension d = new Dimension(80, 20);
-
         this.onlineUsersLabel.setSize(d);
 
         GroupLayout layout = new GroupLayout(this.getPanel());

@@ -15,7 +15,7 @@ import bitmusic.hmi.patterns.Observable;
  */
 public final class CategoriesView extends AbstractView<CategoriesController> {
 
-    private static final String type = "EAST";
+    private static final String type = "WEST";
 
     public CategoriesView() {
         super();
