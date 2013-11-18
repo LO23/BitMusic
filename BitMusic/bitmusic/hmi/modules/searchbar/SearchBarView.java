@@ -29,7 +29,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     private final JLabel filtreLabel = new JLabel("Filtre :");
     private final JLabel searchLabel = new JLabel("Recherche...");
     private final JTextField searchField = new JTextField("Recherche...");
-    private final JButton researchButton = new JButton("rechercher");
+    private final JButton researchButton = new JButton("Rechercher");
     private final ButtonGroup groupeRadio = new ButtonGroup();
     private final JRadioButton aucunButton = new JRadioButton("Aucun", true),
                                titreButton = new JRadioButton("Par titre", false),
@@ -66,18 +66,27 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
-         layout.setHorizontalGroup(
-            layout.createSequentialGroup()
-//                .addComponent(searchField)
-//                .addComponent(researchButton)
+         layout.setHorizontalGroup(layout.createSequentialGroup()
+
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(searchLabel)
                     .addComponent(filtreLabel)
-
-
-
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                     .addComponent(researchButton)
+                     .addComponent(aucunButton)
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                     .addComponent(titreButton)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                     .addComponent(auteurButton)
+                )
+
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                      .addComponent(tagButton)
+                )
+                )
+                /*.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                      .addComponent(searchField)
                      .addComponent(researchButton)
                      .addComponent(aucunButton)
@@ -85,11 +94,10 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
                      .addComponent(auteurButton)
                      .addComponent(tagButton)
 
-                )
+                )*/
 
         );
-         layout.setVerticalGroup(
-            layout.createSequentialGroup()
+         layout.setVerticalGroup(layout.createSequentialGroup()
 
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(searchLabel)
@@ -126,7 +134,6 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         return this.searchField;
     }
 
-      // TO FINISH AND TEST
 
     @Override
     public String getType() {
