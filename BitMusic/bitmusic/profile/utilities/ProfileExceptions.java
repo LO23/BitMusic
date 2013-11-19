@@ -36,11 +36,19 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "Can\'t open file";
                 break;
             }
+            case DirNotFound: {
+                this.errorMessage = "Dir not found";
+                break;
+            }
             default : {
                 this.errorMessage = "Exception from Profile";
                 break;
                 }
             }
+    }
+
+    public ProfileExceptions(String err) {
+        this.errorMessage = err;
     }
 
     public ProfileExceptionType getType() {
@@ -49,6 +57,6 @@ public class ProfileExceptions extends Throwable {
 
     @Override
     public String toString() {
-        return errorMessage;
+        return this.errorMessage + " from " + this.type.toString();
     }
 }

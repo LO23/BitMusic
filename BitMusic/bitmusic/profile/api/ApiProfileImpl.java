@@ -10,11 +10,14 @@ import bitmusic.music.data.Rights;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
-import bitmusic.profile.saving.UserSaver;
+import bitmusic.profile.saving.FileSaver;
 import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,8 +55,7 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public void saveUser(User user) throws ProfileExceptions {
-        UserSaver userSaver = new UserSaver();
-        userSaver.saveUser();
+        FileSaver.getFileSaver().saveUser(user);
     }
 
     @Override

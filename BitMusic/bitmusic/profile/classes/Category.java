@@ -6,6 +6,7 @@
 package bitmusic.profile.classes;
 
 import bitmusic.music.data.Rights;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
  * Category
  * @author frogerfa, lesceuni, reaneyol, MilioPeralta
  */
-public class Category {
+public class Category implements Serializable {
 
     //########################## ATTRIBUTES ##########################//
 

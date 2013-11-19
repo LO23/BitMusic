@@ -32,6 +32,11 @@ public class MessageSendSongFile extends AbstractMessage {
      * ID of the user that owns the song.
      */
     private String userId;
+    
+    /**
+     * ID of the distant song we want.
+     */
+    private boolean temporary;
 
     /**
      * Constructor.
@@ -40,23 +45,25 @@ public class MessageSendSongFile extends AbstractMessage {
      * @param paramIpDest IP address of the receiver
      * @param paramUserId Id of the user who own the mp3
      * @param paramSongId Id of the the song
+     * @param paramTemporary is the file temporary
      * @param array Array of byte of mp3 file
      */
     public MessageSendSongFile(final EnumTypeMessage paramType,
             final String paramIpSource, final String paramIpDest,
             final String paramUserId, final String paramSongId,
-            final byte[] array) {
+            final boolean paramTemporary, final byte[] array) {
         super(paramType, paramIpSource, paramIpDest);
         this.mp3Array = array;
         this.songId = paramSongId;
         this.userId = paramUserId;
+        this.temporary = paramTemporary;
     }
 
     /**
      * .
      */
     @Override
-    public void treatment() {
+    public final void treatment() {
         try {
             //TODO : quelle est le path à écrire
             final String pathFile = "/tmp/" + this.userId + this.songId;
@@ -72,35 +79,59 @@ public class MessageSendSongFile extends AbstractMessage {
     }
 
      /**
-     * Getter of the mp3 file array
+     * Getter of the mp3 file array.
      * @return mp3Array Byte array of mp3 file
      */
-    public byte[] getMp3Array() {
+    public final byte[] getMp3Array() {
         return mp3Array;
     }
 
-    public void setMp3Array(byte[] paramMp3Array) {
+    /**
+     * Setter of the mp3Array attribute.
+     * @param paramMp3Array data array containing the MP3 file
+     */
+    public final void setMp3Array(final byte[] paramMp3Array) {
         this.mp3Array = paramMp3Array;
     }
 
-     /**
-     * Getter of the songId attribute.
-     * @return String ID of the distant Song
-     */
-    public String getSongId() {
+    /**
+    * Getter of the songId attribute.
+    * @return String ID of the distant Song
+    */
+    public final String getSongId() {
         return songId;
     }
 
-    public void setSongId(String paramSongId) {
+    /**
+    * Getter of the temporary attribute.
+    * @return boolean is the file temporary
+    */
+    public final boolean isTemporary() {
+        return this.temporary;
+    }
+
+    /**
+     * Setter of the songId attribute.
+     * @param paramSongId id of the song
+     */
+    public final void setSongId(final String paramSongId) {
         this.songId = paramSongId;
     }
 
-    public void setUserId(String paramUserId) {
+    /**
+     * Setter of the userId attribute.
+     * @param paramUserId ID of the user who owns the song
+     */
+    public final void setUserId(final String paramUserId) {
         this.userId = paramUserId;
     }
 
-    public String getUserId() {
-        return userId;
+    /**
+     * Getter of the userId attribute.
+     * @return String ID of the user who owns the song
+     */
+    public final String getUserId() {
+        return this.userId;
     }
 
 
