@@ -280,7 +280,7 @@ public final class Controller {
         return brcstAddr;
     }
 
-    private final static String OS = System.getProperty("os.name").toLowerCase();
+    private final String OS = System.getProperty("os.name").toLowerCase();
 
     private boolean isMac() {
         return (OS.indexOf("mac") >= 0);
@@ -299,7 +299,6 @@ public final class Controller {
                 || OS.indexOf("aix") >= 0);
     }
     */
-
 
 
     // ##################################
