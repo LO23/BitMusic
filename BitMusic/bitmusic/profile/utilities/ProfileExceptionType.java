@@ -16,6 +16,8 @@ public enum ProfileExceptionType {
     ConnectionWrongLogin,
     ConnectionWrongPassword,
     FileNotFound,
+    DirNotFound,
+    DirNotCreated,
     FileNotAuthorized,
     CreationFileError,
     WritingFileError,

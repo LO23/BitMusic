@@ -14,13 +14,14 @@ import java.util.Calendar;
 import java.util.UUID;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
+import java.io.Serializable;
 import sun.awt.shell.ShellFolder;
 
 /**
  *
  * @author reaneyol, MilioPeralta
  */
-public class User {
+public class User implements Serializable {
 
     //########################## ATTRIBUTES ##########################//
     /**

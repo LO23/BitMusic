@@ -6,6 +6,7 @@
 
 package bitmusic.profile.saving;
 
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
 
@@ -20,9 +21,9 @@ import static org.junit.Assert.*;
  *
  * @author Holywa
  */
-public class UserParserTest {
+public class FileParserTest {
 
-    public UserParserTest() {
+    public FileParserTest() {
     }
 
     @BeforeClass
@@ -42,20 +43,19 @@ public class UserParserTest {
     }
 
     /**
-     * Test of loadUser method, of class UserParser.
+     * Test of loadUser method, of class FileParser.
      * @throws java.lang.Exception
      */
     @Test
     public void testLoadUser() throws Exception {
         System.out.println("loadUser");
-        UserParser instance = new UserParser();
+
         try {
-            User loadedUser = instance.loadUserForTest();
-            System.out.println("User loaded : " + loadedUser.toString() + "\n");
+            User loadedUser = FileParser.getFileParser().loadUser("Olivia", "pwd");
+            System.out.println("User loaded : " + loadedUser.getLogin() + "\n");
         }
         catch(ProfileExceptions e) {
             fail(e.toString());
         }
     }
-
 }
