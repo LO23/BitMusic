@@ -7,6 +7,8 @@
 package bitmusic.network.main;
 
 import bitmusic.network.exception.NetworkException;
+import bitmusic.network.message.AbstractMessage;
+import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.profile.classes.User;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,7 +22,10 @@ import org.junit.Ignore;
  *
  * @author vincetn
  */
-public class ApiProfileImplTest {
+public class ApiProfileImplTest extends NetworkingTest {
+
+    private transient final ThreadManager threadManager
+            = Controller.getInstance().getThreadManager();
 
     public ApiProfileImplTest() { }
 
@@ -37,12 +42,11 @@ public class ApiProfileImplTest {
     @Before
     public void setUp() {
         System.out.println("###########################");
-        System.out.println("##      START  TEST      ##");
+        this.resetSocket();
     }
 
     @After
     public void tearDown() {
-        System.out.println("##       END  TEST       ##");
         System.out.println("###########################");
     }
 
@@ -74,19 +78,34 @@ public class ApiProfileImplTest {
      * Test of notifyNewConnection method, of class ApiProfileImpl.
      */
     @Test
-    public void testNotifyNewConnection() throws NetworkException {
+    public void testNotifyNewConnection() {
         System.out.println("notifyNewConnection");
-        final User user = new User("testLogin", "testPwd", "firstName", "lastName",
-                null, "/Path/avatar.png");
+        // création d'un user lamba
+        final User user = new User("testLogin", "testPwd", "firstName",
+                "lastName", null, "/Path/avatar.png");
 
         final ApiProfileImpl instance = Controller.getInstance().getApiProfile();
+
+        // le test "s'abonne" au threadmanager,
+        // il attendra que celui-ci le reveille (reception d'une socket)
+        this.threadManager.suscribe(this);
+
+        // Appel de la fonction à tester
         instance.notifyNewConnection(user);
-        try {
-            wait(200);
-        } catch (InterruptedException ex) {
-            fail("InterruptedException Raised : "+ex.getMessage()
-                    +" \n-----\nStackTrace :"+ex.getStackTrace().toString());
+
+        // attente de la socket en retour
+        this.waitForSocket();
+
+        // decodage de la socket
+        final AbstractMessage message = this.readMessageFromSocket();
+
+        if(message == null) {
+            fail("null message found");
         }
-        assertTrue(true);
+
+        assertEquals("Type du Message incohérent",
+                EnumTypeMessage.NotifyNewConnection, message.getType());
     }
+
+
 }

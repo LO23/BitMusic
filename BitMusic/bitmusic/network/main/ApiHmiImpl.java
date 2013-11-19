@@ -6,17 +6,17 @@
 
 package bitmusic.network.main;
 
-import bitmusic.music.data.Song;
 import bitmusic.network.api.ApiHmi;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
+import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageLogOut;
 import java.util.Map;
 
 /**
  *
- * @author florian
+ * @author florian, alexis
  */
 public final class ApiHmiImpl implements ApiHmi {
     /**
@@ -83,18 +83,6 @@ public final class ApiHmiImpl implements ApiHmi {
         }
     }
     /**
-     * Save, on local user machine, a song from a distant user machine.
-     * @param operator    local user ID who is requesting the song
-     * @param userId    distant user ID that owns the song
-     * @param songId    song ID on the distant user machine
-     * @throws NetworkException thrown when saving fails
-     */
-    @Override
-    public void saveSong(final String operator, final String userId,
-            final String songId) throws NetworkException {
-
-    }
-    /**
      * Get the profile of a distant user.
      *
      * @param operator    local user ID who is requesting the remote profile
@@ -109,46 +97,59 @@ public final class ApiHmiImpl implements ApiHmi {
                 getUser(operator, userId, researchId);
     }
     /**
-     * Request a distant user to send one of his song.
-     *
-     * @param operator    local user ID who is requesting the song
-     * @param userAsked owner of the song
-     * @param requestedSong song required
-     * @param temporary true if it is a temporary download (default),
-     * false if you want to keep the song
-     * @throws NetworkException thrown when the get fail
-     */
-    @Override
-    public void getSong(final String operator, final String userAsked,
-            final Song requestedSong, final boolean temporary)
-            throws NetworkException {
-
-    }
-    /**
-     * Request a distant user to send one of his song.
-     * Implements the function with temporary = true (it's a temporary download)
-     * @param operator    local user ID who is requesting the song
-     * @param userAsked owner of the song
-     * @param requestedSong song required
-     * false if you want to keep the song
-     * @throws NetworkException thrown when the get fail
-     */
-    @Override
-    public void getSong(final String operator, final String userAsked,
-            final Song requestedSong) throws NetworkException {
-        this.getSong(operator, userAsked, requestedSong, true);
-    }
-    /**
      * Ask for a remote song file.
      *
      * @param operator    local user ID who is requesting the song
      * @param userId distant user ID that owns the song
      * @param songId distant song ID that you want retrieve
+     * @param paramTemporary will the song be downloaded as temporary
      * @throws NetworkException thrown when the get fail
     */
     @Override
     public void getSongFile(final String operator, final String userId,
-            final String songId) throws NetworkException{
+            final String songId, final boolean paramTemporary)
+            throws NetworkException{
+        //Get the source address
+        String sourceAddress;
 
+        //Warning, it may emmit an exception thrown to the calling method!
+        sourceAddress = Controller.getInstance().
+                getUserIpFromDirectory(operator);
+
+        //Get the destination address
+        String destinationAddress;
+
+        destinationAddress = Controller.getInstance().
+                getUserIpFromDirectory(userId);
+
+        AbstractMessage message = null;
+
+        message = new MessageGetSongFile(
+                //type of the message
+                EnumTypeMessage.GetSongFile,
+                //source address
+                sourceAddress,
+                //destination address
+                destinationAddress,
+                //ID of the user that owns the song
+                userId,
+                //ID of the song
+                songId,
+                //Is the file temporary ?
+                paramTemporary);
+
+        //Give the message to a worker...
+            Controller.getInstance().getThreadManager().
+                    assignTaskToHermes(message);
+    }
+
+    /**
+     * Shutdown the Executor service (thread pool) when program exits.
+     */
+    @Override
+    public void shutdownExecutorService(){
+
+        Controller.getInstance().getThreadManager()
+                .getExecutorService().shutdown();
     }
 }

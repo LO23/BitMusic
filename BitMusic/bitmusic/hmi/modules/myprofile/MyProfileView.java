@@ -27,7 +27,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     private final JButton mySongsButton = new JButton("Mes morceaux");
     private final JButton logoutButton = new JButton("Déconnexion");
     private final JButton importSongButton = new JButton("Importer un titre");
-    private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/images/avatar3.png"));
+    private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
     private JLabel avatarLabel;
     // TODO : récupérer l'image de l'avatar (pas en dur)
 
