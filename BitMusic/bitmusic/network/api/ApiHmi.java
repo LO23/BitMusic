@@ -6,9 +6,7 @@
 
 package bitmusic.network.api;
 
-import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
-import bitmusic.profile.classes.User;
 
 /**
  *
@@ -19,9 +17,9 @@ public interface ApiHmi {
      * Notify every distant user that we are logging out.
      *
      * @param userId local user ID
-     * @throws Exception thrown when the logging out fails
+     * @throws NetworkException thrown when the logging out fails
      */
-    void logOut(final String userId) throws Exception;
+    void logOut(final String userId) throws NetworkException;
     /**
      * Get the profile of a distant user.
      *
@@ -44,4 +42,8 @@ public interface ApiHmi {
     void getSongFile(final String operator, final String userId,
             final String songId, final boolean paramTemporary)
             throws NetworkException;
+    /**
+     *  Shutdown the Executor service (thread pool) when program exits.
+     */
+    void shutdownExecutorService();
 }

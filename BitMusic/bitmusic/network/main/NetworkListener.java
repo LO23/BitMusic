@@ -11,7 +11,6 @@ import java.net.SocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.DatagramChannel;
 import java.net.InetSocketAddress;
-import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -19,6 +18,8 @@ import java.nio.channels.Selector;
 import java.nio.channels.SelectionKey;
 import java.util.Set;
 import java.util.Iterator;
+
+
 
 
 /**
@@ -53,6 +54,7 @@ public final class NetworkListener implements Runnable {
     private static final NetworkListener
             NETLISTENER = new NetworkListener(4444);
 
+    private final Thread thread = new Thread(this);
     /**
      * Default constructor.
      * @param portToListen The port number
@@ -73,9 +75,12 @@ public final class NetworkListener implements Runnable {
              */
             TCPSERVER.configureBlocking(false);
             UDPSERVER.configureBlocking(false);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new NetworkException("TCP "
+                    + "or UDP server socket binding with LOCALPORT failed");
+
         }
+        thread.start();
     }
     /**
      * @return return the listened port number.
@@ -102,7 +107,7 @@ public final class NetworkListener implements Runnable {
             UDPSERVER.register(selector, SelectionKey.OP_READ);
 
             //Loop forever, processing connections
-            while(true){
+            while(true) {
                 try {
                     selector.select();
                     final Set<SelectionKey> keys = selector.selectedKeys();
@@ -130,11 +135,16 @@ public final class NetworkListener implements Runnable {
                         }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    throw new NetworkException("TCP "
+                            + "or UDP server registration failed");
                 }
+
+
             }
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new NetworkException("TCP "
+                    + "or UDP server registration failed");
+
         }
     }
 }

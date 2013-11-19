@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 
-package bitmusic.music;
+package bitmusic.network.test;
+
+import java.net.Socket;
 
 /**
  *
- * @author MB
+ * @author vincetn
  */
-public class MusicMain {
-    
+public interface SocketListener {
+
+    public void setSocket(Socket socket);
 }

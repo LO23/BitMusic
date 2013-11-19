@@ -24,6 +24,14 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "No password defined";
                 break;
             }
+            case LoginWithInvalidCharacters : {
+                this.errorMessage = "Login with invalid characters";
+                break;
+            }
+            case CategoryNotFound : {
+                this.errorMessage = "Category not found";
+                break;
+            }
             case ConnectionWrongLogin : {
                 this.errorMessage = "Can\'t connect : wrong login entered";
                 break;
@@ -57,6 +65,6 @@ public class ProfileExceptions extends Throwable {
 
     @Override
     public String toString() {
-        return this.errorMessage + " from " + this.type.toString();
+        return this.errorMessage;
     }
 }

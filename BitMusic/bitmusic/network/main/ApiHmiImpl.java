@@ -142,4 +142,14 @@ public final class ApiHmiImpl implements ApiHmi {
             Controller.getInstance().getThreadManager().
                     assignTaskToHermes(message);
     }
+
+    /**
+     * Shutdown the Executor service (thread pool) when program exits.
+     */
+    @Override
+    public void shutdownExecutorService(){
+
+        Controller.getInstance().getThreadManager()
+                .getExecutorService().shutdown();
+    }
 }

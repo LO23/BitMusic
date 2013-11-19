@@ -10,11 +10,10 @@ import bitmusic.music.data.SongLibrary;
 import bitmusic.music.data.Rights;
 import bitmusic.music.exception.CopyMP3Exception;
 import bitmusic.profile.api.ApiProfileImpl;
-import java.util.Date;
+import bitmusic.profile.classes.Category;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -74,7 +73,7 @@ public class SongLoader {
      * @param tags tags of the song
      * @param rightsByCategory access rights of the song
      */
-    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rightsByCategory) throws CopyMP3Exception, IOException {
+    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags) throws CopyMP3Exception, IOException {
 
         //Getting current Date        
         DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
@@ -82,13 +81,18 @@ public class SongLoader {
 
         //Generating songId
         ApiProfileImpl ApiProfil = ApiProfileImpl.getApiProfile();
-        ApiProfil.getCurrentUser().getUserId();
         String userId = new String(ApiProfil.getCurrentUser().getUserId());
         String songId = new String(userId + dateFormat.format(date));
 
         //Creating song
-        Song newsong = new Song(songId, title, album, artist, tags, rightsByCategory);
-        ApiProfil.getSongLibrary().addSong(newsong); //à tester
+        Song newSong = new Song(songId, title, album, artist, tags);
+        ArrayList<Category> allCategories = ApiProfil.getCategories();
+        //All rightsByCategories are set to True by default
+        for(Category category : allCategories) {
+            Rights newRight = new Rights(true, true, true, true);
+            newSong.getRightsByCategory().put(category.getId(), newRight);
+        }
+        ApiProfil.getSongLibrary().addSong(newSong); //à tester
 
         this.copyMP3(path, title, artist, album);
     }
