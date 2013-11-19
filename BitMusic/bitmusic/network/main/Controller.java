@@ -6,7 +6,12 @@
 
 package bitmusic.network.main;
 
+
 import bitmusic.network.exception.NetworkDirectoryException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,17 +20,17 @@ import java.util.Map.Entry;
 
 /**
  *
- * @author florian, Pak
+ * @author florian, Pak, vincent
  */
 public final class Controller {
     /**
      * The broadcast address of the network.
      */
-    private static String broadcastAddress;
+    private transient String broadcastAddress = "";
     /**
      * The network address of the network.
      */
-    private static String networkAddress;
+    private transient String networkAddress = "";
     /**
      * Contains the singleton instance.
      */
@@ -34,38 +39,38 @@ public final class Controller {
      * References the HMI API
      * (Due to the composition link on the class diagram).
      */
-    private ApiHmiImpl apiHmi;
+    private final transient ApiHmiImpl apiHmi;
     /**
      * References the Music API
      * (Due to the composition link on the class diagram).
      */
-    private ApiMusicImpl apiMusic;
+    private final transient ApiMusicImpl apiMusic;
     /**
      * References the Profile API
      * (Due to the composition link on the class diagram).
      */
-    private ApiProfileImpl apiProfile;
+    private final transient ApiProfileImpl apiProfile;
     /**
      * References the Exception API
      * (Due to the composition link on the class diagram).
      */
-    private ApiExceptionImpl apiException;
+    private final transient ApiExceptionImpl apiException;
     /**
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
-    private NetworkListener NETLISTENER;
+    private final transient NetworkListener netListener;
 
 
     /**
-     * References the worker manage
+     * References the worker manager
      * (Due to the composition link on the class diagram).
      */
-    private ThreadManager threadManager;
+    private final transient ThreadManager threadManager;
     /**
      * Contains the correspondance between UserId and Ips.
      */
-    private Map<String, String> directory;
+    private final transient Map<String, String> directory;
 
     /*########################################################################*/
     /* CONSTRUCTORS */
@@ -74,12 +79,20 @@ public final class Controller {
      * Construct a new controller and links all the singleton's instances.
      */
     private Controller() {
-        //Initialisation of IP addresses
-        broadcastAddress = "127.0.0.255";
-        networkAddress = "127.0.0.1";
+        this.networkAddress = "";
+        this.broadcastAddress = "";
+        try {
+            this.networkAddress = InetAddress.getLocalHost().getHostAddress();
+            this.broadcastAddress = findBroadCastAddress();
+        }
+        catch (UnknownHostException ex) {
+        }
+
+
+
 
         //Create the directory
-        directory = new HashMap<String, String>();
+        directory = new HashMap();
 
         //Contains all the API's instances
         apiException = bitmusic.network.main.ApiExceptionImpl.getInstance();
@@ -88,7 +101,7 @@ public final class Controller {
         apiProfile = bitmusic.network.main.ApiProfileImpl.getInstance();
 
         //Contains the NetworkListener instance
-        NETLISTENER = bitmusic.network.main.NetworkListener.getInstance();
+        netListener = bitmusic.network.main.NetworkListener.getInstance();
 
         //Contains the WorkManager instance
         threadManager = bitmusic.network.main.ThreadManager.getInstance();
@@ -111,14 +124,14 @@ public final class Controller {
      * @return the broadcast address
      */
     public static String getBroadcastAddress() {
-        return broadcastAddress;
+        return CONTROLLER.broadcastAddress;
     }
     /**
      * Get the network address.
-     * @return the broadcast address
+     * @return the network address
      */
     public static String getNetworkAddress() {
-        return networkAddress;
+        return CONTROLLER.networkAddress;
     }
     /**
      * Get the ApiHmiImpl.
@@ -153,7 +166,7 @@ public final class Controller {
      * @return instance of NetworkListener
      */
     public NetworkListener getNetworkListener() {
-        return NETLISTENER;
+        return netListener;
     }
     /**
      * Get the WorkManager.
@@ -249,6 +262,23 @@ public final class Controller {
         return userList;
     }
 
+
+    private String findBroadCastAddress(){
+        String brcstAddr;
+        try {
+            brcstAddr = NetworkInterface
+                    .getByInetAddress(InetAddress.getLocalHost())
+                      .getInterfaceAddresses()
+                        .get(0).getBroadcast().getHostAddress();
+            return brcstAddr;
+        } catch (SocketException | UnknownHostException ex) {
+            brcstAddr = "";
+        }
+        return brcstAddr;
+    }
+
+
+
     // ##################################
     // ## ##       TEST TOOLS       ## ##
     // ##################################
@@ -265,4 +295,5 @@ public final class Controller {
     public void endTest() {
         this.getThreadManager().endTest();
     }
+
 }

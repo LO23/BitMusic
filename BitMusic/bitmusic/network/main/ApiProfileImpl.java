@@ -84,17 +84,11 @@ public final class ApiProfileImpl implements ApiProfile {
     * Notify connection of a user and pass his profile to broadcast it.
     *
     * @param user the complete user who just connected
-    * @throws NetworkException throws an exception when the given idUser isn't
-    * in the directory
     */
     @Override
-    public void notifyNewConnection(final User user) throws NetworkException {
+    public void notifyNewConnection(final User user) {
         //Get the source address
-        final String sourceAddress;
-
-        //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(user.getUserId());
+        final String sourceAddress = Controller.getNetworkAddress();
 
         //Construct the message
         final AbstractMessage message = new MessageNotifyNewConnection(

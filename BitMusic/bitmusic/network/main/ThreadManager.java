@@ -5,6 +5,7 @@
  */
 
 package bitmusic.network.main;
+import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
@@ -23,7 +24,7 @@ public final class ThreadManager {
     /**
      * executor.
      */
-    private final ExecutorService executorService;
+    private final transient ExecutorService executorService;
 
 
     /**
@@ -54,9 +55,13 @@ public final class ThreadManager {
     * At the end of run(), the worker destroys itself.
     * @param socket socket treated as a task
     */
-    public void assignTaskToWorker(final Socket socket) {
-        final AbstractManageable worker = new Worker(socket);
-        executorService.execute(worker);
+    public void assignTaskToWorker(final Socket socket) throws NetworkException {
+        if (weAreTesting()) {
+            throw new NetworkException("Fuck YEAH !");
+        } else {
+            final AbstractManageable worker = new Worker(socket);
+            executorService.execute(worker);
+        }
     }
     /**
      *
@@ -69,7 +74,7 @@ public final class ThreadManager {
      */
     public void assignTaskToHermes(final AbstractMessage task) {
         if (weAreTesting()) {
-            task.setIpDest(LOOP_ADRESS);
+            task.setIpDest(LOOP_ADDRESS);
         }
         final AbstractManageable hermes = new Hermes(task);
         executorService.execute(hermes);
@@ -86,7 +91,26 @@ public final class ThreadManager {
     /**
      * Common loop ip adress for network.
      */
-    private static final String LOOP_ADRESS = "127.0.0.1";
+    private static final String LOOP_ADDRESS = "127.0.0.1";
+
+    /**
+     * (QUALITY) Used for JUnit tests
+     */
+    private Socket lastSocketReceived;
+    private transient Object jUnitTest;
+
+    public void suscribe(Object jUnitTestArg) {
+        this.jUnitTest = jUnitTestArg;
+    }
+
+    public void onSocketReceived() {
+        this.jUnitTest.notify();
+    }
+    
+    public Socket getLastSocketReceived() {
+        return this.lastSocketReceived;
+    }
+
     /**
      * (QUALITY) Prepare the workManager for some tests.
      */
