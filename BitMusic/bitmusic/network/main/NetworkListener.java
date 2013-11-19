@@ -125,8 +125,12 @@ public final class NetworkListener implements Runnable {
                         //UDP CONNECTION ACCEPTED
                         //######################################################
                         } else if (key.isReadable()) {
-                            final DatagramSocket connectionSocket = UDPSERVER.socket();
-                            //TO DO
+                            final DatagramSocket connectionSocket = UDPSERVER.
+                                    socket();
+
+                            Controller.getInstance().getThreadManager().
+                                    assignTaskToDatagramWorker(
+                                            connectionSocket);
                         }
                     }
                 } catch (Exception e) {

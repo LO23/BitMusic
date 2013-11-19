@@ -7,6 +7,7 @@
 package bitmusic.network.main;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
+import java.net.DatagramSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -64,6 +65,17 @@ public final class ThreadManager {
         }
     }
     /**
+     * .
+    */
+    public void assignTaskToDatagramWorker(final DatagramSocket socket) throws NetworkException {
+        if (weAreTesting()) {
+            throw new NetworkException("Fuck YEAH !");
+        } else {
+            final AbstractManageable datagramWorker = new DatagramWorker(socket);
+            executorService.execute(datagramWorker);
+        }
+    }
+    /**
      *
      * Creates an hermes messenger (thread) and initiate it with a message.
      * The task will be scheduled and
@@ -106,7 +118,7 @@ public final class ThreadManager {
     public void onSocketReceived() {
         this.jUnitTest.notify();
     }
-    
+
     public Socket getLastSocketReceived() {
         return this.lastSocketReceived;
     }
