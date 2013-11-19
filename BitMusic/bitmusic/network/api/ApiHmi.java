@@ -23,15 +23,6 @@ public interface ApiHmi {
      */
     void logOut(final String userId) throws Exception;
     /**
-     * Save, on local user machine, a song from a distant user machine.
-     * @param operator    local user ID who is requesting for the song
-     * @param userId    distant user ID that owns the song
-     * @param songId    song ID on the distant user machine
-     * @throws NetworkException thrown when saving fails
-     */
-    void saveSong(final String operator, final String userId,
-            final String songId) throws NetworkException;
-    /**
      * Get the profile of a distant user.
      *
      * @param operator    local user ID who is requesting for the song
@@ -41,30 +32,6 @@ public interface ApiHmi {
      */
     void getUser(final String operator, final String userId,
             final String researchId) throws NetworkException;
-    /**
-     * Request a distant user to send one of his song.
-     *
-     * @param operator    local user ID who is requesting for the song
-     * @param userAsked owner of the song
-     * @param requestedSong song required
-     * @param temporary true if it is a temporary download (default),
-     * false if you want to keep the song
-     * @throws NetworkException thrown when the get fail
-     */
-    void getSong(final String operator, final String userAsked,
-            final Song requestedSong, final boolean temporary)
-            throws NetworkException;
-    /**
-     * Request a distant user to send one of his song.
-     * Implements the function with temporary = true (it's a temporary download)
-     * @param operator    local user ID who is requesting the song
-     * @param userAsked owner of the song
-     * @param requestedSong song required
-     * false if you want to keep the song
-     * @throws NetworkException thrown when the get fail
-     */
-    void getSong(final String operator, final String userAsked,
-            final Song requestedSong) throws NetworkException;
     /**
      * Ask for a remote song file.
      *
