@@ -12,7 +12,6 @@ import java.net.SocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.DatagramChannel;
 import java.net.InetSocketAddress;
-import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.Selector;
@@ -136,12 +135,12 @@ public final class NetworkListener implements Runnable {
                         //UDP CONNECTION ACCEPTED
                         //######################################################
                         } else if (key.isReadable()) {
-                            final DatagramSocket connectionSocket = UDPSERVER.
-                                    socket();
+                            final DatagramChannel channel =
+                                    (DatagramChannel) key.channel();
 
                             Controller.getInstance().getThreadManager().
                                     assignTaskToDatagramWorker(
-                                            connectionSocket);
+                                            channel);
                         }
                     }
                 } catch (Exception e) {

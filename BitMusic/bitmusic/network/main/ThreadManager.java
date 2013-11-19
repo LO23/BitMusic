@@ -7,9 +7,9 @@
 package bitmusic.network.main;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
-import java.net.DatagramSocket;
 import bitmusic.network.test.SocketListener;
 import java.net.Socket;
+import java.nio.channels.DatagramChannel;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -75,11 +75,13 @@ public final class ThreadManager {
     /**
      * .
     */
-    public void assignTaskToDatagramWorker(final DatagramSocket socket) throws NetworkException {
-        if (weAreTesting()) {
-            throw new NetworkException("Fuck YEAH !");
+    public void assignTaskToDatagramWorker(final DatagramChannel channel)
+            throws NetworkException {
+                if (weAreTesting()) {
+                    throw new NetworkException("Fuck YEAH !");
         } else {
-            final AbstractManageable datagramWorker = new DatagramWorker(socket);
+            final AbstractManageable datagramWorker =
+                    new DatagramWorker(channel);
             executorService.execute(datagramWorker);
         }
     }
