@@ -12,7 +12,7 @@ import bitmusic.profile.classes.User;
 
 /**
  *
- * @author florian
+ * @author florian, alexis
  */
 public interface ApiHmi {
     /**

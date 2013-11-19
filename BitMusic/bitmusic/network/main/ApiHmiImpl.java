@@ -6,17 +6,17 @@
 
 package bitmusic.network.main;
 
-import bitmusic.music.data.Song;
 import bitmusic.network.api.ApiHmi;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
+import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageLogOut;
 import java.util.Map;
 
 /**
  *
- * @author florian
+ * @author florian, alexis
  */
 public final class ApiHmiImpl implements ApiHmi {
     /**
@@ -109,6 +109,37 @@ public final class ApiHmiImpl implements ApiHmi {
     public void getSongFile(final String operator, final String userId,
             final String songId, final boolean paramTemporary)
             throws NetworkException{
+        //Get the source address
+        String sourceAddress;
 
+        //Warning, it may emmit an exception thrown to the calling method!
+        sourceAddress = Controller.getInstance().
+                getUserIpFromDirectory(operator);
+
+        //Get the destination address
+        String destinationAddress;
+
+        destinationAddress = Controller.getInstance().
+                getUserIpFromDirectory(userId);
+
+        AbstractMessage message = null;
+
+        message = new MessageGetSongFile(
+                //type of the message
+                EnumTypeMessage.GetSongFile,
+                //source address
+                sourceAddress,
+                //destination address
+                destinationAddress,
+                //ID of the user that owns the song
+                userId,
+                //ID of the song
+                songId,
+                //Is the file temporary ?
+                paramTemporary);
+
+        //Give the message to a worker...
+            Controller.getInstance().getThreadManager().
+                    assignTaskToHermes(message);
     }
 }
