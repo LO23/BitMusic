@@ -57,6 +57,6 @@ public class ProfileExceptions extends Throwable {
 
     @Override
     public String toString() {
-        return this.errorMessage + " from " + this.type.toString();
+        return this.errorMessage;
     }
 }
