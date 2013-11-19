@@ -39,7 +39,6 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
                 //On initialise tous les composants dans la vue principale
                 win.initAllComponents();
-
             } else {
                 JOptionPane.showMessageDialog(ConnectionController.this.getView(), "Connexion refusée : pseudo et/ou mot de passe incorrect(s)", "Connexion refusée", JOptionPane.ERROR_MESSAGE);
             }

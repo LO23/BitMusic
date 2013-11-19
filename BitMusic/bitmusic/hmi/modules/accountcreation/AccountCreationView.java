@@ -32,8 +32,9 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
     private final JLabel nomLabel = new JLabel("Nom ");
     private final JLabel birthLabel = new JLabel("Date de Naissance (*)");
     private final JLabel avatarLabel = new JLabel("Avatar");
-    private final JButton connectButton = new JButton("Se connecter");
+    private final JButton validateButton = new JButton("Valider");
     private final JButton resetButton = new JButton("Réinitialiser");
+    private final JButton cancelButton = new JButton("Annuler");
     private final JTextField loginField = new JTextField("");
     private final JPasswordField passwordField = new JPasswordField("");
     private final JPasswordField confirmationField = new JPasswordField("");
@@ -61,8 +62,9 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
         this.birthLabel.setSize(d);
         this.avatarLabel.setSize(d);
 
-        this.connectButton.setSize(d);
+        this.validateButton.setSize(d);
         this.resetButton.setSize(d);
+        this.cancelButton.setSize(d);
 
         this.loginField.setColumns(10);
         this.passwordField.setColumns(10);
@@ -74,6 +76,8 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
 //        final JLabel path = new JLabel();
         avatarbrowseButton.addActionListener(this.getController().new AvatarBrowseListener());
 //        file.showSaveDialog(this);
+
+        this.cancelButton.addActionListener(this.getController().new CancelListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -92,7 +96,7 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
                     .addComponent(nomLabel)
                     .addComponent(birthLabel)
                     .addComponent(avatarLabel)
-                    .addComponent(connectButton)
+                    .addComponent(validateButton)
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(loginField)
@@ -104,44 +108,47 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
                     .addComponent(avatarbrowseButton)
                     .addComponent(resetButton)
                 )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelButton)
+                )
 
         );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
-               .addComponent(createAccountLabel)
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(createAccountLabel)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(loginLabel)
                     .addComponent(loginField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
                     .addComponent(passwordField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmationLabel)
                     .addComponent(confirmationField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(prenomLabel)
                     .addComponent(prenomField)
-               )
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(nomLabel)
                     .addComponent(nomField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(birthLabel)
-//                    .addComponent(picker)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    //.addComponent(picker)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(avatarLabel)
                     .addComponent(avatarbrowseButton)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(connectButton)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(validateButton)
                     .addComponent(resetButton)
-               )
-
+                    .addComponent(cancelButton)
+                )
         );
 
         layout.linkSize(SwingConstants.HORIZONTAL, loginLabel, loginField);
