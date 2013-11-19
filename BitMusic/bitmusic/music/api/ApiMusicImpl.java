@@ -117,7 +117,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
         SongLoader songLoader = new SongLoader();
         try {
-            songLoader.importSong(path, title, artist, album, tags, rights);
+            songLoader.importSong(path, title, artist, album, tags);
         } catch (CopyMP3Exception | IOException excep) {
             System.out.println(excep.getMessage());
         }
