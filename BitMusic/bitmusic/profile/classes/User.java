@@ -26,6 +26,7 @@ import sun.awt.shell.ShellFolder;
 public class User implements Serializable {
 
     //########################## ATTRIBUTES ##########################//
+    private static final long serialVersionUID = 402L;
     /**
      *
      */
@@ -39,7 +40,7 @@ public class User implements Serializable {
     /**
      *
      */
-    private String password;
+    private transient String password;
 
     /**
      *
