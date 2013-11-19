@@ -82,7 +82,7 @@ public class Category {
      * @param UserID UserID to find
      * @return th User or null
      */
-    public User getContact(String UserID){
+    public User findContact(String UserID){
         User found = null;
         for(User contact : this.contacts){
             if(contact.getUserId() == UserID) found = contact;
