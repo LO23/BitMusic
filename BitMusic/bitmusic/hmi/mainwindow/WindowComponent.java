@@ -62,10 +62,9 @@ public class WindowComponent {
         this.model.addObserver(this.view);
         this.view.addWindowListener(this.controller.new WindowComponentListener());
 
-        /*this.setConnectionComponent(new ConnectionComponent());
-        this.view.addView(this.getConnectionComponent().getView());*/
-        this.setMyProfileComponent(new MyProfileComponent());
-        this.view.addView(this.getMyProfileComponent().getView());
+        this.setConnectionComponent(new ConnectionComponent());
+        this.view.addView(this.getConnectionComponent().getView());
+
     }
 
     /** Holder */
@@ -206,6 +205,10 @@ public class WindowComponent {
 //        this.setCategoriesComponent(new CategoriesComponent());
 //        this.getWindowView().addView(this.getCategoriesComponent().getView());
 
+
+        this.setSearchBarComponent(new SearchBarComponent());
+        this.getWindowView().addView(this.getSearchBarComponent().getView());
+
         this.setMyProfileComponent(new MyProfileComponent());
         this.getWindowView().addView(this.getMyProfileComponent().getView());
 
@@ -218,13 +221,12 @@ public class WindowComponent {
         // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
         // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
 
-        // TODO
-//        this.setPlayBarComponent(new PlayBarComponent());
-//        this.getWindowView().addView(this.getPlayBarComponent().getView());
 
-        //TODO
-//        this.setSearchBarComponent(new SearchBarComponent());
-//        this.getWindowView().addView(this.getSearchBarComponent().getView());
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.getWindowView().addView(this.getPlayBarComponent().getView());
+
+
+
 
         //TODO
 //        this.setCentralAreaComponent(new CentralAreaComponent());
