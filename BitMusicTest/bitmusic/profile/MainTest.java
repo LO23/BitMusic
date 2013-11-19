@@ -17,7 +17,6 @@ import java.util.logging.Logger;
  */
 public class MainTest {
     public static void main(String[] args) {
-        System.out.println("Testing profile");
         FileSaverTest test = new FileSaverTest();
         try {
             test.testSaveUser();

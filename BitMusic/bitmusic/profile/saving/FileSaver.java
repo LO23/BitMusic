@@ -46,32 +46,31 @@ public class FileSaver {
      * @throws ProfileExceptions
      */
     public void saveUser(User userToSave) throws ProfileExceptions {
-        //String defaultPath = new File("").getAbsolutePath().toString() + "\\" + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
-        String defaultPath = new File("").getAbsolutePath().toString() + "\\" + userToSave.getLogin() + "_" + userToSave.getTransformedBirthday();
+        String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
+        //String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + userToSave.getLogin() + "_" + userToSave.getTransformedBirthday();
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
-            try {
+           /*try {
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
             }
             catch(IOException io) {
                 throw new ProfileExceptions("Cannot create directory");
-            }
+            }*/
+            throw new ProfileExceptions(ProfileExceptionType.DirNotFound);
         }
 
         try {
-            FileOutputStream saveFile = new FileOutputStream(defaultPath + "user.ser");
+            FileOutputStream saveFile = new FileOutputStream(defaultPath + "\\profile\\" + userToSave.getLogin() + ".ser");
             try (ObjectOutputStream oos = new ObjectOutputStream(saveFile)) {
                 oos.writeObject(userToSave);
                 oos.flush();
             }
         }
         catch(FileNotFoundException eFound) {
-            System.out.println(eFound.toString());
-            throw new ProfileExceptions(ProfileExceptionType.CreationFileError);
+            throw new ProfileExceptions(eFound.toString());
         }
         catch(IOException eIO) {
-            System.out.println(eIO.toString());
-            throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
+            throw new ProfileExceptions(eIO.toString());
         }
     }
 
@@ -82,9 +81,10 @@ public class FileSaver {
      */
     public void saveAuthFile(User toSave) throws ProfileExceptions {
         try {
-            //String defaultPath = new File("").getAbsolutePath().toString() + "\\" + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
-            String defaultPath = new File("").getAbsolutePath().toString() + "\\" + toSave.getLogin() + "_" + toSave.getTransformedBirthday();
-            FileOutputStream authFile = new FileOutputStream(defaultPath + "auth");
+            String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
+            //String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + toSave.getLogin() + "_" + toSave.getTransformedBirthday();
+
+            FileOutputStream authFile = new FileOutputStream(defaultPath + "\\profile\\auth");
 
             try (ObjectOutputStream oos = new ObjectOutputStream(authFile)) {
                 oos.writeUTF(toSave.getLogin());
@@ -93,10 +93,10 @@ public class FileSaver {
             }
         }
         catch(FileNotFoundException eFound) {
-            throw new ProfileExceptions(ProfileExceptionType.CreationFileError);
+            throw new ProfileExceptions(eFound.toString());
         }
         catch(IOException eIO) {
-            throw new ProfileExceptions(ProfileExceptionType.WritingFileError);
+            throw new ProfileExceptions(eIO.toString());
         }
     }
 
