@@ -51,10 +51,10 @@ public final class ApiHmiImpl implements ApiHmi {
         // TODO
     }
 
-    /*@Override
-    public void addCategory(String name, boolean play, readInfos, boolean comment, boolean rate) {
+    @Override
+    public void addCategory(String name, boolean play, Rights readInfos, boolean comment, boolean rate) {
         // TODO
-    }*/
+    }
 
     @Override
     public void removeCategory() {

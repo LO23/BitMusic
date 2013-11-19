@@ -66,7 +66,7 @@ public interface ApiHmi {
 
     // TODO : vérifier leur utilité pour les autres modules
     void displayCategories();
-    //void addCategory(String name, boolean play, readInfos, boolean comment, boolean rate);
+    void addCategory(String name, boolean play, Rights readInfos, boolean comment, boolean rate);
     void removeCategory();
     void searchSongsByUser(String userId);
     void displayUser(String userID);
