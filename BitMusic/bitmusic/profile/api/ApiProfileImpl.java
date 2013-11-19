@@ -44,11 +44,16 @@ public class ApiProfileImpl implements ApiProfile {
             throw new ProfileExceptions(ProfileExceptionType.PasswordNull);
         }
 
-        if(birthDate == null){
+        if(birthDate == null) {
             throw new ProfileExceptions(ProfileExceptionType.PasswordNull);
         }
 
-        //currentUser = new User(login, password, firstName, lastName, birthDate, avatarPath);
+        if(login.contains("_")) {
+            throw new ProfileExceptions(ProfileExceptionType.LoginWithInvalidCharacters);
+        }
+
+        currentUser = new User(login, password, firstName, lastName, birthDate,
+                avatarPath);
 
     }
 
@@ -68,59 +73,106 @@ public class ApiProfileImpl implements ApiProfile {
         this.currentUser = newUser;
     }
 
-    @Override
+        @Override
     public String getCurrentUserFolder() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return currentUser.getLogin() + "_" + currentUser.getTransformedBirthday();
     }
 
     @Override
     public ArrayList<String> getCategoriesNameByUserId(String userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Category> myCategories = currentUser.getCategories();
+        ArrayList<String> myCategoriesNames = new ArrayList<>();
+
+        for (Category cat : myCategories) {
+            myCategoriesNames.add(cat.getName());
+        }
+
+        return myCategoriesNames;
+
     }
 
     @Override
     public ArrayList<Category> getCategories() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return currentUser.getCategories();
     }
 
     @Override
     public void addCategory(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        currentUser.addCategory(name);
     }
 
     @Override
-    public void updateCategory(int categoryId, String newName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateCategory(String categoryId, String newName) {
+        try {
+            currentUser.updateCategory(categoryId, newName);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
-    public void deleteCategory(int categoryId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteCategory(String categoryId) {
+        try {
+            currentUser.deleteCategory(categoryId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
-    public void addUserToCategory(User user, int categoryId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addUserToCategory(User user, String categoryId) {
+        try {
+            currentUser.addContact(user, categoryId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
-    public void moveContact(String userId, int categoryId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void moveContact(String userId, String categoryId) {
+        try {
+            Category myCategory = currentUser.getCategoryById(categoryId);
+            User tmpUser = myCategory.findContact(userId);
+
+            currentUser.removeContact(tmpUser, categoryId);
+            currentUser.addContact(tmpUser, categoryId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
-    public Rights getRights(String songId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Rights getRights(String songId, String categoryId) {
+        Rights tmpRight = currentUser.getSongs().getSong(songId).getRightsByCategory().get(categoryId);
+
+        if(tmpRight == null){
+            tmpRight = new Rights();
+        }
+
+        return tmpRight;
     }
 
     @Override
-    public void updateRights(String songId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateRights(String categoryId, Rights right) {
+        try {
+            currentUser.getCategoryById(categoryId).updateRight(right.getcanPlay(), right.getcanPlay(), right.getcanRate(), right.getcanComment());
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateRights(String categoryId, boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
+        try {
+            currentUser.getCategoryById(categoryId).updateRight(canIReadInfo,canPlay,canRate, canComment);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public SongLibrary getSongLibrary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return currentUser.getSongs();
     }
 
     @Override
@@ -132,5 +184,4 @@ public class ApiProfileImpl implements ApiProfile {
     public void deleteSong(String songId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
