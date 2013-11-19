@@ -7,8 +7,13 @@
 package bitmusic.network.main;
 
 import bitmusic.network.message.AbstractMessage;
+import bitmusic.network.message.EnumTypeMessage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
 
 /**
@@ -42,13 +47,23 @@ public class Hermes extends AbstractManageable {
      */
     @Override
     public void run() {
+        //Send an UDP message
+        if (this.message.getType() == EnumTypeMessage.NotifyNewConnection) {
+            sendUdpMessage();
+        //Send a TCP message
+        } else {
+            sendTcpMessage();
+        }
+    }
+
+    private final void sendTcpMessage() {
         try {
             final Socket socket = new Socket(message.getIpDest(),
-                    Controller.getInstance().
-                        getNetworkListener().getPORTLISTENED());
+            Controller.getInstance().
+            getNetworkListener().getPORTLISTENED());
 
             final ObjectOutputStream oos = new ObjectOutputStream(
-                    socket.getOutputStream());
+            socket.getOutputStream());
 
             oos.writeObject(message);
 
@@ -58,4 +73,34 @@ public class Hermes extends AbstractManageable {
             System.out.println(e.getMessage());
         }
     }
+
+    private final void sendUdpMessage() {
+        try {
+            final DatagramSocket socket = new DatagramSocket(
+                    Controller.getInstance().getNetworkListener().
+                            getPORTLISTENED(), InetAddress.getLocalHost());
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+
+            oos.writeObject(this.message);
+
+            byte[] data = baos.toByteArray();
+
+            DatagramPacket packet = new DatagramPacket(data, data.length,
+                    InetAddress.getByName(Controller.getBroadcastAddress()),
+                    Controller.getInstance().getNetworkListener().
+                            getPORTLISTENED());
+
+            socket.send(packet);
+
+            oos.writeObject(message);
+
+            oos.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
+

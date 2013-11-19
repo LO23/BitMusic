@@ -45,6 +45,7 @@ public class Worker extends AbstractManageable {
                 message = (AbstractMessage) ois.readObject();
 
                 message.treatment();
+                
             } catch (ClassNotFoundException e) {
                 System.out.println(e.getMessage());
             }
