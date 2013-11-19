@@ -9,8 +9,11 @@ package bitmusic.hmi.modules.myprofile;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpComponent;
+import bitmusic.network.exception.NetworkException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 
 /**
@@ -27,9 +30,13 @@ public final class MyProfileController extends AbstractController<MyProfileModel
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("- Fermeture de l'application en cours...");
-            
+
             WindowComponent win = WindowComponent.getInstance();
-            win.getWindowModel().logOut();
+            try {
+                win.getWindowModel().logOut();
+            } catch (NetworkException ex) {
+                Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             win.getWindowView().dispose();
         }
     }
