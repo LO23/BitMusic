@@ -121,12 +121,15 @@ public class WindowView extends JFrame implements Observer {
     public void addTabbedPane(JTabbedPane tabbedPane) {
         JComponent panel1 = makeTextPanel("Panel #1");
         tabbedPane.addTab("Tab 1", null, panel1, "Does nothing");
+        
+        JComponent panel2 = makeTextPanel("Panel #2");
+        tabbedPane.addTab("Tab 2", null, panel2, "Does nothing");
 
         this.getContentPane().add(contentPanel);
         contentPanel.add(tabbedPane, BorderLayout.CENTER);
-
         this.setVisible(true);
         pack();
+
     }
 
     public void removeTabbedPane(JTabbedPane tabbedPane) {

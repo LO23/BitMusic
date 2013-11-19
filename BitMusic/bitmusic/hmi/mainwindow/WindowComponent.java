@@ -58,10 +58,8 @@ public class WindowComponent {
         this.model.addObserver(this.view);
         this.view.addWindowListener(this.controller.new WindowComponentListener());
 
-//        this.setConnectionComponent(new ConnectionComponent());
-//        this.view.addView(this.getConnectionComponent().getView());
-
-        this.getWindowView().addTabbedPane(this.view.getTabbedPane());
+        this.setConnectionComponent(new ConnectionComponent());
+        this.view.addView(this.getConnectionComponent().getView());
 
     }
 
@@ -215,10 +213,7 @@ public class WindowComponent {
 //        this.setPlayBarComponent(new PlayBarComponent());
 //        this.getWindowView().addView(this.getPlayBarComponent().getView());
 
-        //this.getWindowView().addTabbedPane(this.view.getTabbedPane());
+        this.getWindowView().addTabbedPane(this.view.getTabbedPane());
 
-        //TODO
-//        this.setCentralAreaComponent(new CentralAreaComponent());
-//        this.getWindowView().addView(this.getCentralAreaComponent().getView());
     }
 }
