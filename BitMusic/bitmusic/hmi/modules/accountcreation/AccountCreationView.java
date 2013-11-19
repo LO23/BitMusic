@@ -23,7 +23,7 @@ import javax.swing.SwingConstants;
  */
 public final class AccountCreationView extends AbstractView<AccountCreationController> {
 
-    private static final String type = "NORTH";
+    private static final String type = "CENTER";
     private final JLabel createAccountLabel = new JLabel("Créer un compte");
     private final JLabel loginLabel = new JLabel("Pseudo (*)");
     private final JLabel passwordLabel = new JLabel("Mot de passe (*)");
@@ -69,7 +69,7 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
         this.confirmationField.setColumns(10);
         this.prenomField.setColumns(10);
         this.nomField.setColumns(10);
-        
+
         this.avatarbrowseButton.setSize(d);
 //        final JLabel path = new JLabel();
         avatarbrowseButton.addActionListener(this.getController().new AvatarBrowseListener());

@@ -93,6 +93,7 @@ public class WindowView extends JFrame implements Observer {
             this.setSize(dim.width, dim.height-20);
             //this.setLocationRelativeTo(null);
             this.setVisible(true);
+            pack();
         }
     }
 
