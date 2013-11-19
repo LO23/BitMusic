@@ -102,6 +102,19 @@ public interface ApiMusic {
      */
     public int getCurrentFrame();
     
-    public String getSongFile (String songid);
+    /**
+     * Get the path of a local song identified by songId
+     * @param songId songId
+     * @return path path of the song
+     */
+    public String getSongFile (String songId);
+    
+    /**
+     * Get the path of a temporary song identified by userId & songId
+     * @param userId userId
+     * @param songId songId
+     * @return path path of the song
+     */
+    public String getTempSongFile(String userId, String songId);
        
 }
