@@ -53,6 +53,7 @@ public final class NetworkListener implements Runnable {
     private static final NetworkListener
             NETLISTENER = new NetworkListener(4444);
 
+    private final Thread thread = new Thread(this);
     /**
      * Default constructor.
      * @param portToListen The port number
@@ -76,6 +77,7 @@ public final class NetworkListener implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        thread.start();
     }
     /**
      * @return return the listened port number.
@@ -102,7 +104,7 @@ public final class NetworkListener implements Runnable {
             UDPSERVER.register(selector, SelectionKey.OP_READ);
 
             //Loop forever, processing connections
-            while(true){
+            while(true) {
                 try {
                     selector.select();
                     final Set<SelectionKey> keys = selector.selectedKeys();
