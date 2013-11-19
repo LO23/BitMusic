@@ -6,6 +6,9 @@
 
 package bitmusic.profile.classes;
 
+import bitmusic.music.data.Rights;
+import java.util.List;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,40 +18,33 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Nico
+ * @author frogerfa, Nico
  */
 public class CategoryTest {
+    Category cat = new Category("famille");
 
     public CategoryTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
+        Category cat = new Category("famille");
     }
 
     @Before
     public void setUp() {
+        //System.out.println("Before : " + cat.getName());
     }
 
     @After
     public void tearDown() {
+        //System.out.println("After : " + cat.getName());
     }
-
-    /**
+/**
      * Test of setName method, of class Category.
      */
     @Test
     public void testSetName() {
         System.out.println("setName");
-        String newName = "";
-        Category instance = null;
-        instance.setName(newName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String newName = "newName";
+        cat.setName(newName);
+        assertEquals(newName, cat.getName());
     }
 
     /**
@@ -57,12 +53,44 @@ public class CategoryTest {
     @Test
     public void testGetName() {
         System.out.println("getName");
-        Category instance = null;
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("famille", cat.getName());
+    }
+
+    /**
+     * Test of getContacts method, of class Category.
+     */
+    @Test
+    public void testGetContacts() {
+        System.out.println("getContacts");
+        User test1 = new User("login1","mdp1");
+        User test2 = new User("login2","mdp2");
+        
+        ArrayList<User> expResult = new ArrayList<User>();
+        expResult.add(test1);
+        expResult.add(test2);
+        
+        cat.addUser(test1);
+        cat.addUser(test2);
+        
+        assertEquals(expResult, cat.getContacts());
+    }
+
+    /**
+     * Test of setContacts method, of class Category.
+     */
+    @Test
+    public void testSetContacts() {
+        System.out.println("setContacts");
+        User test1 = new User("login1","mdp1");
+        User test2 = new User("login2","mdp2");
+        
+        ArrayList<User> expResult = new ArrayList<User>();
+        expResult.add(test1);
+        expResult.add(test2);
+        
+        cat.setContacts(expResult);
+        
+        assertEquals(expResult, cat.getContacts());
     }
 
     /**
@@ -71,12 +99,10 @@ public class CategoryTest {
     @Test
     public void testGetRight() {
         System.out.println("getRight");
-        Category instance = null;
-        //Rights expResult = null;
-        //Rights result = instance.getRight();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        Rights expResult = new Rights(true, true, true, true);
+
+        assertEquals(expResult, cat.getRight());
     }
 
     /**
@@ -85,14 +111,9 @@ public class CategoryTest {
     @Test
     public void testUpdateRight() {
         System.out.println("updateRight");
-        boolean canIReadInfo = false;
-        boolean canPlay = false;
-        boolean canRate = false;
-        boolean canComment = false;
-        Category instance = null;
-        instance.updateRight(canIReadInfo, canPlay, canRate, canComment);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Rights test = new Rights(true, false, false, false);
+        cat.updateRight(true, false, false, false);
+        assertEquals(test,cat.getRight());
     }
 
     /**
@@ -100,14 +121,11 @@ public class CategoryTest {
      */
     @Test
     public void testAddUser() {
-        System.out.println("addUser");
-        User user = null;
-        Category instance = null;
-        boolean expResult = false;
-        boolean result = instance.addUser(user);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<User> liste = new ArrayList<User> (cat.getContacts());
+        User test = new User("login", "mdp");
+        cat.addUser(test);
+        liste.add(test);
+        assertEquals(liste,cat.getContacts());
     }
 
     /**
@@ -116,13 +134,38 @@ public class CategoryTest {
     @Test
     public void testDeleteUser() {
         System.out.println("deleteUser");
-        User user = null;
-        Category instance = null;
-        boolean expResult = false;
-        boolean result = instance.deleteUser(user);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        User test1 = new User("login1","mdp1");
+        User test2 = new User("login2","mdp2");
+        
+        ArrayList<User> expResult = new ArrayList<User>();
+        expResult.add(test1);
+        
+        cat.setContacts(expResult);
+        cat.addUser(test2);
+        cat.deleteUser(test2);
+        
+        assertEquals(expResult, cat.getContacts());
     }
 
+    /**
+     * Test of findContact method, of class Category.
+     */
+    @Test
+    public void testFindContact() {
+        System.out.println("findContact");
+        String UserID = "test1";
+        
+        User test1 = new User("login1","mdp1");
+        User test2 = new User("login2","mdp2");
+        
+        ArrayList<User> expResult = new ArrayList<User>();
+        expResult.add(test1);
+        expResult.add(test2);
+        
+        cat.setContacts(expResult);
+        
+        assertEquals(test1, cat.findContact(test1.getUserId()));
+    }
+    
 }
