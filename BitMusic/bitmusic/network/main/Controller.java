@@ -278,6 +278,17 @@ public final class Controller {
     }
 
 
+     /**
+     * shutdown pool of threads
+     * When quitting the program, must call this method
+     */
+    public void shutdownExecutorService(){
+
+        ThreadManager.getInstance().getExecutorService().shutdown();
+
+    }
+
+
 
     // ##################################
     // ## ##       TEST TOOLS       ## ##
