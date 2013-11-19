@@ -9,8 +9,11 @@ package bitmusic.hmi.popup.accountcreation;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -40,6 +43,8 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     private final JPasswordField confirmationField = new JPasswordField("");
     private final JTextField prenomField = new JTextField("");
     private final JTextField nomField = new JTextField("");
+    private final DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    private final JFormattedTextField dateTextField = new JFormattedTextField(format);
     private final JButton avatarbrowseButton = new JButton("Parcourir...");
 //    private final JDateChooser picker = new JDateChooser();
 
@@ -71,6 +76,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
         this.confirmationField.setColumns(10);
         this.prenomField.setColumns(10);
         this.nomField.setColumns(10);
+        this.dateTextField.setColumns(10);
 
         this.avatarbrowseButton.setSize(d);
 //        final JLabel path = new JLabel();
@@ -104,7 +110,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
                     .addComponent(confirmationField)
                     .addComponent(prenomField)
                     .addComponent(nomField)
-//                    .addComponent(picker)
+                    .addComponent(dateTextField)
                     .addComponent(avatarbrowseButton)
                     .addComponent(resetButton)
                 )
@@ -138,7 +144,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(birthLabel)
-                    //.addComponent(picker)
+                    .addComponent(dateTextField)
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(avatarLabel)
@@ -156,7 +162,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
         layout.linkSize(SwingConstants.HORIZONTAL, confirmationLabel, confirmationField);
         layout.linkSize(SwingConstants.HORIZONTAL, prenomLabel, prenomField);
         layout.linkSize(SwingConstants.HORIZONTAL, nomLabel, nomField);
-//        layout.linkSize(SwingConstants.HORIZONTAL, birthLabel, picker);
+        layout.linkSize(SwingConstants.HORIZONTAL, birthLabel, dateTextField);
         layout.linkSize(SwingConstants.HORIZONTAL, avatarLabel, avatarbrowseButton);
 
         // TO FINISH AND TEST
