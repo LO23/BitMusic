@@ -98,7 +98,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
             )
         );
 
-        layout.linkSize(SwingConstants.HORIZONTAL, searchField, researchButton);
+        layout.linkSize(SwingConstants.HORIZONTAL,  searchField, researchButton);
         layout.linkSize(SwingConstants.HORIZONTAL, filtreLabel, aucunButton, titreButton, auteurButton, tagButton);
     }
 
