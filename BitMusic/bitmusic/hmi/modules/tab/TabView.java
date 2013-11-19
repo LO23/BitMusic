@@ -32,9 +32,6 @@ public final class TabView extends AbstractView<TabController> {
         this.makeTextPanel("Panel #1");
 //        tabbedPane.addTab("Tab 1", null, panel1, "Does nothing");
 
-
-
-        // TODO
     }
 
     protected JComponent makeTextPanel(String text) {

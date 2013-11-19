@@ -50,6 +50,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
         JComponent panel4 = makeTextPanel(
                 "Panel #4 (has a preferred size of 410 x 50).");
+        //panel4.setPreferredSize(new Dimension(410, 50));
         tabbedPane.addTab("Tab 4", null, panel4,
                 "Does nothing at all");
 

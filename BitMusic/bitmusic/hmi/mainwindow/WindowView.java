@@ -13,9 +13,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -27,9 +31,19 @@ public class WindowView extends JFrame implements Observer {
     private JPanel contentPanel = new JPanel(new BorderLayout());
     private final JPanel jpanelNorth = new JPanel (new GridBagLayout());
     private GridBagConstraints gridBagConstraints = new GridBagConstraints();
+    private JTabbedPane tabbedPane = new JTabbedPane();
 
     public WindowView() {
 
+    }
+
+    protected JComponent makeTextPanel(String text) {
+        JPanel panel = new JPanel(false);
+        JLabel filler = new JLabel(text);
+        filler.setHorizontalAlignment(JLabel.CENTER);
+        panel.setLayout(new GridLayout(1, 1));
+        panel.add(filler);
+        return panel;
     }
 
     public WindowController getWindowController() {
@@ -46,7 +60,6 @@ public class WindowView extends JFrame implements Observer {
         this.setTitle("BitMusic");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPanel.add(jpanelNorth, BorderLayout.NORTH);
-        this.setVisible(true);
     }
 
     public void addView(AbstractView view) {
@@ -88,9 +101,9 @@ public class WindowView extends JFrame implements Observer {
                     System.out.println("Error : type du panel (north, south, east...) non défini !");
                     break;
             }
-            Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Dimension dim = toolkit.getScreenSize();
-            this.setSize(dim.width, dim.height-20);
+            //Toolkit toolkit = Toolkit.getDefaultToolkit();
+            //Dimension dim = toolkit.getScreenSize();
+            //this.setSize(dim.width, dim.height-20);
             //this.setLocationRelativeTo(null);
             this.setVisible(true);
             pack();
@@ -105,8 +118,49 @@ public class WindowView extends JFrame implements Observer {
         }
     }
 
+    public void addTabbedPane(JTabbedPane tabbedPane) {
+        JComponent panel1 = makeTextPanel("Panel #1");
+        tabbedPane.addTab("Tab 1", null, panel1, "Does nothing");
+
+        this.getContentPane().add(contentPanel);
+        contentPanel.add(tabbedPane, BorderLayout.CENTER);
+
+        this.setVisible(true);
+        pack();
+    }
+
+    public void removeTabbedPane(JTabbedPane tabbedPane) {
+        this.contentPanel.remove(tabbedPane);
+    }
+
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- WindowView.update()");
     }
+
+    public JPanel getContentPanel() {
+        return contentPanel;
+    }
+
+    public void setContentPanel(JPanel contentPanel) {
+        this.contentPanel = contentPanel;
+    }
+
+    public GridBagConstraints getGridBagConstraints() {
+        return gridBagConstraints;
+    }
+
+    public void setGridBagConstraints(GridBagConstraints gridBagConstraints) {
+        this.gridBagConstraints = gridBagConstraints;
+    }
+
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
+
+    public void setTabbedPane(JTabbedPane tabbedPane) {
+        this.tabbedPane = tabbedPane;
+    }
+
+
 }

@@ -63,8 +63,7 @@ public class WindowComponent {
 //        this.setConnectionComponent(new ConnectionComponent());
 //        this.view.addView(this.getConnectionComponent().getView());
 
-        this.setCentralAreaComponent(new CentralAreaComponent());
-        this.view.addView(this.getCentralAreaComponent().getView());
+        this.getWindowView().addTabbedPane(this.view.getTabbedPane());
 
     }
 
@@ -189,12 +188,14 @@ public class WindowComponent {
 
     public void addTabComponent(TabComponent tab) {
         this.listTabsComponent.add(tab);
+        //Notifier et faire une maj
     }
 
     public void removeTabComponent(TabComponent tab) {
         for (int i=0; i<this.listTabsComponent.size(); i++) {
             if (listTabsComponent.get(i).equals(tab)) {
                 listTabsComponent.remove(i);
+                //Notifier et faire une maj
             }
         }
     }
@@ -221,8 +222,10 @@ public class WindowComponent {
         // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
         // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
 
-        this.setPlayBarComponent(new PlayBarComponent());
-        this.getWindowView().addView(this.getPlayBarComponent().getView());
+//        this.setPlayBarComponent(new PlayBarComponent());
+//        this.getWindowView().addView(this.getPlayBarComponent().getView());
+
+        //this.getWindowView().addTabbedPane(this.view.getTabbedPane());
 
         //TODO
 //        this.setCentralAreaComponent(new CentralAreaComponent());
