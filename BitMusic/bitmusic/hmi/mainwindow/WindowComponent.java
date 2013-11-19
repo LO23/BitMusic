@@ -205,7 +205,6 @@ public class WindowComponent {
 //        this.setCategoriesComponent(new CategoriesComponent());
 //        this.getWindowView().addView(this.getCategoriesComponent().getView());
 
-
         this.setSearchBarComponent(new SearchBarComponent());
         this.getWindowView().addView(this.getSearchBarComponent().getView());
 
@@ -221,12 +220,8 @@ public class WindowComponent {
         // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
         // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
 
-
         this.setPlayBarComponent(new PlayBarComponent());
         this.getWindowView().addView(this.getPlayBarComponent().getView());
-
-
-
 
         //TODO
 //        this.setCentralAreaComponent(new CentralAreaComponent());
