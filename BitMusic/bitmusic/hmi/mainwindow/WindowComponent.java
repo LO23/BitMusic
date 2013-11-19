@@ -78,8 +78,16 @@ public class WindowComponent {
             return WindowComponentHolder.instance;
     }
 
+    public WindowModel getWindowModel() {
+        return this.model;
+    }
+
     public WindowView getWindowView() {
         return this.view;
+    }
+
+    public WindowController getWindowController() {
+        return this.controller;
     }
 
     public ApiHmiImpl getApiHmi() {

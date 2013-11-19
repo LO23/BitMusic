@@ -26,14 +26,11 @@ public final class MyProfileController extends AbstractController<MyProfileModel
     public class LogoutListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("---- Clic sur le bouton Disconnect");
-            System.out.println("---- Deconnexion en cours");
-            // Pas besoin du Model ici : on agit directement sur la View
-            MyProfileModel model = MyProfileController.this.getModel();
-
-            model.notifyObservers("LOGOUT");
-
-            // WindowComponent.getInstance().getWindowView().dispose();
+            System.out.println("- Fermeture de l'application en cours...");
+            
+            WindowComponent win = WindowComponent.getInstance();
+            win.getWindowModel().logOut();
+            win.getWindowView().dispose();
         }
     }
 
