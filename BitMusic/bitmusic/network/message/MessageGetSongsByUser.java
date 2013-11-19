@@ -67,9 +67,9 @@ public final class MessageGetSongsByUser extends AbstractMessage {
                     //ip source
                     Controller.getNetworkAddress(),
                     //ip dest
-                    this.getIpSource(),
+                    this.ipSource,
                     //search ID
-                    this.getResearchId(),
+                    this.researchId,
                     //song library
                     songLib);
 

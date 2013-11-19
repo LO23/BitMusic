@@ -62,7 +62,8 @@ public final class MessageErrorNotification extends AbstractMessage {
      */
     @Override
     public void treatment() {
-        //WindowComponent.getInstance().errorNotification(this.errorMessage);
+        WindowComponent.getInstance().getApiHmi().
+                errorNotification(this.errorMessage);
     }
 
     /**

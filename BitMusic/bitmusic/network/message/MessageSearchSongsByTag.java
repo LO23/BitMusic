@@ -58,9 +58,9 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
         final SongLibrary songLib = ApiMusicImpl.getInstance().
                 searchSongsByTags(
                     //search id
-                    this.getSearchId(),
+                    this.searchId,
                     //tag list
-                    this.getTagList());
+                    this.tagList);
 
         final MessageSendSongList message = new MessageSendSongList(
                 //type of message
@@ -68,9 +68,9 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
                 //ip source
                 Controller.getNetworkAddress(),
                 //ip dest
-                this.getIpSource(),
+                this.ipSource,
                 //search id
-                this.getSearchId(),
+                this.searchId,
                 //song library
                 songLib);
 

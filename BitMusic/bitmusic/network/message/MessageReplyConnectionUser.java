@@ -43,7 +43,7 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
        try {
            Controller.getInstance().addUserToDirectory(
                    this.profile.getUserId(),
-                   this.getIpSource());
+                   this.ipSource);
            WindowComponent.getInstance().getApiHmi().
                    notifyNewConnection(this.profile);
        } catch (NetworkDirectoryException exception) {

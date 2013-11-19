@@ -46,8 +46,8 @@ public final class MessageSendSongList extends AbstractMessage {
     public void treatment() {
         WindowComponent.getInstance().getApiHmi().
                 notifySongListBySearchId(
-                        this.getSearchId(),
-                        this.getSongLibrary());
+                        this.searchId,
+                        this.songLibrary);
     }
 
     /**

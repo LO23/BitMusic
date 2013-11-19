@@ -68,9 +68,9 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
                     //Type of Message
                     EnumTypeMessage.ReplyConnectionUser,
                     //IP Source
-                    this.getIpDest(),
+                    this.ipDest,
                     //IP Dest
-                    this.getIpSource(),
+                    this.ipSource,
                     //User Profile
                     currentUser);
 

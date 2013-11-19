@@ -75,11 +75,11 @@ public final class MessageAddComment extends AbstractMessage {
                             //ip dest
                             entry.getValue(),
                             //userID (who comment)
-                            this.getUserId(),
+                            this.userId,
                             //songId
-                            this.getSong(),
+                            this.song,
                             //comment add
-                            this.getComment());
+                            this.comment);
                 //send update to all the user
 
                 Controller.getInstance().getThreadManager()
@@ -93,13 +93,13 @@ public final class MessageAddComment extends AbstractMessage {
                         //ip source
                         Controller.getNetworkAddress(),
                         //ip dest
-                        this.getIpSource(),
+                        this.ipSource,
                         //userID (who comment)
-                        this.getUserId(),
+                        this.userId,
                         //songId
-                        this.getSong(),
+                        this.song,
                         //comment add
-                        this.getComment(),
+                        this.comment,
                         //Message erreur
                         "You don't have the right to comment this song");
             Controller.getInstance().getThreadManager()
