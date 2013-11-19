@@ -50,8 +50,8 @@ public class SongLoader {
 
         //Creating target directory
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
-        String fileDirectory = new String("Profiles/" + ApiProfile.getCurrentUserFolder() + "/Music/Library/" + artist + "/" + album); //à tester
-        //String fileDirectory = new String("Profiles/" + "GetUserDirectory/"+ "Music/Library/" + artist + "/" + album);
+        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        String fileDirectory = new String("Profiles/" + currentUserFolder + "/Music/Library/" + artist + "/" + album); //à tester
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
@@ -102,7 +102,25 @@ public class SongLoader {
     public String getSongPath(String songId) {
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
         Song localSong = ApiProfile.getSongLibrary().getSong(songId);
-        String path = new String("Profiles/" + ApiProfile.getCurrentUserFolder() + "/Music/Library/" + localSong.getArtist() + "/" + localSong.getAlbum() + "/" + localSong.getTitle() + ".mp3");
+        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        String artist = new String(localSong.getArtist());
+        String album = new String(localSong.getAlbum());
+        String title = new String(localSong.getTitle());
+        String path = new String("Profiles/" + currentUserFolder + "/Music/Library/" + artist + "/" + album + "/" + title + ".mp3");
+        return path;
+    }
+    
+    /**
+     * Get the path of the song identified by songId.
+     * 
+     * @param songId    songId of the song
+     * @return path     path of the song
+     */
+    public String getTempSongPath(String userId, String songId) {
+        ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
+        Song localSong = ApiProfile.getSongLibrary().getSong(songId);
+        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        String path = new String("Profiles/" + currentUserFolder + "/Music/Temp/" + userId + "_" + songId + ".mp3");
         return path;
     }
 }
