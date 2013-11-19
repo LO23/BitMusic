@@ -56,6 +56,11 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         //this.searchLabel.setSize(d);
         this.searchField.setColumns(10);
 
+        groupeRadio.add(aucunButton);
+        groupeRadio.add(titreButton);
+        groupeRadio.add(auteurButton);
+        groupeRadio.add(tagButton);
+
         this.researchButton.addActionListener(this.getController().new ResearchListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
