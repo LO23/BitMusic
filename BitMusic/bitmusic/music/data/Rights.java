@@ -18,6 +18,15 @@ public class Rights implements Serializable{
     private boolean canComment;
     private static final long serialVersionUID = 302L;
     
+      public Rights()
+         {
+    
+            this.canPlay=true;
+            this.canReadInfo=true;
+            this.canRate=true;
+            this.canComment=true;
+        }
+    
     public Rights(boolean canPlayValue, boolean canReadInfoValue, boolean canRateValue, boolean canCommentValue)
          {
     

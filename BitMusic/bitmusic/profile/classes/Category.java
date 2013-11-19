@@ -32,7 +32,7 @@ public class Category {
         this.id = UUID.randomUUID().toString();
         this.contacts = new ArrayList<User>();
         this.name = name;
-        // TO DO this.rights = new Rights();
+        this.rights = new Rights(true, true, true, true);
     }
 
     //########################### METHODS ##############################//
@@ -43,6 +43,14 @@ public class Category {
      */
     public void setName(String newName) {
         this.name = newName;
+    }
+    
+    /**
+     * Return the Id of the category
+     * @return Id
+     */
+    public String getId(){
+        return this.id;
     }
 
     /**
