@@ -8,9 +8,7 @@ package bitmusic.hmi.modules.myprofile;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,13 +29,12 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     private final JButton importSongButton = new JButton("Importer un titre");
     private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/images/avatar3.png"));
     private JLabel avatarLabel;
-    // TO DO : ajouter l'image de l'avatar
+    // TODO : récupérer l'image de l'avatar (pas en dur)
 
     public MyProfileView() {
         super();
         this.avatarImage.setDescription("Votre avatar");
         this.avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
-
     }
 
     public JButton getMyProfileButton() {
@@ -118,15 +115,15 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
                     .addComponent(this.mySongsButton)
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(this.importSongButton))
-
+                    .addComponent(this.importSongButton)
+                )
         );
 
         layout.setAutoCreateGaps(true);
         layout.linkSize(SwingConstants.HORIZONTAL, this.myProfileButton, this.mySongsButton);
         layout.linkSize(SwingConstants.HORIZONTAL, this.myProfileButton, this.logoutButton);
         layout.linkSize(SwingConstants.HORIZONTAL, this.myProfileButton, this.importSongButton);
-        // TOFINISH
+        // TO FINISH
     }
 
     @Override

@@ -7,7 +7,6 @@
 package bitmusic.hmi.modules.connection;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.modules.accountcreation.AccountCreationComponent;
 import java.awt.event.ActionEvent;
@@ -58,7 +57,6 @@ public final class ConnectionController extends AbstractController<ConnectionMod
         }
     }
 
-    /// listener du bouton 'creer un compte'
     public class CreateNewUserListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -70,7 +68,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             // On enlève la ConnectionView des "objets utilisés"
             win.getWindowView().removeView(ConnectionController.this.getView());
 
-            // Création du OnlineUsersComponent et attache de la View aux "objets utilisés"
+            // Création du AccountCreationComponent et attache de la View aux "objets utilisés"
             win.setAccountCreationComponent(new AccountCreationComponent());
             win.getWindowView().addView(win.getAccountCreationComponent().getView());
         }

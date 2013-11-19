@@ -28,9 +28,7 @@ public class WindowController {
         public void windowClosing(WindowEvent e) {
             System.out.println("- Fermeture de l'application en cours...");
 
-            WindowModel model = WindowController.this.getWindowModel();
-            model.logOut();
-
+            WindowController.this.getWindowModel().logOut();
             WindowController.this.getWindowView().dispose();
         }
 

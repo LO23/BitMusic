@@ -6,7 +6,6 @@
 
 package bitmusic.hmi.modules.searchbar;
 
-import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.AbstractView;
 import java.awt.Dimension;
@@ -31,11 +30,10 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     private final JTextField searchField = new JTextField("Recherche...");
     private final JButton researchButton = new JButton("Rechercher");
     private final ButtonGroup groupeRadio = new ButtonGroup();
-    private final JRadioButton aucunButton = new JRadioButton("Aucun", true),
-                               titreButton = new JRadioButton("Par titre", false),
-                               auteurButton = new JRadioButton("Par auteur", false),
-                               tagButton = new JRadioButton("Par tag", false);
-
+    private final JRadioButton aucunButton = new JRadioButton("Aucun", true);
+    private final JRadioButton titreButton = new JRadioButton("Par titre", false);
+    private final JRadioButton auteurButton = new JRadioButton("Par auteur", false);
+    private final JRadioButton tagButton = new JRadioButton("Par tag", false);
 
 
     public SearchBarView() {
@@ -48,7 +46,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
         Dimension d = new Dimension(80, 20);
 
-        this.filtreLabel.setSize(d);
+        //this.filtreLabel.setSize(d);
         this.researchButton.setSize(d);
         this.aucunButton.setSize(d);
         this.titreButton.setSize(d);
@@ -66,74 +64,62 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
-         layout.setHorizontalGroup(layout.createSequentialGroup()
-
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(searchLabel)
-                    .addComponent(filtreLabel)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                     .addComponent(researchButton)
-                     .addComponent(aucunButton)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                     .addComponent(titreButton)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                     .addComponent(auteurButton)
-                )
-
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                      .addComponent(tagButton)
-                )
-                )
-                /*.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                     .addComponent(searchField)
-                     .addComponent(researchButton)
-                     .addComponent(aucunButton)
-                     .addComponent(titreButton)
-                     .addComponent(auteurButton)
-                     .addComponent(tagButton)
-
-                )*/
-
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(searchLabel)
+                .addComponent(filtreLabel)
+            )
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(researchButton)
+                .addComponent(aucunButton)
+            )
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(titreButton)
+            )
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(auteurButton)
+            )
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(tagButton)
+            )
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(searchField)
+            )
         );
-         layout.setVerticalGroup(layout.createSequentialGroup()
-
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchLabel)
-                    .addComponent(searchField)
-                    .addComponent(researchButton)
-                    )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(filtreLabel)
-                    .addComponent(aucunButton)
-                    .addComponent(titreButton)
-                    .addComponent(auteurButton)
-                    .addComponent(tagButton)
-                    )
+        layout.setVerticalGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(searchLabel)
+                .addComponent(searchField)
+                .addComponent(researchButton)
+            )
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(filtreLabel)
+                .addComponent(aucunButton)
+                .addComponent(titreButton)
+                .addComponent(auteurButton)
+                .addComponent(tagButton)
+            )
         );
 
-         layout.linkSize(SwingConstants.HORIZONTAL, searchLabel, searchField, researchButton);
+        layout.linkSize(SwingConstants.HORIZONTAL, searchLabel, searchField, researchButton);
         layout.linkSize(SwingConstants.HORIZONTAL, filtreLabel, aucunButton, titreButton, auteurButton, tagButton);
-
     }
 
-     public JLabel getfiltreLabel() {
+    public JLabel getfiltreLabel() {
         return this.filtreLabel;
     }
 
-      public JLabel getsearchLabel() {
+    public JLabel getsearchLabel() {
         return this.searchLabel;
     }
 
-      public JButton getresearchButton() {
+    public JButton getresearchButton() {
         return this.researchButton;
     }
 
-      public JTextField getsearchField() {
+    public JTextField getsearchField() {
         return this.searchField;
     }
-
 
     @Override
     public String getType() {
