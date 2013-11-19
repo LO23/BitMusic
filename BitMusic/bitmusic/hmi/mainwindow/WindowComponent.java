@@ -10,7 +10,6 @@ import bitmusic.hmi.api.ApiHmiImpl;
 import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.network.main.Controller;
-import bitmusic.hmi.modules.accountcreation.AccountCreationComponent;
 import bitmusic.hmi.modules.categories.CategoriesComponent;
 import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
 import bitmusic.hmi.modules.connection.ConnectionComponent;
@@ -36,7 +35,6 @@ public class WindowComponent {
     private ApiMusicImpl apiMusic;
     private bitmusic.network.main.ApiHmiImpl apiNetwork;
 
-    private AccountCreationComponent accountCreationComponent;
     private CategoriesComponent categoriesComponent;
     private ConnectionComponent connectionComponent;
     private MyProfileComponent myProfileComponent;
@@ -120,14 +118,6 @@ public class WindowComponent {
 
     public void setApiNetwork(bitmusic.network.main.ApiHmiImpl apiNetwork) {
         this.apiNetwork = apiNetwork;
-    }
-
-    public AccountCreationComponent getAccountCreationComponent() {
-        return this.accountCreationComponent;
-    }
-
-    public void setAccountCreationComponent(AccountCreationComponent accountCreationComponent) {
-        this.accountCreationComponent = accountCreationComponent;
     }
 
     public CategoriesComponent getCategoriesComponent() {

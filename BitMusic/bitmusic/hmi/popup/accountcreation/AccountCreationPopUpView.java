@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.modules.accountcreation;
+package bitmusic.hmi.popup.accountcreation;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
  *
  * @author unkedeuxke
  */
-public final class AccountCreationView extends AbstractView<AccountCreationController> {
+public final class AccountCreationPopUpView extends AbstractView<AccountCreationPopUpController> {
 
     private static final String type = "CENTER";
     private final JLabel createAccountLabel = new JLabel("Créer un compte");
@@ -43,13 +43,13 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
     private final JButton avatarbrowseButton = new JButton("Parcourir...");
 //    private final JDateChooser picker = new JDateChooser();
 
-    public AccountCreationView() {
+    public AccountCreationPopUpView() {
         super();
     }
 
     @Override
     public void initPanel() {
-        System.out.println("--- AccountCreationView.initPanel()");
+        System.out.println("--- AccountCreationPopUpView.initPanel()");
 
         final Dimension d = new Dimension(80, 20);
 
@@ -169,6 +169,6 @@ public final class AccountCreationView extends AbstractView<AccountCreationContr
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- AccountCreation.update()");
+        System.out.println("----- AccountCreationPopUp.update()");
     }
 }

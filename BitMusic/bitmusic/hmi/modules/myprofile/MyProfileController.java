@@ -22,10 +22,18 @@ import javax.swing.JDialog;
  */
 public final class MyProfileController extends AbstractController<MyProfileModel, MyProfileView> {
 
-    private JDialog popup;
+    private JDialog popUp;
 
     public MyProfileController(final MyProfileModel model, final MyProfileView view) {
         super(model, view);
+    }
+
+    public JDialog getPopUp() {
+        return this.popUp;
+    }
+
+    public void setPopUp(JDialog popUp) {
+        this.popUp = popUp;
     }
 
     public class LogoutListener implements ActionListener {
@@ -51,19 +59,10 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             WindowComponent win = WindowComponent.getInstance();
             ImportSongPopUpComponent importSongPopUpComponent = new ImportSongPopUpComponent();
 
-            popup = new JDialog(win.getWindowView(), "Importer une musique", true);
-            popup.add(importSongPopUpComponent.getView().getPanel());
-            popup.pack();
-            popup.show();
+            popUp = new JDialog(win.getWindowView(), "Importer une musique", true);
+            popUp.add(importSongPopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.show();
         }
     }
-
-    public JDialog getPopup() {
-        return popup;
-    }
-
-    public void setPopup(JDialog popup) {
-        this.popup = popup;
-    }
-
 }

@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.modules.accountcreation;
+package bitmusic.hmi.popup.accountcreation;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.modules.connection.ConnectionComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +17,9 @@ import javax.swing.JLabel;
  *
  * @author unkedeuxke
  */
-public final class AccountCreationController extends AbstractController<AccountCreationModel, AccountCreationView> {
+public final class AccountCreationPopUpController extends AbstractController<AccountCreationPopUpModel, AccountCreationPopUpView> {
 
-    public AccountCreationController(final AccountCreationModel model, final AccountCreationView view) {
+    public AccountCreationPopUpController(final AccountCreationPopUpModel model, final AccountCreationPopUpView view) {
         super(model, view);
     }
     public class AvatarBrowseListener implements ActionListener {
@@ -41,16 +40,7 @@ public final class AccountCreationController extends AbstractController<AccountC
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Annuler");
-
-            AccountCreationModel model = AccountCreationController.this.getModel();
-            WindowComponent win = WindowComponent.getInstance();
-
-            // On enlève la AccountCreationView des "objets utilisés"
-            win.getWindowView().removeView(AccountCreationController.this.getView());
-            // TODO : pourquoi elle ne se supprime pas ??? (superposition)
-
-            // Attache de la ConnectionView aux "objets utilisés"
-            win.getWindowView().addView(win.getConnectionComponent().getView());
+            WindowComponent.getInstance().getConnectionComponent().getController().getPopUp().dispose();
         }
     }
 }

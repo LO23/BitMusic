@@ -98,7 +98,11 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void removeView(AbstractView view) {
-        this.getContentPane().remove(view.getPanel()); // TODO : détruire l'objet ? (ex : ConnectionComponent)
+        if ("CONNECTION".equals(view.getType())){
+            this.getContentPane().remove(view.getPanel());
+        } else {
+            this.contentPanel.remove(view.getPanel());
+        }
     }
 
     @Override

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package bitmusic.hmi.modules.accountcreation;
+package bitmusic.hmi.popup.accountcreation;
 
 import bitmusic.hmi.patterns.AbstractModel;
 
@@ -12,9 +12,9 @@ import bitmusic.hmi.patterns.AbstractModel;
  *
  * @author unkedeuxke
  */
-public final class AccountCreationModel extends AbstractModel {
+public final class AccountCreationPopUpModel extends AbstractModel {
 
-    public AccountCreationModel() {
+    public AccountCreationPopUpModel() {
         super();
     }
 }
