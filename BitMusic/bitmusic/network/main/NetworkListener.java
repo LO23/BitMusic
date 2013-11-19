@@ -141,7 +141,7 @@ public final class NetworkListener implements Runnable {
 
 
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new NetworkException("TCP "
                     + "or UDP server registration failed");
 
