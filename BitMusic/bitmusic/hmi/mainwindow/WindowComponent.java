@@ -11,7 +11,6 @@ import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.network.main.Controller;
 import bitmusic.hmi.modules.categories.CategoriesComponent;
-import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
 import bitmusic.hmi.modules.connection.ConnectionComponent;
 import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
@@ -41,7 +40,6 @@ public class WindowComponent {
     private OnlineUsersComponent onlineUsersComponent;
     private PlayBarComponent playBarComponent;
     private SearchBarComponent searchBarComponent;
-    private CentralAreaComponent centralAreaComponent;
 
     private ArrayList<TabComponent> listTabsComponent;
     // TODO : ajouter les PopUp aussi ??? si on les ferme au même endroit qu'on les crée : pas besoin de les avoir ici
@@ -168,14 +166,6 @@ public class WindowComponent {
 
     public void setSearchBarComponent(SearchBarComponent searchBarComponent) {
         this.searchBarComponent = searchBarComponent;
-    }
-
-    public CentralAreaComponent getCentralAreaComponent() {
-        return this.centralAreaComponent;
-    }
-
-    public void setCentralAreaComponent(CentralAreaComponent centralAreaComponent) {
-        this.centralAreaComponent = centralAreaComponent;
     }
 
     public ArrayList<TabComponent> getListTabsComponent() {
