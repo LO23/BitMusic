@@ -73,6 +73,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         this.submitButton.setSize(d);
 
         this.cancelButton.setSize(d);
+        this.cancelButton.addActionListener(this.getController().new CancelListener());
 
         this.infoLabel.setSize(d);
 
