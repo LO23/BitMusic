@@ -40,8 +40,8 @@ public class SongSearcher {
     public void searchSongsbyUser(String userID, String SearchID) {
 
         //ApiMusic apiMusic = new ApiMusicImpl(); //à ne pas faire, faire appel au singleton
-        ApiMusicImpl apiMusic = Controller.getInstance().getApiMusic();
-        apiMusic.getSongsByUser(userID, SearchID);
+        ApiMusicImpl apiMusicFromNetwork = Controller.getInstance().getApiMusic();
+        apiMusicFromNetwork.getSongsByUser(userID, SearchID);
     }
 
     /**
