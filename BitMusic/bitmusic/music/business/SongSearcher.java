@@ -3,10 +3,13 @@ package bitmusic.music.business;
 import java.util.*;
 import java.lang.*;
 import bitmusic.music.data.*;
+import bitmusic.network.exception.NetworkException;
 import bitmusic.network.main.ApiMusicImpl;
 //porte d'entrée vers le module Network
 import bitmusic.network.main.Controller;
 import bitmusic.profile.api.ApiProfileImpl;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class implementing the search feature of our application. The user can search
@@ -26,7 +29,7 @@ public class SongSearcher {
      */
     public SongSearcher(SongLibrary songLib) {
         songLibrary = songLib;
-        ApiProfileImpl bla = ApiProfileImpl.getApiProfile();
+        
     }
 
     /**
@@ -40,8 +43,16 @@ public class SongSearcher {
     public void searchSongsbyUser(String userID, String SearchID) {
 
         //ApiMusic apiMusic = new ApiMusicImpl(); //à ne pas faire, faire appel au singleton
-        ApiMusicImpl apiMusicFromNetwork = Controller.getInstance().getApiMusic();
-        apiMusicFromNetwork.getSongsByUser(userID, SearchID);
+
+        ApiMusicImpl apiMusic = Controller.getInstance().getApiMusic();
+        ApiProfileImpl apiProfile = ApiProfileImpl.getApiProfile();
+        String localUserId=apiProfile.getCurrentUser().getUserId();
+        try {
+            apiMusic.getSongsByUser(localUserId,userID, SearchID);
+        } catch (NetworkException ex) {
+            Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -95,10 +106,16 @@ public class SongSearcher {
 
         //for each user, go fetch their songs with the right tags
         it = connectedUsers.iterator();
+        ApiProfileImpl apiProfile = ApiProfileImpl.getApiProfile();
+        String localUserId=apiProfile.getCurrentUser().getUserId();
         while (it.hasNext()) {
             userIdDest = it.next();
             //result of call below go straight to the UI
-            apiMusicFromNetwork.searchSongsByTags(userIdDest, searchId, tagList);
+            try {
+                apiMusicFromNetwork.searchSongsByTags(localUserId,userIdDest, searchId, tagList);
+            } catch (NetworkException ex) {
+                Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         //method returns only our songs with the right tags
         myTaggedSongs = this.getSongsByTag(searchId, null, tagList);

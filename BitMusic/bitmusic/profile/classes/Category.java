@@ -54,6 +54,22 @@ public class Category {
     }
 
     /**
+     * Return the contacts of the category
+     * @return List of the contacts
+     */
+    public ArrayList<User> getContacts(){
+        return this.contacts;
+    }
+    
+    /**
+     * Change the list of the contacts
+     * @param contacts new contacts to add
+     */
+    public void setContacts(ArrayList<User> contacts){
+        this.contacts = contacts;
+    }
+    
+    /**
      * Return the rights of the category
      * @return Rights of the category
      */
@@ -61,6 +77,19 @@ public class Category {
         return this.rights;
     }
 
+    /**
+     * Find a user with its ID
+     * @param UserID UserID to find
+     * @return th User or null
+     */
+    public User findContact(String UserID){
+        User found = null;
+        for(User contact : this.contacts){
+            if(contact.getUserId() == UserID) found = contact;
+        }
+        return found;
+    }
+    
     /**
      * Update the rights of the category
      * @param canIReadInfo Right to read information
