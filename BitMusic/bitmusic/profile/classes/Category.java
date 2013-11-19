@@ -6,6 +6,7 @@
 package bitmusic.profile.classes;
 
 import bitmusic.music.data.Rights;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
  * Category
  * @author frogerfa, lesceuni, reaneyol, MilioPeralta
  */
-public class Category {
+public class Category implements Serializable {
 
     //########################## ATTRIBUTES ##########################//
 
@@ -21,6 +22,7 @@ public class Category {
     private String name;
     private ArrayList<User> contacts;
     private Rights rights;
+    private static final long serialVersionUID = 401L;
 
     //######################### CONSTRUCTORS ###########################//
 
@@ -32,7 +34,7 @@ public class Category {
         this.id = UUID.randomUUID().toString();
         this.contacts = new ArrayList<User>();
         this.name = name;
-        // TO DO this.rights = new Rights();
+        this.rights = new Rights(true, true, true, true);
     }
 
     //########################### METHODS ##############################//
@@ -43,6 +45,14 @@ public class Category {
      */
     public void setName(String newName) {
         this.name = newName;
+    }
+
+    /**
+     * Return the Id of the category
+     * @return Id
+     */
+    public String getId(){
+        return this.id;
     }
 
     /**
@@ -60,7 +70,7 @@ public class Category {
     public ArrayList<User> getContacts(){
         return this.contacts;
     }
-    
+
     /**
      * Change the list of the contacts
      * @param contacts new contacts to add
@@ -68,7 +78,7 @@ public class Category {
     public void setContacts(ArrayList<User> contacts){
         this.contacts = contacts;
     }
-    
+
     /**
      * Return the rights of the category
      * @return Rights of the category
@@ -89,7 +99,7 @@ public class Category {
         }
         return found;
     }
-    
+
     /**
      * Update the rights of the category
      * @param canIReadInfo Right to read information
@@ -98,12 +108,9 @@ public class Category {
      * @param canComment Right to comment
      */
     public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
-        if(this.rights != null) {
-            // TO DO this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
-        }
-        else {
-            // TO DO this.rights = new Rights();
-        }
+
+            this.rights=new Rights(canIReadInfo, canPlay, canRate, canComment);
+
     }
 
     /**

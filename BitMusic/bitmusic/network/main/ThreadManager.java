@@ -5,7 +5,6 @@
  */
 
 package bitmusic.network.main;
-import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.test.SocketListener;
 import java.net.Socket;
@@ -26,6 +25,13 @@ public final class ThreadManager {
      * executor.
      */
     private final transient ExecutorService executorService;
+
+    /**
+     * @return executorService
+     */
+    public ExecutorService getExecutorService() {
+        return executorService;
+    }
 
 
     /**
@@ -71,7 +77,7 @@ public final class ThreadManager {
      * executed if there is an available thread in the pool.
      * One message = one job = one hermes messenger
      * At the end of run(), the hermes destroys itself.
-     * @param task
+     * @param task Message to deal with
      */
     public void assignTaskToHermes(final AbstractMessage task) {
         if (weAreTesting()) {

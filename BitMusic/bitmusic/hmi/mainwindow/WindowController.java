@@ -35,6 +35,10 @@ public class WindowController {
             } catch (NetworkException ex) {
                 Logger.getLogger(WindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            // Fermeture du pool de threads qui tourne en arrière-plan (géré par Network)
+            WindowComponent.getInstance().getApiNetwork().shutdownExecutorService();
+
             WindowController.this.getWindowView().dispose();
         }
 

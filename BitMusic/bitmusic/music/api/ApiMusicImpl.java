@@ -117,7 +117,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
         SongLoader songLoader = new SongLoader();
         try {
-            songLoader.importSong(path, title, artist, album, tags, rights);
+            songLoader.importSong(path, title, artist, album, tags);
         } catch (CopyMP3Exception | IOException excep) {
             System.out.println(excep.getMessage());
         }
@@ -186,16 +186,32 @@ public final class ApiMusicImpl implements ApiMusic {
     }
     
     /**
-     * Get the current frame which is payed.
+     * Get the current frame which is played.
      * @return The frame played
      */
     public int getCurrentFrame() {
         return BitMusicPlayer.getInstance().getCurrentFrame();
     }
     
-    public String getSongFile(String songid) {
+    /**
+     * Get the path of a local song identified by songId
+     * @param songId songId
+     * @return path path of the song
+     */
+    public String getSongFile(String songId) {
         SongLoader songLoader = new SongLoader();
-        return songLoader.getSongPath(songid);
+        return songLoader.getSongPath(songId);
+    }
+    
+    /**
+     * Get the path of a temporary song identified by userId & songId
+     * @param userId userId
+     * @param songId songId
+     * @return path path of the song
+     */
+    public String getTempSongFile(String userId, String songId){
+        SongLoader songLoader = new SongLoader();
+        return songLoader.getTempSongPath(userId, songId);
     }
 
     /**

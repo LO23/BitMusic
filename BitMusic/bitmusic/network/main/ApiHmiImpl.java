@@ -151,4 +151,14 @@ public final class ApiHmiImpl implements ApiHmi {
             final String songId) throws NetworkException{
 
     }
+
+    /**
+     * Shutdown the Executor service (thread pool) when program exits.
+     */
+    @Override
+    public void shutdownExecutorService(){
+
+        Controller.getInstance().getThreadManager()
+                .getExecutorService().shutdown();
+    }
 }

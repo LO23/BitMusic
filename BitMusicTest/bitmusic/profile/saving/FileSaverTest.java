@@ -9,6 +9,7 @@ package bitmusic.profile.saving;
 import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -23,10 +24,7 @@ import static org.junit.Assert.*;
  *
  * @author Holywa
  */
-public class UserSaverTest {
-
-    public UserSaverTest() {
-    }
+public class FileSaverTest {
 
     @BeforeClass
     public static void setUpClass() {
@@ -45,23 +43,17 @@ public class UserSaverTest {
     }
 
     /**
-     * Test of saveUser method, of class UserSaver.
+     * Test of saveUser method, of class FileSaver.
      */
     @Test
-    public void testSaveUser() {
-        System.out.println("saveUser");
-
+    public void testSaveUser() throws IOException {
         User userToSave = new User("Olivia", "test");
         Calendar birth = GregorianCalendar.getInstance();
         birth.set(1990, 05, 02);
         userToSave.setBirthDate(birth);
 
-        ApiProfileImpl.getApiProfile().setCurrentUser(userToSave);
-
-        UserSaver instance = new UserSaver();
-
         try {
-            instance.saveUser();
+            FileSaver.getFileSaver().saveUser(userToSave);
         }
         catch(ProfileExceptions e) {
             fail(e.toString());
@@ -69,24 +61,17 @@ public class UserSaverTest {
     }
 
     /**
-     * Test of saveAuthFile method, of class UserSaver.
+     * Test of saveAuthFile method, of class FileSaver.
      */
     @Test
-    public void testSaveAuthFile() {
-        System.out.println("saveAuthFile");
-
+    public void testSaveAuthFile() throws IOException {
         User toAuth = new User("Olivia", "pwd");
-
         Calendar birth = GregorianCalendar.getInstance();
         birth.set(1990, 05, 02);
         toAuth.setBirthDate(birth);
 
-        ApiProfileImpl.getApiProfile().setCurrentUser(toAuth);
-
-        UserSaver instance = new UserSaver();
-
         try {
-            instance.saveAuthFile();
+            FileSaver.getFileSaver().saveAuthFile(toAuth);
         }
         catch(ProfileExceptions e) {
             fail(e.toString());

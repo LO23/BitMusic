@@ -10,11 +10,10 @@ import bitmusic.music.data.SongLibrary;
 import bitmusic.music.data.Rights;
 import bitmusic.music.exception.CopyMP3Exception;
 import bitmusic.profile.api.ApiProfileImpl;
-import java.util.Date;
+import bitmusic.profile.classes.Category;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,8 +49,8 @@ public class SongLoader {
 
         //Creating target directory
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
-        String fileDirectory = new String("Profiles/" + ApiProfile.getCurrentUserFolder() + "/Music/Library/" + artist + "/" + album); //à tester
-        //String fileDirectory = new String("Profiles/" + "GetUserDirectory/"+ "Music/Library/" + artist + "/" + album);
+        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        String fileDirectory = new String("Profiles/" + currentUserFolder + "/Music/Library/" + artist + "/" + album); //à tester
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
@@ -74,7 +73,7 @@ public class SongLoader {
      * @param tags tags of the song
      * @param rightsByCategory access rights of the song
      */
-    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rightsByCategory) throws CopyMP3Exception, IOException {
+    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags) throws CopyMP3Exception, IOException {
 
         //Getting current Date        
         DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
@@ -82,13 +81,18 @@ public class SongLoader {
 
         //Generating songId
         ApiProfileImpl ApiProfil = ApiProfileImpl.getApiProfile();
-        ApiProfil.getCurrentUser().getUserId();
         String userId = new String(ApiProfil.getCurrentUser().getUserId());
         String songId = new String(userId + dateFormat.format(date));
 
         //Creating song
-        Song newsong = new Song(songId, title, album, artist, tags, rightsByCategory);
-        ApiProfil.getSongLibrary().addSong(newsong); //à tester
+        Song newSong = new Song(songId, title, album, artist, tags);
+        ArrayList<Category> allCategories = ApiProfil.getCategories();
+        //All rightsByCategories are set to True by default
+        for(Category category : allCategories) {
+            Rights newRight = new Rights(true, true, true, true);
+            newSong.getRightsByCategory().put(category.getId(), newRight);
+        }
+        ApiProfil.getSongLibrary().addSong(newSong); //à tester
 
         this.copyMP3(path, title, artist, album);
     }
@@ -102,7 +106,25 @@ public class SongLoader {
     public String getSongPath(String songId) {
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
         Song localSong = ApiProfile.getSongLibrary().getSong(songId);
-        String path = new String("Profiles/" + ApiProfile.getCurrentUserFolder() + "/Music/Library/" + localSong.getArtist() + "/" + localSong.getAlbum() + "/" + localSong.getTitle() + ".mp3");
+        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        String artist = new String(localSong.getArtist());
+        String album = new String(localSong.getAlbum());
+        String title = new String(localSong.getTitle());
+        String path = new String("Profiles/" + currentUserFolder + "/Music/Library/" + artist + "/" + album + "/" + title + ".mp3");
+        return path;
+    }
+    
+    /**
+     * Get the path of the song identified by songId.
+     * 
+     * @param songId    songId of the song
+     * @return path     path of the song
+     */
+    public String getTempSongPath(String userId, String songId) {
+        ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
+        Song localSong = ApiProfile.getSongLibrary().getSong(songId);
+        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        String path = new String("Profiles/" + currentUserFolder + "/Music/Temp/" + userId + "_" + songId + ".mp3");
         return path;
     }
 }

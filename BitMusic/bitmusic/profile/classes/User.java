@@ -14,13 +14,16 @@ import java.util.Calendar;
 import java.util.UUID;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
+import bitmusic.profile.utilities.ProfileExceptionType;
+import bitmusic.profile.utilities.ProfileExceptions;
+import java.io.Serializable;
 import sun.awt.shell.ShellFolder;
 
 /**
  *
  * @author reaneyol, MilioPeralta
  */
-public class User {
+public class User implements Serializable {
 
     //########################## ATTRIBUTES ##########################//
     /**
@@ -245,6 +248,19 @@ public class User {
 
     /**
      *
+     * @return
+     */
+    public Category getCategoryById(String categoryId) throws ProfileExceptions {
+        for(Category cat : this.categories) {
+            if(cat.getId() == categoryId) {
+                return cat;
+            }
+        }
+        throw new ProfileExceptions(ProfileExceptionType.CategoryNotFound);
+    }
+
+    /**
+     *
      * @param categories
      */
     public void setCategories(ArrayList<Category> categories) {
@@ -278,16 +294,16 @@ public class User {
      * @param id
      * @param newName
      */
-    public void updateCategory(int id, String newName) {
-        categories.get(id).setName(newName);
+    public void updateCategory(String categoryId, String newName) throws ProfileExceptions {
+        this.getCategoryById(categoryId).setName(newName);
     }
 
     /**
      *
      * @param id
      */
-    public void deleteCategory(int id) {
-        categories.remove(id);
+    public void deleteCategory(String categoryId) throws ProfileExceptions {
+        categories.remove(this.getCategoryById(categoryId));
     }
 
     /**
@@ -295,8 +311,8 @@ public class User {
      * @param user
      * @param idCategory
      */
-    public void addContact(User user, int idCategory) {
-        categories.get(idCategory).addUser(user);
+    public void addContact(User user, String categoryId) throws ProfileExceptions {
+        this.getCategoryById(categoryId).addUser(user);
     }
 
     /**
@@ -304,8 +320,8 @@ public class User {
      * @param user
      * @param idCategory
      */
-    public void removeContact(User user, int idCategory) {
-        categories.get(idCategory).deleteUser(user);
+    public void removeContact(User user, String categoryId) throws ProfileExceptions {
+         this.getCategoryById(categoryId).deleteUser(user);
     }
 
     /**
@@ -354,5 +370,5 @@ public class User {
         int month = this.birthDate.get(Calendar.MONTH);
         int day = this.birthDate.get(Calendar.DAY_OF_MONTH);
         return Integer.toString(year) + Integer.toString(month) + Integer.toString(day);
-    }
+        }
 }

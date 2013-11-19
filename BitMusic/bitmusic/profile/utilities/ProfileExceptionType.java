@@ -21,5 +21,8 @@ public enum ProfileExceptionType {
     WritingFileError,
     ExistingFileError,
     ReadingFileError,
-    FindingClassUserError
+    FindingClassUserError,
+    DirNotFound,
+    LoginWithInvalidCharacters,
+    CategoryNotFound,
 };

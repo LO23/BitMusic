@@ -7,6 +7,9 @@
 package bitmusic.profile;
 
 import bitmusic.profile.saving.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,9 +17,19 @@ import bitmusic.profile.saving.*;
  */
 public class MainTest {
     public static void main(String[] args) {
-        System.out.println("Testing profile");
-        UserSaverTest test = new UserSaverTest();
-        test.testSaveUser();
-        test.testSaveAuthFile();
+        FileSaverTest test = new FileSaverTest();
+        try {
+            test.testSaveUser();
+            test.testSaveAuthFile();
+        } catch (IOException ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        FileParserTest parseTest = new FileParserTest();
+        try {
+            parseTest.testLoadUser();
+        } catch (Exception ex) {
+            Logger.getLogger(MainTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

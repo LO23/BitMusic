@@ -28,23 +28,31 @@ public final class MessageGetSongFile extends AbstractMessage {
     private String songId;
 
     /**
+     * Is the file temporary or should it be kept on disc?
+     */
+    private boolean temporary;
+
+    /**
      * Constructor.
      * @param paramType Type of the message
      * @param paramIpSource IP address of the sender
      * @param paramIpDest IP address of the receiver
      * @param paramUserId ID of the user that owns the song
      * @param paramSongId ID of the distant song
+     * @param paramTemporary will the song be downloaded as temporary
      */
     public MessageGetSongFile(final EnumTypeMessage paramType,
             final String paramIpSource, final String paramIpDest,
-            final String paramUserId, final String paramSongId) {
+            final String paramUserId, final String paramSongId,
+            final boolean paramTemporary) {
         super(paramType, paramIpSource, paramIpDest);
         userId = paramUserId;
         songId = paramSongId;
+        temporary = paramTemporary;
     }
 
     /**
-     * Create a new message to transfert a song
+     * Create a new message to transfer a song.
      */
     @Override
     public void treatment() {
@@ -65,6 +73,8 @@ public final class MessageGetSongFile extends AbstractMessage {
                     this.userId,
                     //song id
                     this.songId,
+                    //temporary file
+                    this.temporary,
                     //Mp3 file into a byte array
                     mp3Array);
 
@@ -92,6 +102,14 @@ public final class MessageGetSongFile extends AbstractMessage {
     }
 
     /**
+     * Setter of the temporary attribute.
+     * @param paramTemporary is the file temporary
+     */
+    public void setTemporary(final boolean paramTemporary) {
+        this.temporary = paramTemporary;
+    }
+
+    /**
      * Getter of the userId attribute.
      * @return String ID of the user that owns the song.
      */
@@ -107,4 +125,11 @@ public final class MessageGetSongFile extends AbstractMessage {
         return songId;
     }
 
+    /**
+     * Getter of the temporary attribute.
+     * @return boolean is the file temporary
+     */
+    public boolean isTemporary() {
+        return temporary;
+    }
 }

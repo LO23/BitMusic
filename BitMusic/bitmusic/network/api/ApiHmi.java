@@ -75,4 +75,9 @@ public interface ApiHmi {
     */
     void getSongFile(final String operator, final String userId,
             final String songId) throws NetworkException;
+
+    /**
+     *  Shutdown the Executor service (thread pool) when program exits.
+     */
+    void shutdownExecutorService();
 }

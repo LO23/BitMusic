@@ -15,7 +15,6 @@ import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageAddComment;
 import bitmusic.network.message.MessageGetSongsByUser;
 import bitmusic.network.message.MessageSearchSongsByTag;
-import bitmusic.network.message.MessageTagRequest;
 import java.util.List;
 
 /**
@@ -71,63 +70,6 @@ public final class ApiMusicImpl implements ApiMusic {
                 song,
                 comment);
         Controller.getInstance().getThreadManager().assignTaskToHermes(message);
-    }
-    /**
-     * Ask a distant user to search for keywords in his tags.
-     * This is an asynchrounous call
-     *
-     * @param operator user operating the research
-     * @param askedUser user asked
-     * @param idResearch the id of the research
-     * @param keywordsList keywords searched
-     * @param option 0 = ALL keywords must match (default), 1 = ANY
-     * keyword match
-     */
-    @Override
-    public void tagRequest(final String operator, final String askedUser,
-            final String idResearch, final List<String> keywordsList,
-            final int option) throws NetworkException {
-        //Get the source address
-        final String sourceAddress;
-
-        //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
-
-        final String destAddress;
-
-        //Warning, it may emmit an exception thrown to the calling method!
-        destAddress = Controller.getInstance().
-                getUserIpFromDirectory(askedUser);
-
-        final AbstractMessage message;
-
-        message = new MessageTagRequest(
-                EnumTypeMessage.TagRequest,
-                sourceAddress,
-                destAddress,
-                operator,
-                askedUser,
-                idResearch,
-                keywordsList,
-                option);
-        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
-    }
-    /**
-     * Ask a distant user to search for keywords in his tags.
-     * Implements the default option option = 0 (ALL keywords must match)
-     * This is an asynchrounous call
-     *
-     * @param operator user operating the research
-     * @param askedUser user asked
-     * @param idResearch the id of the research
-     * @param keywordsList keywords searched
-     */
-    @Override
-    public void tagRequest(final String operator, final String askedUser,
-            final String idResearch, final List<String> keywordsList)
-            throws NetworkException {
-        this.tagRequest(operator, askedUser, idResearch, keywordsList, 0);
     }
     /**
      * Network message send to a distant user to ask him to send his songList.
