@@ -6,8 +6,11 @@
 
 package bitmusic.hmi.mainwindow;
 
+import bitmusic.network.exception.NetworkException;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,8 +30,11 @@ public class WindowController {
         @Override
         public void windowClosing(WindowEvent e) {
             System.out.println("- Fermeture de l'application en cours...");
-
-            WindowController.this.getWindowModel().logOut();
+            try {
+                WindowController.this.getWindowModel().logOut();
+            } catch (NetworkException ex) {
+                Logger.getLogger(WindowController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             WindowController.this.getWindowView().dispose();
         }
 
