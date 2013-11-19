@@ -6,13 +6,19 @@
 
 package bitmusic.network.message;
 
+import bitmusic.network.main.Controller;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * Message send to notify that we want a distant song file.
  * @author alexis
  */
 public final class MessageGetSongFile extends AbstractMessage {
     /**
-     * ID of the user that owns th song.
+     * ID of the user that owns the song.
      */
     private String userId;
 
@@ -38,11 +44,35 @@ public final class MessageGetSongFile extends AbstractMessage {
     }
 
     /**
-     * .
+     * Create a new message to transfert a song
      */
     @Override
     public void treatment() {
+        //String path = ApiProfileImpl.getApiProfile().getSongFile(this.userId, this.songId);
+        final String pathFile = null;
+        final Path path = Paths.get(pathFile);
+        try {
+           final byte[] mp3Array = Files.readAllBytes(path);
 
+            final MessageSendSongFile message = new MessageSendSongFile(
+                    //type of message
+                    EnumTypeMessage.SendSongFile,
+                    //ipSource
+                    Controller.getNetworkAddress(),
+                    //ipDest
+                    this.ipSource,
+                    //user id mp3 owner
+                    this.userId,
+                    //song id
+                    this.songId,
+                    //Mp3 file into a byte array
+                    mp3Array);
+
+            Controller.getInstance().getThreadManager().
+                    assignTaskToHermes(message);
+        } catch (IOException e) {
+
+        }
     }
 
     /**
