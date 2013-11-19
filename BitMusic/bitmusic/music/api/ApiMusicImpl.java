@@ -138,7 +138,11 @@ public final class ApiMusicImpl implements ApiMusic {
         }
     }
 
-    public void playSongFromSpecificTime(int frameNumber) {
+    /**
+     * Start a song at a specific frame.
+     * @param frameNumber The number of the frame.
+     */
+    public void playSongFromSpecificFrame(int frameNumber) {
         try {
             BitMusicPlayer.getInstance().play(frameNumber);
         } catch (IOException ioe) {
@@ -148,6 +152,9 @@ public final class ApiMusicImpl implements ApiMusic {
         }
     }
     
+    /**
+     * Stop a song. The song can be resume until a new song is not requested.
+     */
     public void pauseOrStopSong() {
         try {
             BitMusicPlayer.getInstance().pause();
@@ -156,6 +163,9 @@ public final class ApiMusicImpl implements ApiMusic {
         }
     }
     
+    /**
+     * Resume a song which was stopped.
+     */
     public void resumeSong() {
         try {
             BitMusicPlayer.getInstance().resume();
@@ -166,10 +176,19 @@ public final class ApiMusicImpl implements ApiMusic {
         }
     }
     
+    /**
+     * Get the total number of frame of song. 
+     * The song must be played to have a result.
+     * @return The total number of frame.
+     */
     public int getNumberOfFrame() {
         return BitMusicPlayer.getInstance().getTotalFrame();
     }
     
+    /**
+     * Get the current frame which is payed.
+     * @return The frame played
+     */
     public int getCurrentFrame() {
         return BitMusicPlayer.getInstance().getCurrentFrame();
     }
@@ -180,7 +199,7 @@ public final class ApiMusicImpl implements ApiMusic {
     }
 
     /**
-     *
+     * Get the
      * @param searchId
      * @param tagList
      * @return

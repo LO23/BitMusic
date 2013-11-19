@@ -64,7 +64,7 @@ public class SongSearcher {
         while (it.hasNext()) {
             currentSong = it.next();
             //song dont l'attribut right est changé : les droits ont été ajustés pour userId
-            currentSong = currentSong.getLightSong(userId);
+            currentSong = getLightSong(currentSong, userId);
             songsForRequester.add(currentSong); //songs avec les droits ajustés pour userId
         }
         //build the SongLibrary to be returned
@@ -126,7 +126,7 @@ public class SongSearcher {
             if (currentSong.hasTag(tagList)) {
                 //changer les droits de la chanson pour le user en question - if userId = null then local user is requester
                 if (userId != null){
-                    currentSong = currentSong.getLightSong(userId);
+                    currentSong = getLightSong(currentSong, userId);
                 }
                 songsWithCorrectTags.add(currentSong);
             }
@@ -134,6 +134,33 @@ public class SongSearcher {
         //instantiate the SongLibrary to be sent
         songLibraryForRequester = new SongLibrary(songsWithCorrectTags);
         return songLibraryForRequester;
+    }
+    
+    /**
+     * Get a lightSong with the localSong attribute for the user with userId
+     * @param currentSong The song whose the lightsong will be created
+     * @param authorId The authorId
+     * @return A light song with attribute modified for the autorId.
+     */
+    public Song getLightSong(Song currentSong, String userId) {
+        Song lightSong = new Song( currentSong.getSongId(), currentSong.getTitle(), currentSong.getArtist(), currentSong.getAlbum(),
+                currentSong.getTags(), currentSong.getRightsByCategory());
+        ArrayList<String> categoryList = ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(userId);
+        Rights localRights = new Rights(true, true, true, true);
+        
+        for (String categoryName :  categoryList) {
+            Rights r = currentSong.getRightsByCategory().get(categoryName);
+            if (!r.getcanComment())
+                r.setcanComment(false);
+            if (!r.getcanPlay())
+                r.setcanPlay(false);
+            if (!r.getcanRate())
+                r.setcanRate(false);
+            if (!r.getcanReadInfo())
+                r.setcanReadInfo(false);
+        }
+                
+        return lightSong;
     }
 
 

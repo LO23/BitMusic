@@ -1,5 +1,6 @@
 package bitmusic.music.data;
 
+import bitmusic.profile.api.ApiProfileImpl;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.*;
@@ -96,11 +97,26 @@ public class Song implements Serializable{
      * Get a lightSong with the localSong attribute for the user with userId
      * @param authorId The authorId
      * @return A light song with attribute modified for the autorId.
+     * @deprecated En théorie ne doit plus être utilise.
      */
     public Song getLightSong(String userId) {
         Song lightSong = new Song( songId, title, artist, album, tags, rightsByCategory);
-        lightSong.rightsByCategory = null;
+        ArrayList<String> categoryList = ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(userId);
+        Rights localRights = new Rights(true, true, true, true);
         
+        for (String categoryName :  categoryList) {
+            Rights r = rightsByCategory.get(categoryName);
+            if (!r.getcanComment())
+                r.setcanComment(false);
+            if (!r.getcanPlay())
+                r.setcanPlay(false);
+            if (!r.getcanRate())
+                r.setcanRate(false);
+            if (!r.getcanReadInfo())
+                r.setcanReadInfo(false);
+        }
+        
+        lightSong.rightsByCategory = null;
         
         return lightSong;
     }
@@ -119,7 +135,10 @@ public class Song implements Serializable{
      */
     public void deleteComment(String authorId, Date date) {
         for (Comment comment : comments) {
-            
+            if (comment.getAuthor().equals(authorId) && comment.getDate().equals(date)) {
+                comments.remove(comment);
+                return;
+            }
         }
     }
     
@@ -241,6 +260,10 @@ public class Song implements Serializable{
         return localRights;
     }
     
+    public HashMap<String,Rights> getRightsByCategory() {
+        return rightsByCategory;
+    }
+
     public boolean hasTag(List<String> tagList){
         
         Iterator<String> it = tagList.iterator();
