@@ -8,7 +8,6 @@ package bitmusic.network.message;
 import bitmusic.profile.classes.User;
 import bitmusic.network.main.Controller;
 import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.api.ApiHmi;
 import bitmusic.network.exception.NetworkDirectoryException;
 
 
@@ -41,12 +40,13 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
     */
    @Override
    public void treatment() {
-       try{
-           Controller.getInstance().addUserToDirectory(this.profile.getUserId(), this.getIpSource());
-           final ApiHmi apiHmi = WindowComponent.getInstance().getApiHmi();
-           apiHmi.notifyNewConnection(this.profile);
-       }
-       catch(NetworkDirectoryException exception){
+       try {
+           Controller.getInstance().addUserToDirectory(
+                   this.profile.getUserId(),
+                   this.ipSource);
+           WindowComponent.getInstance().getApiHmi().
+                   notifyNewConnection(this.profile);
+       } catch (NetworkDirectoryException exception) {
            //process exception
        }
    }

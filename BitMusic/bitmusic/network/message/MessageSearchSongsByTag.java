@@ -5,6 +5,9 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.music.api.ApiMusicImpl;
+import bitmusic.music.data.SongLibrary;
+import bitmusic.network.main.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +55,26 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
      */
     @Override
     public void treatment() {
+        final SongLibrary songLib = ApiMusicImpl.getInstance().
+                searchSongsByTags(
+                    //search id
+                    this.searchId,
+                    //tag list
+                    this.tagList);
 
+        final MessageSendSongList message = new MessageSendSongList(
+                //type of message
+                EnumTypeMessage.SendSongList,
+                //ip source
+                Controller.getNetworkAddress(),
+                //ip dest
+                this.ipSource,
+                //search id
+                this.searchId,
+                //song library
+                songLib);
+
+        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
     }
 
     /**

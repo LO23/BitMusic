@@ -46,9 +46,9 @@ public final class MessageSendUser extends AbstractMessage {
     public void treatment() {
         WindowComponent.getInstance().getApiHmi().notifyLightProfile(
                 //light Profile
-                this.getUser(),
+                this.user,
                 //researchID
-                this.getSearchId());
+                this.searchId);
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 
 package bitmusic.network.message;
+import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.Comment;
 import bitmusic.network.main.Controller;
@@ -55,18 +56,17 @@ public final class MessageAddComment extends AbstractMessage {
      */
     @Override
     public void treatment() {
-        final boolean right = true;//a supprimer quand api sera ompl
-       // boolean right = ApiMusicImpl..addCommentFromNetwork(
-         //       this.song.getSongId(), this.comment);
+       final boolean right = ApiMusicImpl.getInstance().addCommentFromNetwork(
+                this.song.getSongId(), this.comment);
 
-        if(right == true){
+        if (right) {
             //Loop on the directory
             final Map<String, String> userDirectory =
                     Controller.getInstance().getDirectory();
             for (Map.Entry<String, String> entry : userDirectory.entrySet()) {
 
                 //construct a message
-                final AbstractMessage message =
+                final MessageUpdateCommentNotification message =
                         new MessageUpdateCommentNotification(
                             //type of message
                             EnumTypeMessage.UpdateCommentNotification,
@@ -75,32 +75,33 @@ public final class MessageAddComment extends AbstractMessage {
                             //ip dest
                             entry.getValue(),
                             //userID (who comment)
-                            this.getUserId(),
+                            this.userId,
                             //songId
-                            this.getSong(),
+                            this.song,
                             //comment add
-                            this.getComment());
+                            this.comment);
                 //send update to all the user
 
                 Controller.getInstance().getThreadManager()
                         .assignTaskToHermes(message);
             }
         } else {
-            final AbstractMessage message = new MessageErrorNotification(
-                    //type of message
-                    EnumTypeMessage.ErrorNotification,
-                    //ip source
-                    Controller.getNetworkAddress(),
-                    //ip dest
-                    this.getIpSource(),
-                    //userID (who comment)
-                    this.getUserId(),
-                    //songId
-                    this.getSong(),
-                    //comment add
-                    this.getComment(),
-                    //Message erreur
-                    "You don't have the right to comment this song");
+            final MessageErrorNotification message =
+                    new MessageErrorNotification(
+                        //type of message
+                        EnumTypeMessage.ErrorNotification,
+                        //ip source
+                        Controller.getNetworkAddress(),
+                        //ip dest
+                        this.ipSource,
+                        //userID (who comment)
+                        this.userId,
+                        //songId
+                        this.song,
+                        //comment add
+                        this.comment,
+                        //Message erreur
+                        "You don't have the right to comment this song");
             Controller.getInstance().getThreadManager()
                     .assignTaskToHermes(message);
             }
@@ -142,7 +143,7 @@ public final class MessageAddComment extends AbstractMessage {
      * Getter for user id
      * @return userId The id string of user
      */
-    public String getUserId(){
+    public String getUserId() {
         return userId;
     }
 }
