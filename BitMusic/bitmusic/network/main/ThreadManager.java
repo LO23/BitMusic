@@ -26,6 +26,13 @@ public final class ThreadManager {
      */
     private final transient ExecutorService executorService;
 
+    /**
+     * @return executorService
+     */
+    public ExecutorService getExecutorService() {
+        return executorService;
+    }
+    
 
     /**
     * Threads pool size.
@@ -106,7 +113,7 @@ public final class ThreadManager {
     public void onSocketReceived() {
         this.jUnitTest.notify();
     }
-    
+
     public Socket getLastSocketReceived() {
         return this.lastSocketReceived;
     }
