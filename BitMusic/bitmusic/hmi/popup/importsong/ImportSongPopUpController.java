@@ -7,7 +7,6 @@
 package bitmusic.hmi.popup.importsong;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +41,7 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Annuler");
-            WindowComponent.getInstance().getMyProfileComponent().getController().getPopup().dispose();
+            WindowComponent.getInstance().getMyProfileComponent().getController().getPopUp().dispose();
         }
     }
 }
