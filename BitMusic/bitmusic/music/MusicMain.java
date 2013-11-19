@@ -12,4 +12,17 @@ package bitmusic.music;
  */
 public class MusicMain {
     
+    public static void main(String[] args){
+        //importer plusieurs chanson
+        
+        //créer la song library
+        
+        //jouer une chanson (start, pause, resume, stop)
+        
+        //commenter une chanson
+        
+        //noter une chanson
+        
+        //rechercher une chanson par tags 
+    }
 }
