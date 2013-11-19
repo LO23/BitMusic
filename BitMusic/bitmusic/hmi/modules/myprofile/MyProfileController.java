@@ -47,6 +47,10 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             } catch (NetworkException ex) {
                 Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            // Fermeture du pool de threads qui tourne en arrière-plan (géré par Network)
+            WindowComponent.getInstance().getApiNetwork().shutdownExecutorService();
+
             win.getWindowView().dispose();
         }
     }
