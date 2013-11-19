@@ -266,15 +266,49 @@ public final class Controller {
     private String findBroadCastAddress(){
         String brcstAddr;
         try {
+            int index = 0;
+            if(isMac()) {
+                index = 1;
+            }
             brcstAddr = NetworkInterface
-                    .getByInetAddress(InetAddress.getLocalHost())
-                      .getInterfaceAddresses()
-                        .get(0).getBroadcast().getHostAddress();
-            return brcstAddr;
+                        .getByInetAddress(InetAddress.getLocalHost())
+                          .getInterfaceAddresses()
+                            .get(index).getBroadcast().getHostAddress();
         } catch (SocketException | UnknownHostException ex) {
             brcstAddr = "";
         }
         return brcstAddr;
+    }
+
+    private final String OS = System.getProperty("os.name").toLowerCase();
+
+    private boolean isMac() {
+        return (OS.indexOf("mac") >= 0);
+    }
+
+    /*
+    ###   MAY BE USEFUL   ###
+    #########################
+
+    private boolean isWindows() {
+        return (OS.indexOf("win") >= 0);
+    }
+    private boolean isUnix() {
+        return (OS.indexOf("nix") >= 0
+                || OS.indexOf("nux") >= 0
+                || OS.indexOf("aix") >= 0);
+    }
+    */
+
+
+     /**
+     * shutdown pool of threads
+     * When quitting the program, must call this method
+     */
+    public void shutdownExecutorService(){
+
+        ThreadManager.getInstance().getExecutorService().shutdown();
+
     }
 
 

@@ -33,7 +33,7 @@ public class Category implements Serializable {
         this.id = UUID.randomUUID().toString();
         this.contacts = new ArrayList<User>();
         this.name = name;
-        // TO DO this.rights = new Rights();
+        this.rights = new Rights(true, true, true, true);
     }
 
     //########################### METHODS ##############################//
@@ -45,6 +45,14 @@ public class Category implements Serializable {
     public void setName(String newName) {
         this.name = newName;
     }
+    
+    /**
+     * Return the Id of the category
+     * @return Id
+     */
+    public String getId(){
+        return this.id;
+    }
 
     /**
      * Return the name of the category
@@ -55,6 +63,22 @@ public class Category implements Serializable {
     }
 
     /**
+     * Return the contacts of the category
+     * @return List of the contacts
+     */
+    public ArrayList<User> getContacts(){
+        return this.contacts;
+    }
+    
+    /**
+     * Change the list of the contacts
+     * @param contacts new contacts to add
+     */
+    public void setContacts(ArrayList<User> contacts){
+        this.contacts = contacts;
+    }
+    
+    /**
      * Return the rights of the category
      * @return Rights of the category
      */
@@ -62,6 +86,19 @@ public class Category implements Serializable {
         return this.rights;
     }
 
+    /**
+     * Find a user with its ID
+     * @param UserID UserID to find
+     * @return th User or null
+     */
+    public User findContact(String UserID){
+        User found = null;
+        for(User contact : this.contacts){
+            if(contact.getUserId() == UserID) found = contact;
+        }
+        return found;
+    }
+    
     /**
      * Update the rights of the category
      * @param canIReadInfo Right to read information

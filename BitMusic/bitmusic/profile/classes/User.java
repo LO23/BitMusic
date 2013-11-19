@@ -258,10 +258,12 @@ public class User implements Serializable {
      * @return
      */
     public User getContact(String userId) {
-
-        // TODO
-
-        return null;
+    	User usr = null;
+    	for (Category cat : categories) {
+    		usr = cat.findContact(userId);
+    		if (usr != null) break;
+    	}
+        return usr;
     }
 
     /**
