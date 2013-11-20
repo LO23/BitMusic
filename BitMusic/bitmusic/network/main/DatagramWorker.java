@@ -10,9 +10,8 @@ import bitmusic.network.message.AbstractMessage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import javax.xml.ws.Service;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
 
 /**
  *
@@ -23,14 +22,14 @@ public class DatagramWorker extends AbstractManageable {
     /**
      * The socket use to exchange.
      */
-    private final transient DatagramSocket socket;
+    private final transient DatagramChannel channel;
 
     /**
     *@param paramSocket The socket
     */
-    DatagramWorker(final DatagramSocket paramSocket) {
+    DatagramWorker(final DatagramChannel paramChannel) {
         super();
-        socket = paramSocket;
+        channel = paramChannel;
     }
 
     /**
@@ -39,17 +38,16 @@ public class DatagramWorker extends AbstractManageable {
     @Override
     public final void run() {
         try {
-            byte[] incomingData = new byte[1024];
+            ByteBuffer incomingData = ByteBuffer.allocate(1024);
 
-            DatagramPacket incomingPacket = new DatagramPacket(incomingData,
-                     incomingData.length);
+            channel.receive(incomingData);
 
-            socket.receive(incomingPacket);
-            byte[] data = incomingPacket.getData();
-            ByteArrayInputStream bais = new ByteArrayInputStream(data);
-            ObjectInputStream ois = new ObjectInputStream(bais);
+            final byte[] data = incomingData.array();
+            final ByteArrayInputStream bais = new ByteArrayInputStream(data);
+            final ObjectInputStream ois = new ObjectInputStream(bais);
             try {
-                AbstractMessage message = (AbstractMessage) ois.readObject();
+                final AbstractMessage message =
+                        (AbstractMessage) ois.readObject();
 
                 message.treatment();
             } catch (ClassNotFoundException e) {
@@ -64,7 +62,7 @@ public class DatagramWorker extends AbstractManageable {
      *
      * @return socket
      */
-    public final DatagramSocket getSocket() {
-        return this.socket;
+    public final DatagramChannel getChannel() {
+        return this.channel;
     }
 }
