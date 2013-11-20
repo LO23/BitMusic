@@ -29,18 +29,13 @@ public final class TabView extends AbstractView<TabController> {
     public void initPanel() {
         System.out.println("--- TabView.initPanel()");
 
-        this.makeTextPanel("Panel #1");
-//        tabbedPane.addTab("Tab 1", null, panel1, "Does nothing");
+        JPanel jPanel = this.getPanel();
 
-    }
-
-    protected JComponent makeTextPanel(String text) {
-        JPanel panel = new JPanel(false);
-        JLabel filler = new JLabel(text);
+        JLabel filler = new JLabel("Panel #1");
         filler.setHorizontalAlignment(JLabel.CENTER);
-        panel.setLayout(new GridLayout(1, 1));
-        panel.add(filler);
-        return panel;
+        jPanel.setLayout(new GridLayout(1, 1));
+        jPanel.add(filler);
+
     }
 
     @Override
