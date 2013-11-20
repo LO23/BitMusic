@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.searchbar;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.centralarea.CentralAreaView;
 import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionListener;
@@ -29,9 +30,8 @@ public final class SearchBarController extends AbstractController<SearchBarModel
 
             //SearchBarModel model =  SearchBarController.this.getModel();
 
-            WindowComponent win = WindowComponent.getInstance();
-            TabComponent tabComponent = new TabComponent();
-            win.getWindowView().addTabToTabbedPane(tabComponent.getView());
+            CentralAreaView centralAreaView = WindowComponent.getInstance().getCentralAreaComponent().getView();
+            centralAreaView.addTab(new TabComponent().getView());
         }
     }
 }

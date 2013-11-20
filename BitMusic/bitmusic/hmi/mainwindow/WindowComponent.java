@@ -11,13 +11,12 @@ import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.network.main.Controller;
 import bitmusic.hmi.modules.categories.CategoriesComponent;
+import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
 import bitmusic.hmi.modules.connection.ConnectionComponent;
 import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.modules.playbar.PlayBarComponent;
 import bitmusic.hmi.modules.searchbar.SearchBarComponent;
-import bitmusic.hmi.modules.tab.TabComponent;
-import java.util.ArrayList;
 
 /**
  *
@@ -40,9 +39,7 @@ public class WindowComponent {
     private OnlineUsersComponent onlineUsersComponent;
     private PlayBarComponent playBarComponent;
     private SearchBarComponent searchBarComponent;
-
-    private ArrayList<TabComponent> listTabsComponent;
-    // TODO : ajouter les PopUp aussi ??? si on les ferme au même endroit qu'on les crée : pas besoin de les avoir ici
+    private CentralAreaComponent centralAreaComponent;
 
     private WindowComponent() {
         this.apiHmi = new ApiHmiImpl();
@@ -166,39 +163,29 @@ public class WindowComponent {
         this.searchBarComponent = searchBarComponent;
     }
 
-    public ArrayList<TabComponent> getListTabsComponent() {
-        return this.listTabsComponent;
+    public CentralAreaComponent getCentralAreaComponent() {
+        return this.centralAreaComponent;
     }
 
-    public void setListTabsComponent(ArrayList<TabComponent> listTabsComponent) {
-        this.listTabsComponent = listTabsComponent;
-    }
-
-    public void addTabComponent(TabComponent tab) {
-        this.listTabsComponent.add(tab);
-        //Notifier et faire une maj
-    }
-
-    public void removeTabComponent(TabComponent tab) {
-        for (int i=0; i<this.listTabsComponent.size(); i++) {
-            if (listTabsComponent.get(i).equals(tab)) {
-                listTabsComponent.remove(i);
-            }
-        }
+    public void setCentralAreaComponent(CentralAreaComponent centralAreaComponent) {
+        this.centralAreaComponent = centralAreaComponent;
     }
 
     public void initAllComponents() {
         // TODO : Création des différents Components...
-
-        //TODO
-//        this.setCategoriesComponent(new CategoriesComponent());
-//        this.getWindowView().addView(this.getCategoriesComponent().getView());
 
         this.setSearchBarComponent(new SearchBarComponent());
         this.getWindowView().addView(this.getSearchBarComponent().getView());
 
         this.setMyProfileComponent(new MyProfileComponent());
         this.getWindowView().addView(this.getMyProfileComponent().getView());
+
+        // TODO :
+        // this.setCategoriesComponent(new CategoriesComponent());
+        // this.getWindowView().addView(this.getCategoriesComponent().getView());
+
+        this.setCentralAreaComponent(new CentralAreaComponent());
+        this.getWindowView().addView(this.getCentralAreaComponent().getView());
 
         this.setOnlineUsersComponent(new OnlineUsersComponent());
         this.getWindowView().addView(this.getOnlineUsersComponent().getView());
@@ -209,9 +196,7 @@ public class WindowComponent {
         // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
         // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
 
-//        this.setPlayBarComponent(new PlayBarComponent());
-//        this.getWindowView().addView(this.getPlayBarComponent().getView());
-
-        this.getWindowView().addTabbedPane(this.view.getTabbedPane());
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.getWindowView().addView(this.getPlayBarComponent().getView());
     }
 }
