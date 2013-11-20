@@ -11,11 +11,12 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +34,7 @@ public class WindowView extends JFrame implements Observer {
     private final JPanel jpanelNorth = new JPanel (new GridBagLayout());
     private GridBagConstraints gridBagConstraints = new GridBagConstraints();
     private JTabbedPane tabbedPane = new JTabbedPane();
+    private int count = 0;
 
     public WindowView() {
 
@@ -120,12 +122,6 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void addTabbedPane(JTabbedPane tabbedPane) {
-//        JComponent panel1 = makeTextPanel("Panel #1");
-//        tabbedPane.addTab("Tab 1", null, panel1, "Does nothing");
-//
-//        JComponent panel2 = makeTextPanel("Panel #2");
-//        tabbedPane.addTab("Tab 2", null, panel2, "Does nothing");
-
         this.getContentPane().add(contentPanel);
         contentPanel.add(tabbedPane, BorderLayout.CENTER);
         this.setVisible(true);
@@ -138,8 +134,61 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void addTabToTabbedPane(TabView tabView){
-        this.tabbedPane.addTab("Tab ##", null, tabView.getPanel(), "Juste un exemple");
+
+        String title = "Tab #" + count;
+        count++;
+
+        tabbedPane.addTab(title, tabView.getPanel());
+        int index = tabbedPane.indexOfTab(title);
+
+        JPanel panelTab = new JPanel(new GridBagLayout());
+        panelTab.setOpaque(false);
+        JLabel labelTitle = new JLabel(title);
+        JButton btnClose = new JButton("x");
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+
+        panelTab.add(labelTitle, gbc);
+
+        gbc.gridx++;
+        gbc.weightx = 0;
+        panelTab.add(btnClose, gbc);
+
+        tabbedPane.setTabComponentAt(index, panelTab);
+
+        //On ajoute une action pour supprimer CE tab quand on appuiera sur quitter
+        MyCloseActionListener myCloseActionHandler = new MyCloseActionListener(title);
+        btnClose.addActionListener(myCloseActionHandler);
     }
+
+
+    //TODO : mettre dans le WindowController mais cela pose le problème qu'on ne peut pas passer d'argument
+    // on ne sait donc pas quel tab supprimer...
+    public class MyCloseActionListener implements ActionListener {
+
+        private String tabName;
+
+        public MyCloseActionListener(String tabName) {
+            this.tabName = tabName;
+        }
+
+        public String getTabName() {
+            return tabName;
+        }
+
+        public void actionPerformed(ActionEvent evt) {
+
+            int index = tabbedPane.indexOfTab(getTabName());
+
+            if (index >= 0) {
+                tabbedPane.removeTabAt(index);
+            }
+        }
+    }
+
 
     @Override
     public void update(Observable obj, String str) {

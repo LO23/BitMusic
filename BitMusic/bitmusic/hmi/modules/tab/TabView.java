@@ -30,10 +30,11 @@ public final class TabView extends AbstractView<TabController> {
         System.out.println("--- TabView.initPanel()");
 
         JPanel jPanel = this.getPanel();
+        //Ajouter tout à ce panel !
 
-        JLabel filler = new JLabel("Panel #1");
-        filler.setHorizontalAlignment(JLabel.CENTER);
-        jPanel.setLayout(new GridLayout(1, 1));
+        JLabel filler = new JLabel("Affichage...");
+        //filler.setHorizontalAlignment(JLabel.CENTER);
+        //jPanel.setLayout(new GridLayout(1, 1));
         jPanel.add(filler);
 
     }

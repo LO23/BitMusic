@@ -183,7 +183,6 @@ public class WindowComponent {
         for (int i=0; i<this.listTabsComponent.size(); i++) {
             if (listTabsComponent.get(i).equals(tab)) {
                 listTabsComponent.remove(i);
-                //Notifier et faire une maj
             }
         }
     }
