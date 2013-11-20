@@ -39,9 +39,6 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
     }
 
-    /**
-     *
-     */
     public class HintTextFieldListener extends JTextField implements FocusListener {
 
         private final String hint = "dd/MM/yyyy";
