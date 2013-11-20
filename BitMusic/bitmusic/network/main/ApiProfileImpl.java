@@ -8,7 +8,6 @@ package bitmusic.network.main;
 
 import bitmusic.network.api.ApiProfile;
 import bitmusic.network.exception.NetworkException;
-import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageGetUser;
 import bitmusic.network.message.MessageNotifyNewConnection;
@@ -45,7 +44,6 @@ public final class ApiProfileImpl implements ApiProfile {
      *
      * @param operator the id of the asking user.
      * @param userId the id of the user whose profile we want.
-     * @return profile of the distant user, null if no such user found
      * @throws NetworkException throws an exception when the given idUser isn't
      * in the directory
     */
@@ -53,23 +51,16 @@ public final class ApiProfileImpl implements ApiProfile {
     public void getUser(final String operator, final String userId,
             final String searchId) throws NetworkException {
         //Get the source address
-        final String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
+        final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the remote address
-        final String destAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        destAddress = Controller.getInstance().
+        final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(userId);
 
         //Construct the message
-        final AbstractMessage message;
-
-        message = new MessageGetUser(
+        final MessageGetUser message = new MessageGetUser(
                 EnumTypeMessage.GetUser,
                 sourceAddress,
                 destAddress,
@@ -91,17 +82,18 @@ public final class ApiProfileImpl implements ApiProfile {
         final String sourceAddress = Controller.getNetworkAddress();
 
         //Construct the message
-        final AbstractMessage message = new MessageNotifyNewConnection(
-                //Type of message
-                EnumTypeMessage.NotifyNewConnection,
-                //Source address
-                sourceAddress,
-                //Destination address (Everyone)
-                Controller.getBroadcastAddress(),
-                //idUser
-                user,
-                //Get the profile
-                true);
+        final MessageNotifyNewConnection message =
+                new MessageNotifyNewConnection(
+                    //Type of message
+                    EnumTypeMessage.NotifyNewConnection,
+                    //Source address
+                    sourceAddress,
+                    //Destination address (Everyone)
+                    Controller.getBroadcastAddress(),
+                    //idUser
+                    user,
+                    //Get the profile
+                    true);
 
         //Give the message to a worker...
         Controller.getInstance().getThreadManager().assignTaskToHermes(message);
