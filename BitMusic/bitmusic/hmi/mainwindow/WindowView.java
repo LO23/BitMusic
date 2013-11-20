@@ -33,8 +33,9 @@ public class WindowView extends JFrame implements Observer {
     private JPanel contentPanel = new JPanel(new BorderLayout());
     private final JPanel jpanelNorth = new JPanel (new GridBagLayout());
     private GridBagConstraints gridBagConstraints = new GridBagConstraints();
+
     private JTabbedPane tabbedPane = new JTabbedPane();
-    private int count = 0;
+    private Integer tabCounter = 0;
 
     public WindowView() {
 
@@ -133,62 +134,27 @@ public class WindowView extends JFrame implements Observer {
         this.contentPanel.remove(tabbedPane);
     }
 
+    public Integer getTabCounter() {
+        return this.tabCounter;
+    }
+
+    public void setTabCounter(final Integer value) {
+        this.tabCounter = value;
+    }
+
     public void addTabToTabbedPane(TabView tabView){
+        // Ajout du tab au tabbedPane
+        String tabTitle = tabView.getTitle();
+        this.tabbedPane.addTab(tabTitle, tabView.getPanel());
 
-        String title = "Tab #" + count;
-        count++;
+        // Positionnement du tab dans le tabbedPane
+        Integer indexTab = tabbedPane.indexOfTab(tabTitle);
+        JPanel panelTab = tabView.getPanelTab();
+        this.tabbedPane.setTabComponentAt(indexTab, panelTab);
 
-        tabbedPane.addTab(title, tabView.getPanel());
-        int index = tabbedPane.indexOfTab(title);
-
-        JPanel panelTab = new JPanel(new GridBagLayout());
-        panelTab.setOpaque(false);
-        JLabel labelTitle = new JLabel(title);
-        JButton btnClose = new JButton("x");
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-
-        panelTab.add(labelTitle, gbc);
-
-        gbc.gridx++;
-        gbc.weightx = 0;
-        panelTab.add(btnClose, gbc);
-
-        tabbedPane.setTabComponentAt(index, panelTab);
-
-        //On ajoute une action pour supprimer CE tab quand on appuiera sur quitter
-        MyCloseActionListener myCloseActionHandler = new MyCloseActionListener(title);
-        btnClose.addActionListener(myCloseActionHandler);
+        // Incrémentation du compteur de tabs
+        this.tabCounter++;
     }
-
-
-    //TODO : mettre dans le WindowController mais cela pose le problème qu'on ne peut pas passer d'argument
-    // on ne sait donc pas quel tab supprimer...
-    public class MyCloseActionListener implements ActionListener {
-
-        private String tabName;
-
-        public MyCloseActionListener(String tabName) {
-            this.tabName = tabName;
-        }
-
-        public String getTabName() {
-            return tabName;
-        }
-
-        public void actionPerformed(ActionEvent evt) {
-
-            int index = tabbedPane.indexOfTab(getTabName());
-
-            if (index >= 0) {
-                tabbedPane.removeTabAt(index);
-            }
-        }
-    }
-
 
     @Override
     public void update(Observable obj, String str) {
