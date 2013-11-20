@@ -9,6 +9,7 @@ package bitmusic.hmi.popup.accountcreation;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.GroupLayout;
@@ -46,7 +47,6 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     private final DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     private final JFormattedTextField dateTextField = new JFormattedTextField(format);
     private final JButton avatarbrowseButton = new JButton("Parcourir...");
-//    private final JDateChooser picker = new JDateChooser();
 
     public AccountCreationPopUpView() {
         super();
@@ -77,13 +77,14 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
         this.prenomField.setColumns(10);
         this.nomField.setColumns(10);
         this.dateTextField.setColumns(10);
+        this.dateTextField.setText("dd/MM/yyyy");
 
         this.avatarbrowseButton.setSize(d);
-//        final JLabel path = new JLabel();
         avatarbrowseButton.addActionListener(this.getController().new AvatarBrowseListener());
-//        file.showSaveDialog(this);
 
         this.cancelButton.addActionListener(this.getController().new CancelListener());
+
+        this.dateTextField.addFocusListener(this.getController().new HintTextFieldListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
