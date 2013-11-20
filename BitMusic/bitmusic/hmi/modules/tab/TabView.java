@@ -37,7 +37,7 @@ public final class TabView extends AbstractView<TabController> {
         System.out.println("--- TabView.initPanel()");
 
         // Initialisation du titre de l'onglet
-        Integer nextTabId = WindowComponent.getInstance().getWindowView().getTabCounter();
+        Integer nextTabId = WindowComponent.getInstance().getCentralAreaComponent().getView().getTabCounter();
         this.title = "Tab#" + nextTabId;
         this.labelTitle = new JLabel(title);
 

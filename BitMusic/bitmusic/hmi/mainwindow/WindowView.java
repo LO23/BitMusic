@@ -6,22 +6,14 @@
 
 package bitmusic.hmi.mainwindow;
 
-import bitmusic.hmi.modules.tab.TabView;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 
 /**
  *
@@ -34,20 +26,8 @@ public class WindowView extends JFrame implements Observer {
     private final JPanel jpanelNorth = new JPanel (new GridBagLayout());
     private GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
-    private JTabbedPane tabbedPane = new JTabbedPane();
-    private Integer tabCounter = 0;
-
     public WindowView() {
 
-    }
-
-    protected JComponent makeTextPanel(String text) {
-        JPanel panel = new JPanel(false);
-        JLabel filler = new JLabel(text);
-        filler.setHorizontalAlignment(JLabel.CENTER);
-        panel.setLayout(new GridLayout(1, 1));
-        panel.add(filler);
-        return panel;
     }
 
     public WindowController getWindowController() {
@@ -67,11 +47,8 @@ public class WindowView extends JFrame implements Observer {
     }
 
     public void addView(AbstractView view) {
-
         if ("CONNECTION".equals(view.getType())){
             this.getContentPane().add(view.getPanel());
-            pack();
-            this.setVisible(true);
         } else {
             this.getContentPane().add(contentPanel);
             switch (view.getType()) {
@@ -105,13 +82,9 @@ public class WindowView extends JFrame implements Observer {
                     System.out.println("Error : type du panel (north, south, east...) non défini !");
                     break;
             }
-            //Toolkit toolkit = Toolkit.getDefaultToolkit();
-            //Dimension dim = toolkit.getScreenSize();
-            //this.setSize(dim.width, dim.height-20);
-            //this.setLocationRelativeTo(null);
-            this.setVisible(true);
-            pack();
         }
+        this.pack();
+        this.setVisible(true);
     }
 
     public void removeView(AbstractView view) {
@@ -120,40 +93,6 @@ public class WindowView extends JFrame implements Observer {
         } else {
             this.contentPanel.remove(view.getPanel());
         }
-    }
-
-    public void addTabbedPane(JTabbedPane tabbedPane) {
-        this.getContentPane().add(contentPanel);
-        contentPanel.add(tabbedPane, BorderLayout.CENTER);
-        this.setVisible(true);
-        pack();
-
-    }
-
-    public void removeTabbedPane(JTabbedPane tabbedPane) {
-        this.contentPanel.remove(tabbedPane);
-    }
-
-    public Integer getTabCounter() {
-        return this.tabCounter;
-    }
-
-    public void setTabCounter(final Integer value) {
-        this.tabCounter = value;
-    }
-
-    public void addTabToTabbedPane(TabView tabView){
-        // Ajout du tab au tabbedPane
-        String tabTitle = tabView.getTitle();
-        this.tabbedPane.addTab(tabTitle, tabView.getPanel());
-
-        // Positionnement du tab dans le tabbedPane
-        Integer indexTab = tabbedPane.indexOfTab(tabTitle);
-        JPanel panelTab = tabView.getPanelTab();
-        this.tabbedPane.setTabComponentAt(indexTab, panelTab);
-
-        // Incrémentation du compteur de tabs
-        this.tabCounter++;
     }
 
     @Override
@@ -176,14 +115,4 @@ public class WindowView extends JFrame implements Observer {
     public void setGridBagConstraints(GridBagConstraints gridBagConstraints) {
         this.gridBagConstraints = gridBagConstraints;
     }
-
-    public JTabbedPane getTabbedPane() {
-        return tabbedPane;
-    }
-
-    public void setTabbedPane(JTabbedPane tabbedPane) {
-        this.tabbedPane = tabbedPane;
-    }
-
-
 }
