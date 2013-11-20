@@ -56,10 +56,14 @@ public final class ApiMusicImpl implements ApiMusic {
         //Warning, it may emmit an exception thrown to the calling method!
         final String sourceAddress = Controller.getNetworkAddress();
 
+        final String destAddress = Controller.getInstance().
+        getUserIpFromDirectory(song.getOwnerId());
+
+
         final MessageAddComment message = new MessageAddComment(
                 EnumTypeMessage.AddComment,
                 sourceAddress,
-                Controller.getBroadcastAddress(),
+                destAddress,
                 song.getOwnerId(),
                 song,
                 comment);
