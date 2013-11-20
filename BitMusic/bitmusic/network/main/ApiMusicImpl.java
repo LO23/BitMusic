@@ -10,7 +10,6 @@ import bitmusic.network.api.ApiMusic;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
-import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageAddComment;
 import bitmusic.network.message.MessageGetSongsByUser;
@@ -54,15 +53,10 @@ public final class ApiMusicImpl implements ApiMusic {
     public void addComment(final Song song, final Comment comment)
             throws NetworkException {
         //Get the source address
-        final String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(song.getOwnerId());
+        final String sourceAddress = Controller.getNetworkAddress();
 
-        final AbstractMessage message;
-
-        message = new MessageAddComment(
+        final MessageAddComment message = new MessageAddComment(
                 EnumTypeMessage.AddComment,
                 sourceAddress,
                 Controller.getBroadcastAddress(),
@@ -81,22 +75,15 @@ public final class ApiMusicImpl implements ApiMusic {
     public void getSongsByUser(final String operator, final String askedUser,
             final String researchId) throws NetworkException {
         //Get the source address
-        final String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
+        final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the remote address
-        final String destAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        destAddress = Controller.getInstance().
+        final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(askedUser);
 
-        final AbstractMessage message;
-
-        message = new MessageGetSongsByUser(
+        final MessageGetSongsByUser message = new MessageGetSongsByUser(
                 EnumTypeMessage.GetSongsByUser,
                 sourceAddress,
                 destAddress,
@@ -118,22 +105,15 @@ public final class ApiMusicImpl implements ApiMusic {
             final String userIdDest, final String searchId,
             final List<String> tagList) throws NetworkException {
         //Get the source address
-        final String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
+        final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the remote address
-        final String destAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        destAddress = Controller.getInstance().
+        final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(userIdDest);
 
-        final AbstractMessage message;
-
-        message = new MessageSearchSongsByTag(
+        final MessageSearchSongsByTag message = new MessageSearchSongsByTag(
                 EnumTypeMessage.SearchSongsByTag,
                 sourceAddress,
                 destAddress,
