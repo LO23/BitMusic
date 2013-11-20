@@ -214,8 +214,5 @@ public class WindowComponent {
 //        this.getWindowView().addView(this.getPlayBarComponent().getView());
 
         this.getWindowView().addTabbedPane(this.view.getTabbedPane());
-
-        TabComponent tabComponent = new TabComponent();
-        this.getWindowView().addTabToTabbedPane(tabComponent.getView());
     }
 }

@@ -6,6 +6,8 @@
 
 package bitmusic.hmi.modules.searchbar;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,9 +27,11 @@ public final class SearchBarController extends AbstractController<SearchBarModel
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Rechercher");
 
-            SearchBarModel model =  SearchBarController.this.getModel();
+            //SearchBarModel model =  SearchBarController.this.getModel();
 
-            // TODO : lancer la requête, etc...
+            WindowComponent win = WindowComponent.getInstance();
+            TabComponent tabComponent = new TabComponent();
+            win.getWindowView().addTabToTabbedPane(tabComponent.getView());
         }
     }
 }
