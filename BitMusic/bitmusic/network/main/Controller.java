@@ -102,8 +102,6 @@ public final class Controller {
 
         //Contains the NetworkListener instance
         netListener = bitmusic.network.main.NetworkListener.getInstance();
-        //Run the listener
-        netListener.run();
     }
 
     /**
