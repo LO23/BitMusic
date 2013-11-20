@@ -8,6 +8,10 @@ package bitmusic.hmi.modules.tab;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.GridLayout;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,7 +29,14 @@ public final class TabView extends AbstractView<TabController> {
     public void initPanel() {
         System.out.println("--- TabView.initPanel()");
 
-        // TODO
+        JPanel jPanel = this.getPanel();
+        //Ajouter tout à ce panel !
+
+        JLabel filler = new JLabel("Affichage...");
+        //filler.setHorizontalAlignment(JLabel.CENTER);
+        //jPanel.setLayout(new GridLayout(1, 1));
+        jPanel.add(filler);
+
     }
 
     @Override
