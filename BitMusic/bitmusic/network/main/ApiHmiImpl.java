@@ -8,7 +8,6 @@ package bitmusic.network.main;
 
 import bitmusic.network.api.ApiHmi;
 import bitmusic.network.exception.NetworkException;
-import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageLogOut;
@@ -49,13 +48,10 @@ public final class ApiHmiImpl implements ApiHmi {
     @Override
     public void logOut(final String userId) throws NetworkException {
         //Get the source address
-        String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(userId);
+        final String sourceAddress = Controller.getNetworkAddress();
 
-        AbstractMessage message = null;
+        MessageLogOut message = null;
 
         //Loop on the directory
         final Map<String, String> userDirectory = Controller.getInstance().
@@ -110,21 +106,14 @@ public final class ApiHmiImpl implements ApiHmi {
             final String songId, final boolean paramTemporary)
             throws NetworkException{
         //Get the source address
-        String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
+        final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the destination address
-        String destinationAddress;
-
-        destinationAddress = Controller.getInstance().
+        String destinationAddress = Controller.getInstance().
                 getUserIpFromDirectory(userId);
 
-        AbstractMessage message = null;
-
-        message = new MessageGetSongFile(
+        final MessageGetSongFile message = new MessageGetSongFile(
                 //type of the message
                 EnumTypeMessage.GetSongFile,
                 //source address
@@ -147,7 +136,7 @@ public final class ApiHmiImpl implements ApiHmi {
      * Shutdown the Executor service (thread pool) when program exits.
      */
     @Override
-    public void shutdownExecutorService(){
+    public void shutdownExecutorService() {
 
         Controller.getInstance().getThreadManager()
                 .getExecutorService().shutdown();

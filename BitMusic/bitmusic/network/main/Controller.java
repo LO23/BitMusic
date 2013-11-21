@@ -88,9 +88,6 @@ public final class Controller {
         catch (UnknownHostException ex) {
         }
 
-
-
-
         //Create the directory
         directory = new HashMap();
 
@@ -100,12 +97,11 @@ public final class Controller {
         apiMusic = bitmusic.network.main.ApiMusicImpl.getInstance();
         apiProfile = bitmusic.network.main.ApiProfileImpl.getInstance();
 
-        //Contains the NetworkListener instance
-        netListener = bitmusic.network.main.NetworkListener.getInstance();
-
         //Contains the WorkManager instance
         threadManager = bitmusic.network.main.ThreadManager.getInstance();
 
+        //Contains the NetworkListener instance
+        netListener = bitmusic.network.main.NetworkListener.getInstance();
     }
 
     /**
@@ -264,7 +260,8 @@ public final class Controller {
 
 
     private String findBroadCastAddress(){
-        String brcstAddr;
+        String brcstAddr = "172.22.255.255";
+        /*
         try {
             int index = 0;
             if(isMac()) {
@@ -277,6 +274,7 @@ public final class Controller {
         } catch (SocketException | UnknownHostException ex) {
             brcstAddr = "";
         }
+        */
         return brcstAddr;
     }
 

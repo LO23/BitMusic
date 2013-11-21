@@ -6,8 +6,12 @@
 
 package bitmusic.hmi.modules.centralarea;
 
+import bitmusic.hmi.modules.tab.TabView;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -17,6 +21,9 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     private static final String type = "CENTER";
 
+    private JTabbedPane tabbedPane = new JTabbedPane();
+    private Integer tabCounter = 0;
+
     public CentralAreaView() {
         super();
     }
@@ -25,7 +32,39 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
     public void initPanel() {
         System.out.println("--- CentralAreaView.initPanel()");
 
-        // TODO
+        // Création du tabbedPane
+        this.getPanel().add(this.tabbedPane, BorderLayout.CENTER);
+        this.setVisible(true);
+    }
+
+    public void addTab(TabView tabView){
+        // Ajout du tab au tabbedPane
+        String tabTitle = tabView.getTitle();
+        this.tabbedPane.addTab(tabTitle, tabView.getPanel());
+
+        // Positionnement du tab dans le tabbedPane
+        Integer indexTab = tabbedPane.indexOfTab(tabTitle);
+        JPanel panelTab = tabView.getPanelTab();
+        this.tabbedPane.setTabComponentAt(indexTab, panelTab);
+
+        // Incrémentation du compteur de tabs
+        this.tabCounter++;
+    }
+
+    public JTabbedPane getTabbedPane() {
+        return this.tabbedPane;
+    }
+
+    public void setTabbedPane(final JTabbedPane newTabbedPane) {
+        this.tabbedPane = newTabbedPane;
+    }
+
+    public Integer getTabCounter() {
+        return this.tabCounter;
+    }
+
+    public void setTabCounter(final Integer newTabCounter) {
+        this.tabCounter = newTabCounter;
     }
 
     @Override

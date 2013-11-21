@@ -7,11 +7,11 @@
 package bitmusic.network.main;
 
 
+import bitmusic.network.exception.NetworkException;
 import java.net.SocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.DatagramChannel;
 import java.net.InetSocketAddress;
-import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.Selector;
@@ -51,15 +51,14 @@ public final class NetworkListener implements Runnable {
     /**
     * Singleton thread implementation.
     */
-    private static final NetworkListener
-            NETLISTENER = new NetworkListener(4444);
+    private static NetworkListener NETLISTENER = null;
 
     private final Thread thread = new Thread(this);
     /**
      * Default constructor.
      * @param portToListen The port number
      */
-    private NetworkListener(final int portToListen) {
+    private NetworkListener(final int portToListen) throws NetworkException{
         PORT_LISTENED = portToListen;
         LOCALPORT = new InetSocketAddress(PORT_LISTENED);
         TCPSERVER = null;
@@ -93,6 +92,12 @@ public final class NetworkListener implements Runnable {
      * @return unique instance of NetworkListener.
      */
     public static NetworkListener getInstance() {
+        NETLISTENER = null;
+        try {
+            NETLISTENER = new NetworkListener(4444);
+        } catch (NetworkException e) {
+            e.printStackTrace();
+        }
         return NETLISTENER;
     }
 
@@ -130,21 +135,28 @@ public final class NetworkListener implements Runnable {
                         //UDP CONNECTION ACCEPTED
                         //######################################################
                         } else if (key.isReadable()) {
-                            final DatagramSocket connectionSocket = UDPSERVER.socket();
-                            //TO DO
+                            final DatagramChannel channel =
+                                    (DatagramChannel) key.channel();
+
+                            Controller.getInstance().getThreadManager().
+                                    assignTaskToDatagramWorker(
+                                            channel);
                         }
                     }
                 } catch (Exception e) {
-                    throw new NetworkException("TCP "
-                            + "or UDP server registration failed");
+                    //Impossible! it implements run and not run throws ...
+                    //throw new NetworkException("TCP "
+                    //        + "or UDP server registration failed");
+                    e.printStackTrace();
                 }
 
 
             }
-        } catch (Exception e) {
-            throw new NetworkException("TCP "
-                    + "or UDP server registration failed");
-
+        } catch (Exception e){
+            //Impossible! it implements run and not run throws ...
+            //throw new NetworkException("TCP "
+            //        + "or UDP server registration failed");
+            e.printStackTrace();
         }
     }
 }

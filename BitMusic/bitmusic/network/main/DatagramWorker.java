@@ -7,28 +7,29 @@
 package bitmusic.network.main;
 
 import bitmusic.network.message.AbstractMessage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
 
 /**
- *@author Pak
- * Worker manages INCOMING message as tasks.
+ *
+ * @author florian
  */
-public class Worker extends AbstractManageable {
+public class DatagramWorker extends AbstractManageable {
 
     /**
      * The socket use to exchange.
      */
-    private final transient Socket socket;
+    private final transient DatagramChannel channel;
 
     /**
     *@param paramSocket The socket
     */
-    Worker(final Socket paramSocket) {
+    DatagramWorker(final DatagramChannel paramChannel) {
         super();
-        socket = paramSocket;
+        channel = paramChannel;
     }
 
     /**
@@ -37,17 +38,20 @@ public class Worker extends AbstractManageable {
     @Override
     public final void run() {
         try {
+            ByteBuffer incomingData = ByteBuffer.allocate(1024);
 
-            final ObjectInputStream ois = new ObjectInputStream(
-                    socket.getInputStream());
+            channel.receive(incomingData);
+
+            final byte[] data = incomingData.array();
+            final ByteArrayInputStream bais = new ByteArrayInputStream(data);
+            final ObjectInputStream ois = new ObjectInputStream(bais);
             try {
-                AbstractMessage message;
-                message = (AbstractMessage) ois.readObject();
+                final AbstractMessage message =
+                        (AbstractMessage) ois.readObject();
 
                 message.treatment();
-                
             } catch (ClassNotFoundException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -58,8 +62,7 @@ public class Worker extends AbstractManageable {
      *
      * @return socket
      */
-    public final Socket getSocket() {
-        return socket;
+    public final DatagramChannel getChannel() {
+        return this.channel;
     }
 }
-
