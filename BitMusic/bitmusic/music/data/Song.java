@@ -79,7 +79,9 @@ public class Song implements Serializable{
      * @param tags References the list of tag.
      * @param rightsByCategory References a map of rightsByCategory.
      */
-    public Song(String songId, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rightsByCategory) {
+    public Song(String songId, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rightsByCategory) 
+    {
+       
         this.songId = songId;
         this.title = title;
         this.album = album;
@@ -87,7 +89,26 @@ public class Song implements Serializable{
         this.tags = tags;
         this.rightsByCategory = rightsByCategory;
         this.localRights = new Rights(true, true, true, true);
+        
     }
+    
+     public Song(String songId, String title, String artist, String album, LinkedList<String> tags)
+     {
+        
+        this.songId = songId;
+        this.title = title;
+        this.album = album;
+        this.artist = artist;
+        this.tags = tags;
+        this.rightsByCategory= new HashMap<String,Rights>();
+        this.localRights = new Rights(true, true, true, true);
+        
+    }
+    
+    
+    
+    
+    
     
     //##################################################################//
     //########################### METHODS ##############################//

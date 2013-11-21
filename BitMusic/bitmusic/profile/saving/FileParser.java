@@ -56,13 +56,13 @@ public class FileParser {
      */
     public User loadUser(String login, String pwd) throws ProfileExceptions {
         try {
-            String defaultPath = new File("").getAbsolutePath().toString() + "\\";
+            String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\";
 
             DirectoryStream<Path> stream = Files.newDirectoryStream(FileSystems.getDefault().getPath(defaultPath));
             for(Path path:stream) {
                 if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
                     if(FileParser.getFileParser().readAuthFile(path.toString(), pwd)) {
-                        FileInputStream saveFile = new FileInputStream(path.toString() + "\\user.ser");
+                        FileInputStream saveFile = new FileInputStream(path.toString() + "\\profile\\" + login + ".ser");
                         try (ObjectInputStream ois = new ObjectInputStream(saveFile)) {
                             User loadedUser = (User) ois.readObject();
                             return loadedUser;
@@ -81,7 +81,7 @@ public class FileParser {
 
     public boolean readAuthFile(String path, String pwd) throws ProfileExceptions {
         try {
-            FileInputStream authFile = new FileInputStream(path + "\\auth");
+            FileInputStream authFile = new FileInputStream(path + "\\profile\\auth");
             try (ObjectInputStream ois = new ObjectInputStream(authFile)) {
                 String login = ois.readUTF();
                 String password = ois.readUTF();

@@ -64,6 +64,15 @@ public interface ApiHmi {
     */
     void notifySongListBySearchId(String searchId, SongLibrary songList);
 
+    /**
+    * Notify the HMI about the success of a comment add
+    *
+    * @param song	Song concerned by the comment
+    * @param comment	Comment successfully added
+    * @return void
+    */
+    void updateCommentNotification(Song song, String comment);
+
     // TODO : vérifier leur utilité pour les autres modules
     void displayCategories();
     void addCategory(String name, boolean play, Rights readInfos, boolean comment, boolean rate);

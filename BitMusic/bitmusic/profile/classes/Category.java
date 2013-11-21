@@ -22,6 +22,7 @@ public class Category implements Serializable {
     private String name;
     private ArrayList<User> contacts;
     private Rights rights;
+    private static final long serialVersionUID = 401L;
 
     //######################### CONSTRUCTORS ###########################//
 
@@ -45,7 +46,7 @@ public class Category implements Serializable {
     public void setName(String newName) {
         this.name = newName;
     }
-    
+
     /**
      * Return the Id of the category
      * @return Id
@@ -69,7 +70,7 @@ public class Category implements Serializable {
     public ArrayList<User> getContacts(){
         return this.contacts;
     }
-    
+
     /**
      * Change the list of the contacts
      * @param contacts new contacts to add
@@ -77,7 +78,7 @@ public class Category implements Serializable {
     public void setContacts(ArrayList<User> contacts){
         this.contacts = contacts;
     }
-    
+
     /**
      * Return the rights of the category
      * @return Rights of the category
@@ -98,7 +99,7 @@ public class Category implements Serializable {
         }
         return found;
     }
-    
+
     /**
      * Update the rights of the category
      * @param canIReadInfo Right to read information
@@ -107,12 +108,9 @@ public class Category implements Serializable {
      * @param canComment Right to comment
      */
     public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
-        if(this.rights != null) {
-            // TO DO this.rights.updateRights(canIReadInfo, canPlay, canRate, canComment);
-        }
-        else {
-            // TO DO this.rights = new Rights();
-        }
+
+            this.rights=new Rights(canIReadInfo, canPlay, canRate, canComment);
+
     }
 
     /**
