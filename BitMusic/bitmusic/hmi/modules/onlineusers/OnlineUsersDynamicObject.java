@@ -15,8 +15,8 @@ import javax.swing.table.AbstractTableModel;
  * @author hebergui <hebergui.utc@gmail.com>
  */
 public class OnlineUsersDynamicObject extends AbstractTableModel {
-    private ArrayList<User> listUsers = new ArrayList<>();
-    private final String[] header = {"Login", "MdP"};
+    private ArrayList<OnlineUserRow> listUsers = new ArrayList<>();
+    private final String[] header = {"Utilisateur", "Infos", "MP3"};
 
     public OnlineUsersDynamicObject() {
         super();
@@ -41,16 +41,18 @@ public class OnlineUsersDynamicObject extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return listUsers.get(rowIndex).getLogin();
+                return listUsers.get(rowIndex).getUser().getLogin();
             case 1:
-                return listUsers.get(rowIndex).getPassword();
+                return listUsers.get(rowIndex).getInfosBtn();
+            case 2:
+                return listUsers.get(rowIndex).getUserSongsBtn();
             default:
                 return null; //Ne devrait jamais arriver
         }
     }
 
     public void addUser(User user) {
-        listUsers.add(user);
+        listUsers.add(new OnlineUserRow(user));
 
         fireTableRowsInserted(listUsers.size() -1, listUsers.size() -1);
     }
@@ -66,11 +68,11 @@ public class OnlineUsersDynamicObject extends AbstractTableModel {
             this.removeUser(i);
     }
 
-    public ArrayList<User> getListUsers() {
+    public ArrayList<OnlineUserRow> getListUsers() {
         return this.listUsers;
     }
 
-    public void setListUsers(ArrayList<User> users) {
+    public void setListUsers(ArrayList<OnlineUserRow> users) {
         this.removeAllUsers();
         this.listUsers = users;
     }
