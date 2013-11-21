@@ -9,6 +9,8 @@ package bitmusic.hmi.modules.centralarea;
 import bitmusic.hmi.modules.tab.TabView;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.Dimension;
+import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;

@@ -41,6 +41,10 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
         this.stopButton.setSize(d);
         this.downloadButton.setSize(d);
 
+        this.playButton.addActionListener(getController().new PlayListener());
+        this.stopButton.addActionListener(getController().new StopListener());
+        this.downloadButton.addActionListener(getController().new DownloadListener());
+
         /*GridLayout layout = new GridLayout(0,2);
         this.getPanel().setLayout(layout);
         this.getPanel().add(this.stopButton);
