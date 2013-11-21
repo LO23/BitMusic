@@ -23,16 +23,16 @@ public final class OnlineUsersModel extends AbstractModel {
     }
 
     public void addUser(User user) {
-        this.modeleTable.getListUsers().add(user);
+        this.modeleTable.addUser(user);
         this.notifyObservers("ADD_ONLINE_USER");
     }
 
     public void removeUser(String userId) {
-        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
+        ArrayList<OnlineUserRow> listOnlineUsers = this.modeleTable.getListUsers();
 
         boolean userRemoved = false;
         for ( int i=0; i<listOnlineUsers.size(); i++) {
-            if (listOnlineUsers.get(i).getUserId().equals(userId)) {
+            if (listOnlineUsers.get(i).getUser().getUserId().equals(userId)) {
                 listOnlineUsers.remove(i);
                 userRemoved = true;
             }
@@ -46,11 +46,11 @@ public final class OnlineUsersModel extends AbstractModel {
         }
     }
 
-    public ArrayList<User> getListOnlineUsers() {
+    public ArrayList<OnlineUserRow> getListOnlineUsers() {
         return this.modeleTable.getListUsers();
     }
 
-    public void setListUsersOnline(ArrayList<User> listOnlineUsers) {
+    public void setListUsersOnline(ArrayList<OnlineUserRow> listOnlineUsers) {
         this.modeleTable.setListUsers(listOnlineUsers);
         this.notifyObservers("SET_LIST_ONLINE_USERS");
     }
