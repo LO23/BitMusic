@@ -7,16 +7,20 @@ package bitmusic.profile.classes;
 
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
+import bitmusic.profile.utilities.ProfileExceptionType;
+import bitmusic.profile.utilities.ProfileExceptions;
 
 import java.io.File;
+import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
-import bitmusic.music.data.Song;
-import bitmusic.music.data.SongLibrary;
-import bitmusic.profile.utilities.ProfileExceptionType;
-import bitmusic.profile.utilities.ProfileExceptions;
-import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+
 import sun.awt.shell.ShellFolder;
 
 /**
@@ -39,7 +43,7 @@ public class User implements Serializable {
     /**
      *
      */
-    private String password;
+    private transient String password;
 
     /**
      *
@@ -354,6 +358,14 @@ public class User implements Serializable {
      * @return
      */
     private String cryptPassword(String password) {
+        try {
+            Cipher c = Cipher.getInstance("DES");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //using Cypher from Java
         return "test";
     }
 
@@ -365,10 +377,16 @@ public class User implements Serializable {
     public String toString() {
         return "Login : " + this.login + "\nUserID : " + this.userId + "\n";
     }
-	public String getTransformedBirthday() {
+
+    /**
+     *
+     * @return
+     */
+    public String getTransformedBirthday() {
         int year = this.birthDate.get(Calendar.YEAR);
         int month = this.birthDate.get(Calendar.MONTH);
         int day = this.birthDate.get(Calendar.DAY_OF_MONTH);
         return Integer.toString(year) + Integer.toString(month) + Integer.toString(day);
-        }
+    }
+    
 }
