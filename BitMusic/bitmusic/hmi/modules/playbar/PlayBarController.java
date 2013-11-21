@@ -28,6 +28,8 @@ import javazoom.jl.player.Player;
  */
 public final class PlayBarController extends AbstractController<PlayBarModel, PlayBarView> {
 
+    private boolean resume = false;
+
     public PlayBarController(final PlayBarModel model, final PlayBarView view) {
         super(model, view);
     }
@@ -44,10 +46,18 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
            // try {
                 System.out.println("---- Clic sur le bouton Play");
 
-
-                // Plays a song
                 WindowComponent win = WindowComponent.getInstance();
-                win.getApiMusic().playSongFromStart(fileNameTochange);
+                // Plays a song
+                if (resume == false) {
+                     System.out.println("-----Playing the song for the first time");
+                     win.getApiMusic().playSongFromStart(fileNameTochange);
+                }
+                else {
+                    System.out.println("------Resuming the song previously paused");
+                    win.getApiMusic().resumeSong();
+                    resume = false;
+                }
+
 
                 //Path p = Paths.get(this.getClass().getResource(filename).toString());
                 /*String res = this.getClass().getResource(filename).toString();
@@ -73,7 +83,12 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Stop");
 
-            // Stops or pauses a song
+
+            // Stops or pauses a song that is being played
+              // we pause the song
+             WindowComponent win = WindowComponent.getInstance();
+             win.getApiMusic().pauseOrStopSong();
+             resume = true;
         }
     }
 
