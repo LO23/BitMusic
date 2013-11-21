@@ -221,6 +221,8 @@ public class WindowComponent {
         this.setPlayBarComponent(new PlayBarComponent());
         this.getWindowView().addView(this.getPlayBarComponent().getView());
 
+        
+
         //TODO
 //        this.setCentralAreaComponent(new CentralAreaComponent());
 //        this.getWindowView().addView(this.getCentralAreaComponent().getView());

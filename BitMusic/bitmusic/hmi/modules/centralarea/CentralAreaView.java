@@ -8,6 +8,8 @@ package bitmusic.hmi.modules.centralarea;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.Dimension;
+import javax.swing.JLabel;
 
 /**
  *
@@ -24,7 +26,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
     @Override
     public void initPanel() {
         System.out.println("--- CentralAreaView.initPanel()");
-
+        
         // TODO
     }
 
