@@ -342,15 +342,15 @@ public class User implements Serializable {
      * @param song
      */
     public void addSong(Song song) {
-        //localSongs.addSong(song);
+        this.localSongs.addSong(song);
     }
 
     /**
      *
      * @param song
      */
-    public void deleteSong(Song song) {
-        //localSongs.deleteSong(song);
+    public void deleteSong(String songId) {
+        this.localSongs.removeSong(songId);
     }
 
     /**

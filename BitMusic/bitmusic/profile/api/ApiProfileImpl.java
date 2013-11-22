@@ -7,13 +7,13 @@
 package bitmusic.profile.api;
 
 import bitmusic.music.data.Rights;
+import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.saving.FileSaver;
 import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -65,7 +65,7 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public User getCurrentUser() {
-        return currentUser;
+        return this.currentUser;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ApiProfileImpl implements ApiProfile {
 
         @Override
     public String getCurrentUserFolder() {
-        return currentUser.getLogin() + "_" + currentUser.getTransformedBirthday();
+        return this.currentUser.getLogin() + "_" + this.currentUser.getTransformedBirthday();
     }
 
     @Override
@@ -176,12 +176,13 @@ public class ApiProfileImpl implements ApiProfile {
     }
 
     @Override
-    public void addSong(String songId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addSong(Song song) {
+        this.currentUser.addSong(song);
     }
 
     @Override
     public void deleteSong(String songId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.currentUser.deleteSong(songId);
     }
+
 }
