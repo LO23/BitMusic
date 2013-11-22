@@ -17,6 +17,7 @@ import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.modules.playbar.PlayBarComponent;
 import bitmusic.hmi.modules.searchbar.SearchBarComponent;
+import bitmusic.profile.classes.User;
 
 /**
  *
@@ -57,7 +58,6 @@ public class WindowComponent {
 
         this.setConnectionComponent(new ConnectionComponent());
         this.view.addView(this.getConnectionComponent().getView());
-
     }
 
     /** Holder */
@@ -69,6 +69,35 @@ public class WindowComponent {
     /** Point d'accès pour l'instance unique du singleton */
     public static WindowComponent getInstance() {
             return WindowComponentHolder.instance;
+    }
+
+    public void initAllComponents() {
+        // Création des différents Components
+
+        this.setSearchBarComponent(new SearchBarComponent());
+        this.getWindowView().addView(this.getSearchBarComponent().getView());
+
+        this.setMyProfileComponent(new MyProfileComponent());
+        this.getWindowView().addView(this.getMyProfileComponent().getView());
+
+        // TODO :
+        // this.setCategoriesComponent(new CategoriesComponent());
+        // this.getWindowView().addView(this.getCategoriesComponent().getView());
+
+        this.setCentralAreaComponent(new CentralAreaComponent());
+        this.getWindowView().addView(this.getCentralAreaComponent().getView());
+
+        this.setOnlineUsersComponent(new OnlineUsersComponent());
+        this.getWindowView().addView(this.getOnlineUsersComponent().getView());
+        // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
+        // TODO : en attente de la disponibilité de la méthode dans l'API
+        // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
+        // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
+        // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
+        // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
+
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.getWindowView().addView(this.getPlayBarComponent().getView());
     }
 
     public WindowModel getWindowModel() {
@@ -169,34 +198,5 @@ public class WindowComponent {
 
     public void setCentralAreaComponent(CentralAreaComponent centralAreaComponent) {
         this.centralAreaComponent = centralAreaComponent;
-    }
-
-    public void initAllComponents() {
-        // TODO : Création des différents Components...
-
-        this.setSearchBarComponent(new SearchBarComponent());
-        this.getWindowView().addView(this.getSearchBarComponent().getView());
-
-        this.setMyProfileComponent(new MyProfileComponent());
-        this.getWindowView().addView(this.getMyProfileComponent().getView());
-
-        // TODO :
-        // this.setCategoriesComponent(new CategoriesComponent());
-        // this.getWindowView().addView(this.getCategoriesComponent().getView());
-
-        this.setCentralAreaComponent(new CentralAreaComponent());
-        this.getWindowView().addView(this.getCentralAreaComponent().getView());
-
-        this.setOnlineUsersComponent(new OnlineUsersComponent());
-        this.getWindowView().addView(this.getOnlineUsersComponent().getView());
-        // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
-        // TODO : en attente de la disponibilité de la méthode dans l'API
-        // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
-        // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
-        // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
-        // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
-
-        this.setPlayBarComponent(new PlayBarComponent());
-        this.getWindowView().addView(this.getPlayBarComponent().getView());
     }
 }

@@ -69,20 +69,6 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         this.importSongButton.setSize(d);
         this.importSongButton.addActionListener(this.getController().new ImportNewSongListener());
 
-        /*GridLayout layout = new GridLayout(0,2);
-        layout.setHgap(5);
-        layout.setVgap(5);
-
-        this.getPanel().setLayout(layout);
-
-        this.getPanel().add(this.myProfileButton);
-        this.getPanel().add(this.mySongsButton);
-        this.getPanel().add(this.logoutButton);
-        this.getPanel().add(this.importSongButton);
-        System.out.println("--- ImageIcon.init(), size : " + avatarImage.getIconHeight());
-        this.getPanel().add(this.avatarLabel);*/
-
-
         this.avatarLabel.setToolTipText("Avatar");
         this.avatarLabel.setAlignmentX(CENTER_ALIGNMENT);
         this.avatarLabel.setAlignmentY(CENTER_ALIGNMENT);
