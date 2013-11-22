@@ -11,6 +11,7 @@ import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageLogOut;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -140,5 +141,15 @@ public final class ApiHmiImpl implements ApiHmi {
 
         Controller.getInstance().getThreadManager()
                 .getExecutorService().shutdown();
+    }
+
+    /**
+     *Return the list of users’ IDs.
+     *
+     * @return listUserId
+     */
+    @Override
+    public List<String> getAllUserId() {
+        return Controller.getInstance().getUserListFromDirectory();
     }
 }
