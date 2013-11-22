@@ -21,9 +21,10 @@ import javax.swing.JTable;
 public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     private final String type = "EAST";
+
     private final JLabel onlineUsersLabel = new JLabel("En ligne :");
-    private JTable table = new JTable();
-    private JScrollPane onlineUsersTablePane = new JScrollPane(this.table);
+    private JTable table;
+    private JScrollPane onlineUsersTablePane;
 
     public OnlineUsersView() {
         super();
@@ -35,6 +36,12 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
         Dimension d = new Dimension(80, 20);
         this.onlineUsersLabel.setSize(d);
+
+        this.table = new JTable(this.getController().getModel().getModeleTable());
+        this.table.getColumn("Infos").setCellRenderer(new ButtonRenderer());
+        this.table.getColumn("MP3").setCellRenderer(new ButtonRenderer());
+
+        this.onlineUsersTablePane = new JScrollPane(this.table);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
