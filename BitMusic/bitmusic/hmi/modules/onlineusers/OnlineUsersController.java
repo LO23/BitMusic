@@ -7,8 +7,6 @@
 package bitmusic.hmi.modules.onlineusers;
 
 import bitmusic.hmi.patterns.AbstractController;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
@@ -18,23 +16,5 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
 
     public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
         super(model, view);
-    }
-
-    public class InfosListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("- Infos d'un utilisateur demandées");
-
-            // TODO
-        }
-    }
-
-    public class UserSongsListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("- Morceaux d'un utilisateur demandées");
-
-            // TODO
-        }
     }
 }
