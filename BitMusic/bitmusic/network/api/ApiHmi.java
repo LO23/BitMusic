@@ -7,6 +7,7 @@
 package bitmusic.network.api;
 
 import bitmusic.network.exception.NetworkException;
+import java.util.List;
 
 /**
  *
@@ -46,4 +47,10 @@ public interface ApiHmi {
      *  Shutdown the Executor service (thread pool) when program exits.
      */
     void shutdownExecutorService();
+
+    /**
+     *
+     * @return The list of User who are connected
+     */
+    List<String> getAllUserId();
 }
