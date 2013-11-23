@@ -10,8 +10,11 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -43,5 +46,31 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
             System.out.println("---- Clic sur le bouton Annuler");
             WindowComponent.getInstance().getMyProfileComponent().getController().getPopUp().dispose();
         }
+    }
+
+    public class SubmitListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Annuler");
+
+            if ( ImportSongPopUpController.this.checkAllCompulsoryFields() ){
+                
+            }
+        }
+    }
+
+    public boolean checkAllCompulsoryFields(){
+        ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
+
+        for (int i=0; i<listCompulsoryFields.size(); i++){
+            if ( listCompulsoryFields.get(i).getText().length() <= 0 ) {
+                JOptionPane.showMessageDialog(this.getView(),
+                        "Tous les champs obligatoires doivent être renseignés !",
+                        "Attention aux champs", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+        }
+
+        return true;
     }
 }

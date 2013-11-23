@@ -8,14 +8,13 @@ package bitmusic.hmi.popup.importsong;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
-import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -39,6 +38,8 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
 
+    private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
+
     private JTable table = new JTable();
     private JScrollPane tagsTablePane = new JScrollPane(this.table);
 
@@ -48,8 +49,13 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     public void initPanel() {
+        this.listCompulsoryFields.add(titleField);
+        this.listCompulsoryFields.add(artistField);
+        this.listCompulsoryFields.add(fileField);
+
         this.fileBrowseButton.addActionListener(this.getController().new FileBrowseListener());
         this.cancelButton.addActionListener(this.getController().new CancelListener());
+        this.submitButton.addActionListener(this.getController().new SubmitListener());
         this.fileField.setEditable(false);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
@@ -139,6 +145,14 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
 
     public void setFileField(JTextField fileField) {
         this.fileField = fileField;
+    }
+
+    public ArrayList<JTextField> getListCompulsoryFields() {
+        return listCompulsoryFields;
+    }
+
+    public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
+        this.listCompulsoryFields = listCompulsoryFields;
     }
 
 }
