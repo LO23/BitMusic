@@ -6,6 +6,7 @@
 
 package bitmusic.hmi.modules.onlineusers;
 
+import bitmusic.hmi.patterns.ButtonRenderer;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;

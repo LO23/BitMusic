@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bitmusic.hmi.modules.onlineusers;
+package bitmusic.hmi.patterns;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -11,7 +11,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  *
- * @author Kevin
+ * @author unkedeuxke
  */
 public class ButtonRenderer extends JButton implements TableCellRenderer {
     @Override
