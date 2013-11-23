@@ -39,7 +39,6 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
 
-
     private JTable table = new JTable();
     private JScrollPane tagsTablePane = new JScrollPane(this.table);
 
@@ -48,108 +47,78 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         super();
     }
 
-
-
-    @Override
     public void initPanel() {
-        System.out.println("--- ImportSongPopUpView.initPanel()");
-
-        Dimension d = new Dimension(80, 20);
-
-        this.importSongLabel.setSize(d);
-
-        this.titleLabel.setSize(d);
-        this.titleField.setColumns(10);
-
-        this.artistLabel.setSize(d);
-        this.artistField.setColumns(10);
-
-        this.albumLabel.setSize(d);
-        this.albumField.setColumns(10);
-
-        this.fileLabel.setSize(d);
-        this.fileField.setColumns(10);
-        this.fileBrowseButton.setSize(d);
         this.fileBrowseButton.addActionListener(this.getController().new FileBrowseListener());
-
-        this.tagLabel.setSize(d);
-
-        this.submitButton.setSize(d);
-
-        this.cancelButton.setSize(d);
         this.cancelButton.addActionListener(this.getController().new CancelListener());
-
-        this.infoLabel.setSize(d);
+        this.fileField.setEditable(false);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-
         layout.setHorizontalGroup(
-            layout.createSequentialGroup()
-                .addComponent(importSongLabel)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel)
-                    .addComponent(artistLabel)
-                    .addComponent(albumLabel)
-                    .addComponent(fileLabel)
-                    .addComponent(tagLabel)
-                    .addComponent(submitButton)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(titleField)
-                    .addComponent(artistField)
-                    .addComponent(albumField)
-                    .addComponent(fileField)
-                    .addComponent(tagsTablePane)
-                    .addComponent(cancelButton)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(fileBrowseButton)
-                )
-                .addComponent(infoLabel)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titleLabel)
+                            .addComponent(artistLabel)
+                            .addComponent(albumLabel)
+                            .addComponent(fileLabel)
+                            .addComponent(tagLabel))
+                        .addGap(70, 70, 70))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(infoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(titleField)
+                            .addComponent(artistField)
+                            .addComponent(albumField)
+                            .addComponent(fileField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fileBrowseButton)
+                        .addGap(50, 50, 50))
+                    .addComponent(tagsTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createSequentialGroup()
-               .addComponent(importSongLabel)
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titleLabel)
-                    .addComponent(titleField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(artistLabel)
-                    .addComponent(artistField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(artistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(albumLabel)
-                    .addComponent(albumField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(albumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fileLabel)
-                    .addComponent(fileField)
-                    .addComponent(fileBrowseButton)
-               )
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(fileField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fileBrowseButton))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tagLabel)
-                    .addComponent(tagsTablePane)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(tagsTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitButton)
                     .addComponent(cancelButton)
-               )
-               .addComponent(infoLabel)
+                    .addComponent(infoLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(SwingConstants.HORIZONTAL, titleLabel, titleField);
-        layout.linkSize(SwingConstants.HORIZONTAL, artistLabel, artistField);
-        layout.linkSize(SwingConstants.HORIZONTAL, albumLabel, albumField);
-        layout.linkSize(SwingConstants.HORIZONTAL, fileLabel, fileBrowseButton, fileBrowseButton);
-        layout.linkSize(SwingConstants.HORIZONTAL, tagLabel, tagsTablePane);
-        layout.linkSize(SwingConstants.HORIZONTAL, submitButton, cancelButton);
-
-        // TO FINISH AND TEST
     }
 
     @Override
@@ -171,5 +140,5 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     public void setFileField(JTextField fileField) {
         this.fileField = fileField;
     }
-    
+
 }
