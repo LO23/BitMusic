@@ -28,11 +28,11 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Parcourir");
             JFileChooser file = new JFileChooser();
-            JLabel path = new JLabel();
+
             int returnVal = file.showSaveDialog(null);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 System.out.println("---- OK");
-                path.setText(file.getSelectedFile().getPath());
+                ImportSongPopUpController.this.getView().getFileField().setText(file.getSelectedFile().getPath());
             }
         }
     }
