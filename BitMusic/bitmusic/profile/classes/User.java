@@ -338,15 +338,15 @@ public class User implements Serializable {
      * @param song
      */
     public void addSong(Song song) {
-        //localSongs.addSong(song);
+        this.localSongs.addSong(song);
     }
 
     /**
      *
      * @param song
      */
-    public void deleteSong(Song song) {
-        //localSongs.deleteSong(song);
+    public void deleteSong(String songId) {
+        this.localSongs.removeSong(songId);
     }
 
     /**
@@ -357,6 +357,7 @@ public class User implements Serializable {
     public String toString() {
         return "Login : " + this.login + "\nUserID : " + this.userId + "\n";
     }
+
     /**
      * Format the birthdate to be used in the folder name
      * 
