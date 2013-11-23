@@ -6,18 +6,19 @@
 
 package bitmusic.profile.api;
 
-import bitmusic.music.data.Rights;
-import bitmusic.music.data.SongLibrary;
-import bitmusic.profile.classes.Category;
-import bitmusic.profile.classes.User;
-import bitmusic.profile.saving.FileSaver;
-import bitmusic.profile.utilities.ProfileExceptionType;
-import bitmusic.profile.utilities.ProfileExceptions;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import bitmusic.music.data.Rights;
+import bitmusic.music.data.SongLibrary;
+import bitmusic.profile.classes.Category;
+import bitmusic.profile.classes.User;
+import bitmusic.profile.saving.FileParser;
+import bitmusic.profile.saving.FileSaver;
+import bitmusic.profile.utilities.ProfileExceptionType;
+import bitmusic.profile.utilities.ProfileExceptions;
 
 /**
  *
@@ -33,6 +34,11 @@ public class ApiProfileImpl implements ApiProfile {
         }
 
         return currentApi;
+    }
+    
+    @Override
+    public User checkPassword(String login, String password) throws ProfileExceptions {
+    	return FileParser.getFileParser().loadUser(login, password);
     }
 
     @Override
@@ -75,7 +81,7 @@ public class ApiProfileImpl implements ApiProfile {
 
         @Override
     public String getCurrentUserFolder() {
-        return currentUser.getLogin() + "_" + currentUser.getTransformedBirthday();
+        return currentUser.getFolderName();
     }
 
     @Override

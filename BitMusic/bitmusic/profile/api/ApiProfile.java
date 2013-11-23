@@ -13,14 +13,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 /**
  *
- * @author MilioPeralta
+ * @author MilioPeralta, Jérémy
  */
 public interface ApiProfile {
-    /*
-    public boolean checkPassword(String login, String password){
-        return true;
-    }
-    */
+	
+	/**
+	 * Chek if the login and password are correct
+	 * 
+	 * @param login
+	 * @param password
+	 * @return The User if correct, null otherwise
+	 * @throws ProfileExceptions 
+     */
+    public User checkPassword(String login, String password) throws ProfileExceptions;
 
     /**
      * Creates a User as an object User
