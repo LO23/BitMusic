@@ -32,6 +32,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JLabel albumLabel = new JLabel("Album");
     private final JTextField albumField = new JTextField("");
     private final JLabel fileLabel  = new JLabel("Fichier (*)");
+    private JTextField fileField = new JTextField("");
     private final JLabel tagLabel = new JLabel("Tags");
     private final JLabel infoLabel = new JLabel("*Champs obligatoires");
     private final JButton fileBrowseButton = new JButton("Parcourir...");
@@ -47,7 +48,9 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         super();
     }
 
-        @Override
+
+
+    @Override
     public void initPanel() {
         System.out.println("--- ImportSongPopUpView.initPanel()");
 
@@ -65,6 +68,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         this.albumField.setColumns(10);
 
         this.fileLabel.setSize(d);
+        this.fileField.setColumns(10);
         this.fileBrowseButton.setSize(d);
         this.fileBrowseButton.addActionListener(this.getController().new FileBrowseListener());
 
@@ -98,9 +102,12 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                     .addComponent(titleField)
                     .addComponent(artistField)
                     .addComponent(albumField)
-                    .addComponent(fileBrowseButton)
+                    .addComponent(fileField)
                     .addComponent(tagsTablePane)
                     .addComponent(cancelButton)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(fileBrowseButton)
                 )
                 .addComponent(infoLabel)
         );
@@ -121,6 +128,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                )
                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(fileLabel)
+                    .addComponent(fileField)
                     .addComponent(fileBrowseButton)
                )
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -137,7 +145,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         layout.linkSize(SwingConstants.HORIZONTAL, titleLabel, titleField);
         layout.linkSize(SwingConstants.HORIZONTAL, artistLabel, artistField);
         layout.linkSize(SwingConstants.HORIZONTAL, albumLabel, albumField);
-        layout.linkSize(SwingConstants.HORIZONTAL, fileLabel, fileBrowseButton);
+        layout.linkSize(SwingConstants.HORIZONTAL, fileLabel, fileBrowseButton, fileBrowseButton);
         layout.linkSize(SwingConstants.HORIZONTAL, tagLabel, tagsTablePane);
         layout.linkSize(SwingConstants.HORIZONTAL, submitButton, cancelButton);
 
@@ -151,8 +159,17 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- ImportSongPopUpView.update()" + str);
+        System.out.println("----- ImportSongPopUpView.update() -> " + str);
         this.table.setModel(this.getController().getModel().getModeleTable());
         this.tagsTablePane.setViewportView(this.table);
     }
+
+    public JTextField getFileField() {
+        return fileField;
+    }
+
+    public void setFileField(JTextField fileField) {
+        this.fileField = fileField;
+    }
+    
 }
