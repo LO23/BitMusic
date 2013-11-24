@@ -10,8 +10,10 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -85,6 +87,7 @@ public class WindowView extends JFrame implements Observer {
         }
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     public void removeView(AbstractView view) {
