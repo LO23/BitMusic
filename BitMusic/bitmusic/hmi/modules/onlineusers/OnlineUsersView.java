@@ -6,14 +6,18 @@
 
 package bitmusic.hmi.modules.onlineusers;
 
-import bitmusic.hmi.patterns.ButtonRenderer;
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.ButtonColumn;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,6 +35,15 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         super();
     }
 
+    Action delete = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- delete détecté !!!");
+            JTable table = (JTable)e.getSource();
+            int modelRow = Integer.valueOf( e.getActionCommand() );
+            ((DefaultTableModel)table.getModel()).removeRow(modelRow);
+        }
+    };
+
     @Override
     public void initPanel() {
         System.out.println("--- OnlineUsersView.initPanel()");
@@ -39,8 +52,9 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         this.onlineUsersLabel.setSize(d);
 
         this.table = new JTable(this.getController().getModel().getModeleTable());
-        this.table.getColumn("Infos").setCellRenderer(new ButtonRenderer());
-        this.table.getColumn("MP3").setCellRenderer(new ButtonRenderer());
+
+        ButtonColumn infosColumn = new ButtonColumn(this.table, this.delete, 1);
+        ButtonColumn mp3Column = new ButtonColumn(this.table, this.delete, 2);
 
         this.onlineUsersTablePane = new JScrollPane(this.table);
 

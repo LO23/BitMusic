@@ -36,10 +36,10 @@ public final class OnlineUsersModel extends AbstractModel {
             switch(col){
                 case 0:
                     return rowObject.getUser().getLogin();
-                case 1:
-                    return rowObject.getInfosBtn();
-                case 2:
-                    return rowObject.getUserSongsBtn();
+                //case 1:
+                    //return rowObject.getInfosBtn();
+                //case 2:
+                    //return rowObject.getUserSongsBtn();
                 default:
                     return null; // Ne devrait jamais arriver
             }
