@@ -9,6 +9,7 @@ package bitmusic.hmi.modules.connection;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -29,8 +30,10 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     private final JButton connectButton = new JButton("Se connecter");
     private final JButton resetButton = new JButton("Réinitialiser");
     private final JButton createUserButton = new JButton("Créer un compte");
-    private final JTextField loginField = new JTextField("");
-    private final JPasswordField passwordField = new JPasswordField("");
+    private JTextField loginField = new JTextField("");
+    private JPasswordField passwordField = new JPasswordField("");
+
+    private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
 
     public ConnectionView() {
         super();
@@ -44,6 +47,9 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     @Override
     public void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");
+
+        this.listCompulsoryFields.add(loginField);
+        this.listCompulsoryFields.add(passwordField);
 
         final Dimension d = new Dimension(80, 20);
 
@@ -140,4 +146,15 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     public void update(Observable obj, String str) {
         System.out.println("----- ConnectionView.update()");
     }
+
+    public ArrayList<JTextField> getListCompulsoryFields() {
+        return listCompulsoryFields;
+    }
+
+    public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
+        this.listCompulsoryFields = listCompulsoryFields;
+    }
+
+   
+
 }
