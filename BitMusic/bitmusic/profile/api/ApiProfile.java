@@ -5,6 +5,7 @@
 package bitmusic.profile.api;
 
 import bitmusic.music.data.Rights;
+import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
@@ -155,10 +156,10 @@ public interface ApiProfile {
     /**
      * Returns the songs of the current user
      *
-     * @param songId
+     * @param song
      * @return
      */
-    public void addSong(String songId);
+    public void addSong(Song song);
 
     /**
      * Deletes the song of the current user
