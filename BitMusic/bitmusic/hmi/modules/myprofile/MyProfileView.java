@@ -60,9 +60,10 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         final Dimension d = new Dimension(80, 10);
 
         this.myProfileButton.setSize(d);
-
+        this.myProfileButton.addActionListener(this.getController().new ModifyProfileListener());
 
         this.mySongsButton.setSize(d);
+
         this.logoutButton.setSize(d);
         this.logoutButton.addActionListener(this.getController().new LogoutListener());
 
