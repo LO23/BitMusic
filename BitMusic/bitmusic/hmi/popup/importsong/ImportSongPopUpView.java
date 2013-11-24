@@ -40,7 +40,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JButton cancelButton = new JButton("Annuler");
     private JTextField newTagField = new JTextField("");
     private JButton addTagButton = new JButton("Ajouter");
-    private JLabel infoClickLabel = new JLabel("(ctrl+clic pour sélectionner plusieurs tags)");
+    private JLabel infoClickLabel = new JLabel("(ctrl+clic : sélectionner plusieurs tags)");
 
     private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
 
