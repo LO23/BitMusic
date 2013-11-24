@@ -67,7 +67,9 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             popUp = new JDialog(win.getWindowView(), "Importer une musique", true);
             popUp.add(importSongPopUpComponent.getView().getPanel());
             popUp.pack();
+            popUp.setLocationRelativeTo(null);
             popUp.show();
+
         }
     }
 
@@ -82,6 +84,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             popUp = new JDialog(win.getWindowView(), "Mon Profil", true);
             popUp.add(modifyProfilePopUpComponent.getView().getPanel());
             popUp.pack();
+            popUp.setLocationRelativeTo(null);
             popUp.show();
         }
     }
