@@ -8,9 +8,12 @@ package bitmusic.hmi.popup.importsong;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.patterns.AbstractView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,6 +43,21 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         }
     }
 
+    public class AddNewTagListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Ajouter");
+            ImportSongPopUpView view = ImportSongPopUpController.this.getView();
+            ImportSongPopUpModel model = ImportSongPopUpController.this.getModel();
+            String newTag = view.getNewTagField().getText();
+
+            if ( newTag.length() !=0 ) {
+                model.addTag(newTag);
+                view.getNewTagField().setText("");
+            }
+        }
+    }
+
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -51,11 +69,34 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     public class SubmitListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("---- Clic sur le bouton Annuler");
+            System.out.println("---- Clic sur le bouton Submit");
+            WindowComponent win = WindowComponent.getInstance();
+            ImportSongPopUpView view = ImportSongPopUpController.this.getView();
+            List<String> tag = view.getTagList().getSelectedValuesList();
+
+            for (int i=0; i<tag.size(); i++)
+                System.out.println(tag.get(i));
 
             if ( ImportSongPopUpController.this.checkAllCompulsoryFields() ){
-                
+
+//                TODO : Décommenter lors de l'intégration
+//                win.getApiMusic().importSong(
+//                        view.getFileField().getText(),
+//                        view.getTitleField().getText(),
+//                        view.getArtistField().getText(),
+//                        view.getAlbumField().getText(),
+//                        new LinkedList<String>(view.getTagList().getSelectedValuesList()),
+//                        null);
+                win.getMyProfileComponent().getController().getPopUp().dispose();
             }
+            else {
+                JOptionPane.showMessageDialog(
+                        view,
+                        "Tous les champs obligatoires doivent être renseignés !",
+                        "Attention aux champs",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+
         }
     }
 
@@ -64,9 +105,6 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
 
         for (int i=0; i<listCompulsoryFields.size(); i++){
             if ( listCompulsoryFields.get(i).getText().length() <= 0 ) {
-                JOptionPane.showMessageDialog(this.getView(),
-                        "Tous les champs obligatoires doivent être renseignés !",
-                        "Attention aux champs", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
         }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -25,11 +26,11 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final String type = "CENTER";
     private final JLabel importSongLabel = new JLabel("Importer un morceau");
     private final JLabel titleLabel = new JLabel("Titre (*)");
-    private final JTextField titleField = new JTextField("");
+    private JTextField titleField = new JTextField("");
     private final JLabel artistLabel = new JLabel("Artiste (*)");
-    private final JTextField artistField = new JTextField("");
+    private JTextField artistField = new JTextField("");
     private final JLabel albumLabel = new JLabel("Album");
-    private final JTextField albumField = new JTextField("");
+    private JTextField albumField = new JTextField("");
     private final JLabel fileLabel  = new JLabel("Fichier (*)");
     private JTextField fileField = new JTextField("");
     private final JLabel tagLabel = new JLabel("Tags");
@@ -37,11 +38,14 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JButton fileBrowseButton = new JButton("Parcourir...");
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
+    private JTextField newTagField = new JTextField("");
+    private JButton addTagButton = new JButton("Ajouter");
+    private JLabel infoClickLabel = new JLabel("(ctrl+clic pour sélectionner plusieurs tags)");
 
     private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
 
-    private JTable table = new JTable();
-    private JScrollPane tagsTablePane = new JScrollPane(this.table);
+    private JList tagList = new JList();
+    private JScrollPane tagsTablePane = new JScrollPane(this.tagList);
 
 
     public ImportSongPopUpView() {
@@ -56,6 +60,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         this.fileBrowseButton.addActionListener(this.getController().new FileBrowseListener());
         this.cancelButton.addActionListener(this.getController().new CancelListener());
         this.submitButton.addActionListener(this.getController().new SubmitListener());
+        this.addTagButton.addActionListener(this.getController().new AddNewTagListener());
         this.fileField.setEditable(false);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
@@ -73,26 +78,34 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                             .addComponent(albumLabel)
                             .addComponent(fileLabel)
                             .addComponent(tagLabel))
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(infoClickLabel)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tagsTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(newTagField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(addTagButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(titleField)
+                                                .addComponent(artistField)
+                                                .addComponent(albumField)
+                                                .addComponent(fileField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addComponent(fileBrowseButton)))
+                                    .addGap(42, 42, 42))))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(infoLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(titleField)
-                            .addComponent(artistField)
-                            .addComponent(albumField)
-                            .addComponent(fileField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fileBrowseButton)
-                        .addGap(50, 50, 50))
-                    .addComponent(tagsTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,29 +114,34 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titleLabel)
                     .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(artistLabel)
                     .addComponent(artistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(albumLabel)
                     .addComponent(albumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fileLabel)
                     .addComponent(fileField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fileBrowseButton))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tagLabel)
-                    .addComponent(tagsTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(newTagField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addTagButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tagsTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoClickLabel)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitButton)
                     .addComponent(cancelButton)
                     .addComponent(infoLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
     }
 
@@ -135,8 +153,8 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- ImportSongPopUpView.update() -> " + str);
-        this.table.setModel(this.getController().getModel().getModeleTable());
-        this.tagsTablePane.setViewportView(this.table);
+        this.tagList.setModel(this.getController().getModel().getListModel());
+        this.tagsTablePane.setViewportView(this.tagList);
     }
 
     public JTextField getFileField() {
@@ -154,5 +172,63 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
         this.listCompulsoryFields = listCompulsoryFields;
     }
+
+    public JTextField getTitleField() {
+        return titleField;
+    }
+
+    public void setTitleField(JTextField titleField) {
+        this.titleField = titleField;
+    }
+
+    public JTextField getArtistField() {
+        return artistField;
+    }
+
+    public void setArtistField(JTextField artistField) {
+        this.artistField = artistField;
+    }
+
+    public JTextField getAlbumField() {
+        return albumField;
+    }
+
+    public void setAlbumField(JTextField albumField) {
+        this.albumField = albumField;
+    }
+
+    public JScrollPane getTagsTablePane() {
+        return tagsTablePane;
+    }
+
+    public void setTagsTablePane(JScrollPane tagsTablePane) {
+        this.tagsTablePane = tagsTablePane;
+    }
+
+    public JTextField getNewTagField() {
+        return newTagField;
+    }
+
+    public void setNewTagField(JTextField newTagField) {
+        this.newTagField = newTagField;
+    }
+
+    public JButton getAddTagButton() {
+        return addTagButton;
+    }
+
+    public void setAddTagButton(JButton addTagButton) {
+        this.addTagButton = addTagButton;
+    }
+
+    public JList getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(JList tagList) {
+        this.tagList = tagList;
+    }
+
+
 
 }
