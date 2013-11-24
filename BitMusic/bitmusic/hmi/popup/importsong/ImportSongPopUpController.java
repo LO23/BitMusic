@@ -18,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -33,12 +34,14 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Parcourir");
-            JFileChooser file = new JFileChooser();
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers MP3", "mp3", "MP3");
+            chooser.setFileFilter(filter);
 
-            int returnVal = file.showSaveDialog(null);
+            int returnVal = chooser.showSaveDialog(null);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 System.out.println("---- OK");
-                ImportSongPopUpController.this.getView().getFileField().setText(file.getSelectedFile().getPath());
+                ImportSongPopUpController.this.getView().getFileField().setText(chooser.getSelectedFile().getPath());
             }
         }
     }
