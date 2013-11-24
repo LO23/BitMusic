@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 public final class ConnectionView extends AbstractView<ConnectionController> {
 
     private final String type = "CONNECTION";
-    private final JLabel connectionLabel = new JLabel("Connexion");
+    private final JLabel connectionLabel = new JLabel("<html><u>Connexion à l'application BitMusic</u></htlm>");
     private final JLabel loginLabel = new JLabel("Pseudo");
     private final JLabel passwordLabel = new JLabel("Mot de passe");
     private final JButton connectButton = new JButton("Se connecter");
@@ -51,63 +51,58 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
         this.listCompulsoryFields.add(loginField);
         this.listCompulsoryFields.add(passwordField);
 
-        final Dimension d = new Dimension(80, 20);
-
-        this.connectionLabel.setSize(d);
-        this.loginLabel.setSize(d);
-        this.passwordLabel.setSize(d);
-        this.connectButton.setSize(d);
-        this.resetButton.setSize(d);
-        this.createUserButton.setSize(d);
-
-        this.loginField.setColumns(10);
-        this.passwordField.setColumns(10);
-
-        this.connectButton.addActionListener(this.getController().new ConnectionListener());
         this.resetButton.addActionListener(this.getController().new ResetListener());
+        this.connectButton.addActionListener(this.getController().new ConnectionListener());
         this.createUserButton.addActionListener(this.getController().new CreateNewUserListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-
         layout.setHorizontalGroup(
-            layout.createSequentialGroup()
-                .addComponent(connectionLabel)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(loginLabel)
-                    .addComponent(passwordLabel)
-                    .addComponent(connectButton)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(loginField)
-                    .addComponent(passwordField)
-                    .addComponent(resetButton)
-                )
-                .addComponent(createUserButton)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(connectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(createUserButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(passwordLabel)
+                                    .addComponent(loginLabel))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(passwordField)
+                                    .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(connectionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createSequentialGroup()
-               .addComponent(connectionLabel)
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(connectionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginLabel)
-                    .addComponent(loginField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
-                    .addComponent(passwordField)
-               )
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(connectButton)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resetButton)
-               )
-               .addComponent(createUserButton)
+                    .addComponent(connectButton)
+                    .addComponent(createUserButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(SwingConstants.HORIZONTAL, loginLabel, loginField);
-        layout.linkSize(SwingConstants.HORIZONTAL, passwordLabel, passwordField);
     }
 
     public JLabel getConnectionLabel() {
@@ -155,6 +150,6 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
         this.listCompulsoryFields = listCompulsoryFields;
     }
 
-   
+
 
 }
