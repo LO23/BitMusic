@@ -74,9 +74,6 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
             ImportSongPopUpView view = ImportSongPopUpController.this.getView();
             List<String> tag = view.getTagList().getSelectedValuesList();
 
-            for (int i=0; i<tag.size(); i++)
-                System.out.println(tag.get(i));
-
             if ( ImportSongPopUpController.this.checkAllCompulsoryFields() ){
 
 //                TODO : Décommenter lors de l'intégration
