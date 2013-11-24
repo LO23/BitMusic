@@ -8,17 +8,11 @@ package bitmusic.hmi.popup.modifyprofile;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
-import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -32,13 +26,13 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     private final JLabel nomLabel = new JLabel("Nom ");
     private JTextField nomField = new JTextField("");
     private final JLabel birthLabel = new JLabel("Date de Naissance (*)");
-    private final DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-    private JFormattedTextField dateTextField = new JFormattedTextField(format);
+    private JTextField dateTextField = new JTextField("");
     private final JLabel avatarLabel = new JLabel("Avatar");
     private final JButton avatarBrowseButton = new JButton("Parcourir...");
     private JTextField avatarField = new JTextField("");
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
+    private final JLabel dateFormatLabel = new JLabel("(Format : jj/mm/aaaa)");
 
     private final String type = "POPUP";
 
@@ -50,17 +44,15 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     public void initPanel() {
         System.out.println("--- ModifyProfilePopUpView.initPanel()");
 
-        this.dateTextField.setText("dd/MM/yyyy");
-
         this.avatarBrowseButton.addActionListener(this.getController().new AvatarBrowseListener());
         this.cancelButton.addActionListener(this.getController().new CancelListener());
-        this.dateTextField.addFocusListener(this.getController().new HintTextFieldListener());
+        this.submitButton.addActionListener(this.getController().new ModifyMyProfileLister());
 
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
-                layout.setHorizontalGroup(
+        layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -85,7 +77,9 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                                 .addComponent(submitButton)))
                         .addGap(18, 18, 18)
-                        .addComponent(avatarBrowseButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(avatarBrowseButton)
+                            .addComponent(dateFormatLabel))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,7 +98,8 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(birthLabel)
-                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateFormatLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(avatarLabel)
@@ -146,11 +141,11 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         this.nomField = nomField;
     }
 
-    public JFormattedTextField getDateTextField() {
+    public JTextField getDateTextField() {
         return dateTextField;
     }
 
-    public void setDateTextField(JFormattedTextField dateTextField) {
+    public void setDateTextField(JTextField dateTextField) {
         this.dateTextField = dateTextField;
     }
 
@@ -161,7 +156,5 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     public void setAvatarField(JTextField avatarField) {
         this.avatarField = avatarField;
     }
-
-    
 
 }
