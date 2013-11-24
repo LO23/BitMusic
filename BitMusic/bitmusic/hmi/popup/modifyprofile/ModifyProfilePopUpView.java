@@ -128,8 +128,40 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- ModifyProfilePopUpView.update() ->" + str);
-
-
     }
+
+    public JTextField getPrenomField() {
+        return prenomField;
+    }
+
+    public void setPrenomField(JTextField prenomField) {
+        this.prenomField = prenomField;
+    }
+
+    public JTextField getNomField() {
+        return nomField;
+    }
+
+    public void setNomField(JTextField nomField) {
+        this.nomField = nomField;
+    }
+
+    public JFormattedTextField getDateTextField() {
+        return dateTextField;
+    }
+
+    public void setDateTextField(JFormattedTextField dateTextField) {
+        this.dateTextField = dateTextField;
+    }
+
+    public JTextField getAvatarField() {
+        return avatarField;
+    }
+
+    public void setAvatarField(JTextField avatarField) {
+        this.avatarField = avatarField;
+    }
+
+    
 
 }
