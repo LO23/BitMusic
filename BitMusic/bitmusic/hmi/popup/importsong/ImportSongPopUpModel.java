@@ -8,6 +8,8 @@ package bitmusic.hmi.popup.importsong;
 
 import bitmusic.hmi.patterns.AbstractModel;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -16,88 +18,40 @@ import javax.swing.table.AbstractTableModel;
  */
 public final class ImportSongPopUpModel extends AbstractModel {
 
-    private ImportSongDynamicObject modeleTable = new ImportSongDynamicObject();
+    private DefaultListModel listModel = new DefaultListModel();
 
     public ImportSongPopUpModel() {
         super();
     }
 
-    public class ImportSongDynamicObject extends AbstractTableModel {
+    public DefaultListModel getListModel() {
+        return listModel;
+    }
 
-        private ArrayList<String> listTags = new ArrayList<>();
-        private final String[] header = {"Tags"};
+    public void setListModel(DefaultListModel listModel) {
+        this.listModel = listModel;
 
-        public ImportSongDynamicObject() {
-            super();
-            this.listTags.add("Tag1");
-            this.listTags.add("Tag2");
+        this.notifyObservers("SET_LIST_TAGS");
+    }
+
+    public void setListModel(ArrayList<String> listTags) {
+        for ( int i=0; i<listTags.size(); i++ ){
+            this.listModel.addElement(listTags.get(i));
         }
 
-        @Override
-        public int getRowCount() {
-            return this.listTags.size();
-        }
-
-        @Override
-        public int getColumnCount() {
-            return header.length;
-        }
-
-        @Override
-        public String getColumnName(int columnIndex) {
-            return header[columnIndex];
-        }
-
-        @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            switch(columnIndex){
-                case 0:
-                    return this.listTags.get(rowIndex);
-                default:
-                    return null; //Ne devrait jamais arriver
-            }
-        }
-
-        public void addTag(String tag) {
-            this.listTags.add(tag);
-
-            fireTableRowsInserted(this.listTags.size() -1, this.listTags.size() -1);
-        }
-
-        public void removeTag(int rowIndex) {
-            this.listTags.remove(rowIndex);
-
-            fireTableRowsDeleted(rowIndex, rowIndex);
-        }
-
-        public void removeAllTags() {
-            for (int i=0; i<this.listTags.size(); i++)
-                this.removeTag(i);
-        }
-
-        public ArrayList<String> getListTags() {
-            return this.listTags;
-        }
-
-        public void setListTags(ArrayList<String> listTags) {
-            this.removeAllTags();
-            this.listTags = listTags;
-        }
-
+        this.notifyObservers("SET_LIST_TAGS");
     }
 
     public void addTag(String tag) {
-        this.modeleTable.addTag(tag);
+        this.listModel.addElement(tag);
         this.notifyObservers("ADD_TAG");
     }
 
-    public void removeTag(String tagId) {
-        ArrayList<String> listAllTags = this.modeleTable.getListTags();
-
+    public void removeTag(String tag) {
         boolean tagRemoved = false;
-        for ( int i=0; i<listAllTags.size(); i++) {
-            if (listAllTags.get(i).equals(tagId)) {
-                listAllTags.remove(i);
+        for ( int i=0; i<listModel.size(); i++) {
+            if (listModel.get(i).equals(tag)) {
+                listModel.remove(i);
                 tagRemoved = true;
             }
         }
@@ -108,19 +62,6 @@ public final class ImportSongPopUpModel extends AbstractModel {
         else {
             System.out.println("--- Error: Tag doesn't exist");
         }
-    }
-
-    public void setListTags(ArrayList<String> listTags) {
-        this.modeleTable.setListTags(listTags);
-        this.notifyObservers("SET_LIST_TAGS");
-    }
-
-    public ImportSongPopUpModel.ImportSongDynamicObject getModeleTable() {
-        return this.modeleTable;
-    }
-
-    public void setModeleTable(ImportSongPopUpModel.ImportSongDynamicObject modeleTable) {
-        this.modeleTable = modeleTable;
     }
 
 }

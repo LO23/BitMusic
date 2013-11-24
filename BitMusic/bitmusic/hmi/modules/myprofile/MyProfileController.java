@@ -9,6 +9,7 @@ package bitmusic.hmi.modules.myprofile;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpComponent;
+import bitmusic.hmi.popup.modifyprofile.ModifyProfilePopUpComponent;
 import bitmusic.network.exception.NetworkException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,6 +67,24 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             popUp = new JDialog(win.getWindowView(), "Importer une musique", true);
             popUp.add(importSongPopUpComponent.getView().getPanel());
             popUp.pack();
+            popUp.setLocationRelativeTo(null);
+            popUp.show();
+
+        }
+    }
+
+    public class ModifyProfileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton myProfile");
+
+            WindowComponent win = WindowComponent.getInstance();
+            ModifyProfilePopUpComponent modifyProfilePopUpComponent = new ModifyProfilePopUpComponent();
+
+            popUp = new JDialog(win.getWindowView(), "Mon Profil", true);
+            popUp.add(modifyProfilePopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.setLocationRelativeTo(null);
             popUp.show();
         }
     }
