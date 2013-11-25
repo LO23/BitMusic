@@ -6,6 +6,8 @@
 
 package bitmusic.hmi.modules.centralarea;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.modules.tab.TabView;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
@@ -35,6 +37,8 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
         System.out.println("--- CentralAreaView.initPanel()");
 
         // Création du tabbedPane
+
+
         this.getPanel().add(this.tabbedPane, BorderLayout.CENTER);
         this.setVisible(true);
     }

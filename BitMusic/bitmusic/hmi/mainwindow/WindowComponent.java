@@ -17,6 +17,7 @@ import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.modules.playbar.PlayBarComponent;
 import bitmusic.hmi.modules.searchbar.SearchBarComponent;
+import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.profile.classes.User;
 
 /**
@@ -85,6 +86,7 @@ public class WindowComponent {
         // this.getWindowView().addView(this.getCategoriesComponent().getView());
 
         this.setCentralAreaComponent(new CentralAreaComponent());
+        this.getCentralAreaComponent().getView().addTab(new TabComponent().getView());
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
 
         this.setOnlineUsersComponent(new OnlineUsersComponent());
