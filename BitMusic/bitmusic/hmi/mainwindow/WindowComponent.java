@@ -92,6 +92,9 @@ public class WindowComponent {
         this.getCentralAreaComponent().getView().addTab(new TabComponent().getView());
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
 
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.getWindowView().addView(this.getPlayBarComponent().getView());
+
         this.setOnlineUsersComponent(new OnlineUsersComponent());
         this.getWindowView().addView(this.getOnlineUsersComponent().getView());
 
@@ -106,9 +109,6 @@ public class WindowComponent {
         }
         // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
         // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
-
-        this.setPlayBarComponent(new PlayBarComponent());
-        this.getWindowView().addView(this.getPlayBarComponent().getView());
     }
 
     public WindowModel getWindowModel() {
