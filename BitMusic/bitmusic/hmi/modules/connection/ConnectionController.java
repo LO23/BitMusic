@@ -94,6 +94,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             popUp = new JDialog(win.getWindowView(), "Créer un compte", true);
             popUp.add(accountCreationPopUpComponent.getView().getPanel());
             popUp.pack();
+            popUp.setLocationRelativeTo(null);
             popUp.show();
         }
     }
