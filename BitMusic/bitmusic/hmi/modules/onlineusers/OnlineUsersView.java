@@ -10,14 +10,10 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.ButtonColumn;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,15 +31,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         super();
     }
 
-    Action delete = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("---- delete détecté !!!");
-            JTable table = (JTable)e.getSource();
-            int modelRow = Integer.valueOf( e.getActionCommand() );
-            ((DefaultTableModel)table.getModel()).removeRow(modelRow);
-        }
-    };
-
     @Override
     public void initPanel() {
         System.out.println("--- OnlineUsersView.initPanel()");
@@ -51,10 +38,12 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         Dimension d = new Dimension(80, 20);
         this.onlineUsersLabel.setSize(d);
 
+        // Initialisation de la JTable avec le OnlineUsersTableModel du Model
         this.table = new JTable(this.getController().getModel().getModeleTable());
 
-        ButtonColumn infosColumn = new ButtonColumn(this.table, this.delete, 1);
-        ButtonColumn mp3Column = new ButtonColumn(this.table, this.delete, 2);
+        // Attache des listeners aux colonnes concernées
+        ButtonColumn infosColumn = new ButtonColumn(this.table, this.getController().getInfos(), 1);
+        ButtonColumn mp3Column = new ButtonColumn(this.table, this.getController().getMp3(), 2);
 
         this.onlineUsersTablePane = new JScrollPane(this.table);
 
@@ -88,7 +77,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- OnlineUsersView.update() : " + str);
-        this.table.setModel(this.getController().getModel().getModeleTable());
         this.onlineUsersTablePane.setViewportView(this.table);
     }
 }
