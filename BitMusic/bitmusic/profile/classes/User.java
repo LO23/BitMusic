@@ -5,27 +5,23 @@
 
 package bitmusic.profile.classes;
 
+import java.io.File;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.UUID;
+
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+
+import sun.awt.shell.ShellFolder;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
 
-import java.io.File;
-import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
-
-import sun.awt.shell.ShellFolder;
-
 /**
  *
- * @author reaneyol, MilioPeralta
+ * @author reaneyol, MilioPeralta, Jérémy
  */
 public class User implements Serializable {
 
@@ -355,23 +351,6 @@ public class User implements Serializable {
 
     /**
      *
-     * @param password
-     * @return
-     */
-    private String cryptPassword(String password) {
-        try {
-            Cipher c = Cipher.getInstance("DES");
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchPaddingException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //using Cypher from Java
-        return "test";
-    }
-
-    /**
-     *
      * @return
      */
     @Override
@@ -380,14 +359,29 @@ public class User implements Serializable {
     }
 
     /**
-     *
+     * Format the birthdate to be used in the folder name
+     * 
      * @return
      */
-    public String getTransformedBirthday() {
+	public String getTransformedBirthday() {
         int year = this.birthDate.get(Calendar.YEAR);
         int month = this.birthDate.get(Calendar.MONTH);
         int day = this.birthDate.get(Calendar.DAY_OF_MONTH);
         return Integer.toString(year) + Integer.toString(month) + Integer.toString(day);
     }
-    
+
+    /**
+     * Return the encrypted password using SHA-1
+     *
+     * @return
+     */
+    public String getEncryptedPassword() {
+    	ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();
+		pwdEncryptor.setAlgorithm("SHA-1");
+		return pwdEncryptor.encryptPassword(password);
+    }
+
+	public String getFolderName() {
+		return login + "_" + getTransformedBirthday();
+    }
 }

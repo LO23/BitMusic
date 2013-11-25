@@ -24,7 +24,7 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     private final String type = "POPUP";
     private final JLabel commentSongLabel = new JLabel("Commenter un morceau");
     private final JLabel commentLabel = new JLabel("Tapez votre commentaire ");
-    private final JTextField commentField = new JTextField("");
+    private JTextField commentField = new JTextField("");
     private final JButton validateButton = new JButton("Valider");
     private final JButton resetButton = new JButton("Réinitialiser");
 
@@ -43,6 +43,8 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
         this.commentLabel.setSize(d);
         this.validateButton.setSize(d);
         this.resetButton.setSize(d);
+
+        this.validateButton.addActionListener(this.getController().new ValidateListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -87,5 +89,13 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- CommentSongPopUpView.update()");
+    }
+
+    public JTextField getCommentField() {
+        return commentField;
+    }
+
+    public void setCommentField(JTextField comment) {
+        this.commentField = comment;
     }
 }

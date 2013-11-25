@@ -16,6 +16,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import bitmusic.profile.utilities.ProfileExceptions;
+
 /**
  *
  * @author Jérémy
@@ -172,60 +174,60 @@ public class UserTest {
         assertEquals(cat, user.getCategories());
     }
 
-    /**
-     * Test of updateCategory method, of class User.
-     */
-    @Test
-    public void testUpdateCategory() {
-        System.out.println("updateCategory");
-        String newCategoryName = "newName";
-        int id = 0;
-        List<Category> cat = new ArrayList<Category>(user.getCategories());
-        cat.get(id).setName(newCategoryName);
-        user.updateCategory(id, newCategoryName);
-        assertEquals(cat, user.getCategories());
-    }
 
     /**
      * Test of deleteCategory method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testDeleteCategory() {
+    public void testDeleteCategory() throws ProfileExceptions {
         System.out.println("deleteCategory");
-        int id = 0;
         List<Category> cat = new ArrayList<Category>(user.getCategories());
-        cat.remove(id);
-        user.deleteCategory(id);
+        String uuid = cat.get(0).getId();
+        cat.remove(0);
+        user.deleteCategory(uuid);
         assertEquals(cat, user.getCategories());
+    }
+    
+    /**
+     * Test of deleteCategory method, of class User with wrong id
+     * @throws ProfileExceptions 
+     */
+    @Test(expected=ProfileExceptions.class)
+    public void testDeleteCategoryWithWrongId() throws ProfileExceptions {
+        System.out.println("deleteCategoryWithWrongId");
+        String uuid = "wrongid";
+        user.deleteCategory(uuid);
     }
 
     /**
      * Test of addContact method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testAddContact() {
+    public void testAddContact() throws ProfileExceptions {
         System.out.println("addContact");
-        int id = 0;
         User newUser = new User("test", "mdptest");
         List<Category> cat = new ArrayList<Category>(user.getCategories());
-        cat.get(id).addUser(newUser);
-        user.addContact(newUser, id);
+        cat.get(0).addUser(newUser);
+        String uuid = cat.get(0).getId();
+        user.addContact(newUser, uuid);
         assertEquals(cat, user.getCategories());
     }
 
     /**
      * Test of removeContact method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testRemoveContact() {
+    public void testRemoveContact() throws ProfileExceptions {
         System.out.println("removeContact");
-        int id = 0;
-        User newUser = new User("test", "mdptest");
-        user.addContact(newUser, id);
         List<Category> cat = new ArrayList<Category>(user.getCategories());
-        cat.get(id).deleteUser(newUser);
-        user.removeContact(newUser, id);
+        String uuid = cat.get(0).getId();
+        User newUser = new User("test", "mdptest");
+        user.addContact(newUser, uuid);
+        cat.get(0).deleteUser(newUser);
+        user.removeContact(newUser, uuid);
         assertEquals(cat, user.getCategories());
     }
-
 }

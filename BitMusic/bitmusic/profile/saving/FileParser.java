@@ -21,6 +21,8 @@ import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+
 /**
  *
  * @author Holywa, MilioPeralta
@@ -61,7 +63,7 @@ public class FileParser {
             DirectoryStream<Path> stream = Files.newDirectoryStream(FileSystems.getDefault().getPath(defaultPath));
             for(Path path:stream) {
                 if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
-                    if(FileParser.getFileParser().readAuthFile(path.toString(), pwd)) {
+                    if(readAuthFile(path.toString(), pwd)) {
                         FileInputStream saveFile = new FileInputStream(path.toString() + "\\profile\\" + login + ".ser");
                         try (ObjectInputStream ois = new ObjectInputStream(saveFile)) {
                             User loadedUser = (User) ois.readObject();
@@ -83,9 +85,10 @@ public class FileParser {
         try {
             FileInputStream authFile = new FileInputStream(path + "\\profile\\auth");
             try (ObjectInputStream ois = new ObjectInputStream(authFile)) {
-                String login = ois.readUTF();
                 String password = ois.readUTF();
-                return (password.equals(pwd));
+                ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();
+        		pwdEncryptor.setAlgorithm("SHA-1");
+        		return pwdEncryptor.checkPassword(pwd, password);
             }
         }
         catch(FileNotFoundException eFound) {

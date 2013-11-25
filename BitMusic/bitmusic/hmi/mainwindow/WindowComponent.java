@@ -92,6 +92,9 @@ public class WindowComponent {
         this.getCentralAreaComponent().getView().addTab(new TabComponent().getView());
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
 
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.getWindowView().addView(this.getPlayBarComponent().getView());
+
         this.setOnlineUsersComponent(new OnlineUsersComponent());
         this.getWindowView().addView(this.getOnlineUsersComponent().getView());
 
