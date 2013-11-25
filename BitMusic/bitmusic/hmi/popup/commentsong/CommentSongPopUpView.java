@@ -8,6 +8,12 @@ package bitmusic.hmi.popup.commentsong;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -16,6 +22,12 @@ import bitmusic.hmi.patterns.Observable;
 public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpController> {
 
     private final String type = "POPUP";
+    private final JLabel commentSongLabel = new JLabel("Commenter un morceau");
+    private final JLabel commentLabel = new JLabel("Tapez votre commentaire ");
+    private final JTextField commentField = new JTextField("");
+    private final JButton validateButton = new JButton("Valider");
+    private final JButton resetButton = new JButton("Réinitialiser");
+
 
     public CommentSongPopUpView() {
         super();
@@ -25,7 +37,46 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     public void initPanel() {
         System.out.println("--- CommentSongPopUpView.initPanel()");
 
-        // TODO
+        final Dimension d = new Dimension(80, 20);
+
+        this.commentField.setSize(d);
+        this.commentLabel.setSize(d);
+        this.validateButton.setSize(d);
+        this.resetButton.setSize(d);
+
+        GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
+
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setHorizontalGroup(
+            layout.createSequentialGroup()
+                .addComponent(commentSongLabel)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(commentLabel)
+                    .addComponent(validateButton)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(commentField)
+                    .addComponent(resetButton)
+                )
+        );
+
+        layout.setVerticalGroup(
+            layout.createSequentialGroup()
+                .addComponent(commentSongLabel)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(commentLabel)
+                    .addComponent(commentField)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(validateButton)
+                    .addComponent(resetButton)
+                )
+        );
+                layout.linkSize(SwingConstants.HORIZONTAL, commentLabel, commentField);
+
     }
 
     @Override
