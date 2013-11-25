@@ -48,6 +48,7 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         this.cancelButton.addActionListener(this.getController().new CancelListener());
         this.submitButton.addActionListener(this.getController().new ModifyMyProfileListener());
 
+        this.avatarField.setEditable(false);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
