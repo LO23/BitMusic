@@ -27,7 +27,7 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable)e.getSource();
             int row = Integer.valueOf( e.getActionCommand() );
-            User user = ((OnlineUsersTableModel)table.getModel()).getUserAt(row);
+            User user = ((OnlineUsersModel.OnlineUsersTableModel)table.getModel()).getUserAt(row);
             System.out.println("---- Clic sur Infos du User : " + user.getLogin());
         }
     };
@@ -36,7 +36,7 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable)e.getSource();
             int row = Integer.valueOf( e.getActionCommand() );
-            User user = ((OnlineUsersTableModel)table.getModel()).getUserAt(row);
+            User user = ((OnlineUsersModel.OnlineUsersTableModel)table.getModel()).getUserAt(row);
             System.out.println("---- Clic sur MP3 du User : " + user.getLogin());
         }
     };
