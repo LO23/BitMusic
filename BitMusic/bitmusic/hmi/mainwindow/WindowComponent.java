@@ -17,7 +17,10 @@ import bitmusic.hmi.modules.myprofile.MyProfileComponent;
 import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.modules.playbar.PlayBarComponent;
 import bitmusic.hmi.modules.searchbar.SearchBarComponent;
+import bitmusic.hmi.modules.tab.TabComponent;
+import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
+import java.util.List;
 
 /**
  *
@@ -73,6 +76,7 @@ public class WindowComponent {
 
     public void initAllComponents() {
         // Création des différents Components
+        WindowComponent win = WindowComponent.getInstance();
 
         this.setSearchBarComponent(new SearchBarComponent());
         this.getWindowView().addView(this.getSearchBarComponent().getView());
@@ -85,21 +89,24 @@ public class WindowComponent {
         // this.getWindowView().addView(this.getCategoriesComponent().getView());
 
         this.setCentralAreaComponent(new CentralAreaComponent());
+        this.getCentralAreaComponent().getView().addTab(new TabComponent().getView());
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
 
         this.setOnlineUsersComponent(new OnlineUsersComponent());
         this.getWindowView().addView(this.getOnlineUsersComponent().getView());
-        // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
-        // TODO : en attente de la disponibilité de la méthode dans l'API
-        // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
-        // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
+
+        String ourUserId = win.getApiProfile().getCurrentUser().getUserId();
+        List<String> currentOnlineUsersId = win.getApiNetwork().getAllUserId();
+        for (int i = 0; i < currentOnlineUsersId.size(); i++) {
+            try {
+                win.getApiNetwork().getUser(ourUserId, currentOnlineUsersId.get(i), null); // searchId nécessaire ?
+            } catch (NetworkException e) {
+                System.out.println("Erreur à l'appel de la méthode ApiNetwork.getUser() !");
+            }
+        }
         // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
         // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
 
-        User test = new User("login", "mdp");
-        WindowComponent.getInstance().getApiHmi().notifyNewConnection(test);
-        WindowComponent.getInstance().getApiHmi().notifyNewConnection(test);
-        WindowComponent.getInstance().getApiHmi().notifyNewConnection(test);
         this.setPlayBarComponent(new PlayBarComponent());
         this.getWindowView().addView(this.getPlayBarComponent().getView());
     }

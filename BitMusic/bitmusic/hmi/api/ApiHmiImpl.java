@@ -23,12 +23,12 @@ public final class ApiHmiImpl implements ApiHmi {
 
     @Override
     public void notifyNewConnection(final User lightUserLan) {
-        WindowComponent.getInstance().getOnlineUsersComponent().getModel().addUser(lightUserLan);
+        WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().addOnlineUser(lightUserLan);
     }
 
     @Override
     public void removeUserFromOnlineUsers(final String userId) {
-        WindowComponent.getInstance().getOnlineUsersComponent().getModel().removeUser(userId);
+        WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().removeOnlineUser(userId);
     }
 
     @Override

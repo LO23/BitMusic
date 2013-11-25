@@ -59,7 +59,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
         }
     }
 
-    public class ModifyMyProfileLister implements ActionListener {
+    public class ModifyMyProfileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Submit");
@@ -79,6 +79,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                 Calendar cal = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 canModify = true;
+                sdf.setLenient(false);
                 //Permet de vérifier aisément si le format de la date est correcte !
                 try {
                     cal.setTime(sdf.parse(birthDate));

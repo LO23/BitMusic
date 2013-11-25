@@ -20,12 +20,12 @@ import javax.swing.JTextField;
  */
 public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopUpController> {
 
-    private final JLabel myProfileLabel = new JLabel("<html><u> Présentation de mon profil</u></html>");
+    private final JLabel myProfileLabel = new JLabel("<html><u> Edition de mon profil</u></html>");
     private final JLabel prenomLabel = new JLabel("Prénom ");
     private JTextField prenomField = new JTextField("");
     private final JLabel nomLabel = new JLabel("Nom ");
     private JTextField nomField = new JTextField("");
-    private final JLabel birthLabel = new JLabel("Date de Naissance (*)");
+    private final JLabel birthLabel = new JLabel("Date de Naissance");
     private JTextField dateTextField = new JTextField("");
     private final JLabel avatarLabel = new JLabel("Avatar");
     private final JButton avatarBrowseButton = new JButton("Parcourir...");
@@ -46,8 +46,9 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
 
         this.avatarBrowseButton.addActionListener(this.getController().new AvatarBrowseListener());
         this.cancelButton.addActionListener(this.getController().new CancelListener());
-        this.submitButton.addActionListener(this.getController().new ModifyMyProfileLister());
+        this.submitButton.addActionListener(this.getController().new ModifyMyProfileListener());
 
+        this.avatarField.setEditable(false);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
