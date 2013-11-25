@@ -63,8 +63,7 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
      *
      *  @return the foreground color
      */
-    public Border getFocusBorder()
-    {
+    public Border getFocusBorder() {
             return focusBorder;
     }
 
@@ -171,13 +170,15 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
      *  active. Make sure editing is stopped when the mouse is released.
      */
     public void mousePressed(MouseEvent e) {
-        if (table.isEditing() &&  table.getCellEditor() == this)
+        if (table.isEditing() &&  table.getCellEditor() == this) {
             isButtonColumnEditor = true;
+        }
     }
 
     public void mouseReleased(MouseEvent e) {
-        if (isButtonColumnEditor && table.isEditing())
+        if (isButtonColumnEditor && table.isEditing()) {
             table.getCellEditor().stopCellEditing();
+        }
 
         isButtonColumnEditor = false;
     }
