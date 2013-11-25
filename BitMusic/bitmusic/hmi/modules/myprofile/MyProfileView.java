@@ -23,7 +23,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     private static final String type = "NORTH";
 
-    private final JButton myProfileButton = new JButton("Mon Profil");
+    private final JButton myProfileButton = new JButton("Editer mon profil");
     private final JButton mySongsButton = new JButton("Mes morceaux");
     private final JButton logoutButton = new JButton("Déconnexion");
     private final JButton importSongButton = new JButton("Importer un titre");
