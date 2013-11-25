@@ -59,7 +59,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
         }
     }
 
-    public class ModifyMyProfileLister implements ActionListener {
+    public class ModifyMyProfileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Submit");

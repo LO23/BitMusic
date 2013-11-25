@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -44,11 +45,13 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     private final JLabel dateFormatLabel = new JLabel("(Format : dd/mm/aaaa)");
     private JTextField loginField = new JTextField("");
     private JTextField birthdateField = new JTextField("");
-    private JTextField passwordField = new JTextField("");
-    private JTextField confirmField = new JTextField("");
+    private JTextField passwordField = new JPasswordField("");
+    private JTextField confirmField = new JPasswordField("");
     private JTextField firstnameField = new JTextField("");
     private JTextField lastnameField = new JTextField("");
     private JTextField avatarField = new JTextField("");
+
+    private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
 
 
     public AccountCreationPopUpView() {
@@ -58,6 +61,16 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     @Override
     public void initPanel() {
         System.out.println("--- AccountCreationPopUpView.initPanel()");
+
+        this.listCompulsoryFields.add(loginField);
+        this.listCompulsoryFields.add(birthdateField);
+        this.listCompulsoryFields.add(passwordField);
+        this.listCompulsoryFields.add(confirmField);
+
+        this.browseButton.addActionListener(this.getController().new AvatarBrowseListener());
+        this.cancelButton.addActionListener(this.getController().new CancelListener());
+        this.createUserButton.addActionListener(this.getController().new CreateNewUserListener());
+        this.avatarField.setEditable(false);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -158,4 +171,70 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     public void update(Observable obj, String str) {
         System.out.println("----- AccountCreationPopUp.update()");
     }
+
+    public JTextField getLoginField() {
+        return loginField;
+    }
+
+    public void setLoginField(JTextField loginField) {
+        this.loginField = loginField;
+    }
+
+    public JTextField getBirthdateField() {
+        return birthdateField;
+    }
+
+    public void setBirthdateField(JTextField birthdateField) {
+        this.birthdateField = birthdateField;
+    }
+
+    public JTextField getPasswordField() {
+        return passwordField;
+    }
+
+    public void setPasswordField(JTextField passwordField) {
+        this.passwordField = passwordField;
+    }
+
+    public JTextField getConfirmField() {
+        return confirmField;
+    }
+
+    public void setConfirmField(JTextField confirmField) {
+        this.confirmField = confirmField;
+    }
+
+    public JTextField getFirstnameField() {
+        return firstnameField;
+    }
+
+    public void setFirstnameField(JTextField firstnameField) {
+        this.firstnameField = firstnameField;
+    }
+
+    public JTextField getLastnameField() {
+        return lastnameField;
+    }
+
+    public void setLastnameField(JTextField lastnameField) {
+        this.lastnameField = lastnameField;
+    }
+
+    public JTextField getAvatarField() {
+        return avatarField;
+    }
+
+    public void setAvatarField(JTextField avatarField) {
+        this.avatarField = avatarField;
+    }
+
+    public ArrayList<JTextField> getListCompulsoryFields() {
+        return listCompulsoryFields;
+    }
+
+    public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
+        this.listCompulsoryFields = listCompulsoryFields;
+    }
+
+
 }
