@@ -17,7 +17,8 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author unkedeuxke
+ * @author delbouki
+ * il manque le champs tags
  */
 public final class EditSongPopUpView extends AbstractView<EditSongPopUpController> {
 
@@ -54,6 +55,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
         this.filebrowseButton.setSize(d);
         this.validateButton.setSize(d);
         this.resetButton.setSize(d);
+        //champs tags manquant
 
         filebrowseButton.addActionListener(this.getController().new fileBrowseListener());
 
