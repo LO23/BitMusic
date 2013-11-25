@@ -34,6 +34,10 @@ public class OnlineUsersTableModel extends AbstractTableModel {
         }
     }
 
+    public User getUserAt(int row) {
+        return this.onlineUsers.get(row);
+   }
+
     public void addOnlineUser(User user) {
         this.onlineUsers.add(user);
         fireTableRowsInserted(this.onlineUsers.size()-1, this.onlineUsers.size()-1);

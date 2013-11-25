@@ -9,8 +9,10 @@ package bitmusic.hmi.modules.onlineusers;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.ButtonColumn;
 import bitmusic.hmi.patterns.Observable;
+import bitmusic.profile.classes.User;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.GroupLayout;
@@ -34,24 +36,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         super();
     }
 
-    Action infos = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("---- Infos detected !!!");
-            /*JTable table = (JTable)e.getSource();
-            int modelRow = Integer.valueOf( e.getActionCommand() );
-            ((DefaultTableModel)table.getModel()).removeRow(modelRow);*/
-        }
-    };
-
-    Action mp3 = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("---- MP3 detected !!!");
-            /*JTable table = (JTable)e.getSource();
-            int modelRow = Integer.valueOf( e.getActionCommand() );
-            ((DefaultTableModel)table.getModel()).removeRow(modelRow);*/
-        }
-    };
-
     @Override
     public void initPanel() {
         System.out.println("--- OnlineUsersView.initPanel()");
@@ -63,8 +47,8 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         this.table = new JTable(this.getController().getModel().getModeleTable());
 
         // Attache des listeners aux colonnes concernées
-        ButtonColumn infosColumn = new ButtonColumn(this.table, this.infos, 1);
-        ButtonColumn mp3Column = new ButtonColumn(this.table, this.mp3, 2);
+        ButtonColumn infosColumn = new ButtonColumn(this.table, this.getController().getInfos(), 1);
+        ButtonColumn mp3Column = new ButtonColumn(this.table, this.getController().getMp3(), 2);
 
         this.onlineUsersTablePane = new JScrollPane(this.table);
 
