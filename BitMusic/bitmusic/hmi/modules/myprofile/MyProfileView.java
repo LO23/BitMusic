@@ -31,7 +31,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     private final JButton importSongButton = new JButton("Importer un titre");
     private final JPanel avatarPanel = new JPanel();
     private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
-    private JLabel avatarLabel;
+    private JLabel avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
     // TODO : récupérer l'image de l'avatar (pas en dur)
 
     public MyProfileView() {
@@ -59,7 +59,6 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         System.out.println("--- MyProfileView.initPanel()");
 
         this.avatarImage.setDescription("Votre avatar");
-        this.avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
         this.avatarPanel.add( avatarLabel, BorderLayout.CENTER );
 
         this.myProfileButton.addActionListener(this.getController().new ModifyProfileListener());
