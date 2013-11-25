@@ -8,6 +8,7 @@ package bitmusic.hmi.popup.informationsuser;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import bitmusic.profile.classes.User;
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -21,11 +22,11 @@ import javax.swing.JPanel;
 public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpController> {
 
     private final String type = "POPUP";
-    private final JLabel infosLabel = new JLabel("<html></u>Informations Utilisateur</u></html>");
-    private JLabel firstnameLabel = new JLabel("Prénom");
-    private JLabel lastnameLabel = new JLabel("Nom");
-    private JLabel oldLabel = new JLabel("Age");
-    private JLabel inscriptionLabel = new JLabel("inscrit depuis le 25/11/2013");
+    private final JLabel infosLabel = new JLabel("<html><u>Informations Utilisateur</u></html>");
+    private JLabel firstnameLabel = new JLabel("");
+    private JLabel lastnameLabel = new JLabel("");
+    private JLabel oldLabel = new JLabel("");
+    private JLabel inscriptionLabel = new JLabel("");
 
     private final JPanel avatarPanel = new JPanel();
     private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
@@ -41,6 +42,13 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
 
         this.avatarImage.setDescription("Votre avatar");
         this.avatarPanel.add( avatarLabel, BorderLayout.CENTER );
+
+        User userTemp = this.getController().getModel().getUser();
+        this.firstnameLabel.setText(userTemp.getFirstName());
+        this.lastnameLabel.setText(userTemp.getLastName());
+        this.oldLabel.setText(userTemp.getTransformedBirthday());
+        //this.inscriptionLabel.setText(userTemp.get?);
+        //this.avatarLabel.setIcon(new ImageIcon(userTemp.getAvatarPath()));
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);

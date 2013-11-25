@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.informationsuser;
 
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.profile.classes.User;
 
 /**
  *
@@ -14,7 +15,20 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class InfosUserPopUpModel extends AbstractModel {
 
-    public InfosUserPopUpModel() {
+    private User user;
+
+    public InfosUserPopUpModel(User user) {
         super();
+        this.setUser(user);
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        this.notifyObservers("SET_USER_INFOS");
+    }
+
 }

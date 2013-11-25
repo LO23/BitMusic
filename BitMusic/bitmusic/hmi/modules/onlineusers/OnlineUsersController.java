@@ -6,11 +6,14 @@
 
 package bitmusic.hmi.modules.onlineusers;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.popup.informationsuser.InfosUserPopUpComponent;
 import bitmusic.profile.classes.User;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JDialog;
 import javax.swing.JTable;
 
 /**
@@ -18,6 +21,8 @@ import javax.swing.JTable;
  * @author unkedeuxke
  */
 public final class OnlineUsersController extends AbstractController<OnlineUsersModel, OnlineUsersView> {
+
+    private JDialog popUp;
 
     public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
         super(model, view);
@@ -29,6 +34,15 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
             int row = Integer.valueOf( e.getActionCommand() );
             User user = ((OnlineUsersModel.OnlineUsersTableModel)table.getModel()).getUserAt(row);
             System.out.println("---- Clic sur Infos du User : " + user.getLogin());
+
+            WindowComponent win = WindowComponent.getInstance();
+            InfosUserPopUpComponent infosUserPopUpComponent = new InfosUserPopUpComponent(user);
+
+            popUp = new JDialog(win.getWindowView(), "Afficher informations utilisateur", true);
+            popUp.add(infosUserPopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.setLocationRelativeTo(null);
+            popUp.show();
         }
     };
 
