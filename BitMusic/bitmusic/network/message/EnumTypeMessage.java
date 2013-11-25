@@ -68,11 +68,6 @@ public enum EnumTypeMessage {
      */
     SendSongFile,
     /**
-     * Network message send to a distant user
-     * to ask him to search items matching the keywords.
-     */
-    TagRequest,
-    /**
      * A network message to tell a distant application
      * that the comment sent was successfully recorded.
      */

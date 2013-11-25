@@ -7,7 +7,9 @@
 package bitmusic.network.main;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.AbstractMessage;
+import bitmusic.network.test.SocketListener;
 import java.net.Socket;
+import java.nio.channels.DatagramChannel;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,6 +27,13 @@ public final class ThreadManager {
      * executor.
      */
     private final transient ExecutorService executorService;
+
+    /**
+     * @return executorService
+     */
+    public ExecutorService getExecutorService() {
+        return executorService;
+    }
 
 
     /**
@@ -55,12 +64,25 @@ public final class ThreadManager {
     * At the end of run(), the worker destroys itself.
     * @param socket socket treated as a task
     */
-    public void assignTaskToWorker(final Socket socket) throws NetworkException {
+    public void assignTaskToWorker(final Socket socket) {
         if (weAreTesting()) {
-            throw new NetworkException("Fuck YEAH !");
+            this.jUnitTest.setSocket(socket);
         } else {
             final AbstractManageable worker = new Worker(socket);
             executorService.execute(worker);
+        }
+    }
+    /**
+     * .
+    */
+    public void assignTaskToDatagramWorker(final DatagramChannel channel)
+            throws NetworkException {
+                if (weAreTesting()) {
+                    throw new NetworkException("Fuck YEAH !");
+        } else {
+            final AbstractManageable datagramWorker =
+                    new DatagramWorker(channel);
+            executorService.execute(datagramWorker);
         }
     }
     /**
@@ -70,7 +92,7 @@ public final class ThreadManager {
      * executed if there is an available thread in the pool.
      * One message = one job = one hermes messenger
      * At the end of run(), the hermes destroys itself.
-     * @param task
+     * @param task Message to deal with
      */
     public void assignTaskToHermes(final AbstractMessage task) {
         if (weAreTesting()) {
@@ -94,21 +116,24 @@ public final class ThreadManager {
     private static final String LOOP_ADDRESS = "127.0.0.1";
 
     /**
-     * (QUALITY) Used for JUnit tests
+     * (QUALITY) Used for JUnit tests (JUnit suscribed).
      */
-    private Socket lastSocketReceived;
-    private transient Object jUnitTest;
+    private transient SocketListener jUnitTest;
 
-    public void suscribe(Object jUnitTestArg) {
+    /**
+     * permet à un test JUnit de demander la reception des sockets entrantes.
+     * @param jUnitTestArg le test JUnit héritant de NetworkingTest
+     */
+    public void suscribe(final SocketListener jUnitTestArg) {
         this.jUnitTest = jUnitTestArg;
     }
 
     public void onSocketReceived() {
         this.jUnitTest.notify();
     }
-    
+
     public Socket getLastSocketReceived() {
-        return this.lastSocketReceived;
+        return null;//this.lastSocketReceived;
     }
 
     /**

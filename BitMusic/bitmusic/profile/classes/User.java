@@ -7,22 +7,30 @@ package bitmusic.profile.classes;
 
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
+import bitmusic.profile.utilities.ProfileExceptionType;
+import bitmusic.profile.utilities.ProfileExceptions;
 
 import java.io.File;
+import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
-import bitmusic.music.data.Song;
-import bitmusic.music.data.SongLibrary;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+
 import sun.awt.shell.ShellFolder;
 
 /**
  *
  * @author reaneyol, MilioPeralta
  */
-public class User {
+public class User implements Serializable {
 
     //########################## ATTRIBUTES ##########################//
+    private static final long serialVersionUID = 402L;
     /**
      *
      */
@@ -36,7 +44,7 @@ public class User {
     /**
      *
      */
-    private String password;
+    private transient String password;
 
     /**
      *
@@ -245,6 +253,19 @@ public class User {
 
     /**
      *
+     * @return
+     */
+    public Category getCategoryById(String categoryId) throws ProfileExceptions {
+        for(Category cat : this.categories) {
+            if(cat.getId() == categoryId) {
+                return cat;
+            }
+        }
+        throw new ProfileExceptions(ProfileExceptionType.CategoryNotFound);
+    }
+
+    /**
+     *
      * @param categories
      */
     public void setCategories(ArrayList<Category> categories) {
@@ -278,16 +299,16 @@ public class User {
      * @param id
      * @param newName
      */
-    public void updateCategory(int id, String newName) {
-        categories.get(id).setName(newName);
+    public void updateCategory(String categoryId, String newName) throws ProfileExceptions {
+        this.getCategoryById(categoryId).setName(newName);
     }
 
     /**
      *
      * @param id
      */
-    public void deleteCategory(int id) {
-        categories.remove(id);
+    public void deleteCategory(String categoryId) throws ProfileExceptions {
+        categories.remove(this.getCategoryById(categoryId));
     }
 
     /**
@@ -295,8 +316,8 @@ public class User {
      * @param user
      * @param idCategory
      */
-    public void addContact(User user, int idCategory) {
-        categories.get(idCategory).addUser(user);
+    public void addContact(User user, String categoryId) throws ProfileExceptions {
+        this.getCategoryById(categoryId).addUser(user);
     }
 
     /**
@@ -304,8 +325,8 @@ public class User {
      * @param user
      * @param idCategory
      */
-    public void removeContact(User user, int idCategory) {
-        categories.get(idCategory).deleteUser(user);
+    public void removeContact(User user, String categoryId) throws ProfileExceptions {
+         this.getCategoryById(categoryId).deleteUser(user);
     }
 
     /**
@@ -321,15 +342,15 @@ public class User {
      * @param song
      */
     public void addSong(Song song) {
-        //localSongs.addSong(song);
+        this.localSongs.addSong(song);
     }
 
     /**
      *
      * @param song
      */
-    public void deleteSong(Song song) {
-        //localSongs.deleteSong(song);
+    public void deleteSong(String songId) {
+        this.localSongs.removeSong(songId);
     }
 
     /**
@@ -338,6 +359,14 @@ public class User {
      * @return
      */
     private String cryptPassword(String password) {
+        try {
+            Cipher c = Cipher.getInstance("DES");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //using Cypher from Java
         return "test";
     }
 
@@ -349,10 +378,16 @@ public class User {
     public String toString() {
         return "Login : " + this.login + "\nUserID : " + this.userId + "\n";
     }
-	public String getTransformedBirthday() {
+
+    /**
+     *
+     * @return
+     */
+    public String getTransformedBirthday() {
         int year = this.birthDate.get(Calendar.YEAR);
         int month = this.birthDate.get(Calendar.MONTH);
         int day = this.birthDate.get(Calendar.DAY_OF_MONTH);
         return Integer.toString(year) + Integer.toString(month) + Integer.toString(day);
     }
+    
 }

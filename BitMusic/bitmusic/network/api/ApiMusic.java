@@ -25,35 +25,6 @@ public interface ApiMusic {
     void addComment(final Song song, final Comment comment)
             throws NetworkException;
     /**
-     * Ask a distant user to search     for keywords in his tags.
-     * This is an asynchrounous call
-     *
-     * @param operator user operating the research
-     * @param askedUser user asked
-     * @param idResearch the id of the research
-     * @param keywordsList keywords searched
-     * @param option 0 = ALL keywords must match (default), 1 = ANY
-     * keyword match
-     * @throws NetworkException thrown when the user doesn't exist
-     */
-    void tagRequest(final String operator, final String askedUser,
-            final String idResearch, final List<String> keywordsList,
-            final int option) throws NetworkException;
-    /**
-     * Ask a distant user to search for keywords in his tags.
-     * Implements the default option option = 0 (ALL keywords must match)
-     * This is an asynchrounous call
-     *
-     * @param operator user operating the research
-     * @param askedUser user asked
-     * @param idResearch the id of the research
-     * @param keywordsList keywords searched
-     * @throws NetworkException thrown when the user doesn't exist
-     */
-    void tagRequest(final String operator, final String askedUser,
-            final String idResearch, final List<String> keywordsList)
-            throws NetworkException;
-    /**
      * Network message send to a distant user to ask him to send his songList.
      *
      * @param operator asking user

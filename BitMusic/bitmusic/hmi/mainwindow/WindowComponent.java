@@ -18,7 +18,9 @@ import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.modules.playbar.PlayBarComponent;
 import bitmusic.hmi.modules.searchbar.SearchBarComponent;
 import bitmusic.hmi.modules.tab.TabComponent;
-import java.util.ArrayList;
+import bitmusic.network.exception.NetworkException;
+import bitmusic.profile.classes.User;
+import java.util.List;
 
 /**
  *
@@ -43,9 +45,6 @@ public class WindowComponent {
     private SearchBarComponent searchBarComponent;
     private CentralAreaComponent centralAreaComponent;
 
-    private ArrayList<TabComponent> listTabsComponent;
-    // TODO : ajouter les PopUp aussi ??? si on les ferme au même endroit qu'on les crée : pas besoin de les avoir ici
-
     private WindowComponent() {
         this.apiHmi = new ApiHmiImpl();
         this.apiProfile = ApiProfileImpl.getApiProfile();
@@ -62,7 +61,6 @@ public class WindowComponent {
 
         this.setConnectionComponent(new ConnectionComponent());
         this.view.addView(this.getConnectionComponent().getView());
-
     }
 
     /** Holder */
@@ -74,6 +72,43 @@ public class WindowComponent {
     /** Point d'accès pour l'instance unique du singleton */
     public static WindowComponent getInstance() {
             return WindowComponentHolder.instance;
+    }
+
+    public void initAllComponents() {
+        // Création des différents Components
+        WindowComponent win = WindowComponent.getInstance();
+
+        this.setSearchBarComponent(new SearchBarComponent());
+        this.getWindowView().addView(this.getSearchBarComponent().getView());
+
+        this.setMyProfileComponent(new MyProfileComponent());
+        this.getWindowView().addView(this.getMyProfileComponent().getView());
+
+        // TODO :
+        // this.setCategoriesComponent(new CategoriesComponent());
+        // this.getWindowView().addView(this.getCategoriesComponent().getView());
+
+        this.setCentralAreaComponent(new CentralAreaComponent());
+        this.getCentralAreaComponent().getView().addTab(new TabComponent().getView());
+        this.getWindowView().addView(this.getCentralAreaComponent().getView());
+
+        this.setOnlineUsersComponent(new OnlineUsersComponent());
+        this.getWindowView().addView(this.getOnlineUsersComponent().getView());
+
+        String ourUserId = win.getApiProfile().getCurrentUser().getUserId();
+        List<String> currentOnlineUsersId = win.getApiNetwork().getAllUserId();
+        for (int i = 0; i < currentOnlineUsersId.size(); i++) {
+            try {
+                win.getApiNetwork().getUser(ourUserId, currentOnlineUsersId.get(i), null); // searchId nécessaire ?
+            } catch (NetworkException e) {
+                System.out.println("Erreur à l'appel de la méthode ApiNetwork.getUser() !");
+            }
+        }
+        // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
+        // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
+
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.getWindowView().addView(this.getPlayBarComponent().getView());
     }
 
     public WindowModel getWindowModel() {
@@ -174,55 +209,5 @@ public class WindowComponent {
 
     public void setCentralAreaComponent(CentralAreaComponent centralAreaComponent) {
         this.centralAreaComponent = centralAreaComponent;
-    }
-
-    public ArrayList<TabComponent> getListTabsComponent() {
-        return this.listTabsComponent;
-    }
-
-    public void setListTabsComponent(ArrayList<TabComponent> listTabsComponent) {
-        this.listTabsComponent = listTabsComponent;
-    }
-
-    public void addTabComponent(TabComponent tab) {
-        this.listTabsComponent.add(tab);
-    }
-
-    public void removeTabComponent(TabComponent tab) {
-        for (int i=0; i<this.listTabsComponent.size(); i++) {
-            if (listTabsComponent.get(i).equals(tab)) {
-                listTabsComponent.remove(i);
-            }
-        }
-    }
-
-    public void initAllComponents() {
-        // TODO : Création des différents Components...
-
-        //TODO
-//        this.setCategoriesComponent(new CategoriesComponent());
-//        this.getWindowView().addView(this.getCategoriesComponent().getView());
-
-        this.setSearchBarComponent(new SearchBarComponent());
-        this.getWindowView().addView(this.getSearchBarComponent().getView());
-
-        this.setMyProfileComponent(new MyProfileComponent());
-        this.getWindowView().addView(this.getMyProfileComponent().getView());
-
-        this.setOnlineUsersComponent(new OnlineUsersComponent());
-        this.getWindowView().addView(this.getOnlineUsersComponent().getView());
-        // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
-        // TODO : en attente de la disponibilité de la méthode dans l'API
-        // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
-        // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
-        // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
-        // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
-
-        this.setPlayBarComponent(new PlayBarComponent());
-        this.getWindowView().addView(this.getPlayBarComponent().getView());
-
-        //TODO
-//        this.setCentralAreaComponent(new CentralAreaComponent());
-//        this.getWindowView().addView(this.getCentralAreaComponent().getView());
     }
 }

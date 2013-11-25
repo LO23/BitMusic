@@ -46,15 +46,11 @@ public class WindowView extends JFrame implements Observer {
         this.setTitle("BitMusic");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPanel.add(jpanelNorth, BorderLayout.NORTH);
-        this.setVisible(true);
     }
 
     public void addView(AbstractView view) {
-
         if ("CONNECTION".equals(view.getType())){
             this.getContentPane().add(view.getPanel());
-            pack();
-            this.setVisible(true);
         } else {
             this.getContentPane().add(contentPanel);
             switch (view.getType()) {
@@ -88,13 +84,10 @@ public class WindowView extends JFrame implements Observer {
                     System.out.println("Error : type du panel (north, south, east...) non défini !");
                     break;
             }
-            Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Dimension dim = toolkit.getScreenSize();
-            this.setSize(dim.width, dim.height-20);
-            //this.setLocationRelativeTo(null);
-            this.setVisible(true);
-            pack();
         }
+        this.pack();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     public void removeView(AbstractView view) {
@@ -108,5 +101,21 @@ public class WindowView extends JFrame implements Observer {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- WindowView.update()");
+    }
+
+    public JPanel getContentPanel() {
+        return contentPanel;
+    }
+
+    public void setContentPanel(JPanel contentPanel) {
+        this.contentPanel = contentPanel;
+    }
+
+    public GridBagConstraints getGridBagConstraints() {
+        return gridBagConstraints;
+    }
+
+    public void setGridBagConstraints(GridBagConstraints gridBagConstraints) {
+        this.gridBagConstraints = gridBagConstraints;
     }
 }

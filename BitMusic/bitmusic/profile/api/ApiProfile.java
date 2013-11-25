@@ -12,7 +12,6 @@ import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 /**
  *
  * @author MilioPeralta
@@ -27,7 +26,14 @@ public interface ApiProfile {
     /**
      * Creates a User as an object User
      *
+     * @param login
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param birthDate
+     * @param avatarPath
      * @return
+     * @throws bitmusic.profile.utilities.ProfileExceptions
      */
     public void createUser(String login, String password, String firstName, String lastName, Calendar birthDate, String avatarPath) throws ProfileExceptions;
 
@@ -89,14 +95,14 @@ public interface ApiProfile {
      * @param newName
      * @return
      */
-    public void updateCategory(int categoryId, String newName);
+    public void updateCategory(String categoryId, String newName);
 
     /**
      * Deletes a category of an user
      *
      * @return
      */
-    public void deleteCategory(int categoryId);
+    public void deleteCategory(String categoryId);
 
     /**
      * Adds a user to a category
@@ -105,7 +111,7 @@ public interface ApiProfile {
      * @param categoryId
      * @return
      */
-    public void addUserToCategory(User user, int categoryId);
+    public void addUserToCategory(User user, String categoryId);
 
     /**
      * Moves a user to another category
@@ -114,7 +120,7 @@ public interface ApiProfile {
      * @param categoryId
      * @return
      */
-    public void moveContact(String userId, int categoryId);
+    public void moveContact(String userId, String categoryId);
 
     /**
      * Returns the rights associated to a song
@@ -122,7 +128,7 @@ public interface ApiProfile {
      * @param songId
      * @return Rights rights
      */
-    public Rights getRights(String songId);
+    public Rights getRights(String songId, String categoryId);
 
     /**
      * Updates the rights associated to a song
@@ -130,7 +136,15 @@ public interface ApiProfile {
      * @param songId
      * @return
      */
-    public void updateRights(String songId);
+    public void updateRights(String songId, Rights right);
+
+    /**
+     * Updates the rights associated to a song
+     *
+     * @param songId
+     * @return
+     */
+    public void updateRights(String songId, boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment);
 
     /**
      * Returns the songs of the current user
@@ -142,10 +156,10 @@ public interface ApiProfile {
     /**
      * Returns the songs of the current user
      *
-     * @param songId
+     * @param song
      * @return
      */
-    public void addSong(String songId);
+    public void addSong(Song song);
 
     /**
      * Deletes the song of the current user

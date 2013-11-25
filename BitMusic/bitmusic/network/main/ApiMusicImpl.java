@@ -10,12 +10,10 @@ import bitmusic.network.api.ApiMusic;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
-import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageAddComment;
 import bitmusic.network.message.MessageGetSongsByUser;
 import bitmusic.network.message.MessageSearchSongsByTag;
-import bitmusic.network.message.MessageTagRequest;
 import java.util.List;
 
 /**
@@ -55,79 +53,21 @@ public final class ApiMusicImpl implements ApiMusic {
     public void addComment(final Song song, final Comment comment)
             throws NetworkException {
         //Get the source address
-        final String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(song.getOwnerId());
+        final String sourceAddress = Controller.getNetworkAddress();
 
-        final AbstractMessage message;
+        final String destAddress = Controller.getInstance().
+        getUserIpFromDirectory(song.getOwnerId());
 
-        message = new MessageAddComment(
+
+        final MessageAddComment message = new MessageAddComment(
                 EnumTypeMessage.AddComment,
                 sourceAddress,
-                Controller.getBroadcastAddress(),
+                destAddress,
                 song.getOwnerId(),
                 song,
                 comment);
         Controller.getInstance().getThreadManager().assignTaskToHermes(message);
-    }
-    /**
-     * Ask a distant user to search for keywords in his tags.
-     * This is an asynchrounous call
-     *
-     * @param operator user operating the research
-     * @param askedUser user asked
-     * @param idResearch the id of the research
-     * @param keywordsList keywords searched
-     * @param option 0 = ALL keywords must match (default), 1 = ANY
-     * keyword match
-     */
-    @Override
-    public void tagRequest(final String operator, final String askedUser,
-            final String idResearch, final List<String> keywordsList,
-            final int option) throws NetworkException {
-        //Get the source address
-        final String sourceAddress;
-
-        //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
-
-        final String destAddress;
-
-        //Warning, it may emmit an exception thrown to the calling method!
-        destAddress = Controller.getInstance().
-                getUserIpFromDirectory(askedUser);
-
-        final AbstractMessage message;
-
-        message = new MessageTagRequest(
-                EnumTypeMessage.TagRequest,
-                sourceAddress,
-                destAddress,
-                operator,
-                askedUser,
-                idResearch,
-                keywordsList,
-                option);
-        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
-    }
-    /**
-     * Ask a distant user to search for keywords in his tags.
-     * Implements the default option option = 0 (ALL keywords must match)
-     * This is an asynchrounous call
-     *
-     * @param operator user operating the research
-     * @param askedUser user asked
-     * @param idResearch the id of the research
-     * @param keywordsList keywords searched
-     */
-    @Override
-    public void tagRequest(final String operator, final String askedUser,
-            final String idResearch, final List<String> keywordsList)
-            throws NetworkException {
-        this.tagRequest(operator, askedUser, idResearch, keywordsList, 0);
     }
     /**
      * Network message send to a distant user to ask him to send his songList.
@@ -139,22 +79,15 @@ public final class ApiMusicImpl implements ApiMusic {
     public void getSongsByUser(final String operator, final String askedUser,
             final String researchId) throws NetworkException {
         //Get the source address
-        final String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
+        final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the remote address
-        final String destAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        destAddress = Controller.getInstance().
+        final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(askedUser);
 
-        final AbstractMessage message;
-
-        message = new MessageGetSongsByUser(
+        final MessageGetSongsByUser message = new MessageGetSongsByUser(
                 EnumTypeMessage.GetSongsByUser,
                 sourceAddress,
                 destAddress,
@@ -176,22 +109,15 @@ public final class ApiMusicImpl implements ApiMusic {
             final String userIdDest, final String searchId,
             final List<String> tagList) throws NetworkException {
         //Get the source address
-        final String sourceAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        sourceAddress = Controller.getInstance().
-                getUserIpFromDirectory(operator);
+        final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the remote address
-        final String destAddress;
-
         //Warning, it may emmit an exception thrown to the calling method!
-        destAddress = Controller.getInstance().
+        final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(userIdDest);
 
-        final AbstractMessage message;
-
-        message = new MessageSearchSongsByTag(
+        final MessageSearchSongsByTag message = new MessageSearchSongsByTag(
                 EnumTypeMessage.SearchSongsByTag,
                 sourceAddress,
                 destAddress,

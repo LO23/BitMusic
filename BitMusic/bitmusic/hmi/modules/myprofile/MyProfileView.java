@@ -23,11 +23,11 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     private static final String type = "NORTH";
 
-    private final JButton myProfileButton = new JButton("Mon Profil");
+    private final JButton myProfileButton = new JButton("Editer mon profil");
     private final JButton mySongsButton = new JButton("Mes morceaux");
     private final JButton logoutButton = new JButton("Déconnexion");
     private final JButton importSongButton = new JButton("Importer un titre");
-    private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/images/avatar3.png"));
+    private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
     private JLabel avatarLabel;
     // TODO : récupérer l'image de l'avatar (pas en dur)
 
@@ -60,28 +60,15 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         final Dimension d = new Dimension(80, 10);
 
         this.myProfileButton.setSize(d);
-
+        this.myProfileButton.addActionListener(this.getController().new ModifyProfileListener());
 
         this.mySongsButton.setSize(d);
+
         this.logoutButton.setSize(d);
         this.logoutButton.addActionListener(this.getController().new LogoutListener());
 
         this.importSongButton.setSize(d);
         this.importSongButton.addActionListener(this.getController().new ImportNewSongListener());
-
-        /*GridLayout layout = new GridLayout(0,2);
-        layout.setHgap(5);
-        layout.setVgap(5);
-
-        this.getPanel().setLayout(layout);
-
-        this.getPanel().add(this.myProfileButton);
-        this.getPanel().add(this.mySongsButton);
-        this.getPanel().add(this.logoutButton);
-        this.getPanel().add(this.importSongButton);
-        System.out.println("--- ImageIcon.init(), size : " + avatarImage.getIconHeight());
-        this.getPanel().add(this.avatarLabel);*/
-
 
         this.avatarLabel.setToolTipText("Avatar");
         this.avatarLabel.setAlignmentX(CENTER_ALIGNMENT);

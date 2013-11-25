@@ -22,27 +22,32 @@ import java.util.ArrayList;
 public final class ApiHmiImpl implements ApiHmi {
 
     @Override
-    public void notifyNewConnection(User lightUserLan){
-        WindowComponent.getInstance().getOnlineUsersComponent().getModel().addUser(lightUserLan);
+    public void notifyNewConnection(final User lightUserLan) {
+        WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().addOnlineUser(lightUserLan);
     }
 
     @Override
-    public void removeUserFromOnlineUsers(String userId) {
-        WindowComponent.getInstance().getOnlineUsersComponent().getModel().removeUser(userId);
+    public void removeUserFromOnlineUsers(final String userId) {
+        WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().removeOnlineUser(userId);
     }
 
     @Override
-    public void notifyLightProfile(User user, String searchId) {
+    public void notifyLightProfile(final User user, final String searchId) {
         //TODO
     }
 
     @Override
-    public void notifySongListByUserId(String userId, SongLibrary songList) {
+    public void notifySongListByUserId(final String userId, final SongLibrary songList) {
         //TODO
     }
 
     @Override
-    public void notifySongListBySearchId(String searchId, SongLibrary songList) {
+    public void notifySongListBySearchId(final String searchId, final SongLibrary songList) {
+        //TODO
+    }
+
+    @Override
+    public void updateCommentNotification(final Song song, final String comment) {
         //TODO
     }
 
@@ -52,7 +57,7 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void addCategory(String name, boolean play, Rights readInfos, boolean comment, boolean rate) {
+    public void addCategory(final String name, final boolean play, final Rights readInfos, final boolean comment, final boolean rate) {
         // TODO
     }
 
@@ -62,28 +67,28 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void searchSongsByUser(String userId) {
+    public void searchSongsByUser(final String userId) {
         // TODO
     }
 
     @Override
-    public void displayUser(String userID) {
+    public void displayUser(final String userID) {
         // TODO
     }
 
     @Override
-    public void importSong(String path, String title, String artist, String album, ArrayList<String> tags, Rights rights) {
+    public void importSong(final String path, final String title, final String artist, final String album, final ArrayList<String> tags, final Rights rights) {
         // TODO
     }
 
     @Override
-    public boolean addComment(Song song, String comment) {
+    public boolean addComment(final Song song, final String comment) {
         return false;
         // TODO
     }
 
     @Override
-    public void addUserToCategory(User user, Category category) {
+    public void addUserToCategory(final User user, final Category category) {
         // TODO
     }
 
@@ -103,32 +108,32 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void removeUserFromCategory(User user, Category category) {
+    public void removeUserFromCategory(final User user, final Category category) {
         // TODO
     }
 
     @Override
-    public void manageRightsForOneSong(String songId, Rights rights) {
+    public void manageRightsForOneSong(final String songId, final Rights rights) {
         // TODO
     }
 
     @Override
-    public void startSong(SongPlayer player) {
+    public void startSong(final SongPlayer player) {
         // TODO
     }
 
     @Override
-    public void connectUser(String login, String mdp) {
+    public void connectUser(final String login, final String mdp) {
         // TODO
     }
 
     @Override
-    public void displaySongs(String userId) {
+    public void displaySongs(final String userId) {
         // TODO
     }
 
     @Override
-    public void errorNotification(String errorMessage) {
+    public void errorNotification(final String errorMessage) {
         // TODO
     }
 }

@@ -9,6 +9,7 @@ package bitmusic.hmi.modules.onlineusers;
 import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.profile.classes.User;
 import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -16,51 +17,101 @@ import java.util.ArrayList;
  */
 public final class OnlineUsersModel extends AbstractModel {
 
-    private OnlineUsersDynamicObject modeleTable = new OnlineUsersDynamicObject();
+    private OnlineUsersTableModel modeleTable = new OnlineUsersTableModel();
 
     public OnlineUsersModel() {
         super();
     }
 
-    public void addUser(User user) {
-        this.modeleTable.getListUsers().add(user);
-        this.notifyObservers("ADD_ONLINE_USER");
-    }
+    public class OnlineUsersTableModel extends AbstractTableModel {
+        private String[] columnNames = { "Utilisateur", "Infos", "MP3" };
+        private ArrayList<User> onlineUsers = new ArrayList<>();
 
-    public void removeUser(String userId) {
-        ArrayList<User> listOnlineUsers = this.modeleTable.getListUsers();
+        public OnlineUsersTableModel() {
+            super();
+        }
 
-        boolean userRemoved = false;
-        for ( int i=0; i<listOnlineUsers.size(); i++) {
-            if (listOnlineUsers.get(i).getUserId().equals(userId)) {
-                listOnlineUsers.remove(i);
-                userRemoved = true;
+        @Override
+        public Object getValueAt(int row, int col) {
+            switch (col) {
+                case 0:
+                    return this.onlineUsers.get(row).getLogin();
+                case 1:
+                    return "i";
+                case 2:
+                    return "MP3";
+                default:
+                    return null;
             }
         }
 
-        if (userRemoved == true) {
-            this.notifyObservers("REMOVE_ONLINE_USER");
+        public User getUserAt(int row) {
+            return this.onlineUsers.get(row);
         }
-        else {
-            System.out.println("--- Error: User doesn't exist");
+
+        public void addOnlineUser(final User user) {
+            this.onlineUsers.add(user);
+            fireTableRowsInserted(this.onlineUsers.size()-1, this.onlineUsers.size()-1);
+            (OnlineUsersModel.this).notifyObservers("ONLINE_USER_ADDED");
+        }
+
+        public void removeOnlineUser(final String userId) {
+            for (int row = 0; row < this.onlineUsers.size(); row++) {
+                if (this.onlineUsers.get(row).getUserId().equals(userId)) {
+                    this.onlineUsers.remove(row);
+                    fireTableRowsDeleted(row, row);
+                }
+            }
+            (OnlineUsersModel.this).notifyObservers("ONLINE_USER_REMOVED");
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int col) {
+            if (col == 1 || col == 2) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public int getColumnCount() {
+            return this.columnNames.length;
+        }
+
+        @Override
+        public int getRowCount() {
+            return this.onlineUsers.size();
+        }
+
+        @Override
+        public String getColumnName(int col) {
+            return this.columnNames[col];
+        }
+
+        public String[] getColumnNames() {
+            return this.columnNames;
+        }
+
+        public void setColumnNames(String[] stringTable) {
+            this.columnNames = stringTable;
+        }
+
+        public ArrayList<User> getOnlineUsers() {
+            return this.onlineUsers;
+        }
+
+        public void setOnlineUsers(ArrayList<User> userList) {
+            this.onlineUsers = userList;
+            (OnlineUsersModel.this).notifyObservers("LIST_ONLINE_USERS_SET");
         }
     }
 
-    public ArrayList<User> getListOnlineUsers() {
-        return this.modeleTable.getListUsers();
-    }
-
-    public void setListUsersOnline(ArrayList<User> listOnlineUsers) {
-        this.modeleTable.setListUsers(listOnlineUsers);
-        this.notifyObservers("SET_LIST_ONLINE_USERS");
-    }
-
-    public OnlineUsersDynamicObject getModeleTable() {
+    public OnlineUsersTableModel getModeleTable() {
         return this.modeleTable;
     }
 
-    public void setModeleTable(OnlineUsersDynamicObject modeleTable) {
-        this.modeleTable = modeleTable;
+    public void setModeleTable(final OnlineUsersTableModel modele) {
+        this.modeleTable = modele;
     }
 
 }

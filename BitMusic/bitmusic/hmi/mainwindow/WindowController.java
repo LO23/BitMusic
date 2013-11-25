@@ -6,11 +6,15 @@
 
 package bitmusic.hmi.mainwindow;
 
+import bitmusic.hmi.popup.importsong.ImportSongPopUpComponent;
 import bitmusic.network.exception.NetworkException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 
 /**
  *
@@ -35,6 +39,10 @@ public class WindowController {
             } catch (NetworkException ex) {
                 Logger.getLogger(WindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            // Fermeture du pool de threads qui tourne en arrière-plan (géré par Network)
+            WindowComponent.getInstance().getApiNetwork().shutdownExecutorService();
+
             WindowController.this.getWindowView().dispose();
         }
 

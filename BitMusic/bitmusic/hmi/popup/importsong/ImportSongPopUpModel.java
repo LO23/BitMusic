@@ -8,6 +8,9 @@ package bitmusic.hmi.popup.importsong;
 
 import bitmusic.hmi.patterns.AbstractModel;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -15,53 +18,50 @@ import java.util.ArrayList;
  */
 public final class ImportSongPopUpModel extends AbstractModel {
 
-    private ImportSongDynamicObject modeleTable = new ImportSongDynamicObject();
+    private DefaultListModel listTagsModel = new DefaultListModel();
 
     public ImportSongPopUpModel() {
         super();
     }
 
-    public void addTag(String user) {
-        ArrayList<String> listTags = this.modeleTable.getListTags();
+    public DefaultListModel getListModel() {
+        return listTagsModel;
+    }
 
-        listTags.add(user);
+    public void setListModel(DefaultListModel listTags) {
+        this.listTagsModel = listTags;
+
+        this.notifyObservers("SET_LIST_TAGS");
+    }
+
+    public void setListModel(ArrayList<String> listTags) {
+        for ( int i=0; i<listTags.size(); i++ ){
+            this.listTagsModel.addElement(listTags.get(i));
+        }
+
+        this.notifyObservers("SET_LIST_TAGS");
+    }
+
+    public void addTag(String tag) {
+        this.listTagsModel.addElement(tag);
         this.notifyObservers("ADD_TAG");
     }
 
     public void removeTag(String tag) {
-        ArrayList<String> listTags = this.modeleTable.getListTags();
-
         boolean tagRemoved = false;
-        String tempTag;
-        for ( int i=0; i<listTags.size(); i++) {
-            tempTag = listTags.get(i);
-            if (listTags.get(i).equals(tempTag)) {
-                listTags.remove(i);
+        for ( int i=0; i<listTagsModel.size(); i++) {
+            if (listTagsModel.get(i).equals(tag)) {
+                listTagsModel.remove(i);
                 tagRemoved = true;
             }
         }
+
         if (tagRemoved == true) {
             this.notifyObservers("REMOVE_TAG");
         }
         else {
             System.out.println("--- Error: Tag doesn't exist");
         }
-
     }
 
-    public ArrayList<String> getListTags() {
-        return this.modeleTable.getListTags();
-    }
-
-    public void setListTags(ArrayList<String> listTags) {
-        this.modeleTable.setListTags(listTags);
-    }
-
-    public ImportSongDynamicObject getModeleTable() {
-        return modeleTable;
-    }
-
-    public void setModeleTable(ImportSongDynamicObject modeleTable) {
-        this.modeleTable = modeleTable;
-    }
 }
