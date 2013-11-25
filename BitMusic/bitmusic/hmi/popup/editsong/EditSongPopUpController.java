@@ -23,7 +23,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
         super(model, view);
     }
 
-    public class fileBrowseListener implements ActionListener{
+    public class FileBrowseListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton parcourir");
