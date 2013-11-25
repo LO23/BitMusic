@@ -17,7 +17,6 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,12 +34,21 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         super();
     }
 
-    Action delete = new AbstractAction() {
+    Action infos = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
-            System.out.println("---- delete détecté !!!");
-            JTable table = (JTable)e.getSource();
+            System.out.println("---- Infos detected !!!");
+            /*JTable table = (JTable)e.getSource();
             int modelRow = Integer.valueOf( e.getActionCommand() );
-            ((DefaultTableModel)table.getModel()).removeRow(modelRow);
+            ((DefaultTableModel)table.getModel()).removeRow(modelRow);*/
+        }
+    };
+
+    Action mp3 = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- MP3 detected !!!");
+            /*JTable table = (JTable)e.getSource();
+            int modelRow = Integer.valueOf( e.getActionCommand() );
+            ((DefaultTableModel)table.getModel()).removeRow(modelRow);*/
         }
     };
 
@@ -51,10 +59,12 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         Dimension d = new Dimension(80, 20);
         this.onlineUsersLabel.setSize(d);
 
+        // Initialisation de la JTable avec le OnlineUsersTableModel du Model
         this.table = new JTable(this.getController().getModel().getModeleTable());
 
-        ButtonColumn infosColumn = new ButtonColumn(this.table, this.delete, 1);
-        ButtonColumn mp3Column = new ButtonColumn(this.table, this.delete, 2);
+        // Attache des listeners aux colonnes concernées
+        ButtonColumn infosColumn = new ButtonColumn(this.table, this.infos, 1);
+        ButtonColumn mp3Column = new ButtonColumn(this.table, this.mp3, 2);
 
         this.onlineUsersTablePane = new JScrollPane(this.table);
 
@@ -88,7 +98,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- OnlineUsersView.update() : " + str);
-        this.table.setModel(this.getController().getModel().getModeleTable());
         this.onlineUsersTablePane.setViewportView(this.table);
     }
 }
