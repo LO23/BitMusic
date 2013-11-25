@@ -18,40 +18,40 @@ import javax.swing.table.AbstractTableModel;
  */
 public final class ImportSongPopUpModel extends AbstractModel {
 
-    private DefaultListModel listModel = new DefaultListModel();
+    private DefaultListModel listTagsModel = new DefaultListModel();
 
     public ImportSongPopUpModel() {
         super();
     }
 
     public DefaultListModel getListModel() {
-        return listModel;
+        return listTagsModel;
     }
 
-    public void setListModel(DefaultListModel listModel) {
-        this.listModel = listModel;
+    public void setListModel(DefaultListModel listTags) {
+        this.listTagsModel = listTags;
 
         this.notifyObservers("SET_LIST_TAGS");
     }
 
     public void setListModel(ArrayList<String> listTags) {
         for ( int i=0; i<listTags.size(); i++ ){
-            this.listModel.addElement(listTags.get(i));
+            this.listTagsModel.addElement(listTags.get(i));
         }
 
         this.notifyObservers("SET_LIST_TAGS");
     }
 
     public void addTag(String tag) {
-        this.listModel.addElement(tag);
+        this.listTagsModel.addElement(tag);
         this.notifyObservers("ADD_TAG");
     }
 
     public void removeTag(String tag) {
         boolean tagRemoved = false;
-        for ( int i=0; i<listModel.size(); i++) {
-            if (listModel.get(i).equals(tag)) {
-                listModel.remove(i);
+        for ( int i=0; i<listTagsModel.size(); i++) {
+            if (listTagsModel.get(i).equals(tag)) {
+                listTagsModel.remove(i);
                 tagRemoved = true;
             }
         }

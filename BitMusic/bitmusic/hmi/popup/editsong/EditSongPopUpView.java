@@ -57,7 +57,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
         this.resetButton.setSize(d);
         //champs tags manquant
 
-        filebrowseButton.addActionListener(this.getController().new fileBrowseListener());
+        filebrowseButton.addActionListener(this.getController().new FileBrowseListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
