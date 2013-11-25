@@ -55,6 +55,8 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
         this.validateButton.setSize(d);
         this.resetButton.setSize(d);
 
+        filebrowseButton.addActionListener(this.getController().new fileBrowseListener());
+
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
