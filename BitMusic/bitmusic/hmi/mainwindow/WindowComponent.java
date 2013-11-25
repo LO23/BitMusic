@@ -86,20 +86,21 @@ public class WindowComponent {
         // this.getWindowView().addView(this.getCategoriesComponent().getView());
 
         this.setCentralAreaComponent(new CentralAreaComponent());
-        this.getCentralAreaComponent().getView().addTab(new TabComponent().getView());
+        this.centralAreaComponent.CentralAreaInit();
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
 
-        this.setOnlineUsersComponent(new OnlineUsersComponent());
-        this.getWindowView().addView(this.getOnlineUsersComponent().getView());
-        // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
+         // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
         // TODO : en attente de la disponibilité de la méthode dans l'API
         // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
         // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
         // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
         // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
-
         this.setPlayBarComponent(new PlayBarComponent());
         this.getWindowView().addView(this.getPlayBarComponent().getView());
+
+        this.setOnlineUsersComponent(new OnlineUsersComponent());
+        this.getWindowView().addView(this.getOnlineUsersComponent().getView());
+
     }
 
     public WindowModel getWindowModel() {
