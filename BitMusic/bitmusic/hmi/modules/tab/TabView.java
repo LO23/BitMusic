@@ -86,18 +86,17 @@ public final class TabView extends AbstractView<TabController> {
 
 
         layout.setHorizontalGroup(
-            layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                )
-         );
+                .addContainerGap())
+        );
         layout.setVerticalGroup(
-            layout.createSequentialGroup()
-               .addComponent(jScrollPane1)
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jScrollPane1)
-               )
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
 
     }
