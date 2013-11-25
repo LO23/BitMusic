@@ -32,6 +32,8 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     private ImageIcon downloadIcon ;
     private JButton downloadButton ;
+
+    private ImageIcon pauseIcon;
     // TODO playing bar
 
     public PlayBarView() {
@@ -45,6 +47,10 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
         downloadIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/downloadicon.png"));
         downloadButton = new JButton(downloadIcon);
+
+        pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
+
+
     }
 
     @Override
@@ -139,6 +145,14 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     public void setDownloadIcon(ImageIcon downloadIcon) {
         this.downloadIcon = downloadIcon;
+    }
+
+    public ImageIcon getPauseIcon() {
+        return pauseIcon;
+    }
+
+    public void setPauseIcon(ImageIcon pauseIcon) {
+        this.pauseIcon = pauseIcon;
     }
 
     @Override

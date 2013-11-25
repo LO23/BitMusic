@@ -28,10 +28,19 @@ import javazoom.jl.player.Player;
  */
 public final class PlayBarController extends AbstractController<PlayBarModel, PlayBarView> {
 
-    private boolean resume = false;
+    private boolean resume;
+    private boolean pause;
+    private boolean stop;
+    private boolean play;
 
     public PlayBarController(final PlayBarModel model, final PlayBarView view) {
         super(model, view);
+
+        resume = false;
+        pause = false;
+        stop = false;
+        play = false;
+
     }
 
     public class PlayListener implements ActionListener  {
@@ -48,14 +57,31 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
                 WindowComponent win = WindowComponent.getInstance();
                 // Plays a song
-                if (resume == false) {
+                if (resume == false && pause == false && stop == false && play == false) {
                      System.out.println("-----Playing the song for the first time");
+                     win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
                      win.getApiMusic().playSongFromStart(fileNameTochange);
+                     play = true;
+
                 }
-                else {
-                    System.out.println("------Resuming the song previously paused");
+
+                else if(play == true) {
+                    win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPlayIcon());
                     win.getApiMusic().resumeSong();
-                    resume = false;
+                    pause = true ;
+                    play = false;
+                }
+                else if (pause==true) {
+                    //System.out.println("------Resuming the song previously paused");
+                    win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
+                    win.getApiMusic().resumeSong();
+                    pause = false;
+                    resume = true;
+                }
+
+                else { //if(stop == true) {
+                    win.getApiMusic().playSongFromStart(fileNameTochange);
+                    stop=false;
                 }
 
 
@@ -89,6 +115,9 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
              WindowComponent win = WindowComponent.getInstance();
              win.getApiMusic().pauseOrStopSong();
              resume = true;
+             stop = true;
+             play=false;
+             pause=false;
         }
     }
 
