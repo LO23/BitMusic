@@ -71,7 +71,6 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
             WindowComponent win = WindowComponent.getInstance();
             AccountCreationPopUpView view = AccountCreationPopUpController.this.getView();
             Boolean canCreate = true;
-            Boolean canClose = true;
 
             //login password firstname lastname birth avatar
             String login = view.getLoginField().getText();
@@ -83,53 +82,45 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
             String avatar = view.getAvatarField().getText();
 
             if ( !password.equals(confirm) ) {
-                canClose = false;
                 canCreate = false;
                 JOptionPane.showMessageDialog(
                         view,
                         "Les deux mots de passe entrés ne concordent pas !",
-                        "Erreur dans la date",
+                        "Erreur de mot de passe",
                         JOptionPane.WARNING_MESSAGE);
-            }
-
-            else if ( AccountCreationPopUpController.this.checkAllCompulsoryFields() ){
+            } else if ( AccountCreationPopUpController.this.checkAllCompulsoryFields() ){
                 Calendar cal = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 sdf.setLenient(false);
-                //Permet de vérifier aisément si le format de la date est correcte !
+
+                // Permet de vérifier si le format de la date est correct
                 try {
                     cal.setTime(sdf.parse(birthdate));
                 } catch (ParseException ex) {
                     Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                    canClose = false;
                     canCreate = false;
                     JOptionPane.showMessageDialog(
                         view,
                         "Le format de la date n'est pas valide !",
-                        "Erreur dans la date",
+                        "Erreur de date",
                         JOptionPane.WARNING_MESSAGE);
                 }
 
-                if ( canCreate ) {
+                if (canCreate) {
                     try {
                         //login password firstname lastname birth avatar
                         win.getApiProfile().createUser(login, password, firstname, lastname, cal, avatar);
+                        win.getConnectionComponent().getController().getPopUp().dispose();
                     } catch (ProfileExceptions ex) {
                         Logger.getLogger(AccountCreationPopUpController.class.getName()).log(Level.SEVERE, null, ex);
                         JOptionPane.showMessageDialog(
                             view,
                             "Erreur : le compte n'a pas pu être créé !",
-                            "Erreur dans la création",
+                            "Erreur de création",
                             JOptionPane.WARNING_MESSAGE);
                     }
                 }
-
-                if ( canClose ) {
-                    win.getConnectionComponent().getController().getPopUp().dispose();
-                }
-
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(
                         view,
                         "Tous les champs obligatoires doivent être renseignés !",
