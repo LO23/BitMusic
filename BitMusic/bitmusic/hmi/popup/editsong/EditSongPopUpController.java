@@ -10,6 +10,8 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,6 +23,19 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
         super(model, view);
     }
 
+    public class fileBrowseListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton parcourir");
+            JFileChooser file = new JFileChooser();
+            JLabel path = new JLabel();
+            int returnVal = file.showSaveDialog(null);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                System.out.println("---- OK");
+                path.setText(file.getSelectedFile().getPath());
+            }
+        }
+    }
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
