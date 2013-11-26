@@ -75,10 +75,9 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
             Boolean canModify = true;
 
             //Laisser ce if en première position !
-            if ( birthDate.length() > 0 ) {
+            if (birthDate.length() > 0) {
                 Calendar cal = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                canModify = true;
                 sdf.setLenient(false);
                 //Permet de vérifier aisément si le format de la date est correcte !
                 try {
@@ -97,18 +96,17 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                 hasChanged = true;
             }
 
-            if ( firstName.length() > 0 && canModify) {
+            if (firstName.length() > 0 && canModify) {
                 win.getApiProfile().getCurrentUser().setFirstName(firstName);
                 hasChanged = true;
             }
 
-
-            if ( lastName.length() > 0 && canModify ) {
+            if (lastName.length() > 0 && canModify) {
                 win.getApiProfile().getCurrentUser().setLastName(lastName);
                 hasChanged = true;
             }
 
-            if ( avatar.length() > 0 && canModify ) {
+            if (avatar.length() > 0 && canModify) {
                 win.getApiProfile().getCurrentUser().setAvatarPath(avatar);
                 hasChanged = true;
             }
@@ -121,7 +119,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
 
             if (hasChanged) {
                 // On notifie la vue qu'il y a eu des changements
-                ModifyProfilePopUpController.this.getModel().notifyObservers("Profile updated");
+                ModifyProfilePopUpController.this.getModel().notifyObservers("Profile updated !");
             }
         }
     }
