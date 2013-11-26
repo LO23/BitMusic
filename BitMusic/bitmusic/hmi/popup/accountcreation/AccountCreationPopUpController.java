@@ -82,6 +82,10 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
             String birthdate = view.getBirthdateField().getText();
             String avatar = view.getAvatarField().getText();
 
+            //Avatar par défault
+            if ( avatar.length() <= 0 )
+                avatar = "/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png";
+
             if ( !password.equals(confirm) ) {
                 canCreate = false;
                 JOptionPane.showMessageDialog(
