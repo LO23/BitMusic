@@ -1,14 +1,15 @@
 package bitmusic.music.business;
 
-import bitmusic.profile.utilities.ProfileExceptions;
-import java.util.*;
-import java.lang.*;
 import bitmusic.music.data.*;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.main.ApiMusicImpl;
 //porte d'entrée vers le module Network
 import bitmusic.network.main.Controller;
 import bitmusic.profile.api.ApiProfileImpl;
+import bitmusic.profile.utilities.ProfileExceptions;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -199,10 +200,10 @@ public class SongSearcher {
                     r.setcanReadInfo(false);
                 }
             }
-        } catch (ProfileExceptions ex) {
-            Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ProfileExceptions e) {
+            System.out.println("Can't get categoryList from UserId");
         }
-        
+
         return lightSong;
     }
 
