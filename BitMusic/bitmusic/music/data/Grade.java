@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Bruno
+ * @author MP3
  */
 public class Grade implements Serializable{
     
