@@ -127,6 +127,10 @@ public final class ApiMusicImpl implements ApiMusic {
         }
 
     }
+    
+    public void playSong() {
+        
+    }
 
     /**
      * play a song from a distant user

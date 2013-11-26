@@ -174,7 +174,7 @@ public class BitMusicPlayer extends PlaybackListener {
      */
     public void stop() {
         synchronized (playerLock) {
-            if (playerStatus != PAUSED) {
+            if (playerStatus == PLAYING) {
                 this.player.stop();
                 this.firstFrame = 0;
             }
