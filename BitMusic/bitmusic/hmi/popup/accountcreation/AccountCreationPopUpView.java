@@ -51,7 +51,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     private JTextField lastnameField = new JTextField("");
     private JTextField avatarField = new JTextField("");
 
-    private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
+    private ArrayList<JTextField> listCompulsoryFields = new ArrayList();
 
 
     public AccountCreationPopUpView() {

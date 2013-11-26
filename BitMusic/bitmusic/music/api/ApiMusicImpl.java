@@ -8,8 +8,6 @@ package bitmusic.music.api;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.SongLibrary;
-import java.util.ArrayList;
-import java.util.*;
 import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.music.business.SongCommenter;
 import bitmusic.music.business.SongLoader;
@@ -17,9 +15,10 @@ import bitmusic.music.business.SongSearcher;
 import bitmusic.music.exception.CopyMP3Exception;
 import java.io.IOException;
 import bitmusic.music.player.BitMusicPlayer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -121,9 +120,12 @@ public final class ApiMusicImpl implements ApiMusic {
         SongLoader songLoader = new SongLoader();
         try {
             songLoader.importSong(path, title, artist, album, tags);
-        } catch (CopyMP3Exception | IOException excep) {
+        } catch (CopyMP3Exception excep) {
+            System.out.println(excep.getMessage());
+        } catch ( IOException excep) {
             System.out.println(excep.getMessage());
         }
+
     }
 
     /**

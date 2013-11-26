@@ -21,6 +21,7 @@ import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -103,6 +104,14 @@ public class WindowComponent {
         // Test d'une connexion d'un utilisateur
         User userTest = new User("Login", "Password", "Toto", "Bic", Calendar.getInstance(), "/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png");
         WindowComponent.getInstance().getApiHmi().notifyNewConnection(userTest);
+
+        // Test d'attribution de notre profil
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.YEAR, 2009);
+        calendar.set(Calendar.MONTH, 11);
+        calendar.set(Calendar.DAY_OF_MONTH, 24);
+        User nous = new User("login", "password", "firstName", "lastName", calendar, "avatarPath");
+        WindowComponent.getInstance().getApiProfile().setCurrentUser(nous);
         // ------------------------------------------------------------------------------
 
         // Récupération de la liste des utilisateurs déjà connectés pour les afficher dans OnlineUsersComponent

@@ -80,7 +80,6 @@ public final class TCPNetworkListener extends AbstractNetworkListener {
                 //TCP CONNECTION ACCEPTED
                 //######################################################
                     final Socket connectionSocket = tcpServer.accept();
-
                     Controller.getInstance().getThreadManager().
                             assignTaskToWorker(connectionSocket);
             } catch (Exception e) {
