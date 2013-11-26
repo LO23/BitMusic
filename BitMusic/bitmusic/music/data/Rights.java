@@ -46,6 +46,8 @@ public class Rights implements Serializable{
             this.canReadInfo=canReadInfoValue;
             this.canRate=canRateValue;
             this.canComment=canCommentValue;
+        
+            System.out.println("New -- " + this.toString());
         }
 
     /**
@@ -119,7 +121,20 @@ public class Rights implements Serializable{
         
            canComment=canCommentValue;
         }
-          
 
-    
+    /**
+     * toString function (variables : canPlay, canReadInfo, canRate and canComment).
+     * @return string of variables
+     */
+    @Override public final String toString() {
+        return "Rights -- canPlay : " + canPlay + " ; canReadInfo : " + canReadInfo + " ; canRate : " + canRate + " ; canComment : " + canComment;
+    }
+          
+    /**
+     * toString function (variables : canPlay, canReadInfo, canRate and canComment).
+     * @return string of variables
+     */
+    public Boolean equals(Rights r) {
+        return this.canComment == r.canComment && this.canPlay == r.canPlay && this.canRate == r.canRate && this.canReadInfo == r.canReadInfo;
+    }
 }

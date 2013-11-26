@@ -44,6 +44,8 @@ public class Comment implements Serializable{
         this.authorId = author;
         this.commentText = comment;
         this.commentDate = new Date();
+        
+        System.out.println("New -- " + this.toString());
     }
 	
     /**
@@ -68,5 +70,13 @@ public class Comment implements Serializable{
      */
     public Date getDate() {
         return this.commentDate;
+    }
+
+    /**
+     * toString function (variables : commentText, authorId and commentDate).
+     * @return string of variables
+     */
+    @Override public final String toString() {
+        return "Comment -- Text : " + commentText + " ; Author : " + authorId + " ; Date : " + commentDate.toString();
     }
 }
