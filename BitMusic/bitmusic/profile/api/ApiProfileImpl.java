@@ -95,7 +95,7 @@ public class ApiProfileImpl implements ApiProfile {
                 avatarPath);
 
         String defaultPath = new File("").getAbsolutePath().toString() +
-                "\\BitMusic\\profiles\\" + this.getCurrentUserFolder() ;
+                "\\BitMusic\\profiles" + this.getCurrentUserFolder() ;
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
            try {
