@@ -97,7 +97,7 @@ public class User implements Serializable {
         this.birthDate = birthDate;
         this.avatarPath = avatarPath;
         this.categories = new ArrayList<Category>();
-        categories.add(new Category("Général"));
+        categories.add(new Category("Default"));
     }
 
     /**
@@ -260,7 +260,7 @@ public class User implements Serializable {
      */
     public Category getCategoryById(String categoryId) throws ProfileExceptions {
         for(Category cat : this.categories) {
-            if(cat.getId() == categoryId) {
+            if(cat.getId().equals(categoryId)) {
                 return cat;
             }
         }
@@ -281,12 +281,12 @@ public class User implements Serializable {
      * @return
      */
     public User getContact(String userId) {
-    	User usr = null;
     	for (Category cat : categories) {
-    		usr = cat.findContact(userId);
-    		if (usr != null) break;
+    		User usr = cat.findContact(userId);
+    		if (usr != null)
+                    return usr;
     	}
-        return usr;
+        return null;
     }
 
     /**
@@ -294,8 +294,10 @@ public class User implements Serializable {
      * @param name
      */
     public void addCategory(String name) throws ProfileExceptions {
-        if(name != "") categories.add(new Category(name));
-        else throw new ProfileExceptions(ProfileExceptionType.CategoryEmptyName);
+        if(!name.equals(""))
+            categories.add(new Category(name));
+        else
+            throw new ProfileExceptions(ProfileExceptionType.CategoryEmptyName);
     }
 
     /**
@@ -303,9 +305,12 @@ public class User implements Serializable {
      * @param id
      * @param newName
      */
-    public void updateCategory(String categoryId, String newName) throws ProfileExceptions {
-       if(newName != "") this.getCategoryById(categoryId).setName(newName);
-       else throw new ProfileExceptions(ProfileExceptionType.CategoryEmptyName);
+    public void updateCategory(String categoryId,
+            String newName) throws ProfileExceptions {
+       if(!newName.equals(""))
+           this.getCategoryById(categoryId).setName(newName);
+       else
+           throw new ProfileExceptions(ProfileExceptionType.CategoryEmptyName);
     }
 
     /**
@@ -355,8 +360,10 @@ public class User implements Serializable {
      * @param song
      */
     public void deleteSong(String songId) throws ProfileExceptions{
-        if(songId != "") this.localSongs.removeSong(songId);
-        else throw new ProfileExceptions(ProfileExceptionType.SongEmptyName);
+        if(!songId.equals(""))
+            this.localSongs.removeSong(songId);
+        else
+            throw new ProfileExceptions(ProfileExceptionType.SongEmptyName);
     }
 
     /**
@@ -377,7 +384,9 @@ public class User implements Serializable {
         int year = this.birthDate.get(Calendar.YEAR);
         int month = this.birthDate.get(Calendar.MONTH);
         int day = this.birthDate.get(Calendar.DAY_OF_MONTH);
-        return Integer.toString(year) + Integer.toString(month) + Integer.toString(day);
+        return Integer.toString(year) 
+                + Integer.toString(month)
+                + Integer.toString(day);
     }
 
     /**
@@ -387,11 +396,11 @@ public class User implements Serializable {
      */
     public String getEncryptedPassword() {
     	ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();
-		pwdEncryptor.setAlgorithm("SHA-1");
-		return pwdEncryptor.encryptPassword(password);
+	pwdEncryptor.setAlgorithm("SHA-1");
+	return pwdEncryptor.encryptPassword(password);
     }
 
-	public String getFolderName() {
-		return login + "_" + getTransformedBirthday();
+    public String getFolderName() {
+	return login + "_" + getTransformedBirthday();
     }
 }

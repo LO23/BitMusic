@@ -101,11 +101,9 @@ public final class Controller {
         threadManager = bitmusic.network.main.ThreadManager.getInstance();
 
         //Contains the NetworkListener instance
+        
         tcpListener = bitmusic.network.main.TCPNetworkListener.getInstance();
         udpListener = bitmusic.network.main.UDPNetworkListener.getInstance();
-
-        tcpListener.run();
-        udpListener.run();
     }
 
     /**

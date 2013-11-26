@@ -58,13 +58,17 @@ public class FileParser {
      */
     public User loadUser(String login, String pwd) throws ProfileExceptions {
         try {
-            String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\";
+            /*String defaultPath = new File("").getAbsolutePath().toString()
+                    + "\\BitMusic\\profiles\\";*/
+            String defaultPath = new File("").getAbsolutePath().toString()
+                    + "\\BitTest\\profiles\\";
 
             DirectoryStream<Path> stream = Files.newDirectoryStream(FileSystems.getDefault().getPath(defaultPath));
             for(Path path:stream) {
                 if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
                     if(readAuthFile(path.toString(), pwd)) {
-                        FileInputStream saveFile = new FileInputStream(path.toString() + "\\profile\\" + login + ".ser");
+                        FileInputStream saveFile = new FileInputStream(path.toString() +
+                                "\\profile\\" + login + ".ser");
                         try {
                             ObjectInputStream ois = new ObjectInputStream(saveFile);
                             User loadedUser = (User) ois.readObject();
@@ -84,8 +88,10 @@ public class FileParser {
 
     public boolean readAuthFile(String path, String pwd) throws ProfileExceptions {
         try {
-            FileInputStream authFile = new FileInputStream(path + "\\profile\\auth");
+            FileInputStream authFile = new FileInputStream(path
+                    + "\\profile\\auth");
             ObjectInputStream ois = new ObjectInputStream(authFile);
+            String login = ois.readUTF();
             String password = ois.readUTF();
 
             ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();

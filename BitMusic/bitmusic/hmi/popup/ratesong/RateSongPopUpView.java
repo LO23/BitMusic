@@ -31,6 +31,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     @Override
     public void initPanel() {
         System.out.println("--- RateSongPopUpView.initPanel()");
+
         final Dimension d = new Dimension(80, 20);
 
         this.rateSongLabel.setSize(d);
