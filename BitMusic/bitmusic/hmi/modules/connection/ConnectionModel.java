@@ -8,6 +8,7 @@ package bitmusic.hmi.modules.connection;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.profile.utilities.ProfileExceptions;
 
 /**
  *
@@ -19,7 +20,7 @@ public final class ConnectionModel extends AbstractModel {
         super();
     }
 
-    public boolean doConnection(String login, String password) {
+    public boolean doConnection(String login, String password) throws ProfileExceptions {
         return WindowComponent.getInstance().getApiProfile().checkPassword(login, password);
     }
 }
