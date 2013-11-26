@@ -11,6 +11,7 @@ import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractComponent;
 import bitmusic.music.data.Song;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -32,8 +33,8 @@ public final class CentralAreaComponent extends AbstractComponent<CentralAreaMod
 
         TabComponent tabComponent = new TabComponent();
         ArrayList<Song> songList = new ArrayList<Song>();
-        songList.add(new Song("1", "Make me", "Avicii", "BOUILLA", null));
-        songList.add(new Song("2", "Wake me up", "Avicii", "BOUILLA2", null));
+        songList.add(new Song("1", "Make me", "Avicii", "BOUILLA", new LinkedList()));
+        songList.add(new Song("2", "Wake me up", "Avicii", "BOUILLA2", new LinkedList()));
         tabComponent.getModel().getModeleTable().setSong(songList);
         this.getView().addTab(tabComponent.getView());
 
