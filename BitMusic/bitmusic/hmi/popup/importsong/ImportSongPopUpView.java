@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -42,7 +41,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private JButton addTagButton = new JButton("Ajouter");
     private JLabel infoClickLabel = new JLabel("(ctrl+clic : sélectionner plusieurs tags)");
 
-    private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
+    private ArrayList<JTextField> listCompulsoryFields = new ArrayList();
 
     private JList tagList = new JList();
     private JScrollPane tagsTablePane = new JScrollPane(this.tagList);

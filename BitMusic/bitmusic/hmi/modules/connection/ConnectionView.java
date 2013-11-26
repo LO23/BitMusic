@@ -33,7 +33,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     private JTextField loginField = new JTextField("");
     private JPasswordField passwordField = new JPasswordField("");
 
-    private ArrayList<JTextField> listCompulsoryFields = new ArrayList<>();
+    private ArrayList<JTextField> listCompulsoryFields = new ArrayList();
 
     public ConnectionView() {
         super();

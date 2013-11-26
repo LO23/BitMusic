@@ -10,10 +10,8 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -53,36 +51,30 @@ public class WindowView extends JFrame implements Observer {
             this.getContentPane().add(view.getPanel());
         } else {
             this.getContentPane().add(contentPanel);
-            switch (view.getType()) {
-                case "WEST":
-                    contentPanel.add(view.getPanel(), BorderLayout.WEST);
-                    break;
-                case "SOUTH":
-                    contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
-                    break;
-                case "NORTH":
-                    if (view.getClass().getSimpleName().equalsIgnoreCase("MyProfileView")) {
-                        gridBagConstraints.fill = GridBagConstraints.NONE;
-                        gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-                        gridBagConstraints.weightx = 1;
-                        jpanelNorth.add(view.getPanel(), gridBagConstraints);
-                    }
-                    if (view.getClass().getSimpleName().equalsIgnoreCase("SearchBarView")) {
-                        gridBagConstraints.fill = GridBagConstraints.NONE;
-                        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-                        gridBagConstraints.weightx = 1;
-                        jpanelNorth.add(view.getPanel(), gridBagConstraints);
-                    }
-                    break;
-                case "EAST":
-                    contentPanel.add(view.getPanel(), BorderLayout.EAST);
-                    break;
-                case "CENTER":
-                    contentPanel.add(view.getPanel(), BorderLayout.CENTER);
-                    break;
-                default:
-                    System.out.println("Error : type du panel (north, south, east...) non défini !");
-                    break;
+            String type = view.getType();
+            if (type.equals("WEST")) {
+                contentPanel.add(view.getPanel(), BorderLayout.WEST);
+            } else if (type.equals("SOUTH")) {
+                contentPanel.add(view.getPanel(), BorderLayout.SOUTH);
+            } else if(type.equals("NORTH")) {
+                if (view.getClass().getSimpleName().equalsIgnoreCase("MyProfileView")) {
+                    gridBagConstraints.fill = GridBagConstraints.NONE;
+                    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
+                    gridBagConstraints.weightx = 1;
+                    jpanelNorth.add(view.getPanel(), gridBagConstraints);
+                }
+                if (view.getClass().getSimpleName().equalsIgnoreCase("SearchBarView")) {
+                    gridBagConstraints.fill = GridBagConstraints.NONE;
+                    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+                    gridBagConstraints.weightx = 1;
+                    jpanelNorth.add(view.getPanel(), gridBagConstraints);
+                }
+            } else if(type.equals("EAST")) {
+                contentPanel.add(view.getPanel(), BorderLayout.EAST);
+            } else if(type.equals("CENTER")) {
+                contentPanel.add(view.getPanel(), BorderLayout.CENTER);
+            } else {
+                System.out.println("Error : type du panel (north, south, east...) non défini !");
             }
         }
         this.pack();

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public abstract class AbstractModel extends Observable {
 
-    private ArrayList<Observer> listObservers = new ArrayList<>();
+    private ArrayList<Observer> listObservers = new ArrayList();
 
     public AbstractModel() {
 
@@ -32,7 +32,7 @@ public abstract class AbstractModel extends Observable {
 
     @Override
     public void removeAllObservers() {
-        this.listObservers = new ArrayList<>();
+        this.listObservers = new ArrayList();
     }
 
     @Override

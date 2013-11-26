@@ -12,4 +12,12 @@ package bitmusic.network.main;
  */
 public class TCPNetworkListener extends AbstractNetworkListener {
 
+    public TCPNetworkListener(final int portToListen) throws NetworkException {
+        super(portToListen);
+    }
+
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
