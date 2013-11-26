@@ -32,6 +32,8 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             JTabbedPane tabbedPane = WindowComponent.getInstance().getCentralAreaComponent().getView().getTabbedPane();
             String tabTitle = TabController.this.getView().getTitle();
             tabbedPane.removeTabAt(tabbedPane.indexOfTab(tabTitle));
+
+            // Est-ce que l'objet TabComponent est bien totalement supprimé ?
         }
     }
 

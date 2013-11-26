@@ -102,6 +102,11 @@ public final class MyProfileController extends AbstractController<MyProfileModel
              WindowComponent win = WindowComponent.getInstance();
              TabComponent tabComponent = new TabComponent();
 
+             // Stockage des détails de la requête dans le TabComponent
+             tabComponent.getModel().setRequestOrigin("MyProfile");
+             tabComponent.getModel().setRequestText("");
+             tabComponent.getModel().setRequestFilter("");
+
 
 //             if (win.getApiProfile().getCurrentUser().getLocalSongs().getlibrary().isEmpty()) {
 //                 ArrayList<Song> songList = new ArrayList();
