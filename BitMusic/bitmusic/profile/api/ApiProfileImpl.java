@@ -19,6 +19,10 @@ import bitmusic.profile.saving.FileParser;
 import bitmusic.profile.saving.FileSaver;
 import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 
 /**
  *
@@ -28,9 +32,21 @@ public class ApiProfileImpl implements ApiProfile {
     private static ApiProfileImpl currentApi;
     public User currentUser;
 
-    public static ApiProfileImpl getApiProfile(){
+    public static ApiProfileImpl getApiProfile() throws ProfileExceptions {
         if (currentApi == null) {
             currentApi = new ApiProfileImpl();
+        }
+
+        String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic";
+
+        if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
+           try {
+            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
+            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath + "\\profiles"));
+            }
+            catch(IOException io) {
+                throw new ProfileExceptions(io.toString());
+            }
         }
 
         return currentApi;
@@ -56,7 +72,7 @@ public class ApiProfileImpl implements ApiProfile {
         }
 
         if(birthDate == null) {
-            throw new ProfileExceptions(ProfileExceptionType.PasswordNull);
+            throw new ProfileExceptions(ProfileExceptionType.BirthDateNull);
         }
 
         if(login.contains("_")) {
@@ -65,6 +81,22 @@ public class ApiProfileImpl implements ApiProfile {
 
         currentUser = new User(login, password, firstName, lastName, birthDate,
                 avatarPath);
+
+        String defaultPath = new File("").getAbsolutePath().toString() +
+                "\\BitMusic\\profiles\\" + this.getCurrentUserFolder() ;
+
+        if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
+           try {
+            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
+            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
+                    + "\\profile"));
+            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
+                    + "\\music"));
+            }
+            catch(IOException io) {
+                throw new ProfileExceptions(io.toString());
+            }
+        }
 
     }
 
@@ -94,7 +126,7 @@ public class ApiProfileImpl implements ApiProfile {
     public ArrayList<String> getCategoriesNameByUserId(String userId) throws ProfileExceptions {
     	if (userId == null || userId.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.UserNull);
         ArrayList<Category> myCategories = currentUser.getCategories();
-        ArrayList<String> myCategoriesNames = new ArrayList<>();
+        ArrayList<String> myCategoriesNames = new ArrayList<String>();
 
         for (Category cat : myCategories) {
         	if (cat.findContact(userId) != null) myCategoriesNames.add(cat.getName());

@@ -24,6 +24,10 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "No password defined";
                 break;
             }
+            case BirthDateNull : {
+                this.errorMessage = "No birthdate given";
+                break;
+            }
             case LoginWithInvalidCharacters : {
                 this.errorMessage = "Login with invalid characters";
                 break;

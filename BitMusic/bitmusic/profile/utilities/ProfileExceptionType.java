@@ -13,6 +13,7 @@ package bitmusic.profile.utilities;
 public enum ProfileExceptionType {
     LoginNull,
     PasswordNull,
+    BirthDateNull,
     ConnectionWrongLogin,
     ConnectionWrongPassword,
     FileNotFound,

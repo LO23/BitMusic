@@ -65,7 +65,8 @@ public class FileParser {
                 if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
                     if(readAuthFile(path.toString(), pwd)) {
                         FileInputStream saveFile = new FileInputStream(path.toString() + "\\profile\\" + login + ".ser");
-                        try (ObjectInputStream ois = new ObjectInputStream(saveFile)) {
+                        try {
+                            ObjectInputStream ois = new ObjectInputStream(saveFile);
                             User loadedUser = (User) ois.readObject();
                             return loadedUser;
                         }
@@ -84,12 +85,12 @@ public class FileParser {
     public boolean readAuthFile(String path, String pwd) throws ProfileExceptions {
         try {
             FileInputStream authFile = new FileInputStream(path + "\\profile\\auth");
-            try (ObjectInputStream ois = new ObjectInputStream(authFile)) {
-                String password = ois.readUTF();
-                ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();
-        		pwdEncryptor.setAlgorithm("SHA-1");
-        		return pwdEncryptor.checkPassword(pwd, password);
-            }
+            ObjectInputStream ois = new ObjectInputStream(authFile);
+            String password = ois.readUTF();
+
+            ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();
+            pwdEncryptor.setAlgorithm("SHA-1");
+            return pwdEncryptor.checkPassword(pwd, password);
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions("File not found\n" + eFound.toString());
