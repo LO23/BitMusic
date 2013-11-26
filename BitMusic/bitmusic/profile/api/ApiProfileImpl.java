@@ -6,6 +6,7 @@
 
 package bitmusic.profile.api;
 
+import bitmusic.music.api.ApiMusicImpl;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -32,11 +33,7 @@ public class ApiProfileImpl implements ApiProfile {
     private static ApiProfileImpl currentApi;
     public User currentUser;
 
-    public static ApiProfileImpl getApiProfile() throws ProfileExceptions {
-        if (currentApi == null) {
-            currentApi = new ApiProfileImpl();
-        }
-
+    private ApiProfileImpl() throws ProfileExceptions {
         String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic";
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
@@ -46,6 +43,17 @@ public class ApiProfileImpl implements ApiProfile {
             }
             catch(IOException io) {
                 throw new ProfileExceptions(io.toString());
+            }
+        }
+    }
+
+    public static ApiProfileImpl getApiProfile()  {
+        if (currentApi == null) {
+            try {
+                currentApi = new ApiProfileImpl();
+            }
+            catch(ProfileExceptions e) {
+                System.out.println(e.toString());
             }
         }
 
@@ -75,6 +83,10 @@ public class ApiProfileImpl implements ApiProfile {
             throw new ProfileExceptions(ProfileExceptionType.BirthDateNull);
         }
 
+        if(avatarPath == null) {
+            throw new ProfileExceptions(ProfileExceptionType.PathNull);
+        }
+
         if(login.contains("_")) {
             throw new ProfileExceptions(ProfileExceptionType.LoginWithInvalidCharacters);
         }
@@ -83,15 +95,14 @@ public class ApiProfileImpl implements ApiProfile {
                 avatarPath);
 
         String defaultPath = new File("").getAbsolutePath().toString() +
-                "\\BitMusic\\profiles\\" + this.getCurrentUserFolder() ;
+                "\\BitMusic\\profiles" + this.getCurrentUserFolder() ;
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
            try {
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
                     + "\\profile"));
-            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
-                    + "\\music"));
+            ApiMusicImpl.getInstance().initMusicFolder();
             }
             catch(IOException io) {
                 throw new ProfileExceptions(io.toString());

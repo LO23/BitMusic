@@ -28,6 +28,10 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "No birthdate given";
                 break;
             }
+            case PathNull : {
+                this.errorMessage = "No path given";
+                break;
+            }
             case LoginWithInvalidCharacters : {
                 this.errorMessage = "Login with invalid characters";
                 break;
