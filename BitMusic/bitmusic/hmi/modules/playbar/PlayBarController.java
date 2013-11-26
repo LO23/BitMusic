@@ -9,6 +9,7 @@ package bitmusic.hmi.modules.playbar;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.connection.ConnectionController;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.music.player.BitMusicPlayer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -19,6 +20,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -55,6 +58,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
            // try {
                 System.out.println("---- Clic sur le bouton Play");
 
+                BitMusicPlayer bitMusic = BitMusicPlayer.getInstance();
                 WindowComponent win = WindowComponent.getInstance();
                 // Plays a song
                 if (resume == false && pause == false && stop == false && play == false) {
@@ -128,5 +132,16 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
             // Plays the next song
         }
+    }
+
+    // Pour 'écouter' le temps de lecture du son et l'afficher sur la slider
+    public class SoundTimeListener implements ChangeListener {
+
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            // TODO
+        }
+
     }
 }
