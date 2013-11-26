@@ -14,6 +14,7 @@ public enum ProfileExceptionType {
     LoginNull,
     PasswordNull,
     BirthDateNull,
+    PathNull,
     ConnectionWrongLogin,
     ConnectionWrongPassword,
     FileNotFound,
