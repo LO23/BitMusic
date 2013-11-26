@@ -48,38 +48,73 @@ public class Rights implements Serializable{
             this.canComment=canCommentValue;
         }
 
-        
+    /**
+     * canPlay getter
+     * 
+     * @return canPlay
+     */    
         public boolean getcanPlay(){
             return(canPlay); 
         }
+        
+/**
+ * canReadInfo getter
+ * 
+ * @return canReadInfo
+ */
         
         public boolean getcanReadInfo(){
             return(canReadInfo); 
         }
         
+/**
+ * canRate getter
+ * @return canRate
+ */
         public boolean getcanRate(){
             return(canRate); 
         }
         
+/**
+ * canComment getter
+ * @return canComment
+ */
         public boolean getcanComment(){
             return(canComment); 
         }
-        
+
+/** canPlayValue setter
+ * 
+ * @param canPlayValue 
+ */
         public void setcanPlay(boolean canPlayValue) {
         
            canPlay=canPlayValue;
         }
         
+        /**
+         * canReadInfo setter
+         * 
+         * @param canReadInfoValue 
+         */
          public void setcanReadInfo(boolean canReadInfoValue) {
         
            canReadInfo=canReadInfoValue;
         }
         
+         /**
+          * canRate setter 
+          * 
+          * @param canRateValue 
+          */
           public void setcanRate(boolean canRateValue) {
         
            canRate=canRateValue;
         }
-          
+          /** 
+           * CanComment setter
+           * @param canCommentValue 
+           */
          public void setcanComment(boolean canCommentValue) {
         
            canComment=canCommentValue;
