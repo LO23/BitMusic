@@ -36,9 +36,6 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
     public void initPanel() {
         System.out.println("--- CentralAreaView.initPanel()");
 
-        // Création du tabbedPane
-
-
         this.getPanel().add(this.tabbedPane, BorderLayout.CENTER);
         this.setVisible(true);
     }
