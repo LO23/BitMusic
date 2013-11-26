@@ -32,7 +32,6 @@ public class UDPNetworkListener extends AbstractNetworkListener {
         super(portToListen);
         try{
             UDPSERVER = new DatagramSocket(PORT_LISTENED);
-            UDPSERVER.bind(LOCALPORT);
         } catch (SocketException e) {
 
         }

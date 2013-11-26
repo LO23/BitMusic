@@ -46,7 +46,6 @@ public final class TCPNetworkListener extends AbstractNetworkListener {
         super(portToListen);
         try {
             tcpServer = new ServerSocket(PORT_LISTENED);
-            tcpServer.bind(LOCALPORT);
         } catch (Exception e) {
             throw new NetworkException(
                     "TCP server socket binding with LOCALPORT failed");
