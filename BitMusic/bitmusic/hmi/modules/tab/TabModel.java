@@ -6,10 +6,8 @@
 
 package bitmusic.hmi.modules.tab;
 
-import bitmusic.hmi.modules.onlineusers.OnlineUsersModel;
 import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.music.data.Song;
-import bitmusic.profile.classes.User;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -25,7 +23,7 @@ public final class TabModel extends AbstractModel {
     }
 
     public class TabTableModel extends AbstractTableModel {
-        private String[] columnNames = { "Titre","Artiste","Album","Edit", "Infos","Note","Sauvergarder" };
+        private String[] columnNames = { "Titre", "Artiste", "Album", "Éditer", "Infos", "Noter", "Sauvegarder" };
         private ArrayList<Song> arrayListSong = new ArrayList<>();
 
         public TabTableModel() {
@@ -42,41 +40,41 @@ public final class TabModel extends AbstractModel {
                 case 2:
                     return this.arrayListSong.get(row).getAlbum();
                 case 3:
-                    return "Edit";
+                    return "E";
                 case 4:
-                    return "Infos";
+                    return "I";
                 case 5:
-                    return "Note";
+                    return "N";
                 case 6:
-                    return "Sauvegarder";
+                    return "S";
                 default:
                     return null;
             }
         }
 
-        public Song getSongsAt(int row) {
+        public Song getSongAt(int row) {
             return this.arrayListSong.get(row);
         }
 
-//        public void addOnlineUser(final User user) {
-//            this.onlineUsers.add(user);
-//            fireTableRowsInserted(this.onlineUsers.size()-1, this.onlineUsers.size()-1);
-//            (TabModel.this).notifyObservers("ONLINE_USER_ADDED");
-//        }
-//
-//        public void removeOnlineUser(final String userId) {
-//            for (int row = 0; row < this.onlineUsers.size(); row++) {
-//                if (this.onlineUsers.get(row).getUserId().equals(userId)) {
-//                    this.onlineUsers.remove(row);
-//                    fireTableRowsDeleted(row, row);
-//                }
-//            }
-//            (TabModel.this).notifyObservers("ONLINE_USER_REMOVED");
-//        }
+        public void addSong(final Song song) {
+            this.arrayListSong.add(song);
+            fireTableRowsInserted(this.arrayListSong.size()-1, this.arrayListSong.size()-1);
+            (TabModel.this).notifyObservers("SONG_ADDED");
+        }
+
+        public void removeSong(final Song songId) {
+            for (int row = 0; row < this.arrayListSong.size(); row++) {
+                if (this.arrayListSong.get(row).getSongId().equals(songId)) {
+                    this.arrayListSong.remove(row);
+                    fireTableRowsDeleted(row, row);
+                }
+            }
+            (TabModel.this).notifyObservers("SONG_REMOVED");
+        }
 
         @Override
         public boolean isCellEditable(int row, int col) {
-            if (col == 1 || col == 2 || col == 3) {
+            if (col == 3 || col == 4 || col == 5 || col == 6) {
                 return true;
             }
             return false;

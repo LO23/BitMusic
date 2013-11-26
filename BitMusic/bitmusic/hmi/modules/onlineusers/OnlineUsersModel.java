@@ -24,7 +24,7 @@ public final class OnlineUsersModel extends AbstractModel {
     }
 
     public class OnlineUsersTableModel extends AbstractTableModel {
-        private String[] columnNames = { "Utilisateur", "Infos", "MP3" };
+        private String[] columnNames = { "Utilisateur", "Infos", "Morceaux" };
         private ArrayList<User> onlineUsers = new ArrayList<>();
 
         public OnlineUsersTableModel() {
@@ -37,9 +37,9 @@ public final class OnlineUsersModel extends AbstractModel {
                 case 0:
                     return this.onlineUsers.get(row).getLogin();
                 case 1:
-                    return "i";
+                    return "I";
                 case 2:
-                    return "MP3";
+                    return "M";
                 default:
                     return null;
             }

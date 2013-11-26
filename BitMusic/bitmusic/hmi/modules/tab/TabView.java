@@ -32,7 +32,7 @@ public final class TabView extends AbstractView<TabController> {
     private JButton btnClose = new JButton("x");
     private JPanel panelTab;
 
-      // Variables declaration - do not modify
+    // Variables declaration - do not modify
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration
@@ -74,16 +74,16 @@ public final class TabView extends AbstractView<TabController> {
 
 
         // Attache des listeners aux colonnes concernées
-        //ButtonColumn infosColumn = new ButtonColumn(this.table, this.getController().getInfos(), 1);
-        //ButtonColumn mp3Column = new ButtonColumn(this.table, this.getController().getMp3(), 2);
+        ButtonColumn editerColumn = new ButtonColumn(this.jTable1, this.getController().getEditer(), 3);
+        ButtonColumn infosColumn = new ButtonColumn(this.jTable1, this.getController().getInfos(), 4);
+        ButtonColumn noterColumn = new ButtonColumn(this.jTable1, this.getController().getNoter(), 5);
+        ButtonColumn sauvegarderColumn = new ButtonColumn(this.jTable1, this.getController().getSauvegarder(), 6);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
 
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
-
-
 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

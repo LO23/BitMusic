@@ -20,7 +20,6 @@ public final class ConnectionModel extends AbstractModel {
     }
 
     public boolean doConnection(String login, String password) {
-        //return WindowComponent.getInstance().getApiProfile().checkPassword(login, password); // TODO : en attente de la disponibilité de la méthode dans l'API
-        return true; // TODO : à virer
+        return WindowComponent.getInstance().getApiProfile().checkPassword(login, password);
     }
 }

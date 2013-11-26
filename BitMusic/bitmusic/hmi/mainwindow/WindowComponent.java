@@ -93,35 +93,30 @@ public class WindowComponent {
         this.centralAreaComponent.CentralAreaInit();
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
 
-         // Récupérer une liste des utilisateurs déjà connectés et la passer au OnlineUsersModel
-        // TODO : en attente de la disponibilité de la méthode dans l'API
-        // ArrayList<User> currentOnlineUsers = win.getApiNetwork().getListUser();
-        // onlineUsersComponent.getModel().setListUsersOnline(currentOnlineUsers);
-        // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
-        // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
         this.setPlayBarComponent(new PlayBarComponent());
         this.getWindowView().addView(this.getPlayBarComponent().getView());
 
         this.setOnlineUsersComponent(new OnlineUsersComponent());
         this.getWindowView().addView(this.getOnlineUsersComponent().getView());
 
-        this.setPlayBarComponent(new PlayBarComponent());
-        this.getWindowView().addView(this.getPlayBarComponent().getView());
-
+        // ------------------------ À supprimer dès que possible ------------------------
+        // Test d'une connexion d'un utilisateur
         User userTest = new User("Login", "Password", "Toto", "Bic", Calendar.getInstance(), "/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png");
         WindowComponent.getInstance().getApiHmi().notifyNewConnection(userTest);
+        // ------------------------------------------------------------------------------
 
+        // Récupération de la liste des utilisateurs déjà connectés pour les afficher dans OnlineUsersComponent
         String ourUserId = win.getApiProfile().getCurrentUser().getUserId();
         List<String> currentOnlineUsersId = win.getApiNetwork().getAllUserId();
         for (int i = 0; i < currentOnlineUsersId.size(); i++) {
             try {
-                win.getApiNetwork().getUser(ourUserId, currentOnlineUsersId.get(i), null); // searchId nécessaire ?
+                win.getApiNetwork().getUser(ourUserId, currentOnlineUsersId.get(i), null); // searchId nécessaire ici ?
             } catch (NetworkException e) {
                 System.out.println("Erreur à l'appel de la méthode ApiNetwork.getUser() !");
             }
         }
-        // NB : Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait lors de l'appel à doConnection()
-        // => on est censé recevoir un notifyNewConnection() de Network pour notre propre connection
+        // Pas besoin de prévenir Network qu'on s'est connecté, Profile le fait via notre appel à checkPassword() dans doConnection()
+        // On est censé recevoir un notifyNewConnection() de Network pour notre propre connection
     }
 
     public WindowModel getWindowModel() {
