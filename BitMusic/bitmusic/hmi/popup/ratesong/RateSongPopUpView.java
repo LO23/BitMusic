@@ -8,10 +8,6 @@ package bitmusic.hmi.popup.ratesong;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
-import java.awt.Dimension;
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
  *
@@ -20,9 +16,6 @@ import javax.swing.JLabel;
 public final class RateSongPopUpView extends AbstractView<RateSongPopUpController> {
 
     private final String type = "POPUP";
-    private final JLabel rateSongLabel = new JLabel("Noter un morceau");
-    private final JButton validateButton = new JButton("Valider");
-    private final JButton cancelButton = new JButton("Annuler");
 
     public RateSongPopUpView() {
         super();
@@ -31,39 +24,8 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     @Override
     public void initPanel() {
         System.out.println("--- RateSongPopUpView.initPanel()");
-        final Dimension d = new Dimension(80, 20);
 
-        this.rateSongLabel.setSize(d);
-        this.validateButton.setSize(d);
-        this.cancelButton.setSize(d);
-
-        GroupLayout layout = new GroupLayout(this.getPanel());
-        this.getPanel().setLayout(layout);
-
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-
-        layout.setHorizontalGroup(
-            layout.createSequentialGroup()
-                .addComponent(rateSongLabel)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(validateButton)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(cancelButton)
-                )
-        );
-
-        layout.setVerticalGroup(
-            layout.createSequentialGroup()
-                .addComponent(rateSongLabel)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(validateButton)
-                    .addComponent(cancelButton)
-                )
-        );
-
-        // TODO : étoiles de notation manquantes
+        // TODO
     }
 
     @Override

@@ -91,6 +91,7 @@ public class FileParser {
             FileInputStream authFile = new FileInputStream(path
                     + "\\profile\\auth");
             ObjectInputStream ois = new ObjectInputStream(authFile);
+            String login = ois.readUTF();
             String password = ois.readUTF();
 
             ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();

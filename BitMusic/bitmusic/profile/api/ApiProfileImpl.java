@@ -64,7 +64,7 @@ public class ApiProfileImpl implements ApiProfile {
 
         return currentApi;
     }
-    
+
     @Override
     public boolean checkPassword(String login,
             String password) throws ProfileExceptions {
@@ -79,7 +79,7 @@ public class ApiProfileImpl implements ApiProfile {
     }
 
     @Override
-    public void createUser(String login, String password, 
+    public void createUser(String login, String password,
             String firstName, String lastName,
             Calendar birthDate, String avatarPath) throws ProfileExceptions{
         if(login.isEmpty() || login.length() == 0){
@@ -108,13 +108,15 @@ public class ApiProfileImpl implements ApiProfile {
                 "\\BitMusic\\profiles" + this.getCurrentUserFolder() ;*/
 
         String defaultPath = new File("").getAbsolutePath().toString() +
-                "\\BitTest\\profiles" + this.getCurrentUserFolder() ;
+                "\\BitTest\\profiles\\" + this.getCurrentUserFolder() ;
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
            try {
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
                     + "\\profile"));
+            FileSaver.getFileSaver().saveAuthFile(currentUser);
+            saveUser(currentUser);
             ApiMusicImpl.getInstance().initMusicFolder();
             }
             catch(IOException io) {
@@ -244,12 +246,12 @@ public class ApiProfileImpl implements ApiProfile {
     }
 
     @Override
-    public void updateRights(String categoryId, boolean canIReadInfo, 
+    public void updateRights(String categoryId, boolean canIReadInfo,
             boolean canPlay, boolean canRate,
             boolean canComment) throws ProfileExceptions {
     	if (categoryId == null || categoryId.isEmpty())
             throw new ProfileExceptions(ProfileExceptionType.EmptyString);
-        currentUser.getCategoryById(categoryId).updateRight(canIReadInfo, 
+        currentUser.getCategoryById(categoryId).updateRight(canIReadInfo,
                 canPlay, canRate, canComment);
     }
 

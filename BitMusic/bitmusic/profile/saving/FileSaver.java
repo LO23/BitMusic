@@ -51,7 +51,8 @@ public class FileSaver {
                 + "\\BitMusic\\profiles\\" + userToSave.getFolderName();*/
         String defaultPath = new File("").getAbsolutePath().toString()
                 + "\\BitTest\\profiles\\" + userToSave.getFolderName();
-        
+
+
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
             throw new ProfileExceptions(ProfileExceptionType.DirNotFound);
         }
@@ -81,10 +82,10 @@ public class FileSaver {
             /*String defaultPath = new File("").getAbsolutePath().toString()
                     + "\\BitMusic\\profiles"
                     + ApiProfileImpl.getApiProfile().getCurrentUserFolder();*/
-            String defaultPath = new File("").getAbsolutePath().toString() 
-                    + "\\BitTest\\profiles"
+            String defaultPath = new File("").getAbsolutePath().toString()
+                    + "\\BitTest\\profiles\\"
                     + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
-            
+
             FileOutputStream authFile = new FileOutputStream(defaultPath
                     + "\\profile\\auth");
 

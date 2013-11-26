@@ -7,16 +7,9 @@
 package bitmusic.network.main;
 
 import bitmusic.network.exception.NetworkException;
-import java.net.InetSocketAddress;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketAddress;
-import java.nio.channels.DatagramChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  *
@@ -33,10 +26,6 @@ public final class TCPNetworkListener extends AbstractNetworkListener {
     */
     private static TCPNetworkListener NETLISTENER = null;
 
-    /**
-     * Thread in which the listener is running.
-     */
-    private final Thread thread = new Thread(this);
 
     /**
      * Default constructor.
@@ -46,10 +35,9 @@ public final class TCPNetworkListener extends AbstractNetworkListener {
         super(portToListen);
         try {
             tcpServer = new ServerSocket(PORT_LISTENED);
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new NetworkException(
-                    "TCP server socket binding with LOCALPORT failed");
-
+                    "TCP server socket binding with LOCALPORT failed : "+e.getMessage());
         }
         thread.start();
     }
