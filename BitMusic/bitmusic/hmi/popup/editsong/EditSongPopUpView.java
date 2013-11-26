@@ -25,11 +25,11 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     private final String type = "POPUP";
     private final JLabel editSongLabel = new JLabel("Editer un morceau");
     private final JLabel titleLabel = new JLabel("Titre");
-    private final JTextField titleField = new JTextField("");
+    private JTextField titleField = new JTextField("");
     private final JLabel artisteLabel = new JLabel("Auteur");
-    private final JTextField artisteField = new JTextField("");
+    private JTextField artisteField = new JTextField("");
     private final JLabel albumLabel = new JLabel("Album");
-    private final JTextField albumField = new JTextField("");
+    private JTextField albumField = new JTextField("");
     private final JLabel fileLabel = new JLabel("Fichier");
     private final JButton filebrowseButton = new JButton("Parcourir...");
     private final JButton validateButton = new JButton("Valider");
@@ -58,6 +58,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
         //champs tags manquant
 
         filebrowseButton.addActionListener(this.getController().new FileBrowseListener());
+        resetButton.addActionListener(this.getController().new ResetButtonListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -122,5 +123,29 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- EditSongPopUpView.update()");
+    }
+
+    public JTextField getTitleField()   {
+        return titleField;
+    }
+
+    public JTextField getArtisteField() {
+        return artisteField;
+    }
+
+    public JTextField getAlbumField()   {
+        return albumField;
+    }
+
+    public void setTitleField(JTextField title) {
+        this.titleField = title;
+    }
+
+    public void setArtisteField(JTextField artiste) {
+        this.artisteField = artiste;
+    }
+
+    public void setAlbumField(JTextField album) {
+        this.albumField = album;
     }
 }
