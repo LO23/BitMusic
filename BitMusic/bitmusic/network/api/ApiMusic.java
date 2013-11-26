@@ -47,6 +47,18 @@ public interface ApiMusic {
             final String searchId, final List<String> tagList)
             throws NetworkException;
     /**
+     * Ask for a remote song file.
+     *
+     * @param operator    local user ID who is requesting the song
+     * @param userId distant user ID that owns the song
+     * @param songId distant song ID that you want retrieve
+     * @param paramTemporary will the song be downloaded as temporary
+     * @throws NetworkException thrown when the get fail
+    */
+    void getSongFile(final String operator, final String userId,
+            final String songId, final boolean paramTemporary)
+            throws NetworkException;
+    /**
      *Return the list of users’ IDs.
      *
      * @return listUserId

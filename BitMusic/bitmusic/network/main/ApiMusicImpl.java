@@ -12,6 +12,7 @@ import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageAddComment;
+import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageGetSongsByUser;
 import bitmusic.network.message.MessageSearchSongsByTag;
 import java.util.List;
@@ -125,6 +126,45 @@ public final class ApiMusicImpl implements ApiMusic {
                 tagList,
                 userIdDest);
         Controller.getInstance().getThreadManager().assignTaskToHermes(message);
+    }
+    /**
+     * Ask for a remote song file.
+     *
+     * @param operator    local user ID who is requesting the song
+     * @param userId distant user ID that owns the song
+     * @param songId distant song ID that you want retrieve
+     * @param paramTemporary will the song be downloaded as temporary
+     * @throws NetworkException thrown when the get fail
+    */
+    @Override
+    public void getSongFile(final String operator, final String userId,
+            final String songId, final boolean paramTemporary)
+            throws NetworkException{
+        //Get the source address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String sourceAddress = Controller.getNetworkAddress();
+
+        //Get the destination address
+        String destinationAddress = Controller.getInstance().
+                getUserIpFromDirectory(userId);
+
+        final MessageGetSongFile message = new MessageGetSongFile(
+                //type of the message
+                EnumTypeMessage.GetSongFile,
+                //source address
+                sourceAddress,
+                //destination address
+                destinationAddress,
+                //ID of the user that owns the song
+                userId,
+                //ID of the song
+                songId,
+                //Is the file temporary ?
+                paramTemporary);
+
+        //Give the message to a worker...
+            Controller.getInstance().getThreadManager().
+                    assignTaskToHermes(message);
     }
     /**
      *Return the list of users’ IDs.
