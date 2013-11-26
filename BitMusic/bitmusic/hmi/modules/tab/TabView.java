@@ -8,12 +8,16 @@ package bitmusic.hmi.modules.tab;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
+import bitmusic.hmi.patterns.ButtonColumn;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -64,33 +68,23 @@ public final class TabView extends AbstractView<TabController> {
         // Contenu de l'onglet
         JPanel jPanel = this.getPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new JTable(this.getController().getModel().getModeleTable());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Titre", "Auteur", "Editer", "Informations", "Noter", "Sauvegarder"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(jPanel);
+
+        // Attache des listeners aux colonnes concernées
+        //ButtonColumn infosColumn = new ButtonColumn(this.table, this.getController().getInfos(), 1);
+        //ButtonColumn mp3Column = new ButtonColumn(this.table, this.getController().getMp3(), 2);
+
+        GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
+
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
-        jPanel.setLayout(layout);
+
+
+
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
