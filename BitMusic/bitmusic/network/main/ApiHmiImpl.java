@@ -11,6 +11,7 @@ import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageLogOut;
+import bitmusic.network.message.MessageGetUser;
 import java.util.List;
 import java.util.Map;
 
@@ -90,8 +91,31 @@ public final class ApiHmiImpl implements ApiHmi {
     @Override
     public void getUser(final String operator, final String userId,
             final String researchId) throws NetworkException {
-        Controller.getInstance().getApiProfile().
-                getUser(operator, userId, researchId);
+        //Get the source address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String sourceAddress = Controller.getNetworkAddress();
+
+        //Get the destination address
+        final String destinationAddress = Controller.getInstance().
+                getUserIpFromDirectory(userId);
+
+        final MessageGetUser message = new MessageGetUser(
+                //type of the message
+                EnumTypeMessage.GetUser,
+                //source address
+                sourceAddress,
+                //destination address
+                destinationAddress,
+                //ID of the user that owns the profile
+                userId,
+                //ID of the user that asks for the profile
+                operator,
+                //ID of the research
+                researchId);
+
+        //Give the message to a worker...
+            Controller.getInstance().getThreadManager().
+                    assignTaskToHermes(message);
     }
     /**
      * Ask for a remote song file.
