@@ -6,6 +6,7 @@
 
 package bitmusic.network.main;
 
+import bitmusic.network.exception.NetworkException;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
@@ -40,9 +41,11 @@ public class UDPNetworkListener extends AbstractNetworkListener {
 
     @Override
     public void run() {
-        Controller.getInstance().getThreadManager().
-                                    assignTaskToDatagramWorker(
-                                            UDPSERVER);
-
+        try {
+            Controller.getInstance().getThreadManager().
+                                        assignTaskToDatagramWorker(UDPSERVER);
+        } catch(NetworkException e) {
+            System.out.println(e.printStackTrace());
+        }
     }
 }
