@@ -8,6 +8,7 @@ import bitmusic.network.main.ApiMusicImpl;
 //porte d'entrée vers le module Network
 import bitmusic.network.main.Controller;
 import bitmusic.profile.api.ApiProfileImpl;
+import bitmusic.profile.utilities.ProfileExceptions;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -177,24 +178,31 @@ public class SongSearcher {
                 currentSong.getTitle(), currentSong.getArtist(),
                 currentSong.getAlbum(), currentSong.getTags(),
                 currentSong.getRightsByCategory());
-        ArrayList<String> categoryList = 
-              ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(userId);
-        Rights localRights = new Rights(true, true, true, true);
+        try {
+            ArrayList<String> categoryList
+                    = ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(
+                            userId);
 
-        for (String categoryName : categoryList) {
-            Rights r = currentSong.getRightsByCategory().get(categoryName);
-            if (!r.getcanComment()) {
-                r.setcanComment(false);
+            Rights localRights = new Rights(true, true, true, true);
+
+            for (String categoryName : categoryList) {
+                Rights r = currentSong.getRightsByCategory().get(categoryName);
+                if (!r.getcanComment()) {
+                    r.setcanComment(false);
+                }
+                if (!r.getcanPlay()) {
+                    r.setcanPlay(false);
+                }
+                if (!r.getcanRate()) {
+                    r.setcanRate(false);
+                }
+                if (!r.getcanReadInfo()) {
+                    r.setcanReadInfo(false);
+                }
             }
-            if (!r.getcanPlay()) {
-                r.setcanPlay(false);
-            }
-            if (!r.getcanRate()) {
-                r.setcanRate(false);
-            }
-            if (!r.getcanReadInfo()) {
-                r.setcanReadInfo(false);
-            }
+
+        } catch (ProfileExceptions e) {
+            System.out.println("Can't get categoryList from UserId");
         }
 
         return lightSong;
