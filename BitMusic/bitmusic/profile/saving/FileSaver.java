@@ -61,10 +61,9 @@ public class FileSaver {
 
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath + "\\profile\\" + userToSave.getLogin() + ".ser");
-            try (ObjectOutputStream oos = new ObjectOutputStream(saveFile)) {
-                oos.writeObject(userToSave);
-                oos.flush();
-            }
+            ObjectOutputStream oos = new ObjectOutputStream(saveFile);
+            oos.writeObject(userToSave);
+            oos.flush();
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(eFound.toString());
@@ -86,11 +85,10 @@ public class FileSaver {
 
             FileOutputStream authFile = new FileOutputStream(defaultPath + "\\profile\\auth");
 
-            try (ObjectOutputStream oos = new ObjectOutputStream(authFile)) {
-                oos.writeUTF(toSave.getLogin());
-                oos.writeUTF(toSave.getEncryptedPassword());
-                oos.flush();
-            }
+            ObjectOutputStream oos = new ObjectOutputStream(authFile);
+            oos.writeUTF(toSave.getLogin());
+            oos.writeUTF(toSave.getEncryptedPassword());
+            oos.flush();
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(eFound.toString());
