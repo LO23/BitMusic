@@ -62,4 +62,13 @@ public final class CommentSongPopUpController extends AbstractController<Comment
             //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
         }
     }
+
+    public class ResetListener implements ActionListener    {
+        @Override
+        public void actionPerformed(ActionEvent e)  {
+            System.out.println("---- Clic sur le bouton reset");
+
+            CommentSongPopUpController.this.getView().getCommentField().setText("");
+        }
+    }
 }
