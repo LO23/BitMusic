@@ -6,6 +6,7 @@
 
 package bitmusic.profile.saving;
 
+import bitmusic.profile.api.ApiProfileImpl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -46,21 +47,18 @@ public class FileSaver {
      * @throws ProfileExceptions
      */
     public void saveUser(User userToSave) throws ProfileExceptions {
-        String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + userToSave.getFolderName();
-        //String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + userToSave.getLogin() + "_" + userToSave.getTransformedBirthday();
-
+        /*String defaultPath = new File("").getAbsolutePath().toString()
+                + "\\BitMusic\\profiles\\" + userToSave.getFolderName();*/
+        String defaultPath = new File("").getAbsolutePath().toString()
+                + "\\BitTest\\profiles\\" + userToSave.getFolderName();
+        
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
-           /*try {
-            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
-            }
-            catch(IOException io) {
-                throw new ProfileExceptions("Cannot create directory");
-            }*/
             throw new ProfileExceptions(ProfileExceptionType.DirNotFound);
         }
 
         try {
-            FileOutputStream saveFile = new FileOutputStream(defaultPath + "\\profile\\" + userToSave.getLogin() + ".ser");
+            FileOutputStream saveFile = new FileOutputStream(defaultPath
+                    + "\\profile\\" + userToSave.getLogin() + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(saveFile);
             oos.writeObject(userToSave);
             oos.flush();
@@ -80,10 +78,15 @@ public class FileSaver {
      */
     public void saveAuthFile(User toSave) throws ProfileExceptions {
         try {
-            String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + toSave.getFolderName();
-            //String defaultPath = new File("").getAbsolutePath().toString() + "\\BitMusic\\profiles\\" + toSave.getLogin() + "_" + toSave.getTransformedBirthday();
-
-            FileOutputStream authFile = new FileOutputStream(defaultPath + "\\profile\\auth");
+            /*String defaultPath = new File("").getAbsolutePath().toString()
+                    + "\\BitMusic\\profiles"
+                    + ApiProfileImpl.getApiProfile().getCurrentUserFolder();*/
+            String defaultPath = new File("").getAbsolutePath().toString() 
+                    + "\\BitTest\\profiles"
+                    + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
+            
+            FileOutputStream authFile = new FileOutputStream(defaultPath
+                    + "\\profile\\auth");
 
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
             oos.writeUTF(toSave.getLogin());
