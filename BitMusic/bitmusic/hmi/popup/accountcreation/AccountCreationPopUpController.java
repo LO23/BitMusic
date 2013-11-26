@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.accountcreation;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.connection.ConnectionController;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpController;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpView;
@@ -140,5 +141,21 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
 
         return true;
+    }
+
+    public class ResetListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Reset");
+
+            // Pas besoin du Model ici : on agit directement sur la View
+            AccountCreationPopUpController.this.getView().getAvatarField().setText("");
+            AccountCreationPopUpController.this.getView().getBirthdateField().setText("");
+            AccountCreationPopUpController.this.getView().getConfirmField().setText("");
+            AccountCreationPopUpController.this.getView().getFirstnameField().setText("");
+            AccountCreationPopUpController.this.getView().getLastnameField().setText("");
+            AccountCreationPopUpController.this.getView().getLoginField().setText("");
+            AccountCreationPopUpController.this.getView().getPasswordField().setText("");
+        }
     }
 }

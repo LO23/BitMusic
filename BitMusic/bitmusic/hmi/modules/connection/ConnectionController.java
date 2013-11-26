@@ -10,9 +10,12 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.accountcreation.AccountCreationPopUpComponent;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpController;
+import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -45,6 +48,19 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             ConnectionModel model = ConnectionController.this.getModel();
             ConnectionView view = ConnectionController.this.getView();
 
+            Boolean isRightPass = false;
+
+            try {
+                isRightPass = model.doConnection(view.getLoginField().getText(), view.getPasswordField().getText());
+            } catch (ProfileExceptions ex) {
+                Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(
+                        view,
+                        "Erreur de vérification du mot de passe",
+                        "Erreur de profile",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+
             if ( !ConnectionController.this.checkAllCompulsoryFields() ){
                 JOptionPane.showMessageDialog(
                         view,
@@ -52,7 +68,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                         "Attention aux champs",
                         JOptionPane.WARNING_MESSAGE);
             }
-            else if (model.doConnection(view.getLoginField().getText(), view.getPasswordField().getText()) == true) {
+            else if ( isRightPass ) {
                 WindowComponent win = WindowComponent.getInstance();
                 // On enlève la ConnectionView des "objets utilisés"
                 win.getWindowView().removeView(view);
@@ -67,8 +83,6 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                         "Connexion refusée",
                         JOptionPane.ERROR_MESSAGE);
             }
-
-
         }
     }
 
