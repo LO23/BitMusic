@@ -103,6 +103,10 @@ public class Song implements Serializable{
         this.rightsByCategory= new HashMap<String,Rights>();
         this.localRights = new Rights(true, true, true, true);
         
+        this.comments = new LinkedList<>();
+        this.grades = new HashMap<>();
+        
+        System.out.println(this.toString());
     }
     
     
@@ -295,5 +299,28 @@ public class Song implements Serializable{
             }
         }
         return false;
+    }
+
+    /**
+     * toString function (variables : commentText, authorId and commentDate).
+     * @return string of variables
+     */
+    @Override public final String toString() {
+ /* @param songId References the songId.
+     * @param title References the title.
+     * @param artist References the artist.
+     * @param album References the album.
+     * @param tags References the list of tag.
+     * @param rightsByCategory References a map of rightsByCategory.*/
+        String s = "title : " + title + " ; artist" + artist +" ; album " + album;
+        s += "\n Tags :";
+        for (String tag : tags)
+            s += " " + tag;
+        s += "\n Rights : To Do";
+        s += "\n Grades : To Do";
+        s += "\n Comments :";
+        for (Comment comment : comments)
+            s += "\n" + comment.toString();
+        return s;
     }
 }

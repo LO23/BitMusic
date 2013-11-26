@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Jean-Baptiste
+ * @author Bruno
  */
 public class Grade implements Serializable{
     
@@ -36,6 +36,8 @@ public class Grade implements Serializable{
     public Grade(String author, int newgrade) {
         this.authorId = author;
         this.grade = newgrade;
+        
+        System.out.println("New -- " + this.toString());
     }
     
     /**
@@ -52,5 +54,13 @@ public class Grade implements Serializable{
      */
     public String getAuthorId() {
         return this.authorId;                    
+    }
+
+    /**
+     * toString function (variables : grade and authorId).
+     * @return string of variables
+     */
+    @Override public final String toString() {
+        return "Grade : " + grade + " ; Author : " + authorId;
     }
 }
