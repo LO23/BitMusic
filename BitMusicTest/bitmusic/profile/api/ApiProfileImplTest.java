@@ -11,8 +11,11 @@ import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
+import bitmusic.profile.utilities.ProfileExceptions;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -72,8 +75,12 @@ public class ApiProfileImplTest {
     @Test
     public void testCreateUser() throws Exception {
         System.out.println("createUser");
-        ApiProfileImpl instance = new ApiProfileImpl();
-        User userAPI = instance.createUser(LOGIN, PASSWORD, FIRSTNAME, LASTNAME, birthdate, AVATARPATH);
+        ApiProfileImpl instance = ApiProfileImpl.getApiProfile();
+        try {
+            instance.createUser(LOGIN, PASSWORD, FIRSTNAME, LASTNAME, birthdate, AVATARPATH);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(instance.getCurrentUser(), userTest);
     }
 
@@ -84,8 +91,11 @@ public class ApiProfileImplTest {
     public void testSaveUser() throws Exception {
         System.out.println("saveUser");
         User user = null;
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.saveUser(user);
+        try {
+            ApiProfileImpl.getApiProfile().saveUser(user);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -96,9 +106,8 @@ public class ApiProfileImplTest {
     @Test
     public void testGetCurrentUser() {
         System.out.println("getCurrentUser");
-        ApiProfileImpl instance = new ApiProfileImpl();
         User expResult = null;
-        User result = instance.getCurrentUser();
+        User result = ApiProfileImpl.getApiProfile().getCurrentUser();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -111,8 +120,7 @@ public class ApiProfileImplTest {
     public void testSetCurrentUser() {
         System.out.println("setCurrentUser");
         User newUser = null;
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.setCurrentUser(newUser);
+        ApiProfileImpl.getApiProfile().setCurrentUser(newUser);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -123,9 +131,8 @@ public class ApiProfileImplTest {
     @Test
     public void testGetCurrentUserFolder() {
         System.out.println("getCurrentUserFolder");
-        ApiProfileImpl instance = new ApiProfileImpl();
         String expResult = "";
-        String result = instance.getCurrentUserFolder();
+        String result = ApiProfileImpl.getApiProfile().getCurrentUserFolder();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -138,9 +145,13 @@ public class ApiProfileImplTest {
     public void testGetCategoriesNameByUserId() throws Exception {
         System.out.println("getCategoriesNameByUserId");
         String userId = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
         ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.getCategoriesNameByUserId(userId);
+        ArrayList<String> result = new ArrayList<String>();
+        try {
+            result = ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(userId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -152,9 +163,8 @@ public class ApiProfileImplTest {
     @Test
     public void testGetCategories() {
         System.out.println("getCategories");
-        ApiProfileImpl instance = new ApiProfileImpl();
         ArrayList<Category> expResult = null;
-        ArrayList<Category> result = instance.getCategories();
+        ArrayList<Category> result = ApiProfileImpl.getApiProfile().getCategories();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -167,8 +177,11 @@ public class ApiProfileImplTest {
     public void testAddCategory() throws Exception {
         System.out.println("addCategory");
         String name = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.addCategory(name);
+        try {
+            ApiProfileImpl.getApiProfile().addCategory(name);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -181,8 +194,11 @@ public class ApiProfileImplTest {
         System.out.println("updateCategory");
         String categoryId = "";
         String newName = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.updateCategory(categoryId, newName);
+        try {
+            ApiProfileImpl.getApiProfile().updateCategory(categoryId, newName);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -194,8 +210,11 @@ public class ApiProfileImplTest {
     public void testDeleteCategory() throws Exception {
         System.out.println("deleteCategory");
         String categoryId = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.deleteCategory(categoryId);
+        try {
+            ApiProfileImpl.getApiProfile().deleteCategory(categoryId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -208,8 +227,11 @@ public class ApiProfileImplTest {
         System.out.println("addUserToCategory");
         User user = null;
         String categoryId = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.addUserToCategory(user, categoryId);
+        try {
+            ApiProfileImpl.getApiProfile().addUserToCategory(user, categoryId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -222,8 +244,11 @@ public class ApiProfileImplTest {
         System.out.println("moveContact");
         String userId = "";
         String categoryId = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.moveContact(userId, categoryId);
+        try {
+            ApiProfileImpl.getApiProfile().moveContact(userId, categoryId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -236,9 +261,13 @@ public class ApiProfileImplTest {
         System.out.println("getRights");
         String songId = "";
         String categoryId = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
         Rights expResult = null;
-        Rights result = instance.getRights(songId, categoryId);
+        Rights result = null;
+        try {
+            result = ApiProfileImpl.getApiProfile().getRights(songId, categoryId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -252,8 +281,11 @@ public class ApiProfileImplTest {
         System.out.println("updateRights");
         String categoryId = "";
         Rights right = null;
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.updateRights(categoryId, right);
+        try {
+            ApiProfileImpl.getApiProfile().updateRights(categoryId, right);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -269,8 +301,11 @@ public class ApiProfileImplTest {
         boolean canPlay = false;
         boolean canRate = false;
         boolean canComment = false;
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.updateRights(categoryId, canIReadInfo, canPlay, canRate, canComment);
+        try {
+            ApiProfileImpl.getApiProfile().updateRights(categoryId, canIReadInfo, canPlay, canRate, canComment);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -281,9 +316,8 @@ public class ApiProfileImplTest {
     @Test
     public void testGetSongLibrary() {
         System.out.println("getSongLibrary");
-        ApiProfileImpl instance = new ApiProfileImpl();
         SongLibrary expResult = null;
-        SongLibrary result = instance.getSongLibrary();
+        SongLibrary result = ApiProfileImpl.getApiProfile().getSongLibrary();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -296,8 +330,11 @@ public class ApiProfileImplTest {
     public void testAddSong() throws Exception {
         System.out.println("addSong");
         Song song = null;
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.addSong(song);
+        try {
+            ApiProfileImpl.getApiProfile().addSong(song);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -309,8 +346,11 @@ public class ApiProfileImplTest {
     public void testDeleteSong() throws Exception {
         System.out.println("deleteSong");
         String songId = "";
-        ApiProfileImpl instance = new ApiProfileImpl();
-        instance.deleteSong(songId);
+        try {
+            ApiProfileImpl.getApiProfile().deleteSong(songId);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(ApiProfileImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

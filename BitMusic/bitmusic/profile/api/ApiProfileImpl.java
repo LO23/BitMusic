@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,23 +33,30 @@ import java.nio.file.Files;
  */
 public class ApiProfileImpl implements ApiProfile {
     private static ApiProfileImpl currentApi;
+    private final String BitMusicStructure = "\\BitTest";
+    private final String profilesStructure = "\\profiles";
+    private final String profileStructure = "\\profile";
+    private final String mainStructure = "\\BitTest\\profiles\\";
     public User currentUser;
 
     private ApiProfileImpl() throws ProfileExceptions {
-        /*String defaultPath = new File("").getAbsolutePath().toString()
-                + "\\BitMusic";*/
-
         String defaultPath = new File("").getAbsolutePath().toString()
-                + "\\BitTest";
+                + BitMusicStructure;
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
            try {
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
-            Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
-                    + "\\profiles"));
             }
             catch(IOException io) {
                 throw new ProfileExceptions(io.toString());
+            }
+        }
+        if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
+            try {
+                Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
+                        + profilesStructure));
+            } catch (IOException ex) {
+                throw new ProfileExceptions(ex.toString());
             }
         }
     }
@@ -73,7 +82,8 @@ public class ApiProfileImpl implements ApiProfile {
     	if (password == null || password.isEmpty())
             throw new ProfileExceptions(ProfileExceptionType.PasswordNull);
     	currentUser = FileParser.getFileParser().loadUser(login, password);
-    	if (currentUser == null) return false;
+    	if (currentUser == null) 
+            return false;
     	Controller.getInstance().getApiProfile().notifyNewConnection(currentUser);
     	return true;
     }
@@ -104,19 +114,16 @@ public class ApiProfileImpl implements ApiProfile {
         currentUser = new User(login, password, firstName, lastName, birthDate,
                 avatarPath);
 
-        /*String defaultPath = new File("").getAbsolutePath().toString() +
-                "\\BitMusic\\profiles" + this.getCurrentUserFolder() ;*/
-
         String defaultPath = new File("").getAbsolutePath().toString() +
-                "\\BitTest\\profiles\\" + this.getCurrentUserFolder() ;
+                mainStructure + this.getCurrentUserFolder() ;
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
            try {
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath));
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
-                    + "\\profile"));
+                    + profileStructure));
             FileSaver.getFileSaver().saveAuthFile(currentUser);
-            saveUser(currentUser);
+            this.saveUser(currentUser);
             ApiMusicImpl.getInstance().initMusicFolder();
             }
             catch(IOException io) {
