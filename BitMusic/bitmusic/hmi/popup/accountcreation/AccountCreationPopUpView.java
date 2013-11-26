@@ -31,7 +31,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     private static final String type = "CENTER";
     private final JLabel accountCreationLabel = new JLabel("<html><u>Création d'un nouveau compte utilisateur</u></html>");
     private final JButton cancelButton = new JButton("Annuler");
-    private final JButton resetButton = new JButton("Reset");
+    private final JButton resetButton = new JButton("Reinitialiser");
     private final JButton browseButton = new JButton("Parcourir...");
     private final JButton createUserButton = new JButton("Créer");
     private final JLabel birthdateLabel = new JLabel("Date de naissance (*)");
@@ -70,6 +70,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
         this.browseButton.addActionListener(this.getController().new AvatarBrowseListener());
         this.cancelButton.addActionListener(this.getController().new CancelListener());
         this.createUserButton.addActionListener(this.getController().new CreateNewUserListener());
+        this.resetButton.addActionListener(this.getController().new ResetListener());
         this.avatarField.setEditable(false);
 
         GroupLayout layout = new GroupLayout(this.getPanel());
