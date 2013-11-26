@@ -6,7 +6,8 @@
 
 package bitmusic.network.message;
 
-import bitmusic.music.api.ApiMusicImpl;
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.music.business.MusicController;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -70,12 +71,16 @@ public class MessageSendSongFile extends AbstractMessage {
              If temporary is set to false, it means the file should be read,
              if it is set to true, the file should be saved on the hard drive.
             */
+            String pathFile;
             if (temporary) {
-                //ask pathFile to Music API
+                pathFile = MusicController.getInstance().getApiMusic().
+                        getTempSongFile(this.userId, this.songId);
             } else {
+                //pathFile = WindowComponent.getInstance().getApiNetwork().???;
                 // ask pathFile to HMI, should be a blocking method call
+                pathFile = "tmp/"+this.userId+"_"+this.songId+".mp3";
             }
-            final String pathFile = "/tmp/" + this.userId + this.songId;
+            //final String pathFile = "/tmp/" + this.userId + this.songId;
             final Path path = Paths.get(pathFile);
             //write byte into a file
             Files.write(path, this.mp3Array, null,
