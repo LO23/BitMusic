@@ -138,9 +138,9 @@ public final class NetworkListener implements Runnable {
                             final DatagramChannel channel =
                                     (DatagramChannel) key.channel();
 
-                            Controller.getInstance().getThreadManager().
-                                    assignTaskToDatagramWorker(
-                                            channel);
+                            //Controller.getInstance().getThreadManager().
+                            //        assignTaskToDatagramWorker(
+                            //                channel);
                         }
                     }
                 } catch (Exception e) {

@@ -40,8 +40,44 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "Category not found";
                 break;
             }
+            case CategoryEmptyName : {
+                this.errorMessage = "Category's name empty";
+                break;
+            }
+            case LoginEmptyName : {
+                this.errorMessage = "Login is empty";
+                break;
+            }
+            case UserIdEmptyName : {
+                this.errorMessage = "UserId is empty";
+                break;
+            }
+            case PasswordEmptyName : {
+                this.errorMessage = "Password is empty";
+                break;
+            }
             case ConnectionWrongLogin : {
                 this.errorMessage = "Can\'t connect : wrong login entered";
+                break;
+            }
+            case BirthdateEmptyName : {
+                this.errorMessage = "Birthday is empty";
+                break;
+            }
+            case FirstNameEmpty : {
+                this.errorMessage = "Firstname is empty";
+                break;
+            }
+            case LastNameEmpty : {
+                this.errorMessage = "Lastname is empty";
+                break;
+            }
+            case AvatarPathEmpty : {
+                this.errorMessage = "AvatarPath is empty";
+                break;
+            }
+            case SongEmptyName : {
+                this.errorMessage = "SongId is empty";
                 break;
             }
             case ConnectionWrongPassword : {

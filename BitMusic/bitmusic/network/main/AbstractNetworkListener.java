@@ -36,4 +36,9 @@ public abstract class AbstractNetworkListener implements Runnable {
 
     @Override
     public abstract void run();
+
+    public int getPORTLISTENED() {
+        return PORT_LISTENED;
+    }
+
 }

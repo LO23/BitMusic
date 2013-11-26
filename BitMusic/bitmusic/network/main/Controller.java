@@ -165,8 +165,15 @@ public final class Controller {
      * Get the NetworkListener.
      * @return instance of NetworkListener
      */
-    public NetworkListener getNetworkListener() {
-        return netListener;
+    public AbstractNetworkListener getTCPNetworkListener() {
+        return tcpListener;
+    }
+    /**
+     * Get the NetworkListener.
+     * @return instance of NetworkListener
+     */
+    public AbstractNetworkListener getUDPNetworkListener() {
+        return udpListener;
     }
     /**
      * Get the WorkManager.

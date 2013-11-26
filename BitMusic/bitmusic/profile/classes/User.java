@@ -21,7 +21,7 @@ import bitmusic.profile.utilities.ProfileExceptions;
 
 /**
  *
- * @author reaneyol, MilioPeralta, Jérémy
+ * @author reaneyol, MilioPeralta, Jérémy, Fabien
  */
 public class User implements Serializable {
 
@@ -139,8 +139,9 @@ public class User implements Serializable {
      *
      * @param userId
      */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserId(String userId) throws ProfileExceptions {
+        if (userId != "") this.userId = userId;
+        else throw new ProfileExceptions(ProfileExceptionType.UserIdEmptyName);
     }
 
     /**
@@ -155,8 +156,9 @@ public class User implements Serializable {
      *
      * @param login
      */
-    public void setLogin(String login) {
-        this.login = login;
+    public void setLogin(String login) throws ProfileExceptions{
+        if (login != "") this.login = login;
+        else throw new ProfileExceptions(ProfileExceptionType.LoginEmptyName);
     }
 
     /**
@@ -171,8 +173,9 @@ public class User implements Serializable {
      *
      * @param password
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws ProfileExceptions{
+        if( password != "") this.password = password;
+        else throw new ProfileExceptions(ProfileExceptionType.PasswordEmptyName);
     }
 
     /**
@@ -187,8 +190,9 @@ public class User implements Serializable {
      *
      * @param birthDate
      */
-    public void setBirthDate(Calendar birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(Calendar birthDate) throws ProfileExceptions{
+        if(birthDate.toString() != "") this.birthDate = birthDate;
+        else throw new ProfileExceptions(ProfileExceptionType.BirthdateEmptyName);
     }
 
     /**
@@ -203,8 +207,9 @@ public class User implements Serializable {
      *
      * @param firstName
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstName) throws ProfileExceptions{
+        if(firstName != "") this.firstName = firstName;
+        else throw new ProfileExceptions(ProfileExceptionType.FirstNameEmpty);
     }
 
     /**
@@ -219,8 +224,9 @@ public class User implements Serializable {
      *
      * @param lastName
      */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastName) throws ProfileExceptions{
+        if(lastName != "") this.lastName = lastName;
+        else throw new ProfileExceptions(ProfileExceptionType.LastNameEmpty);
     }
 
     /**
@@ -235,8 +241,9 @@ public class User implements Serializable {
      *
      * @param avatarPath
      */
-    public void setAvatarPath(String avatarPath) {
-        this.avatarPath = avatarPath;
+    public void setAvatarPath(String avatarPath) throws ProfileExceptions{
+        if(avatarPath != "") this.avatarPath = avatarPath;
+        else throw new ProfileExceptions(ProfileExceptionType.AvatarPathEmpty);
     }
 
     /**
@@ -286,8 +293,9 @@ public class User implements Serializable {
      *
      * @param name
      */
-    public void addCategory(String name) {
-        categories.add(new Category(name));
+    public void addCategory(String name) throws ProfileExceptions {
+        if(name != "") categories.add(new Category(name));
+        else throw new ProfileExceptions(ProfileExceptionType.CategoryEmptyName);
     }
 
     /**
@@ -296,7 +304,8 @@ public class User implements Serializable {
      * @param newName
      */
     public void updateCategory(String categoryId, String newName) throws ProfileExceptions {
-        this.getCategoryById(categoryId).setName(newName);
+       if(newName != "") this.getCategoryById(categoryId).setName(newName);
+       else throw new ProfileExceptions(ProfileExceptionType.CategoryEmptyName);
     }
 
     /**
@@ -345,8 +354,9 @@ public class User implements Serializable {
      *
      * @param song
      */
-    public void deleteSong(String songId) {
-        this.localSongs.removeSong(songId);
+    public void deleteSong(String songId) throws ProfileExceptions{
+        if(songId != "") this.localSongs.removeSong(songId);
+        else throw new ProfileExceptions(ProfileExceptionType.SongEmptyName);
     }
 
     /**
