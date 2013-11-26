@@ -121,35 +121,7 @@ public class Song implements Serializable{
     //##################################################################//
     //########################### METHODS ##############################//
     //##################################################################//
-    
-    /**
-     * Get a lightSong with the localSong attribute for the user with userId
-     * @param authorId The authorId
-     * @return A light song with attribute modified for the autorId.
-     * @deprecated En théorie ne doit plus être utilise.
-     */
-    public Song getLightSong(String userId) {
-        Song lightSong = new Song( songId, title, artist, album, tags, rightsByCategory);
-        ArrayList<String> categoryList = ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(userId);
-        Rights localRights = new Rights(true, true, true, true);
         
-        for (String categoryName :  categoryList) {
-            Rights r = rightsByCategory.get(categoryName);
-            if (!r.getcanComment())
-                r.setcanComment(false);
-            if (!r.getcanPlay())
-                r.setcanPlay(false);
-            if (!r.getcanRate())
-                r.setcanRate(false);
-            if (!r.getcanReadInfo())
-                r.setcanReadInfo(false);
-        }
-        
-        lightSong.rightsByCategory = null;
-        
-        return lightSong;
-    }
-    
     /**
      * Add or replace a comment on a song.
      * @param comment The comment to add.
