@@ -9,8 +9,6 @@ package bitmusic.network.main;
 
 import bitmusic.network.exception.NetworkDirectoryException;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +57,9 @@ public final class Controller {
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
-    private final transient NetworkListener netListener;
+    private final transient AbstractNetworkListener tcpListener;
+
+    private final transient AbstractNetworkListener udpListener;
 
 
     /**
@@ -101,7 +101,11 @@ public final class Controller {
         threadManager = bitmusic.network.main.ThreadManager.getInstance();
 
         //Contains the NetworkListener instance
-        netListener = bitmusic.network.main.NetworkListener.getInstance();
+        tcpListener = bitmusic.network.main.TCPNetworkListener.getInstance();
+        udpListener = bitmusic.network.main.UDPNetworkListener.getInstance();
+
+        tcpListener.run();
+        udpListener.run();
     }
 
     /**
