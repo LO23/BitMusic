@@ -61,6 +61,6 @@ public class Grade implements Serializable{
      * @return string of variables
      */
     @Override public final String toString() {
-        return "Grade : " + grade + " ; Author : " + authorId;
+        return "Grade -- Grade : " + grade + " ; Author : " + authorId;
     }
 }

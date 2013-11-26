@@ -80,7 +80,7 @@ public class Rights implements Serializable{
      * @return string of variables
      */
     @Override public final String toString() {
-        return "canPlay : " + canPlay + " ; canReadInfo : " + canReadInfo + " ; canRate : " + canRate + " ; canComment : " + canComment;
+        return "Rights -- canPlay : " + canPlay + " ; canReadInfo : " + canReadInfo + " ; canRate : " + canRate + " ; canComment : " + canComment;
     }
           
     /**

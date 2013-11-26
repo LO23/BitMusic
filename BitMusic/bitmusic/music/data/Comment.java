@@ -77,6 +77,6 @@ public class Comment implements Serializable{
      * @return string of variables
      */
     @Override public final String toString() {
-        return "Comment : " + commentText + " ; Author : " + authorId + " ; Date : " + commentDate.toString();
+        return "Comment -- Text : " + commentText + " ; Author : " + authorId + " ; Date : " + commentDate.toString();
     }
 }
