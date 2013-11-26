@@ -24,8 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -51,7 +49,7 @@ public class ApiProfileImpl implements ApiProfile {
                 throw new ProfileExceptions(io.toString());
             }
         }
-        if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
+        if(!Files.exists(FileSystems.getDefault().getPath(defaultPath + profilesStructure))) {
             try {
                 Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
                         + profilesStructure));
