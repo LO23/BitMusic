@@ -20,6 +20,7 @@ import bitmusic.hmi.modules.searchbar.SearchBarComponent;
 import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -103,6 +104,12 @@ public class WindowComponent {
 
         this.setOnlineUsersComponent(new OnlineUsersComponent());
         this.getWindowView().addView(this.getOnlineUsersComponent().getView());
+
+        this.setPlayBarComponent(new PlayBarComponent());
+        this.getWindowView().addView(this.getPlayBarComponent().getView());
+
+        User userTest = new User("Login", "Password", "Toto", "Bic", Calendar.getInstance(), "/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png");
+        WindowComponent.getInstance().getApiHmi().notifyNewConnection(userTest);
 
         String ourUserId = win.getApiProfile().getCurrentUser().getUserId();
         List<String> currentOnlineUsersId = win.getApiNetwork().getAllUserId();
