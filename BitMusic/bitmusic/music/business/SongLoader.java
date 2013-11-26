@@ -127,4 +127,26 @@ public class SongLoader {
         String path = new String("Profiles/" + currentUserFolder + "/Music/Temp/" + userId + "_" + songId + ".mp3");
         return path;
     }
+    
+    /**
+     * Create (if not exists) for the current user the Music directory with its
+     * subfolders.
+     * @throws IOException 
+     */
+    public void createMusicFolders() throws IOException{
+        //Get Current User directory
+        ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
+        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        
+        //Creating /Music/Library folder
+        String fileDirectory = new String("Profiles/" + currentUserFolder + 
+                "/Music/Library/"); //à tester
+        Path destination = Paths.get(fileDirectory);
+        Files.createDirectories(destination);
+        
+        //Creating /Music/Library folder
+        fileDirectory = "Profiles/" + currentUserFolder + "/Music/Temp/"; //à tester
+        destination = Paths.get(fileDirectory);
+        Files.createDirectories(destination);
+    }
 }
