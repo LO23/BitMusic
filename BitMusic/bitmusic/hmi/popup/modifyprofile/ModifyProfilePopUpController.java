@@ -67,11 +67,11 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
             WindowComponent win = WindowComponent.getInstance();
             ModifyProfilePopUpView view = ModifyProfilePopUpController.this.getView();
 
-            String prenom = view.getPrenomField().getText();
-            String nom = view.getNomField().getText();
-            String birthDate = view.getDateTextField().getText();
+            String firstName = view.getFirstNameField().getText();
+            String lastName = view.getLastNameField().getText();
+            String birthDate = view.getBirthField().getText();
             String avatar = view.getAvatarField().getText();
-            Boolean hasChanged = new Boolean(false);
+            Boolean hasChanged = false;
             Boolean canModify = true;
 
             //Laisser ce if en première position !
@@ -83,6 +83,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                 //Permet de vérifier aisément si le format de la date est correcte !
                 try {
                     cal.setTime(sdf.parse(birthDate));
+                    win.getApiProfile().getCurrentUser().setBirthDate(cal);
                 } catch (ParseException ex) {
                     Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
                     canModify = false;
@@ -91,19 +92,19 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                         "<html>Le format de la date n'est pas valide !<br>Aucune modification n'a été effectuée !</html>",
                         "Erreur dans la date",
                         JOptionPane.WARNING_MESSAGE);
+                    win.getApiProfile().getCurrentUser().setBirthDate(win.getApiProfile().getCurrentUser().getBirthDate());
                 }
-                //win.getApiProfile().getCurrentUser().setBirthDate(cal);
                 hasChanged = true;
             }
 
-            if ( prenom.length() > 0 && canModify) {
-                win.getApiProfile().getCurrentUser().setFirstName(prenom);
+            if ( firstName.length() > 0 && canModify) {
+                win.getApiProfile().getCurrentUser().setFirstName(firstName);
                 hasChanged = true;
             }
 
 
-            if ( nom.length() > 0 && canModify ) {
-                win.getApiProfile().getCurrentUser().setLastName(nom);
+            if ( lastName.length() > 0 && canModify ) {
+                win.getApiProfile().getCurrentUser().setLastName(lastName);
                 hasChanged = true;
             }
 
@@ -112,13 +113,16 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                 hasChanged = true;
             }
 
-            if ( canModify ) {
+            if (canModify) {
                 WindowComponent.getInstance().getMyProfileComponent().getController().getPopUp().dispose();
                 //TODO : avertir les vues qui utilisent ces infos qu'il y a eu un changement !!
                 // Je pense par exemple à l'image de l'avatar sur la vu MyProfile
             }
 
+            if (hasChanged) {
+                // On notifie la vue qu'il y a eu des changements
+                ModifyProfilePopUpController.this.getModel().notifyObservers("Profile updated");
+            }
         }
     }
-
 }
