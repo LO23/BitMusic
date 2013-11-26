@@ -44,8 +44,48 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "Can\'t open file";
                 break;
             }
+            case FileNotAuthorized : {
+                this.errorMessage = "File not authorized";
+                break;
+            }
+            case CreationFileError : {
+                this.errorMessage = "Can\'t create file";
+                break;
+            }
+            case WritingFileError : {
+                this.errorMessage = "Can\'t write in file";
+                break;
+            }
+            case ExistingFileError : {
+                this.errorMessage = "File already exists";
+                break;
+            }
+            case ReadingFileError : {
+                this.errorMessage = "Can\'t read file";
+                break;
+            }
+            case FindingClassUserError : {
+                this.errorMessage = "Finding class user error";
+                break;
+            }
             case DirNotFound: {
                 this.errorMessage = "Dir not found";
+                break;
+            }
+            case UserNull: {
+                this.errorMessage = "User null";
+                break;
+            }
+            case EmptyString: {
+                this.errorMessage = "Empty string received";
+                break;
+            }
+            case SongNull: {
+                this.errorMessage = "Song null";
+                break;
+            }
+            case RightNull: {
+                this.errorMessage = "Right null";
                 break;
             }
             default : {

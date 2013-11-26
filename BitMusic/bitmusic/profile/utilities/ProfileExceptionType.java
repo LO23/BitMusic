@@ -24,5 +24,9 @@ public enum ProfileExceptionType {
     FindingClassUserError,
     DirNotFound,
     LoginWithInvalidCharacters,
-    CategoryNotFound,
+    CategoryNotFound, 
+    UserNull,
+    EmptyString,
+    RightNull,
+    SongNull
 };
