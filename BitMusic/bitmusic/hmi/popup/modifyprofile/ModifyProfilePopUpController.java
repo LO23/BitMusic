@@ -9,7 +9,6 @@ package bitmusic.hmi.popup.modifyprofile;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpController;
-import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
@@ -83,53 +82,33 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                 //Permet de vérifier aisément si le format de la date est correcte !
                 try {
                     cal.setTime(sdf.parse(birthDate));
-                    try {
-                        win.getApiProfile().getCurrentUser().setBirthDate(cal);
-                    } catch (ProfileExceptions ex) {
-                        Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    win.getApiProfile().getCurrentUser().setBirthDate(cal);
                 } catch (ParseException ex) {
-                    try {
-                        Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                        canModify = false;
-                        JOptionPane.showMessageDialog(
-                                view,
-                                "<html>Le format de la date n'est pas valide !<br>Aucune modification n'a été effectuée !</html>",
-                                "Erreur dans la date",
-                                JOptionPane.WARNING_MESSAGE);
-                        win.getApiProfile().getCurrentUser().setBirthDate(win.getApiProfile().getCurrentUser().getBirthDate());
-                    } catch (ProfileExceptions ex1) {
-                        Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex1);
-                    }
+                    Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    canModify = false;
+                    JOptionPane.showMessageDialog(
+                        view,
+                        "<html>Le format de la date n'est pas valide !<br>Aucune modification n'a été effectuée !</html>",
+                        "Erreur dans la date",
+                        JOptionPane.WARNING_MESSAGE);
+                    win.getApiProfile().getCurrentUser().setBirthDate(win.getApiProfile().getCurrentUser().getBirthDate());
                 }
                 hasChanged = true;
             }
 
             if (firstName.length() > 0 && canModify) {
-                try {
-                    win.getApiProfile().getCurrentUser().setFirstName(firstName);
-                    hasChanged = true;
-                } catch (ProfileExceptions ex) {
-                    Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                win.getApiProfile().getCurrentUser().setFirstName(firstName);
+                hasChanged = true;
             }
 
             if (lastName.length() > 0 && canModify) {
-                try {
-                    win.getApiProfile().getCurrentUser().setLastName(lastName);
-                    hasChanged = true;
-                } catch (ProfileExceptions ex) {
-                    Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                win.getApiProfile().getCurrentUser().setLastName(lastName);
+                hasChanged = true;
             }
 
             if (avatar.length() > 0 && canModify) {
-                try {
-                    win.getApiProfile().getCurrentUser().setAvatarPath(avatar);
-                    hasChanged = true;
-                } catch (ProfileExceptions ex) {
-                    Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                win.getApiProfile().getCurrentUser().setAvatarPath(avatar);
+                hasChanged = true;
             }
 
             if (canModify) {

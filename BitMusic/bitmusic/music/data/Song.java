@@ -89,8 +89,8 @@ public class Song implements Serializable{
         this.rightsByCategory = rightsByCategory;
         this.localRights = new Rights(true, true, true, true);
 
-        this.comments = new LinkedList<>();
-        this.grades = new HashMap<>();
+        this.comments = new LinkedList();
+        this.grades = new HashMap();
 
         System.out.println("New -- " + this.toString());
     }
@@ -106,8 +106,8 @@ public class Song implements Serializable{
         this.rightsByCategory= new HashMap<String,Rights>();
         this.localRights = new Rights(true, true, true, true);
 
-        this.comments = new LinkedList<>();
-        this.grades = new HashMap<>();
+        this.comments = new LinkedList();
+        this.grades = new HashMap();
 
         System.out.println("New -- " + this.toString());
     }

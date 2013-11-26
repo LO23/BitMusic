@@ -64,7 +64,6 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         this.myProfileButton.addActionListener(this.getController().new ModifyProfileListener());
         this.logoutButton.addActionListener(this.getController().new LogoutListener());
         this.importSongButton.addActionListener(this.getController().new ImportNewSongListener());
-        this.mySongsButton.addActionListener(this.getController().new MySongsListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
