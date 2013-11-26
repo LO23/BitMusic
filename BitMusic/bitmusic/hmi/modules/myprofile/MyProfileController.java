@@ -7,12 +7,17 @@
 package bitmusic.hmi.modules.myprofile;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.centralarea.CentralAreaView;
+import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpComponent;
 import bitmusic.hmi.popup.modifyprofile.ModifyProfilePopUpComponent;
+import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -86,6 +91,30 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             popUp.pack();
             popUp.setLocationRelativeTo(null);
             popUp.show();
+        }
+    }
+
+    public class MySongsListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton MySongs");
+
+            WindowComponent win = WindowComponent.getInstance();
+            TabComponent tabComponent = new TabComponent();
+
+
+////            if (win.getApiProfile().getCurrentUser().getLocalSongs().getlibrary().isEmpty()) {
+//                ArrayList<Song> songList = new ArrayList<Song>();
+//                songList.add(new Song("","Make me","Avicii","BOUILLA", new LinkedList()));
+//                songList.add(new Song("","Wake me up","Avicii","BOUILLA2",new LinkedList()));
+//                tabComponent.getModel().getModeleTable().setSong(songList);
+////            }
+////            else {
+////                tabComponent.getModel().getModeleTable().setSong(WindowComponent.getInstance().getApiProfile().getCurrentUser().getLocalSongs().getlibrary());
+////            }
+
+            CentralAreaView centralAreaView = win.getCentralAreaComponent().getView();
+            centralAreaView.addTab(tabComponent.getView());
         }
     }
 }
