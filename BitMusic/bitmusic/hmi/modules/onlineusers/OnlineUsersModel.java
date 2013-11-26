@@ -25,7 +25,7 @@ public final class OnlineUsersModel extends AbstractModel {
 
     public class OnlineUsersTableModel extends AbstractTableModel {
         private String[] columnNames = { "Utilisateur", "Infos", "Morceaux" };
-        private ArrayList<User> onlineUsers = new ArrayList<>();
+        private ArrayList<User> onlineUsers = new ArrayList();
 
         public OnlineUsersTableModel() {
             super();

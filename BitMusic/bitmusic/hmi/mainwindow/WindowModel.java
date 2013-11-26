@@ -11,6 +11,7 @@ import bitmusic.hmi.patterns.Observer;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  */
 public class WindowModel extends Observable {
 
-    private ArrayList<Observer> listObservers = new ArrayList<>();
+    private List<Observer> listObservers = new ArrayList();
 
     public WindowModel() {
 
@@ -46,7 +47,7 @@ public class WindowModel extends Observable {
 
     @Override
     public void removeAllObservers() {
-        this.listObservers = new ArrayList<>();
+        this.listObservers = new ArrayList();
     }
 
     @Override

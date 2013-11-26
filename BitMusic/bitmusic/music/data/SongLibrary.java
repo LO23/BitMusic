@@ -31,7 +31,7 @@ public class SongLibrary implements Serializable{
     
    public SongLibrary(ArrayList<Song> songs)
    {
-    library = new ArrayList<>();
+    library = new ArrayList();
     library = songs;
    }
    
