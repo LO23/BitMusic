@@ -16,17 +16,17 @@ import bitmusic.profile.api.ApiProfileImpl;
  */
 public final class MessageGetUser extends AbstractMessage {
     /**
-     * ID of the User that owns the list we want.
+     * ID of the User that owns the profile we want.
      */
     private String askedUser;
 
     /**
-     * ID of the user that asks for this list.
+     * ID of the user that asks for a profile.
      */
     private String operator;
 
     /**
-     * ID of the research ?
+     * ID of the research.
      */
     private String researchId;
 
@@ -35,8 +35,8 @@ public final class MessageGetUser extends AbstractMessage {
      * @param paramType Type of the message
      * @param paramIpSource IP address of the sender
      * @param paramIpDest IP address of the receiver
-     * @param paramAskedUser ID of the user that owns the list
-     * @param paramOperator ID of the user that asks for the list
+     * @param paramAskedUser ID of the user that owns the profile we want
+     * @param paramOperator ID of the user that asks for the profile
      * @param paramResearchId ID of the research
      */
     public MessageGetUser(final EnumTypeMessage paramType,
@@ -68,7 +68,7 @@ public final class MessageGetUser extends AbstractMessage {
 
     /**
      * Setter of the asekedUser attribute.
-     * @param paramAskedUser ID of the user that owns the list
+     * @param paramAskedUser ID of the user that owns the profile we want
      */
     public void setAskedUser(final String paramAskedUser) {
         this.askedUser = paramAskedUser;
@@ -76,7 +76,7 @@ public final class MessageGetUser extends AbstractMessage {
 
     /**
      * Setter of the operator attribute.
-     * @param paramOperator ID of the user that asks for the list
+     * @param paramOperator ID of the user that asks for the profile
      */
     public void setOperator(final String paramOperator) {
         this.operator = paramOperator;
@@ -92,7 +92,7 @@ public final class MessageGetUser extends AbstractMessage {
 
     /**
      * Getter of the askedUser attribute.
-     * @return String Id of the user that owns the list
+     * @return String Id of the user that owns the profile
      */
     public String getAskedUser() {
         return askedUser;
@@ -100,7 +100,7 @@ public final class MessageGetUser extends AbstractMessage {
 
     /**
      * Getter of the operator attribute.
-     * @return String ID of the user that asks for the list
+     * @return String ID of the user that asks for the profile
      */
     public String getOperator() {
         return operator;
