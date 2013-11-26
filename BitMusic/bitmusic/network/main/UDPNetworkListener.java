@@ -6,10 +6,43 @@
 
 package bitmusic.network.main;
 
+import java.net.DatagramSocket;
+import java.net.SocketException;
+
 /**
  *
  * @author Pak
  */
-public class UDPNetworkListener {
+public class UDPNetworkListener extends AbstractNetworkListener {
+        /**
+     * UDP channel.
+     */
+    private DatagramSocket UDPSERVER;
 
+        /**
+     * @return unique instance of NetworkListener.
+     */
+    public static AbstractNetworkListener getInstance() {
+        NETLISTENER = new UDPNetworkListener(4445);
+        return NETLISTENER;
+    }
+
+    public UDPNetworkListener(final int portToListen) {
+        super(portToListen);
+        try{
+            UDPSERVER = new DatagramSocket(PORT_LISTENED);
+
+        } catch (SocketException e) {
+
+        }
+        thread.start();
+    }
+
+    @Override
+    public void run() {
+        Controller.getInstance().getThreadManager().
+                                    assignTaskToDatagramWorker(
+                                            UDPSERVER);
+
+    }
 }
