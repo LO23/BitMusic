@@ -117,4 +117,9 @@ public interface ApiMusic {
      */
     public String getTempSongFile(String userId, String songId);
        
+    /**
+     * Initialization of the current user's music folder.
+     * @throws IOException 
+     */
+    public void initMusicFolder();
 }
