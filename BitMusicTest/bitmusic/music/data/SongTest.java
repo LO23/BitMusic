@@ -43,21 +43,6 @@ public class SongTest {
     }
 
     /**
-     * Test of getLightSong method, of class Song.
-     */
-    @Test
-    public void testGetLightSong() {
-        System.out.println("getLightSong");
-        String userId = "";
-        Song instance = null;
-        Song expResult = null;
-        Song result = instance.getLightSong(userId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of addComment method, of class Song.
      */
     @Test
@@ -69,6 +54,7 @@ public class SongTest {
         listTag.add(new String("tag2"));
         Song instance = new Song("1", "titre", "artiste", "album", listTag);
         instance.addComment(comment);
+        // TODO review the generated test code and remove the default call to fail.
         assertEquals(instance.getComments().get(1),comment.getComment());
     }
 
@@ -78,11 +64,10 @@ public class SongTest {
     @Test
     public void testDeleteComment() {
         System.out.println("deleteComment");
-        String authorId = "1"; 
-        Date date = new Date();
+        String authorId = "";
+        Date date = null;
         Song instance = null;
         instance.deleteComment(authorId, date);
-       
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
