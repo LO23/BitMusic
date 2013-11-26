@@ -45,6 +45,7 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
         this.resetButton.setSize(d);
 
         this.validateButton.addActionListener(this.getController().new ValidateListener());
+        this.resetButton.addActionListener(this.getController().new ResetListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);

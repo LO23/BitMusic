@@ -18,16 +18,22 @@ public abstract class AbstractNetworkListener implements Runnable {
         /**
     * port listened to by the listener.
     */
-    private final int PORT_LISTENED;
+    protected final int PORT_LISTENED;
 
     /**
      * Socket address.
      */
-    private final SocketAddress LOCALPORT;
+    protected final SocketAddress LOCALPORT;
 
-    public AbstractNetworkListener(final int portToListen)
-            throws NetworkException{
+    protected static AbstractNetworkListener NETLISTENER = null;
+
+    protected final Thread thread = new Thread(this);
+
+    public AbstractNetworkListener(final int portToListen){
         PORT_LISTENED = portToListen;
         LOCALPORT = new InetSocketAddress(PORT_LISTENED);
     }
+
+    @Override
+    public abstract void run();
 }
