@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
 /**
@@ -34,6 +35,8 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     private JButton downloadButton ;
 
     private ImageIcon pauseIcon;
+
+    private JSlider playBar ;
     // TODO playing bar
 
     public PlayBarView() {
@@ -49,6 +52,8 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
         downloadButton = new JButton(downloadIcon);
 
         pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
+
+        playBar = new JSlider(0, 10, 0);
 
 
     }
@@ -90,13 +95,16 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
                 .addComponent(this.playButton))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addComponent(this.downloadButton))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(this.playBar))
         );
 
         layout.setVerticalGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(this.stopButton)
                 .addComponent(this.playButton)
-                .addComponent(this.downloadButton))
+                .addComponent(this.downloadButton)
+                .addComponent(this.playBar))
         );
 
         layout.linkSize(SwingConstants.HORIZONTAL, this.playButton, this.stopButton);
