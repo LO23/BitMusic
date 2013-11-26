@@ -8,8 +8,8 @@ package bitmusic.music.data;
 import java.io.Serializable;
 
 /**
- * class Rights
- * @author DohaBenseddik
+ * class Rights.
+ * @author Music Team
  */
 public class Rights implements Serializable{
     
@@ -19,10 +19,10 @@ public class Rights implements Serializable{
     private boolean canComment;
     private static final long serialVersionUID = 302L;
     
-    /**
-     * default constructor
-     */
-    
+        /**
+         * default constructor.
+         */
+
       public Rights()
          {
     
@@ -33,7 +33,7 @@ public class Rights implements Serializable{
         }
     
       /**
-       * contructor
+       * contructor.
        * @param canPlayValue
        * @param canReadInfoValue
        * @param canRateValue
@@ -48,53 +48,53 @@ public class Rights implements Serializable{
             this.canComment=canCommentValue;
         }
 
-    /**
-     * canPlay getter
-     * 
-     * @return canPlay
-     */    
+        /**
+         * canPlay getter.
+         * @return canPlay
+         */    
         public boolean getcanPlay(){
+            
             return(canPlay); 
         }
         
-/**
- * canReadInfo getter
- * 
- * @return canReadInfo
- */
-        
+        /**
+         * canReadInfo getter.
+         * @return canReadInfo
+         */ 
         public boolean getcanReadInfo(){
+            
             return(canReadInfo); 
         }
-        
-/**
- * canRate getter
- * @return canRate
- */
+
+        /**
+         * canRate getter.
+         * @return canRate
+         */
         public boolean getcanRate(){
+            
             return(canRate); 
         }
         
-/**
- * canComment getter
- * @return canComment
- */
+        /**
+         * canComment getter.
+         * @return canComment
+         */
         public boolean getcanComment(){
+            
             return(canComment); 
         }
 
-/** canPlayValue setter
- * 
- * @param canPlayValue 
- */
+        /** canPlayValue setter
+         * 
+         * @param canPlayValue 
+         */
         public void setcanPlay(boolean canPlayValue) {
         
            canPlay=canPlayValue;
         }
         
         /**
-         * canReadInfo setter
-         * 
+         * canReadInfo setter.
          * @param canReadInfoValue 
          */
          public void setcanReadInfo(boolean canReadInfoValue) {
@@ -103,8 +103,7 @@ public class Rights implements Serializable{
         }
         
          /**
-          * canRate setter 
-          * 
+          * canRate setter.
           * @param canRateValue 
           */
           public void setcanRate(boolean canRateValue) {
@@ -112,7 +111,7 @@ public class Rights implements Serializable{
            canRate=canRateValue;
         }
           /** 
-           * CanComment setter
+           * CanComment setter.
            * @param canCommentValue 
            */
          public void setcanComment(boolean canCommentValue) {
