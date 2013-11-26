@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javazoom.jl.decoder.JavaLayerException;
@@ -64,7 +65,12 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                 if (resume == false && pause == false && stop == false && play == false) {
                      System.out.println("-----Playing the song for the first time");
                      win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
+                     JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
+
                      win.getApiMusic().playSongFromStart(fileNameTochange);
+                     while(win.getApiMusic().getCurrentFrame() != win.getApiMusic().getNumberOfFrame() ) {
+                         playBar.setValue(win.getApiMusic().getCurrentFrame());
+                     }
                      play = true;
 
                 }
