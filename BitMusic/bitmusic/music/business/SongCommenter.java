@@ -12,8 +12,9 @@ import java.util.*;
 import bitmusic.profile.api.ApiProfileImpl;
 
 /**
+ * Class managing the comments of songs.
  *
- * @author Bruno
+ * @author Music Team
  */
 public class SongCommenter {
 
@@ -21,7 +22,7 @@ public class SongCommenter {
      * SongLibrary.
      */
     private SongLibrary songLib;
-    
+
     /**
      * Api Profile.
      */
@@ -38,7 +39,7 @@ public class SongCommenter {
     }
 
     /**
-     * Add a comment fron HMI.
+     * Add a comment from HMI.
      *
      * @param songId Song ID
      * @param commentText Comment given by user (String)
@@ -70,7 +71,7 @@ public class SongCommenter {
 
         return true;
     }
-    
+
     /**
      * Remove a comment.
      *
@@ -87,7 +88,7 @@ public class SongCommenter {
 
         return true;
     }
-    
+
     /**
      * Get comments.
      *

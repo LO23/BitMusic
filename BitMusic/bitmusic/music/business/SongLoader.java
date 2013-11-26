@@ -21,21 +21,24 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 /**
+ * Class used for managing Music Directories and songs import (mp3 files).
  *
- * @author Jean-Baptiste
+ * @author Music Team
  */
 public class SongLoader {
 
     /**
-     * Copy a song to
-     * Profiles\UserDirectory\Music\Library\Artist\Album\Title.mp3 .
+     * Copy a song. Target Directory :
+     * Profiles\UserDirectory\Music\Library\Artist\Album\Title.mp3
      *
      * @param path path of mp3 to copy
      * @param title title of the song
      * @param artist artist of the song
      * @param album album of the song
      */
-    private void copyMP3(String path, String title, String artist, String album) throws CopyMP3Exception, IOException {
+    private void copyMP3(String path, String title, String artist, String album)
+            throws CopyMP3Exception, IOException {
+
         // If path is not a MP3 -> Exception
         if (!path.endsWith(".mp3")) {
             throw new CopyMP3Exception("This file is not a mp3");
@@ -49,8 +52,10 @@ public class SongLoader {
 
         //Creating target directory
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
-        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
-        String fileDirectory = new String("Profiles/" + currentUserFolder + "/Music/Library/" + artist + "/" + album); //à tester
+        String currentUserFolder
+                = new String(ApiProfile.getCurrentUserFolder());
+        String fileDirectory = new String("Profiles/" + currentUserFolder
+                + "/Music/Library/" + artist + "/" + album); //à tester
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
@@ -73,7 +78,9 @@ public class SongLoader {
      * @param tags tags of the song
      * @param rightsByCategory access rights of the song
      */
-    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags) throws CopyMP3Exception, IOException {
+    public void importSong(String path, String title, String artist,
+            String album, LinkedList<String> tags)
+            throws CopyMP3Exception, IOException {
 
         //Getting current Date        
         DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
@@ -87,65 +94,75 @@ public class SongLoader {
         //Creating song
         Song newSong = new Song(songId, title, album, artist, tags);
         ArrayList<Category> allCategories = ApiProfil.getCategories();
+
         //All rightsByCategories are set to True by default
-        for(Category category : allCategories) {
+        for (Category category : allCategories) {
             Rights newRight = new Rights(true, true, true, true);
             newSong.getRightsByCategory().put(category.getId(), newRight);
         }
-        ApiProfil.getSongLibrary().addSong(newSong); //à tester
+        ApiProfil.getSongLibrary().addSong(newSong);
 
         this.copyMP3(path, title, artist, album);
     }
 
     /**
      * Get the path of the song identified by songId.
-     * 
-     * @param songId    songId of the song
-     * @return path     path of the song
+     *
+     * @param songId songId of the song
+     * @return path path of the song
      */
     public String getSongPath(String songId) {
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
         Song localSong = ApiProfile.getSongLibrary().getSong(songId);
-        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
+        String currentUserFolder
+                = new String(ApiProfile.getCurrentUserFolder());
         String artist = new String(localSong.getArtist());
         String album = new String(localSong.getAlbum());
         String title = new String(localSong.getTitle());
-        String path = new String("Profiles/" + currentUserFolder + "/Music/Library/" + artist + "/" + album + "/" + title + ".mp3");
+        String path = new String("Profiles/" + currentUserFolder
+                + "/Music/Library/" + artist + "/" + album + "/" + title
+                + ".mp3");
+
         return path;
     }
-    
+
     /**
      * Get the path of the song identified by songId.
-     * 
-     * @param songId    songId of the song
-     * @return path     path of the song
+     *
+     * @param songId songId of the song
+     * @return path path of the song
      */
     public String getTempSongPath(String userId, String songId) {
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
         Song localSong = ApiProfile.getSongLibrary().getSong(songId);
-        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
-        String path = new String("Profiles/" + currentUserFolder + "/Music/Temp/" + userId + "_" + songId + ".mp3");
+        String currentUserFolder
+                = new String(ApiProfile.getCurrentUserFolder());
+        String path = new String("Profiles/" + currentUserFolder
+                + "/Music/Temp/" + userId + "_" + songId + ".mp3");
+
         return path;
     }
-    
+
     /**
      * Create (if not exists) for the current user the Music directory with its
      * subfolders.
-     * @throws IOException 
+     *
+     * @throws IOException
      */
-    public void createMusicFolders() throws IOException{
+    public void createMusicFolders() throws IOException {
         //Get Current User directory
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
-        String currentUserFolder = new String(ApiProfile.getCurrentUserFolder());
-        
+        String currentUserFolder
+                = new String(ApiProfile.getCurrentUserFolder());
+
         //Creating /Music/Library folder
-        String fileDirectory = new String("Profiles/" + currentUserFolder + 
-                "/Music/Library/"); //à tester
+        String fileDirectory = new String("Profiles/" + currentUserFolder
+                + "/Music/Library/"); //à tester
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
-        
+
         //Creating /Music/Library folder
-        fileDirectory = "Profiles/" + currentUserFolder + "/Music/Temp/"; //à tester
+        fileDirectory = "Profiles/" + currentUserFolder + "/Music/Temp/";
         destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
     }

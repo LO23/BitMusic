@@ -15,21 +15,23 @@ import java.util.logging.Logger;
  * Class implementing the search feature of our application. The user can search
  * for songs from a specific user
  *
- * @author Amina Bouabdallah - Mohamed Seffar
+ * @author Music Team
  */
 public class SongSearcher {
-    /**
-     * library of local user's songs
-     */
-    private SongLibrary songLibrary; 
 
     /**
-     *library of local user's songs
+     * library of local user's songs.
+     */
+    private SongLibrary songLibrary;
+
+    /**
+     * library of local user's songs.
+     *
      * @param songLib
      */
     public SongSearcher(SongLibrary songLib) {
         songLibrary = songLib;
-        
+
     }
 
     /**
@@ -42,15 +44,14 @@ public class SongSearcher {
      */
     public void searchSongsbyUser(String userID, String SearchID) {
 
-        //ApiMusic apiMusic = new ApiMusicImpl(); //à ne pas faire, faire appel au singleton
-
         ApiMusicImpl apiMusic = Controller.getInstance().getApiMusic();
         ApiProfileImpl apiProfile = ApiProfileImpl.getApiProfile();
-        String localUserId=apiProfile.getCurrentUser().getUserId();
+        String localUserId = apiProfile.getCurrentUser().getUserId();
         try {
-            apiMusic.getSongsByUser(localUserId,userID, SearchID);
+            apiMusic.getSongsByUser(localUserId, userID, SearchID);
         } catch (NetworkException ex) {
-            Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE,
+                    null, ex);
         }
 
     }
@@ -71,12 +72,15 @@ public class SongSearcher {
         Iterator<Song> it = songsFromMyLibrary.iterator();
         Song currentSong;
 
-        //give the songs from local library with the correct rights for the User userId
+        //give the songs from local library with the correct rights 
+        //for the User userId
         while (it.hasNext()) {
             currentSong = it.next();
-            //song dont l'attribut right est changé : les droits ont été ajustés pour userId
+            //song dont l'attribut right est changé : 
+            //les droits ont été ajustés pour userId
             currentSong = getLightSong(currentSong, userId);
-            songsForRequester.add(currentSong); //songs avec les droits ajustés pour userId
+            songsForRequester.add(currentSong);
+            //songs avec les droits ajustés pour userId
         }
         //build the SongLibrary to be returned
         songLibForRequester = new SongLibrary(songsForRequester);
@@ -93,7 +97,8 @@ public class SongSearcher {
      * @param tagList
      * @return
      */
-    public SongLibrary searchSongsByTags(String searchId, List<String> tagList) {
+    public SongLibrary searchSongsByTags(String searchId,
+            List<String> tagList) {
         SongLibrary myTaggedSongs;
         ApiMusicImpl apiMusicFromNetwork;
         List<String> connectedUsers;
@@ -107,14 +112,16 @@ public class SongSearcher {
         //for each user, go fetch their songs with the right tags
         it = connectedUsers.iterator();
         ApiProfileImpl apiProfile = ApiProfileImpl.getApiProfile();
-        String localUserId=apiProfile.getCurrentUser().getUserId();
+        String localUserId = apiProfile.getCurrentUser().getUserId();
         while (it.hasNext()) {
             userIdDest = it.next();
             //result of call below go straight to the UI
             try {
-                apiMusicFromNetwork.searchSongsByTags(localUserId,userIdDest, searchId, tagList);
+                apiMusicFromNetwork.searchSongsByTags(localUserId, userIdDest,
+                        searchId, tagList);
             } catch (NetworkException ex) {
-                Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE,
+                        null, ex);
             }
         }
         //method returns only our songs with the right tags
@@ -123,26 +130,31 @@ public class SongSearcher {
     }
 
     /**
-     * Method invoked when local user is requested to send their songs fulfilling the tag criteria
+     * Method invoked when local user is requested to send their songs
+     * fulfilling the tag criteria
+     *
      * @param searchId id of the search being done with this call
      * @param tagList list of tags that remote user is requesting
-     * @param userId user id of the requester ******* AMINA ADDED IT CAUSE IT WAS MISSING **********
-     * @return
+     * @param userId user id of the requester ******* AMINA ADDED IT CAUSE IT
+     * WAS MISSING ********* @return
      */
-    public SongLibrary getSongsByTag(String searchId, String userId, List<String> tagList) {
-        
+    public SongLibrary getSongsByTag(String searchId, String userId,
+            List<String> tagList) {
+
         ArrayList<Song> songsWithCorrectTags = new ArrayList<Song>();
         ArrayList<Song> songsFromMyLibrary = songLibrary.getlibrary();
         SongLibrary songLibraryForRequester;
         Iterator<Song> it = songsFromMyLibrary.iterator();
         Song currentSong;
 
-        //iterate over local songLibrary - fetches only the songs with at least one tag from tagList
+        //iterate over local songLibrary
+        // -> fetches only the songs with at least one tag from tagList
         while (it.hasNext()) {
             currentSong = it.next();
             if (currentSong.hasTag(tagList)) {
-                //changer les droits de la chanson pour le user en question - if userId = null then local user is requester
-                if (userId != null){
+                //changer les droits de la chanson pour le user en question 
+                // -> if userId = null then local user is requester
+                if (userId != null) {
                     currentSong = getLightSong(currentSong, userId);
                 }
                 songsWithCorrectTags.add(currentSong);
@@ -152,33 +164,40 @@ public class SongSearcher {
         songLibraryForRequester = new SongLibrary(songsWithCorrectTags);
         return songLibraryForRequester;
     }
-    
+
     /**
      * Get a lightSong with the localSong attribute for the user with userId
+     *
      * @param currentSong The song whose the lightsong will be created
      * @param authorId The authorId
      * @return A light song with attribute modified for the autorId.
      */
     public Song getLightSong(Song currentSong, String userId) {
-        Song lightSong = new Song( currentSong.getSongId(), currentSong.getTitle(), currentSong.getArtist(), currentSong.getAlbum(),
-                currentSong.getTags(), currentSong.getRightsByCategory());
-        ArrayList<String> categoryList = ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(userId);
+        Song lightSong = new Song(currentSong.getSongId(),
+                currentSong.getTitle(), currentSong.getArtist(),
+                currentSong.getAlbum(), currentSong.getTags(),
+                currentSong.getRightsByCategory());
+        ArrayList<String> categoryList = 
+              ApiProfileImpl.getApiProfile().getCategoriesNameByUserId(userId);
         Rights localRights = new Rights(true, true, true, true);
-        
-        for (String categoryName :  categoryList) {
+
+        for (String categoryName : categoryList) {
             Rights r = currentSong.getRightsByCategory().get(categoryName);
-            if (!r.getcanComment())
+            if (!r.getcanComment()) {
                 r.setcanComment(false);
-            if (!r.getcanPlay())
+            }
+            if (!r.getcanPlay()) {
                 r.setcanPlay(false);
-            if (!r.getcanRate())
+            }
+            if (!r.getcanRate()) {
                 r.setcanRate(false);
-            if (!r.getcanReadInfo())
+            }
+            if (!r.getcanReadInfo()) {
                 r.setcanReadInfo(false);
+            }
         }
-                
+
         return lightSong;
     }
-
 
 }

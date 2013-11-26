@@ -12,8 +12,9 @@ import java.util.*;
 import bitmusic.profile.api.ApiProfileImpl;
 
 /**
+ * Class managing the rates of songs.
  *
- * @author Bruno
+ * @author Music Team
  */
 public class SongRater {
 
@@ -21,7 +22,7 @@ public class SongRater {
      * SongLibrary.
      */
     private SongLibrary songLib;
-    
+
     /**
      * Api Profile.
      */
@@ -30,7 +31,7 @@ public class SongRater {
     /**
      * Class constructor.
      *
-     * @param lib The Song Library
+     * @param lib Song Library
      */
     public SongRater(SongLibrary lib) {
         this.songLib = lib;
@@ -40,8 +41,8 @@ public class SongRater {
     /**
      * Add a grade fron HMI.
      *
-     * @param songId    Song ID
-     * @param grade     Grade given by user (int out of 5)
+     * @param songId song ID
+     * @param grade grade given by user (int out of 5)
      *
      * @return true
      */
@@ -58,8 +59,8 @@ public class SongRater {
     /**
      * Add a grade fron network.
      *
-     * @param songId Song ID
-     * @param grade Grade given by user (Grade)
+     * @param songId song ID
+     * @param grade grade given by user (Grade)
      *
      * @return true
      */
@@ -70,11 +71,11 @@ public class SongRater {
 
         return true;
     }
-    
+
     /**
      * Remove a grade.
      *
-     * @param songId Song ID
+     * @param songId song ID
      * @param authorId author ID
      *
      * @return true
@@ -86,18 +87,17 @@ public class SongRater {
 
         return true;
     }
-    
+
     /**
      * Get grades.
      *
-     * @param songId Song ID
+     * @param songId song ID
      *
      * @return true
      */
-    public HashMap<String,Grade> getGrades(String songId) {
+    public HashMap<String, Grade> getGrades(String songId) {
         Song mySong = songLib.getSong(songId);
 
         return mySong.getGrades();
     }
 }
-
