@@ -40,13 +40,13 @@ public final class TabModel extends AbstractModel {
                 case 2:
                     return this.arrayListSong.get(row).getAlbum();
                 case 3:
-                    return "Edit";
+                    return "E";
                 case 4:
-                    return "Infos";
+                    return "I";
                 case 5:
-                    return "Note";
+                    return "N";
                 case 6:
-                    return "Sauvegarder";
+                    return "S";
                 default:
                     return null;
             }

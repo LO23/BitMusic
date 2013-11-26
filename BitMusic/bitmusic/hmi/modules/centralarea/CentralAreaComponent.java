@@ -32,8 +32,8 @@ public final class CentralAreaComponent extends AbstractComponent<CentralAreaMod
 
         TabComponent tabComponent = new TabComponent();
         ArrayList<Song> songList = new ArrayList<Song>();
-        songList.add(new Song("","Make me","Avicii","BOUILLA",null));
-        songList.add(new Song("","Wake me up","Avicii","BOUILLA2",null));
+        songList.add(new Song("1", "Make me", "Avicii", "BOUILLA", null));
+        songList.add(new Song("2", "Wake me up", "Avicii", "BOUILLA2", null));
         tabComponent.getModel().getModeleTable().setSong(songList);
         this.getView().addTab(tabComponent.getView());
 
