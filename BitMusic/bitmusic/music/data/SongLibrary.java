@@ -17,10 +17,18 @@ public class SongLibrary implements Serializable{
    private static final long serialVersionUID = 300L;
 
    /**
+    * default constructor   
+    */
+   public SongLibrary(){
+      library = new ArrayList<Song>();
+    }
+   
+   /**
     * constructor.
     * 
     * @param songs 
     */
+    
    public SongLibrary(ArrayList<Song> songs)
    {
     library = new ArrayList<>();
