@@ -45,7 +45,7 @@ public class UDPNetworkListener extends AbstractNetworkListener {
             Controller.getInstance().getThreadManager().
                                         assignTaskToDatagramWorker(UDPSERVER);
         } catch(NetworkException e) {
-            System.out.println(e.printStackTrace());
+            e.printStackTrace();
         }
     }
 }
