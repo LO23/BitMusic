@@ -6,9 +6,10 @@
 
 package bitmusic.music.data;
 import java.io.Serializable;
+
 /**
- *
- * @author Doha
+ * class Rights
+ * @author DohaBenseddik
  */
 public class Rights implements Serializable{
     
@@ -17,6 +18,10 @@ public class Rights implements Serializable{
     private boolean canRate;
     private boolean canComment;
     private static final long serialVersionUID = 302L;
+    
+    /**
+     * default constructor
+     */
     
       public Rights()
          {
@@ -27,6 +32,13 @@ public class Rights implements Serializable{
             this.canComment=true;
         }
     
+      /**
+       * contructor
+       * @param canPlayValue
+       * @param canReadInfoValue
+       * @param canRateValue
+       * @param canCommentValue 
+       */
     public Rights(boolean canPlayValue, boolean canReadInfoValue, boolean canRateValue, boolean canCommentValue)
          {
     
