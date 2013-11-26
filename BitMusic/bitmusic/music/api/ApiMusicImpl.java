@@ -17,6 +17,9 @@ import bitmusic.music.business.SongSearcher;
 import bitmusic.music.exception.CopyMP3Exception;
 import java.io.IOException;
 import bitmusic.music.player.BitMusicPlayer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -227,9 +230,22 @@ public final class ApiMusicImpl implements ApiMusic {
         localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
 
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        SongLibrary localTaggedSongs = songSearcher.searchSongsByTags(searchId, tagList);
+        SongLibrary localTaggedSongs = songSearcher.searchSongsByTags(searchId, 
+                tagList);
 
         return localTaggedSongs;
     }
 
+    /**
+     * Initialization of the current user's music folder.
+     * @throws IOException 
+     */
+    public void initMusicFolder(){
+        SongLoader songLoader = new SongLoader();
+        try {
+            songLoader.createMusicFolders();
+        } catch (IOException excep) {
+            System.out.println(excep.getMessage());
+        }
+    }
 }
