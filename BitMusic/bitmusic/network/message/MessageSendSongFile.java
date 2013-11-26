@@ -6,6 +6,7 @@
 
 package bitmusic.network.message;
 
+import bitmusic.music.api.ApiMusicImpl;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -65,16 +66,28 @@ public class MessageSendSongFile extends AbstractMessage {
     @Override
     public final void treatment() {
         try {
-            //TODO : quelle est le path à écrire
+            /*
+             If temporary is set to false, it means the file should be read,
+             if it is set to true, the file should be saved on the hard drive.
+            */
+            if (temporary) {
+                //ask pathFile to Music API
+            } else {
+                // ask pathFile to HMI, should be a blocking method call
+            }
             final String pathFile = "/tmp/" + this.userId + this.songId;
             final Path path = Paths.get(pathFile);
             //write byte into a file
             Files.write(path, this.mp3Array, null,
                     StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+            if (temporary) {
+                bitmusic.music.api.ApiMusicImpl.getInstance().
+                        playSongFromStart(pathFile);
+            }
         } catch (IOException e) {
 
         }
-
+        
         //TODO qui je previent du téléchargement de la musique??
     }
 

@@ -6,6 +6,7 @@
 
 package bitmusic.network.message;
 
+import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.network.main.Controller;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -56,8 +57,8 @@ public final class MessageGetSongFile extends AbstractMessage {
      */
     @Override
     public void treatment() {
-        //String path = ApiProfileImpl.getApiProfile().getSongFile(this.userId, this.songId);
-        final String pathFile = null;
+        final String pathFile = ApiMusicImpl.getInstance().
+                getSongFile(this.songId);
         final Path path = Paths.get(pathFile);
         try {
            final byte[] mp3Array = Files.readAllBytes(path);
