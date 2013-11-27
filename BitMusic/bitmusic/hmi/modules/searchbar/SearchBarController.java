@@ -8,14 +8,12 @@ package bitmusic.hmi.modules.searchbar;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
-import bitmusic.hmi.modules.centralarea.CentralAreaView;
 import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.music.data.Song;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import javax.swing.ButtonModel;
 
 /**
  *
@@ -63,14 +61,15 @@ public final class SearchBarController extends AbstractController<SearchBarModel
             TabComponent tabComponent = null;
             Boolean sameTab = false;
 
-            for (int i=0; i<centralAreaComponent.getListTabComponent().size(); i++  ) {
-                Boolean sameFilter = centralAreaComponent.getListTabComponent().get(i).getModel().getRequestFilter().equals(requestFilter);
-                Boolean sameOrigin = centralAreaComponent.getListTabComponent().get(i).getModel().getRequestOrigin().equals(requestOrigin);
-                Boolean sameText = centralAreaComponent.getListTabComponent().get(i).getModel().getRequestText().equals(requestText);
+            ArrayList<TabComponent> listTabComponents = centralAreaComponent.getView().getListTabComponent();
+            for (int i=0; i<listTabComponents.size(); i++  ) {
+                Boolean sameFilter = listTabComponents.get(i).getModel().getRequestFilter().equals(requestFilter);
+                Boolean sameOrigin = listTabComponents.get(i).getModel().getRequestOrigin().equals(requestOrigin);
+                Boolean sameText = listTabComponents.get(i).getModel().getRequestText().equals(requestText);
 
                 if ( sameFilter && sameOrigin && sameText ) {
                     sameTab = true;
-                    tabComponent = centralAreaComponent.getListTabComponent().get(i);
+                    tabComponent = listTabComponents.get(i);
                 }
             }
 
@@ -92,7 +91,7 @@ public final class SearchBarController extends AbstractController<SearchBarModel
                 tabComponent.getModel().getModeleTable().setSong(songResults);
 
                 // Ajout du Tab dans le CentralAreaComponent (qui ajoute en même temps la vue)
-                centralAreaComponent.addTabComponent(tabComponent);
+                centralAreaComponent.getView().addTabComponent(tabComponent);
             }
 
         //Met le focus sur le bon tab (qu'il soit nouveau ou non...)

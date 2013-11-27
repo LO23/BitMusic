@@ -8,17 +8,13 @@ package bitmusic.hmi.modules.myprofile;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
-import bitmusic.hmi.modules.centralarea.CentralAreaView;
 import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.importsong.ImportSongPopUpComponent;
 import bitmusic.hmi.popup.modifyprofile.ModifyProfilePopUpComponent;
-import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -122,7 +118,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
 
 
              CentralAreaComponent centralAreaComponent = win.getCentralAreaComponent();
-             centralAreaComponent.addTabComponent(tabComponent);
+             centralAreaComponent.getView().addTabComponent(tabComponent);
          }
     }
 }

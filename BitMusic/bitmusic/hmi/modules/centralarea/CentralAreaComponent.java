@@ -6,21 +6,17 @@
 
 package bitmusic.hmi.modules.centralarea;
 
-import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractComponent;
 import bitmusic.music.data.Song;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import javax.swing.JTabbedPane;
 
 /**
  *
  * @author unkedeuxke
  */
 public final class CentralAreaComponent extends AbstractComponent<CentralAreaModel, CentralAreaView, CentralAreaController> {
-
-    private ArrayList<TabComponent> listTabComponent = new ArrayList<>();
 
     public CentralAreaComponent() {
         this.model = new CentralAreaModel();
@@ -41,7 +37,7 @@ public final class CentralAreaComponent extends AbstractComponent<CentralAreaMod
         tabComponent.getModel().setRequestFilter(this.getController().getFILTER_NONE());
         tabComponent.getModel().setRequestOrigin(this.getController().getORIGIN_MY_PROFILE());
         tabComponent.getModel().setRequestText("");
-        this.addTabComponent(tabComponent);
+        this.getView().addTabComponent(tabComponent);
 
         //this.getView().addTab(tabComponent.getView());
 
@@ -55,38 +51,4 @@ public final class CentralAreaComponent extends AbstractComponent<CentralAreaMod
 //        }
 
     }
-
-    public ArrayList<TabComponent> getListTabComponent() {
-        return listTabComponent;
-    }
-
-    public void setListTabComponent(ArrayList<TabComponent> listTabComponent) {
-        this.listTabComponent = listTabComponent;
-    }
-
-    public void addTabComponent(TabComponent tabComponent) {
-        this.listTabComponent.add(tabComponent);
-        // Identifie le tab par un tabId pour sa suppression
-        int tabId = this.getView().addTab(tabComponent.getView());
-        tabComponent.setTabId(tabId);
-    }
-
-    public void removeTabComponent(TabComponent tabComponent) {
-        //Suppression de la liste de TabComponent
-        this.listTabComponent.remove(tabComponent);
-        //Suppression de la vue
-        this.getView().removeTab(tabComponent.getView());
-    }
-
-    public void removeTabComponentWithTabId(int tabId) {
-        for (int i=0; i<this.listTabComponent.size(); i++ ) {
-            if (listTabComponent.get(i).getTabId() == tabId) {
-                this.removeTabComponent(listTabComponent.get(i));
-            }
-            else {
-                System.out.println("Aucun tab trouvé avec le numéro tabId " + tabId);
-            }
-        }
-    }
-
 }
