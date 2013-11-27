@@ -28,12 +28,9 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     public class CloseTabListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // On supprime le tab de tabbedPane
-            JTabbedPane tabbedPane = WindowComponent.getInstance().getCentralAreaComponent().getView().getTabbedPane();
-            String tabTitle = TabController.this.getView().getTitle();
-            tabbedPane.removeTabAt(tabbedPane.indexOfTab(tabTitle));
-
-            // Est-ce que l'objet TabComponent est bien totalement supprimé ?
+            int tabId = TabController.this.getView().getTabId();
+            WindowComponent.getInstance().getCentralAreaComponent().removeTabComponentWithTabId(tabId);
+            // Est-ce que l'objet TabComponent est bien totalement supprimé ? MAINTENANT OUI !
         }
     }
 

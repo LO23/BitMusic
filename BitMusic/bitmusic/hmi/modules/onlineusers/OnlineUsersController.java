@@ -52,6 +52,8 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
             int row = Integer.valueOf( e.getActionCommand() );
             User user = ((OnlineUsersModel.OnlineUsersTableModel)table.getModel()).getUserAt(row);
             System.out.println("---- Clic sur MP3 du User : " + user.getLogin());
+
+            // TODO : REPRENDRE L'IMPLEMENTATION DE SEARCHBAR CONTROLLER
         }
     };
 

@@ -14,6 +14,8 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class TabComponent extends AbstractComponent<TabModel, TabView, TabController> {
 
+    private int tabId;
+
     public TabComponent() {
         this.model = new TabModel();
         this.view = new TabView();
@@ -22,4 +24,15 @@ public final class TabComponent extends AbstractComponent<TabModel, TabView, Tab
         this.view.initPanel();
         this.model.addObserver(this.view);
     }
+
+    public int getTabId() {
+        return tabId;
+    }
+
+    public void setTabId(int tabId) {
+        this.tabId = tabId;
+        this.getView().setTabId(tabId);
+    }
+
+
 }
