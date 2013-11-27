@@ -17,6 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import bitmusic.profile.utilities.ProfileExceptions;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -57,7 +59,11 @@ public class UserTest {
     public void testSetLogin() throws ProfileExceptions {
         System.out.println("setLogin");
         String newLogin = "newlogin";
-        user.setLogin(newLogin);
+        try {
+            user.setLogin(newLogin);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(UserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(newLogin, user.getLogin());
     }
 
@@ -78,7 +84,11 @@ public class UserTest {
     public void testSetPassword() throws ProfileExceptions {
         System.out.println("setPassword");
         String newPassword = "newpassword";
-        user.setPassword(newPassword);
+        try {
+            user.setPassword(newPassword);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(UserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(newPassword, user.getPassword());
     }
 
@@ -100,7 +110,11 @@ public class UserTest {
         System.out.println("setBirthDate");
         Calendar newBirthdate = Calendar.getInstance();
         newBirthdate.set(2013, 12, 24);
-        user.setBirthDate(newBirthdate);
+        try {
+            user.setBirthDate(newBirthdate);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(UserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(newBirthdate, user.getBirthDate());
     }
 
@@ -121,7 +135,11 @@ public class UserTest {
     public void testSetFirstName() throws ProfileExceptions {
         System.out.println("setFirstName");
         String newFirstname = "newfirstname";
-        user.setFirstName(newFirstname);
+        try {
+            user.setFirstName(newFirstname);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(UserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(newFirstname, user.getFirstName());
     }
 
@@ -142,7 +160,11 @@ public class UserTest {
     public void testSetLastName() throws ProfileExceptions {
         System.out.println("setLastName");
         String newLastname = "newlastname";
-        user.setLastName(newLastname);
+        try {
+            user.setLastName(newLastname);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(UserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(newLastname, user.getLastName());
     }
 
@@ -163,7 +185,11 @@ public class UserTest {
     public void testSetAvatarPath() throws ProfileExceptions {
         System.out.println("setAvatarPath");
         String newAvatarPath = "newavatarpath";
-        user.setAvatarPath(newAvatarPath);
+        try {
+            user.setAvatarPath(newAvatarPath);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(UserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(newAvatarPath, user.getAvatarPath());
     }
 
@@ -177,7 +203,11 @@ public class UserTest {
         String categoryName = "category";
         List<Category> cat = user.getCategories();
         cat.add(new Category(categoryName));
-        user.addCategory(categoryName);
+        try {
+            user.addCategory(categoryName);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(UserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(cat, user.getCategories());
     }
 

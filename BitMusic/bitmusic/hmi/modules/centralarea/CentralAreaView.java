@@ -40,7 +40,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
         this.setVisible(true);
     }
 
-    public void addTab(TabView tabView){
+    public int addTab(TabView tabView){
         // Ajout du tab au tabbedPane
         String tabTitle = tabView.getTitle();
         this.tabbedPane.addTab(tabTitle, tabView.getPanel());
@@ -52,6 +52,13 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
         // Incrémentation du compteur de tabs
         this.tabCounter++;
+
+        return this.tabCounter-1;
+    }
+
+    public void removeTab(TabView tabView) {
+        //Suppression du tabbedPane
+        this.tabbedPane.remove(tabView.getPanel());
     }
 
     public JTabbedPane getTabbedPane() {

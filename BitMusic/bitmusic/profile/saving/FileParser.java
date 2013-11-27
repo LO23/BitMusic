@@ -37,7 +37,6 @@ public class FileParser {
     private static String mainStructure = "\\BitTest\\profiles\\";
     private static String profileStructure = "\\profile\\";
 
-
     //######################### CONSTRUCTORS ###########################//
     /**
      *

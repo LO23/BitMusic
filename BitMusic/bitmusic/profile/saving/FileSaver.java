@@ -32,7 +32,6 @@ public class FileSaver {
     private static String mainStructure = "\\BitTest\\profiles\\";
     private static String profileStructure = "\\profile\\";
 
-
     //######################### CONSTRUCTORS ###########################//
 
     public static FileSaver getFileSaver(){
@@ -53,8 +52,6 @@ public class FileSaver {
         String defaultPath = new File("").getAbsolutePath().toString()
         		+ mainStructure 
         		+ ApiProfileImpl.getApiProfile().getCurrentUserFolder();
-
-
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
             throw new ProfileExceptions(ProfileExceptionType.DirNotFound);
@@ -87,7 +84,6 @@ public class FileSaver {
         	String defaultPath = new File("").getAbsolutePath().toString() 
         			+ mainStructure
                     + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
-
             FileOutputStream authFile = new FileOutputStream(defaultPath
             		+ profileStructure + "auth");
 

@@ -26,6 +26,7 @@ import javax.swing.JTable;
 public final class TabView extends AbstractView<TabController> {
 
     private final String type = "TAB";
+    private int tabId;
 
     private String title;
     private JLabel labelTitle;
@@ -142,4 +143,30 @@ public final class TabView extends AbstractView<TabController> {
     public void update(Observable obj, String str) {
         System.out.println("----- TabView.update()");
     }
+
+    public int getTabId() {
+        return tabId;
+    }
+
+    public void setTabId(int tabId) {
+        this.tabId = tabId;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+
 }

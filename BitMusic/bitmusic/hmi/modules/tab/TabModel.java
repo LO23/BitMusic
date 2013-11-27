@@ -17,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public final class TabModel extends AbstractModel {
 
-    private String requestOrigin;   // Origine de la requête : MyProfile ou SearchBar
+    private String requestOrigin;   // Origine de la requête : MyProfile ou SearchBar ou OnlineUsers
     private String requestText;     // Texte entré dans la SearchBar
     private String requestFilter;   // Filtre sélectionné dans la SearchBar
 

@@ -78,7 +78,8 @@ public class ApiProfileImpl implements ApiProfile {
     	if (login == null || login.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.LoginNullOrEmpty);
     	if (password == null || password.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.PasswordNullOrEmpty);
     	currentUser = FileParser.getFileParser().loadUser(login, password);
-    	if (currentUser == null) return false;
+    	if (currentUser == null) 
+            return false;
     	Controller.getInstance().getApiProfile().notifyNewConnection(currentUser);
     	return true;
     }
@@ -93,7 +94,6 @@ public class ApiProfileImpl implements ApiProfile {
 
         currentUser = new User(login, password, firstName, lastName, birthDate,
                 avatarPath);
-
 
         String defaultPath = new File("").getAbsolutePath().toString() +
         		mainStructure + this.getCurrentUserFolder(); 
