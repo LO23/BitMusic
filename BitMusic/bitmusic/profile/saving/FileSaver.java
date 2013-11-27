@@ -6,7 +6,6 @@
 
 package bitmusic.profile.saving;
 
-import bitmusic.profile.api.ApiProfileImpl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
@@ -29,6 +29,9 @@ public class FileSaver {
      *
      */
     private static FileSaver currentSaver;
+    private static String mainStructure = "\\BitTest\\profiles\\";
+    private static String profileStructure = "\\profile\\";
+
 
     //######################### CONSTRUCTORS ###########################//
 
@@ -47,10 +50,10 @@ public class FileSaver {
      * @throws ProfileExceptions
      */
     public void saveUser(User userToSave) throws ProfileExceptions {
-        /*String defaultPath = new File("").getAbsolutePath().toString()
-                + "\\BitMusic\\profiles\\" + userToSave.getFolderName();*/
         String defaultPath = new File("").getAbsolutePath().toString()
-                + "\\BitTest\\profiles\\" + userToSave.getFolderName();
+        		+ mainStructure 
+        		+ ApiProfileImpl.getApiProfile().getCurrentUserFolder();
+
 
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
@@ -59,10 +62,12 @@ public class FileSaver {
 
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath
-                    + "\\profile\\" + userToSave.getLogin() + ".ser");
+            		+ profileStructure + userToSave.getLogin() + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(saveFile);
             oos.writeObject(userToSave);
             oos.flush();
+            oos.close();
+            saveFile.close();
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(eFound.toString());
@@ -79,20 +84,18 @@ public class FileSaver {
      */
     public void saveAuthFile(User toSave) throws ProfileExceptions {
         try {
-            /*String defaultPath = new File("").getAbsolutePath().toString()
-                    + "\\BitMusic\\profiles"
-                    + ApiProfileImpl.getApiProfile().getCurrentUserFolder();*/
-            String defaultPath = new File("").getAbsolutePath().toString()
-                    + "\\BitTest\\profiles\\"
+        	String defaultPath = new File("").getAbsolutePath().toString() 
+        			+ mainStructure
                     + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
 
             FileOutputStream authFile = new FileOutputStream(defaultPath
-                    + "\\profile\\auth");
+            		+ profileStructure + "auth");
 
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
-            oos.writeUTF(toSave.getLogin());
             oos.writeUTF(toSave.getEncryptedPassword());
             oos.flush();
+            oos.close();
+            authFile.close();
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(eFound.toString());
