@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.searchbar;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
 import bitmusic.hmi.modules.centralarea.CentralAreaView;
 import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractController;
@@ -35,49 +36,68 @@ public final class SearchBarController extends AbstractController<SearchBarModel
             SearchBarView view = SearchBarController.this.getView();
             SearchBarModel model = SearchBarController.this.getModel();
 
-            String textSearched = view.getSearchField().getText();
-            String filterChoosen;
+            String requestFilter;
+            String requestOrigin = ORIGIN_SEARCH_BAR;
+            String requestText = view.getSearchField().getText();
+
             ArrayList<Song> songResults = new ArrayList();
 
             if (view.getNoneButton().isSelected()) {
-                filterChoosen = "none";
-                songResults = model.searchSongsWithoutFilter(textSearched);
+                requestFilter = FILTER_NONE;
+                songResults = model.searchSongsWithoutFilter(requestText);
             } else if (view.getTitleButton().isSelected()) {
-                filterChoosen = "title";
-                songResults = model.searchSongsWithTitleFilter(textSearched);
+                requestFilter = FILTER_TITLE;
+                songResults = model.searchSongsWithTitleFilter(requestText);
             } else if (view.getAuthorButton().isSelected()) {
-                filterChoosen = "author";
-                songResults = model.searchSongsWithAuthorFilter(textSearched);
+                requestFilter = FILTER_AUTHOR;
+                songResults = model.searchSongsWithAuthorFilter(requestText);
             } else {
-                filterChoosen = "tag";
-                songResults = model.searchSongsWithTagFilter(textSearched);
+                requestFilter = FILTER_TAG;
+                songResults = model.searchSongsWithTagFilter(requestText);
             }
 
             // Vérification qu'une recherche identique n'a pas déjà été faite
             WindowComponent win = WindowComponent.getInstance();
-            CentralAreaView centralAreaView = win.getCentralAreaComponent().getView();
-            // ...
-            // TODO
-            // ...
+            CentralAreaComponent centralAreaComponent = win.getCentralAreaComponent();
+
+            TabComponent tabComponent = null;
+            Boolean sameTab = false;
+
+            for (int i=0; i<centralAreaComponent.getListTabComponent().size(); i++  ) {
+                Boolean sameFilter = centralAreaComponent.getListTabComponent().get(i).getModel().getRequestFilter().equals(requestFilter);
+                Boolean sameOrigin = centralAreaComponent.getListTabComponent().get(i).getModel().getRequestOrigin().equals(requestOrigin);
+                Boolean sameText = centralAreaComponent.getListTabComponent().get(i).getModel().getRequestText().equals(requestText);
+
+                if ( sameFilter && sameOrigin && sameText ) {
+                    sameTab = true;
+                    tabComponent = centralAreaComponent.getListTabComponent().get(i);
+                }
+            }
 
             // Si c'est le cas : simple actualisation des Song à l'intérieur
-            // ...
-            // TODO
-            // ...
-
+            if ( sameTab ) {
+                System.out.println("Un même tag existe déjà !");
+                // TODO
+            }
             // Sinon : création d'un nouveau tab
-            TabComponent tabComponent = new TabComponent();
+            else {
+                tabComponent = new TabComponent();
 
-            // Stockage des détails de la requête dans le TabComponent
-            tabComponent.getModel().setRequestOrigin("SearchBar");
-            tabComponent.getModel().setRequestText(textSearched);
-            tabComponent.getModel().setRequestFilter(filterChoosen);
+                // Stockage des détails de la requête dans le TabComponent
+                tabComponent.getModel().setRequestFilter(requestFilter);
+                tabComponent.getModel().setRequestOrigin(requestOrigin);
+                tabComponent.getModel().setRequestText(requestText);
 
-            // Attache des Songs obtenue dans la TabView
-            tabComponent.getModel().getModeleTable().setSong(songResults);
+                // Attache des Songs obtenue dans la TabView
+                tabComponent.getModel().getModeleTable().setSong(songResults);
 
-            // Ajout du Tab dans le CentralAreaComponent
-            centralAreaView.addTab(tabComponent.getView());
+                // Ajout du Tab dans le CentralAreaComponent (qui ajoute en même temps la vue)
+                centralAreaComponent.addTabComponent(tabComponent);
+            }
+
+        //Met le focus sur le bon tab (qu'il soit nouveau ou non...)
+        centralAreaComponent.getView().getTabbedPane().setSelectedComponent(tabComponent.getView().getPanel());
+
         }
     }
 }

@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.myprofile;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
 import bitmusic.hmi.modules.centralarea.CentralAreaView;
 import bitmusic.hmi.modules.tab.TabComponent;
 import bitmusic.hmi.patterns.AbstractController;
@@ -99,6 +100,8 @@ public final class MyProfileController extends AbstractController<MyProfileModel
          public void actionPerformed(ActionEvent e) {
              System.out.println("---- Clic sur le bouton MySongs");
 
+             // TODO : REPRENDRE L'IMPLEMENTATION DE SEARCHBAR CONTROLLER
+
              WindowComponent win = WindowComponent.getInstance();
              TabComponent tabComponent = new TabComponent();
 
@@ -118,8 +121,8 @@ public final class MyProfileController extends AbstractController<MyProfileModel
 //             }
 
 
-             CentralAreaView centralAreaView = win.getCentralAreaComponent().getView();
-             centralAreaView.addTab(tabComponent.getView());
+             CentralAreaComponent centralAreaComponent = win.getCentralAreaComponent();
+             centralAreaComponent.addTabComponent(tabComponent);
          }
     }
 }
