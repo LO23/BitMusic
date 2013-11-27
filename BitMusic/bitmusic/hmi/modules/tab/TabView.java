@@ -26,7 +26,8 @@ import javax.swing.JTable;
 public final class TabView extends AbstractView<TabController> {
 
     private final String type = "TAB";
-    private int tabId;
+
+    private Integer tabId;
 
     private String title;
     private JLabel labelTitle;
@@ -46,8 +47,12 @@ public final class TabView extends AbstractView<TabController> {
     public void initPanel() {
         System.out.println("--- TabView.initPanel()");
 
-        // Initialisation du titre de l'onglet
         Integer nextTabId = WindowComponent.getInstance().getCentralAreaComponent().getView().getTabCounter();
+
+        // Initialisation de l'ID de l'onglet
+        this.tabId = nextTabId;
+
+        // Initialisation du titre de l'onglet
         this.title = "Tab#" + nextTabId;
         this.labelTitle = new JLabel(title);
 
@@ -142,13 +147,16 @@ public final class TabView extends AbstractView<TabController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- TabView.update()");
+
+        // On "force" l'actualisation immédiate du TableModel (utile dans le cas d'un clic sur "MySongs" juste après le lancement de l'application)
+        this.getController().getModel().getModeleTable().fireTableDataChanged();
     }
 
-    public int getTabId() {
-        return tabId;
+    public Integer getTabId() {
+        return this.tabId;
     }
 
-    public void setTabId(int tabId) {
+    public void setTabId(Integer tabId) {
         this.tabId = tabId;
     }
 

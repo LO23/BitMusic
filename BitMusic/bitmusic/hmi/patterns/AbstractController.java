@@ -21,6 +21,7 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
     protected final String FILTER_TITLE = "title";
     protected final String FILTER_AUTHOR = "author";
     protected final String FILTER_TAG = "tag";
+    protected final String FILTER_USER = "user";
 
 
     public AbstractController(final M model, final V view) {
@@ -72,5 +73,5 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
         return FILTER_TAG;
     }
 
-    
+
 }

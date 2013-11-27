@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 /**
@@ -29,8 +28,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     public class CloseTabListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int tabId = TabController.this.getView().getTabId();
-            WindowComponent.getInstance().getCentralAreaComponent().removeTabComponentWithTabId(tabId);
-            // Est-ce que l'objet TabComponent est bien totalement supprimé ? MAINTENANT OUI !
+            WindowComponent.getInstance().getCentralAreaComponent().getView().removeTabComponent(tabId);
         }
     }
 

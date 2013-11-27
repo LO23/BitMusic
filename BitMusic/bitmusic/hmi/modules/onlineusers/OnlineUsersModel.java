@@ -6,9 +6,13 @@
 
 package bitmusic.hmi.modules.onlineusers;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.music.data.Song;
+import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.User;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -114,4 +118,17 @@ public final class OnlineUsersModel extends AbstractModel {
         this.modeleTable = modele;
     }
 
+    public ArrayList<Song> searchSongsFromUserId(final String userId) {
+        // Vérifier si c'est bon
+        WindowComponent win = WindowComponent.getInstance();
+//        SongLibrary songResults = win.getApiMusic().searchSongsByUser(userId, ""); // searchId semble nécessaire ? (void retourné)
+//        return songResults.getlibrary();
+
+        // --------------- À supprimer dès que possible (pour le test) ------------------
+        ArrayList<Song> songResults = new ArrayList();
+        songResults.add(new Song("1", "Title1", "Author1", "USER - " + userId, new LinkedList()));
+        songResults.add(new Song("2", "Title2", "Author2", "USER - " + userId, new LinkedList()));
+        // ------------------------------------------------------------------------------
+        return songResults;
+    }
 }
