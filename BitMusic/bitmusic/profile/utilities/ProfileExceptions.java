@@ -16,11 +16,11 @@ public class ProfileExceptions extends Throwable {
     public ProfileExceptions(ProfileExceptionType type) {
         this.type = type;
         switch(type) {
-            case LoginNull : {
+            case LoginNullOrEmpty : {
                 this.errorMessage = "No login defined";
                 break;
             }
-            case PasswordNull : {
+            case PasswordNullOrEmpty : {
                 this.errorMessage = "No password defined";
                 break;
             }
@@ -28,7 +28,7 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "No birthdate given";
                 break;
             }
-            case PathNull : {
+            case PathNullorEmpty : {
                 this.errorMessage = "No path given";
                 break;
             }
@@ -64,11 +64,11 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "Birthday is empty";
                 break;
             }
-            case FirstNameEmpty : {
+            case FirstNameNullOrEmpty : {
                 this.errorMessage = "Firstname is empty";
                 break;
             }
-            case LastNameEmpty : {
+            case LastNameNullOrEmpty : {
                 this.errorMessage = "Lastname is empty";
                 break;
             }

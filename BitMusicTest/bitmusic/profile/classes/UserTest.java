@@ -53,9 +53,10 @@ public class UserTest {
 
     /**
      * Test of setLogin method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testSetLogin() {
+    public void testSetLogin() throws ProfileExceptions {
         System.out.println("setLogin");
         String newLogin = "newlogin";
         try {
@@ -77,9 +78,10 @@ public class UserTest {
 
     /**
      * Test of setPassword method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testSetPassword() {
+    public void testSetPassword() throws ProfileExceptions {
         System.out.println("setPassword");
         String newPassword = "newpassword";
         try {
@@ -101,9 +103,10 @@ public class UserTest {
 
     /**
      * Test of setBirthDate method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testSetBirthDate() {
+    public void testSetBirthDate() throws ProfileExceptions {
         System.out.println("setBirthDate");
         Calendar newBirthdate = Calendar.getInstance();
         newBirthdate.set(2013, 12, 24);
@@ -126,9 +129,10 @@ public class UserTest {
 
     /**
      * Test of setFirstName method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testSetFirstName() {
+    public void testSetFirstName() throws ProfileExceptions {
         System.out.println("setFirstName");
         String newFirstname = "newfirstname";
         try {
@@ -150,9 +154,10 @@ public class UserTest {
 
     /**
      * Test of setLastName method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testSetLastName() {
+    public void testSetLastName() throws ProfileExceptions {
         System.out.println("setLastName");
         String newLastname = "newlastname";
         try {
@@ -174,9 +179,10 @@ public class UserTest {
 
     /**
      * Test of setAvatarPath method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testSetAvatarPath() {
+    public void testSetAvatarPath() throws ProfileExceptions {
         System.out.println("setAvatarPath");
         String newAvatarPath = "newavatarpath";
         try {
@@ -189,9 +195,10 @@ public class UserTest {
 
     /**
      * Test of addCategory method, of class User.
+     * @throws ProfileExceptions 
      */
     @Test
-    public void testAddCategory() {
+    public void testAddCategory() throws ProfileExceptions {
         System.out.println("addCategory");
         String categoryName = "category";
         List<Category> cat = user.getCategories();

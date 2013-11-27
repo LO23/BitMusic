@@ -6,9 +6,6 @@
 
 package bitmusic.profile.saving;
 
-import bitmusic.profile.classes.User;
-import bitmusic.profile.utilities.ProfileExceptions;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,6 +19,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+
+import bitmusic.profile.classes.User;
+import bitmusic.profile.utilities.ProfileExceptions;
 
 /**
  *
@@ -61,18 +61,21 @@ public class FileParser {
     public User loadUser(String login, String pwd) throws ProfileExceptions {
         try {
             String defaultPath = new File("").getAbsolutePath().toString()
-                    + mainStructure;
+            		+ mainStructure;
 
             DirectoryStream<Path> stream = Files.newDirectoryStream(FileSystems.getDefault().getPath(defaultPath));
             for(Path path:stream) {
                 if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
                     if(readAuthFile(path.toString(), pwd)) {
-                        FileInputStream saveFile = new FileInputStream(path.toString() 
-                                + profileStructure 
-                                + login + ".ser");
                         try {
+                        	FileInputStream saveFile = new FileInputStream(path.toString() 
+                        			+ profileStructure 
+                        			+ login + ".ser");
+
                             ObjectInputStream ois = new ObjectInputStream(saveFile);
                             User loadedUser = (User) ois.readObject();
+                            ois.close();
+                            saveFile.close();
                             return loadedUser;
                         }
                         catch (ClassNotFoundException ex) {
@@ -90,10 +93,11 @@ public class FileParser {
     public boolean readAuthFile(String path, String pwd) throws ProfileExceptions {
         try {
             FileInputStream authFile = new FileInputStream(path
-                    + profileStructure + "auth");
+            		+ profileStructure + "auth");
             ObjectInputStream ois = new ObjectInputStream(authFile);
             String password = ois.readUTF();
-
+            ois.close();
+            authFile.close();
             ConfigurablePasswordEncryptor pwdEncryptor = new ConfigurablePasswordEncryptor();
             pwdEncryptor.setAlgorithm("SHA-1");
             return pwdEncryptor.checkPassword(pwd, password);

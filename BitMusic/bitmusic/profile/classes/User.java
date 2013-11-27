@@ -5,7 +5,6 @@
 
 package bitmusic.profile.classes;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,7 +12,6 @@ import java.util.UUID;
 
 import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 
-import sun.awt.shell.ShellFolder;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.utilities.ProfileExceptionType;
@@ -66,11 +64,6 @@ public class User implements Serializable {
      *
      */
     private SongLibrary localSongs;
-
-    /**
-     *
-     */
-    private static final File myDocumentsFolder = (File) ShellFolder.get("fileChooserDefaultFolder");
 
     /**
      *
@@ -209,7 +202,7 @@ public class User implements Serializable {
      */
     public void setFirstName(String firstName) throws ProfileExceptions{
         if(firstName != "") this.firstName = firstName;
-        else throw new ProfileExceptions(ProfileExceptionType.FirstNameEmpty);
+        else throw new ProfileExceptions(ProfileExceptionType.FirstNameNullOrEmpty);
     }
 
     /**
@@ -226,7 +219,7 @@ public class User implements Serializable {
      */
     public void setLastName(String lastName) throws ProfileExceptions{
         if(lastName != "") this.lastName = lastName;
-        else throw new ProfileExceptions(ProfileExceptionType.LastNameEmpty);
+        else throw new ProfileExceptions(ProfileExceptionType.LastNameNullOrEmpty);
     }
 
     /**
@@ -402,5 +395,17 @@ public class User implements Serializable {
 
     public String getFolderName() {
 	return login + "_" + getTransformedBirthday();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+    	if (!(o instanceof User)) return false;
+    	User user = (User) o;
+		return this.login      == user.login     &&
+			   this.password   == user.password  &&
+			   this.firstName  == user.firstName &&
+			   this.lastName   == user.lastName  &&
+			   this.birthDate  == user.birthDate &&
+			   this.avatarPath == user.avatarPath;
     }
 }

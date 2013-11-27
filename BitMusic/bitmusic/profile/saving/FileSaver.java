@@ -6,7 +6,6 @@
 
 package bitmusic.profile.saving;
 
-import bitmusic.profile.api.ApiProfileImpl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptionType;
 import bitmusic.profile.utilities.ProfileExceptions;
@@ -50,19 +50,21 @@ public class FileSaver {
      */
     public void saveUser(User userToSave) throws ProfileExceptions {
         String defaultPath = new File("").getAbsolutePath().toString()
-                + mainStructure 
-                + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
-        
+        		+ mainStructure 
+        		+ ApiProfileImpl.getApiProfile().getCurrentUserFolder();
+
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
             throw new ProfileExceptions(ProfileExceptionType.DirNotFound);
         }
 
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath
-                    + profileStructure + userToSave.getLogin() + ".ser");
+            		+ profileStructure + userToSave.getLogin() + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(saveFile);
             oos.writeObject(userToSave);
             oos.flush();
+            oos.close();
+            saveFile.close();
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(eFound.toString());
@@ -79,16 +81,17 @@ public class FileSaver {
      */
     public void saveAuthFile(User toSave) throws ProfileExceptions {
         try {
-            String defaultPath = new File("").getAbsolutePath().toString() 
-                    + mainStructure
+        	String defaultPath = new File("").getAbsolutePath().toString() 
+        			+ mainStructure
                     + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
-
             FileOutputStream authFile = new FileOutputStream(defaultPath
-                    + profileStructure + "auth");
+            		+ profileStructure + "auth");
 
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
             oos.writeUTF(toSave.getEncryptedPassword());
             oos.flush();
+            oos.close();
+            authFile.close();
         }
         catch(FileNotFoundException eFound) {
             throw new ProfileExceptions(eFound.toString());
