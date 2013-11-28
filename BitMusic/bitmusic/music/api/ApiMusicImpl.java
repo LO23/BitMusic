@@ -127,6 +127,10 @@ public final class ApiMusicImpl implements ApiMusic {
         }
 
     }
+    
+    public void playSong() {
+        
+    }
 
     /**
      * play a song from a distant user
@@ -160,9 +164,20 @@ public final class ApiMusicImpl implements ApiMusic {
     /**
      * Stop a song. The song can be resume until a new song is not requested.
      */
-    public void pauseOrStopSong() {
+    public void pause() {
         try {
             BitMusicPlayer.getInstance().pause();
+        } catch (Exception e) {
+            System.out.println("Player : can't pause");
+        }
+    }
+    
+    /**
+     * Stop a song. The song can be resume until a new song is not requested.
+     */
+    public void stop() {
+        try {
+            BitMusicPlayer.getInstance().stop();
         } catch (Exception e) {
             System.out.println("Player : can't pause");
         }
