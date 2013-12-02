@@ -36,7 +36,7 @@ public class ApiProfileImpl implements ApiProfile {
     private final String profileStructure = "\\profile";
     private final String mainStructure = "\\BitTest\\profiles\\";
 
-    public User currentUser;
+    private User currentUser;
 
     private ApiProfileImpl() throws ProfileExceptions {
         String defaultPath = new File("").getAbsolutePath().toString()
@@ -104,7 +104,7 @@ public class ApiProfileImpl implements ApiProfile {
             Files.createDirectory(FileSystems.getDefault().getPath(defaultPath
             		+ profileStructure));
             FileSaver.getFileSaver().saveAuthFile(currentUser);
-            this.saveUser(currentUser);
+            this.saveCurrentUser();
             ApiMusicImpl.getInstance().initMusicFolder();
             }
             catch(IOException io) {
@@ -116,8 +116,13 @@ public class ApiProfileImpl implements ApiProfile {
 
 
     @Override
+    public void saveCurrentUser() throws ProfileExceptions {
+        saveUser(currentUser);
+    }
+    
+    @Override
     public void saveUser(User user) throws ProfileExceptions {
-    	if (user == null) throw new ProfileExceptions(ProfileExceptionType.UserNull);
+        if (user == null) throw new ProfileExceptions(ProfileExceptionType.UserNull);
         FileSaver.getFileSaver().saveUser(user);
     }
 

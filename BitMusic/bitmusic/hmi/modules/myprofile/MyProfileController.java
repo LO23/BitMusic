@@ -13,12 +13,15 @@ import bitmusic.hmi.popup.importsong.ImportSongPopUpComponent;
 import bitmusic.hmi.popup.modifyprofile.ModifyProfilePopUpComponent;
 import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
+import bitmusic.profile.utilities.ProfileExceptions;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JDialog;
 
 /**
@@ -50,7 +53,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             WindowComponent win = WindowComponent.getInstance();
             try {
                 win.getWindowModel().logOut();
-            } catch (NetworkException ex) {
+            } catch (NetworkException | ProfileExceptions ex) {
                 Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
