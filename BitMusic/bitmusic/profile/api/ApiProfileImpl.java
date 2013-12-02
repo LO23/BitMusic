@@ -117,8 +117,7 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public void saveCurrentUser() throws ProfileExceptions {
-        if (currentUser == null) throw new ProfileExceptions(ProfileExceptionType.UserNull);
-        FileSaver.getFileSaver().saveUser(currentUser);
+        saveUser(currentUser);
     }
     
     @Override
