@@ -11,14 +11,19 @@ import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.music.business.SongCommenter;
 import bitmusic.music.business.SongLoader;
+import bitmusic.music.business.SongPlayer;
 import bitmusic.music.business.SongSearcher;
+import bitmusic.music.data.Song;
 import bitmusic.music.exception.CopyMP3Exception;
 import java.io.IOException;
 import bitmusic.music.player.BitMusicPlayer;
+import bitmusic.network.exception.NetworkException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -128,8 +133,13 @@ public final class ApiMusicImpl implements ApiMusic {
 
     }
     
-    public void playSong() {
-        
+    public void playSong(Song song) {
+        SongPlayer songPlayer = new SongPlayer();
+        try {
+            songPlayer.playSong(song);
+        } catch (NetworkException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**

@@ -7,6 +7,7 @@
 package bitmusic.music.api;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Comment;
+import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import java.util.*;
 
@@ -79,6 +80,12 @@ public interface ApiMusic {
      */
     public void playSongFromSpecificFrame(int frameNumber);
     
+    /**
+     * Play a remote or a local song.
+     * @param song 
+     */
+    public void playSong(Song song);
+            
     /**
      * Pause a song. The song can be resume until a new song is not requested.
      */
