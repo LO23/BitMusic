@@ -97,7 +97,7 @@ public class SongLoader {
         String songId = new String(userId + dateFormat.format(date));
 
         //Creating song
-        Song newSong = new Song(songId, title, album, artist, tags);
+        Song newSong = new Song(songId, title, artist, album, tags);
         ArrayList<Category> allCategories = ApiProfil.getCategories();
 
         //All rightsByCategories are set to True by default
