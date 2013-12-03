@@ -62,7 +62,6 @@ public class SongLoader {
                 + separator + album);
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
-        System.out.println(fileDirectory);
 
         //Copying file (delete destination file if it already exists)
         Path destinationMP3 = Paths.get(destination + separator + title 
