@@ -53,7 +53,7 @@ public final class MessageLogOut extends AbstractMessage {
 
         } catch(NetworkDirectoryException exception) {
             WindowComponent.getInstance().getApiHmi()
-                    .errorNotification("Network", exception.getMessage());
+                    .errorNotification(exception.getMessage());
         }
     }
 

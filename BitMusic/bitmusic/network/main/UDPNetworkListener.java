@@ -35,7 +35,7 @@ public class UDPNetworkListener extends AbstractNetworkListener {
             UDPSERVER = new DatagramSocket(PORT_LISTENED);
         } catch (SocketException e) {
             WindowComponent.getInstance().getApiHmi()
-                    .errorNotification("Network", e.getMessage());
+                    .errorNotification(e.getMessage());
         }
         thread.start();
     }

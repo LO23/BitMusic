@@ -50,36 +50,40 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
      */
     @Override
     public void treatment() {
-       try {
-           //Add user to the directory
-           Controller.getInstance()
-                   .addUserToDirectory(this.user.getUserId(),
-                                       this.getIpSource());
-           //Notify user connecxion to HMI
-           WindowComponent.getInstance().getApiHmi().
-                   notifyNewConnection(this.user);
+       if (!this.user.getUserId().equals(ApiProfileImpl.getApiProfile().getCurrentUser().getUserId())) {
+           try {
+               //Add user to the directory
+               Controller.getInstance()
+                       .addUserToDirectory(this.user.getUserId(),
+                                           this.getIpSource());
+               //Notify user connecxion to HMI
+               /*System.out.println("# : "+WindowComponent.getInstance());
+               System.out.println("## : "+WindowComponent.getInstance().getApiHmi());
+               System.out.println("### : "+this.user.toString());*/
+               WindowComponent.getInstance().getApiHmi().
+                       notifyNewConnection(this.user);
 
-           final User currentUser = ApiProfileImpl.getApiProfile().
-                   getCurrentUser();
+               final User currentUser = ApiProfileImpl.getApiProfile().
+                       getCurrentUser();
 
-           //Build an answer message to the new user
-           final MessageReplyConnectionUser message =
-                   new MessageReplyConnectionUser(
-                    //Type of Message
-                    EnumTypeMessage.ReplyConnectionUser,
-                    //IP Source
-                    this.ipDest,
-                    //IP Dest
-                    this.ipSource,
-                    //User Profile
-                    currentUser);
+               //Build an answer message to the new user
+               final MessageReplyConnectionUser message =
+                       new MessageReplyConnectionUser(
+                        //Type of Message
+                        EnumTypeMessage.ReplyConnectionUser,
+                        //IP Source
+                        this.ipDest,
+                        //IP Dest
+                        this.ipSource,
+                        //User Profile
+                        currentUser);
 
-           Controller.getInstance().getThreadManager()
-                                   .assignTaskToHermes(message);
+               Controller.getInstance().getThreadManager()
+                                       .assignTaskToHermes(message);
 
-       } catch (NetworkDirectoryException exception) {
-               WindowComponent.getInstance().getApiHmi()
-                       .errorNotification("Network", exception.getMessage());
+           } catch (NetworkDirectoryException exception) {
+                   //Send to Controller?
+           }
        }
 
    }

@@ -74,6 +74,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
                 //On initialise tous les composants dans la vue principale
                 win.initAllComponents();
+                win.startNetwork();
             }
             else {
                 JOptionPane.showMessageDialog(

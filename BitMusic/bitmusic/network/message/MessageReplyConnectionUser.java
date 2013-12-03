@@ -44,11 +44,12 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
            Controller.getInstance().addUserToDirectory(
                    this.profile.getUserId(),
                    this.ipSource);
+        System.out.println("2####"+this.profile);
            WindowComponent.getInstance().getApiHmi().
                    notifyNewConnection(this.profile);
        } catch (NetworkDirectoryException exception) {
            WindowComponent.getInstance().getApiHmi()
-                   .errorNotification("Network", exception.getMessage());
+                   .errorNotification(exception.getMessage());
        }
    }
 
