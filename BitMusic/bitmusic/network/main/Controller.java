@@ -7,6 +7,7 @@
 package bitmusic.network.main;
 
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.exception.NetworkDirectoryException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -79,8 +80,9 @@ public final class Controller {
         try {
             this.networkAddress = InetAddress.getLocalHost().getHostAddress();
             this.broadcastAddress = findBroadCastAddress();
-        }
-        catch (UnknownHostException ex) {
+        } catch (UnknownHostException ex) {
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", ex.getMessage());
         }
 
         //Create the directory
@@ -95,7 +97,6 @@ public final class Controller {
         threadManager = bitmusic.network.main.ThreadManager.getInstance();
 
         //Contains the NetworkListener instance
-        
         tcpListener = bitmusic.network.main.TCPNetworkListener.getInstance();
         udpListener = bitmusic.network.main.UDPNetworkListener.getInstance();
     }
