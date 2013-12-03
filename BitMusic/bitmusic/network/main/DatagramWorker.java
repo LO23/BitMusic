@@ -58,7 +58,16 @@ public class DatagramWorker extends AbstractManageable {
                     final AbstractMessage message =
                             (AbstractMessage) ois.readObject();
 
-                    message.treatment();
+                    /*
+                        If we receive a message that comes from us,
+                        for example, because of Broadcast,
+                        we don't treat it.
+                    */
+                    if (!message.getIpSource().
+                            equals(Controller.getNetworkAddress())) {
+                        message.treatment();
+                    }
+
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
