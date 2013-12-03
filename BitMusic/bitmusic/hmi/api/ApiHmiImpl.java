@@ -8,6 +8,7 @@ package bitmusic.hmi.api;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.music.business.SongPlayer;
+import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
@@ -47,7 +48,7 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void updateCommentNotification(final Song song, final String comment) {
+    public void updateCommentNotification(final Song song, final Comment comment) {
         //TODO
     }
 
