@@ -11,6 +11,7 @@ import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -74,16 +75,14 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
             ImportSongPopUpView view = ImportSongPopUpController.this.getView();
             List<String> tag = view.getTagList().getSelectedValuesList();
 
-            if ( ImportSongPopUpController.this.checkAllCompulsoryFields() ){
-
-//                TODO : Décommenter lors de l'intégration
-//                win.getApiMusic().importSong(
-//                        view.getFileField().getText(),
-//                        view.getTitleField().getText(),
-//                        view.getArtistField().getText(),
-//                        view.getAlbumField().getText(),
-//                        new LinkedList<String>(view.getTagList().getSelectedValuesList()),
-//                        null);
+            if (ImportSongPopUpController.this.checkAllCompulsoryFields()){
+                win.getApiMusic().importSong(
+                        view.getFileField().getText(),
+                        view.getTitleField().getText(),
+                        view.getArtistField().getText(),
+                        view.getAlbumField().getText(),
+                        new LinkedList<String>(view.getTagList().getSelectedValuesList()),
+                        null);
                 win.getMyProfileComponent().getController().getPopUp().dispose();
             }
             else {
