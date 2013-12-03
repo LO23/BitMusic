@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javazoom.jl.decoder.JavaLayerException;
@@ -33,22 +34,23 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
     private boolean resume;
     private boolean pause;
-    private boolean stop;
-    private boolean play;
+
+    private int frame ;
 
     public PlayBarController(final PlayBarModel model, final PlayBarView view) {
         super(model, view);
 
         resume = false;
         pause = false;
-        stop = false;
-        play = false;
 
+        frame = 0;
     }
 
     public class PlayListener implements ActionListener  {
         final private Path p = Paths.get("ilikeit.mp3");
         final private String filename = "/bitmusic/hmi/modules/playbar/songitems/ilikeit.mp3";
+
+
 
         // Ici il faut mettre le chamin absolu avec deux back slash sinon il va renvoyer une FileNotFoundException
         final private String fileNameTochange = "C:\\Users\\khadre\\Documents\\NetBeansProjects\\BitMusic\\BitMusic\\bitmusic\\hmi\\modules\\playbar\\songitems\\ilikeit.mp3";
@@ -61,34 +63,34 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                 BitMusicPlayer bitMusic = BitMusicPlayer.getInstance();
                 WindowComponent win = WindowComponent.getInstance();
                 // Plays a song
-                if (resume == false && pause == false && stop == false && play == false) {
-                     System.out.println("-----Playing the song for the first time");
-                     win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
-                     win.getApiMusic().playSongFromStart(fileNameTochange);
-                     play = true;
+                System.out.println("-----Playing the song for the first time");
+                win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
+                JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
+
+                win.getApiMusic().playSongFromStart(fileNameTochange);
+                /*while(win.getApiMusic().getCurrentFrame() != win.getApiMusic().getNumberOfFrame() ) {
+                   playBar.setValue(win.getApiMusic().getCurrentFrame());
+                }*/
+                System.out.println("--- ApiMusic : number of frames = " + win.getApiMusic().getNumberOfFrame());
+                frame = 0;
+                //frame = win.getApiMusic().getCurrentFrame();
+                // WE WILL NEED THE FRAME RATE TO PROPERLY ANIMATE THE SLIDER
+                int frameRate = 64;
+                int tmp = win.getApiMusic().getNumberOfFrame() / frameRate;
+                System.out.println("--- PlayBar : tmp = " + tmp);
+
+                playBar.setValue(frame);
+                while(frame < 30) {
+                    frame++;
+                    try {
+                        //Thread.sleep(1000);
+                        playBar.wait(1000);
+                        playBar.setValue(frame);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 }
-
-                else if(play == true) {
-                    win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPlayIcon());
-                    win.getApiMusic().resumeSong();
-                    pause = true ;
-                    play = false;
-                }
-                else if (pause==true) {
-                    //System.out.println("------Resuming the song previously paused");
-                    win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
-                    win.getApiMusic().resumeSong();
-                    pause = false;
-                    resume = true;
-                }
-
-                else { //if(stop == true) {
-                    win.getApiMusic().playSongFromStart(fileNameTochange);
-                    stop=false;
-                }
-
-
                 //Path p = Paths.get(this.getClass().getResource(filename).toString());
                 /*String res = this.getClass().getResource(filename).toString();
                 //res = res.replace ("/", "\\");
@@ -117,11 +119,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
             // Stops or pauses a song that is being played
               // we pause the song
              WindowComponent win = WindowComponent.getInstance();
-             win.getApiMusic().pauseOrStopSong();
-             resume = true;
-             stop = true;
-             play=false;
-             pause=false;
+             win.getApiMusic().stop();
         }
     }
 
@@ -130,11 +128,12 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Download");
 
-            // Plays the next song
+            // Downloads the song
         }
     }
 
     // Pour 'écouter' le temps de lecture du son et l'afficher sur la slider
+    // Bonne idée. Mais la prochaine fois, let me know you wrote this ;)
     public class SoundTimeListener implements ChangeListener {
 
         @Override
