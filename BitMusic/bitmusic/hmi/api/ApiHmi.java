@@ -90,5 +90,5 @@ public interface ApiHmi {
     void startSong(SongPlayer player);
     void connectUser(String login, String mdp);
     void displaySongs(String userId);
-    void errorNotification(String errorMessage);
+    void errorNotification(String moduleName, String errorMessage);
 }
