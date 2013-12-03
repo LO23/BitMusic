@@ -7,15 +7,10 @@
 package bitmusic.hmi.modules.playbar;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.modules.connection.ConnectionController;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.music.player.BitMusicPlayer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
@@ -23,7 +18,6 @@ import java.util.logging.Logger;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 /**
