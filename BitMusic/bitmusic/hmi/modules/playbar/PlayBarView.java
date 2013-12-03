@@ -53,7 +53,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
         pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
 
-        playBar = new JSlider(0, 10, 0);
+        playBar = new JSlider(0, 1);
         // TODO [APIMUSIC]: renvoyer le current frame (temps actuel de la musique
 
 
@@ -173,7 +173,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
         this.playBar = playBar;
     }
 
-    
+
 
     @Override
     public void update(Observable obj, String str) {
