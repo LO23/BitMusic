@@ -4,14 +4,15 @@
  */
 package bitmusic.profile.api;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
-import java.util.ArrayList;
-import java.util.Calendar;
 /**
  *
  * @author MilioPeralta, Jérémy
@@ -43,7 +44,14 @@ public interface ApiProfile {
     public void createUser(String login, String password, String firstName, String lastName, Calendar birthDate, String avatarPath) throws ProfileExceptions;
 
     /**
-     * Saves a User as an object User
+     * Saves the currentUser on a file
+     *
+     * @return
+     */
+    public void saveCurrentUser() throws ProfileExceptions;
+    
+    /**
+     * Saves the User on a file
      *
      * @return
      */

@@ -158,7 +158,7 @@ public class BitMusicPlayer extends PlaybackListener {
     }
     
     /**
-     * Allow to stop a song. It is possible to resume it later.
+     * Allows to stop a song. It is possible to resume it later.
      */
     public void pause() {
         synchronized (playerLock) {
@@ -166,6 +166,18 @@ public class BitMusicPlayer extends PlaybackListener {
                 return;
             this.player.stop();
             playerStatus = PAUSED;
+        }
+    }
+    
+    /**
+     * Allows to stop the current song.
+     */
+    public void stop() {
+        synchronized (playerLock) {
+            if (playerStatus == PLAYING) {
+                this.player.stop();
+                this.firstFrame = 0;
+            }
         }
     }
     

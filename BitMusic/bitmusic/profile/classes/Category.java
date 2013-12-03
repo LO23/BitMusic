@@ -93,11 +93,11 @@ public class Category implements Serializable {
      * @return th User or null
      */
     public User findContact(String UserID){
-        User found = null;
         for(User contact : this.contacts){
-            if(contact.getUserId() == UserID) found = contact;
+            if(contact.getUserId().equals(UserID))
+                return contact;
         }
-        return found;
+        return null;
     }
 
     /**
@@ -107,9 +107,10 @@ public class Category implements Serializable {
      * @param canRate Right to play
      * @param canComment Right to comment
      */
-    public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
-
-            this.rights=new Rights(canIReadInfo, canPlay, canRate, canComment);
+    public void updateRight(boolean canIReadInfo, boolean canPlay,
+            boolean canRate, boolean canComment) {
+            this.rights = new Rights(canIReadInfo,
+                    canPlay, canRate, canComment);
 
     }
 

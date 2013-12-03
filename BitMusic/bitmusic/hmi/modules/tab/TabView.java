@@ -27,6 +27,8 @@ public final class TabView extends AbstractView<TabController> {
 
     private final String type = "TAB";
 
+    private Integer tabId;
+
     private String title;
     private JLabel labelTitle;
     private JButton btnClose = new JButton("x");
@@ -45,8 +47,12 @@ public final class TabView extends AbstractView<TabController> {
     public void initPanel() {
         System.out.println("--- TabView.initPanel()");
 
-        // Initialisation du titre de l'onglet
         Integer nextTabId = WindowComponent.getInstance().getCentralAreaComponent().getView().getTabCounter();
+
+        // Initialisation de l'ID de l'onglet
+        this.tabId = nextTabId;
+
+        // Initialisation du titre de l'onglet
         this.title = "Tab#" + nextTabId;
         this.labelTitle = new JLabel(title);
 
@@ -141,5 +147,34 @@ public final class TabView extends AbstractView<TabController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- TabView.update()");
+
+        // On "force" l'actualisation immédiate du TableModel (utile dans le cas d'un clic sur "MySongs" juste après le lancement de l'application)
+        this.getController().getModel().getModeleTable().fireTableDataChanged();
     }
+
+    public Integer getTabId() {
+        return this.tabId;
+    }
+
+    public void setTabId(Integer tabId) {
+        this.tabId = tabId;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+
 }

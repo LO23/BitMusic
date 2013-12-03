@@ -17,7 +17,12 @@ import javax.swing.table.AbstractTableModel;
  */
 public final class TabModel extends AbstractModel {
 
+    private String requestOrigin;   // Origine de la requête : MyProfile ou SearchBar ou OnlineUsers
+    private String requestText;     // Texte entré dans la SearchBar
+    private String requestFilter;   // Filtre sélectionné dans la SearchBar
+
     private TabTableModel modeleTable = new TabTableModel();
+
     public TabModel() {
         super();
     }
@@ -115,5 +120,29 @@ public final class TabModel extends AbstractModel {
 
     public TabTableModel getModeleTable() {
         return this.modeleTable;
+    }
+
+    public String getRequestOrigin() {
+        return this.requestOrigin;
+    }
+
+    public void setRequestOrigin(String requestOrigin) {
+        this.requestOrigin = requestOrigin;
+    }
+
+    public String getRequestText() {
+        return this.requestText;
+    }
+
+    public void setRequestText(String requestText) {
+        this.requestText = requestText;
+    }
+
+    public String getRequestFilter() {
+        return this.requestFilter;
+    }
+
+    public void setRequestFilter(String requestFilter) {
+        this.requestFilter = requestFilter;
     }
 }

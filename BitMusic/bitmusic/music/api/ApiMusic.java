@@ -80,9 +80,14 @@ public interface ApiMusic {
     public void playSongFromSpecificFrame(int frameNumber);
     
     /**
-     * Stop a song. The song can be resume until a new song is not requested.
+     * Pause a song. The song can be resume until a new song is not requested.
      */
-    public void pauseOrStopSong();
+    public void pause();
+    
+    /**
+     * Stop a song. Must use play for play a song.
+     */
+    public void stop();
     
     /**
      * Resume a song which was stopped.

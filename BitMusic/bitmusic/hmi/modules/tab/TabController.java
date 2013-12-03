@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 /**
@@ -28,10 +27,8 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     public class CloseTabListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // On supprime le tab de tabbedPane
-            JTabbedPane tabbedPane = WindowComponent.getInstance().getCentralAreaComponent().getView().getTabbedPane();
-            String tabTitle = TabController.this.getView().getTitle();
-            tabbedPane.removeTabAt(tabbedPane.indexOfTab(tabTitle));
+            int tabId = TabController.this.getView().getTabId();
+            WindowComponent.getInstance().getCentralAreaComponent().getView().removeTabComponent(tabId);
         }
     }
 

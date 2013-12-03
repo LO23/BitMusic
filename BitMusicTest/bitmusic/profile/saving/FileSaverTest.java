@@ -6,12 +6,13 @@
 
 package bitmusic.profile.saving;
 
-import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -50,7 +51,11 @@ public class FileSaverTest {
         User userToSave = new User("Olivia", "test");
         Calendar birth = GregorianCalendar.getInstance();
         birth.set(1990, 05, 02);
-        userToSave.setBirthDate(birth);
+        try {
+            userToSave.setBirthDate(birth);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(FileSaverTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try {
             FileSaver.getFileSaver().saveUser(userToSave);
@@ -68,7 +73,11 @@ public class FileSaverTest {
         User toAuth = new User("Olivia", "pwd");
         Calendar birth = GregorianCalendar.getInstance();
         birth.set(1990, 05, 02);
-        toAuth.setBirthDate(birth);
+        try {
+            toAuth.setBirthDate(birth);
+        } catch (ProfileExceptions ex) {
+            Logger.getLogger(FileSaverTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try {
             FileSaver.getFileSaver().saveAuthFile(toAuth);

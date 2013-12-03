@@ -70,5 +70,4 @@ public final class CommentSongPopUpController extends AbstractController<Comment
             //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
         }
     }
-
 }

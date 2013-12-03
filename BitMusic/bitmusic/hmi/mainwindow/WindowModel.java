@@ -9,7 +9,10 @@ package bitmusic.hmi.mainwindow;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
 import bitmusic.network.exception.NetworkException;
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
+import bitmusic.profile.utilities.ProfileExceptions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +28,12 @@ public class WindowModel extends Observable {
 
     }
 
-    public void logOut() throws NetworkException {
+    public void logOut() throws NetworkException, ProfileExceptions {
         // si on est connecté, alors on doit avertir les autres, sinon on ferme simplement l'application
         User currentUser = WindowComponent.getInstance().getApiProfile().getCurrentUser();
         if (currentUser != null) {
+        	//Sauvegarde de l'utilisateur courant
+            ApiProfileImpl.getApiProfile().saveCurrentUser();
             String myId = currentUser.getUserId();
             WindowComponent.getInstance().getApiNetwork().logOut(myId);
         }

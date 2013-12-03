@@ -27,13 +27,13 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     private final String type = "NORTH";
     private final JLabel filtreLabel = new JLabel("Filtre :");
    // private final JLabel searchLabel = new JLabel("Recherche...");
-    private final JTextField searchField = new JTextField("");
+    private JTextField searchField = new JTextField("");
     private final JButton researchButton = new JButton("Rechercher");
-    private final ButtonGroup groupeRadio = new ButtonGroup();
-    private final JRadioButton aucunButton = new JRadioButton("Aucun", true);
-    private final JRadioButton titreButton = new JRadioButton("Par titre", false);
-    private final JRadioButton auteurButton = new JRadioButton("Par auteur", false);
-    private final JRadioButton tagButton = new JRadioButton("Par tag", false);
+    private ButtonGroup groupeRadio = new ButtonGroup();
+    private JRadioButton noneButton = new JRadioButton("Aucun", true);
+    private JRadioButton titleButton = new JRadioButton("Par titre", false);
+    private JRadioButton authorButton = new JRadioButton("Par auteur", false);
+    private JRadioButton tagButton = new JRadioButton("Par tag", false);
 
 
     public SearchBarView() {
@@ -48,17 +48,17 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
         //this.filtreLabel.setSize(d);
         this.researchButton.setSize(d);
-        this.aucunButton.setSize(d);
-        this.titreButton.setSize(d);
-        this.auteurButton.setSize(d);
+        this.noneButton.setSize(d);
+        this.titleButton.setSize(d);
+        this.authorButton.setSize(d);
         this.tagButton.setSize(d);
 
         //this.searchLabel.setSize(d);
         this.searchField.setColumns(10);
 
-        groupeRadio.add(aucunButton);
-        groupeRadio.add(titreButton);
-        groupeRadio.add(auteurButton);
+        groupeRadio.add(noneButton);
+        groupeRadio.add(titleButton);
+        groupeRadio.add(authorButton);
         groupeRadio.add(tagButton);
 
         this.researchButton.addActionListener(this.getController().new ResearchListener());
@@ -76,13 +76,13 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
             )
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addComponent(researchButton)
-                .addComponent(aucunButton)
+                .addComponent(noneButton)
             )
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(titreButton)
+                .addComponent(titleButton)
             )
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(auteurButton)
+                .addComponent(authorButton)
             )
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addComponent(tagButton)
@@ -96,28 +96,47 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
             )
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(filtreLabel)
-                .addComponent(aucunButton)
-                .addComponent(titreButton)
-                .addComponent(auteurButton)
+                .addComponent(noneButton)
+                .addComponent(titleButton)
+                .addComponent(authorButton)
                 .addComponent(tagButton)
             )
         );
 
         layout.linkSize(SwingConstants.HORIZONTAL,  searchField, researchButton);
-        layout.linkSize(SwingConstants.HORIZONTAL, filtreLabel, aucunButton, titreButton, auteurButton, tagButton);
+        layout.linkSize(SwingConstants.HORIZONTAL, filtreLabel, noneButton, titleButton, authorButton, tagButton);
     }
 
-    public JLabel getfiltreLabel() {
-        return this.filtreLabel;
-    }
-
-
-    public JButton getresearchButton() {
-        return this.researchButton;
-    }
-
-    public JTextField getsearchField() {
+    public JTextField getSearchField() {
         return this.searchField;
+    }
+
+    public void setSearchField(JTextField searchField) {
+        this.searchField = searchField;
+    }
+
+    public ButtonGroup getGroupeRadio() {
+        return this.groupeRadio;
+    }
+
+    public void setGroupeRadio(ButtonGroup groupeRadio) {
+        this.groupeRadio = groupeRadio;
+    }
+
+    public JRadioButton getNoneButton() {
+        return this.noneButton;
+    }
+
+    public JRadioButton getTitleButton() {
+        return this.titleButton;
+    }
+
+    public JRadioButton getAuthorButton() {
+        return this.authorButton;
+    }
+
+    public JRadioButton getTagButton() {
+        return this.tagButton;
     }
 
     @Override

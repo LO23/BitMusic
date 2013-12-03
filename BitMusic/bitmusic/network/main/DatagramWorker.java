@@ -39,7 +39,7 @@ public class DatagramWorker extends AbstractManageable {
      */
     @Override
     public final void run() {
-        byte[] buf = new byte[1000];
+        byte[] buf = new byte[5000];
 
         final DatagramPacket datagramPaquet = new DatagramPacket(buf,
                 buf.length);
