@@ -36,6 +36,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     private boolean pause;
     private boolean stop;
     private boolean play;
+    private int frame ;
 
     public PlayBarController(final PlayBarModel model, final PlayBarView view) {
         super(model, view);
@@ -44,12 +45,13 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         pause = false;
         stop = false;
         play = false;
-
+        frame = 0;
     }
 
     public class PlayListener implements ActionListener  {
         final private Path p = Paths.get("ilikeit.mp3");
         final private String filename = "/bitmusic/hmi/modules/playbar/songitems/ilikeit.mp3";
+
 
         // Ici il faut mettre le chamin absolu avec deux back slash sinon il va renvoyer une FileNotFoundException
         final private String fileNameTochange = "C:\\Users\\khadre\\Documents\\NetBeansProjects\\BitMusic\\BitMusic\\bitmusic\\hmi\\modules\\playbar\\songitems\\ilikeit.mp3";
@@ -68,9 +70,19 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                      JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
 
                      win.getApiMusic().playSongFromStart(fileNameTochange);
-                     while(win.getApiMusic().getCurrentFrame() != win.getApiMusic().getNumberOfFrame() ) {
+                     /*while(win.getApiMusic().getCurrentFrame() != win.getApiMusic().getNumberOfFrame() ) {
                          playBar.setValue(win.getApiMusic().getCurrentFrame());
-                     }
+                     }*/
+                     while(frame-1 != 10) {
+			playBar.setValue(frame);
+
+			frame++;
+                         try {
+                             Thread.sleep(1000);
+                         } catch (InterruptedException ex) {
+                             Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                    }
                      play = true;
 
                 }
