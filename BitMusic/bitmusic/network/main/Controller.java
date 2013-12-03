@@ -49,11 +49,6 @@ public final class Controller {
      */
     private final transient ApiProfileImpl apiProfile;
     /**
-     * References the Exception API
-     * (Due to the composition link on the class diagram).
-     */
-    private final transient ApiExceptionImpl apiException;
-    /**
      * References the network listener
      * (Due to the composition link on the class diagram).
      */
@@ -92,7 +87,6 @@ public final class Controller {
         directory = new HashMap();
 
         //Contains all the API's instances
-        apiException = bitmusic.network.main.ApiExceptionImpl.getInstance();
         apiHmi = bitmusic.network.main.ApiHmiImpl.getInstance();
         apiMusic = bitmusic.network.main.ApiMusicImpl.getInstance();
         apiProfile = bitmusic.network.main.ApiProfileImpl.getInstance();
@@ -151,13 +145,6 @@ public final class Controller {
      */
     public ApiProfileImpl getApiProfile() {
         return apiProfile;
-    }
-    /**
-     * Get the ApiExceptionImpl.
-     * @return instance of ApiExceptionImpl
-     */
-    public ApiExceptionImpl getApiException() {
-        return apiException;
     }
     /**
      * Get the NetworkListener.
