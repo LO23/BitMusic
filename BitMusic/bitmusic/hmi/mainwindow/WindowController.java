@@ -6,18 +6,14 @@
 
 package bitmusic.hmi.mainwindow;
 
-import bitmusic.hmi.popup.importsong.ImportSongPopUpComponent;
 import bitmusic.network.exception.NetworkException;
-import bitmusic.profile.utilities.ProfileExceptions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JDialog;
 
 /**
  *
@@ -39,7 +35,9 @@ public class WindowController {
             System.out.println("- Fermeture de l'application en cours...");
             try {
                 WindowController.this.getWindowModel().logOut();
-            } catch (NetworkException | ProfileExceptions ex) {
+            } catch (NetworkException ex) {
+                Logger.getLogger(WindowController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ProfileExceptions ex) {
                 Logger.getLogger(WindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
 

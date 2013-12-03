@@ -9,7 +9,6 @@ package bitmusic.hmi.modules.searchbar;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.music.data.Song;
-import bitmusic.music.data.SongLibrary;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;

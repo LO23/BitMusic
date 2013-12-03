@@ -6,9 +6,7 @@
 
 package bitmusic.hmi.popup.editsong;
 
-import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.popup.commentsong.CommentSongPopUpController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;

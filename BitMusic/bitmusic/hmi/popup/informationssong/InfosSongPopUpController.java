@@ -6,7 +6,6 @@
 
 package bitmusic.hmi.popup.informationssong;
 
-import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
