@@ -90,7 +90,8 @@ public final class MessageSendSongFile extends AbstractMessage {
                         playSongFromStart(pathFile);
             }
         } catch (IOException e) {
-
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", e.getMessage());
         }
     }
 

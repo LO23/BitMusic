@@ -56,7 +56,7 @@ public class SongLoader {
         String separator = FileSystems.getDefault().getSeparator();
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
-        String fileDirectory = new String(separator + "BitTest" + separator
+        String fileDirectory = new String("BitTest" + separator
                 + "profiles" + separator + currentUserFolder + separator 
                 + "music" + separator +"library" + separator + artist 
                 + separator + album);
@@ -125,7 +125,7 @@ public class SongLoader {
         String album = new String(localSong.getAlbum());
         String title = new String(localSong.getTitle());
         String separator = FileSystems.getDefault().getSeparator();
-        String path = new String(separator + "BitTest" + separator + "profiles"
+        String path = new String("BitTest" + separator + "profiles"
                 + separator + currentUserFolder + separator + "music" 
                 + separator + "library" + separator + artist + separator 
                 + album + separator + title + ".mp3");
@@ -145,7 +145,7 @@ public class SongLoader {
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
         String separator = FileSystems.getDefault().getSeparator();
-        String path = new String(separator + "BitTest" + separator + "profiles"
+        String path = new String("BitTest" + separator + "profiles"
                 + separator + currentUserFolder + separator + "music" 
                 + separator + "temp" + separator + userId + "_" + songId 
                 + ".mp3");
@@ -167,14 +167,14 @@ public class SongLoader {
 
         //Creating /Music/Library folder
         String separator = FileSystems.getDefault().getSeparator();
-        String fileDirectory = new String(separator + "BitTest" + separator 
+        String fileDirectory = new String("BitTest" + separator 
                 + "profiles" + separator + currentUserFolder + separator 
                 + "music" + separator + "library" + separator);
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
         //Creating /Music/Library folder
-        fileDirectory = separator + "BitTest" + separator + "profiles" 
+        fileDirectory = "BitTest" + separator + "profiles" 
                 + separator + currentUserFolder + separator + "music" 
                 + separator + "temp" + separator;
         destination = Paths.get(fileDirectory);

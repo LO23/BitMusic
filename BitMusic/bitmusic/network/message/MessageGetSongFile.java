@@ -6,6 +6,7 @@
 
 package bitmusic.network.message;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.network.main.Controller;
 import java.io.IOException;
@@ -82,7 +83,8 @@ public final class MessageGetSongFile extends AbstractMessage {
             Controller.getInstance().getThreadManager().
                     assignTaskToHermes(message);
         } catch (IOException e) {
-
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", e.getMessage());
         }
     }
 

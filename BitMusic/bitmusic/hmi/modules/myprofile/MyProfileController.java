@@ -117,11 +117,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             String requestFilter = "";
 
             ArrayList<Song> songResults = new ArrayList();
-            //songResults = win.getApiProfile().getCurrentUser().getLocalSongs().getlibrary();
-            // --------------- À supprimer dès que possible (pour le test) ------------------
-            songResults.add(new Song("1", "Title1", "Author1", "MYPROFILE", new LinkedList()));
-            songResults.add(new Song("2", "Title2", "Author2", "MYPROFILE", new LinkedList()));
-            // ------------------------------------------------------------------------------
+            songResults = win.getApiProfile().getCurrentUser().getLocalSongs().getlibrary();
 
             // Vérification qu'une recherche identique n'a pas déjà été faite
             CentralAreaComponent centralAreaComponent = win.getCentralAreaComponent();

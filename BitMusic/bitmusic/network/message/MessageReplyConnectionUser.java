@@ -47,7 +47,8 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
            WindowComponent.getInstance().getApiHmi().
                    notifyNewConnection(this.profile);
        } catch (NetworkDirectoryException exception) {
-           //process exception
+           WindowComponent.getInstance().getApiHmi()
+                   .errorNotification("Network", exception.getMessage());
        }
    }
 

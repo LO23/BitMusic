@@ -6,6 +6,7 @@
 
 package bitmusic.network.main;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.exception.NetworkException;
 import java.net.DatagramSocket;
 import java.net.SocketException;
@@ -32,7 +33,10 @@ public class UDPNetworkListener extends AbstractNetworkListener {
         super(portToListen);
         try{
             UDPSERVER = new DatagramSocket(PORT_LISTENED);
-        } catch (SocketException e) {}
+        } catch (SocketException e) {
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", e.getMessage());
+        }
         thread.start();
     }
 
