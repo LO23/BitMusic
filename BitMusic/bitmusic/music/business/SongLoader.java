@@ -54,8 +54,8 @@ public class SongLoader {
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
-        String fileDirectory = new String("Profiles/" + currentUserFolder
-                + "/Music/Library/" + artist + "/" + album); //à tester
+        String fileDirectory = new String("BitTest/profiles/" 
+                + currentUserFolder + "/Music/Library/" + artist + "/" + album);
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
@@ -119,7 +119,7 @@ public class SongLoader {
         String artist = new String(localSong.getArtist());
         String album = new String(localSong.getAlbum());
         String title = new String(localSong.getTitle());
-        String path = new String("Profiles/" + currentUserFolder
+        String path = new String("BitTest/profiles/" + currentUserFolder
                 + "/Music/Library/" + artist + "/" + album + "/" + title
                 + ".mp3");
 
@@ -137,7 +137,7 @@ public class SongLoader {
         Song localSong = ApiProfile.getSongLibrary().getSong(songId);
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
-        String path = new String("Profiles/" + currentUserFolder
+        String path = new String("BitTest/profiles/" + currentUserFolder
                 + "/Music/Temp/" + userId + "_" + songId + ".mp3");
 
         return path;
@@ -156,13 +156,14 @@ public class SongLoader {
                 = new String(ApiProfile.getCurrentUserFolder());
 
         //Creating /Music/Library folder
-        String fileDirectory = new String("Profiles/" + currentUserFolder
-                + "/Music/Library/"); //à tester
+        String fileDirectory = new String("BitTest/profiles/" 
+                + currentUserFolder + "/Music/Library/");
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
         //Creating /Music/Library folder
-        fileDirectory = "Profiles/" + currentUserFolder + "/Music/Temp/";
+        fileDirectory = "BitTest/profiles/" + currentUserFolder 
+                + "/Music/Temp/";
         destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
     }
