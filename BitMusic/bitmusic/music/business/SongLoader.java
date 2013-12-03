@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -52,15 +53,19 @@ public class SongLoader {
 
         //Creating target directory
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
+        String separator = FileSystems.getDefault().getSeparator();
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
-        String fileDirectory = new String("BitTest/profiles/" 
-                + currentUserFolder + "/Music/Library/" + artist + "/" + album);
+        String fileDirectory = new String(separator + "BitTest" + separator
+                + "profiles" + separator + currentUserFolder + separator 
+                + "music" + separator +"library" + separator + artist 
+                + separator + album);
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
         //Copying file (delete destination file if it already exists)
-        Path destinationMP3 = Paths.get(destination + "/" + title + ".mp3");
+        Path destinationMP3 = Paths.get(destination + separator + title 
+                + ".mp3");
         if (Files.exists(destinationMP3)) {
             Files.delete(destinationMP3);
         }
@@ -119,9 +124,11 @@ public class SongLoader {
         String artist = new String(localSong.getArtist());
         String album = new String(localSong.getAlbum());
         String title = new String(localSong.getTitle());
-        String path = new String("BitTest/profiles/" + currentUserFolder
-                + "/Music/Library/" + artist + "/" + album + "/" + title
-                + ".mp3");
+        String separator = FileSystems.getDefault().getSeparator();
+        String path = new String(separator + "BitTest" + separator + "profiles"
+                + separator + currentUserFolder + separator + "music" 
+                + separator + "library" + separator + artist + separator 
+                + album + separator + title + ".mp3");
 
         return path;
     }
@@ -137,8 +144,11 @@ public class SongLoader {
         Song localSong = ApiProfile.getSongLibrary().getSong(songId);
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
-        String path = new String("BitTest/profiles/" + currentUserFolder
-                + "/Music/Temp/" + userId + "_" + songId + ".mp3");
+        String separator = FileSystems.getDefault().getSeparator();
+        String path = new String(separator + "BitTest" + separator + "profiles"
+                + separator + currentUserFolder + separator + "music" 
+                + separator + "temp" + separator + userId + "_" + songId 
+                + ".mp3");
 
         return path;
     }
@@ -156,14 +166,17 @@ public class SongLoader {
                 = new String(ApiProfile.getCurrentUserFolder());
 
         //Creating /Music/Library folder
-        String fileDirectory = new String("BitTest/profiles/" 
-                + currentUserFolder + "/Music/Library/");
+        String separator = FileSystems.getDefault().getSeparator();
+        String fileDirectory = new String(separator + "BitTest" + separator 
+                + "profiles" + separator + currentUserFolder + separator 
+                + "music" + separator + "library" + separator);
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
         //Creating /Music/Library folder
-        fileDirectory = "BitTest/profiles/" + currentUserFolder 
-                + "/Music/Temp/";
+        fileDirectory = separator + "BitTest" + separator + "profiles" 
+                + separator + currentUserFolder + separator + "music" 
+                + separator + "temp" + separator;
         destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
     }
