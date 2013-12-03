@@ -176,6 +176,14 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- PlayBarView.update()");
+        if ( this.getController().getModel().isPlaying() ) {
+            //Si c'est en lecture : on affiche le bouton pause
+            this.playButton.setIcon(pauseIcon);
+        }
+        else {
+            //si c'est pas en lecture on affiche le bouton play
+            this.playButton.setIcon(playIcon);
+        }
     }
 
 

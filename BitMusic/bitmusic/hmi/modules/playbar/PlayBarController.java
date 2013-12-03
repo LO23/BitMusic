@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -27,80 +28,81 @@ import javazoom.jl.player.Player;
  */
 public final class PlayBarController extends AbstractController<PlayBarModel, PlayBarView> {
 
-    private boolean resume;
-    private boolean pause;
-    private boolean stop;
-    private Thread sliderThread;
-
-    private int frame ;
+    private Thread sliderThread = null;
 
     public PlayBarController(final PlayBarModel model, final PlayBarView view) {
         super(model, view);
-
-        resume = false;
-        pause = false;
-
-        frame = 0;
     }
 
     public class PlayListener implements ActionListener  {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           // try {
+            if ( PlayBarController.this.getModel().getSong() == null ) {
+                JOptionPane.showMessageDialog(
+                         null,
+                         "Aucune musique n'a été chargée",
+                         "Erreur",
+                         JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            BitMusicPlayer bitMusic = BitMusicPlayer.getInstance();
+            final WindowComponent win = WindowComponent.getInstance();
+
+            if ( PlayBarController.this.getModel().isPlaying() ) {
+                //La musique est en lecture : il faut faire une pause !
+                System.out.println("---- Clic sur le bouton Pause");
+                PlayBarController.this.getModel().setIsPlaying(false);
+                PlayBarController.this.getModel().setFrame(win.getApiMusic().getCurrentFrame());
+                win.getApiMusic().pause();
+                PlayBarController.this.sliderThread.interrupt();
+            }
+            else {
+                //La musique n'est pas en lecture : il faut la lire
                 System.out.println("---- Clic sur le bouton Play");
-                String test = new File("").getAbsolutePath().toString();
-                System.out.println("----- absolute path = " + test);
-
-                stop = false;
-                BitMusicPlayer bitMusic = BitMusicPlayer.getInstance();
-                final WindowComponent win = WindowComponent.getInstance();
-                // Plays a song
-                System.out.println("-----Playing the song for the first time");
-                win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
+                PlayBarController.this.getModel().setIsPlaying(true);
                 JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
+                int frame = PlayBarController.this.getModel().getFrame();
 
-                win.getApiMusic().playSong(PlayBarController.this.getModel().getSong());
-                /*while(win.getApiMusic().getCurrentFrame() != win.getApiMusic().getNumberOfFrame() ) {
-                   playBar.setValue(win.getApiMusic().getCurrentFrame());
-                }*/
-                System.out.println("--- ApiMusic : number of frames = " + win.getApiMusic().getNumberOfFrame());
-                //frame = win.getApiMusic().getCurrentFrame();
-                // WE WILL NEED THE FRAME RATE TO PROPERLY ANIMATE THE SLIDER
+                if ( frame == 0 ) {
+                    //La musique n'a jamais encore été lue
+                    win.getApiMusic().playSong(PlayBarController.this.getModel().getSong());
+                }
+                else {
+                    //La musique a été mise sur pause, on reprend la lecture
+                    win.getApiMusic().playSongFromSpecificFrame(frame);
+                }
 
                 Runnable r = new Runnable() {
                     public void run() {
-                        sliderUpdater(win);
+                        JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
+                        playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
+                        while( PlayBarController.this.getModel().isPlaying() ) {
+                            playBar.setValue(win.getApiMusic().getCurrentFrame());
+                        }
+                        playBar.setValue(0);
                     }
                 };
-                sliderThread = new Thread(r);
-                sliderThread.setName("SliderThread");
-                sliderThread.setPriority(Thread.MAX_PRIORITY);
-                sliderThread.start();
-
-
+                PlayBarController.this.sliderThread = new Thread(r);
+                PlayBarController.this.sliderThread.setName("SliderThread");
+                PlayBarController.this.sliderThread.setPriority(Thread.MAX_PRIORITY);
+                PlayBarController.this.sliderThread.start();
+            }
         }
-    }
-
-    public void sliderUpdater(WindowComponent win) {
-        JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
-        playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
-        while(stop == false) {
-            playBar.setValue(win.getApiMusic().getCurrentFrame());
-        }
-        playBar.setValue(0);
     }
 
     public class StopListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Stop");
-            // Stops or pauses a song that is being played
-              // we pause the song
-             stop = true;
-             WindowComponent win = WindowComponent.getInstance();
-             win.getApiMusic().stop();
-             sliderThread.interrupt();
+            if ( PlayBarController.this.sliderThread != null ) {
+                PlayBarController.this.getModel().setIsPlaying(false);
+                WindowComponent win = WindowComponent.getInstance();
+                PlayBarController.this.getModel().setFrame(0);
+                win.getApiMusic().stop();
+                PlayBarController.this.sliderThread.interrupt();
+            }
         }
     }
 
