@@ -15,6 +15,7 @@ import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -135,6 +136,10 @@ public final class ApiHmiImpl implements ApiHmi {
 
     @Override
     public void errorNotification(final String errorMessage) {
-        // TODO
+        JOptionPane.showMessageDialog(
+                        null,
+                        errorMessage,
+                        "Erreur de Network",
+                        JOptionPane.ERROR_MESSAGE);
     }
 }
