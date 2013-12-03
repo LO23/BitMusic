@@ -56,18 +56,24 @@ public final class MessageAddComment extends AbstractMessage {
      */
     @Override
     public void treatment() {
-       final boolean right = ApiMusicImpl.getInstance().addCommentFromNetwork(
-                this.song.getSongId(), this.comment);
+       final boolean isCommentAdded = ApiMusicImpl.getInstance()
+               .addCommentFromNetwork(this.song.getSongId(), this.comment);
 
-        if (right) {
-                final MessageUpdateCommentNotification message =
+        if (isCommentAdded) {
+
+            //Loop on the directory
+            final Map<String, String> userDirectory = Controller.getInstance().
+                    getDirectory();
+
+            for (Map.Entry<String, String> entry : userDirectory.entrySet()) {
+                MessageUpdateCommentNotification message =
                         new MessageUpdateCommentNotification(
                             //type of message
                             EnumTypeMessage.UpdateCommentNotification,
                             //ip source
                             Controller.getNetworkAddress(),
                             //ip dest
-                            this.ipSource,
+                            entry.getValue(),
                             //userID (who comment)
                             this.userId,
                             //songId
@@ -78,7 +84,8 @@ public final class MessageAddComment extends AbstractMessage {
 
                 Controller.getInstance().getThreadManager()
                         .assignTaskToHermes(message);
-            
+            }
+
         } else {
             final MessageErrorNotification message =
                     new MessageErrorNotification(
@@ -95,7 +102,7 @@ public final class MessageAddComment extends AbstractMessage {
                         //comment add
                         this.comment,
                         //Message erreur
-                        "You don't have the right to comment this song");
+                        "You don't have the right to comment this song.");
 
             Controller.getInstance().getThreadManager()
                     .assignTaskToHermes(message);
@@ -135,10 +142,18 @@ public final class MessageAddComment extends AbstractMessage {
     }
 
     /**
-     * Getter for user id
+     * Getter for user id.
      * @return userId The id string of user
      */
     public String getUserId() {
         return userId;
+    }
+
+    /**
+     * Setter for the userId attribute.
+     * @param paramUserId New user ID
+     */
+    public void setUserId(final String paramUserId) {
+        this.userId = paramUserId;
     }
 }
