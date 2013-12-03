@@ -7,6 +7,7 @@
 package bitmusic.hmi.modules.playbar;
 
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.music.data.Song;
 
 /**
  *
@@ -14,7 +15,19 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class PlayBarModel extends AbstractModel {
 
+    private Song song;
+
     public PlayBarModel() {
         super();
     }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+    }
+
+    
 }

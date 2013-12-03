@@ -44,14 +44,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     }
 
     public class PlayListener implements ActionListener  {
-        final private Path p = Paths.get("ilikeit.mp3");
-        final private String fileNameTochange = new File("").getAbsolutePath().toString() + "\\songitems\\ilikeit.mp3";
 
-
-
-        // Ici il faut mettre le chamin absolu avec deux back slash sinon il va renvoyer une FileNotFoundException
-        final private String fileName = "C:\\Users\\khadre\\Documents\\NetBeansProjects\\BitMusic\\BitMusic\\bitmusic\\hmi\\modules\\playbar\\songitems\\ilikeit.mp3";
-        private Player player;
         @Override
         public void actionPerformed(ActionEvent e) {
            // try {
@@ -67,7 +60,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                 win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
                 JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
 
-                win.getApiMusic().playSongFromStart(fileNameTochange);
+                win.getApiMusic().playSong(PlayBarController.this.getModel().getSong());
                 /*while(win.getApiMusic().getCurrentFrame() != win.getApiMusic().getNumberOfFrame() ) {
                    playBar.setValue(win.getApiMusic().getCurrentFrame());
                 }*/
@@ -85,7 +78,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                 sliderThread.setPriority(Thread.MAX_PRIORITY);
                 sliderThread.start();
 
-                
+
         }
     }
 

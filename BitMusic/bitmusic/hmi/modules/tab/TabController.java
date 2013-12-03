@@ -11,6 +11,8 @@ import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JTable;
@@ -29,6 +31,19 @@ public final class TabController extends AbstractController<TabModel, TabView> {
         public void actionPerformed(ActionEvent e) {
             int tabId = TabController.this.getView().getTabId();
             WindowComponent.getInstance().getCentralAreaComponent().getView().removeTabComponent(tabId);
+        }
+    }
+
+    public class DoubleClickListener extends MouseAdapter {
+        public void mouseClicked(MouseEvent e){
+            if (e.getClickCount() == 2){
+                JTable table = (JTable)e.getSource();
+                int row = table.getSelectedRow();
+                Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
+                WindowComponent.getInstance().getPlayBarComponent().getModel().setSong(song);
+
+                System.out.println("---- Double click de la Song : " + song.getSongId());
+            }
         }
     }
 

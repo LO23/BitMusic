@@ -84,7 +84,7 @@ public final class MessageGetSongFile extends AbstractMessage {
                     assignTaskToHermes(message);
         } catch (IOException e) {
             WindowComponent.getInstance().getApiHmi()
-                    .errorNotification(e.getMessage());
+                    .errorNotification("Network", e.getMessage());
         }
     }
 

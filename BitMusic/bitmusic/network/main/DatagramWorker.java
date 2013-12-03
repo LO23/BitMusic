@@ -69,11 +69,11 @@ public class DatagramWorker extends AbstractManageable {
                         message.treatment();
                     }
                 } catch (ClassNotFoundException e) {
-                    WindowComponent.getInstance().getApiHmi().errorNotification(e.getMessage());
+                    WindowComponent.getInstance().getApiHmi().errorNotification("Network", e.getMessage());
                 }
             } catch (IOException e) {
                  WindowComponent.getInstance().getApiHmi()
-                             .errorNotification(e.getMessage());
+                             .errorNotification("Network", e.getMessage());
             }
         }
     }
