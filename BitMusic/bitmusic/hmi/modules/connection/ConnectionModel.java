@@ -6,6 +6,7 @@
 
 package bitmusic.hmi.modules.connection;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.profile.utilities.ProfileExceptions;
 
