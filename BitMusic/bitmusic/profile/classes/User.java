@@ -91,6 +91,7 @@ public class User implements Serializable {
         this.avatarPath = avatarPath;
         this.categories = new ArrayList<Category>();
         categories.add(new Category("Default"));
+        this.localSongs = new SongLibrary();
     }
 
     /**
@@ -376,13 +377,13 @@ public class User implements Serializable {
      * 
      * @return
      */
-	public String getTransformedBirthday() {
+    public String getTransformedBirthday() {
         int year = this.birthDate.get(Calendar.YEAR);
-        int month = this.birthDate.get(Calendar.MONTH);
+        int month = this.birthDate.get(Calendar.MONTH) + 1;
         int day = this.birthDate.get(Calendar.DAY_OF_MONTH);
-        return Integer.toString(year) 
-                + Integer.toString(month)
-                + Integer.toString(day);
+        return String.format("%04d", year) 
+                + String.format("%02d", month)
+                + String.format("%02d", day);
     }
 
     /**

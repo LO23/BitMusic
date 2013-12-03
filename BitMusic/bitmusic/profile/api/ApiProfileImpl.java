@@ -77,8 +77,10 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public boolean checkPassword(String login, String password) throws ProfileExceptions {
-    	if (login == null || login.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.LoginNullOrEmpty);
-    	if (password == null || password.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.PasswordNullOrEmpty);
+    	if (login == null || login.isEmpty())
+            throw new ProfileExceptions(ProfileExceptionType.LoginNullOrEmpty);
+    	if (password == null || password.isEmpty())
+            throw new ProfileExceptions(ProfileExceptionType.PasswordNullOrEmpty);
     	currentUser = FileParser.getFileParser().loadUser(login, password);
     	if (currentUser == null) 
             return false;
