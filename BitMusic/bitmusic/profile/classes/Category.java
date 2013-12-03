@@ -6,6 +6,8 @@
 package bitmusic.profile.classes;
 
 import bitmusic.music.data.Rights;
+import bitmusic.profile.utilities.ProfileExceptionType;
+import bitmusic.profile.utilities.ProfileExceptions;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -43,8 +45,9 @@ public class Category implements Serializable {
      * Change the name of the category
      * @param newName New name of the category
      */
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName(String newName) throws ProfileExceptions{
+        if (newName == null || newName.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.CatNameNullOrEmpty);
+        else this.name = newName;
     }
 
     /**
@@ -92,10 +95,13 @@ public class Category implements Serializable {
      * @param UserID UserID to find
      * @return th User or null
      */
-    public User findContact(String UserID){
-        for(User contact : this.contacts){
+    public User findContact(String UserID) throws ProfileExceptions{
+        if (UserID == null || UserID.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.UserIdEmptyName);
+        else {
+            for(User contact : this.contacts){
             if(contact.getUserId().equals(UserID))
                 return contact;
+            }
         }
         return null;
     }
@@ -107,8 +113,7 @@ public class Category implements Serializable {
      * @param canRate Right to play
      * @param canComment Right to comment
      */
-    public void updateRight(boolean canIReadInfo, boolean canPlay,
-            boolean canRate, boolean canComment) {
+    public void updateRight(boolean canIReadInfo, boolean canPlay, boolean canRate, boolean canComment) {
             this.rights = new Rights(canIReadInfo,
                     canPlay, canRate, canComment);
 
@@ -119,8 +124,9 @@ public class Category implements Serializable {
      * @param user
      * @return true if contact added
      */
-    public boolean addUser(User user){
-        return contacts.add(user);
+    public boolean addUser(User user) throws ProfileExceptions{
+       if (user == null) throw new ProfileExceptions(ProfileExceptionType.UserNull);
+       else return contacts.add(user);
 
     }
 
@@ -129,8 +135,9 @@ public class Category implements Serializable {
      * @param user
      * @return true if contact deleted
      */
-    public boolean deleteUser(User user){
-        return contacts.remove(user);
+    public boolean deleteUser(User user) throws ProfileExceptions{
+       if (user == null) throw new ProfileExceptions(ProfileExceptionType.UserNull); 
+       else return contacts.remove(user);
     }
 
 }
