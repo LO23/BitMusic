@@ -6,6 +6,7 @@
 
 package bitmusic.hmi.modules.myprofile;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.BorderLayout;
@@ -28,9 +29,8 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     private final JButton logoutButton = new JButton("Déconnexion");
     private final JButton importSongButton = new JButton("Importer un titre");
     private final JPanel avatarPanel = new JPanel();
-    private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
-    private JLabel avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
-    // TODO : récupérer l'image de l'avatar (pas en dur)
+    private ImageIcon avatarImage;
+    private JLabel avatarLabel;
 
     public MyProfileView() {
         super();
@@ -56,8 +56,17 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     public void initPanel() {
         System.out.println("--- MyProfileView.initPanel()");
 
+        ImageIcon avatar;
+        String avatarPath = WindowComponent.getInstance().getApiProfile().getCurrentUser().getAvatarPath();
+        if (avatarPath == "") {
+            this.avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
+        } else {
+            this.avatarImage = new ImageIcon(avatarPath);
+        }
+        this.avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
+
         this.avatarImage.setDescription("Votre avatar");
-        this.avatarPanel.add( avatarLabel, BorderLayout.CENTER );
+        this.avatarPanel.add(avatarLabel, BorderLayout.CENTER);
 
         this.myProfileButton.addActionListener(this.getController().new ModifyProfileListener());
         this.logoutButton.addActionListener(this.getController().new LogoutListener());
@@ -110,6 +119,16 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- MyProfileView.update()");
+
+        // On "force" l'actualisation immédiate de la View (utile dans le cas d'un changement d'avatar)
+        ImageIcon avatar;
+        String avatarPath = WindowComponent.getInstance().getApiProfile().getCurrentUser().getAvatarPath();
+        if (avatarPath == "") {
+            this.avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
+        } else {
+            this.avatarImage = new ImageIcon(avatarPath);
+        }
+        this.avatarLabel.setIcon(this.avatarImage);
     }
 }
 

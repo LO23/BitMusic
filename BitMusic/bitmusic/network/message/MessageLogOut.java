@@ -52,7 +52,8 @@ public final class MessageLogOut extends AbstractMessage {
                     removeUserFromOnlineUsers(this.getUserId());
 
         } catch(NetworkDirectoryException exception) {
-
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", exception.getMessage());
         }
     }
 

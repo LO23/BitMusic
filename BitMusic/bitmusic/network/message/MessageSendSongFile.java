@@ -90,7 +90,8 @@ public class MessageSendSongFile extends AbstractMessage {
                         playSongFromStart(pathFile);
             }
         } catch (IOException e) {
-
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", e.getMessage());
         }
         
         //TODO qui je previent du téléchargement de la musique??

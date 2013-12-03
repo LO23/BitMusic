@@ -142,6 +142,8 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         String strdate = sdf.format(ourProfile.getBirthDate().getTime());
         this.birthField.setText(strdate);
         this.avatarField.setText(ourProfile.getAvatarPath());
+
+        WindowComponent.getInstance().getMyProfileComponent().getModel().notifyObservers("Profile update");
     }
 
     public JTextField getFirstNameField() {

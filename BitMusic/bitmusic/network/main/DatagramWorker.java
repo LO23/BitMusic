@@ -6,6 +6,7 @@
 
 package bitmusic.network.main;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.message.AbstractMessage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -69,10 +70,12 @@ public class DatagramWorker extends AbstractManageable {
                     }
 
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                    WindowComponent.getInstance().getApiHmi()
+                            .errorNotification("Network", e.getMessage());
                 }
             } catch (IOException e) {
-                 e.printStackTrace();
+                 WindowComponent.getInstance().getApiHmi()
+                             .errorNotification("Network", e.getMessage());
             }
         }
     }

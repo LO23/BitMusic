@@ -6,6 +6,7 @@
 
 package bitmusic.network.main;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.message.AbstractMessage;
 import bitmusic.network.message.EnumTypeMessage;
 import java.io.ByteArrayOutputStream;
@@ -70,7 +71,8 @@ public class Hermes extends AbstractManageable {
             oos.flush();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", e.getMessage());
         }
     }
 
@@ -99,7 +101,8 @@ public class Hermes extends AbstractManageable {
 
             oos.flush();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", e.getMessage());
         }
     }
 }
