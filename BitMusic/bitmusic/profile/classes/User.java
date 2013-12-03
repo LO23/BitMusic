@@ -280,7 +280,7 @@ public class User implements Serializable {
      * @param userId
      * @return
      */
-    public User getContact(String userId) {
+    public User getContact(String userId) throws ProfileExceptions{
     	for (Category cat : categories) {
     		User usr = cat.findContact(userId);
     		if (usr != null)

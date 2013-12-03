@@ -76,6 +76,10 @@ public class ProfileExceptions extends Throwable {
                 this.errorMessage = "AvatarPath is empty";
                 break;
             }
+            case CatNameNullOrEmpty : {
+                this.errorMessage = "Category name is empty";
+                break;
+            }
             case SongEmptyName : {
                 this.errorMessage = "SongId is empty";
                 break;
