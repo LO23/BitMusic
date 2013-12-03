@@ -66,7 +66,7 @@ public class FileParser {
 
             DirectoryStream<Path> stream = Files.newDirectoryStream(FileSystems.getDefault().getPath(defaultPath));
             for(Path path:stream) {
-                if(path.getFileName().toString().contains(login.toLowerCase()) && (new File(path.toString())).isDirectory()) {
+                if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
                     if(readAuthFile(path.toString(), pwd)) {
                         try {
                             FileInputStream saveFile = new FileInputStream(path.toString()
