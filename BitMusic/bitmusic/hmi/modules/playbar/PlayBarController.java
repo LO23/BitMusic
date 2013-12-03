@@ -11,6 +11,7 @@ import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.music.player.BitMusicPlayer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
@@ -44,17 +45,19 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
     public class PlayListener implements ActionListener  {
         final private Path p = Paths.get("ilikeit.mp3");
-        final private String filename = "/bitmusic/hmi/modules/playbar/songitems/ilikeit.mp3";
+        final private String fileNameTochange = new File("").getAbsolutePath().toString() + "\\songitems\\ilikeit.mp3";
 
 
 
         // Ici il faut mettre le chamin absolu avec deux back slash sinon il va renvoyer une FileNotFoundException
-        final private String fileNameTochange = "C:\\Users\\khadre\\Documents\\NetBeansProjects\\BitMusic\\BitMusic\\bitmusic\\hmi\\modules\\playbar\\songitems\\ilikeit.mp3";
+        final private String fileName = "C:\\Users\\khadre\\Documents\\NetBeansProjects\\BitMusic\\BitMusic\\bitmusic\\hmi\\modules\\playbar\\songitems\\ilikeit.mp3";
         private Player player;
         @Override
         public void actionPerformed(ActionEvent e) {
            // try {
                 System.out.println("---- Clic sur le bouton Play");
+                String test = new File("").getAbsolutePath().toString();
+                System.out.println("----- absolute path = " + test);
 
                 stop = false;
                 BitMusicPlayer bitMusic = BitMusicPlayer.getInstance();
@@ -81,37 +84,17 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                 sliderThread.setName("SliderThread");
                 sliderThread.setPriority(Thread.MAX_PRIORITY);
                 sliderThread.start();
-                
-                //Path p = Paths.get(this.getClass().getResource(filename).toString());
-                /*String res = this.getClass().getResource(filename).toString();
-                //res = res.replace ("/", "\\");
-                //System.out.println("---- PATH : " + this.getClass().getResource(filename).toString());
-                //Path folder = p.getParent();
 
-                /// the following code's purpose is just to test JLayer functionality, it will be removed when ApiMusic id working fine
-                FileInputStream fis     = new FileInputStream("C:\\Users\\khadre\\Documents\\NetBeansProjects\\BitMusic\\BitMusic\\bitmusic\\hmi\\modules\\playbar\\songitems\\ilikeit.mp3");
-                BufferedInputStream bis = new BufferedInputStream(fis);
-                player = new Player(bis);
-                player.play();
-            } catch (JavaLayerException ex) {
-                Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FileNotFoundException ex) {
-                System.out.println("---- Exception : FILE NOT FOUND");
-            }*/
+                
         }
     }
-    
+
     public void sliderUpdater(WindowComponent win) {
         JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
         playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
         while(stop == false) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
-            }
             playBar.setValue(win.getApiMusic().getCurrentFrame());
-        } 
+        }
         playBar.setValue(0);
     }
 
