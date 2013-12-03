@@ -78,7 +78,8 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
                                    .assignTaskToHermes(message);
 
        } catch (NetworkDirectoryException exception) {
-               //Send to Controller?
+               WindowComponent.getInstance().getApiHmi()
+                       .errorNotification("Network", exception.getMessage());
        }
 
    }
