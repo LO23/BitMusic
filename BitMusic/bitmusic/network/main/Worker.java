@@ -6,10 +6,10 @@
 
 package bitmusic.network.main;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.message.AbstractMessage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
@@ -45,12 +45,14 @@ public class Worker extends AbstractManageable {
                 message = (AbstractMessage) ois.readObject();
 
                 message.treatment();
-                
+
             } catch (ClassNotFoundException e) {
-                System.out.println(e.getMessage());
+                WindowComponent.getInstance().getApiHmi()
+                        .errorNotification("Network", e.getMessage());
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            WindowComponent.getInstance().getApiHmi()
+                    .errorNotification("Network", e.getMessage());
         }
     }
 
