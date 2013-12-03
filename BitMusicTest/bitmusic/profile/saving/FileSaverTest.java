@@ -6,6 +6,7 @@
 
 package bitmusic.profile.saving;
 
+import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class FileSaverTest {
      */
     @Test
     public void testSaveUser() throws IOException {
-        User userToSave = new User("Olivia", "test");
+        User userToSave = new User("Olivia", "pwd");
         Calendar birth = GregorianCalendar.getInstance();
         birth.set(1990, 05, 02);
         try {
@@ -56,6 +57,8 @@ public class FileSaverTest {
         } catch (ProfileExceptions ex) {
             Logger.getLogger(FileSaverTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        ApiProfileImpl.getApiProfile().setCurrentUser(userToSave);
 
         try {
             FileSaver.getFileSaver().saveUser(userToSave);
@@ -78,6 +81,8 @@ public class FileSaverTest {
         } catch (ProfileExceptions ex) {
             Logger.getLogger(FileSaverTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        ApiProfileImpl.getApiProfile().setCurrentUser(toAuth);
 
         try {
             FileSaver.getFileSaver().saveAuthFile(toAuth);
