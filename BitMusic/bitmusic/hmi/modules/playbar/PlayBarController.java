@@ -34,6 +34,8 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
     private boolean resume;
     private boolean pause;
+    private boolean stop;
+    private Thread sliderThread;
 
     private int frame ;
 
@@ -60,8 +62,9 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
            // try {
                 System.out.println("---- Clic sur le bouton Play");
 
+                stop = false;
                 BitMusicPlayer bitMusic = BitMusicPlayer.getInstance();
-                WindowComponent win = WindowComponent.getInstance();
+                final WindowComponent win = WindowComponent.getInstance();
                 // Plays a song
                 System.out.println("-----Playing the song for the first time");
                 win.getPlayBarComponent().getView().setPlayIcon(win.getPlayBarComponent().getView().getPauseIcon());
@@ -72,25 +75,19 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                    playBar.setValue(win.getApiMusic().getCurrentFrame());
                 }*/
                 System.out.println("--- ApiMusic : number of frames = " + win.getApiMusic().getNumberOfFrame());
-                frame = 0;
                 //frame = win.getApiMusic().getCurrentFrame();
                 // WE WILL NEED THE FRAME RATE TO PROPERLY ANIMATE THE SLIDER
-                int frameRate = 64;
-                int tmp = win.getApiMusic().getNumberOfFrame() / frameRate;
-                System.out.println("--- PlayBar : tmp = " + tmp);
 
-                playBar.setValue(frame);
-                while(frame < 30) {
-                    frame++;
-                    try {
-                        //Thread.sleep(1000);
-                        playBar.wait(1000);
-                        playBar.setValue(frame);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
+                Runnable r = new Runnable() {
+                    public void run() {
+                        sliderUpdater(win);
                     }
-
-                }
+                };
+                sliderThread = new Thread(r);
+                sliderThread.setName("SliderThread");
+                sliderThread.setPriority(Thread.MAX_PRIORITY);
+                sliderThread.start();
+                
                 //Path p = Paths.get(this.getClass().getResource(filename).toString());
                 /*String res = this.getClass().getResource(filename).toString();
                 //res = res.replace ("/", "\\");
@@ -109,17 +106,31 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
             }*/
         }
     }
+    
+    public void sliderUpdater(WindowComponent win) {
+        JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
+        playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
+        while(stop == false) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            playBar.setValue(win.getApiMusic().getCurrentFrame());
+        } 
+        playBar.setValue(0);
+    }
 
     public class StopListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Stop");
-
-
             // Stops or pauses a song that is being played
               // we pause the song
+             stop = true;
              WindowComponent win = WindowComponent.getInstance();
              win.getApiMusic().stop();
+             sliderThread.interrupt();
         }
     }
 
