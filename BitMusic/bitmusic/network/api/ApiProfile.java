@@ -10,8 +10,8 @@ import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
 
 /**
- *
- * @author florian
+ * Interface given to Profile to interact with the Network.
+ * @author florian, alexis
  */
 public interface ApiProfile {
     /**

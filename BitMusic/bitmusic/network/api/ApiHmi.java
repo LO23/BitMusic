@@ -10,7 +10,7 @@ import bitmusic.network.exception.NetworkException;
 import java.util.List;
 
 /**
- *
+ * Interface given to HMI to interact with the Network.
  * @author florian, alexis
  */
 public interface ApiHmi {

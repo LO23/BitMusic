@@ -14,14 +14,14 @@ import bitmusic.network.message.MessageNotifyNewConnection;
 import bitmusic.profile.classes.User;
 
 /**
- *
- * @author florian
+ * Implementation of the API we provide to Profile.
+ * @author florian, alexis
  */
 public final class ApiProfileImpl implements ApiProfile {
     /**
     * Singleton implementation.
     */
-    private static final ApiProfileImpl APIPROFILEHMI = new ApiProfileImpl();
+    private static final ApiProfileImpl API_PROFILE_IMPL = new ApiProfileImpl();
 
     /**
      * Private constructor for singleton pattern.
@@ -29,11 +29,11 @@ public final class ApiProfileImpl implements ApiProfile {
     private ApiProfileImpl() { }
 
     /**
-     * .
+     * Getter of the only instance of this clas.
      * @return Unique instance of ApiProfileImpl
      */
     protected static ApiProfileImpl getInstance() {
-        return APIPROFILEHMI;
+        return API_PROFILE_IMPL;
     }
 
     /*########################################################################*/
@@ -44,6 +44,7 @@ public final class ApiProfileImpl implements ApiProfile {
      *
      * @param operator the id of the asking user.
      * @param userId the id of the user whose profile we want.
+     * @param searchId the id of the research
      * @throws NetworkException throws an exception when the given idUser isn't
      * in the directory
     */
