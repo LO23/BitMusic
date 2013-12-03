@@ -8,14 +8,12 @@ package bitmusic.hmi.modules.connection;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout;
-import javax.swing.SwingConstants;
 
 /**
  *

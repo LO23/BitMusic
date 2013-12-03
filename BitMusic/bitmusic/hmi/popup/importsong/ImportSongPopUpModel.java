@@ -9,8 +9,6 @@ package bitmusic.hmi.popup.importsong;
 import bitmusic.hmi.patterns.AbstractModel;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.DefaultListSelectionModel;
-import javax.swing.table.AbstractTableModel;
 
 /**
  *

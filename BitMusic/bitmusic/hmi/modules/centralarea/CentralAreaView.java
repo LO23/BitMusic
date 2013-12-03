@@ -23,7 +23,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     private static final String type = "CENTER";
 
-    private ArrayList<TabComponent> listTabComponent = new ArrayList<>();
+    private ArrayList<TabComponent> listTabComponent = new ArrayList();
 
     private JTabbedPane tabbedPane = new JTabbedPane();
     private Integer tabCounter = 0;
