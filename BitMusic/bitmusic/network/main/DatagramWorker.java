@@ -40,7 +40,7 @@ public class DatagramWorker extends AbstractManageable {
      */
     @Override
     public final void run() {
-        byte[] buf = new byte[5000];
+        byte[] buf = new byte[8000];
 
         final DatagramPacket datagramPaquet = new DatagramPacket(buf,
                 buf.length);
@@ -58,24 +58,22 @@ public class DatagramWorker extends AbstractManageable {
                 try {
                     final AbstractMessage message =
                             (AbstractMessage) ois.readObject();
-
                     /*
                         If we receive a message that comes from us,
                         for example, because of Broadcast,
                         we don't treat it.
                     */
+                    System.out.println("m = "+message);
                     if (!message.getIpSource().
                             equals(Controller.getNetworkAddress())) {
                         message.treatment();
                     }
-
                 } catch (ClassNotFoundException e) {
-                    WindowComponent.getInstance().getApiHmi()
-                            .errorNotification("Network", e.getMessage());
+                    WindowComponent.getInstance().getApiHmi().errorNotification(e.getMessage());
                 }
             } catch (IOException e) {
                  WindowComponent.getInstance().getApiHmi()
-                             .errorNotification("Network", e.getMessage());
+                             .errorNotification(e.getMessage());
             }
         }
     }

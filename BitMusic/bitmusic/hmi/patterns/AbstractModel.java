@@ -17,7 +17,6 @@ public abstract class AbstractModel extends Observable {
     private ArrayList<Observer> listObservers = new ArrayList();
 
     public AbstractModel() {
-
     }
 
     @Override

@@ -63,7 +63,7 @@ public final class MessageErrorNotification extends AbstractMessage {
     @Override
     public void treatment() {
         WindowComponent.getInstance().getApiHmi().
-                errorNotification("Network", this.errorMessage);
+                errorNotification(this.errorMessage);
     }
 
     /**

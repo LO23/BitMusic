@@ -8,14 +8,12 @@ package bitmusic.hmi.api;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.music.business.SongPlayer;
-import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +23,12 @@ public final class ApiHmiImpl implements ApiHmi {
 
     @Override
     public void notifyNewConnection(final User lightUserLan) {
-        WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().addOnlineUser(lightUserLan);
+        WindowComponent
+                .getInstance()
+                .getOnlineUsersComponent()
+                .getModel()
+                .getModeleTable()
+                .addOnlineUser(lightUserLan);
     }
 
     @Override
@@ -49,7 +52,7 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void updateCommentNotification(final Song song, final Comment comment) {
+    public void updateCommentNotification(final Song song, final String comment) {
         //TODO
     }
 
@@ -135,11 +138,7 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void errorNotification(final String moduleName, final String errorMessage) {
-        JOptionPane.showMessageDialog(
-                        null,
-                        errorMessage,
-                        "Erreur de " + moduleName,
-                        JOptionPane.ERROR_MESSAGE);
+    public void errorNotification(final String errorMessage) {
+        // TODO
     }
 }

@@ -7,6 +7,7 @@
 package bitmusic.network.api;
 
 import bitmusic.network.exception.NetworkException;
+import bitmusic.profile.classes.User;
 import java.util.List;
 
 /**
@@ -53,4 +54,14 @@ public interface ApiHmi {
      * @return The list of User who are connected
      */
     List<String> getAllUserId();
+
+
+    /**
+    * Notify connection of a user and pass his profile to broadcast it.
+    *
+    * @param user the complete user who just connected
+    * @throws NetworkException throws an exception when the given user isn't
+    * registered in the directory
+    */
+    void notifyNewConnection(final User user) throws NetworkException;
 }

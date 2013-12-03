@@ -7,7 +7,6 @@
 package bitmusic.hmi.api;
 
 import bitmusic.music.business.SongPlayer;
-import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
@@ -72,7 +71,7 @@ public interface ApiHmi {
     * @param comment	Comment successfully added
     * @return void
     */
-    void updateCommentNotification(Song song, Comment comment);
+    void updateCommentNotification(Song song, String comment);
 
     // TODO : vérifier leur utilité pour les autres modules
     void displayCategories();
@@ -91,5 +90,5 @@ public interface ApiHmi {
     void startSong(SongPlayer player);
     void connectUser(String login, String mdp);
     void displaySongs(String userId);
-    void errorNotification(String moduleName, String errorMessage);
+    void errorNotification(String errorMessage);
 }
