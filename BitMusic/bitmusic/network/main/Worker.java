@@ -53,11 +53,11 @@ public class Worker extends AbstractManageable {
                 }
             } catch (ClassNotFoundException e) {
                 WindowComponent.getInstance().getApiHmi()
-                        .errorNotification(e.getMessage());
+                        .errorNotification("Network", e.getMessage());
             }
         } catch (IOException e) {
             WindowComponent.getInstance().getApiHmi()
-                    .errorNotification(e.getMessage());
+                    .errorNotification("Network", e.getMessage());
         }
     }
 

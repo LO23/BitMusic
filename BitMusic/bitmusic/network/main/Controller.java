@@ -82,7 +82,7 @@ public final class Controller {
             this.broadcastAddress = findBroadCastAddress();
         } catch (UnknownHostException ex) {
             WindowComponent.getInstance().getApiHmi()
-                    .errorNotification(ex.getMessage());
+                    .errorNotification("Network", ex.getMessage());
         }
 
         //Create the directory
@@ -126,7 +126,7 @@ public final class Controller {
     public static String getNetworkAddress() {
         return CONTROLLER.networkAddress;
     }
-    
+
     /**
      * Get the ApiHmiImpl.
      * @return instance of ApiHmiImpl

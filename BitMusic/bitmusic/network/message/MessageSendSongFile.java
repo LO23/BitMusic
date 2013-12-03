@@ -34,7 +34,7 @@ public class MessageSendSongFile extends AbstractMessage {
      * ID of the user that owns the song.
      */
     private String userId;
-    
+
     /**
      * ID of the distant song we want.
      */
@@ -91,9 +91,9 @@ public class MessageSendSongFile extends AbstractMessage {
             }
         } catch (IOException e) {
             WindowComponent.getInstance().getApiHmi()
-                    .errorNotification(e.getMessage());
+                    .errorNotification("Network", e.getMessage());
         }
-        
+
         //TODO qui je previent du téléchargement de la musique??
     }
 
