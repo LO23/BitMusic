@@ -135,11 +135,11 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     @Override
-    public void errorNotification(final String errorMessage) {
+    public void errorNotification(final String moduleName, final String errorMessage) {
         JOptionPane.showMessageDialog(
                         null,
                         errorMessage,
-                        "Erreur de Network",
+                        "Erreur de " + moduleName,
                         JOptionPane.ERROR_MESSAGE);
     }
 }
