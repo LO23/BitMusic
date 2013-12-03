@@ -15,13 +15,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 /**
- *
+ * Message sent to ask a user to send one of his song.
  * @author alexis
  */
-public class MessageSendSongFile extends AbstractMessage {
+public final class MessageSendSongFile extends AbstractMessage {
 
     /**
-     * Array of byte which contain mp3 file
+     * Array of byte which contain mp3 file.
      */
     private byte[] mp3Array;
 
@@ -34,7 +34,7 @@ public class MessageSendSongFile extends AbstractMessage {
      * ID of the user that owns the song.
      */
     private String userId;
-    
+
     /**
      * ID of the distant song we want.
      */
@@ -62,10 +62,10 @@ public class MessageSendSongFile extends AbstractMessage {
     }
 
     /**
-     * .
+     * Method that implements the treatment of the message.
      */
     @Override
-    public final void treatment() {
+    public void treatment() {
         try {
             /*
              If temporary is set to false, it means the file should be read,
@@ -78,7 +78,7 @@ public class MessageSendSongFile extends AbstractMessage {
             } else {
                 //pathFile = WindowComponent.getInstance().getApiNetwork().???;
                 // ask pathFile to HMI, should be a blocking method call
-                pathFile = "tmp/"+this.userId+"_"+this.songId+".mp3";
+                pathFile = "tmp/" + this.userId + "_" + this.songId + ".mp3";
             }
             //final String pathFile = "/tmp/" + this.userId + this.songId;
             final Path path = Paths.get(pathFile);
@@ -92,15 +92,13 @@ public class MessageSendSongFile extends AbstractMessage {
         } catch (IOException e) {
 
         }
-        
-        //TODO qui je previent du téléchargement de la musique??
     }
 
      /**
      * Getter of the mp3 file array.
      * @return mp3Array Byte array of mp3 file
      */
-    public final byte[] getMp3Array() {
+    public byte[] getMp3Array() {
         return mp3Array;
     }
 
@@ -108,7 +106,7 @@ public class MessageSendSongFile extends AbstractMessage {
      * Setter of the mp3Array attribute.
      * @param paramMp3Array data array containing the MP3 file
      */
-    public final void setMp3Array(final byte[] paramMp3Array) {
+    public void setMp3Array(final byte[] paramMp3Array) {
         this.mp3Array = paramMp3Array;
     }
 
@@ -116,7 +114,7 @@ public class MessageSendSongFile extends AbstractMessage {
     * Getter of the songId attribute.
     * @return String ID of the distant Song
     */
-    public final String getSongId() {
+    public String getSongId() {
         return songId;
     }
 
@@ -124,7 +122,7 @@ public class MessageSendSongFile extends AbstractMessage {
     * Getter of the temporary attribute.
     * @return boolean is the file temporary
     */
-    public final boolean isTemporary() {
+    public boolean isTemporary() {
         return this.temporary;
     }
 
@@ -132,7 +130,7 @@ public class MessageSendSongFile extends AbstractMessage {
      * Setter of the songId attribute.
      * @param paramSongId id of the song
      */
-    public final void setSongId(final String paramSongId) {
+    public void setSongId(final String paramSongId) {
         this.songId = paramSongId;
     }
 
@@ -140,7 +138,7 @@ public class MessageSendSongFile extends AbstractMessage {
      * Setter of the userId attribute.
      * @param paramUserId ID of the user who owns the song
      */
-    public final void setUserId(final String paramUserId) {
+    public void setUserId(final String paramUserId) {
         this.userId = paramUserId;
     }
 
@@ -148,9 +146,15 @@ public class MessageSendSongFile extends AbstractMessage {
      * Getter of the userId attribute.
      * @return String ID of the user who owns the song
      */
-    public final String getUserId() {
+    public String getUserId() {
         return this.userId;
     }
 
-
+    /**
+     * Setter of the temporary attribute.
+     * @param paramTemporary The new value
+     */
+    public void setTemporary(final boolean paramTemporary) {
+        this.temporary = paramTemporary;
+    }
 }

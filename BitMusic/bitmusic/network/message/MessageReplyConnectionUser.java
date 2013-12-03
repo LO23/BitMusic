@@ -36,7 +36,7 @@ public final class MessageReplyConnectionUser extends AbstractMessage {
    }
 
    /**
-    * Adds the distant user to the directory after it has replied
+    * Adds the distant user to the directory after it has replied.
     */
    @Override
    public void treatment() {
