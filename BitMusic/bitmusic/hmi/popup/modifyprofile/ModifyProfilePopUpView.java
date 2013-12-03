@@ -11,12 +11,8 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.profile.classes.User;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 

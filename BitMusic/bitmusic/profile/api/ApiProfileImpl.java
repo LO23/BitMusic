@@ -31,10 +31,12 @@ import bitmusic.profile.utilities.ProfileExceptions;
  */
 public class ApiProfileImpl implements ApiProfile {
     private static ApiProfileImpl currentApi;
-    private final String BitMusicStructure = "\\BitTest";
-    private final String profilesStructure = "\\profiles";
-    private final String profileStructure = "\\profile";
-    private final String mainStructure = "\\BitTest\\profiles\\";
+    private static String separator = FileSystems.getDefault().getSeparator();
+    private final String BitMusicStructure = separator + "BitTest";
+    private final String profilesStructure = separator + "profiles";
+    private final String profileStructure = separator + "profile";
+    private final String mainStructure = separator + "BitTest" + separator
+            + "profiles" + separator;
 
     private User currentUser;
 
@@ -75,8 +77,10 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public boolean checkPassword(String login, String password) throws ProfileExceptions {
-    	if (login == null || login.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.LoginNullOrEmpty);
-    	if (password == null || password.isEmpty()) throw new ProfileExceptions(ProfileExceptionType.PasswordNullOrEmpty);
+    	if (login == null || login.isEmpty())
+            throw new ProfileExceptions(ProfileExceptionType.LoginNullOrEmpty);
+    	if (password == null || password.isEmpty())
+            throw new ProfileExceptions(ProfileExceptionType.PasswordNullOrEmpty);
     	currentUser = FileParser.getFileParser().loadUser(login, password);
     	if (currentUser == null) 
             return false;

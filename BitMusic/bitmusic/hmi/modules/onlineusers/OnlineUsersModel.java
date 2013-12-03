@@ -9,7 +9,6 @@ package bitmusic.hmi.modules.onlineusers;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.music.data.Song;
-import bitmusic.music.data.SongLibrary;
 import bitmusic.profile.classes.User;
 import java.util.ArrayList;
 import java.util.LinkedList;

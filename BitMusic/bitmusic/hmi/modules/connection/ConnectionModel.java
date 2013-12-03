@@ -21,7 +21,6 @@ public final class ConnectionModel extends AbstractModel {
     }
 
     public boolean doConnection(String login, String password) throws ProfileExceptions {
-        return true;
-        //return WindowComponent.getInstance().getApiProfile().checkPassword(login, password);
+        return WindowComponent.getInstance().getApiProfile().checkPassword(login, password);
     }
 }

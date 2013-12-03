@@ -7,6 +7,7 @@
 package bitmusic.profile.classes;
 
 import bitmusic.music.data.Rights;
+import bitmusic.profile.utilities.ProfileExceptions;
 import java.util.List;
 import java.util.ArrayList;
 import org.junit.After;
@@ -40,11 +41,33 @@ public class CategoryTest {
      * Test of setName method, of class Category.
      */
     @Test
-    public void testSetName() {
+    public void testSetName() throws ProfileExceptions{
         System.out.println("setName");
         String newName = "newName";
         cat.setName(newName);
         assertEquals(newName, cat.getName());
+    }
+    
+    /**
+     * @throws ProfileExceptions
+     */
+
+    @Test(expected = ProfileExceptions.class)
+    public void testSetNameNullName() throws ProfileExceptions {
+        System.out.println("setName");
+        String name = null;
+        cat.setName(name);
+    }
+    
+    /**
+     * @throws ProfileExceptions
+     */
+
+    @Test(expected = ProfileExceptions.class)
+    public void testSetNameEmptyName() throws ProfileExceptions {
+        System.out.println("setName");
+        String name = "";
+        cat.setName(name);
     }
 
     /**
@@ -60,7 +83,7 @@ public class CategoryTest {
      * Test of getContacts method, of class Category.
      */
     @Test
-    public void testGetContacts() {
+    public void testGetContacts()  throws ProfileExceptions{
         System.out.println("getContacts");
         User test1 = new User("login1","mdp1");
         User test2 = new User("login2","mdp2");
@@ -120,7 +143,7 @@ public class CategoryTest {
      * Test of addUser method, of class Category.
      */
     @Test
-    public void testAddUser() {
+    public void testAddUser()  throws ProfileExceptions{
         List<User> liste = new ArrayList<User> (cat.getContacts());
         User test = new User("login", "mdp");
         cat.addUser(test);
@@ -132,7 +155,7 @@ public class CategoryTest {
      * Test of deleteUser method, of class Category.
      */
     @Test
-    public void testDeleteUser() {
+    public void testDeleteUser() throws ProfileExceptions {
         System.out.println("deleteUser");
         
         User test1 = new User("login1","mdp1");
@@ -152,7 +175,7 @@ public class CategoryTest {
      * Test of findContact method, of class Category.
      */
     @Test
-    public void testFindContact() {
+    public void testFindContact() throws ProfileExceptions {
         System.out.println("findContact");
         String UserID = "test1";
         

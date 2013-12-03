@@ -21,7 +21,7 @@ import bitmusic.profile.utilities.ProfileExceptions;
 
 /**
  *
- * @author Holywa, MilioPeralta, Jérémy
+ * @author Holywa, MilioPeralta, JÃ©rÃ©my
  */
 public class FileSaver {
     //########################## ATTRIBUTES ##########################//
@@ -29,8 +29,9 @@ public class FileSaver {
      *
      */
     private static FileSaver currentSaver;
-    private static String mainStructure = "\\BitTest\\profiles\\";
-    private static String profileStructure = "\\profile\\";
+    private static String separator = FileSystems.getDefault().getSeparator();
+    private static String mainStructure = separator + "BitTest" + separator + "profiles" + separator;
+    private static String profileStructure = separator + "profile" + separator;
 
     //######################### CONSTRUCTORS ###########################//
 
@@ -50,7 +51,7 @@ public class FileSaver {
      */
     public void saveUser(User userToSave) throws ProfileExceptions {
         String defaultPath = new File("").getAbsolutePath().toString()
-        		+ mainStructure 
+        		+ mainStructure
         		+ ApiProfileImpl.getApiProfile().getCurrentUserFolder();
 
         if(!Files.exists(FileSystems.getDefault().getPath(defaultPath))) {
@@ -60,6 +61,7 @@ public class FileSaver {
         try {
             FileOutputStream saveFile = new FileOutputStream(defaultPath
             		+ profileStructure + userToSave.getLogin() + ".ser");
+
             ObjectOutputStream oos = new ObjectOutputStream(saveFile);
             oos.writeObject(userToSave);
             oos.flush();
@@ -81,11 +83,11 @@ public class FileSaver {
      */
     public void saveAuthFile(User toSave) throws ProfileExceptions {
         try {
-        	String defaultPath = new File("").getAbsolutePath().toString() 
-        			+ mainStructure
+            String defaultPath = new File("").getAbsolutePath().toString()
+                    + mainStructure
                     + ApiProfileImpl.getApiProfile().getCurrentUserFolder();
             FileOutputStream authFile = new FileOutputStream(defaultPath
-            		+ profileStructure + "auth");
+                    + profileStructure + "auth");
 
             ObjectOutputStream oos = new ObjectOutputStream(authFile);
             oos.writeUTF(toSave.getEncryptedPassword());
