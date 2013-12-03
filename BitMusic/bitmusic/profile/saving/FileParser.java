@@ -34,8 +34,9 @@ public class FileParser {
      *
      */
     private static FileParser currentParser;
-    private static String mainStructure = "\\BitTest\\profiles\\";
-    private static String profileStructure = "\\profile\\";
+    private static String separator = FileSystems.getDefault().getSeparator();
+    private static String mainStructure = separator + "BitTest" + separator + "profiles" + separator;
+    private static String profileStructure = separator + "profile" + separator;
 
     //######################### CONSTRUCTORS ###########################//
     /**
@@ -68,9 +69,9 @@ public class FileParser {
                 if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
                     if(readAuthFile(path.toString(), pwd)) {
                         try {
-                        	FileInputStream saveFile = new FileInputStream(path.toString() 
-                        			+ profileStructure 
-                        			+ login + ".ser");
+                            FileInputStream saveFile = new FileInputStream(path.toString()
+                                    + profileStructure
+                                    + login + ".ser");
 
                             ObjectInputStream ois = new ObjectInputStream(saveFile);
                             User loadedUser = (User) ois.readObject();
@@ -94,6 +95,7 @@ public class FileParser {
         try {
             FileInputStream authFile = new FileInputStream(path
             		+ profileStructure + "auth");
+
             ObjectInputStream ois = new ObjectInputStream(authFile);
             String password = ois.readUTF();
             ois.close();

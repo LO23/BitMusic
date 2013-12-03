@@ -53,7 +53,9 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             WindowComponent win = WindowComponent.getInstance();
             try {
                 win.getWindowModel().logOut();
-            } catch (NetworkException | ProfileExceptions ex) {
+            } catch (NetworkException ex) {
+                Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ProfileExceptions ex) {
                 Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
             }
 

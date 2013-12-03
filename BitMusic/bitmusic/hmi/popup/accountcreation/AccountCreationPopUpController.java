@@ -7,25 +7,18 @@
 package bitmusic.hmi.popup.accountcreation;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
-import bitmusic.hmi.modules.connection.ConnectionController;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.popup.importsong.ImportSongPopUpController;
-import bitmusic.hmi.popup.importsong.ImportSongPopUpView;
 import bitmusic.hmi.popup.modifyprofile.ModifyProfilePopUpController;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
