@@ -75,7 +75,7 @@ public final class TabView extends AbstractView<TabController> {
         JPanel jPanel = this.getPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new JTable(this.getController().getModel().getModeleTable());
-
+        jTable1.addMouseListener(this.getController().new DoubleClickListener());
         jScrollPane1.setViewportView(jTable1);
 
 
