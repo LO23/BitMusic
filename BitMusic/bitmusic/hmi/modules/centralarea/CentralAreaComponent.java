@@ -37,15 +37,10 @@ public final class CentralAreaComponent extends AbstractComponent<CentralAreaMod
         String requestText = "";
         String requestFilter = "";
 
-        ArrayList<Song> songResults = new ArrayList();
-        //songResults = win.getApiProfile().getCurrentUser().getLocalSongs().getlibrary();
-        // --------------- À supprimer dès que possible (pour le test) ------------------
-        songResults.add(new Song("1", "Title1", "Author1", "INIT", new LinkedList()));
-        songResults.add(new Song("2", "Title2", "Author2", "INIT", new LinkedList()));
-        // ------------------------------------------------------------------------------
+        ArrayList<Song> songResults = win.getApiProfile().getCurrentUser().getSongs().getlibrary();
+        //songResults = win.getApiProfile().getCurrentUser().getLocalSongs().getlibrary(); //getLocalSongs = getSongs... ! lol
 
         // Aucune recherche identique n'a pu être faite (car lancement de l'application)
-
         // Création d'un nouveau Tab
         TabComponent tabToFocusOn = new TabComponent();
 
