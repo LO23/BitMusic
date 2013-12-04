@@ -81,7 +81,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                         while( PlayBarController.this.getModel().isPlaying() ) {
                             playBar.setValue(win.getApiMusic().getCurrentFrame());
                         }
-                        playBar.setValue(0);
+                        //playBar.setValue(0);
                     }
                 };
                 PlayBarController.this.sliderThread = new Thread(r);
