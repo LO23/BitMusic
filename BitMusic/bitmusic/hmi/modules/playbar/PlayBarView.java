@@ -23,46 +23,26 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     private final String type = "SOUTH";
     // Ces boutons deviendront plutard des images cliquables
-    private ImageIcon playIcon ;
-    private JButton playButton;
+    private ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/playicon.png"));
+    private JButton  playButton = new JButton(playIcon);
 
-    private ImageIcon stopIcon ;
-    private JButton stopButton ;
+    private ImageIcon stopIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/stopicon.png"));
+    private JButton stopButton = new JButton(stopIcon);
 
-    private ImageIcon downloadIcon ;
-    private JButton downloadButton ;
+    private ImageIcon downloadIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/downloadicon.png"));
+    private JButton downloadButton = new JButton(downloadIcon);
 
-    private ImageIcon pauseIcon;
+    private ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
 
-    private JSlider playBar ;
-    // TODO playing bar
+    private JSlider playBar = new JSlider(0, 1);
 
     public PlayBarView() {
         super();
-
-        playIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/playicon.png"));
-        playButton = new JButton(playIcon);
-
-        stopIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/stopicon.png"));
-        stopButton = new JButton(stopIcon);
-
-        downloadIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/downloadicon.png"));
-        downloadButton = new JButton(downloadIcon);
-
-        pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
-
-        playBar = new JSlider(0, 1);
-        // TODO [APIMUSIC]: renvoyer le current frame (temps actuel de la musique
-
-
-
-    }
+   }
 
     @Override
     public void initPanel() {
         System.out.println("--- PlayBarView.initPanel()");
-
-
 
         final Dimension d = new Dimension(40, 10);
 
