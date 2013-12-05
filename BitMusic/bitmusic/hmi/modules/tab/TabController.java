@@ -8,6 +8,7 @@ package bitmusic.hmi.modules.tab;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.popup.editsong.EditSongPopUpComponent;
 import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JDialog;
 import javax.swing.JTable;
 
 /**
@@ -22,6 +24,8 @@ import javax.swing.JTable;
  * @author unkedeuxke
  */
 public final class TabController extends AbstractController<TabModel, TabView> {
+
+    private JDialog popUp;
 
     public TabController(final TabModel model, final TabView view) {
         super(model, view);
@@ -53,6 +57,16 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             int row = Integer.valueOf( e.getActionCommand() );
             Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
             System.out.println("---- Clic sur Éditer de la Song : " + song.getSongId());
+
+            WindowComponent win = WindowComponent.getInstance();
+            EditSongPopUpComponent editSongPopUpComponent = new EditSongPopUpComponent(song, TabController.this.getView().getTabId());
+
+            popUp = new JDialog(win.getWindowView(), "Editer un morceau", true);
+            popUp.add(editSongPopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.setLocationRelativeTo(null);
+            popUp.show();
+
         }
     };
 
@@ -98,4 +112,14 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     public Action getSauvegarder() {
         return this.sauvegarder;
     }
+
+    public JDialog getPopUp() {
+        return popUp;
+    }
+
+    public void setPopUp(JDialog popUp) {
+        this.popUp = popUp;
+    }
+
+    
 }

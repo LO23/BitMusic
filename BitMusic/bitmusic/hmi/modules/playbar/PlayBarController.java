@@ -102,6 +102,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                 PlayBarController.this.getModel().setFrame(0);
                 win.getApiMusic().stop();
                 PlayBarController.this.sliderThread.interrupt();
+                win.getPlayBarComponent().getView().getPlayBar().setValue(0);
             }
         }
     }

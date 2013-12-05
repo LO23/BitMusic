@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  */
 public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpController> {
 
-    private final String type = "CENTER";
+    private final String type = "POPUP";
     private final JLabel importSongLabel = new JLabel("<html><u>Importer un morceau</u></html>");
     private final JLabel titleLabel = new JLabel("Titre (*)");
     private JTextField titleField = new JTextField("");
@@ -33,7 +33,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private final JLabel fileLabel  = new JLabel("Fichier (*)");
     private JTextField fileField = new JTextField("");
     private final JLabel tagLabel = new JLabel("Tags");
-    private final JLabel infoLabel = new JLabel("*Champs obligatoires");
+    private final JLabel infoLabel = new JLabel("(*) Champs obligatoires");
     private final JButton fileBrowseButton = new JButton("Parcourir...");
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
@@ -52,6 +52,8 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     public void initPanel() {
+        System.out.println("--- ImportSongPopUpView.initPanel()");
+
         this.listCompulsoryFields.add(titleField);
         this.listCompulsoryFields.add(artistField);
         this.listCompulsoryFields.add(fileField);
@@ -155,7 +157,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- ImportSongPopUpView.update() -> " + str);
+        System.out.println("----- ImportSongPopUpView.update() - " + str);
         this.tagList.setModel(this.getController().getModel().getListModel());
         this.tagsTablePane.setViewportView(this.tagList);
     }
