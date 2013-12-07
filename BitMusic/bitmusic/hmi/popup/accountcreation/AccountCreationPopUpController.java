@@ -8,19 +8,15 @@ package bitmusic.hmi.popup.accountcreation;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.popup.modifyprofile.ModifyProfilePopUpController;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -67,7 +63,6 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
 
             WindowComponent win = WindowComponent.getInstance();
             AccountCreationPopUpView view = AccountCreationPopUpController.this.getView();
-            Boolean canCreate = true;
 
             //login password firstname lastname birth avatar
             String login = view.getLoginField().getText();
@@ -99,7 +94,7 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
                             "defaultAvatar_120.png";
                     //System.out.println("----> " + avatar);
                 } catch (IOException ex) {
-                    Logger.getLogger(AccountCreationPopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(AccountCreationPopUpController.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(
                         view,
                         "Création impossible !",
@@ -110,50 +105,51 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
             }
 
             if ( !password.equals(confirm) ) {
-                canCreate = false;
                 JOptionPane.showMessageDialog(
-                        view,
-                        "Les deux mots de passe entrés ne concordent pas !",
-                        "Erreur de mot de passe",
-                        JOptionPane.WARNING_MESSAGE);
-            } else if ( AccountCreationPopUpController.this.checkAllCompulsoryFields() ){
-                Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                sdf.setLenient(false);
+                    view,
+                    "Les deux mots de passe entrés ne concordent pas !",
+                    "Erreur de mot de passe",
+                    JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-                // Permet de vérifier si le format de la date est correct
-                try {
-                    cal.setTime(sdf.parse(birthdate));
-                } catch (ParseException ex) {
-                    Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                    canCreate = false;
-                    JOptionPane.showMessageDialog(
-                        view,
-                        "Le format de la date n'est pas valide !",
-                        "Erreur de date",
-                        JOptionPane.WARNING_MESSAGE);
-                }
-
-                if (canCreate) {
-                    try {
-                        //login password firstname lastname birth avatar
-                        win.getApiProfile().createUser(login, password, firstname, lastname, cal, avatar);
-                        win.getConnectionComponent().getController().getPopUp().dispose();
-                    } catch (ProfileExceptions ex) {
-                        Logger.getLogger(AccountCreationPopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showMessageDialog(
-                            view,
-                            "Erreur : le compte n'a pas pu être créé !",
-                            "Erreur de création",
-                            JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-            } else {
+            if ( !AccountCreationPopUpController.this.checkAllCompulsoryFields() ) {
                 JOptionPane.showMessageDialog(
-                        view,
-                        "Tous les champs obligatoires doivent être renseignés !",
-                        "Attention aux champs",
-                        JOptionPane.WARNING_MESSAGE);
+                    view,
+                    "Tous les champs obligatoires doivent être renseignés !",
+                    "Attention aux champs",
+                    JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
+
+            // Permet de vérifier si le format de la date est correct
+            try {
+                cal.setTime(sdf.parse(birthdate));
+            } catch (ParseException ex) {
+                //Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(
+                    view,
+                    "Le format de la date n'est pas valide !",
+                    "Erreur de date",
+                    JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            try {
+                //login password firstname lastname birth avatar
+                win.getApiProfile().createUser(login, password, firstname, lastname, cal, avatar);
+                win.getConnectionComponent().getController().getPopUp().dispose();
+            } catch (ProfileExceptions ex) {
+                //Logger.getLogger(AccountCreationPopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(
+                    view,
+                    "Erreur : le compte n'a pas pu être créé !",
+                    "Erreur de création",
+                    JOptionPane.WARNING_MESSAGE);
             }
         }
     }
