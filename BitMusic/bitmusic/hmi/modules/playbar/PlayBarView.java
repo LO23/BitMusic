@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
@@ -33,6 +34,8 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     private JButton downloadButton = new JButton(downloadIcon);
 
     private ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
+
+    private JLabel currentSong = new JLabel("Aucune musique chargée...");
 
     private JSlider playBar = new JSlider(0, 1);
 
@@ -69,28 +72,28 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
-        layout.setHorizontalGroup(layout.createSequentialGroup()
-                .addComponent(this.stopButton)
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(this.playButton))
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(this.downloadButton))
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(this.playBar))
-        );
-
         layout.setVerticalGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addComponent(this.stopButton)
                 .addComponent(this.playButton)
                 .addComponent(this.downloadButton)
                 .addComponent(this.playBar))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.currentSong))
         );
 
-        layout.linkSize(SwingConstants.HORIZONTAL, this.playButton, this.stopButton);
-        layout.linkSize(SwingConstants.HORIZONTAL, this.playButton, this.downloadButton);
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.stopButton))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.playButton))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.downloadButton))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.playBar)
+                .addComponent(this.currentSong))
+            );
 
-        // TODO
     }
 
     @Override
@@ -156,7 +159,10 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- PlayBarView.update() -> " + str);
-        if ( this.getController().getModel().isPlaying() ) {
+        PlayBarModel model = this.getController().getModel();
+        String text = model.getSong().getArtist() + " - " + model.getSong().getTitle();
+        this.currentSong.setText(text);
+        if ( model.isPlaying() ) {
             //Si c'est en lecture : on affiche le bouton pause
             this.playButton.setIcon(pauseIcon);
         }
