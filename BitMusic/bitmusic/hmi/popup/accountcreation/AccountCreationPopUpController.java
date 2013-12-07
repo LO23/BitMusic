@@ -12,6 +12,9 @@ import bitmusic.hmi.popup.modifyprofile.ModifyProfilePopUpController;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,8 +79,35 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
             String avatar = view.getAvatarField().getText();
 
             //Avatar par défault
-            if ( avatar.length() <= 0 )
-                avatar = "/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png";
+            if ( avatar.length() <= 0 ) {
+                try {
+                    String current = new java.io.File(".").getCanonicalPath();
+                    avatar = current +
+                            File.separator +
+                            "Bitmusic" +
+                            File.separator +
+                            "bitmusic" +
+                            File.separator +
+                            "hmi" +
+                            File.separator +
+                            "modules" +
+                            File.separator +
+                            "myprofile" +
+                            File.separator +
+                            "images" +
+                            File.separator +
+                            "defaultAvatar_120.png";
+                    //System.out.println("----> " + avatar);
+                } catch (IOException ex) {
+                    Logger.getLogger(AccountCreationPopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(
+                        view,
+                        "Création impossible !",
+                        "Erreur d'accès fichier",
+                        JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
 
             if ( !password.equals(confirm) ) {
                 canCreate = false;
