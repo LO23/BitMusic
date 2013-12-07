@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javazoom.jl.player.Player;
 
 /**
  *
