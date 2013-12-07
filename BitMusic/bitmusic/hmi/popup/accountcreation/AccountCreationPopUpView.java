@@ -164,7 +164,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- AccountCreationPopUp.update()");
+        System.out.println("----- AccountCreationPopUp.update() -> " + str);
     }
 
     public JTextField getLoginField() {

@@ -146,7 +146,7 @@ public final class TabView extends AbstractView<TabController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- TabView.update()");
+        System.out.println("----- TabView.update() -> " + str);
 
         // On "force" l'actualisation immédiate du TableModel (utile dans le cas d'un clic sur "MySongs" juste après le lancement de l'application)
         this.getController().getModel().getModeleTable().fireTableDataChanged();

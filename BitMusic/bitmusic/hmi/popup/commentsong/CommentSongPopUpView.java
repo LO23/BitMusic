@@ -89,7 +89,7 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- CommentSongPopUpView.update()");
+        System.out.println("----- CommentSongPopUpView.update() -> " + str);
     }
 
     public JTextField getCommentField() {
