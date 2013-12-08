@@ -17,11 +17,11 @@ public final class InfosSongPopUpComponent extends AbstractComponent<InfosSongPo
 
     private Song song;
 
-    public InfosSongPopUpComponent(Song song) {
+    public InfosSongPopUpComponent(Song song, int parentTabId) {
         this.song = song;
-        
+
         this.model = new InfosSongPopUpModel(song);
-        this.view = new InfosSongPopUpView();
+        this.view = new InfosSongPopUpView(parentTabId);
         this.controller = new InfosSongPopUpController(this.model, this.view);
         this.view.setController(this.controller);
         this.view.initPanel();

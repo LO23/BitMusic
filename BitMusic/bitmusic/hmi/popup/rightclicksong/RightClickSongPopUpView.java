@@ -16,9 +16,11 @@ import bitmusic.hmi.patterns.Observable;
 public final class RightClickSongPopUpView extends AbstractView<RightClickSongPopUpController> {
 
     private final String type = "POPUP";
+    private int parentTabId;
 
-    public RightClickSongPopUpView() {
+    public RightClickSongPopUpView(int parentTabId) {
         super();
+        this.parentTabId = parentTabId;
     }
 
     @Override
@@ -37,4 +39,9 @@ public final class RightClickSongPopUpView extends AbstractView<RightClickSongPo
     public void update(Observable obj, String str) {
         System.out.println("----- RightClickSongPopUpView.update() -> " + str);
     }
+
+    public int getParentTabId() {
+        return parentTabId;
+    }
+    
 }

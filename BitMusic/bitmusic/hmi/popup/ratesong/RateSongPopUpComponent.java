@@ -16,12 +16,12 @@ import bitmusic.music.data.Song;
 public final class RateSongPopUpComponent extends AbstractComponent<RateSongPopUpModel, RateSongPopUpView, RateSongPopUpController> {
 
     private Song song;
-    public RateSongPopUpComponent(Song song) {
 
+    public RateSongPopUpComponent(Song song, int parentTabId) {
         this.song = song;
 
         this.model = new RateSongPopUpModel(song);
-        this.view = new RateSongPopUpView();
+        this.view = new RateSongPopUpView(parentTabId);
         this.controller = new RateSongPopUpController(this.model, this.view);
         this.view.setController(this.controller);
         this.view.initPanel();

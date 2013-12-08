@@ -23,6 +23,7 @@ import javax.swing.JRadioButton;
 public final class RateSongPopUpView extends AbstractView<RateSongPopUpController> {
 
     private final String type = "POPUP";
+    private int parentTabId;
     private final JLabel rateSongLabel = new JLabel("Noter un morceau");
     private final JButton validateButton = new JButton("Valider");
     private final JButton cancelButton = new JButton("Annuler");
@@ -35,9 +36,9 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     private JRadioButton songRater5 = new JRadioButton("5", false);
 
 
-    public RateSongPopUpView() {
+    public RateSongPopUpView(int parentTabId) {
         super();
-
+        this.parentTabId = parentTabId;
     }
 
     @Override
@@ -49,6 +50,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
         this.rateSongLabel.setSize(d);
         this.validateButton.setSize(d);
         this.cancelButton.setSize(d);
+        this.cancelButton.addActionListener(this.getController().new CancelListener());
 
         this.groupRadio.add(songRater0);
         this.groupRadio.add(songRater1);
@@ -126,4 +128,65 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     public void update(Observable obj, String str) {
         System.out.println("----- RateSongPopUpView.update() -> " + str);
     }
+
+    public ButtonGroup getGroupRadio() {
+        return groupRadio;
+    }
+
+    public void setGroupRadio(ButtonGroup groupRadio) {
+        this.groupRadio = groupRadio;
+    }
+
+    public JRadioButton getSongRater0() {
+        return songRater0;
+    }
+
+    public void setSongRater0(JRadioButton songRater0) {
+        this.songRater0 = songRater0;
+    }
+
+    public JRadioButton getSongRater1() {
+        return songRater1;
+    }
+
+    public void setSongRater1(JRadioButton songRater1) {
+        this.songRater1 = songRater1;
+    }
+
+    public JRadioButton getSongRater2() {
+        return songRater2;
+    }
+
+    public void setSongRater2(JRadioButton songRater2) {
+        this.songRater2 = songRater2;
+    }
+
+    public JRadioButton getSongRater3() {
+        return songRater3;
+    }
+
+    public void setSongRater3(JRadioButton songRater3) {
+        this.songRater3 = songRater3;
+    }
+
+    public JRadioButton getSongRater4() {
+        return songRater4;
+    }
+
+    public void setSongRater4(JRadioButton songRater4) {
+        this.songRater4 = songRater4;
+    }
+
+    public JRadioButton getSongRater5() {
+        return songRater5;
+    }
+
+    public void setSongRater5(JRadioButton songRater5) {
+        this.songRater5 = songRater5;
+    }
+
+    public int getParentTabId() {
+        return parentTabId;
+    }
+
 }

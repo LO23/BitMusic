@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
  */
 public final class EditSongPopUpView extends AbstractView<EditSongPopUpController> {
 
-    private final String type = "CENTER";
+    private final String type = "POPUP";
     private final int parentTabId;
     private final JLabel importSongLabel = new JLabel("<html><u>Importer un morceau</u></html>");
     private final JLabel titleLabel = new JLabel("Titre (*)");
