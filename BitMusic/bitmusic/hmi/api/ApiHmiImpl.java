@@ -40,10 +40,12 @@ public final class ApiHmiImpl implements ApiHmi {
         //TODO
     }
 
-    @Override
-    public void notifySongListByUserId(final String userId, final SongLibrary songList) {
-        //TODO
-    }
+    //NE DOIT PAS ETRE UTILISEE, JE NE SAIS PAS D'OU SORT CETTE METHODE
+    //UTILISER notifySongListBySearchId !!
+//    @Override
+//    public void notifySongListByUserId(final String userId, final SongLibrary songList) {
+//        //TODO
+//    }
 
     @Override
     public void notifySongListBySearchId(final String searchId, final SongLibrary songList) {

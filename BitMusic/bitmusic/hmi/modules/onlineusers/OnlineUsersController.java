@@ -66,15 +66,11 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
             String requestText = user.getUserId();
             String requestFilter = FILTER_USER;
 
-            ArrayList<Song> songResults = new ArrayList();
-            songResults = model.searchSongsFromUserId(requestText);
-
             // Vérification qu'une recherche identique n'a pas déjà été faite
             CentralAreaComponent centralAreaComponent = win.getCentralAreaComponent();
 
             TabComponent tabToFocusOn = null;
 
-            Boolean sameTab = false;
             ArrayList<TabComponent> listTabComponents = centralAreaComponent.getView().getListTabComponent();
             for (int i = 0; i < listTabComponents.size(); i++) {
                 Boolean sameFilter = listTabComponents.get(i).getModel().getRequestFilter().equals(requestFilter);
@@ -82,19 +78,12 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
                 Boolean sameText = listTabComponents.get(i).getModel().getRequestText().equals(requestText);
 
                 if (sameFilter && sameOrigin && sameText) {
-                    sameTab = true;
                     tabToFocusOn = listTabComponents.get(i);
                 }
             }
 
-            // Si c'est le cas : simple actualisation des Song à l'intérieur
-            if (sameTab) {
-                System.out.println("Un même tab existe déjà, on l'actualise !");
-
-                tabToFocusOn.getModel().getModeleTable().setSong(songResults);
-            }
-            // Sinon : création d'un nouveau Tab
-            else {
+            // Si ce n'est pas le cas alors on crée un nouveau Tab
+            if (tabToFocusOn == null) {
                 tabToFocusOn = new TabComponent();
 
                 // Stockage des détails de la requête dans le TabComponent
@@ -102,14 +91,24 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
                 tabToFocusOn.getModel().setRequestOrigin(requestOrigin);
                 tabToFocusOn.getModel().setRequestText(requestText);
 
-                // Attache des Songs obtenue dans la TabView
-                tabToFocusOn.getModel().getModeleTable().setSong(songResults);
-
                 // Ajout du Tab dans le CentralAreaComponent (qui ajoute en même temps la vue)
                 centralAreaComponent.getView().addTabComponent(tabToFocusOn);
             }
 
-            // Met le focus sur le Tab de notre requête (qu'on l'ait créé ou pas)
+            int tabId = tabToFocusOn.getView().getTabId();
+
+            // Début code test (permet d'afficher une tab test avec des musiques test) :
+//            ArrayList<Song> songResults = new ArrayList();
+//            songResults = model.searchSongsFromUserId2(Integer.toString(tabId), requestText);
+//            tabToFocusOn.getModel().getModeleTable().setSong(songResults);
+            // Fin code test
+
+            model.searchSongsFromUserId(Integer.toString(tabId), requestText);
+
+            // On n'actualise pas les Songs à l'intérieur du Tab, la méthode est asynchrone
+            // On les recevra quand le réseau nous notifiera avec la méthode notifySongListBySearchId
+
+            // Met le focus sur le Tab de notre requête
             centralAreaComponent.getView().getTabbedPane().setSelectedComponent(tabToFocusOn.getView().getPanel());
         }
     };
