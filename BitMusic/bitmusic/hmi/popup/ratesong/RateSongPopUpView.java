@@ -74,6 +74,6 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- RateSongPopUpView.update()");
+        System.out.println("----- RateSongPopUpView.update() -> " + str);
     }
 }

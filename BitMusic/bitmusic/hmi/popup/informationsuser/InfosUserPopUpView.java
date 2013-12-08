@@ -94,6 +94,6 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- InfosUserPopUpView.update()");
+        System.out.println("----- InfosUserPopUpView.update() -> " + str);
     }
 }

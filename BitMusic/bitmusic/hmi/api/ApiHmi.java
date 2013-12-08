@@ -45,15 +45,9 @@ public interface ApiHmi {
     */
     void notifyLightProfile(User user, String searchId);
 
-    /**
-    * Receive the songlist from a user
-    * Print all the music of one user
-    *
-    * @param userId	String of the user ID
-    * @param songList	Song library containing songs
-    * @return void
-    */
-    void notifySongListByUserId(String userId, SongLibrary songList);
+    //NE DOIT PAS ETRE UTILISEE, JE NE SAIS PAS D'OU SORT CETTE METHODE
+    //UTILISER notifySongListBySearchId !!
+//    void notifySongListByUserId(String userId, SongLibrary songList);
 
     /**
     * Notify the HMI about the reception of a song list

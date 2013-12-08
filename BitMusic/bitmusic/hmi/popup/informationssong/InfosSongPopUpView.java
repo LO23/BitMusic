@@ -35,6 +35,6 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- InfosSongPopUpView.update()");
+        System.out.println("----- InfosSongPopUpView.update() -> " + str);
     }
 }

@@ -92,7 +92,7 @@ public class WindowView extends JFrame implements Observer {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- WindowView.update()");
+        System.out.println("----- WindowView.update() -> " + str);
     }
 
     public JPanel getContentPanel() {

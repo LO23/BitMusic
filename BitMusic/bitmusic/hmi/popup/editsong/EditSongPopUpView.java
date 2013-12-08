@@ -174,7 +174,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- EditSongPopUpView.update()");
+        System.out.println("----- EditSongPopUpView.update() -> " + str);
 
         this.tagList.setModel(this.getController().getModel().getListModel());
         this.tagsTablePane.setViewportView(this.tagList);
@@ -264,5 +264,5 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
         return parentTabId;
     }
 
-    
+
 }
