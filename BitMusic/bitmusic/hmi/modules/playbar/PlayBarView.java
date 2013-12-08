@@ -64,6 +64,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
         this.playButton.addActionListener(getController().new PlayListener());
         this.stopButton.addActionListener(getController().new StopListener());
         this.downloadButton.addActionListener(getController().new DownloadListener());
+        this.playBar.addMouseListener(getController().new CursorListener());
 
 
         GroupLayout layout = new GroupLayout(this.getPanel());

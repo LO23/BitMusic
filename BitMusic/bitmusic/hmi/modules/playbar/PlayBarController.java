@@ -9,8 +9,11 @@ package bitmusic.hmi.modules.playbar;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.music.player.BitMusicPlayer;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,7 +23,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javazoom.jl.player.Player;
 
 /**
  *
@@ -121,13 +123,51 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     }
 
     // Pour 'écouter' le temps de lecture du son et l'afficher sur la slider
-    // Bonne idée. Mais la prochaine fois, let me know you wrote this ;)
+
     public class SoundTimeListener implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent e) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             // TODO
+        }
+
+    }
+
+    public class CursorListener implements MouseListener {
+
+        final WindowComponent win = WindowComponent.getInstance();
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        }
+
+        // move the slider to the value that a user clicks on and plays from that
+        @Override
+        public void mousePressed(MouseEvent e) {
+            System.out.println("---- Mouse pressed on Slider");
+            JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
+            double p = e.getPoint().getX();
+            double percent = p / ((double) playBar.getWidth());
+            int range = playBar.getMaximum() - playBar.getMinimum();
+            double newVal = range * percent;
+            int result = (int)(playBar.getMinimum() + newVal);
+            playBar.setValue(result);
+            win.getApiMusic().playSongFromSpecificFrame(result);
+            System.out.println("---- Result = " + result +"\n");
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
 
     }
