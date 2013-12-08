@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpController> {
 
     private final String type = "POPUP";
+    private int parentTabId;
     private final JLabel titleLabel = new JLabel("Titre : ");
     private final JLabel artistLabel = new JLabel("Artiste : ");
     private final JLabel albumLabel = new JLabel("Album : ");
@@ -27,8 +28,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     private final JLabel songArtistLabel = new JLabel("Artiste son");
     private final JLabel songAlbumLabel = new JLabel("Album son");
 
-    public InfosSongPopUpView() {
+    public InfosSongPopUpView(int parentTabId) {
         super();
+        this.parentTabId = parentTabId;
     }
 
     @Override
@@ -87,4 +89,34 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     public void update(Observable obj, String str) {
         System.out.println("----- InfosSongPopUpView.update() -> " + str);
     }
+
+    public int getParentTabId() {
+        return parentTabId;
+    }
+
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+
+    public JLabel getArtistLabel() {
+        return artistLabel;
+    }
+
+    public JLabel getAlbumLabel() {
+        return albumLabel;
+    }
+
+    public JLabel getSongTitleLabel() {
+        return songTitleLabel;
+    }
+
+    public JLabel getSongArtistLabel() {
+        return songArtistLabel;
+    }
+
+    public JLabel getSongAlbumLabel() {
+        return songAlbumLabel;
+    }
+
+
 }

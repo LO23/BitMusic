@@ -81,7 +81,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             System.out.println("---- Clic sur Infos de la Song : " + song.getSongId());
 
             WindowComponent win = WindowComponent.getInstance();
-            InfosSongPopUpComponent infosSongPopUpComponent = new InfosSongPopUpComponent(song);
+            InfosSongPopUpComponent infosSongPopUpComponent = new InfosSongPopUpComponent(song, TabController.this.getView().getTabId());
 
             popUp = new JDialog(win.getWindowView(), "Informations d'un morceau", true);
             popUp.add(infosSongPopUpComponent.getView().getPanel());
@@ -101,7 +101,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             System.out.println("---- Clic sur Noter de la Song : " + song.getSongId());
 
             WindowComponent win = WindowComponent.getInstance();
-            RateSongPopUpComponent rateSongPopUpComponent = new RateSongPopUpComponent(song);
+            RateSongPopUpComponent rateSongPopUpComponent = new RateSongPopUpComponent(song, TabController.this.getView().getTabId());
 
             popUp = new JDialog(win.getWindowView(), "Informations d'un morceau", true);
             popUp.add(rateSongPopUpComponent.getView().getPanel());

@@ -16,9 +16,11 @@ import bitmusic.hmi.patterns.Observable;
 public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpController> {
 
     private final String type = "POPUP";
+    private int parentTabId;
 
-    public RightsSongPopUpView() {
+    public RightsSongPopUpView(int parentTabId) {
         super();
+        this.parentTabId = parentTabId;
     }
 
     @Override
@@ -37,4 +39,9 @@ public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpContr
     public void update(Observable obj, String str) {
         System.out.println("----- RightsSongPopUpView.update() -> " + str);
     }
+
+    public int getParentTabId() {
+        return parentTabId;
+    }
+    
 }
