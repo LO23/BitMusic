@@ -9,6 +9,8 @@ package bitmusic.hmi.modules.tab;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.editsong.EditSongPopUpComponent;
+import bitmusic.hmi.popup.informationssong.InfosSongPopUpComponent;
+import bitmusic.hmi.popup.ratesong.RateSongPopUpComponent;
 import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +47,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
                 int row = table.getSelectedRow();
                 Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
                 WindowComponent.getInstance().getPlayBarComponent().getModel().setSong(song);
+                // TODO here : double cliks triggers the song playing
 
                 System.out.println("---- Double click de la Song : " + song.getSongId());
             }
@@ -76,6 +79,17 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             int row = Integer.valueOf( e.getActionCommand() );
             Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
             System.out.println("---- Clic sur Infos de la Song : " + song.getSongId());
+
+            WindowComponent win = WindowComponent.getInstance();
+            InfosSongPopUpComponent infosSongPopUpComponent = new InfosSongPopUpComponent(song);
+
+            popUp = new JDialog(win.getWindowView(), "Informations d'un morceau", true);
+            popUp.add(infosSongPopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.setLocationRelativeTo(null);
+            popUp.show();
+
+
         }
     };
 
@@ -85,6 +99,15 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             int row = Integer.valueOf( e.getActionCommand() );
             Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
             System.out.println("---- Clic sur Noter de la Song : " + song.getSongId());
+
+            WindowComponent win = WindowComponent.getInstance();
+            RateSongPopUpComponent rateSongPopUpComponent = new RateSongPopUpComponent(song);
+
+            popUp = new JDialog(win.getWindowView(), "Informations d'un morceau", true);
+            popUp.add(rateSongPopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.setLocationRelativeTo(null);
+            popUp.show();
         }
     };
 
