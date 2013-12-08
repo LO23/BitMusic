@@ -8,6 +8,9 @@ package bitmusic.hmi.popup.informationssong;
 
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import bitmusic.music.data.Song;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,6 +19,9 @@ import bitmusic.hmi.patterns.Observable;
 public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpController> {
 
     private final String type = "POPUP";
+    private final JLabel songTitleLabel = new JLabel("Nom son");
+    private final JLabel songArtistLabel = new JLabel("Artiste son");
+    private final JLabel songAlbumLabel = new JLabel("Album son");
 
     public InfosSongPopUpView() {
         super();
@@ -24,6 +30,38 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     @Override
     public void initPanel() {
         System.out.println("--- InfosSongPopUpView.initPanel()");
+
+
+        Song song = this.getController().getModel().getSong();
+
+        this.songTitleLabel.setText(song.getTitle());
+        this.songArtistLabel.setText(song.getArtist());
+        this.songAlbumLabel.setText(song.getAlbum());
+
+        // TODO : ajouter à la vue songs tags, comments, rate
+
+        GroupLayout layout = new GroupLayout(this.getPanel());
+        this.getPanel().setLayout(layout);
+
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setVerticalGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.songTitleLabel)
+                .addComponent(this.songArtistLabel))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.songAlbumLabel))
+        );
+
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.songTitleLabel)
+                .addComponent(this.songAlbumLabel))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.songArtistLabel))
+            );
+
 
         // TODO
     }

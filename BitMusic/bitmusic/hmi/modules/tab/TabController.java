@@ -9,6 +9,7 @@ package bitmusic.hmi.modules.tab;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.hmi.popup.editsong.EditSongPopUpComponent;
+import bitmusic.hmi.popup.informationssong.InfosSongPopUpComponent;
 import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,6 +77,17 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             int row = Integer.valueOf( e.getActionCommand() );
             Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
             System.out.println("---- Clic sur Infos de la Song : " + song.getSongId());
+
+            WindowComponent win = WindowComponent.getInstance();
+            InfosSongPopUpComponent infosSongPopUpComponent = new InfosSongPopUpComponent(song);
+
+            popUp = new JDialog(win.getWindowView(), "Informations d'un morceau", true);
+            popUp.add(infosSongPopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.setLocationRelativeTo(null);
+            popUp.show();
+
+
         }
     };
 
