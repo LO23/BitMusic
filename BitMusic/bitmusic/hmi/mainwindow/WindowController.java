@@ -42,7 +42,10 @@ public class WindowController {
             }
 
             // Fermeture du pool de threads qui tourne en arrière-plan (géré par Network)
-            WindowComponent.getInstance().getApiNetwork().shutdownExecutorService();
+            // Uniquement si le module network a été lanca (après connexion réussie)
+            bitmusic.network.main.ApiHmiImpl apiNetwork = WindowComponent.getInstance().getApiNetwork();
+            if ( apiNetwork != null )
+                apiNetwork.shutdownExecutorService();
 
             WindowController.this.getWindowView().dispose();
         }

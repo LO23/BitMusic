@@ -32,6 +32,7 @@ public final class PlayBarModel extends AbstractModel {
         this.song = song;
         //Arrête la musique en cours de lecture
         WindowComponent.getInstance().getPlayBarComponent().getController().new StopListener().actionPerformed(null);
+        this.notifyObservers("Song loaded");
     }
 
 

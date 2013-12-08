@@ -6,7 +6,9 @@
 
 package bitmusic.hmi.popup.ratesong;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.popup.editsong.EditSongPopUpController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,8 +26,9 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Annuler");
-            // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
-            //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
+            WindowComponent win = WindowComponent.getInstance();
+            int parentTabId = RateSongPopUpController.this.getView().getParentTabId();
+            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
         }
     }
 }

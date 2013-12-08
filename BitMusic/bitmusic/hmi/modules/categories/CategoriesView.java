@@ -35,6 +35,6 @@ public final class CategoriesView extends AbstractView<CategoriesController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- CategoriesView.update()");
+        System.out.println("----- CategoriesView.update() -> " + str);
     }
 }

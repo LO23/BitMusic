@@ -117,12 +117,14 @@ public final class OnlineUsersModel extends AbstractModel {
         this.modeleTable = modele;
     }
 
-    public ArrayList<Song> searchSongsFromUserId(final String userId) {
+    public void searchSongsFromUserId(final String searchId, final String userId) {
         // Vérifier si c'est bon
         WindowComponent win = WindowComponent.getInstance();
-//        SongLibrary songResults = win.getApiMusic().searchSongsByUser(userId, ""); // searchId semble nécessaire ? (void retourné)
-//        return songResults.getlibrary();
+        win.getApiMusic().searchSongsByUser(userId, searchId); // searchId semble nécessaire ? (void retourné)
+    }
 
+    //METHODE POUR LES TESTS
+    public ArrayList<Song> searchSongsFromUserId2(final String seachId, final String userId) {
         // --------------- À supprimer dès que possible (pour le test) ------------------
         ArrayList<Song> songResults = new ArrayList();
         songResults.add(new Song("1", "Title1", "Author1", "USER - " + userId, new LinkedList()));

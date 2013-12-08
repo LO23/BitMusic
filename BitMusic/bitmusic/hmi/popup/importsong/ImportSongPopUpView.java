@@ -157,7 +157,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- ImportSongPopUpView.update() - " + str);
+        System.out.println("----- ImportSongPopUpView.update() -> " + str);
         this.tagList.setModel(this.getController().getModel().getListModel());
         this.tagsTablePane.setViewportView(this.tagList);
     }

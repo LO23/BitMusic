@@ -35,6 +35,6 @@ public final class ManageCategoryPopUpView extends AbstractView<ManageCategoryPo
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- ManageCategoryPopUpView.update()");
+        System.out.println("----- ManageCategoryPopUpView.update() -> " + str);
     }
 }

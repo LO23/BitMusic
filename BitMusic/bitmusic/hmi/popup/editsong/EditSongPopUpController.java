@@ -53,7 +53,9 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Annuler");
-            WindowComponent.getInstance().getMyProfileComponent().getController().getPopUp().dispose();
+            WindowComponent win = WindowComponent.getInstance();
+            int parentTabId = EditSongPopUpController.this.getView().getParentTabId();
+            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
         }
     }
 

@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.informationssong;
 
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.music.data.Song;
 
 /**
  *
@@ -14,7 +15,20 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class InfosSongPopUpModel extends AbstractModel {
 
-    public InfosSongPopUpModel() {
+    private Song song;
+
+    public InfosSongPopUpModel(Song song) {
         super();
+        this.setSong(song);
+
+    }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+        this.notifyObservers("SHOW_SONG_INFOS");
     }
 }
