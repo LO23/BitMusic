@@ -19,6 +19,10 @@ import javax.swing.JLabel;
 public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpController> {
 
     private final String type = "POPUP";
+    private final JLabel titleLabel = new JLabel("Titre : ");
+    private final JLabel artistLabel = new JLabel("Artiste : ");
+    private final JLabel albumLabel = new JLabel("Album : ");
+
     private final JLabel songTitleLabel = new JLabel("Nom son");
     private final JLabel songArtistLabel = new JLabel("Artiste son");
     private final JLabel songAlbumLabel = new JLabel("Album son");
@@ -48,18 +52,26 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
         layout.setVerticalGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addComponent(this.songTitleLabel)
+                .addComponent(this.titleLabel)
+                .addComponent(this.songTitleLabel))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.artistLabel)
                 .addComponent(this.songArtistLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.albumLabel)
                 .addComponent(this.songAlbumLabel))
+
         );
 
         layout.setHorizontalGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addComponent(this.songTitleLabel)
-                .addComponent(this.songAlbumLabel))
+                .addComponent(this.titleLabel)
+                .addComponent(this.artistLabel)
+                .addComponent(this.albumLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addComponent(this.songArtistLabel))
+                .addComponent(this.songTitleLabel)
+                .addComponent(this.songArtistLabel)
+                .addComponent(this.songAlbumLabel))
             );
 
 
