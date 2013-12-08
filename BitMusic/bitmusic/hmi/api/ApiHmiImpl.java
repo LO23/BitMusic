@@ -7,6 +7,9 @@
 package bitmusic.hmi.api;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
+import bitmusic.hmi.modules.tab.TabComponent;
+import bitmusic.hmi.modules.tab.TabModel;
 import bitmusic.music.business.SongPlayer;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
@@ -24,12 +27,7 @@ public final class ApiHmiImpl implements ApiHmi {
 
     @Override
     public void notifyNewConnection(final User lightUserLan) {
-        WindowComponent
-                .getInstance()
-                .getOnlineUsersComponent()
-                .getModel()
-                .getModeleTable()
-                .addOnlineUser(lightUserLan);
+        WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().addOnlineUser(lightUserLan);
     }
 
     @Override
@@ -49,7 +47,9 @@ public final class ApiHmiImpl implements ApiHmi {
 
     @Override
     public void notifySongListBySearchId(final String searchId, final SongLibrary songList) {
-        //TODO
+        CentralAreaComponent cac = WindowComponent.getInstance().getCentralAreaComponent();
+        TabComponent tabComponent = cac.getView().getTabComponent(Integer.parseInt(searchId));
+        tabComponent.getModel().getModeleTable().addSongs(songList.getlibrary());
     }
 
     @Override

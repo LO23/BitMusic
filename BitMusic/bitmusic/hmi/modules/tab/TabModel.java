@@ -67,6 +67,12 @@ public final class TabModel extends AbstractModel {
             (TabModel.this).notifyObservers("SONG_ADDED");
         }
 
+        public void addSongs(final ArrayList<Song> listSongs) {
+            for (int i = 0; i < listSongs.size(); i++) {
+                this.addSong(listSongs.get(i));
+            }
+        }
+
         public void removeSong(final Song songId) {
             for (int row = 0; row < this.arrayListSong.size(); row++) {
                 if (this.arrayListSong.get(row).getSongId().equals(songId)) {
