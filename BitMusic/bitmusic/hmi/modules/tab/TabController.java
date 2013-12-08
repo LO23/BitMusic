@@ -121,5 +121,5 @@ public final class TabController extends AbstractController<TabModel, TabView> {
         this.popUp = popUp;
     }
 
-    
+
 }

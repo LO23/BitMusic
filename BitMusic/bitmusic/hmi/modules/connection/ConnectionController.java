@@ -48,12 +48,22 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             ConnectionModel model = ConnectionController.this.getModel();
             ConnectionView view = ConnectionController.this.getView();
 
+            if ( !ConnectionController.this.checkAllCompulsoryFields() ){
+                JOptionPane.showMessageDialog(
+                        view,
+                        "Tous les champs obligatoires doivent être renseignés !",
+                        "Attention aux champs",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             Boolean isRightPass = false;
 
             try {
                 isRightPass = model.doConnection(view.getLoginField().getText(), view.getPasswordField().getText());
             } catch (ProfileExceptions ex) {
                 Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
+                //TODO : à supprimer quand Profile aura supprimé son exception !
                 JOptionPane.showMessageDialog(
                         view,
                         "Erreur de vérification du mot de passe",
@@ -61,14 +71,8 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                         JOptionPane.WARNING_MESSAGE);
             }
 
-            if ( !ConnectionController.this.checkAllCompulsoryFields() ){
-                JOptionPane.showMessageDialog(
-                        view,
-                        "Tous les champs obligatoires doivent être renseignés !",
-                        "Attention aux champs",
-                        JOptionPane.WARNING_MESSAGE);
-            }
-            else if ( isRightPass ) {
+
+            if ( isRightPass ) {
                 WindowComponent win = WindowComponent.getInstance();
                 // On enlève la ConnectionView des "objets utilisés"
                 win.getWindowView().removeView(view);

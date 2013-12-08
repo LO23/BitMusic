@@ -31,10 +31,10 @@ public class WindowComponent {
     private WindowView view;
     private WindowController controller;
 
-    private ApiHmiImpl apiHmi;
-    private ApiProfileImpl apiProfile;
-    private ApiMusicImpl apiMusic;
-    private bitmusic.network.main.ApiHmiImpl apiNetwork;
+    private ApiHmiImpl apiHmi = null;
+    private ApiProfileImpl apiProfile = null;
+    private ApiMusicImpl apiMusic = null;
+    private bitmusic.network.main.ApiHmiImpl apiNetwork = null;
 
     private CategoriesComponent categoriesComponent;
     private ConnectionComponent connectionComponent;
@@ -48,7 +48,7 @@ public class WindowComponent {
         this.apiHmi = new ApiHmiImpl();
         this.apiProfile = ApiProfileImpl.getApiProfile();
         this.apiMusic = ApiMusicImpl.getInstance();
-        
+
 
         this.model = new WindowModel();
         this.view = new WindowView();
@@ -94,8 +94,9 @@ public class WindowComponent {
         // this.getWindowView().addView(this.getCategoriesComponent().getView());
 
         this.setCentralAreaComponent(new CentralAreaComponent());
-        this.centralAreaComponent.CentralAreaInit();
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
+        //On affiche mesMorceaux dans une tab dans centralArea
+        this.myProfileComponent.getController().new MySongsListener().actionPerformed(null);
 
         this.setPlayBarComponent(new PlayBarComponent());
         this.getWindowView().addView(this.getPlayBarComponent().getView());

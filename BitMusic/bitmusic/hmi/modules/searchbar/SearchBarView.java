@@ -146,6 +146,6 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- SearchBarView.update()");
+        System.out.println("----- SearchBarView.update() -> " + str);
     }
 }

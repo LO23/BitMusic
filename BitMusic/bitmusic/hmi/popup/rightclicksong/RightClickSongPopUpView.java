@@ -35,6 +35,6 @@ public final class RightClickSongPopUpView extends AbstractView<RightClickSongPo
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- RightClickSongPopUpView.update()");
+        System.out.println("----- RightClickSongPopUpView.update() -> " + str);
     }
 }

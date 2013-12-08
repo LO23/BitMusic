@@ -35,6 +35,6 @@ public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpContr
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- ManageUserPopUpView.update()");
+        System.out.println("----- ManageUserPopUpView.update() -> " + str);
     }
 }

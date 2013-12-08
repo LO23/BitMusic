@@ -79,8 +79,12 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
                         playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
                         while( PlayBarController.this.getModel().isPlaying() ) {
                             playBar.setValue(win.getApiMusic().getCurrentFrame());
+                            try {
+                                Thread.sleep(10);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
-                        //playBar.setValue(0);
                     }
                 };
                 PlayBarController.this.sliderThread = new Thread(r);

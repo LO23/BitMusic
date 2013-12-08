@@ -114,6 +114,6 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- CentralAreaView.update()");
+        System.out.println("----- CentralAreaView.update() -> " + str);
     }
 }

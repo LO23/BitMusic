@@ -118,7 +118,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- MyProfileView.update()");
+        System.out.println("----- MyProfileView.update() -> " + str);
 
         // On "force" l'actualisation immédiate de la View (utile dans le cas d'un changement d'avatar)
         ImageIcon avatar;
