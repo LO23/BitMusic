@@ -50,8 +50,18 @@ public final class ApiHmiImpl implements ApiHmi {
     @Override
     public void notifySongListBySearchId(final String searchId, final SongLibrary songList) {
         CentralAreaComponent cac = WindowComponent.getInstance().getCentralAreaComponent();
+        //Grace au searchId on va prendre le tab correspondant à la recherche (searchId = tabId !)
         TabComponent tabComponent = cac.getView().getTabComponent(Integer.parseInt(searchId));
-        tabComponent.getModel().getModeleTable().addSongs(songList.getlibrary());
+        //On ajoute au tab les musiques
+        // Deux solutions :
+
+        //1. Si l'on considère que le réseau nous envoie un seul notifySongListBySearchId pour un même searchId
+        // C'est à dire qu'il a récupéré TOUS les musiques qui correspondent et nous les envoie une fois
+        tabComponent.getModel().getModeleTable().setSong(songList.getlibrary());
+
+        //2. Si l'on considère que le réseau nous envoie les musiques petit peu par petit peu,
+        // c'est à cire au fil des réponses qu'il reçoit...
+        //tabComponent.getModel().getModeleTable().addSongs(songList.getlibrary());
     }
 
     @Override
