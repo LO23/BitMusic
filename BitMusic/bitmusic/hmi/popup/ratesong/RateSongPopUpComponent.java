@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.ratesong;
 
 import bitmusic.hmi.patterns.AbstractComponent;
+import bitmusic.music.data.Song;
 
 /**
  *
@@ -14,8 +15,12 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class RateSongPopUpComponent extends AbstractComponent<RateSongPopUpModel, RateSongPopUpView, RateSongPopUpController> {
 
-    public RateSongPopUpComponent() {
-        this.model = new RateSongPopUpModel();
+    private Song song;
+    public RateSongPopUpComponent(Song song) {
+
+        this.song = song;
+
+        this.model = new RateSongPopUpModel(song);
         this.view = new RateSongPopUpView();
         this.controller = new RateSongPopUpController(this.model, this.view);
         this.view.setController(this.controller);
