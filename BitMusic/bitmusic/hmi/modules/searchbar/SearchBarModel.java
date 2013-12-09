@@ -71,7 +71,7 @@ public final class SearchBarModel extends AbstractModel {
 //        return songResults;
 
         List<String> authorList = Arrays.asList(keywords.split(" "));
-        SongLibrary songResults = win.getApiMusic().searchSongsByTags(Integer.toString(tabId), authorList);
+        SongLibrary songResults = win.getApiMusic().searchSongsByArtist(Integer.toString(tabId), authorList);
 
         return songResults.getlibrary();
     }
