@@ -29,40 +29,54 @@ public final class SearchBarModel extends AbstractModel {
         // TODO
         WindowComponent win = WindowComponent.getInstance();
 
-        // --------------- À supprimer dès que possible (pour le test) ------------------
-        ArrayList<Song> songResults = new ArrayList();
-        songResults.add(new Song("1", "Title1", "Author1", "SEARCH - NONE", new LinkedList()));
-        songResults.add(new Song("2", "Title2", "Author2", "SEARCH - NONE", new LinkedList()));
-        // ------------------------------------------------------------------------------
-        return songResults;
+//        // --------------- À supprimer dès que possible (pour le test) ------------------
+//        ArrayList<Song> songResults = new ArrayList();
+//        songResults.add(new Song("1", "Title1", "Author1", "SEARCH - NONE", new LinkedList()));
+//        songResults.add(new Song("2", "Title2", "Author2", "SEARCH - NONE", new LinkedList()));
+//        // ------------------------------------------------------------------------------
+//        return songResults;
+
+        List<String> list = Arrays.asList(keywords.split(" "));
+        SongLibrary songResults = win.getApiMusic().searchSongsByAll(Integer.toString(tabId), list);
+
+        return songResults.getlibrary();
     }
 
     public ArrayList<Song> searchSongsWithTitleFilter(final int tabId, final String keywords) {
         // TODO
         WindowComponent win = WindowComponent.getInstance();
 
-        // --------------- À supprimer dès que possible (pour le test) ------------------
-        ArrayList<Song> songResults = new ArrayList();
-        songResults.add(new Song("1", "Title1", "Author1", "SEARCH - TITLE", new LinkedList()));
-        songResults.add(new Song("2", "Title2", "Author2", "SEARCH - TITLE", new LinkedList()));
-        // ------------------------------------------------------------------------------
-        return songResults;
+//        // --------------- À supprimer dès que possible (pour le test) ------------------
+//        ArrayList<Song> songResults = new ArrayList();
+//        songResults.add(new Song("1", "Title1", "Author1", "SEARCH - TITLE", new LinkedList()));
+//        songResults.add(new Song("2", "Title2", "Author2", "SEARCH - TITLE", new LinkedList()));
+//        // ------------------------------------------------------------------------------
+//        return songResults;
+
+        List<String> titleList = Arrays.asList(keywords.split(" "));
+        SongLibrary songResults = win.getApiMusic().searchSongsByTitle(Integer.toString(tabId), titleList);
+
+        return songResults.getlibrary();
     }
 
     public ArrayList<Song> searchSongsWithAuthorFilter(final int tabId, final String keywords) {
         // TODO
         WindowComponent win = WindowComponent.getInstance();
 
-        // --------------- À supprimer dès que possible (pour le test) ------------------
-        ArrayList<Song> songResults = new ArrayList();
-        songResults.add(new Song("1", "Title1", "Author1", "SEARCH - AUTHOR", new LinkedList()));
-        songResults.add(new Song("2", "Title2", "Author2", "SEARCH - AUTHOR", new LinkedList()));
-        // ------------------------------------------------------------------------------
-        return songResults;
+//        // --------------- À supprimer dès que possible (pour le test) ------------------
+//        ArrayList<Song> songResults = new ArrayList();
+//        songResults.add(new Song("1", "Title1", "Author1", "SEARCH - AUTHOR", new LinkedList()));
+//        songResults.add(new Song("2", "Title2", "Author2", "SEARCH - AUTHOR", new LinkedList()));
+//        // ------------------------------------------------------------------------------
+//        return songResults;
+
+        List<String> authorList = Arrays.asList(keywords.split(" "));
+        SongLibrary songResults = win.getApiMusic().searchSongsByTags(Integer.toString(tabId), authorList);
+
+        return songResults.getlibrary();
     }
 
     public ArrayList<Song> searchSongsWithTagFilter(final int tabId, final String keywords) {
-        // Vérifier si c'est bon
         WindowComponent win = WindowComponent.getInstance();
         List<String> tagList = Arrays.asList(keywords.split(" "));
         SongLibrary songResults = win.getApiMusic().searchSongsByTags(Integer.toString(tabId), tagList);
