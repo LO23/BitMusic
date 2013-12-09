@@ -7,6 +7,7 @@
 package bitmusic.profile.classes;
 
 import bitmusic.music.data.Rights;
+import bitmusic.profile.utilities.ProfileExceptions;
 import java.util.List;
 import java.util.ArrayList;
 import org.junit.After;
@@ -40,11 +41,33 @@ public class CategoryTest {
      * Test of setName method, of class Category.
      */
     @Test
-    public void testSetName() {
+    public void testSetName() throws ProfileExceptions{
         System.out.println("setName");
         String newName = "newName";
         cat.setName(newName);
         assertEquals(newName, cat.getName());
+    }
+
+    /**
+     * @throws ProfileExceptions
+     */
+
+    @Test(expected = ProfileExceptions.class)
+    public void testSetNameNullName() throws ProfileExceptions {
+        System.out.println("setName");
+        String name = null;
+        cat.setName(name);
+    }
+
+    /**
+     * @throws ProfileExceptions
+     */
+
+    @Test(expected = ProfileExceptions.class)
+    public void testSetNameEmptyName() throws ProfileExceptions {
+        System.out.println("setName");
+        String name = "";
+        cat.setName(name);
     }
 
     /**
@@ -60,18 +83,18 @@ public class CategoryTest {
      * Test of getContacts method, of class Category.
      */
     @Test
-    public void testGetContacts() {
+    public void testGetContacts()  throws ProfileExceptions{
         System.out.println("getContacts");
         User test1 = new User("login1","mdp1");
         User test2 = new User("login2","mdp2");
-        
+
         ArrayList<User> expResult = new ArrayList<User>();
         expResult.add(test1);
         expResult.add(test2);
-        
+
         cat.addUser(test1);
         cat.addUser(test2);
-        
+
         assertEquals(expResult, cat.getContacts());
     }
 
@@ -83,13 +106,13 @@ public class CategoryTest {
         System.out.println("setContacts");
         User test1 = new User("login1","mdp1");
         User test2 = new User("login2","mdp2");
-        
+
         ArrayList<User> expResult = new ArrayList<User>();
         expResult.add(test1);
         expResult.add(test2);
-        
+
         cat.setContacts(expResult);
-        
+
         assertEquals(expResult, cat.getContacts());
     }
 
@@ -99,10 +122,9 @@ public class CategoryTest {
     @Test
     public void testGetRight() {
         System.out.println("getRight");
-        
-        Rights expResult = new Rights(true, true, true, true);
 
-        assertEquals(expResult, cat.getRight());
+        Rights expResult = new Rights(true, true, true, true);
+        expResult.equals(cat.getRight());
     }
 
     /**
@@ -113,14 +135,14 @@ public class CategoryTest {
         System.out.println("updateRight");
         Rights test = new Rights(true, false, false, false);
         cat.updateRight(true, false, false, false);
-        assertEquals(test,cat.getRight());
+        test.equals(cat.getRight());
     }
 
     /**
      * Test of addUser method, of class Category.
      */
     @Test
-    public void testAddUser() {
+    public void testAddUser()  throws ProfileExceptions{
         List<User> liste = new ArrayList<User> (cat.getContacts());
         User test = new User("login", "mdp");
         cat.addUser(test);
@@ -132,19 +154,19 @@ public class CategoryTest {
      * Test of deleteUser method, of class Category.
      */
     @Test
-    public void testDeleteUser() {
+    public void testDeleteUser() throws ProfileExceptions {
         System.out.println("deleteUser");
-        
+
         User test1 = new User("login1","mdp1");
         User test2 = new User("login2","mdp2");
-        
+
         ArrayList<User> expResult = new ArrayList<User>();
         expResult.add(test1);
-        
+
         cat.setContacts(expResult);
         cat.addUser(test2);
         cat.deleteUser(test2);
-        
+
         assertEquals(expResult, cat.getContacts());
     }
 
@@ -152,20 +174,20 @@ public class CategoryTest {
      * Test of findContact method, of class Category.
      */
     @Test
-    public void testFindContact() {
+    public void testFindContact() throws ProfileExceptions {
         System.out.println("findContact");
         String UserID = "test1";
-        
+
         User test1 = new User("login1","mdp1");
         User test2 = new User("login2","mdp2");
-        
+
         ArrayList<User> expResult = new ArrayList<User>();
         expResult.add(test1);
         expResult.add(test2);
-        
+
         cat.setContacts(expResult);
-        
+
         assertEquals(test1, cat.findContact(test1.getUserId()));
     }
-    
+
 }
