@@ -52,6 +52,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
         this.cancelButton.setSize(d);
         this.cancelButton.addActionListener(this.getController().new CancelListener());
 
+        // ajout dans un group radio pour faire en sorte de ne pouvoir cliquer que sur un bouton radio
         this.groupRadio.add(songRater0);
         this.groupRadio.add(songRater1);
         this.groupRadio.add(songRater2);
