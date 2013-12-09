@@ -49,11 +49,51 @@ public interface ApiMusic {
     
     public void searchSongsByUser(String userID, String searchId);  
     
-    
     /**
-     * 
+     * Allows to search local and distant songs relative with the tagList
+     * @param searchId The id of the search.
+     * @param tagList The tag list to match.
+     * @return local songs relative to the tagList.
      */
     public SongLibrary searchSongsByTags(String searchId, List<String> tagList);
+    
+    /**
+     * Allows to search local and distant songs relative with the albumList
+     * @param searchId The id of the search.
+     * @param albumList The albums list to match.
+     * @return local songs relative to the albumList.
+     */
+    public SongLibrary searchSongsByAlbum(String searchId, List<String> albumList);
+    
+    /**
+     * Allows to search local and distant songs relative with the artistList
+     * @param searchId The id of the search.
+     * @param artistList The albums list to match.
+     * @return local songs relative to the artistList.
+     */
+    public SongLibrary searchSongsByArtist(String searchId, List<String> artistList);
+    
+    /**
+     * Allows to search local and distant songs relative with the titleList
+     * @param searchId The id of the search.
+     * @param titleList The titles list to match.
+     * @return local songs relative to the titleList.
+     */
+    public SongLibrary searchSongsByTitle(String searchId, List<String> titleList);
+    
+    /**
+     * WARNING : DOES NOT WORK FOR THE MOMENT - MUST BE IMPLEMENTED
+     * Allows to search local and distant songs relative with the list
+     * @param searchId The id of the search.
+     * @param list The tags, artists, albums, titles, users list to match.
+     * @return local songs relative to the list.
+     */
+    public SongLibrary searchSongsByAll(String searchId, List<String> list);
+    
+    
+            
+   
+            
     
      /** 
     * Add a song to SongLibrary
