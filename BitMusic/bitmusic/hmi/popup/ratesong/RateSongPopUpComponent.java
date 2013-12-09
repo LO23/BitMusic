@@ -17,6 +17,7 @@ public final class RateSongPopUpComponent extends AbstractComponent<RateSongPopU
 
     private Song song;
 
+    // To rate a song you just need to add a grade to the song (use Music API to do so)
     public RateSongPopUpComponent(Song song, int parentTabId) {
         this.song = song;
 
