@@ -48,6 +48,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         this.songTitleLabel.setText(song.getTitle());
         this.songArtistLabel.setText(song.getArtist());
         this.songAlbumLabel.setText(song.getAlbum());
+        this.commentButton.addActionListener(this.getController().new CommentListener());
 
         // TODO : ajouter à la vue songs tags, comments, rate
 
@@ -131,5 +132,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         return songAlbumLabel;
     }
 
-
+    public JTextField getCommentField() {
+        return commentField;
+    }
 }
