@@ -28,4 +28,14 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
             //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
         }
     }
+
+    public class CommentListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Annuler");
+            // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
+            //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
+        }
+    }
+
 }
