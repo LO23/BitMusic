@@ -10,7 +10,9 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.music.data.Song;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,9 +26,12 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     private final JLabel artistLabel = new JLabel("Artiste : ");
     private final JLabel albumLabel = new JLabel("Album : ");
 
-    private final JLabel songTitleLabel = new JLabel("Nom son");
-    private final JLabel songArtistLabel = new JLabel("Artiste son");
-    private final JLabel songAlbumLabel = new JLabel("Album son");
+    private final JLabel songTitleLabel = new JLabel("Nom son : ");
+    private final JLabel songArtistLabel = new JLabel("Artiste son : ");
+    private final JLabel songAlbumLabel = new JLabel("Album son : ");
+    private final JLabel commentLabel = new JLabel("Commentaire : ");
+    private JTextField commentField = new JTextField("");
+     private final JButton commentButton = new JButton("Commenter");
 
     public InfosSongPopUpView(int parentTabId) {
         super();
@@ -43,6 +48,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         this.songTitleLabel.setText(song.getTitle());
         this.songArtistLabel.setText(song.getArtist());
         this.songAlbumLabel.setText(song.getAlbum());
+        this.commentButton.addActionListener(this.getController().new CommentListener());
 
         // TODO : ajouter à la vue songs tags, comments, rate
 
@@ -62,6 +68,11 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addComponent(this.albumLabel)
                 .addComponent(this.songAlbumLabel))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.commentLabel)
+                .addComponent(this.commentField))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.commentButton))
 
         );
 
@@ -69,11 +80,14 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addComponent(this.titleLabel)
                 .addComponent(this.artistLabel)
-                .addComponent(this.albumLabel))
+                .addComponent(this.albumLabel)
+                .addComponent(this.commentLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addComponent(this.songTitleLabel)
                 .addComponent(this.songArtistLabel)
-                .addComponent(this.songAlbumLabel))
+                .addComponent(this.songAlbumLabel)
+                .addComponent(this.commentField)
+                .addComponent(this.commentButton))
             );
 
 
@@ -118,5 +132,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         return songAlbumLabel;
     }
 
-
+    public JTextField getCommentField() {
+        return commentField;
+    }
 }
