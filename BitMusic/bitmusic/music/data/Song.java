@@ -264,7 +264,6 @@ public class Song implements Serializable{
     }
 
     public boolean hasTag(List<String> tagList){
-
         Iterator<String> it = tagList.iterator();
         while(it.hasNext()){
             String currentTag = it.next();
