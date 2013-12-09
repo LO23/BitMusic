@@ -83,6 +83,14 @@ public final class TabModel extends AbstractModel {
             (TabModel.this).notifyObservers("SONG_REMOVED");
         }
 
+        public void removeAllSongs() {
+            for (int row = 0; row < this.arrayListSong.size(); row++) {
+                this.arrayListSong.remove(row);
+                fireTableRowsDeleted(row, row);
+            }
+            (TabModel.this).notifyObservers("ALL_SONGS_REMOVED");
+        }
+
         @Override
         public boolean isCellEditable(int row, int col) {
             if (col == 3 || col == 4 || col == 5 || col == 6) {

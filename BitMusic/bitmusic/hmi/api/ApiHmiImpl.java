@@ -57,11 +57,11 @@ public final class ApiHmiImpl implements ApiHmi {
 
         //1. Si l'on considère que le réseau nous envoie un seul notifySongListBySearchId pour un même searchId
         // C'est à dire qu'il a récupéré TOUS les musiques qui correspondent et nous les envoie une fois
-        tabComponent.getModel().getModeleTable().setSong(songList.getlibrary());
+//        tabComponent.getModel().getModeleTable().setSong(songList.getlibrary());
 
         //2. Si l'on considère que le réseau nous envoie les musiques petit peu par petit peu,
         // c'est à cire au fil des réponses qu'il reçoit...
-        //tabComponent.getModel().getModeleTable().addSongs(songList.getlibrary());
+        tabComponent.getModel().getModeleTable().addSongs(songList.getlibrary());
     }
 
     @Override
