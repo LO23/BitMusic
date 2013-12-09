@@ -1,5 +1,6 @@
 package bitmusic.music.business;
 
+import bitmusic.music.business.strategies.SongSearcherStrategy;
 import bitmusic.music.data.*;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.main.ApiMusicImpl;
@@ -88,20 +89,21 @@ public class SongSearcher {
         songLibForRequester = new SongLibrary(songsForRequester);
         return songLibForRequester;
     }
-
-    /**
+    
+        /**
      * Local user is searching for all songs in LAN with at least one of the
      * tags from tagList. Look up in local library and returns local songs with
      * requested tags, and in all the libraries from connected users via
      * network.
      *
      * @param searchId
-     * @param tagList
+     * @param matcherList
+     * @param strategy
      * @return
      */
-    public SongLibrary searchSongsByTags(String searchId,
-            List<String> tagList) {
-        SongLibrary myTaggedSongs;
+    public SongLibrary searchSongs(String searchId,
+            List<String> matcherList, SongSearcherStrategy strategy) {
+        SongLibrary matchedSongs;
         ApiMusicImpl apiMusicFromNetwork;
         List<String> connectedUsers;
         Iterator<String> it;
@@ -119,31 +121,32 @@ public class SongSearcher {
             userIdDest = it.next();
             //result of call below go straight to the UI
             try {
-                apiMusicFromNetwork.searchSongsByTags(localUserId, userIdDest,
-                        searchId, tagList);
+                strategy.distantSearch(localUserId, userIdDest,
+                        searchId, matcherList);
             } catch (NetworkException ex) {
                 Logger.getLogger(SongSearcher.class.getName()).log(Level.SEVERE,
                         null, ex);
             }
         }
         //method returns only our songs with the right tags
-        myTaggedSongs = this.getSongsByTag(searchId, null, tagList);
-        return myTaggedSongs;
+        matchedSongs = this.getLocalSongs(null, matcherList, strategy);
+        return matchedSongs;
     }
-
-    /**
+    
+        /**
      * Method invoked when local user is requested to send their songs
      * fulfilling the tag criteria
      *
-     * @param searchId id of the search being done with this call
-     * @param tagList list of tags that remote user is requesting
-     * @param userId user id of the requester ******* AMINA ADDED IT CAUSE IT
-     * WAS MISSING ********* @return
+     * @param matcherList list of tags that remote user is requesting
+     * @param userId user id of the requester 
+     * @param strategy 
+     *  
+     * @return
      */
-    public SongLibrary getSongsByTag(String searchId, String userId,
-            List<String> tagList) {
+    public SongLibrary getLocalSongs(String userId,
+            List<String> matcherList, SongSearcherStrategy strategy) {
 
-        ArrayList<Song> songsWithCorrectTags = new ArrayList<Song>();
+        ArrayList<Song> songsWithCorrectMatching = new ArrayList<Song>();
         ArrayList<Song> songsFromMyLibrary = songLibrary.getlibrary();
         SongLibrary songLibraryForRequester;
         Iterator<Song> it = songsFromMyLibrary.iterator();
@@ -153,17 +156,17 @@ public class SongSearcher {
         // -> fetches only the songs with at least one tag from tagList
         while (it.hasNext()) {
             currentSong = it.next();
-            if (currentSong.hasTag(tagList)) {
+            if (strategy.isMatched(currentSong, matcherList)) {
                 //changer les droits de la chanson pour le user en question
                 // -> if userId = null then local user is requester
                 if (userId != null) {
                     currentSong = getLightSong(currentSong, userId);
                 }
-                songsWithCorrectTags.add(currentSong);
+                songsWithCorrectMatching.add(currentSong);
             }
         }
         //instantiate the SongLibrary to be sent
-        songLibraryForRequester = new SongLibrary(songsWithCorrectTags);
+        songLibraryForRequester = new SongLibrary(songsWithCorrectMatching);
         return songLibraryForRequester;
     }
 
