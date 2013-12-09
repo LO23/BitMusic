@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  */
 public final class AccountCreationPopUpView extends AbstractView<AccountCreationPopUpController> {
 
-    private static final String type = "CENTER";
+    private static final String type = "POPUP";
     private final JLabel accountCreationLabel = new JLabel("<html><u>Création d'un nouveau compte utilisateur</u></html>");
     private final JButton cancelButton = new JButton("Annuler");
     private final JButton resetButton = new JButton("Reinitialiser");

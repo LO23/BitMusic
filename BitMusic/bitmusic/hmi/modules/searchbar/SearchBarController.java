@@ -98,6 +98,7 @@ public final class SearchBarController extends AbstractController<SearchBarModel
             }
 
             // On actualise les Songs à l'intérieur du Tab (ancien ou nouveau, peu importe !)
+            tabToFocusOn.getModel().getModeleTable().removeAllSongs();
             tabToFocusOn.getModel().getModeleTable().setSong(songResults);
 
             // Met le focus sur le Tab de notre requête
