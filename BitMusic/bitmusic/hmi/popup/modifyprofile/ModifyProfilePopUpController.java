@@ -12,12 +12,8 @@ import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -46,7 +42,6 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
         }
     }
 
-
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -65,11 +60,12 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
 
             String firstName = view.getFirstNameField().getText();
             String lastName = view.getLastNameField().getText();
-            String birthDate = view.getBirthField().getText();
+            //String birthDate = view.getBirthField().getText();
             String avatar = view.getAvatarField().getText();
             Boolean hasChanged = false;
 
-            if (birthDate.length() > 0) {
+            // On rend impossible la modification de la date de naissance (directives de Profil)
+            /*if (birthDate.length() > 0) {
                 Calendar cal = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 sdf.setLenient(false);
@@ -78,8 +74,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                     cal.setTime(sdf.parse(birthDate));
                     win.getApiProfile().getCurrentUser().setBirthDate(cal);
                     win.getApiProfile().getCurrentUser().setBirthDate(win.getApiProfile().getCurrentUser().getBirthDate());
-                }
-                catch (ParseException ex) {
+                } catch (ParseException ex) {
                     //Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(
                         view,
@@ -94,7 +89,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
                 }
 
                 hasChanged = true;
-            }
+            }*/
 
             if (firstName.length() > 0) {
                 try {

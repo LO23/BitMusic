@@ -10,7 +10,6 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.profile.classes.User;
-import java.text.SimpleDateFormat;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,14 +27,14 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     private JTextField firstNameField = new JTextField("");
     private final JLabel lastNameLabel = new JLabel("Nom ");
     private JTextField lastNameField = new JTextField("");
-    private final JLabel birthLabel = new JLabel("Date de Naissance");
-    private JTextField birthField = new JTextField("");
+    //private final JLabel birthLabel = new JLabel("Date de Naissance");
+    //private JTextField birthField = new JTextField("");
+    //private final JLabel birthFormatLabel = new JLabel("(Format : jj/mm/aaaa)");
     private final JLabel avatarLabel = new JLabel("Avatar");
     private final JButton avatarBrowseButton = new JButton("Parcourir...");
     private JTextField avatarField = new JTextField("");
     private final JButton submitButton = new JButton("Soumettre");
     private final JButton cancelButton = new JButton("Annuler");
-    private final JLabel birthFormatLabel = new JLabel("(Format : jj/mm/aaaa)");
 
     public ModifyProfilePopUpView() {
         super();
@@ -49,9 +48,9 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         User ourProfile = WindowComponent.getInstance().getApiProfile().getCurrentUser();
         this.lastNameField.setText(ourProfile.getLastName());
         this.firstNameField.setText(ourProfile.getFirstName());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String strdate = sdf.format(ourProfile.getBirthDate().getTime());
-        this.birthField.setText(strdate);
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //String strdate = sdf.format(ourProfile.getBirthDate().getTime());
+        //this.birthField.setText(strdate);
         this.avatarField.setText(ourProfile.getAvatarPath());
 
         this.avatarBrowseButton.addActionListener(this.getController().new AvatarBrowseListener());
@@ -71,20 +70,21 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(birthLabel)
+                                //.addComponent(birthLabel)
                                 .addComponent(avatarLabel)
                                 .addComponent(lastNameLabel)
                                 .addComponent(firstNameLabel))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(birthField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                //.addComponent(birthField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(firstNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(avatarField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(avatarBrowseButton)
-                                .addComponent(birthFormatLabel)))
+                                //.addComponent(birthFormatLabel)
+                            ))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -105,11 +105,12 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastNameLabel)
                     .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                /*.addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(birthLabel)
                     .addComponent(birthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(birthFormatLabel))
+                    .addComponent(birthFormatLabel)
+                )*/
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(avatarLabel)
@@ -136,9 +137,9 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         User ourProfile = WindowComponent.getInstance().getApiProfile().getCurrentUser();
         this.lastNameField.setText(ourProfile.getLastName());
         this.firstNameField.setText(ourProfile.getFirstName());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String strdate = sdf.format(ourProfile.getBirthDate().getTime());
-        this.birthField.setText(strdate);
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //String strdate = sdf.format(ourProfile.getBirthDate().getTime());
+        //this.birthField.setText(strdate);
         this.avatarField.setText(ourProfile.getAvatarPath());
 
         WindowComponent.getInstance().getMyProfileComponent().getModel().notifyObservers("Profile update");
@@ -160,13 +161,13 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         this.lastNameField = lastNameField;
     }
 
-    public JTextField getBirthField() {
+    /*public JTextField getBirthField() {
         return birthField;
     }
 
     public void setBirthField(JTextField birthField) {
         this.birthField = birthField;
-    }
+    }*/
 
     public JTextField getAvatarField() {
         return avatarField;
