@@ -10,9 +10,10 @@ import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
 import java.util.List;
+
 /**
- *
- * @author florian
+ * Interface given to Music to interact with the Network.
+ * @author florian, alexis
  */
 public interface ApiMusic {
     /**

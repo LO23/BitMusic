@@ -18,14 +18,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Implementation of the API we provide to HMI.
  * @author florian, alexis
  */
 public final class ApiHmiImpl implements ApiHmi {
     /**
     * Singleton implementation.
     */
-    private static final ApiHmiImpl APIHMIIMPL = new ApiHmiImpl();
+    private static final ApiHmiImpl API_HMI_IMPL = new ApiHmiImpl();
 
     /**
      * Private constructor for singleton pattern.
@@ -33,11 +33,11 @@ public final class ApiHmiImpl implements ApiHmi {
     private ApiHmiImpl() { }
 
     /**
-     * .
+     * Getter of the only instance of this class.
      * @return Unique instance of ApiHmiImpl
      */
     protected static ApiHmiImpl getInstance() {
-        return APIHMIIMPL;
+        return API_HMI_IMPL;
     }
 
     /*########################################################################*/
@@ -51,11 +51,6 @@ public final class ApiHmiImpl implements ApiHmi {
      */
     @Override
     public void logOut(final String userId) throws NetworkException {
-        //Get the source address
-        //Warning, it may emmit an exception thrown to the calling method!
-        final String sourceAddress = Controller.getNetworkAddress();
-
-        MessageLogOut message = null;
 
         //Loop on the directory
         final Map<String, String> userDirectory = Controller.getInstance().
@@ -65,11 +60,11 @@ public final class ApiHmiImpl implements ApiHmi {
             //entry.getValue()) contains remote user IP
 
             //Construct a message
-            message = new MessageLogOut(
+            final MessageLogOut message = new MessageLogOut(
                 //Type of message
                 EnumTypeMessage.LogOut,
                 //Source address
-                sourceAddress,
+                Controller.getNetworkAddress(),
                 //Destination address
                 entry.getValue(),
                 //userId
@@ -98,7 +93,7 @@ public final class ApiHmiImpl implements ApiHmi {
         final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the destination address
-        final String destinationAddress = Controller.getInstance().
+        final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(userId);
 
         final MessageGetUser message = new MessageGetUser(
@@ -107,7 +102,7 @@ public final class ApiHmiImpl implements ApiHmi {
                 //source address
                 sourceAddress,
                 //destination address
-                destinationAddress,
+                destAddress,
                 //ID of the user that owns the profile
                 userId,
                 //ID of the user that asks for the profile
@@ -137,7 +132,7 @@ public final class ApiHmiImpl implements ApiHmi {
         final String sourceAddress = Controller.getNetworkAddress();
 
         //Get the destination address
-        String destinationAddress = Controller.getInstance().
+        final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(userId);
 
         final MessageGetSongFile message = new MessageGetSongFile(
@@ -146,7 +141,7 @@ public final class ApiHmiImpl implements ApiHmi {
                 //source address
                 sourceAddress,
                 //destination address
-                destinationAddress,
+                destAddress,
                 //ID of the user that owns the song
                 userId,
                 //ID of the song

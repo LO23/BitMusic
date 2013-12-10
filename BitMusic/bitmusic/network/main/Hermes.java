@@ -61,7 +61,7 @@ public class Hermes extends AbstractManageable {
         try {
             final Socket socket = new Socket(message.getIpDest(),
             Controller.getInstance().
-            getTCPNetworkListener().getPORTLISTENED());
+            getTCPNetworkListener().getPortListened());
 
             final ObjectOutputStream oos = new ObjectOutputStream(
             socket.getOutputStream());
@@ -80,7 +80,7 @@ public class Hermes extends AbstractManageable {
         try {
             final DatagramSocket socket = new DatagramSocket(
                     Controller.getInstance().getUDPNetworkListener().
-                            getPORTLISTENED(), InetAddress.getLocalHost());
+                            getPortListened(), InetAddress.getLocalHost());
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -93,7 +93,7 @@ public class Hermes extends AbstractManageable {
             DatagramPacket packet = new DatagramPacket(data, data.length,
                     InetAddress.getByName(Controller.getBroadcastAddress()),
                     Controller.getInstance().getUDPNetworkListener().
-                            getPORTLISTENED());
+                            getPortListened());
 
             socket.send(packet);
 
