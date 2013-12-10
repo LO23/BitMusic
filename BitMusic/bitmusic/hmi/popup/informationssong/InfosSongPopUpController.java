@@ -7,16 +7,23 @@
 package bitmusic.hmi.popup.informationssong;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.tab.TabController;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.popup.commentsong.CommentSongPopUpComponent;
 import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JDialog;
 
 /**
  *
  * @author unkedeuxke
  */
 public final class InfosSongPopUpController extends AbstractController<InfosSongPopUpModel, InfosSongPopUpView> {
+
+    private JDialog popUp;
+
+
 
     public InfosSongPopUpController(final InfosSongPopUpModel model, final InfosSongPopUpView view) {
         super(model, view);
@@ -31,26 +38,29 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
         }
     }
 
-    public class CommentListener implements ActionListener {
+    public class CommentPopUpOpenListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("---- Clic sur le bouton Annuler");
+            System.out.println("---- Clic sur le bouton Commenter");
             WindowComponent win = WindowComponent.getInstance();
-            String comment = InfosSongPopUpController.this.getView().getCommentField().getText();
-            InfosSongPopUpModel model = InfosSongPopUpController.this.getModel();
+            // ouvrir  la pop up CommentSongPopUp
 
-            if (!comment.equals("")) {
-                // add the comment to the song
-                Song song = model.getSong();
-                boolean added = win.getApiMusic().addCommentFromHmi(song.getSongId(), comment);
-                if(added==true) {
-                    System.out.println("---- Commentaire ajouté : " + comment);
-                }
-            }
+            Song song = InfosSongPopUpController.this.getModel().getSong();
+            CommentSongPopUpComponent commentSongPopUpComponent = new CommentSongPopUpComponent(song, InfosSongPopUpController.this.getView().getParentTabId());
 
+            popUp = new JDialog(win.getWindowView(), "Informations d'un morceau", true);
+            popUp.add(commentSongPopUpComponent.getView().getPanel());
+            popUp.pack();
+            popUp.setLocationRelativeTo(null);
+            popUp.show();
             // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
             int parentTabId = InfosSongPopUpController.this.getView().getParentTabId();
-            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();        }
+            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
+        }
+    }
+
+    public JDialog getPopUp() {
+        return popUp;
     }
 }
