@@ -39,4 +39,17 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
             win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
         }
     }
+
+     public class ValiderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton Annuler");
+//            if (RateSongPopUpController.this.getView().getSongRater0()) {
+//
+//            }
+            WindowComponent win = WindowComponent.getInstance();
+            int parentTabId = RateSongPopUpController.this.getView().getParentTabId();
+            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
+        }
+    }
 }

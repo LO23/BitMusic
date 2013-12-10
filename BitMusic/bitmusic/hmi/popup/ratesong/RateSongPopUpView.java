@@ -55,6 +55,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
 
         this.rateSongLabel.setSize(d);
         this.validateButton.setSize(d);
+        this.validateButton.addActionListener(this.getController().new ValiderListener());
         this.cancelButton.setSize(d);
         this.cancelButton.addActionListener(this.getController().new CancelListener());
 
