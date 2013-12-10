@@ -100,6 +100,9 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
                         view.getAlbumField().getText(),
                         new LinkedList<String>(view.getTagList().getSelectedValuesList()),
                         null);
+
+                win.getMyProfileComponent().getController().new MySongsListener().actionPerformed(null); // ligne à supprimer si possible
+
                 win.getMyProfileComponent().getController().getPopUp().dispose();
             }
             else {

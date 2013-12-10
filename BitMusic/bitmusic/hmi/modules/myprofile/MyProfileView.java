@@ -10,6 +10,7 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -85,7 +86,10 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         } else {
             this.avatarImage = new ImageIcon(avatarPath);
         }
+
         this.avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
+
+        this.avatarLabel.setPreferredSize(new Dimension(120, 120));
 
         this.avatarImage.setDescription("Votre avatar");
         this.avatarPanel.add(avatarLabel, BorderLayout.CENTER);
