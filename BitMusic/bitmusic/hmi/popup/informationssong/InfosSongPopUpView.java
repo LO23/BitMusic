@@ -39,7 +39,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     private final JLabel songTitleLabel = new JLabel("Nom son : ");
     private final JLabel songArtistLabel = new JLabel("Artiste son : ");
     private final JLabel songAlbumLabel = new JLabel("Album son : ");
-    private final JLabel commentLabel = new JLabel("Commentaire : ");
+    private final JLabel commentLabel = new JLabel("Commentaires : ");
     private JTextField commentField = new JTextField("");
     private final JButton commentButton = new JButton("Commenter");
     private JTable commentsTable ;
@@ -97,11 +97,12 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 .addComponent(this.albumLabel)
                 .addComponent(this.songAlbumLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(this.commentLabel)
-                .addComponent(this.commentField))
+                .addComponent(this.commentLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(this.commentButton)
                 .addComponent(this.commentsPanel))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(this.commentButton))
+
 
         );
 
@@ -115,7 +116,6 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 .addComponent(this.songTitleLabel)
                 .addComponent(this.songArtistLabel)
                 .addComponent(this.songAlbumLabel)
-                .addComponent(this.commentField)
                 .addComponent(this.commentButton)
                 .addComponent(this.commentsPanel))
             );
