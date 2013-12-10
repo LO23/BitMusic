@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 /**
  * <b> AccountCreationPopUpView est la classe de la vue de la fenêtre de connexion</br>
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class AccountCreationPopUpView extends AbstractView<AccountCreationPopUpController> {
 
