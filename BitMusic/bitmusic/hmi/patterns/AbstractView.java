@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 /**
  *
  * @author hebergui, unkedeuxke
+ * @param <C>
  */
 public abstract class AbstractView<C extends AbstractController> extends JPanel implements Observer {
 
@@ -26,37 +27,77 @@ public abstract class AbstractView<C extends AbstractController> extends JPanel 
     private final Font arial = new Font("Arial", Font.BOLD, 15);
     private final Font dialog = new Font("Dialog", Font.BOLD + Font.ITALIC, 15);
 
+    /**
+     *
+     */
     protected abstract void initPanel();
+
+    /**
+     *
+     * @return
+     */
     public abstract String getType();
 
+    /**
+     *
+     */
     public AbstractView() {
         super();
     }
 
+    /**
+     *
+     * @return
+     */
     public final C getController() {
         return this.abstractController;
     }
 
+    /**
+     *
+     * @param abstractController
+     */
     public final void setController(final C abstractController) {
         this.abstractController = abstractController;
     }
 
+    /**
+     *
+     * @return
+     */
     public final JPanel getPanel() {
         return this.panel;
     }
 
+    /**
+     *
+     * @param panel
+     */
     public final void setPanel(final JPanel panel) {
         this.panel = panel;
     }
 
+    /**
+     *
+     * @return
+     */
     public final Dimension getDim() {
         return this.dim;
     }
 
+    /**
+     *
+     * @param dim
+     */
     public final void setDim(final Dimension dim) {
         this.dim = dim;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public abstract void update(Observable obj, String str);
 }

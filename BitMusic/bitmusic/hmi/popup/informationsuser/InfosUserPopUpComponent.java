@@ -17,6 +17,10 @@ public final class InfosUserPopUpComponent extends AbstractComponent<InfosUserPo
 
     private User user;
 
+    /**
+     *
+     * @param user
+     */
     public InfosUserPopUpComponent(User user) {
         this.user = user;
 

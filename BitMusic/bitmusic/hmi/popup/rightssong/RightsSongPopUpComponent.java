@@ -17,6 +17,11 @@ public final class RightsSongPopUpComponent extends AbstractComponent<RightsSong
 
     private Song song;
 
+    /**
+     *
+     * @param song
+     * @param parentTabId
+     */
     public RightsSongPopUpComponent(Song song, int parentTabId) {
         this.song = song;
 

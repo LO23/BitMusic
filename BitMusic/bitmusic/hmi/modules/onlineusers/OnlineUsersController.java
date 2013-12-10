@@ -28,6 +28,11 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
 
     private JDialog popUp;
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
         super(model, view);
     }
@@ -113,10 +118,18 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
         }
     };
 
+    /**
+     *
+     * @return
+     */
     public Action getInfos() {
         return infos;
     }
 
+    /**
+     *
+     * @return
+     */
     public Action getMp3() {
         return mp3;
     }

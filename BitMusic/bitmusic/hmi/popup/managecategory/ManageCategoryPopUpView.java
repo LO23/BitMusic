@@ -17,10 +17,16 @@ public final class ManageCategoryPopUpView extends AbstractView<ManageCategoryPo
 
     private final String type = "POPUP";
 
+    /**
+     *
+     */
     public ManageCategoryPopUpView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- ManageCategoryPopUpView.initPanel()");
@@ -28,11 +34,20 @@ public final class ManageCategoryPopUpView extends AbstractView<ManageCategoryPo
         // TODO
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- ManageCategoryPopUpView.update() -> " + str);

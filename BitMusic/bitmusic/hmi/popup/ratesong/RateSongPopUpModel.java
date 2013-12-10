@@ -16,15 +16,28 @@ import bitmusic.music.data.Song;
 public final class RateSongPopUpModel extends AbstractModel {
 
     private Song song;
+
+    /**
+     *
+     * @param song
+     */
     public RateSongPopUpModel(Song song) {
         super();
         this.setSong(song);
     }
 
+    /**
+     *
+     * @return
+     */
     public Song getSong() {
         return song;
     }
 
+    /**
+     *
+     * @param song
+     */
     public void setSong(Song song) {
         this.song = song;
     }

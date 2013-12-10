@@ -21,31 +21,55 @@ public final class EditSongPopUpModel extends AbstractModel {
     private Song song;
     private DefaultListModel listTagsModel = new DefaultListModel();
 
+    /**
+     *
+     * @param song
+     */
     public EditSongPopUpModel(Song song) {
         super();
         this.setSong(song);
         this.setListModel(this.song.getTags());
     }
 
+    /**
+     *
+     * @return
+     */
     public Song getSong() {
         return song;
     }
 
+    /**
+     *
+     * @param song
+     */
     public void setSong(Song song) {
         this.song = song;
         this.notifyObservers("UPDATE_SONG_INFOS");
     }
 
+    /**
+     *
+     * @return
+     */
     public DefaultListModel getListModel() {
         return listTagsModel;
     }
 
+    /**
+     *
+     * @param listTags
+     */
     public void setListModel(DefaultListModel listTags) {
         this.listTagsModel = listTags;
 
         this.notifyObservers("SET_LIST_TAGS");
     }
 
+    /**
+     *
+     * @param listTags
+     */
     public void setListModel(ArrayList<String> listTags) {
         for ( int i=0; i<listTags.size(); i++ ){
             this.listTagsModel.addElement(listTags.get(i));
@@ -54,6 +78,10 @@ public final class EditSongPopUpModel extends AbstractModel {
         this.notifyObservers("SET_LIST_TAGS");
     }
 
+    /**
+     *
+     * @param listTags
+     */
     public void setListModel(LinkedList<String> listTags) {
         for ( int i=0; i<listTags.size(); i++ ){
             this.listTagsModel.addElement(listTags.get(i));
@@ -62,11 +90,19 @@ public final class EditSongPopUpModel extends AbstractModel {
         this.notifyObservers("SET_LIST_TAGS");
     }
 
+    /**
+     *
+     * @param tag
+     */
     public void addTag(String tag) {
         this.listTagsModel.addElement(tag);
         this.notifyObservers("ADD_TAG");
     }
 
+    /**
+     *
+     * @param tag
+     */
     public void removeTag(String tag) {
         boolean tagRemoved = false;
         for ( int i=0; i<listTagsModel.size(); i++) {

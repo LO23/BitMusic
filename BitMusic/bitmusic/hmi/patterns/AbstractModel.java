@@ -16,24 +16,42 @@ public abstract class AbstractModel extends Observable {
 
     private ArrayList<Observer> listObservers = new ArrayList();
 
+    /**
+     *
+     */
     public AbstractModel() {
     }
 
+    /**
+     *
+     * @param obs
+     */
     @Override
     public void addObserver(Observer obs) {
         this.listObservers.add(obs);
     }
 
+    /**
+     *
+     * @param obs
+     */
     @Override
     public void removeObserver(Observer obs) {
         this.listObservers.remove(obs);
     }
 
+    /**
+     *
+     */
     @Override
     public void removeAllObservers() {
         this.listObservers = new ArrayList();
     }
 
+    /**
+     *
+     * @param str
+     */
     @Override
     public void notifyObservers(String str) {
         for (Observer obs:this.listObservers) {

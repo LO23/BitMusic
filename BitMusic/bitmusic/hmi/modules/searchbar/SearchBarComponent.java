@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class SearchBarComponent extends AbstractComponent<SearchBarModel, SearchBarView, SearchBarController> {
 
+    /**
+     *
+     */
     public SearchBarComponent() {
         this.model = new SearchBarModel();
         this.view = new SearchBarView();
