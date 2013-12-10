@@ -25,7 +25,10 @@ public class UDPNetworkListener extends AbstractNetworkListener {
      * @return unique instance of NetworkListener.
      */
     public static AbstractNetworkListener getInstance() {
-        netlistener = new UDPNetworkListener(4445);
+        if (netlistener == null) {
+            System.out.println("Init UDP LISTENER");
+            netlistener = new UDPNetworkListener(4445);
+        }
         return netlistener;
     }
 
