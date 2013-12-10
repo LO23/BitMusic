@@ -18,10 +18,18 @@ import javax.swing.JOptionPane;
  */
 public final class CommentSongPopUpController extends AbstractController<CommentSongPopUpModel, CommentSongPopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public CommentSongPopUpController(final CommentSongPopUpModel model, final CommentSongPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class ValidateListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -54,6 +62,9 @@ public final class CommentSongPopUpController extends AbstractController<Comment
 
     }
 
+    /**
+     *
+     */
     public class ResetListener implements ActionListener    {
         @Override
         public void actionPerformed(ActionEvent e)  {
@@ -62,6 +73,10 @@ public final class CommentSongPopUpController extends AbstractController<Comment
             CommentSongPopUpController.this.getView().getCommentField().setText("");
         }
     }
+
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

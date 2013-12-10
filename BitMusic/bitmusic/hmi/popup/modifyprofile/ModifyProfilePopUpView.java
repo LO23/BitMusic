@@ -37,10 +37,16 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     private final JButton cancelButton = new JButton("Annuler");
     private final JLabel birthFormatLabel = new JLabel("(Format : jj/mm/aaaa)");
 
+    /**
+     *
+     */
     public ModifyProfilePopUpView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- ModifyProfilePopUpView.initPanel()");
@@ -124,11 +130,20 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- ModifyProfilePopUpView.update() -> " + str);
@@ -144,34 +159,66 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
         WindowComponent.getInstance().getMyProfileComponent().getModel().notifyObservers("Profile update");
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getFirstNameField() {
         return firstNameField;
     }
 
+    /**
+     *
+     * @param firstNameField
+     */
     public void setFirstNameField(JTextField firstNameField) {
         this.firstNameField = firstNameField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getLastNameField() {
         return lastNameField;
     }
 
+    /**
+     *
+     * @param lastNameField
+     */
     public void setLastNameField(JTextField lastNameField) {
         this.lastNameField = lastNameField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getBirthField() {
         return birthField;
     }
 
+    /**
+     *
+     * @param birthField
+     */
     public void setBirthField(JTextField birthField) {
         this.birthField = birthField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getAvatarField() {
         return avatarField;
     }
 
+    /**
+     *
+     * @param avatarField
+     */
     public void setAvatarField(JTextField avatarField) {
         this.avatarField = avatarField;
     }

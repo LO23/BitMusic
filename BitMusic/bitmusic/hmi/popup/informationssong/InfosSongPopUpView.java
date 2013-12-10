@@ -28,11 +28,18 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     private final JLabel songArtistLabel = new JLabel("Artiste son");
     private final JLabel songAlbumLabel = new JLabel("Album son");
 
+    /**
+     *
+     * @param parentTabId
+     */
     public InfosSongPopUpView(int parentTabId) {
         super();
         this.parentTabId = parentTabId;
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- InfosSongPopUpView.initPanel()");
@@ -80,40 +87,77 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // TODO
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- InfosSongPopUpView.update() -> " + str);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getParentTabId() {
         return parentTabId;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getTitleLabel() {
         return titleLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getArtistLabel() {
         return artistLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getAlbumLabel() {
         return albumLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getSongTitleLabel() {
         return songTitleLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getSongArtistLabel() {
         return songArtistLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getSongAlbumLabel() {
         return songAlbumLabel;
     }

@@ -17,16 +17,28 @@ public final class InfosSongPopUpModel extends AbstractModel {
 
     private Song song;
 
+    /**
+     *
+     * @param song
+     */
     public InfosSongPopUpModel(Song song) {
         super();
         this.setSong(song);
 
     }
 
+    /**
+     *
+     * @return
+     */
     public Song getSong() {
         return song;
     }
 
+    /**
+     *
+     * @param song
+     */
     public void setSong(Song song) {
         this.song = song;
         this.notifyObservers("SHOW_SONG_INFOS");

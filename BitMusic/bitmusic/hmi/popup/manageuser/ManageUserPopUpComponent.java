@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class ManageUserPopUpComponent extends AbstractComponent<ManageUserPopUpModel, ManageUserPopUpView, ManageUserPopUpController> {
 
+    /**
+     *
+     */
     public ManageUserPopUpComponent() {
         this.model = new ManageUserPopUpModel();
         this.view = new ManageUserPopUpView();

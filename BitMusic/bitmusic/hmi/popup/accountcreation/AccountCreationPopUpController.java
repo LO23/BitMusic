@@ -28,10 +28,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public final class AccountCreationPopUpController extends AbstractController<AccountCreationPopUpModel, AccountCreationPopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public AccountCreationPopUpController(final AccountCreationPopUpModel model, final AccountCreationPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class AvatarBrowseListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -48,6 +56,9 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -56,6 +67,9 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
     }
 
+    /**
+     *
+     */
     public class CreateNewUserListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -154,6 +168,10 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
 
@@ -166,6 +184,9 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         return true;
     }
 
+    /**
+     *
+     */
     public class ResetListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

@@ -21,10 +21,19 @@ import java.util.List;
  */
 public final class SearchBarModel extends AbstractModel {
 
+    /**
+     *
+     */
     public SearchBarModel() {
         super();
     }
 
+    /**
+     *
+     * @param tabId
+     * @param keywords
+     * @return
+     */
     public ArrayList<Song> searchSongsWithoutFilter(final int tabId, final String keywords) {
         // TODO
         WindowComponent win = WindowComponent.getInstance();
@@ -37,6 +46,12 @@ public final class SearchBarModel extends AbstractModel {
         return songResults;
     }
 
+    /**
+     *
+     * @param tabId
+     * @param keywords
+     * @return
+     */
     public ArrayList<Song> searchSongsWithTitleFilter(final int tabId, final String keywords) {
         // TODO
         WindowComponent win = WindowComponent.getInstance();
@@ -49,6 +64,12 @@ public final class SearchBarModel extends AbstractModel {
         return songResults;
     }
 
+    /**
+     *
+     * @param tabId
+     * @param keywords
+     * @return
+     */
     public ArrayList<Song> searchSongsWithAuthorFilter(final int tabId, final String keywords) {
         // TODO
         WindowComponent win = WindowComponent.getInstance();
@@ -61,6 +82,12 @@ public final class SearchBarModel extends AbstractModel {
         return songResults;
     }
 
+    /**
+     *
+     * @param tabId
+     * @param keywords
+     * @return
+     */
     public ArrayList<Song> searchSongsWithTagFilter(final int tabId, final String keywords) {
         // Vérifier si c'est bon
         WindowComponent win = WindowComponent.getInstance();

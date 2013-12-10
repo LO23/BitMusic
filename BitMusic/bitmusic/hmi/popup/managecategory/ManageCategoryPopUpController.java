@@ -16,10 +16,18 @@ import java.awt.event.ActionListener;
  */
 public final class ManageCategoryPopUpController extends AbstractController<ManageCategoryPopUpModel, ManageCategoryPopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public ManageCategoryPopUpController(final ManageCategoryPopUpModel model, final ManageCategoryPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class AccountCreationPopUpComponent extends AbstractComponent<AccountCreationPopUpModel, AccountCreationPopUpView, AccountCreationPopUpController> {
 
+    /**
+     *
+     */
     public AccountCreationPopUpComponent() {
         this.model = new AccountCreationPopUpModel();
         this.view = new AccountCreationPopUpView();

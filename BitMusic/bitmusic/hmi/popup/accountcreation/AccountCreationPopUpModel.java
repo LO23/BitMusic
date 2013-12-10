@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class AccountCreationPopUpModel extends AbstractModel {
 
+    /**
+     *
+     */
     public AccountCreationPopUpModel() {
         super();
     }

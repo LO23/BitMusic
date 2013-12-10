@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class CommentSongPopUpComponent extends AbstractComponent<CommentSongPopUpModel, CommentSongPopUpView, CommentSongPopUpController> {
 
+    /**
+     *
+     */
     public CommentSongPopUpComponent() {
         this.model = new CommentSongPopUpModel();
         this.view = new CommentSongPopUpView();

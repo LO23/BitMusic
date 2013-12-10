@@ -14,6 +14,11 @@ import bitmusic.hmi.patterns.AbstractController;
  */
 public final class CategoriesController extends AbstractController<CategoriesModel, CategoriesView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public CategoriesController(final CategoriesModel model, final CategoriesView view) {
         super(model, view);
     }

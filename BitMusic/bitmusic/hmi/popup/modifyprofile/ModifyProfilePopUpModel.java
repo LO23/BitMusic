@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class ModifyProfilePopUpModel extends AbstractModel {
 
+    /**
+     *
+     */
     public ModifyProfilePopUpModel() {
         super();
     }

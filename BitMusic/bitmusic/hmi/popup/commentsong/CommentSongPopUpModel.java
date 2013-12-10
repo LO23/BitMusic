@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class CommentSongPopUpModel extends AbstractModel {
 
+    /**
+     *
+     */
     public CommentSongPopUpModel() {
         super();
     }
