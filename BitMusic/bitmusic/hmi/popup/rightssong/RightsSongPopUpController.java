@@ -16,10 +16,18 @@ import java.awt.event.ActionListener;
  */
 public final class RightsSongPopUpController extends AbstractController<RightsSongPopUpModel, RightsSongPopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public RightsSongPopUpController(final RightsSongPopUpModel model, final RightsSongPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

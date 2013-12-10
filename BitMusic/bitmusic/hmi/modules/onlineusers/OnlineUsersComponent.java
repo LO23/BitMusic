@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class OnlineUsersComponent extends AbstractComponent<OnlineUsersModel, OnlineUsersView, OnlineUsersController> {
 
+    /**
+     *
+     */
     public OnlineUsersComponent() {
         this.model = new OnlineUsersModel();
         this.view = new OnlineUsersView();

@@ -13,6 +13,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class CentralAreaComponent extends AbstractComponent<CentralAreaModel, CentralAreaView, CentralAreaController> {
 
+    /**
+     *
+     */
     public CentralAreaComponent() {
         this.model = new CentralAreaModel();
         this.view = new CentralAreaView();

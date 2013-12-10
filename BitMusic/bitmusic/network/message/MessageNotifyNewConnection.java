@@ -72,7 +72,7 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
                         //Type of Message
                         EnumTypeMessage.ReplyConnectionUser,
                         //IP Source
-                        this.ipDest,
+                        Controller.getNetworkAddress(),
                         //IP Dest
                         this.ipSource,
                         //User Profile

@@ -15,9 +15,11 @@ import bitmusic.music.data.Song;
  */
 public final class CommentSongPopUpModel extends AbstractModel {
 
+
     private Song song;
 
     public CommentSongPopUpModel(Song song) {
+
         super();
         this.song = song;
     }

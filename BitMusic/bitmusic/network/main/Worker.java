@@ -46,11 +46,6 @@ public class Worker extends AbstractManageable {
                 message = (AbstractMessage) ois.readObject();
 
                 message.treatment();
-                //Notify the HMI in order to destroy
-                if(message.getType() == EnumTypeMessage.LogOut) {
-                            Controller.getInstance().getThreadManager()
-                .getExecutorService().shutdown();
-                }
             } catch (ClassNotFoundException e) {
                 WindowComponent.getInstance().getApiHmi()
                         .errorNotification("Network", e.getMessage());

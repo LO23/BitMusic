@@ -23,14 +23,23 @@ public final class TabModel extends AbstractModel {
 
     private TabTableModel modeleTable = new TabTableModel();
 
+    /**
+     *
+     */
     public TabModel() {
         super();
     }
 
+    /**
+     *
+     */
     public class TabTableModel extends AbstractTableModel {
-        private String[] columnNames = { "Titre", "Artiste", "Album", "Éditer", "Infos", "Noter", "Sauvegarder" };
+        private String[] columnNames = { "Titre", "Artiste", "Album", "Éditer","Supprimer", "Infos", "Noter", "Sauvegarder" };
         private ArrayList<Song> arrayListSong = new ArrayList();
 
+        /**
+         *
+         */
         public TabTableModel() {
             super();
         }
@@ -47,32 +56,51 @@ public final class TabModel extends AbstractModel {
                 case 3:
                     return "E";
                 case 4:
-                    return "I";
+                    return "SU";
                 case 5:
-                    return "N";
+                    return "I";
                 case 6:
+                    return "N";
+                case 7:
                     return "S";
                 default:
                     return null;
             }
         }
 
+        /**
+         *
+         * @param row
+         * @return
+         */
         public Song getSongAt(int row) {
             return this.arrayListSong.get(row);
         }
 
+        /**
+         *
+         * @param song
+         */
         public void addSong(final Song song) {
             this.arrayListSong.add(song);
             fireTableRowsInserted(this.arrayListSong.size()-1, this.arrayListSong.size()-1);
             (TabModel.this).notifyObservers("SONG_ADDED");
         }
 
+        /**
+         *
+         * @param listSongs
+         */
         public void addSongs(final ArrayList<Song> listSongs) {
             for (int i = 0; i < listSongs.size(); i++) {
                 this.addSong(listSongs.get(i));
             }
         }
 
+        /**
+         *
+         * @param songId
+         */
         public void removeSong(final Song songId) {
             for (int row = 0; row < this.arrayListSong.size(); row++) {
                 if (this.arrayListSong.get(row).getSongId().equals(songId)) {
@@ -93,7 +121,7 @@ public final class TabModel extends AbstractModel {
 
         @Override
         public boolean isCellEditable(int row, int col) {
-            if (col == 3 || col == 4 || col == 5 || col == 6) {
+            if (col == 3 || col == 4 || col == 5 || col == 6 || col == 7) {
                 return true;
             }
             return false;
@@ -114,48 +142,92 @@ public final class TabModel extends AbstractModel {
             return this.columnNames[col];
         }
 
+        /**
+         *
+         * @return
+         */
         public String[] getColumnNames() {
             return this.columnNames;
         }
 
+        /**
+         *
+         * @param stringTable
+         */
         public void setColumnNames(String[] stringTable) {
             this.columnNames = stringTable;
         }
 
+        /**
+         *
+         * @return
+         */
         public ArrayList<Song> getSongs() {
             return this.arrayListSong;
         }
 
+        /**
+         *
+         * @param songList
+         */
         public void setSong(ArrayList<Song> songList) {
             this.arrayListSong = songList;
             (TabModel.this).notifyObservers("LIST_SONGS_SET");
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public TabTableModel getModeleTable() {
         return this.modeleTable;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRequestOrigin() {
         return this.requestOrigin;
     }
 
+    /**
+     *
+     * @param requestOrigin
+     */
     public void setRequestOrigin(String requestOrigin) {
         this.requestOrigin = requestOrigin;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRequestText() {
         return this.requestText;
     }
 
+    /**
+     *
+     * @param requestText
+     */
     public void setRequestText(String requestText) {
         this.requestText = requestText;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRequestFilter() {
         return this.requestFilter;
     }
 
+    /**
+     *
+     * @param requestFilter
+     */
     public void setRequestFilter(String requestFilter) {
         this.requestFilter = requestFilter;
     }

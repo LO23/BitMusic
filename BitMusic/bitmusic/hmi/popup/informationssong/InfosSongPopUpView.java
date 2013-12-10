@@ -53,9 +53,10 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     // Conteneur des commentaires
     private JPanel commentsPanel;
-
-
-
+    /**
+     *
+     * @param parentTabId
+     */
 
     public InfosSongPopUpView(int parentTabId) {
         super();
@@ -64,6 +65,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- InfosSongPopUpView.initPanel()");
@@ -131,7 +135,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // TODO
     }
 
+
     // à mettre dans le model
+
     public void updateCommentsPanel(JPanel panel, LinkedList<Comment> comments) {
         //SpringLayout commentsLayout = new SpringLayout();
         GridLayout commentsLayout = new GridLayout(comments.size(), 3); // rows, col, hgap, vgap
@@ -168,11 +174,17 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         }
     }
 
+
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- InfosSongPopUpView.update() -> " + str);
@@ -196,30 +208,58 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     }
 
+    /**
+     *
+     * @return
+     */
     public int getParentTabId() {
         return parentTabId;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getTitleLabel() {
         return titleLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getArtistLabel() {
         return artistLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getAlbumLabel() {
         return albumLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getSongTitleLabel() {
         return songTitleLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getSongArtistLabel() {
         return songArtistLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getSongAlbumLabel() {
         return songAlbumLabel;
     }
