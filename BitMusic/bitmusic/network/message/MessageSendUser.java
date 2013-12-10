@@ -40,7 +40,7 @@ public final class MessageSendUser extends AbstractMessage {
     }
 
     /**
-     * .
+     * Method that implements the treatment of the message.
      */
     @Override
     public void treatment() {

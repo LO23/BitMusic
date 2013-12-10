@@ -34,7 +34,7 @@ public final class TCPNetworkListener extends AbstractNetworkListener {
     private TCPNetworkListener(final int portToListen) throws NetworkException{
         super(portToListen);
         try {
-            tcpServer = new ServerSocket(PORT_LISTENED);
+            tcpServer = new ServerSocket(portListened);
         } catch (IOException e) {
             throw new NetworkException(
                     "TCP server socket binding with LOCALPORT failed : "+e.getMessage());

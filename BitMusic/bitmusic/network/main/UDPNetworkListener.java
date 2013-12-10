@@ -25,14 +25,17 @@ public class UDPNetworkListener extends AbstractNetworkListener {
      * @return unique instance of NetworkListener.
      */
     public static AbstractNetworkListener getInstance() {
-        NETLISTENER = new UDPNetworkListener(4445);
-        return NETLISTENER;
+        if (netlistener == null) {
+            System.out.println("Init UDP LISTENER");
+            netlistener = new UDPNetworkListener(4445);
+        }
+        return netlistener;
     }
 
     public UDPNetworkListener(final int portToListen) {
         super(portToListen);
         try{
-            UDPSERVER = new DatagramSocket(PORT_LISTENED);
+            UDPSERVER = new DatagramSocket(portListened);
         } catch (SocketException e) {
             WindowComponent.getInstance().getApiHmi()
                     .errorNotification("Network", e.getMessage());

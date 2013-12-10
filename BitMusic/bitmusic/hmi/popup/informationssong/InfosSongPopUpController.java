@@ -46,6 +46,19 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
         }
     }
 
+    public class DeleteCommentListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton DeleteComment");
+            /// UTILISER DELETE COMMENT DE MUSIC / Song
+
+            /// METTRE A JOUR LA VUE APRES SUPPRESSION
+            
+            // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
+            //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
+        }
+    }
+
     public class CommentPopUpOpenListener implements ActionListener {
 
         @Override

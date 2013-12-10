@@ -100,7 +100,6 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                 //On notifie le réseau de notre connexion
                 //(ce n'est plus à Profile de le faire dans checkPassword, mais à nous !)
                 User currentUser = win.getApiProfile().getCurrentUser();
-                win.getApiNetwork().notifyNewConnection(currentUser);
             }
             else {
                 JOptionPane.showMessageDialog(
