@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,8 +38,8 @@ public class SongLoader {
      * @param artist artist of the song
      * @param album album of the song
      */
-    private void copyMP3(String path, String title, String artist, String album)
-            throws CopyMP3Exception, IOException {
+    private void copyImportedMP3(String path, String title, String artist, 
+            String album) throws CopyMP3Exception, IOException {
 
         // If path is not a MP3 -> Exception
         if (!path.endsWith(".mp3")) {
@@ -71,6 +72,29 @@ public class SongLoader {
         }
         Files.copy(source, destinationMP3, StandardCopyOption.REPLACE_EXISTING);
     }
+    
+    private void copyMP3(String source, String destination)
+            throws CopyMP3Exception, IOException {
+
+        // If path is not a MP3 -> Exception
+        if (!source.endsWith(".mp3")) {
+            throw new CopyMP3Exception("This file is not a mp3");
+        }
+
+        // If file to copy does not exist -> Exception        
+        Path sourceMP3 = Paths.get(source);
+        if (Files.notExists(sourceMP3)) {
+            throw new CopyMP3Exception("File does not exist!");
+        }
+
+        //Copying file (delete destination file if it already exists)
+        Path destinationMP3 = Paths.get(destination);
+        if (Files.exists(destinationMP3)) {
+            Files.delete(destinationMP3);
+        }
+        Files.copy(sourceMP3, destinationMP3, 
+                StandardCopyOption.REPLACE_EXISTING);
+    }
 
     /**
      * Import a song into SongLibrary. First creates a new Song and then puts it
@@ -97,7 +121,7 @@ public class SongLoader {
         String songId = new String(userId + dateFormat.format(date));
 
         //Creating song
-        Song newSong = new Song(songId, title, artist, album,userId, tags);
+        Song newSong = new Song(songId, title, artist, album, userId, tags);
         ArrayList<Category> allCategories = ApiProfil.getCategories();
 
         //All rightsByCategories are set to True by default
@@ -107,7 +131,7 @@ public class SongLoader {
         }
         ApiProfil.getSongLibrary().addSong(newSong);
 
-        this.copyMP3(path, title, artist, album);
+        this.copyImportedMP3(path, title, artist, album);
     }
 
     /**
@@ -139,9 +163,8 @@ public class SongLoader {
      * @param songId songId of the song
      * @return path path of the song
      */
-    public String getTempSongPath(String userId, String songId) {
+    public String generateTempSongPath(String userId, String songId) {
         ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
-        Song localSong = ApiProfile.getSongLibrary().getSong(songId);
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
         String separator = FileSystems.getDefault().getSeparator();
@@ -180,4 +203,53 @@ public class SongLoader {
         destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
     }
+    public void deleteSong(String songId) throws CopyMP3Exception, IOException, 
+            DirectoryNotEmptyException{
+        
+        //Removing song's file
+        ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
+        String artist = ApiProfile.getSongLibrary().getSong(songId).getArtist();
+        String album = ApiProfile.getSongLibrary().getSong(songId).getAlbum();
+        
+        //Removing song from SongLibrary       
+        String filePath = this.getSongPath(songId);
+        Path destination = Paths.get(filePath);
+        Files.deleteIfExists(destination);
+        
+        //Deleting album folder if empty
+        String separator = FileSystems.getDefault().getSeparator();
+        String currentUserFolder
+                = new String(ApiProfile.getCurrentUserFolder());
+        filePath = "BitTest" + separator + "profiles" + separator 
+                + currentUserFolder + separator + "music" + separator +"library"
+                + separator + artist + separator + album;
+        destination = Paths.get(filePath);
+        Files.deleteIfExists(destination);
+        
+        //Deleting artist folder if empty
+        filePath = "BitTest" + separator + "profiles" + separator 
+                + currentUserFolder + separator + "music" + separator +"library"
+                + separator + artist;
+        destination = Paths.get(filePath);
+        Files.deleteIfExists(destination);
+    }
+    
+    public boolean tempFileExists(String userId, String songId){
+        String tempPath = this.generateTempSongPath(userId, songId);
+        Path destination = Paths.get(tempPath);
+        return Files.exists(destination);
+    }
+    
+    public boolean saveTempSong(String userId, String songId, 
+            String destinationPath) throws CopyMP3Exception, IOException{
+        if (tempFileExists(userId, songId)){
+            copyMP3(this.generateTempSongPath(userId, songId), destinationPath);
+            return true;
+        }
+        else{
+            return false;
+        }     
+    }
 }
+
+
