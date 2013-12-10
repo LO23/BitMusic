@@ -52,19 +52,22 @@ public final class MessageAddComment extends AbstractMessage {
     }
 
     /**
-     * .
+     * Method that implements the treatment of the message.
      */
     @Override
     public void treatment() {
        final boolean isCommentAdded = ApiMusicImpl.getInstance()
                .addCommentFromNetwork(this.song.getSongId(), this.comment);
 
+       //If nothing bad happened
         if (isCommentAdded) {
 
             //Loop on the directory
             final Map<String, String> userDirectory = Controller.getInstance().
                     getDirectory();
 
+            //for each connected user
+            //we send a message to notify that a song have been commented
             for (Map.Entry<String, String> entry : userDirectory.entrySet()) {
                 MessageUpdateCommentNotification message =
                         new MessageUpdateCommentNotification(

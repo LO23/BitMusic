@@ -58,7 +58,7 @@ public final class MessageErrorNotification extends AbstractMessage {
     }
 
     /**
-     * .
+     * Method that implements the treatment of the message.
      */
     @Override
     public void treatment() {

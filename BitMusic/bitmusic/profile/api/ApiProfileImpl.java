@@ -17,7 +17,6 @@ import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
-import bitmusic.network.main.Controller;
 import bitmusic.profile.classes.Category;
 import bitmusic.profile.classes.User;
 import bitmusic.profile.saving.FileParser;
@@ -75,14 +74,9 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public boolean checkPassword(String login, String password) throws ProfileExceptions {
-    	if (login == null || login.isEmpty())
-            throw new ProfileExceptions(ProfileExceptionType.LoginNullOrEmpty);
-    	if (password == null || password.isEmpty())
-            throw new ProfileExceptions(ProfileExceptionType.PasswordNullOrEmpty);
+    	if (login == null || login.isEmpty() || password == null || password.isEmpty()) return false;
     	currentUser = FileParser.getFileParser().loadUser(login, password);
-    	if (currentUser == null) 
-            return false;
-    	
+    	if (currentUser == null) return false;
     	return true;
     }
 

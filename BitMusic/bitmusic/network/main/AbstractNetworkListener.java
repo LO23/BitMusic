@@ -6,39 +6,52 @@
 
 package bitmusic.network.main;
 
-import bitmusic.network.exception.NetworkException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
 /**
- * Abstract Network Listener
+ * Abstract Network Listener.
  * @author Pak, Hugo
  */
 public abstract class AbstractNetworkListener implements Runnable {
         /**
     * port listened to by the listener.
     */
-    protected final int PORT_LISTENED;
+    protected final int portListened;
 
     /**
      * Socket address.
      */
-    protected final SocketAddress LOCALPORT;
+    protected final SocketAddress localport;
 
-    protected static AbstractNetworkListener NETLISTENER = null;
+    /**
+     * Network listener.
+     */
+    protected static AbstractNetworkListener netlistener = null;
 
+    /**
+     * The thread in wich we run the listener.
+     */
     protected final Thread thread = new Thread(this);
 
-    public AbstractNetworkListener(final int portToListen){
-        PORT_LISTENED = portToListen;
-        LOCALPORT = new InetSocketAddress(PORT_LISTENED);
+    /**
+     * Constructor.
+     * @param portToListen Port number
+     */
+    public AbstractNetworkListener(final int portToListen) {
+        portListened = portToListen;
+        localport = new InetSocketAddress(portListened);
     }
 
     @Override
     public abstract void run();
 
-    public int getPORTLISTENED() {
-        return PORT_LISTENED;
+    /**
+     * Getter for the portListened attribute.
+     * @return The port number
+     */
+    public final int getPortListened() {
+        return portListened;
     }
 
 }
