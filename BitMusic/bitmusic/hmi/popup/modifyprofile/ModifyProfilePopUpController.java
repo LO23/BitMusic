@@ -68,75 +68,73 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
             String birthDate = view.getBirthField().getText();
             String avatar = view.getAvatarField().getText();
             Boolean hasChanged = false;
-            Boolean canModify = true;
 
-            //Laisser ce if en première position !
             if (birthDate.length() > 0) {
                 Calendar cal = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 sdf.setLenient(false);
-                //Permet de vérifier aisément si le format de la date est correcte !
+
                 try {
                     cal.setTime(sdf.parse(birthDate));
-                    try {
-                        win.getApiProfile().getCurrentUser().setBirthDate(cal);
-                    } catch (ProfileExceptions ex) {
-                        Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } catch (ParseException ex) {
-                    try {
-                        Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
-                        canModify = false;
-                        JOptionPane.showMessageDialog(
-                                view,
-                                "<html>Le format de la date n'est pas valide !<br>Aucune modification n'a été effectuée !</html>",
-                                "Erreur dans la date",
-                                JOptionPane.WARNING_MESSAGE);
-                        win.getApiProfile().getCurrentUser().setBirthDate(win.getApiProfile().getCurrentUser().getBirthDate());
-                    } catch (ProfileExceptions ex1) {
-                        Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex1);
-                    }
+                    win.getApiProfile().getCurrentUser().setBirthDate(cal);
+                    win.getApiProfile().getCurrentUser().setBirthDate(win.getApiProfile().getCurrentUser().getBirthDate());
                 }
+                catch (ParseException ex) {
+                    //Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(
+                        view,
+                        "Le format de la date n'est pas valide !",
+                        "Erreur dans la date",
+                        JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                catch (ProfileExceptions ex) {
+                    Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
+                }
+
                 hasChanged = true;
             }
 
-            if (firstName.length() > 0 && canModify) {
+            if (firstName.length() > 0) {
                 try {
                     win.getApiProfile().getCurrentUser().setFirstName(firstName);
-                    hasChanged = true;
                 } catch (ProfileExceptions ex) {
                     Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
                 }
+
+                hasChanged = true;
             }
 
-            if (lastName.length() > 0 && canModify) {
+            if (lastName.length() > 0) {
                 try {
                     win.getApiProfile().getCurrentUser().setLastName(lastName);
-                    hasChanged = true;
                 } catch (ProfileExceptions ex) {
                     Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
                 }
+
+                hasChanged = true;
             }
 
-            if (avatar.length() > 0 && canModify) {
+            if (avatar.length() > 0) {
                 try {
                     win.getApiProfile().getCurrentUser().setAvatarPath(avatar);
-                    hasChanged = true;
                 } catch (ProfileExceptions ex) {
                     Logger.getLogger(ModifyProfilePopUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
                 }
-            }
 
-            if (canModify) {
-                WindowComponent.getInstance().getMyProfileComponent().getController().getPopUp().dispose();
-                //TODO : avertir les vues qui utilisent ces infos qu'il y a eu un changement !!
-                // Je pense par exemple à l'image de l'avatar sur la vu MyProfile
+                hasChanged = true;
             }
 
             if (hasChanged) {
                 // On notifie la vue qu'il y a eu des changements
-                ModifyProfilePopUpController.this.getModel().notifyObservers("Profile updated !");
+                ModifyProfilePopUpController.this.getModel().notifyObservers("Profile édité !");
             }
+
+            WindowComponent.getInstance().getMyProfileComponent().getController().getPopUp().dispose();
         }
     }
 }

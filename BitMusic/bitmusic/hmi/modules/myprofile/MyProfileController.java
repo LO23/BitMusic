@@ -60,7 +60,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
             }
 
             // Fermeture du pool de threads qui tourne en arrière-plan (géré par Network)
-            WindowComponent.getInstance().getApiNetwork().shutdownExecutorService();
+            //WindowComponent.getInstance().getApiNetwork().shutdownExecutorService();
 
             win.getWindowView().dispose();
         }

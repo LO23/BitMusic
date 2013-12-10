@@ -137,7 +137,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- ConnectionView.update()");
+        System.out.println("----- ConnectionView.update() -> " + str);
     }
 
     public ArrayList<JTextField> getListCompulsoryFields() {

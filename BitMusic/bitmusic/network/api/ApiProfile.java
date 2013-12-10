@@ -26,12 +26,5 @@ public interface ApiProfile {
     void getUser(final String operator, final String userId,
             final String searchId) throws NetworkException;
 
-    /**
-    * Notify connection of a user and pass his profile to broadcast it.
-    *
-    * @param user the complete user who just connected
-    * @throws NetworkException throws an exception when the given user isn't
-    * registered in the directory
-    */
-    void notifyNewConnection(final User user) throws NetworkException;
+
 }

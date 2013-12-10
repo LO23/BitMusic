@@ -6,7 +6,9 @@
 
 package bitmusic.hmi.modules.playbar;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.music.data.Song;
 
 /**
  *
@@ -14,7 +16,42 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class PlayBarModel extends AbstractModel {
 
+    private boolean isPlaying = false;
+    private int frame;
+    private Song song = null;
+
     public PlayBarModel() {
         super();
     }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+        //Arrête la musique en cours de lecture
+        WindowComponent.getInstance().getPlayBarComponent().getController().new StopListener().actionPerformed(null);
+        this.notifyObservers("Song loaded");
+    }
+
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setIsPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
+        this.notifyObservers("isPlaying");
+    }
+
+    public int getFrame() {
+        return frame;
+    }
+
+    public void setFrame(int frame) {
+        this.frame = frame;
+    }
+
+
 }

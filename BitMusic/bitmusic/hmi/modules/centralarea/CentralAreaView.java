@@ -40,6 +40,15 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
         this.setVisible(true);
     }
 
+    public TabComponent getTabComponent(int tabId) {
+        for (int i = 0; i < this.listTabComponent.size(); i++) {
+            if (listTabComponent.get(i).getView().getTabId().equals(tabId)) {
+                return this.listTabComponent.get(i);
+            }
+        }
+        return null;
+    }
+
     public ArrayList<TabComponent> getListTabComponent() {
         return this.listTabComponent;
     }
@@ -105,6 +114,6 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- CentralAreaView.update()");
+        System.out.println("----- CentralAreaView.update() -> " + str);
     }
 }

@@ -8,6 +8,7 @@ package bitmusic.network.main;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.message.AbstractMessage;
+import bitmusic.network.message.EnumTypeMessage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -45,7 +46,11 @@ public class Worker extends AbstractManageable {
                 message = (AbstractMessage) ois.readObject();
 
                 message.treatment();
-
+                //Notify the HMI in order to destroy
+                if(message.getType() == EnumTypeMessage.LogOut) {
+                            Controller.getInstance().getThreadManager()
+                .getExecutorService().shutdown();
+                }
             } catch (ClassNotFoundException e) {
                 WindowComponent.getInstance().getApiHmi()
                         .errorNotification("Network", e.getMessage());

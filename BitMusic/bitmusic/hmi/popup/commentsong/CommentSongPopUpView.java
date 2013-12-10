@@ -22,6 +22,10 @@ import javax.swing.SwingConstants;
 public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpController> {
 
     private final String type = "POPUP";
+    private int parentTabId;
+
+
+
     private final JLabel commentSongLabel = new JLabel("Commenter un morceau");
     private final JLabel commentLabel = new JLabel("Tapez votre commentaire ");
     private JTextField commentField = new JTextField("");
@@ -29,8 +33,10 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     private final JButton resetButton = new JButton("Réinitialiser");
 
 
-    public CommentSongPopUpView() {
+    public CommentSongPopUpView(int parentTabId) {
         super();
+        this.parentTabId = parentTabId;
+
     }
 
     @Override
@@ -89,7 +95,7 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- CommentSongPopUpView.update()");
+        System.out.println("----- CommentSongPopUpView.update() -> " + str);
     }
 
     public JTextField getCommentField() {
@@ -98,5 +104,9 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
 
     public void setCommentField(JTextField comment) {
         this.commentField = comment;
+    }
+
+    public int getParentTabId() {
+        return parentTabId;
     }
 }

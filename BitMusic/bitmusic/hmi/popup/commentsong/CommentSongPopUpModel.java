@@ -7,6 +7,7 @@
 package bitmusic.hmi.popup.commentsong;
 
 import bitmusic.hmi.patterns.AbstractModel;
+import bitmusic.music.data.Song;
 
 /**
  *
@@ -14,7 +15,16 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class CommentSongPopUpModel extends AbstractModel {
 
-    public CommentSongPopUpModel() {
+    private Song song;
+
+    public CommentSongPopUpModel(Song song) {
         super();
+        this.song = song;
     }
+
+    public Song getSong() {
+        return song;
+    }
+
+
 }

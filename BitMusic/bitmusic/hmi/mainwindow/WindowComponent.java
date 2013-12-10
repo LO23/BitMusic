@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.api.ApiHmiImpl;
@@ -17,6 +18,7 @@ import bitmusic.hmi.modules.onlineusers.OnlineUsersComponent;
 import bitmusic.hmi.modules.playbar.PlayBarComponent;
 import bitmusic.hmi.modules.searchbar.SearchBarComponent;
 import bitmusic.network.exception.NetworkException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,10 +31,10 @@ public class WindowComponent {
     private WindowView view;
     private WindowController controller;
 
-    private ApiHmiImpl apiHmi;
-    private ApiProfileImpl apiProfile;
-    private ApiMusicImpl apiMusic;
-    private bitmusic.network.main.ApiHmiImpl apiNetwork;
+    private ApiHmiImpl apiHmi = null;
+    private ApiProfileImpl apiProfile = null;
+    private ApiMusicImpl apiMusic = null;
+    private bitmusic.network.main.ApiHmiImpl apiNetwork = null;
 
     private CategoriesComponent categoriesComponent;
     private ConnectionComponent connectionComponent;
@@ -46,7 +48,7 @@ public class WindowComponent {
         this.apiHmi = new ApiHmiImpl();
         this.apiProfile = ApiProfileImpl.getApiProfile();
         this.apiMusic = ApiMusicImpl.getInstance();
-        this.apiNetwork = Controller.getInstance().getApiHmi();
+
 
         this.model = new WindowModel();
         this.view = new WindowView();
@@ -60,22 +62,21 @@ public class WindowComponent {
         this.view.addView(this.getConnectionComponent().getView());
     }
 
-    /**
-     * Holder
-     */
-    private static class WindowComponentHolder {
 
-        /**
-         * Instance unique non préinitialisée
-         */
+    public void startNetwork() {
+        this.apiNetwork = Controller.getInstance().getApiHmi();
+        this.apiNetwork.notifyNewConnection(apiProfile.getCurrentUser());
+    }
+
+    /** Holder */
+    private static class WindowComponentHolder {
+        /** Instance unique non préinitialisée */
         private final static WindowComponent instance = new WindowComponent();
     }
 
-    /**
-     * Point d'accès pour l'instance unique du singleton
-     */
+    /** Point d'accès pour l'instance unique du singleton */
     public static WindowComponent getInstance() {
-        return WindowComponentHolder.instance;
+            return WindowComponentHolder.instance;
     }
 
     public void initAllComponents() {
@@ -91,9 +92,11 @@ public class WindowComponent {
         // TODO :
         // this.setCategoriesComponent(new CategoriesComponent());
         // this.getWindowView().addView(this.getCategoriesComponent().getView());
+
         this.setCentralAreaComponent(new CentralAreaComponent());
-        this.centralAreaComponent.CentralAreaInit();
         this.getWindowView().addView(this.getCentralAreaComponent().getView());
+        //On affiche mesMorceaux dans une tab dans centralArea
+        this.myProfileComponent.getController().new MySongsListener().actionPerformed(null);
 
         this.setPlayBarComponent(new PlayBarComponent());
         this.getWindowView().addView(this.getPlayBarComponent().getView());
@@ -101,24 +104,10 @@ public class WindowComponent {
         this.setOnlineUsersComponent(new OnlineUsersComponent());
         this.getWindowView().addView(this.getOnlineUsersComponent().getView());
 
-        // ------------------------ À supprimer dès que possible ------------------------
-        // Test d'une connexion d'un utilisateur
-        /*User userTest = new User("Login", "Password", "Toto", "Bic", Calendar.getInstance(), "/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png");
-        WindowComponent.getInstance().getApiHmi().notifyNewConnection(userTest);
-
-        // Test d'attribution de notre profil
-        Calendar calendar = new GregorianCalendar();
-        calendar.set(Calendar.YEAR, 2009);
-        calendar.set(Calendar.MONTH, 11);
-        calendar.set(Calendar.DAY_OF_MONTH, 24);
-        User nous = new User("login", "password", "firstName", "lastName", calendar, "avatarPath");
-        WindowComponent.getInstance().getApiProfile().setCurrentUser(nous);
-        WindowComponent.getInstance().getApiHmi().notifyNewConnection(nous);*/
-         // ------------------------------------------------------------------------------
-
         // Récupération de la liste des utilisateurs déjà connectés pour les afficher dans OnlineUsersComponent
         String ourUserId = win.getApiProfile().getCurrentUser().getUserId();
-        List<String> currentOnlineUsersId = win.getApiNetwork().getAllUserId();
+        //List<String> currentOnlineUsersId = win.getApiNetwork().getAllUserId();
+        List<String> currentOnlineUsersId = new ArrayList();
         for (int i = 0; i < currentOnlineUsersId.size(); i++) {
             try {
                 win.getApiNetwork().getUser(ourUserId, currentOnlineUsersId.get(i), null); // searchId nécessaire ici ?

@@ -76,6 +76,6 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- OnlineUsersView.update() : " + str);
+        System.out.println("----- OnlineUsersView.update() -> " + str);
     }
 }

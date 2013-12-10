@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
@@ -23,46 +24,28 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     private final String type = "SOUTH";
     // Ces boutons deviendront plutard des images cliquables
-    private ImageIcon playIcon ;
-    private JButton playButton;
+    private ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/playicon.png"));
+    private JButton  playButton = new JButton(playIcon);
 
-    private ImageIcon stopIcon ;
-    private JButton stopButton ;
+    private ImageIcon stopIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/stopicon.png"));
+    private JButton stopButton = new JButton(stopIcon);
 
-    private ImageIcon downloadIcon ;
-    private JButton downloadButton ;
+    private ImageIcon downloadIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/downloadicon.png"));
+    private JButton downloadButton = new JButton(downloadIcon);
 
-    private ImageIcon pauseIcon;
+    private ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
 
-    private JSlider playBar ;
-    // TODO playing bar
+    private JLabel currentSong = new JLabel("Aucune musique chargée...");
+
+    private JSlider playBar = new JSlider(0, 1);
 
     public PlayBarView() {
         super();
-
-        playIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/playicon.png"));
-        playButton = new JButton(playIcon);
-
-        stopIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/stopicon.png"));
-        stopButton = new JButton(stopIcon);
-
-        downloadIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/downloadicon.png"));
-        downloadButton = new JButton(downloadIcon);
-
-        pauseIcon = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/playbar/icons/pauseicon.png"));
-
-        playBar = new JSlider(0, 1);
-        // TODO [APIMUSIC]: renvoyer le current frame (temps actuel de la musique
-
-
-
-    }
+   }
 
     @Override
     public void initPanel() {
         System.out.println("--- PlayBarView.initPanel()");
-
-
 
         final Dimension d = new Dimension(40, 10);
 
@@ -81,6 +64,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
         this.playButton.addActionListener(getController().new PlayListener());
         this.stopButton.addActionListener(getController().new StopListener());
         this.downloadButton.addActionListener(getController().new DownloadListener());
+        this.playBar.addMouseListener(getController().new CursorListener());
 
 
         GroupLayout layout = new GroupLayout(this.getPanel());
@@ -89,28 +73,28 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
-        layout.setHorizontalGroup(layout.createSequentialGroup()
-                .addComponent(this.stopButton)
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(this.playButton))
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(this.downloadButton))
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(this.playBar))
-        );
-
         layout.setVerticalGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addComponent(this.stopButton)
                 .addComponent(this.playButton)
                 .addComponent(this.downloadButton)
                 .addComponent(this.playBar))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.currentSong))
         );
 
-        layout.linkSize(SwingConstants.HORIZONTAL, this.playButton, this.stopButton);
-        layout.linkSize(SwingConstants.HORIZONTAL, this.playButton, this.downloadButton);
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.stopButton))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.playButton))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.downloadButton))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.playBar)
+                .addComponent(this.currentSong))
+            );
 
-        // TODO
     }
 
     @Override
@@ -175,7 +159,18 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- PlayBarView.update()");
+        System.out.println("----- PlayBarView.update() -> " + str);
+        PlayBarModel model = this.getController().getModel();
+        String text = model.getSong().getArtist() + " - " + model.getSong().getTitle();
+        this.currentSong.setText(text);
+        if ( model.isPlaying() ) {
+            //Si c'est en lecture : on affiche le bouton pause
+            this.playButton.setIcon(pauseIcon);
+        }
+        else {
+            //si c'est pas en lecture on affiche le bouton play
+            this.playButton.setIcon(playIcon);
+        }
     }
 
 

@@ -39,19 +39,17 @@ public final class SearchBarController extends AbstractController<SearchBarModel
             String requestText = view.getSearchField().getText();
             String requestFilter;
 
-            ArrayList<Song> songResults = new ArrayList();
             if (view.getNoneButton().isSelected()) {
                 requestFilter = FILTER_NONE;
-                songResults = model.searchSongsWithoutFilter(requestText);
-            } else if (view.getTitleButton().isSelected()) {
+            }
+            else if (view.getTitleButton().isSelected()) {
                 requestFilter = FILTER_TITLE;
-                songResults = model.searchSongsWithTitleFilter(requestText);
-            } else if (view.getAuthorButton().isSelected()) {
+            }
+            else if (view.getAuthorButton().isSelected()) {
                 requestFilter = FILTER_AUTHOR;
-                songResults = model.searchSongsWithAuthorFilter(requestText);
-            } else {
+            }
+            else {
                 requestFilter = FILTER_TAG;
-                songResults = model.searchSongsWithTagFilter(requestText);
             }
 
             // Vérification qu'une recherche identique n'a pas déjà été faite
@@ -59,7 +57,6 @@ public final class SearchBarController extends AbstractController<SearchBarModel
 
             TabComponent tabToFocusOn = null;
 
-            Boolean sameTab = false;
             ArrayList<TabComponent> listTabComponents = centralAreaComponent.getView().getListTabComponent();
             for (int i = 0; i < listTabComponents.size(); i++) {
                 Boolean sameFilter = listTabComponents.get(i).getModel().getRequestFilter().equals(requestFilter);
@@ -67,19 +64,12 @@ public final class SearchBarController extends AbstractController<SearchBarModel
                 Boolean sameText = listTabComponents.get(i).getModel().getRequestText().equals(requestText);
 
                 if (sameFilter && sameOrigin && sameText) {
-                    sameTab = true;
                     tabToFocusOn = listTabComponents.get(i);
                 }
             }
 
-            // Si c'est le cas : simple actualisation des Song à l'intérieur
-            if (sameTab) {
-                System.out.println("Un même tab existe déjà, on l'actualise !");
-
-                tabToFocusOn.getModel().getModeleTable().setSong(songResults);
-            }
-            // Sinon : création d'un nouveau Tab
-            else {
+            // Si ce n'est pas le cas alors on crée un nouveau Tab
+            if (tabToFocusOn == null) {
                 tabToFocusOn = new TabComponent();
 
                 // Stockage des détails de la requête dans le TabComponent
@@ -87,14 +77,31 @@ public final class SearchBarController extends AbstractController<SearchBarModel
                 tabToFocusOn.getModel().setRequestOrigin(requestOrigin);
                 tabToFocusOn.getModel().setRequestText(requestText);
 
-                // Attache des Songs obtenue dans la TabView
-                tabToFocusOn.getModel().getModeleTable().setSong(songResults);
-
                 // Ajout du Tab dans le CentralAreaComponent (qui ajoute en même temps la vue)
                 centralAreaComponent.getView().addTabComponent(tabToFocusOn);
             }
 
-            // Met le focus sur le Tab de notre requête (qu'on l'ait créé ou pas)
+            ArrayList<Song> songResults = new ArrayList();
+            int tabId = tabToFocusOn.getView().getTabId();
+
+            if (view.getNoneButton().isSelected()) {
+                songResults = model.searchSongsWithoutFilter(tabId, requestText);
+            }
+            else if (view.getTitleButton().isSelected()) {
+                songResults = model.searchSongsWithTitleFilter(tabId, requestText);
+            }
+            else if (view.getAuthorButton().isSelected()) {
+                songResults = model.searchSongsWithAuthorFilter(tabId, requestText);
+            }
+            else {
+                songResults = model.searchSongsWithTagFilter(tabId, requestText);
+            }
+
+            // On actualise les Songs à l'intérieur du Tab (ancien ou nouveau, peu importe !)
+            tabToFocusOn.getModel().getModeleTable().removeAllSongs();
+            tabToFocusOn.getModel().getModeleTable().setSong(songResults);
+
+            // Met le focus sur le Tab de notre requête
             centralAreaComponent.getView().getTabbedPane().setSelectedComponent(tabToFocusOn.getView().getPanel());
         }
     }

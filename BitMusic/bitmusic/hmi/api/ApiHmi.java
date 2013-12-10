@@ -7,7 +7,6 @@
 package bitmusic.hmi.api;
 
 import bitmusic.music.business.SongPlayer;
-import bitmusic.music.data.Comment;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
@@ -46,15 +45,9 @@ public interface ApiHmi {
     */
     void notifyLightProfile(User user, String searchId);
 
-    /**
-    * Receive the songlist from a user
-    * Print all the music of one user
-    *
-    * @param userId	String of the user ID
-    * @param songList	Song library containing songs
-    * @return void
-    */
-    void notifySongListByUserId(String userId, SongLibrary songList);
+    //NE DOIT PAS ETRE UTILISEE, JE NE SAIS PAS D'OU SORT CETTE METHODE
+    //UTILISER notifySongListBySearchId !!
+//    void notifySongListByUserId(String userId, SongLibrary songList);
 
     /**
     * Notify the HMI about the reception of a song list
@@ -72,7 +65,7 @@ public interface ApiHmi {
     * @param comment	Comment successfully added
     * @return void
     */
-    void updateCommentNotification(Song song, Comment comment);
+    void updateCommentNotification(Song song, String comment);
 
     // TODO : vérifier leur utilité pour les autres modules
     void displayCategories();

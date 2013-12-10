@@ -12,6 +12,8 @@ import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageLogOut;
 import bitmusic.network.message.MessageGetUser;
+import bitmusic.network.message.MessageNotifyNewConnection;
+import bitmusic.profile.classes.User;
 import java.util.List;
 import java.util.Map;
 
@@ -160,6 +162,7 @@ public final class ApiHmiImpl implements ApiHmi {
 
         Controller.getInstance().getThreadManager()
                 .getExecutorService().shutdown();
+
     }
 
     /**
@@ -170,5 +173,33 @@ public final class ApiHmiImpl implements ApiHmi {
     @Override
     public List<String> getAllUserId() {
         return Controller.getInstance().getUserListFromDirectory();
+    }
+
+    /**
+    * Notify connection of a user and pass his profile to broadcast it.
+    *
+    * @param user the complete user who just connected
+    */
+    @Override
+    public void notifyNewConnection(final User user) {
+        //Get the source address
+        final String sourceAddress = Controller.getNetworkAddress();
+
+        //Construct the message
+        final MessageNotifyNewConnection message =
+                new MessageNotifyNewConnection(
+                    //Type of message
+                    EnumTypeMessage.NotifyNewConnection,
+                    //Source address
+                    sourceAddress,
+                    //Destination address (Everyone)
+                    Controller.getBroadcastAddress(),
+                    //idUser
+                    user,
+                    //Get the profile
+                    true);
+
+        //Give the message to a worker...
+        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
     }
 }

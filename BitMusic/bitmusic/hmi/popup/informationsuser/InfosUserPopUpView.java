@@ -14,6 +14,7 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -27,6 +28,7 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
     private JLabel lastnameLabel = new JLabel("");
     private JLabel oldLabel = new JLabel("");
     private JLabel inscriptionLabel = new JLabel("");
+    
 
     private final JPanel avatarPanel = new JPanel();
     private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
@@ -94,6 +96,6 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
 
     @Override
     public void update(Observable obj, String str) {
-        System.out.println("----- InfosUserPopUpView.update()");
+        System.out.println("----- InfosUserPopUpView.update() -> " + str);
     }
 }

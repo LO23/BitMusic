@@ -126,6 +126,7 @@ public final class Controller {
     public static String getNetworkAddress() {
         return CONTROLLER.networkAddress;
     }
+
     /**
      * Get the ApiHmiImpl.
      * @return instance of ApiHmiImpl
