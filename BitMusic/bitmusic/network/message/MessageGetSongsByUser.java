@@ -51,7 +51,7 @@ public final class MessageGetSongsByUser extends AbstractMessage {
     }
 
     /**
-     * .
+     * Method that implements the treatment of the message.
      */
     @Override
     public void treatment() {

@@ -49,8 +49,8 @@ public final class MessageGetUser extends AbstractMessage {
         researchId = paramResearchId;
     }
 
-    /**.
-     * Send the current profile to the user requesting it over the network
+    /**
+     * Send the current profile to the user requesting it over the network.
      */
     @Override
     public void treatment() {
