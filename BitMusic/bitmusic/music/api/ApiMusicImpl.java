@@ -14,7 +14,10 @@ import bitmusic.music.business.SongLoader;
 import bitmusic.music.business.SongPlayer;
 import bitmusic.music.business.SongRater;
 import bitmusic.music.business.SongSearcher;
+import bitmusic.music.business.strategies.AlbumSearchStrategy;
+import bitmusic.music.business.strategies.ArtistSearchStrategy;
 import bitmusic.music.business.strategies.TagSearchStrategy;
+import bitmusic.music.business.strategies.TitleSearchStrategy;
 import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import bitmusic.music.exception.CopyMP3Exception;
@@ -382,7 +385,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public SongLibrary searchSongsByAlbum(String searchId, List<String> albumList) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, albumList, new TagSearchStrategy());
+        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, albumList, new AlbumSearchStrategy());
         return localTaggedSongs;
     }
 
@@ -390,7 +393,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public SongLibrary searchSongsByArtist(String searchId, List<String> artistList) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, artistList, new TagSearchStrategy());
+        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, artistList, new ArtistSearchStrategy());
         return localTaggedSongs;
     }
 
@@ -398,7 +401,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public SongLibrary searchSongsByTitle(String searchId, List<String> titleList) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, titleList, new TagSearchStrategy());
+        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, titleList, new TitleSearchStrategy());
         return localTaggedSongs;
     }
 
