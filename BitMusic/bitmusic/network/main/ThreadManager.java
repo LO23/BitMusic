@@ -39,7 +39,7 @@ public final class ThreadManager {
     /**
     * Threads pool size.
     */
-    private static final int NTHREADS = 10;
+    private static final int NTHREADS = 30;
 
     /**
      * Constructor initialize workers list.

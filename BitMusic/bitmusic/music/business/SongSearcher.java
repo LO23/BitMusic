@@ -180,8 +180,10 @@ public class SongSearcher {
     public Song getLightSong(Song currentSong, String userId) {
 
         Song lightSong = new Song(currentSong.getSongId(),
-                currentSong.getTitle(), currentSong.getArtist(),
-                currentSong.getAlbum(), currentSong.getTags(),
+                currentSong.getTitle(),
+                currentSong.getArtist(),
+                currentSong.getAlbum(),
+                currentSong.getTags(),
                 currentSong.getRightsByCategory());
         try {
             ArrayList<String> categoryList =

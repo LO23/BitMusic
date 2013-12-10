@@ -5,9 +5,12 @@
  */
 
 package bitmusic.network.message;
-import bitmusic.music.api.ApiMusicImpl;
+import bitmusic.music.business.SongSearcher;
+import bitmusic.music.business.strategies.TagSearchStrategy;
+import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.network.main.Controller;
+import bitmusic.profile.api.ApiProfileImpl;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,13 +58,26 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
      */
     @Override
     public void treatment() {
-        final SongLibrary songLib = ApiMusicImpl.getInstance().
+        SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        System.out.print("###"+this.operator+" request match : ");
+        for (String s : this.tagList) {
+            System.out.print(s);
+        }
+        System.out.println("");
+        final SongLibrary songLib = songSearcher.getLocalSongs(this.operator, this.tagList, new TagSearchStrategy());
+        //ApiMusicImpl.getInstance().getgetLocalSongs(null, matcherList, strategy);
+
+                /*ApiMusicImpl.getInstance().
                 searchSongsByTags(
                     //search id
                     this.searchId,
                     //tag list
-                    this.tagList);
-
+                    this.tagList);*/
+        System.out.println("Result :");
+        for (Song s : songLib.getlibrary()) {
+            System.out.println("songId :"+s.getSongId()+" / Owner : "+s.getOwnerId());
+        }
         final MessageSendSongList message = new MessageSendSongList(
                 //type of message
                 EnumTypeMessage.SendSongList,
