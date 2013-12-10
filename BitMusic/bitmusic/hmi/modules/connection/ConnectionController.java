@@ -28,18 +28,34 @@ public final class ConnectionController extends AbstractController<ConnectionMod
 
     private JDialog popUp;
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public ConnectionController(final ConnectionModel model, final ConnectionView view) {
         super(model, view);
     }
 
+    /**
+     *
+     * @return
+     */
     public JDialog getPopUp() {
         return this.popUp;
     }
 
+    /**
+     *
+     * @param popUp
+     */
     public void setPopUp(JDialog popUp) {
         this.popUp = popUp;
     }
 
+    /**
+     *
+     */
     public class ConnectionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -95,6 +111,9 @@ public final class ConnectionController extends AbstractController<ConnectionMod
         }
     }
 
+    /**
+     *
+     */
     public class ResetListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -106,6 +125,9 @@ public final class ConnectionController extends AbstractController<ConnectionMod
         }
     }
 
+    /**
+     *
+     */
     public class CreateNewUserListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -122,6 +144,10 @@ public final class ConnectionController extends AbstractController<ConnectionMod
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean checkAllCompulsoryFields() {
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
 

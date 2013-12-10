@@ -29,10 +29,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public final class EditSongPopUpController extends AbstractController<EditSongPopUpModel, EditSongPopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public EditSongPopUpController(final EditSongPopUpModel model, final EditSongPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class FileBrowseListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -49,6 +57,9 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
         }
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -59,6 +70,9 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
         }
     }
 
+    /**
+     *
+     */
     public class EditListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -94,6 +108,10 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
 
@@ -106,6 +124,9 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
         return true;
     }
 
+    /**
+     *
+     */
     public class AddNewTagListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

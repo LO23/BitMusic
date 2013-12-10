@@ -21,10 +21,18 @@ import java.util.ArrayList;
  */
 public final class SearchBarController extends AbstractController<SearchBarModel, SearchBarView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public SearchBarController(final SearchBarModel model, final SearchBarView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class ResearchListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

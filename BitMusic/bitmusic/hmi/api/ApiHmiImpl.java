@@ -69,87 +69,166 @@ public final class ApiHmiImpl implements ApiHmi {
         //TODO
     }
 
+    /**
+     *
+     */
     @Override
     public void displayCategories() {
         // TODO
     }
 
+    /**
+     *
+     * @param name
+     * @param play
+     * @param readInfos
+     * @param comment
+     * @param rate
+     */
     @Override
     public void addCategory(final String name, final boolean play, final Rights readInfos, final boolean comment, final boolean rate) {
         // TODO
     }
 
+    /**
+     *
+     */
     @Override
     public void removeCategory() {
         // TODO
     }
 
+    /**
+     *
+     * @param userId
+     */
     @Override
     public void searchSongsByUser(final String userId) {
         // TODO
     }
 
+    /**
+     *
+     * @param userID
+     */
     @Override
     public void displayUser(final String userID) {
         // TODO
     }
 
+    /**
+     *
+     * @param path
+     * @param title
+     * @param artist
+     * @param album
+     * @param tags
+     * @param rights
+     */
     @Override
     public void importSong(final String path, final String title, final String artist, final String album, final ArrayList<String> tags, final Rights rights) {
         // TODO
     }
 
+    /**
+     *
+     * @param song
+     * @param comment
+     * @return
+     */
     @Override
     public boolean addComment(final Song song, final String comment) {
         return false;
         // TODO
     }
 
+    /**
+     *
+     * @param user
+     * @param category
+     */
     @Override
     public void addUserToCategory(final User user, final Category category) {
         // TODO
     }
 
+    /**
+     *
+     */
     @Override
     public void logOut() {
         // TODO
     }
 
+    /**
+     *
+     */
     @Override
     public void closeApp() {
         // TODO
     }
 
+    /**
+     *
+     */
     @Override
     public void playRemoteSong() {
         // TODO
     }
 
+    /**
+     *
+     * @param user
+     * @param category
+     */
     @Override
     public void removeUserFromCategory(final User user, final Category category) {
         // TODO
     }
 
+    /**
+     *
+     * @param songId
+     * @param rights
+     */
     @Override
     public void manageRightsForOneSong(final String songId, final Rights rights) {
         // TODO
     }
 
+    /**
+     *
+     * @param player
+     */
     @Override
     public void startSong(final SongPlayer player) {
         // TODO
     }
 
+    /**
+     *
+     * @param login
+     * @param mdp
+     */
     @Override
     public void connectUser(final String login, final String mdp) {
         // TODO
     }
 
+    /**
+     *
+     * @param userId
+     */
     @Override
     public void displaySongs(final String userId) {
         // TODO
     }
 
+    /**
+     *
+     * @param moduleName
+     * @param errorMessage
+     */
     @Override
     public void errorNotification(final String moduleName, final String errorMessage) {
         JOptionPane.showMessageDialog(

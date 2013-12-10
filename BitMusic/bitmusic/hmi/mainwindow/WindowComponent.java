@@ -62,7 +62,9 @@ public class WindowComponent {
         this.view.addView(this.getConnectionComponent().getView());
     }
 
-
+    /**
+     *
+     */
     public void startNetwork() {
         this.apiNetwork = Controller.getInstance().getApiHmi();
         this.apiNetwork.notifyNewConnection(apiProfile.getCurrentUser());
@@ -74,11 +76,15 @@ public class WindowComponent {
         private final static WindowComponent instance = new WindowComponent();
     }
 
-    /** Point d'accès pour l'instance unique du singleton */
+    /** Point d'accès pour l'instance unique du singleton
+     * @return  */
     public static WindowComponent getInstance() {
             return WindowComponentHolder.instance;
     }
 
+    /**
+     *
+     */
     public void initAllComponents() {
         // Création des différents Components
         WindowComponent win = WindowComponent.getInstance();
@@ -119,102 +125,202 @@ public class WindowComponent {
         // On est censé recevoir un notifyNewConnection() de Network pour notre propre connection
     }
 
+    /**
+     *
+     * @return
+     */
     public WindowModel getWindowModel() {
         return this.model;
     }
 
+    /**
+     *
+     * @return
+     */
     public WindowView getWindowView() {
         return this.view;
     }
 
+    /**
+     *
+     * @return
+     */
     public WindowController getWindowController() {
         return this.controller;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApiHmiImpl getApiHmi() {
         return this.apiHmi;
     }
 
+    /**
+     *
+     * @param apiHmi
+     */
     public void setApiHmi(ApiHmiImpl apiHmi) {
         this.apiHmi = apiHmi;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApiProfileImpl getApiProfile() {
         return this.apiProfile;
     }
 
+    /**
+     *
+     * @param apiProfile
+     */
     public void setApiProfile(ApiProfileImpl apiProfile) {
         this.apiProfile = apiProfile;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApiMusicImpl getApiMusic() {
         return this.apiMusic;
     }
 
+    /**
+     *
+     * @param apiMusic
+     */
     public void setApiMusic(ApiMusicImpl apiMusic) {
         this.apiMusic = apiMusic;
     }
 
+    /**
+     *
+     * @return
+     */
     public bitmusic.network.main.ApiHmiImpl getApiNetwork() {
         return this.apiNetwork;
     }
 
+    /**
+     *
+     * @param apiNetwork
+     */
     public void setApiNetwork(bitmusic.network.main.ApiHmiImpl apiNetwork) {
         this.apiNetwork = apiNetwork;
     }
 
+    /**
+     *
+     * @return
+     */
     public CategoriesComponent getCategoriesComponent() {
         return this.categoriesComponent;
     }
 
+    /**
+     *
+     * @param categoriesComponent
+     */
     public void setCategoriesComponent(CategoriesComponent categoriesComponent) {
         this.categoriesComponent = categoriesComponent;
     }
 
+    /**
+     *
+     * @return
+     */
     public ConnectionComponent getConnectionComponent() {
         return this.connectionComponent;
     }
 
+    /**
+     *
+     * @param connectionComponent
+     */
     public void setConnectionComponent(ConnectionComponent connectionComponent) {
         this.connectionComponent = connectionComponent;
     }
 
+    /**
+     *
+     * @return
+     */
     public MyProfileComponent getMyProfileComponent() {
         return this.myProfileComponent;
     }
 
+    /**
+     *
+     * @param myProfileComponent
+     */
     public void setMyProfileComponent(MyProfileComponent myProfileComponent) {
         this.myProfileComponent = myProfileComponent;
     }
 
+    /**
+     *
+     * @return
+     */
     public OnlineUsersComponent getOnlineUsersComponent() {
         return this.onlineUsersComponent;
     }
 
+    /**
+     *
+     * @param onlineUsersComponent
+     */
     public void setOnlineUsersComponent(OnlineUsersComponent onlineUsersComponent) {
         this.onlineUsersComponent = onlineUsersComponent;
     }
 
+    /**
+     *
+     * @return
+     */
     public PlayBarComponent getPlayBarComponent() {
         return this.playBarComponent;
     }
 
+    /**
+     *
+     * @param playBarComponent
+     */
     public void setPlayBarComponent(PlayBarComponent playBarComponent) {
         this.playBarComponent = playBarComponent;
     }
 
+    /**
+     *
+     * @return
+     */
     public SearchBarComponent getSearchBarComponent() {
         return this.searchBarComponent;
     }
 
+    /**
+     *
+     * @param searchBarComponent
+     */
     public void setSearchBarComponent(SearchBarComponent searchBarComponent) {
         this.searchBarComponent = searchBarComponent;
     }
 
+    /**
+     *
+     * @return
+     */
     public CentralAreaComponent getCentralAreaComponent() {
         return this.centralAreaComponent;
     }
 
+    /**
+     *
+     * @param centralAreaComponent
+     */
     public void setCentralAreaComponent(CentralAreaComponent centralAreaComponent) {
         this.centralAreaComponent = centralAreaComponent;
     }

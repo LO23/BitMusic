@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class ManageCategoryPopUpComponent extends AbstractComponent<ManageCategoryPopUpModel, ManageCategoryPopUpView, ManageCategoryPopUpController> {
 
+    /**
+     *
+     */
     public ManageCategoryPopUpComponent() {
         this.model = new ManageCategoryPopUpModel();
         this.view = new ManageCategoryPopUpView();

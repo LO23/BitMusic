@@ -18,20 +18,35 @@ public final class ImportSongPopUpModel extends AbstractModel {
 
     private DefaultListModel listTagsModel = new DefaultListModel();
 
+    /**
+     *
+     */
     public ImportSongPopUpModel() {
         super();
     }
 
+    /**
+     *
+     * @return
+     */
     public DefaultListModel getListModel() {
         return listTagsModel;
     }
 
+    /**
+     *
+     * @param listTags
+     */
     public void setListModel(DefaultListModel listTags) {
         this.listTagsModel = listTags;
 
         this.notifyObservers("SET_LIST_TAGS");
     }
 
+    /**
+     *
+     * @param listTags
+     */
     public void setListModel(ArrayList<String> listTags) {
         for ( int i=0; i<listTags.size(); i++ ){
             this.listTagsModel.addElement(listTags.get(i));
@@ -40,11 +55,19 @@ public final class ImportSongPopUpModel extends AbstractModel {
         this.notifyObservers("SET_LIST_TAGS");
     }
 
+    /**
+     *
+     * @param tag
+     */
     public void addTag(String tag) {
         this.listTagsModel.addElement(tag);
         this.notifyObservers("ADD_TAG");
     }
 
+    /**
+     *
+     * @param tag
+     */
     public void removeTag(String tag) {
         boolean tagRemoved = false;
         for ( int i=0; i<listTagsModel.size(); i++) {
