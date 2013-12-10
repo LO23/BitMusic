@@ -12,14 +12,17 @@ import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.music.business.SongCommenter;
 import bitmusic.music.business.SongLoader;
 import bitmusic.music.business.SongPlayer;
+import bitmusic.music.business.SongRater;
 import bitmusic.music.business.SongSearcher;
 import bitmusic.music.business.strategies.TagSearchStrategy;
+import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import bitmusic.music.exception.CopyMP3Exception;
 import java.io.IOException;
 import bitmusic.music.player.BitMusicPlayer;
 import bitmusic.network.exception.NetworkException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -97,7 +100,100 @@ public final class ApiMusicImpl implements ApiMusic {
         return wasCommented;
     }
 
-    ;
+    
+    
+    /**
+     * add a Grade to a local song
+     *
+     * @param songID
+     * @param grade
+     * @return true to indicate to IHM that the song was local and it has to
+     * update the song
+     */
+    public boolean addGradeFromHmi(String songID, int grade) {
+
+        SongRater songRater ;
+        SongLibrary localSongLibrary;
+        boolean wasRated = false;
+
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songRater = new SongRater(localSongLibrary);
+        wasRated = songRater.addGradeFromHMI(songID, grade);
+
+        //besoin de récupérer la SongLibrary local - attente de Profile
+        return wasRated;
+    }
+
+    /**
+     *
+     * add a grade to a distant song
+     *
+     * @param songID
+     * @param grade
+     * @return false in order to send a comment request to the distant user
+     */
+     public boolean addGradeFromNetwork(String songID, Grade grade) {
+
+        SongRater songRater ;
+        SongLibrary localSongLibrary;
+        boolean wasRated = false;
+
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songRater = new SongRater(localSongLibrary);
+        wasRated = songRater.addGradeFromNetwork(songID, grade);
+
+        //besoin de récupérer la SongLibrary local - attente de Profile
+        return wasRated;
+    }
+    
+      /**
+     *
+     * delete comment
+     *
+     * @param songID
+     * @param authorId
+     * @param date
+     * @return false in order to send a comment request to the distant user
+     */
+     
+     
+    public boolean deleteComment(String songId, String authorId, Date date) 
+    
+    {
+        SongCommenter songCommenter;
+        SongLibrary localSongLibrary;
+        boolean commentWasDeleted = false;
+        
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songCommenter = new SongCommenter(localSongLibrary);
+        commentWasDeleted = songCommenter.deleteComment(songId, authorId, date);
+        
+        return commentWasDeleted;
+         
+     }
+    
+      /**
+     *
+     * delete grade
+     *
+     * @param songID
+     * @param authorId
+     * @return false in order to send a comment request to the distant user
+     */
+      public boolean deleteGrade(String songId, String authorId)
+      
+      {
+        SongRater songRater ;
+        SongLibrary localSongLibrary;
+        boolean gradeWasDeleted = false;
+        
+        localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        songRater = new SongRater(localSongLibrary);
+        gradeWasDeleted=songRater.deleteGrade(songId, authorId);
+        
+        return gradeWasDeleted;
+      }
+     
    
    /**
     * search a song by User 
