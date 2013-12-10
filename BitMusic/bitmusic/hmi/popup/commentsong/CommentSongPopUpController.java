@@ -68,8 +68,8 @@ public final class CommentSongPopUpController extends AbstractController<Comment
 
             // close the pop up now
             int parentTabId = CommentSongPopUpController.this.getView().getParentTabId();
-            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
-            // TO COMPLETE
+            //win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
+            InfosSongPopUpController.popUp.dispose();
 
         }
 
