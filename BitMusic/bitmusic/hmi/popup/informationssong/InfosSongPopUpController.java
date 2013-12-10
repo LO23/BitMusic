@@ -21,18 +21,39 @@ import javax.swing.JDialog;
  */
 public final class InfosSongPopUpController extends AbstractController<InfosSongPopUpModel, InfosSongPopUpView> {
 
+
     public static JDialog popUp;
 
-
+    /**
+     *
+     * @param model
+     * @param view
+     */
 
     public InfosSongPopUpController(final InfosSongPopUpModel model, final InfosSongPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Annuler");
+            // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
+            //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
+        }
+    }
+
+    public class DeleteCommentListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton DeleteComment");
+            /// UTILISER DELETE COMMENT DE MUSIC / Song
+
+            /// METTRE A JOUR LA VUE APRES SUPPRESSION
+            
             // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
             //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
         }

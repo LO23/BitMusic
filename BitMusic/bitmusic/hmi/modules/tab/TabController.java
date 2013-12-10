@@ -29,10 +29,18 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     private JDialog popUp;
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public TabController(final TabModel model, final TabView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class CloseTabListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int tabId = TabController.this.getView().getTabId();
@@ -40,6 +48,9 @@ public final class TabController extends AbstractController<TabModel, TabView> {
         }
     }
 
+    /**
+     *
+     */
     public class DoubleClickListener extends MouseAdapter {
         public void mouseClicked(MouseEvent e){
             if (e.getClickCount() == 2){
@@ -72,6 +83,23 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
         }
     };
+
+       private Action supprimer = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            JTable table = (JTable)e.getSource();
+            int row = Integer.valueOf( e.getActionCommand() );
+            Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
+            System.out.println("---- Clic sur Supprimer de la Song : " + song.getSongId());
+
+            WindowComponent win = WindowComponent.getInstance();
+            //win.getApiMusic().deleteSong();
+
+            TabController.this.getModel().notifyObservers("Suppression d'une Song");
+
+        }
+    };
+
+
 
     private Action infos = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
@@ -120,26 +148,53 @@ public final class TabController extends AbstractController<TabModel, TabView> {
         }
     };
 
+    /**
+     *
+     * @return
+     */
     public Action getEditer() {
         return this.editer;
     }
 
+    /**
+     *
+     * @return
+     */
     public Action getInfos() {
         return this.infos;
     }
 
+    /**
+     *
+     * @return
+     */
     public Action getNoter() {
         return this.noter;
     }
 
+    /**
+     *
+     * @return
+     */
     public Action getSauvegarder() {
         return this.sauvegarder;
     }
+    public Action getSupprimer() {
+        return this.supprimer;
+    }
 
+    /**
+     *
+     * @return
+     */
     public JDialog getPopUp() {
         return popUp;
     }
 
+    /**
+     *
+     * @param popUp
+     */
     public void setPopUp(JDialog popUp) {
         this.popUp = popUp;
     }

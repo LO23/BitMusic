@@ -17,6 +17,11 @@ public final class RightClickSongPopUpComponent extends AbstractComponent<RightC
 
     private Song song;
 
+    /**
+     *
+     * @param song
+     * @param parentTabId
+     */
     public RightClickSongPopUpComponent(Song song, int parentTabId) {
         this.song = song;
 

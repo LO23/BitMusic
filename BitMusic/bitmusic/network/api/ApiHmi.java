@@ -11,7 +11,7 @@ import bitmusic.profile.classes.User;
 import java.util.List;
 
 /**
- *
+ * Interface given to HMI to interact with the Network.
  * @author florian, alexis
  */
 public interface ApiHmi {
@@ -54,7 +54,6 @@ public interface ApiHmi {
      * @return The list of User who are connected
      */
     List<String> getAllUserId();
-
 
     /**
     * Notify connection of a user and pass his profile to broadcast it.

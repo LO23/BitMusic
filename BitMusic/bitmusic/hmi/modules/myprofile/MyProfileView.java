@@ -33,26 +33,48 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     private ImageIcon avatarImage;
     private JLabel avatarLabel;
 
+    /**
+     *
+     */
     public MyProfileView() {
         super();
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getMyProfileButton() {
         return myProfileButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getMySongsButton() {
         return mySongsButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getDisconnectButton() {
         return logoutButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getImportSongButton() {
         return importSongButton;
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- MyProfileView.initPanel()");
@@ -115,11 +137,20 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         );
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- MyProfileView.update() -> " + str);

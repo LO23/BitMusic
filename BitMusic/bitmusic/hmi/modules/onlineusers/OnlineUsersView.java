@@ -27,10 +27,16 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     private JTable table;
     private JScrollPane onlineUsersTablePane;
 
+    /**
+     *
+     */
     public OnlineUsersView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- OnlineUsersView.initPanel()");
@@ -69,11 +75,20 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
         );
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
        return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- OnlineUsersView.update() -> " + str);

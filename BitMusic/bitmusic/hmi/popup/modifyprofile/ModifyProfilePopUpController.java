@@ -22,10 +22,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public final class ModifyProfilePopUpController extends AbstractController<ModifyProfilePopUpModel, ModifyProfilePopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public ModifyProfilePopUpController(final ModifyProfilePopUpModel model, final ModifyProfilePopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class AvatarBrowseListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -42,6 +50,9 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
         }
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -50,6 +61,9 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
         }
     }
 
+    /**
+     *
+     */
     public class ModifyMyProfileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

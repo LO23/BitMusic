@@ -39,10 +39,16 @@ public final class TabView extends AbstractView<TabController> {
     private javax.swing.JTable jTable1;
     // End of variables declaration
 
+    /**
+     *
+     */
     public TabView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- TabView.initPanel()");
@@ -81,10 +87,11 @@ public final class TabView extends AbstractView<TabController> {
 
         // Attache des listeners aux colonnes concernées
         ButtonColumn editerColumn = new ButtonColumn(this.jTable1, this.getController().getEditer(), 3);
-        ButtonColumn infosColumn = new ButtonColumn(this.jTable1, this.getController().getInfos(), 4);
-        ButtonColumn noterColumn = new ButtonColumn(this.jTable1, this.getController().getNoter(), 5);
-        ButtonColumn sauvegarderColumn = new ButtonColumn(this.jTable1, this.getController().getSauvegarder(), 6);
-        // Il faut peut-être une colonne pour commenter ? 
+        ButtonColumn supprimerColumn = new ButtonColumn(this.jTable1, this.getController().getSupprimer(), 4);
+        ButtonColumn infosColumn = new ButtonColumn(this.jTable1, this.getController().getInfos(), 5);
+        ButtonColumn noterColumn = new ButtonColumn(this.jTable1, this.getController().getNoter(), 6);
+        ButtonColumn sauvegarderColumn = new ButtonColumn(this.jTable1, this.getController().getSauvegarder(), 7);
+        // Il faut peut-être une colonne pour commenter ?
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -108,43 +115,84 @@ public final class TabView extends AbstractView<TabController> {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
        return this.title;
     }
 
+    /**
+     *
+     * @param newTitle
+     */
     public void setTitle(final String newTitle) {
        this.title = newTitle;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLabelTitle() {
         return this.labelTitle;
     }
 
+    /**
+     *
+     * @param newLabelTitle
+     */
     public void setLabelTitle(final JLabel newLabelTitle) {
         this.labelTitle = newLabelTitle;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtnClose() {
         return this.btnClose;
     }
 
+    /**
+     *
+     * @param newBtnClose
+     */
     public void setBtnClose(final JButton newBtnClose) {
         this.btnClose = newBtnClose;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getPanelTab() {
         return this.panelTab;
     }
 
+    /**
+     *
+     * @param newPanelTab
+     */
     public void setPanelTab(final JPanel newPanelTab) {
         this.panelTab = newPanelTab;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
        return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- TabView.update() -> " + str);
@@ -153,26 +201,50 @@ public final class TabView extends AbstractView<TabController> {
         this.getController().getModel().getModeleTable().fireTableDataChanged();
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getTabId() {
         return this.tabId;
     }
 
+    /**
+     *
+     * @param tabId
+     */
     public void setTabId(Integer tabId) {
         this.tabId = tabId;
     }
 
+    /**
+     *
+     * @return
+     */
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;
     }
 
+    /**
+     *
+     * @param jScrollPane1
+     */
     public void setjScrollPane1(JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTable getjTable1() {
         return jTable1;
     }
 
+    /**
+     *
+     * @param jTable1
+     */
     public void setjTable1(JTable jTable1) {
         this.jTable1 = jTable1;
     }

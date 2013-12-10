@@ -60,10 +60,10 @@ public class FileParser {
      * @throws ProfileExceptions
      */
     public User loadUser(String login, String pwd) throws ProfileExceptions {
+    	User loadedUser = null;
         try {
             String defaultPath = new File("").getAbsolutePath().toString()
             		+ mainStructure;
-
             DirectoryStream<Path> stream = Files.newDirectoryStream(FileSystems.getDefault().getPath(defaultPath));
             for(Path path:stream) {
                 if(path.getFileName().toString().contains(login) && (new File(path.toString())).isDirectory()) {
@@ -72,12 +72,10 @@ public class FileParser {
                             FileInputStream saveFile = new FileInputStream(path.toString()
                                     + profileStructure
                                     + login + ".ser");
-
                             ObjectInputStream ois = new ObjectInputStream(saveFile);
-                            User loadedUser = (User) ois.readObject();
+                            loadedUser = (User) ois.readObject();
                             ois.close();
                             saveFile.close();
-                            return loadedUser;
                         }
                         catch (ClassNotFoundException ex) {
                             Logger.getLogger(FileParser.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +86,7 @@ public class FileParser {
         } catch (IOException ex) {
             Logger.getLogger(FileParser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        throw new ProfileExceptions("User not found on computer");
+        return loadedUser;
     }
 
     public boolean readAuthFile(String path, String pwd) throws ProfileExceptions {

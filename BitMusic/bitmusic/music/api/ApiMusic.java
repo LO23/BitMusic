@@ -7,6 +7,7 @@
 package bitmusic.music.api;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Comment;
+import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import java.util.*;
@@ -37,14 +38,65 @@ public interface ApiMusic {
     * @return false in order to send a comment request to the distant user 
     */
     
+    
     public boolean addCommentFromNetwork(String songID, Comment commentText);
     
      /**
+     *
+     * delete grade
+     *
+     * @param songID
+     * @param authorId
+     * @return false in order to send a comment request to the distant user
+     */
+     
+    
+     public boolean deleteGrade(String songId, String authorId);
+    
+     /**
+     *
+     * add a grade to a distant song
+     *
+     * @param songID
+     * @param grade
+     * @return false in order to send a comment request to the distant user
+     */
+     public boolean addGradeFromNetwork(String songID, Grade grade);
+    
+     /**
+     * add a Grade to a local song
+     *
+     * @param songID
+     * @param grade
+     * @return true to indicate to IHM that the song was local and it has to
+     * update the song
+     */
+    public boolean addGradeFromHmi(String songID, int grade);
+    
+      
+      
+       /**
+     *
+     * delete comment
+     *
+     * @param songID
+     * @param authorId
+     * @param date
+     * @return false in order to send a comment request to the distant user
+     */
+     
+     
+    public boolean deleteComment(String songId, String authorId, Date date) ;
+    
+    
+    
+    /**
     * search a song by User 
     * 
     * @param userID
     * @param searchId 
     */
+    
     
     
     public void searchSongsByUser(String userID, String searchId);  

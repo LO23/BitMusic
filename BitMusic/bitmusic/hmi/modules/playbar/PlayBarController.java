@@ -32,10 +32,18 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
     private Thread sliderThread = null;
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public PlayBarController(final PlayBarModel model, final PlayBarView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class PlayListener implements ActionListener  {
 
         @Override
@@ -98,6 +106,9 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         }
     }
 
+    /**
+     *
+     */
     public class StopListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -113,6 +124,9 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         }
     }
 
+    /**
+     *
+     */
     public class DownloadListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -124,6 +138,10 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
     // Pour 'écouter' le temps de lecture du son et l'afficher sur la slider
 
+    /**
+     *
+     */
+    
     public class SoundTimeListener implements ChangeListener {
 
         @Override
@@ -134,6 +152,9 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
     }
 
+    /**
+     *
+     */
     public class CursorListener implements MouseListener {
 
         final WindowComponent win = WindowComponent.getInstance();

@@ -46,7 +46,7 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
     }
 
     /**
-     * .
+     * Method that implements the treatment of the message.
      */
     @Override
     public void treatment() {
@@ -72,7 +72,7 @@ public final class MessageNotifyNewConnection extends AbstractMessage {
                         //Type of Message
                         EnumTypeMessage.ReplyConnectionUser,
                         //IP Source
-                        this.ipDest,
+                        Controller.getNetworkAddress(),
                         //IP Dest
                         this.ipSource,
                         //User Profile

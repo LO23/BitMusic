@@ -15,11 +15,13 @@ import bitmusic.music.data.Song;
  */
 public final class CommentSongPopUpComponent extends AbstractComponent<CommentSongPopUpModel, CommentSongPopUpView, CommentSongPopUpController> {
 
+
     private Song song;
 
     public CommentSongPopUpComponent(Song song, int parentTabId) {
         this.model = new CommentSongPopUpModel(song);
         this.view = new CommentSongPopUpView(parentTabId);
+
         this.controller = new CommentSongPopUpController(this.model, this.view);
         this.view.setController(this.controller);
         this.view.initPanel();
