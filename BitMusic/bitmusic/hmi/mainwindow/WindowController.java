@@ -24,11 +24,19 @@ public class WindowController {
     private WindowModel windowModel;
     private WindowView windowView;
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public WindowController(WindowModel model, WindowView view) {
         this.windowModel = model;
         this.windowView = view;
     }
 
+    /**
+     *
+     */
     public class WindowComponentListener implements WindowListener {
         @Override
         public void windowClosing(WindowEvent e) {
@@ -69,18 +77,34 @@ public class WindowController {
         public void windowDeiconified(WindowEvent e) {}
     }
 
+    /**
+     *
+     * @return
+     */
     public WindowModel getWindowModel() {
         return this.windowModel;
     }
 
+    /**
+     *
+     * @param windowModel
+     */
     public void setWindowModel(WindowModel windowModel) {
         this.windowModel = windowModel;
     }
 
+    /**
+     *
+     * @return
+     */
     public WindowView getWindowView() {
         return this.windowView;
     }
 
+    /**
+     *
+     * @param windowView
+     */
     public void setWindowView(WindowView windowView) {
         this.windowView = windowView;
     }

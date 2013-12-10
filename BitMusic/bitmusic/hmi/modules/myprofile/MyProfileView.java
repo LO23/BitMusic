@@ -10,6 +10,7 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,26 +33,48 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     private ImageIcon avatarImage;
     private JLabel avatarLabel;
 
+    /**
+     *
+     */
     public MyProfileView() {
         super();
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getMyProfileButton() {
         return myProfileButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getMySongsButton() {
         return mySongsButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getDisconnectButton() {
         return logoutButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getImportSongButton() {
         return importSongButton;
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- MyProfileView.initPanel()");
@@ -63,7 +86,10 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         } else {
             this.avatarImage = new ImageIcon(avatarPath);
         }
+
         this.avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
+
+        this.avatarLabel.setPreferredSize(new Dimension(120, 120));
 
         this.avatarImage.setDescription("Votre avatar");
         this.avatarPanel.add(avatarLabel, BorderLayout.CENTER);
@@ -111,11 +137,20 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
         );
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- MyProfileView.update() -> " + str);

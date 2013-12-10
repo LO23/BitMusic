@@ -23,15 +23,25 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author unkedeuxke
+ * Classe du controlleur de la AccountCreationPopUp
+ * @author IHM
  */
 public final class AccountCreationPopUpController extends AbstractController<AccountCreationPopUpModel, AccountCreationPopUpView> {
 
+    /**
+     * Constructeur
+     * @param model
+     *              Modèle
+     * @param view
+     *              Vue
+     */
     public AccountCreationPopUpController(final AccountCreationPopUpModel model, final AccountCreationPopUpView view) {
         super(model, view);
     }
 
+    /**
+     * Listener sur le bouton Parcourir pour la récupération de l'avatar
+     */
     public class AvatarBrowseListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -48,6 +58,9 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
     }
 
+    /**
+     * Listener sur le bouton Annuler pour l'annulation
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -56,6 +69,9 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
     }
 
+    /**
+     * Listener sur le bouton créer pour la création d'un nouvel utilisateur.
+     */
     public class CreateNewUserListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -154,6 +170,10 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
 
@@ -166,6 +186,9 @@ public final class AccountCreationPopUpController extends AbstractController<Acc
         return true;
     }
 
+    /**
+     * Listener sur le bouton Réinitialiser pour réinitialiser tous les champs
+     */
     public class ResetListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

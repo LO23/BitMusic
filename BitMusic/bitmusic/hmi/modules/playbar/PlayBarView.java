@@ -39,10 +39,16 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     private JSlider playBar = new JSlider(0, 1);
 
+    /**
+     *
+     */
     public PlayBarView() {
         super();
    }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- PlayBarView.initPanel()");
@@ -97,66 +103,125 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getPlayButton() {
         return playButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getStopButton() {
         return stopButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getDownloadButton() {
         return downloadButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public ImageIcon getPlayIcon() {
         return playIcon;
     }
 
+    /**
+     *
+     * @param playIcon
+     */
     public void setPlayIcon(ImageIcon playIcon) {
         this.playIcon = playIcon;
         this.playButton.setIcon(this.playIcon);
     }
 
+    /**
+     *
+     * @return
+     */
     public ImageIcon getStopIcon() {
         return stopIcon;
     }
 
+    /**
+     *
+     * @param stopIcon
+     */
     public void setStopIcon(ImageIcon stopIcon) {
         this.stopIcon = stopIcon;
     }
 
+    /**
+     *
+     * @return
+     */
     public ImageIcon getDownloadIcon() {
         return downloadIcon;
     }
 
+    /**
+     *
+     * @param downloadIcon
+     */
     public void setDownloadIcon(ImageIcon downloadIcon) {
         this.downloadIcon = downloadIcon;
     }
 
+    /**
+     *
+     * @return
+     */
     public ImageIcon getPauseIcon() {
         return pauseIcon;
     }
 
+    /**
+     *
+     * @param pauseIcon
+     */
     public void setPauseIcon(ImageIcon pauseIcon) {
         this.pauseIcon = pauseIcon;
     }
 
+    /**
+     *
+     * @return
+     */
     public JSlider getPlayBar() {
         return playBar;
     }
 
+    /**
+     *
+     * @param playBar
+     */
     public void setPlayBar(JSlider playBar) {
         this.playBar = playBar;
     }
 
-
-
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- PlayBarView.update() -> " + str);

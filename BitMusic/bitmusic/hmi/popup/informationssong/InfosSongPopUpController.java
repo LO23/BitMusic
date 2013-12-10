@@ -13,6 +13,7 @@ import bitmusic.hmi.popup.commentsong.CommentSongPopUpComponent;
 import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.JDialog;
 
 /**
@@ -21,14 +22,22 @@ import javax.swing.JDialog;
  */
 public final class InfosSongPopUpController extends AbstractController<InfosSongPopUpModel, InfosSongPopUpView> {
 
+
     public static JDialog popUp;
 
-
+    /**
+     *
+     * @param model
+     * @param view
+     */
 
     public InfosSongPopUpController(final InfosSongPopUpModel model, final InfosSongPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -39,15 +48,36 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
     }
 
     public class DeleteCommentListener implements ActionListener {
+        // peut-être il faudra ajouter l'ID de l'auteur du commentaire
+        // on a déjà le song ID
+        Date commentDate ;
+        String authorID;
+        String songID;
+
+
+
+        public DeleteCommentListener( String songID, String authorID,Date date ) {
+            super();
+            this.commentDate = date;
+            this.authorID = authorID;
+            this.songID = songID;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton DeleteComment");
+            WindowComponent win = WindowComponent.getInstance();
             /// UTILISER DELETE COMMENT DE MUSIC / Song
 
+            boolean deleted = win.getApiMusic().deleteComment(this.songID, this.authorID, commentDate);
+            if (deleted) {
+                System.out.println("---- Suppression réussie");
+            }
             /// METTRE A JOUR LA VUE APRES SUPPRESSION
-            
+            InfosSongPopUpController.this.getView().update(InfosSongPopUpController.this.getModel(), songID);
+
             // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
             //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
+
         }
     }
 

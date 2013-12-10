@@ -46,11 +46,16 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private JList tagList = new JList();
     private JScrollPane tagsTablePane = new JScrollPane(this.tagList);
 
-
+    /**
+     *
+     */
     public ImportSongPopUpView() {
         super();
     }
 
+    /**
+     *
+     */
     public void initPanel() {
         System.out.println("--- ImportSongPopUpView.initPanel()");
 
@@ -150,11 +155,20 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         );
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- ImportSongPopUpView.update() -> " + str);
@@ -162,74 +176,146 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
         this.tagsTablePane.setViewportView(this.tagList);
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getFileField() {
         return fileField;
     }
 
+    /**
+     *
+     * @param fileField
+     */
     public void setFileField(JTextField fileField) {
         this.fileField = fileField;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<JTextField> getListCompulsoryFields() {
         return listCompulsoryFields;
     }
 
+    /**
+     *
+     * @param listCompulsoryFields
+     */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
         this.listCompulsoryFields = listCompulsoryFields;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTitleField() {
         return titleField;
     }
 
+    /**
+     *
+     * @param titleField
+     */
     public void setTitleField(JTextField titleField) {
         this.titleField = titleField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getArtistField() {
         return artistField;
     }
 
+    /**
+     *
+     * @param artistField
+     */
     public void setArtistField(JTextField artistField) {
         this.artistField = artistField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getAlbumField() {
         return albumField;
     }
 
+    /**
+     *
+     * @param albumField
+     */
     public void setAlbumField(JTextField albumField) {
         this.albumField = albumField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JScrollPane getTagsTablePane() {
         return tagsTablePane;
     }
 
+    /**
+     *
+     * @param tagsTablePane
+     */
     public void setTagsTablePane(JScrollPane tagsTablePane) {
         this.tagsTablePane = tagsTablePane;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getNewTagField() {
         return newTagField;
     }
 
+    /**
+     *
+     * @param newTagField
+     */
     public void setNewTagField(JTextField newTagField) {
         this.newTagField = newTagField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getAddTagButton() {
         return addTagButton;
     }
 
+    /**
+     *
+     * @param addTagButton
+     */
     public void setAddTagButton(JButton addTagButton) {
         this.addTagButton = addTagButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JList getTagList() {
         return tagList;
     }
 
+    /**
+     *
+     * @param tagList
+     */
     public void setTagList(JList tagList) {
         this.tagList = tagList;
     }

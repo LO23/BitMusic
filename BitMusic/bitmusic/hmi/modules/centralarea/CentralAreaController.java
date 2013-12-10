@@ -14,6 +14,11 @@ import bitmusic.hmi.patterns.AbstractController;
  */
 public final class CentralAreaController extends AbstractController<CentralAreaModel, CentralAreaView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public CentralAreaController(final CentralAreaModel model, final CentralAreaView view) {
         super(model, view);
     }

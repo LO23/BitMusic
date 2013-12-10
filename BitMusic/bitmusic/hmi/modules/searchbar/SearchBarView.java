@@ -35,11 +35,16 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     private JRadioButton authorButton = new JRadioButton("Par auteur", false);
     private JRadioButton tagButton = new JRadioButton("Par tag", false);
 
-
+    /**
+     *
+     */
     public SearchBarView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- SearchBarView.initPanel()");
@@ -107,43 +112,84 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         layout.linkSize(SwingConstants.HORIZONTAL, filtreLabel, noneButton, titleButton, authorButton, tagButton);
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getSearchField() {
         return this.searchField;
     }
 
+    /**
+     *
+     * @param searchField
+     */
     public void setSearchField(JTextField searchField) {
         this.searchField = searchField;
     }
 
+    /**
+     *
+     * @return
+     */
     public ButtonGroup getGroupeRadio() {
         return this.groupeRadio;
     }
 
+    /**
+     *
+     * @param groupeRadio
+     */
     public void setGroupeRadio(ButtonGroup groupeRadio) {
         this.groupeRadio = groupeRadio;
     }
 
+    /**
+     *
+     * @return
+     */
     public JRadioButton getNoneButton() {
         return this.noneButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JRadioButton getTitleButton() {
         return this.titleButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JRadioButton getAuthorButton() {
         return this.authorButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JRadioButton getTagButton() {
         return this.tagButton;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- SearchBarView.update() -> " + str);

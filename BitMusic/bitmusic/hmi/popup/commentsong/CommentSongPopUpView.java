@@ -33,12 +33,17 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     private final JButton resetButton = new JButton("Réinitialiser");
 
 
+
     public CommentSongPopUpView(int parentTabId) {
+
         super();
         this.parentTabId = parentTabId;
 
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- CommentSongPopUpView.initPanel()");
@@ -88,20 +93,37 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- CommentSongPopUpView.update() -> " + str);
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getCommentField() {
         return commentField;
     }
 
+    /**
+     *
+     * @param comment
+     */
     public void setCommentField(JTextField comment) {
         this.commentField = comment;
     }

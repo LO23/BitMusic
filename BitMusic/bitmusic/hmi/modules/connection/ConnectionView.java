@@ -33,15 +33,25 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     private ArrayList<JTextField> listCompulsoryFields = new ArrayList();
 
+    /**
+     *
+     */
     public ConnectionView() {
         super();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType(){
         return type;
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- ConnectionView.initPanel()");
@@ -103,47 +113,92 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
         );
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getConnectionLabel() {
         return this.connectionLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLoginLabel() {
         return this.loginLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getPasswordLabel() {
         return this.passwordLabel;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getConnectButton() {
         return this.connectButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getResetButton() {
         return this.resetButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getCreateUserButton() {
         return this.createUserButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getLoginField() {
         return this.loginField;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPasswordField getPasswordField() {
         return this.passwordField;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- ConnectionView.update() -> " + str);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<JTextField> getListCompulsoryFields() {
         return listCompulsoryFields;
     }
 
+    /**
+     *
+     * @param listCompulsoryFields
+     */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
         this.listCompulsoryFields = listCompulsoryFields;
     }

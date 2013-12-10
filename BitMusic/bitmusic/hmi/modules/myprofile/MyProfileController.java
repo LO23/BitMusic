@@ -32,18 +32,34 @@ public final class MyProfileController extends AbstractController<MyProfileModel
 
     private JDialog popUp;
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public MyProfileController(final MyProfileModel model, final MyProfileView view) {
         super(model, view);
     }
 
+    /**
+     *
+     * @return
+     */
     public JDialog getPopUp() {
         return this.popUp;
     }
 
+    /**
+     *
+     * @param popUp
+     */
     public void setPopUp(JDialog popUp) {
         this.popUp = popUp;
     }
 
+    /**
+     *
+     */
     public class LogoutListener implements ActionListener {
 
         @Override
@@ -66,6 +82,9 @@ public final class MyProfileController extends AbstractController<MyProfileModel
         }
     }
 
+    /**
+     *
+     */
     public class ImportNewSongListener implements ActionListener {
 
         @Override
@@ -84,6 +103,9 @@ public final class MyProfileController extends AbstractController<MyProfileModel
         }
     }
 
+    /**
+     *
+     */
     public class ModifyProfileListener implements ActionListener {
 
         @Override
@@ -101,6 +123,9 @@ public final class MyProfileController extends AbstractController<MyProfileModel
         }
     }
 
+    /**
+     *
+     */
     public class MySongsListener implements ActionListener {
 
         @Override

@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class MyProfileComponent extends AbstractComponent<MyProfileModel, MyProfileView, MyProfileController> {
 
+    /**
+     *
+     */
     public MyProfileComponent() {
         this.model = new MyProfileModel();
         this.view = new MyProfileView();
