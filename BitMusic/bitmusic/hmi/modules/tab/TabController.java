@@ -73,6 +73,23 @@ public final class TabController extends AbstractController<TabModel, TabView> {
         }
     };
 
+       private Action supprimer = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            JTable table = (JTable)e.getSource();
+            int row = Integer.valueOf( e.getActionCommand() );
+            Song song = ((TabModel.TabTableModel)table.getModel()).getSongAt(row);
+            System.out.println("---- Clic sur Supprimer de la Song : " + song.getSongId());
+
+            WindowComponent win = WindowComponent.getInstance();
+            //win.getApiMusic().deleteSong();
+
+            TabController.this.getModel().notifyObservers("Suppression d'une Song");
+
+        }
+    };
+
+
+
     private Action infos = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable)e.getSource();
@@ -134,6 +151,9 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     public Action getSauvegarder() {
         return this.sauvegarder;
+    }
+    public Action getSupprimer() {
+        return this.supprimer;
     }
 
     public JDialog getPopUp() {

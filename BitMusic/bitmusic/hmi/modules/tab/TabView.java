@@ -81,10 +81,11 @@ public final class TabView extends AbstractView<TabController> {
 
         // Attache des listeners aux colonnes concernées
         ButtonColumn editerColumn = new ButtonColumn(this.jTable1, this.getController().getEditer(), 3);
-        ButtonColumn infosColumn = new ButtonColumn(this.jTable1, this.getController().getInfos(), 4);
-        ButtonColumn noterColumn = new ButtonColumn(this.jTable1, this.getController().getNoter(), 5);
-        ButtonColumn sauvegarderColumn = new ButtonColumn(this.jTable1, this.getController().getSauvegarder(), 6);
-        // Il faut peut-être une colonne pour commenter ? 
+        ButtonColumn supprimerColumn = new ButtonColumn(this.jTable1, this.getController().getSupprimer(), 4);
+        ButtonColumn infosColumn = new ButtonColumn(this.jTable1, this.getController().getInfos(), 5);
+        ButtonColumn noterColumn = new ButtonColumn(this.jTable1, this.getController().getNoter(), 6);
+        ButtonColumn sauvegarderColumn = new ButtonColumn(this.jTable1, this.getController().getSauvegarder(), 7);
+        // Il faut peut-être une colonne pour commenter ?
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);

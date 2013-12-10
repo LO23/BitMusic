@@ -28,7 +28,7 @@ public final class TabModel extends AbstractModel {
     }
 
     public class TabTableModel extends AbstractTableModel {
-        private String[] columnNames = { "Titre", "Artiste", "Album", "Éditer", "Infos", "Noter", "Sauvegarder" };
+        private String[] columnNames = { "Titre", "Artiste", "Album", "Éditer","Supprimer", "Infos", "Noter", "Sauvegarder" };
         private ArrayList<Song> arrayListSong = new ArrayList();
 
         public TabTableModel() {
@@ -47,10 +47,12 @@ public final class TabModel extends AbstractModel {
                 case 3:
                     return "E";
                 case 4:
-                    return "I";
+                    return "SU";
                 case 5:
-                    return "N";
+                    return "I";
                 case 6:
+                    return "N";
+                case 7:
                     return "S";
                 default:
                     return null;
@@ -93,7 +95,7 @@ public final class TabModel extends AbstractModel {
 
         @Override
         public boolean isCellEditable(int row, int col) {
-            if (col == 3 || col == 4 || col == 5 || col == 6) {
+            if (col == 3 || col == 4 || col == 5 || col == 6 || col == 7) {
                 return true;
             }
             return false;
