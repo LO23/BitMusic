@@ -129,7 +129,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     public void updateCommentsPanel(JPanel panel, LinkedList<Comment> comments) {
         //SpringLayout commentsLayout = new SpringLayout();
-        GridLayout commentsLayout = new GridLayout(comments.size(), 2); // rows, col, hgap, vgap
+        GridLayout commentsLayout = new GridLayout(comments.size(), 3); // rows, col, hgap, vgap
 
         panel.setSize(500,100);
         panel.setLayout(commentsLayout);
@@ -146,6 +146,8 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
             for (Comment c: comments) {
                 JLabel author = new JLabel(c.getAuthor());
                 JLabel commentValue = new JLabel(c.getComment());
+                JButton deleteCommentButton = new JButton("X");
+                deleteCommentButton.addActionListener(this.getController().new DeleteCommentListener());
                 /*commentsLayout.putConstraint(SpringLayout.WEST, author, 5, SpringLayout.WEST, panel);
                 commentsLayout.putConstraint(SpringLayout.NORTH, author, 5, SpringLayout.NORTH, panel);
 
@@ -153,6 +155,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 commentsLayout.putConstraint(SpringLayout.NORTH, commentValue, 5, SpringLayout.NORTH, panel);*/
                 panel.add(author);
                 panel.add(commentValue);
+                panel.add(deleteCommentButton);
 
             }
         }
