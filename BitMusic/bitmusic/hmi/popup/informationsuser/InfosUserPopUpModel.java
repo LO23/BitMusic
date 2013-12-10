@@ -17,15 +17,27 @@ public final class InfosUserPopUpModel extends AbstractModel {
 
     private User user;
 
+    /**
+     *
+     * @param user
+     */
     public InfosUserPopUpModel(User user) {
         super();
         this.setUser(user);
     }
 
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
         this.notifyObservers("SET_USER_INFOS");

@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractComponent;
  */
 public final class ModifyProfilePopUpComponent extends AbstractComponent<ModifyProfilePopUpModel, ModifyProfilePopUpView, ModifyProfilePopUpController> {
 
+    /**
+     *
+     */
     public ModifyProfilePopUpComponent() {
         this.model = new ModifyProfilePopUpModel();
         this.view = new ModifyProfilePopUpView();

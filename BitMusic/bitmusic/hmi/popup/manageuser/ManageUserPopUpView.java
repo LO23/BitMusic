@@ -17,10 +17,16 @@ public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpContr
 
     private final String type = "POPUP";
 
+    /**
+     *
+     */
     public ManageUserPopUpView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- ManageUserPopUpView.initPanel()");
@@ -28,11 +34,20 @@ public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpContr
         // TODO
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- ManageUserPopUpView.update() -> " + str);

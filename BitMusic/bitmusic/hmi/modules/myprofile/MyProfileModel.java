@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class MyProfileModel extends AbstractModel {
 
+    /**
+     *
+     */
     public MyProfileModel() {
         super();
     }

@@ -29,8 +29,9 @@ public class FileSaver {
      *
      */
     private static FileSaver currentSaver;
-    private static String mainStructure = "\\BitTest\\profiles\\";
-    private static String profileStructure = "\\profile\\";
+    private static String separator = FileSystems.getDefault().getSeparator();
+    private static String mainStructure = separator + "BitTest" + separator + "profiles" + separator;
+    private static String profileStructure = separator + "profile" + separator;
 
     //######################### CONSTRUCTORS ###########################//
 

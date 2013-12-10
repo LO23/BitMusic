@@ -14,6 +14,9 @@ import bitmusic.hmi.patterns.AbstractModel;
  */
 public final class CentralAreaModel extends AbstractModel {
 
+    /**
+     *
+     */
     public CentralAreaModel() {
         super();
     }

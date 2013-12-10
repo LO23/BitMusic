@@ -28,10 +28,16 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
     private JTabbedPane tabbedPane = new JTabbedPane();
     private Integer tabCounter = 0;
 
+    /**
+     *
+     */
     public CentralAreaView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- CentralAreaView.initPanel()");
@@ -40,6 +46,11 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
         this.setVisible(true);
     }
 
+    /**
+     *
+     * @param tabId
+     * @return
+     */
     public TabComponent getTabComponent(int tabId) {
         for (int i = 0; i < this.listTabComponent.size(); i++) {
             if (listTabComponent.get(i).getView().getTabId().equals(tabId)) {
@@ -49,14 +60,26 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<TabComponent> getListTabComponent() {
         return this.listTabComponent;
     }
 
+    /**
+     *
+     * @param listTabComponent
+     */
     public void setListTabComponent(ArrayList<TabComponent> listTabComponent) {
         this.listTabComponent = listTabComponent;
     }
 
+    /**
+     *
+     * @param tabComponent
+     */
     public void addTabComponent(TabComponent tabComponent) {
         // Ajout du TabComponent à la ArrayList
         this.listTabComponent.add(tabComponent);
@@ -75,6 +98,10 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
         this.tabCounter++;
     }
 
+    /**
+     *
+     * @param tabId
+     */
     public void removeTabComponent(Integer tabId) {
         boolean tabFound = false;
         for (int i = 0; i < this.listTabComponent.size(); i++) {
@@ -91,27 +118,52 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public JTabbedPane getTabbedPane() {
         return this.tabbedPane;
     }
 
+    /**
+     *
+     * @param newTabbedPane
+     */
     public void setTabbedPane(final JTabbedPane newTabbedPane) {
         this.tabbedPane = newTabbedPane;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getTabCounter() {
         return this.tabCounter;
     }
 
+    /**
+     *
+     * @param newTabCounter
+     */
     public void setTabCounter(final Integer newTabCounter) {
         this.tabCounter = newTabCounter;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- CentralAreaView.update() -> " + str);

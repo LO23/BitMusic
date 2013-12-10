@@ -21,14 +21,22 @@ import javax.swing.JDialog;
  */
 public final class InfosSongPopUpController extends AbstractController<InfosSongPopUpModel, InfosSongPopUpView> {
 
+
     public static JDialog popUp;
 
-
+    /**
+     *
+     * @param model
+     * @param view
+     */
 
     public InfosSongPopUpController(final InfosSongPopUpModel model, final InfosSongPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

@@ -90,6 +90,10 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
             editButton.setBorder( focusBorder );
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMnemonic() {
             return mnemonic;
     }

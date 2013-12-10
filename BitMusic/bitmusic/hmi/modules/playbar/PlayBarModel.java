@@ -20,14 +20,25 @@ public final class PlayBarModel extends AbstractModel {
     private int frame;
     private Song song = null;
 
+    /**
+     *
+     */
     public PlayBarModel() {
         super();
     }
 
+    /**
+     *
+     * @return
+     */
     public Song getSong() {
         return song;
     }
 
+    /**
+     *
+     * @param song
+     */
     public void setSong(Song song) {
         this.song = song;
         //Arrête la musique en cours de lecture
@@ -35,20 +46,35 @@ public final class PlayBarModel extends AbstractModel {
         this.notifyObservers("Song loaded");
     }
 
-
+    /**
+     *
+     * @return
+     */
     public boolean isPlaying() {
         return isPlaying;
     }
 
+    /**
+     *
+     * @param isPlaying
+     */
     public void setIsPlaying(boolean isPlaying) {
         this.isPlaying = isPlaying;
         this.notifyObservers("isPlaying");
     }
 
+    /**
+     *
+     * @return
+     */
     public int getFrame() {
         return frame;
     }
 
+    /**
+     *
+     * @param frame
+     */
     public void setFrame(int frame) {
         this.frame = frame;
     }

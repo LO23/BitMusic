@@ -26,18 +26,32 @@ public class WindowView extends JFrame implements Observer {
     private final JPanel jpanelNorth = new JPanel (new GridBagLayout());
     private GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
+    /**
+     *
+     */
     public WindowView() {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public WindowController getWindowController() {
         return this.windowController;
     }
 
+    /**
+     *
+     * @param windowController
+     */
     public void setWindowController(WindowController windowController) {
         this.windowController = windowController;
     }
 
+    /**
+     *
+     */
     public void initFrame() {
         System.out.println("-- WindowView.initFrame()");
 
@@ -46,6 +60,10 @@ public class WindowView extends JFrame implements Observer {
         contentPanel.add(jpanelNorth, BorderLayout.NORTH);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void addView(AbstractView view) {
         if ("CONNECTION".equals(view.getType())){
             this.getContentPane().add(view.getPanel());
@@ -82,6 +100,10 @@ public class WindowView extends JFrame implements Observer {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void removeView(AbstractView view) {
         if ("CONNECTION".equals(view.getType())){
             this.getContentPane().remove(view.getPanel());
@@ -90,23 +112,44 @@ public class WindowView extends JFrame implements Observer {
         }
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- WindowView.update() -> " + str);
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getContentPanel() {
         return contentPanel;
     }
 
+    /**
+     *
+     * @param contentPanel
+     */
     public void setContentPanel(JPanel contentPanel) {
         this.contentPanel = contentPanel;
     }
 
+    /**
+     *
+     * @return
+     */
     public GridBagConstraints getGridBagConstraints() {
         return gridBagConstraints;
     }
 
+    /**
+     *
+     * @param gridBagConstraints
+     */
     public void setGridBagConstraints(GridBagConstraints gridBagConstraints) {
         this.gridBagConstraints = gridBagConstraints;
     }

@@ -22,14 +22,23 @@ public final class OnlineUsersModel extends AbstractModel {
 
     private OnlineUsersTableModel modeleTable = new OnlineUsersTableModel();
 
+    /**
+     *
+     */
     public OnlineUsersModel() {
         super();
     }
 
+    /**
+     *
+     */
     public class OnlineUsersTableModel extends AbstractTableModel {
         private String[] columnNames = { "Utilisateur", "Infos", "Morceaux" };
         private ArrayList<User> onlineUsers = new ArrayList();
 
+        /**
+         *
+         */
         public OnlineUsersTableModel() {
             super();
         }
@@ -48,16 +57,29 @@ public final class OnlineUsersModel extends AbstractModel {
             }
         }
 
+        /**
+         *
+         * @param row
+         * @return
+         */
         public User getUserAt(int row) {
             return this.onlineUsers.get(row);
         }
 
+        /**
+         *
+         * @param user
+         */
         public void addOnlineUser(final User user) {
             this.onlineUsers.add(user);
             fireTableRowsInserted(this.onlineUsers.size()-1, this.onlineUsers.size()-1);
             (OnlineUsersModel.this).notifyObservers("ONLINE_USER_ADDED");
         }
 
+        /**
+         *
+         * @param userId
+         */
         public void removeOnlineUser(final String userId) {
             for (int row = 0; row < this.onlineUsers.size(); row++) {
                 if (this.onlineUsers.get(row).getUserId().equals(userId)) {
@@ -91,32 +113,61 @@ public final class OnlineUsersModel extends AbstractModel {
             return this.columnNames[col];
         }
 
+        /**
+         *
+         * @return
+         */
         public String[] getColumnNames() {
             return this.columnNames;
         }
 
+        /**
+         *
+         * @param stringTable
+         */
         public void setColumnNames(String[] stringTable) {
             this.columnNames = stringTable;
         }
 
+        /**
+         *
+         * @return
+         */
         public ArrayList<User> getOnlineUsers() {
             return this.onlineUsers;
         }
 
+        /**
+         *
+         * @param userList
+         */
         public void setOnlineUsers(ArrayList<User> userList) {
             this.onlineUsers = userList;
             (OnlineUsersModel.this).notifyObservers("LIST_ONLINE_USERS_SET");
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public OnlineUsersTableModel getModeleTable() {
         return this.modeleTable;
     }
 
+    /**
+     *
+     * @param modele
+     */
     public void setModeleTable(final OnlineUsersTableModel modele) {
         this.modeleTable = modele;
     }
 
+    /**
+     *
+     * @param searchId
+     * @param userId
+     */
     public void searchSongsFromUserId(final String searchId, final String userId) {
         // Vérifier si c'est bon
         WindowComponent win = WindowComponent.getInstance();
@@ -124,7 +175,14 @@ public final class OnlineUsersModel extends AbstractModel {
     }
 
     //METHODE POUR LES TESTS
-    public ArrayList<Song> searchSongsFromUserId2(final String seachId, final String userId) {
+
+    /**
+     *
+     * @param seachId
+     * @param userId
+     * @return
+     */
+        public ArrayList<Song> searchSongsFromUserId2(final String seachId, final String userId) {
         // --------------- À supprimer dès que possible (pour le test) ------------------
         ArrayList<Song> songResults = new ArrayList();
         songResults.add(new Song("1", "Title1", "Author1", "USER - " + userId, new LinkedList()));
