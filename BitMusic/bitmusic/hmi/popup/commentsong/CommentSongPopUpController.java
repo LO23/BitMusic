@@ -8,6 +8,9 @@ package bitmusic.hmi.popup.commentsong;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.hmi.popup.informationssong.InfosSongPopUpController;
+import bitmusic.hmi.popup.informationssong.InfosSongPopUpModel;
+import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -32,24 +35,42 @@ public final class CommentSongPopUpController extends AbstractController<Comment
             Boolean canComment = true;
 
             String comment = view.getCommentField().getText();
-            if(comment.isEmpty())
-            {
+            if(comment.isEmpty()) {
                 canComment =  false;
             }
 
-            if(canComment)
-            {
+            if(canComment) {
                 //Appel à l'API pour commenter un morceau
+
+                CommentSongPopUpModel model = CommentSongPopUpController.this.getModel();
+
+                if (!comment.equals("")) {
+                    // add the comment to the song
+                    Song song = model.getSong();
+                    boolean added = win.getApiMusic().addCommentFromHmi(song.getSongId(), comment);
+                    if(added==true) {
+                        System.out.println("---- Commentaire ajouté : " + comment);
+
+                        // ouverture d'une boite de dialogue pour confirmer l'ajout du commentaire
+                        JOptionPane.showMessageDialog( view,"Validé !","Commentaire bien ajouté ! ",
+                            JOptionPane.OK_OPTION);
+                    }
+                }
             }
 
-            else
-            {
+            else {
                 JOptionPane.showMessageDialog(
                         view,
                         "Veuillez laisser un commentaire !",
                         "Champs commentaire vide !",
                         JOptionPane.WARNING_MESSAGE);
             }
+
+            // close the pop up now
+            int parentTabId = CommentSongPopUpController.this.getView().getParentTabId();
+            //win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
+            InfosSongPopUpController.popUp.dispose();
+
         }
 
     }
