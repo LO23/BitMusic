@@ -32,6 +32,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     private final String type = "POPUP";
     private int parentTabId;
+    
     private final JLabel titleLabel = new JLabel("Titre : ");
     private final JLabel artistLabel = new JLabel("Artiste : ");
     private final JLabel albumLabel = new JLabel("Album : ");
@@ -75,7 +76,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
 
 
-        this.commentButton.addActionListener(this.getController().new CommentListener());
+        this.commentButton.addActionListener(this.getController().new CommentPopUpOpenListener());
 
         // TODO : ajouter à la vue songs tags, comments, rate
 

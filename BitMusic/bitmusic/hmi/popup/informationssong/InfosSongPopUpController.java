@@ -31,26 +31,17 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
         }
     }
 
-    public class CommentListener implements ActionListener {
+    public class CommentPopUpOpenListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("---- Clic sur le bouton Annuler");
+            System.out.println("---- Clic sur le bouton Commenter");
             WindowComponent win = WindowComponent.getInstance();
-            String comment = InfosSongPopUpController.this.getView().getCommentField().getText();
-            InfosSongPopUpModel model = InfosSongPopUpController.this.getModel();
-
-            if (!comment.equals("")) {
-                // add the comment to the song
-                Song song = model.getSong();
-                boolean added = win.getApiMusic().addCommentFromHmi(song.getSongId(), comment);
-                if(added==true) {
-                    System.out.println("---- Commentaire ajouté : " + comment);
-                }
-            }
+            // ouvrir  la pop up CommentSongPopUp
 
             // À décommenter dès que la PopUp est implémentée dans le XXXXXXXXComponent (créant la PopUp)
             int parentTabId = InfosSongPopUpController.this.getView().getParentTabId();
-            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();        }
+            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
+        }
     }
 }
