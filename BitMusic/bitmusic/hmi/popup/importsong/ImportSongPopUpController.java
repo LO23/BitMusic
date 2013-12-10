@@ -24,10 +24,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public final class ImportSongPopUpController extends AbstractController<ImportSongPopUpModel, ImportSongPopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public ImportSongPopUpController(final ImportSongPopUpModel model, final ImportSongPopUpView view) {
         super(model, view);
     }
 
+    /**
+     *
+     */
     public class FileBrowseListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -44,6 +52,9 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         }
     }
 
+    /**
+     *
+     */
     public class AddNewTagListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -59,6 +70,9 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         }
     }
 
+    /**
+     *
+     */
     public class CancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -67,6 +81,9 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         }
     }
 
+    /**
+     *
+     */
     public class SubmitListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -83,6 +100,9 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
                         view.getAlbumField().getText(),
                         new LinkedList<String>(view.getTagList().getSelectedValuesList()),
                         null);
+
+                win.getMyProfileComponent().getController().new MySongsListener().actionPerformed(null); // ligne à supprimer si possible
+
                 win.getMyProfileComponent().getController().getPopUp().dispose();
             }
             else {
@@ -96,6 +116,10 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
 

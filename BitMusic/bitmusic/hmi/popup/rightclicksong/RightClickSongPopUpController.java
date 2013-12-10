@@ -14,6 +14,11 @@ import bitmusic.hmi.patterns.AbstractController;
  */
 public final class RightClickSongPopUpController extends AbstractController<RightClickSongPopUpModel, RightClickSongPopUpView> {
 
+    /**
+     *
+     * @param model
+     * @param view
+     */
     public RightClickSongPopUpController(final RightClickSongPopUpModel model, final RightClickSongPopUpView view) {
         super(model, view);
     }

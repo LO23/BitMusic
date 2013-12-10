@@ -17,10 +17,16 @@ public final class CategoriesView extends AbstractView<CategoriesController> {
 
     private static final String type = "WEST";
 
+    /**
+     *
+     */
     public CategoriesView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- CategoriesView.initPanel()");
@@ -28,11 +34,20 @@ public final class CategoriesView extends AbstractView<CategoriesController> {
         // TODO
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- CategoriesView.update() -> " + str);

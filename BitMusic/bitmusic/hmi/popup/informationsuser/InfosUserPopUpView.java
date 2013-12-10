@@ -34,10 +34,16 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
     private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
     private JLabel avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
 
+    /**
+     *
+     */
     public InfosUserPopUpView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- InfosUserPopUpView.initPanel()");
@@ -89,11 +95,20 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
         );
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- InfosUserPopUpView.update() -> " + str);

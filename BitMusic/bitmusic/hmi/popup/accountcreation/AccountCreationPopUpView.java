@@ -17,8 +17,9 @@ import javax.swing.JTextField;
 
 //import com.toedter.calendar.JDateChooser;
 /**
+ * <b> AccountCreationPopUpView est la classe de la vue de la fenêtre de connexion</br>
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class AccountCreationPopUpView extends AbstractView<AccountCreationPopUpController> {
 
@@ -47,11 +48,16 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
 
     private ArrayList<JTextField> listCompulsoryFields = new ArrayList();
 
-
+    /**
+     * Constructeur de la vue
+     */
     public AccountCreationPopUpView() {
         super();
     }
 
+    /**
+     *
+     */
     @Override
     public void initPanel() {
         System.out.println("--- AccountCreationPopUpView.initPanel()");
@@ -157,76 +163,156 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
         );
     }
 
+    /**
+     * Le type de la PopUp correspend à son emplacement dans l'écran
+     * @return Le type de la popup
+     */
     @Override
     public String getType() {
         return type;
     }
 
+    /**
+     * Mis à jour de la vue
+     * @param obj
+     * @param str
+     */
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- AccountCreationPopUp.update() -> " + str);
     }
 
+    /**
+     * Retourne le login de l'utilisateur.
+     * @return Le login de l'utilisateur, sous forme d'un JTextField.
+     */
     public JTextField getLoginField() {
         return loginField;
     }
 
+    /**
+     * Met à jour le login de l'utilisateur.
+     * @param loginField
+     *                  Le nouveau Login de l'utilisateur.
+     */
     public void setLoginField(JTextField loginField) {
         this.loginField = loginField;
     }
 
+    /**
+     * Retourne la date de naissance de l'utilisateur.
+     * @return La date de naissance de l'utilisateur, sous forme d'un JTextField.
+     */
     public JTextField getBirthdateField() {
         return birthdateField;
     }
 
+    /**
+     * Met à jour la date de naissance de l'utilisateur.
+     * @param birthdateField
+     *                      Date de naissance de l'utilisateur.
+     */
     public void setBirthdateField(JTextField birthdateField) {
         this.birthdateField = birthdateField;
     }
 
+    /**
+     * Retourne le mot de passe saisi.
+     * @return Le mot de passe saisi, sous forme d'un JTextField.
+     */
     public JTextField getPasswordField() {
         return passwordField;
     }
 
+    /**
+     * Met à jour le mot de passe de l'utilisateur.
+     * @param passwordField
+     *                      Mot de passe de l'utilisateur.
+     */
     public void setPasswordField(JTextField passwordField) {
         this.passwordField = passwordField;
     }
 
+    /**
+     * Retourne la confirmation du mot de passe saisi.
+     * @return la confirmation du mot de passe saisi, sous forme d'un JTextField.
+     */
     public JTextField getConfirmField() {
         return confirmField;
     }
 
+    /**
+     * Met à jour la confirmation du mot de passe.
+     * @param confirmField
+     *                    Champs de confirmation du mot de passe.
+     */
     public void setConfirmField(JTextField confirmField) {
         this.confirmField = confirmField;
     }
 
+    /**
+     * Retourne le prénom de l'utilisateur.
+     * @return le prénom de l'utilisateur sous forme d'un JTextField.
+     */
     public JTextField getFirstnameField() {
         return firstnameField;
     }
 
+    /**
+     * Met à jour le prénom de l'utilisateur.
+     * @param firstnameField
+     *                      Nom de l'utilisateur.
+     */
     public void setFirstnameField(JTextField firstnameField) {
         this.firstnameField = firstnameField;
     }
 
+    /**
+     * Retourne le nom de l'utilisateur.
+     * @return le nom de l'utilisateur sous forme d'un JTextField
+     */
     public JTextField getLastnameField() {
         return lastnameField;
     }
 
+    /**
+     * Met à jour le nom de l'utilisateur
+     * @param lastnameField
+     *                  Nom de l'utilisateur.
+     */
     public void setLastnameField(JTextField lastnameField) {
         this.lastnameField = lastnameField;
     }
 
+    /**
+     * Retourne le path de l'avatar.
+     * @return le path de l'avatar sous forme d'un JTextField.
+     */
     public JTextField getAvatarField() {
         return avatarField;
     }
 
+    /**
+     * Met à jour le path de l'avatar
+     * @param avatarField
+     *              Path de l'avatar
+     */
     public void setAvatarField(JTextField avatarField) {
         this.avatarField = avatarField;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<JTextField> getListCompulsoryFields() {
         return listCompulsoryFields;
     }
 
+    /**
+     *
+     * @param listCompulsoryFields
+     */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
         this.listCompulsoryFields = listCompulsoryFields;
     }
