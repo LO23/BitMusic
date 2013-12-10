@@ -14,11 +14,7 @@ import bitmusic.music.business.SongLoader;
 import bitmusic.music.business.SongPlayer;
 import bitmusic.music.business.SongRater;
 import bitmusic.music.business.SongSearcher;
-import bitmusic.music.business.strategies.AlbumSearchStrategy;
-import bitmusic.music.business.strategies.ArtistSearchStrategy;
-import bitmusic.music.business.strategies.SongSearcherStrategy;
 import bitmusic.music.business.strategies.TagSearchStrategy;
-import bitmusic.music.business.strategies.TitleSearchStrategy;
 import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import bitmusic.music.exception.CopyMP3Exception;
@@ -222,15 +218,18 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param tags song tags
      * @param rights song rights
      */
-    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
+    public boolean importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
         SongLoader songLoader = new SongLoader();
         try {
             songLoader.importSong(path, title, artist, album, tags);
         } catch (CopyMP3Exception excep) {
             System.out.println(excep.getMessage());
+            return false;
         } catch ( IOException excep) {
             System.out.println(excep.getMessage());
+            return false;
         }
+        return true;
 
     }
     
@@ -342,7 +341,20 @@ public final class ApiMusicImpl implements ApiMusic {
      */
     public String getTempSongFile(String userId, String songId){
         SongLoader songLoader = new SongLoader();
-        return songLoader.getTempSongPath(userId, songId);
+        return songLoader.generateTempSongPath(userId, songId);
+    }
+    
+    public boolean saveTempSong(String userId, String songId, String destination){
+        SongLoader songLoader = new SongLoader();
+        try{
+            return songLoader.saveTempSong(userId, songId,destination);
+        } catch(CopyMP3Exception excep){
+            System.out.println(excep.getMessage());
+            return false;
+        } catch(IOException ie){
+            System.out.println(ie.getMessage());
+            return false;
+        }
     }
     
     /**
@@ -370,7 +382,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public SongLibrary searchSongsByAlbum(String searchId, List<String> albumList) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, albumList, new AlbumSearchStrategy());
+        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, albumList, new TagSearchStrategy());
         return localTaggedSongs;
     }
 
@@ -378,7 +390,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public SongLibrary searchSongsByArtist(String searchId, List<String> artistList) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, artistList, new ArtistSearchStrategy());
+        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, artistList, new TagSearchStrategy());
         return localTaggedSongs;
     }
 
@@ -386,7 +398,7 @@ public final class ApiMusicImpl implements ApiMusic {
     public SongLibrary searchSongsByTitle(String searchId, List<String> titleList) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, titleList, new TitleSearchStrategy());
+        SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, titleList, new TagSearchStrategy());
         return localTaggedSongs;
     }
 
