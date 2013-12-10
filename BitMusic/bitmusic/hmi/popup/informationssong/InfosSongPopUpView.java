@@ -32,7 +32,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     private final String type = "POPUP";
     private int parentTabId;
-    
+
+
+
     private final JLabel titleLabel = new JLabel("Titre : ");
     private final JLabel artistLabel = new JLabel("Artiste : ");
     private final JLabel albumLabel = new JLabel("Album : ");

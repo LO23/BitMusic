@@ -65,8 +65,11 @@ public final class CommentSongPopUpController extends AbstractController<Comment
                         "Champs commentaire vide !",
                         JOptionPane.WARNING_MESSAGE);
             }
+
+            // close the pop up now
             int parentTabId = CommentSongPopUpController.this.getView().getParentTabId();
             win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
+            // TO COMPLETE
 
         }
 
