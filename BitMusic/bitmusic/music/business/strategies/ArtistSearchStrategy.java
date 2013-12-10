@@ -19,7 +19,7 @@ public class ArtistSearchStrategy extends SongSearcherStrategy{
     @Override
     public void distantSearch(String localUserId, String userIdDest, String searchId, List<String> matcherList) throws NetworkException {
         // Controller.getInstance().getApiMusic().searchSongsByAristes(localUserId, userIdDest, searchId, matcherList);
-    }
+    };
 
     @Override
     protected boolean matched(String matcher, Song song) {

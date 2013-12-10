@@ -182,12 +182,12 @@ public final class OnlineUsersModel extends AbstractModel {
      * @param userId
      * @return
      */
-        public ArrayList<Song> searchSongsFromUserId2(final String seachId, final String userId) {
+        //public ArrayList<Song> searchSongsFromUserId2(final String seachId, final String userId) {
         // --------------- À supprimer dès que possible (pour le test) ------------------
-        ArrayList<Song> songResults = new ArrayList();
-        songResults.add(new Song("1", "Title1", "Author1", "USER - " + userId, new LinkedList()));
-        songResults.add(new Song("2", "Title2", "Author2", "USER - " + userId, new LinkedList()));
+       // ArrayList<Song> songResults = new ArrayList();
+        //songResults.add(new Song("1", "Title1", "Author1", "USER - " + userId, new LinkedList()));
+        //songResults.add(new Song("2", "Title2", "Author2", "USER - " + userId, new LinkedList()));
         // ------------------------------------------------------------------------------
-        return songResults;
-    }
+        //return songResults;
+   // }
 }
