@@ -6,6 +6,8 @@
 
 package bitmusic.hmi.popup.informationssong;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
+import bitmusic.hmi.modules.playbar.PlayBarModel;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.music.data.Comment;
@@ -51,12 +53,11 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     // Conteneur des commentaires
     private JPanel commentsPanel;
-
-
     /**
      *
      * @param parentTabId
      */
+
     public InfosSongPopUpView(int parentTabId) {
         super();
         this.parentTabId = parentTabId;
@@ -135,6 +136,8 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
 
+    // à mettre dans le model
+
     public void updateCommentsPanel(JPanel panel, LinkedList<Comment> comments) {
         //SpringLayout commentsLayout = new SpringLayout();
         GridLayout commentsLayout = new GridLayout(comments.size(), 3); // rows, col, hgap, vgap
@@ -142,6 +145,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         panel.setSize(500,100);
         panel.setLayout(commentsLayout);
         panel.setBackground(Color.white);
+        String songID = this.getController().getModel().getSong().getSongId();
 
         // pour chaque commentaire, on cree deux labels: author et commentValue
         if (comments.isEmpty()) {
@@ -155,7 +159,8 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 JLabel author = new JLabel(c.getAuthor());
                 JLabel commentValue = new JLabel(c.getComment());
                 JButton deleteCommentButton = new JButton("X");
-                deleteCommentButton.addActionListener(this.getController().new DeleteCommentListener());
+                deleteCommentButton.addActionListener(
+                        this.getController().new DeleteCommentListener(songID, c.getAuthor(), c.getDate()));
                 /*commentsLayout.putConstraint(SpringLayout.WEST, author, 5, SpringLayout.WEST, panel);
                 commentsLayout.putConstraint(SpringLayout.NORTH, author, 5, SpringLayout.NORTH, panel);
 
@@ -183,6 +188,25 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     @Override
     public void update(Observable obj, String str) {
         System.out.println("----- InfosSongPopUpView.update() -> " + str);
+
+        InfosSongPopUpModel model = this.getController().getModel();
+        String text = model.getSong().getArtist() + " - " + model.getSong().getTitle();
+
+        // on effectue la mise à jour de la vue ici
+        WindowComponent win = WindowComponent.getInstance();
+
+        this.commentsPanel.removeAll();
+
+        this.updateCommentsPanel(commentsPanel, model.getCommentsOnTheSong());
+        //
+        //this.getCommentsPanel().repaint();
+        this.commentsPanel.validate();
+        this.commentsPanel.repaint();
+
+        win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().validate();
+        win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().repaint();
+
+        win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().pack();
     }
 
     /**
@@ -243,5 +267,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
     public JTextField getCommentField() {
         return commentField;
+    }
+
+    public JPanel getCommentsPanel() {
+        return commentsPanel;
     }
 }
