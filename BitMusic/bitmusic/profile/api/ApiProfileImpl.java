@@ -214,7 +214,7 @@ public class ApiProfileImpl implements ApiProfile {
             throw new ProfileExceptions(ProfileExceptionType.EmptyString);
     	if (categoryId == null || categoryId.isEmpty())
             throw new ProfileExceptions(ProfileExceptionType.EmptyString);
-        Rights tmpRight = currentUser.getSongs().getSong(songId).getRightsByCategory().get(categoryId);
+        Rights tmpRight = currentUser.getLocalSongs().getSong(songId).getRightsByCategory().get(categoryId);
 
         if(tmpRight == null){
             tmpRight = new Rights();
@@ -246,7 +246,7 @@ public class ApiProfileImpl implements ApiProfile {
 
     @Override
     public SongLibrary getSongLibrary() {
-        return currentUser.getSongs();
+        return currentUser.getLocalSongs();
     }
 
     @Override
