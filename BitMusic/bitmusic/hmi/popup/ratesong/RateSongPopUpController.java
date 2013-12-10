@@ -8,8 +8,6 @@ package bitmusic.hmi.popup.ratesong;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
-import bitmusic.hmi.popup.editsong.EditSongPopUpController;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,7 +45,6 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
             System.out.println("---- Clic sur le bouton valider");
 
             Integer grade = 0;
-
             if (RateSongPopUpController.this.getView().getSongRater1().isSelected()) {
                 grade = 1;
             }
@@ -63,7 +60,6 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
             else if (RateSongPopUpController.this.getView().getSongRater5().isSelected()) {
                 grade =5;
             }
-
 
             WindowComponent win = WindowComponent.getInstance();
             win.getApiMusic().addGradeFromHmi(RateSongPopUpController.this.getModel().getSong().getSongId(), grade);
