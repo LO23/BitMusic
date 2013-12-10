@@ -21,7 +21,7 @@ import javax.swing.JDialog;
  */
 public final class InfosSongPopUpController extends AbstractController<InfosSongPopUpModel, InfosSongPopUpView> {
 
-    private JDialog popUp;
+    public static JDialog popUp;
 
 
 

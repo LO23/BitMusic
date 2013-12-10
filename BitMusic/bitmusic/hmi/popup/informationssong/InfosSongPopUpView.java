@@ -133,6 +133,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
         panel.setSize(500,100);
         panel.setLayout(commentsLayout);
+        panel.setBackground(Color.white);
 
         // pour chaque commentaire, on cree deux labels: author et commentValue
         if (comments.isEmpty()) {
@@ -152,10 +153,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 commentsLayout.putConstraint(SpringLayout.NORTH, commentValue, 5, SpringLayout.NORTH, panel);*/
                 panel.add(author);
                 panel.add(commentValue);
-                panel.setBackground(Color.white);
+
             }
         }
-
     }
 
     @Override
