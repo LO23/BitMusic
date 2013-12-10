@@ -86,24 +86,33 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
 
                 Runnable r = new Runnable() {
                     public void run() {
-                        JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
-                        playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
-                        while( PlayBarController.this.getModel().isPlaying() ) {
-                            playBar.setValue(win.getApiMusic().getCurrentFrame());
-                            try {
-                                Thread.sleep(10);
-                            } catch (InterruptedException ex) {
-                                Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
+                        PlayBarController.this.sliderUpdater(win);
                     }
                 };
-                PlayBarController.this.sliderThread = new Thread(r);
-                PlayBarController.this.sliderThread.setName("SliderThread");
-                PlayBarController.this.sliderThread.setPriority(Thread.MAX_PRIORITY);
-                PlayBarController.this.sliderThread.start();
+                PlayBarController.this.startThread(r);
             }
         }
+    }
+
+    public void sliderUpdater(WindowComponent win) {
+        JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
+        playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
+        while( PlayBarController.this.getModel().isPlaying() ) {
+            playBar.setValue(win.getApiMusic().getCurrentFrame());
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void startThread(Runnable r) {
+        //PlayBarController.this.sliderThread.interrupt();
+        PlayBarController.this.sliderThread = new Thread(r);
+        PlayBarController.this.sliderThread.setName("SliderThread");
+        PlayBarController.this.sliderThread.setPriority(Thread.MAX_PRIORITY);
+        PlayBarController.this.sliderThread.start();
     }
 
     /**
@@ -141,7 +150,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     /**
      *
      */
-    
+
     public class SoundTimeListener implements ChangeListener {
 
         @Override
@@ -173,7 +182,17 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
             int range = playBar.getMaximum() - playBar.getMinimum();
             double newVal = range * percent;
             int result = (int)(playBar.getMinimum() + newVal);
-            playBar.setValue(result);
+
+            if ( !PlayBarController.this.getModel().isPlaying() ) {
+                PlayBarController.this.getModel().setIsPlaying(true);
+                Runnable r = new Runnable() {
+                    public void run() {
+                        PlayBarController.this.sliderUpdater(win);
+                    }
+                };
+                PlayBarController.this.startThread(r);
+            }
+
             win.getApiMusic().playSongFromSpecificFrame(result);
             System.out.println("---- Result = " + result +"\n");
         }
