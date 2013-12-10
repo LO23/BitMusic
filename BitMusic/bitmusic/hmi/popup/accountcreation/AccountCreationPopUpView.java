@@ -173,7 +173,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     }
 
     /**
-     * Mis à jour de la vue
+     * Mise à jour de la vue
      * @param obj
      * @param str
      */

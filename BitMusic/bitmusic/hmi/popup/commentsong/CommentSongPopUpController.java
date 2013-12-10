@@ -16,13 +16,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author unkedeuxke
+ * La classe du controlleur de la SongPopUp
+ * @author IHM
  */
 public final class CommentSongPopUpController extends AbstractController<CommentSongPopUpModel, CommentSongPopUpView> {
 
     /**
-     *
+     * Constructeur de la SongPopUp
      * @param model
      * @param view
      */
@@ -31,7 +31,8 @@ public final class CommentSongPopUpController extends AbstractController<Comment
     }
 
     /**
-     *
+     * Classe du listener sur le bouton valider.
+     * Soumettre un commentaire.
      */
     public class ValidateListener implements ActionListener {
         @Override
@@ -84,7 +85,8 @@ public final class CommentSongPopUpController extends AbstractController<Comment
     }
 
     /**
-     *
+     * Classe du listener sur le bouton réinitialiser.
+     * Réinitialise tous les champs.
      */
     public class ResetListener implements ActionListener    {
         @Override
@@ -96,7 +98,7 @@ public final class CommentSongPopUpController extends AbstractController<Comment
     }
 
     /**
-     *
+     * Classe du listener du bouton Annuler.
      */
     public class CancelListener implements ActionListener {
         @Override

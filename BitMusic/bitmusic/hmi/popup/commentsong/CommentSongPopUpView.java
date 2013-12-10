@@ -16,8 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- *
- * @author unkedeuxke
+ * La classe de la vue de CommentSongPopUp
+ * @author IHM
  */
 public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpController> {
 
@@ -32,7 +32,10 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     private final JButton validateButton = new JButton("Valider");
     private final JButton resetButton = new JButton("Réinitialiser");
 
-
+/**
+ * Constructeur CommentSongPopUpView
+ * @param parentTabId
+ */
 
     public CommentSongPopUpView(int parentTabId) {
 
@@ -94,8 +97,8 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     }
 
     /**
-     *
-     * @return
+     * Retourne le type de la PopUp qui correspend à son emplacement dans la fenêtre
+     * @return le type de la PopUp
      */
     @Override
     public String getType() {
@@ -113,21 +116,25 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     }
 
     /**
-     *
-     * @return
+     * Retourne le commentaire saisi par l'utilisateur.
+     * @return le commentaire saisi par l'utilisateur sous forme d'un JTextField.
      */
     public JTextField getCommentField() {
         return commentField;
     }
 
     /**
-     *
+     * Met à jour le commentaire saisi par l'utilisateur.
      * @param comment
+     *              Commentaire saisi par l'utilisateur.
      */
     public void setCommentField(JTextField comment) {
         this.commentField = comment;
     }
-
+    /**
+     *
+     * @return
+     */
     public int getParentTabId() {
         return parentTabId;
     }
