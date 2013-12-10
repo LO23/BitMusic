@@ -6,6 +6,7 @@
 
 package bitmusic.hmi.popup.editsong;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.music.data.Song;
@@ -29,7 +30,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
 
     private final String type = "POPUP";
     private final int parentTabId;
-    private final JLabel importSongLabel = new JLabel("<html><u>Importer un morceau</u></html>");
+    private final JLabel importSongLabel = new JLabel("<html><u>Editer un morceau</u></html>");
     private final JLabel titleLabel = new JLabel("Titre (*)");
     private JTextField titleField = new JTextField("");
     private final JLabel artistLabel = new JLabel("Artiste (*)");
@@ -66,7 +67,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
 
         this.titleField.setText(song.getTitle());
         this.artistField.setText(song.getArtist());
-        //this.fileField.setText(song.getPath());
+        this.fileField.setText(WindowComponent.getInstance().getApiMusic().getSongFile(song.getSongId()));
         this.albumField.setText(song.getAlbum());
         this.tagList.setModel(listTagsModel);
         this.tagsTablePane.setViewportView(this.tagList);
