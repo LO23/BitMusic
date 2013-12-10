@@ -8,6 +8,7 @@ package bitmusic.network.main;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.exception.NetworkException;
+import java.net.BindException;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
@@ -25,7 +26,10 @@ public class UDPNetworkListener extends AbstractNetworkListener {
      * @return unique instance of NetworkListener.
      */
     public static AbstractNetworkListener getInstance() {
-        NETLISTENER = new UDPNetworkListener(4445);
+        if (NETLISTENER == null) {
+            System.out.println("Init UDP LISTENER");
+            NETLISTENER = new UDPNetworkListener(4445);
+        }
         return NETLISTENER;
     }
 
