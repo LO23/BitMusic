@@ -148,17 +148,26 @@ public interface ApiMusic {
             
     
      /** 
-    * Add a song to SongLibrary
+    * Add a song to SongLibrary.
     * 
     * @param path  song path
     * @param title song title
     * @param album song album
     * @param tags  song tags
     * @param rights song rights
-    */
+    */    
+    public boolean importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rights);
     
-    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rights);
-     
+    /**
+     * Copy a song in temp folder to destination.
+     * 
+     * @param userId
+     * @param songId
+     * @param destination
+     * @return true if file saved, else false
+     */
+    public boolean saveTempSong(String userId, String songId, String destination);
+    
     /**
      * play a song from a distant user
      *

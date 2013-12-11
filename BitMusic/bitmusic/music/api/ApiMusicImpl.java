@@ -16,7 +16,6 @@ import bitmusic.music.business.SongRater;
 import bitmusic.music.business.SongSearcher;
 import bitmusic.music.business.strategies.AlbumSearchStrategy;
 import bitmusic.music.business.strategies.ArtistSearchStrategy;
-import bitmusic.music.business.strategies.SongSearcherStrategy;
 import bitmusic.music.business.strategies.TagSearchStrategy;
 import bitmusic.music.business.strategies.TitleSearchStrategy;
 import bitmusic.music.data.Grade;
@@ -222,15 +221,18 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param tags song tags
      * @param rights song rights
      */
-    public void importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
+    public boolean importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String, Rights> rights) {
         SongLoader songLoader = new SongLoader();
         try {
             songLoader.importSong(path, title, artist, album, tags);
         } catch (CopyMP3Exception excep) {
             System.out.println(excep.getMessage());
+            return false;
         } catch ( IOException excep) {
             System.out.println(excep.getMessage());
+            return false;
         }
+        return true;
 
     }
     
@@ -342,7 +344,20 @@ public final class ApiMusicImpl implements ApiMusic {
      */
     public String getTempSongFile(String userId, String songId){
         SongLoader songLoader = new SongLoader();
-        return songLoader.getTempSongPath(userId, songId);
+        return songLoader.generateTempSongPath(userId, songId);
+    }
+    
+    public boolean saveTempSong(String userId, String songId, String destination){
+        SongLoader songLoader = new SongLoader();
+        try{
+            return songLoader.saveTempSong(userId, songId,destination);
+        } catch(CopyMP3Exception excep){
+            System.out.println(excep.getMessage());
+            return false;
+        } catch(IOException ie){
+            System.out.println(ie.getMessage());
+            return false;
+        }
     }
     
     /**
