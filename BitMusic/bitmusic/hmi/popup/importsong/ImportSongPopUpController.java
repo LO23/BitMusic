@@ -92,8 +92,17 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
             ImportSongPopUpView view = ImportSongPopUpController.this.getView();
             List<String> tag = view.getTagList().getSelectedValuesList();
 
-            if (ImportSongPopUpController.this.checkAllCompulsoryFields()){
-                win.getApiMusic().importSong(
+            Boolean isImport = false;
+
+            if (!ImportSongPopUpController.this.checkAllCompulsoryFields()){
+                JOptionPane.showMessageDialog(
+                        view,
+                        "Tous les champs obligatoires doivent être renseignés !",
+                        "Attention aux champs",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                isImport = win.getApiMusic().importSong(
                         view.getFileField().getText(),
                         view.getTitleField().getText(),
                         view.getArtistField().getText(),
@@ -101,16 +110,17 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
                         new LinkedList<String>(view.getTagList().getSelectedValuesList()),
                         null);
 
-                win.getMyProfileComponent().getController().new MySongsListener().actionPerformed(null); // ligne à supprimer si possible
-
-                win.getMyProfileComponent().getController().getPopUp().dispose();
-            }
-            else {
-                JOptionPane.showMessageDialog(
+                if (isImport) {
+                    win.getMyProfileComponent().getController().new MySongsListener().actionPerformed(null); // ligne à supprimer si possible
+                }
+                else {
+                    JOptionPane.showMessageDialog(
                         view,
-                        "Tous les champs obligatoires doivent être renseignés !",
-                        "Attention aux champs",
-                        JOptionPane.WARNING_MESSAGE);
+                        "Le fichier n'a pas pu être importé !",
+                        "Erreur",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+                win.getMyProfileComponent().getController().getPopUp().dispose();
             }
 
         }

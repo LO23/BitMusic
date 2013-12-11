@@ -8,8 +8,11 @@ package bitmusic.hmi.popup.ratesong;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
+import bitmusic.music.data.Grade;
+import bitmusic.music.data.Song;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,6 +47,8 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton valider");
 
+            Song song = RateSongPopUpController.this.getModel().getSong();
+
             Integer grade = 0;
             if (RateSongPopUpController.this.getView().getSongRater1().isSelected()) {
                 grade = 1;
@@ -62,7 +67,26 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
             }
 
             WindowComponent win = WindowComponent.getInstance();
-            win.getApiMusic().addGradeFromHmi(RateSongPopUpController.this.getModel().getSong().getSongId(), grade);
+            String currentUserId = win.getApiProfile().getCurrentUser().getUserId();
+            Boolean isRate = false;
+
+            if (song.getOwnerId().equals(currentUserId)) {
+                //Musique locale
+                isRate = win.getApiMusic().addGradeFromHmi(RateSongPopUpController.this.getModel().getSong().getSongId(), grade);
+            }
+            else {
+                //Musique distante
+                isRate = win.getApiMusic().addGradeFromNetwork(RateSongPopUpController.this.getModel().getSong().getSongId(), new Grade(currentUserId, grade));
+            }
+
+            if (!isRate){
+                JOptionPane.showMessageDialog(
+                        RateSongPopUpController.this.getView(),
+                        "Le fichier n'a pas pu être importé !",
+                        "Erreur",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
             int parentTabId = RateSongPopUpController.this.getView().getParentTabId();
             win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
         }

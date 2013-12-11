@@ -6,9 +6,13 @@
 
 package bitmusic.hmi.popup.ratesong;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
+import bitmusic.music.data.Grade;
+import bitmusic.music.data.Song;
 import java.awt.Dimension;
+import java.util.HashMap;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -28,7 +32,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     private final JButton validateButton = new JButton("Valider");
     private final JButton cancelButton = new JButton("Annuler");
     private ButtonGroup groupRadio = new ButtonGroup();
-    private JRadioButton songRater0 = new JRadioButton("0", true);
+    private JRadioButton songRater0 = new JRadioButton("0", false);
     private JRadioButton songRater1 = new JRadioButton("1", false);
     private JRadioButton songRater2 = new JRadioButton("2", false);
     private JRadioButton songRater3 = new JRadioButton("3", false);
@@ -58,6 +62,32 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
         this.validateButton.addActionListener(this.getController().new ValiderListener());
         this.cancelButton.setSize(d);
         this.cancelButton.addActionListener(this.getController().new CancelListener());
+
+        Song song = this.getController().getModel().getSong();
+        String currentUserId = WindowComponent.getInstance().getApiProfile().getCurrentUser().getLogin(); //devrait être un userId !!! Issue à Profile
+        int rate = -1;
+        HashMap<String,Grade> mapGrade = song.getGrades();
+        if (mapGrade != null) {
+            Grade grade = mapGrade.get(currentUserId);
+            if (grade != null) {
+                rate = grade.getGrade();
+                System.out.println("note = " + rate);
+            }
+        }
+
+        if (rate==0)
+            songRater0.setSelected(true);
+        if (rate==1)
+            songRater1.setSelected(true);
+        else if (rate==2)
+            songRater2.setSelected(true);
+        else if (rate==3)
+            songRater3.setSelected(true);
+        else if (rate==4)
+            songRater4.setSelected(true);
+        else if (rate==5)
+            songRater5.setSelected(true);
+        //Sinon on n'a pas encore noté la musique on n'affiche rien
 
         // ajout dans un group radio pour faire en sorte de ne pouvoir cliquer que sur un bouton radio
         this.groupRadio.add(songRater0);
