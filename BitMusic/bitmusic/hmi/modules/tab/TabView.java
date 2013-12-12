@@ -10,6 +10,7 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.ButtonColumn;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.GroupLayout;
@@ -77,8 +78,6 @@ public final class TabView extends AbstractView<TabController> {
         gbc.weightx = 0;
         panelTab.add(this.btnClose, gbc);
 
-        // Contenu de l'onglet
-        JPanel jPanel = this.getPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new JTable(this.getController().getModel().getModeleTable());
         jTable1.addMouseListener(this.getController().new DoubleClickListener());
@@ -87,10 +86,15 @@ public final class TabView extends AbstractView<TabController> {
 
         // Attache des listeners aux colonnes concernées
         ButtonColumn editerColumn = new ButtonColumn(this.jTable1, this.getController().getEditer(), 3);
+        this.jTable1.getColumnModel().getColumn(3).setPreferredWidth(5);
         ButtonColumn supprimerColumn = new ButtonColumn(this.jTable1, this.getController().getSupprimer(), 4);
+        this.jTable1.getColumnModel().getColumn(4).setPreferredWidth(5);
         ButtonColumn infosColumn = new ButtonColumn(this.jTable1, this.getController().getInfos(), 5);
+        this.jTable1.getColumnModel().getColumn(5).setPreferredWidth(5);
         ButtonColumn noterColumn = new ButtonColumn(this.jTable1, this.getController().getNoter(), 6);
+        this.jTable1.getColumnModel().getColumn(6).setPreferredWidth(5);
         ButtonColumn sauvegarderColumn = new ButtonColumn(this.jTable1, this.getController().getSauvegarder(), 7);
+        this.jTable1.getColumnModel().getColumn(7).setPreferredWidth(5);
         // Il faut peut-être une colonne pour commenter ?
 
         GroupLayout layout = new GroupLayout(this.getPanel());
@@ -112,6 +116,8 @@ public final class TabView extends AbstractView<TabController> {
                 .addContainerGap()
                 .addComponent(jScrollPane1))
         );
+
+        this.getPanel().setPreferredSize(new Dimension(800, 400));
 
     }
 

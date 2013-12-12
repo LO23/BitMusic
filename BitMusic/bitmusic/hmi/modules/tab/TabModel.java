@@ -34,7 +34,7 @@ public final class TabModel extends AbstractModel {
      *
      */
     public class TabTableModel extends AbstractTableModel {
-        private String[] columnNames = { "Titre", "Artiste", "Album", "Éditer","Supprimer", "Infos", "Noter", "Sauvegarder" };
+        private String[] columnNames = { "Titre", "Artiste", "Album", "Éditer","Supprimer", "Infos", "Noter", "Sauver" };
         private ArrayList<Song> arrayListSong = new ArrayList();
 
         /**
