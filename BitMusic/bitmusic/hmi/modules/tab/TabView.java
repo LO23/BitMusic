@@ -10,6 +10,7 @@ import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.ButtonColumn;
 import bitmusic.hmi.patterns.Observable;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.GroupLayout;
@@ -77,8 +78,6 @@ public final class TabView extends AbstractView<TabController> {
         gbc.weightx = 0;
         panelTab.add(this.btnClose, gbc);
 
-        // Contenu de l'onglet
-        JPanel jPanel = this.getPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new JTable(this.getController().getModel().getModeleTable());
         jTable1.addMouseListener(this.getController().new DoubleClickListener());
@@ -112,6 +111,8 @@ public final class TabView extends AbstractView<TabController> {
                 .addContainerGap()
                 .addComponent(jScrollPane1))
         );
+
+        this.getPanel().setPreferredSize(new Dimension(800, 400));
 
     }
 
