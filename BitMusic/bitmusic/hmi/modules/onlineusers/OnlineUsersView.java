@@ -49,7 +49,9 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
         // Attache des listeners aux colonnes concernées
         ButtonColumn infosColumn = new ButtonColumn(this.table, this.getController().getInfos(), 1);
+        this.table.getColumnModel().getColumn(1).setPreferredWidth(5);
         ButtonColumn mp3Column = new ButtonColumn(this.table, this.getController().getMp3(), 2);
+        this.table.getColumnModel().getColumn(2).setPreferredWidth(5);
 
         this.onlineUsersTablePane = new JScrollPane(this.table);
 
