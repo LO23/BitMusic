@@ -21,7 +21,6 @@ import bitmusic.music.business.strategies.TitleSearchStrategy;
 import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import bitmusic.music.exception.CopyMP3Exception;
-import java.io.IOException;
 import bitmusic.music.player.BitMusicPlayer;
 import bitmusic.network.exception.NetworkException;
 import java.io.IOException;
@@ -29,8 +28,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -380,6 +378,14 @@ public final class ApiMusicImpl implements ApiMusic {
         SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, tagList, new TagSearchStrategy());
         return localTaggedSongs;
     }
+    
+    @Override
+    public SongLibrary searchLocalSongsByTags(List<String> tagList, String requestingUserId) {
+        SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        SongLibrary localTaggedSongs = songSearcher.getLocalSongs(requestingUserId, tagList, new TagSearchStrategy());
+        return localTaggedSongs;
+    }
 
     @Override
     public SongLibrary searchSongsByAlbum(String searchId, List<String> albumList) {
@@ -388,12 +394,28 @@ public final class ApiMusicImpl implements ApiMusic {
         SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, albumList, new AlbumSearchStrategy());
         return localTaggedSongs;
     }
-
+    
+    @Override
+    public SongLibrary searchLocalSongsByAlbum(List<String> albumList, String requestingUserId) {
+        SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        SongLibrary localTaggedSongs = songSearcher.getLocalSongs(requestingUserId, albumList, new AlbumSearchStrategy());
+        return localTaggedSongs;
+    }
+    
     @Override
     public SongLibrary searchSongsByArtist(String searchId, List<String> artistList) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);
         SongLibrary localTaggedSongs = songSearcher.searchSongs(searchId, artistList, new ArtistSearchStrategy());
+        return localTaggedSongs;
+    }
+    
+    @Override
+    public SongLibrary searchLocalSongsByArtist(List<String> artistList, String requestingUserId) {
+        SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        SongLibrary localTaggedSongs = songSearcher.getLocalSongs(requestingUserId, artistList, new ArtistSearchStrategy());
         return localTaggedSongs;
     }
 
@@ -406,6 +428,15 @@ public final class ApiMusicImpl implements ApiMusic {
     }
 
     @Override
+    public SongLibrary searchLocalSongsByTitle(List<String> titleList, String requestingUserId) {
+        SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
+        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
+        SongLibrary localTaggedSongs = songSearcher.getLocalSongs(requestingUserId, titleList, new TitleSearchStrategy());
+        return localTaggedSongs;
+    }
+    
+    @Override
+    @Deprecated
     public SongLibrary searchSongsByAll(String searchId, List<String> list) {
         SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
         SongSearcher songSearcher = new SongSearcher(localSongLibrary);

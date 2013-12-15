@@ -84,8 +84,6 @@ public interface ApiMusic {
      * @param date
      * @return false in order to send a comment request to the distant user
      */
-     
-     
     public boolean deleteComment(String songId, String authorId, Date date) ;
     
     
@@ -96,9 +94,6 @@ public interface ApiMusic {
     * @param userID
     * @param searchId 
     */
-    
-    
-    
     public void searchSongsByUser(String userID, String searchId);  
     
     /**
@@ -110,12 +105,29 @@ public interface ApiMusic {
     public SongLibrary searchSongsByTags(String searchId, List<String> tagList);
     
     /**
+     * Allows to search local songs relative with the tagList
+     * @param tagList The tag list to match.
+     * @param requestingUserId The user who demands the search / null if it is the local User
+     * @return local songs relative to the tagList.
+     */
+    public SongLibrary searchLocalSongsByTags(List<String> tagList, String requestingUserId);
+    
+    /**
      * Allows to search local and distant songs relative with the albumList
      * @param searchId The id of the search.
      * @param albumList The albums list to match.
      * @return local songs relative to the albumList.
      */
     public SongLibrary searchSongsByAlbum(String searchId, List<String> albumList);
+    
+    /**
+     * Allows to search local songs relative with the albumList
+     * @param albumList The albums list to match.
+     * @param requestingUserId The user who demands the search / null if it is the local User
+     * @return local songs relative to the albumList.
+     */
+    public SongLibrary searchLocalSongsByAlbum(List<String> albumList, String requestingUserId);
+    
     
     /**
      * Allows to search local and distant songs relative with the artistList
@@ -126,12 +138,28 @@ public interface ApiMusic {
     public SongLibrary searchSongsByArtist(String searchId, List<String> artistList);
     
     /**
+     * Allows to search local songs relative with the artistList
+     * @param artistList The albums list to match.
+     * @param requestingUserId The user who demands the search / null if it is the local User
+     * @return local songs relative to the artistList.
+     */
+    public SongLibrary searchLocalSongsByArtist(List<String> artistList, String requestingUserId);
+    
+    /**
      * Allows to search local and distant songs relative with the titleList
      * @param searchId The id of the search.
      * @param titleList The titles list to match.
      * @return local songs relative to the titleList.
      */
     public SongLibrary searchSongsByTitle(String searchId, List<String> titleList);
+    
+   /**
+     * Allows to search local songs relative with the titleList
+     * @param titleList The titles list to match.
+     * @param requestingUserId The user who demands the search / null if it is the local User
+     * @return local songs relative to the titleList.
+     */
+    public SongLibrary searchLocalSongsByTitle(List<String> titleList, String requestingUserId);
     
     /**
      * WARNING : DOES NOT WORK FOR THE MOMENT - MUST BE IMPLEMENTED
@@ -140,12 +168,8 @@ public interface ApiMusic {
      * @param list The tags, artists, albums, titles, users list to match.
      * @return local songs relative to the list.
      */
+    @Deprecated
     public SongLibrary searchSongsByAll(String searchId, List<String> list);
-    
-    
-            
-   
-            
     
      /** 
     * Add a song to SongLibrary.

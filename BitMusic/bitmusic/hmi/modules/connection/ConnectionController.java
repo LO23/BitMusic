@@ -13,6 +13,8 @@ import bitmusic.profile.classes.User;
 import bitmusic.profile.utilities.ProfileExceptions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,9 +99,6 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                 win.initAllComponents();
                 //On démarre le network
                 win.startNetwork();
-                //On notifie le réseau de notre connexion
-                //(ce n'est plus à Profile de le faire dans checkPassword, mais à nous !)
-                User currentUser = win.getApiProfile().getCurrentUser();
             }
             else {
                 JOptionPane.showMessageDialog(
@@ -109,6 +108,23 @@ public final class ConnectionController extends AbstractController<ConnectionMod
                         JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
+
+    public class EnterKeyListener implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent ke) {}
+
+        @Override
+        public void keyPressed(KeyEvent ke) {
+            if (ke.getKeyCode()==KeyEvent.VK_ENTER){
+                ConnectionController.this.new ConnectionListener().actionPerformed(null);
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent ke) {}
+
     }
 
     /**

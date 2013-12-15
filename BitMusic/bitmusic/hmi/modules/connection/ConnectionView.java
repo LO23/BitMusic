@@ -6,6 +6,7 @@
 
 package bitmusic.hmi.modules.connection;
 
+import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -62,6 +64,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
         this.resetButton.addActionListener(this.getController().new ResetListener());
         this.connectButton.addActionListener(this.getController().new ConnectionListener());
         this.createUserButton.addActionListener(this.getController().new CreateNewUserListener());
+        this.passwordField.addKeyListener(this.getController().new EnterKeyListener());
 
         GroupLayout layout = new GroupLayout(this.getPanel());
         this.getPanel().setLayout(layout);
@@ -111,6 +114,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
                     .addComponent(createUserButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
     }
 
     /**

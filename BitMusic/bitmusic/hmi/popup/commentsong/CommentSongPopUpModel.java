@@ -19,10 +19,9 @@ public final class CommentSongPopUpModel extends AbstractModel {
     private Song song;
 /**
  * Constructeur de la classe CommentSongPopUp
- * @param song 
+ * @param song
  */
     public CommentSongPopUpModel(Song song) {
-
         super();
         this.song = song;
     }
