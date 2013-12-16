@@ -83,7 +83,7 @@ public final class MessageSendSongFile extends AbstractMessage {
             //final String pathFile = "/tmp/" + this.userId + this.songId;
             final Path path = Paths.get(pathFile);
             //write byte into a file
-            Files.write(path, this.mp3Array, null,
+            Files.write(path, this.mp3Array,
                     StandardOpenOption.CREATE, StandardOpenOption.WRITE);
             if (temporary) {
                 bitmusic.music.api.ApiMusicImpl.getInstance().
