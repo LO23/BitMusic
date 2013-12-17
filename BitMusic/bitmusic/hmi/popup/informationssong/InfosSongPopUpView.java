@@ -192,11 +192,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 JButton deleteCommentButton = new JButton("X");
                 deleteCommentButton.addActionListener(
                         this.getController().new DeleteCommentListener(songID, c.getAuthor(), c.getDate()));
-                /*commentsLayout.putConstraint(SpringLayout.WEST, author, 5, SpringLayout.WEST, panel);
-                commentsLayout.putConstraint(SpringLayout.NORTH, author, 5, SpringLayout.NORTH, panel);
 
-                commentsLayout.putConstraint(SpringLayout.WEST, commentValue, 5, SpringLayout.EAST, author);
-                commentsLayout.putConstraint(SpringLayout.NORTH, commentValue, 5, SpringLayout.NORTH, panel);*/
                 panel.add(author);
                 panel.add(commentValue);
                 panel.add(deleteCommentButton);
