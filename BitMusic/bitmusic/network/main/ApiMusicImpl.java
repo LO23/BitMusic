@@ -47,34 +47,6 @@ public final class ApiMusicImpl implements ApiMusic {
     /* IMPLEMENTED METHODS */
     /*########################################################################*/
     /**
-     * Send a comment about a song to a distant user.
-     *
-     * @param song song concerned
-     * @param comment the new comment to add
-     * @throws NetworkException thrown when the user doesn't have
-     *                           sufficient rights
-    */
-    @Override
-    public void addComment(final Song song, final Comment comment)
-            throws NetworkException {
-        //Get the source address
-        //Warning, it may emmit an exception thrown to the calling method!
-        final String sourceAddress = Controller.getNetworkAddress();
-
-        final String destAddress = Controller.getInstance().
-        getUserIpFromDirectory(song.getOwnerId());
-
-
-        final MessageAddComment message = new MessageAddComment(
-                EnumTypeMessage.AddComment,
-                sourceAddress,
-                destAddress,
-                song.getOwnerId(),
-                song,
-                comment);
-        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
-    }
-    /**
      * Network message send to a distant user to ask him to send his songList.
      *
      * @param operator user that is asking
