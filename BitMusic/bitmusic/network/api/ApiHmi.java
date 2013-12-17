@@ -6,10 +6,7 @@
 
 package bitmusic.network.api;
 
-<<<<<<< HEAD
-=======
 import bitmusic.music.data.Comment;
->>>>>>> 856d302a4536a2924d53df61dbfd85e99482351a
 import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
