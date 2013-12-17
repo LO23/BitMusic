@@ -16,15 +16,7 @@ import java.util.List;
  * @author florian, alexis
  */
 public interface ApiMusic {
-    /**
-     * Send a comment about a song to a distant user.
-     *
-     * @param song song concerned
-     * @param comment the new comment to add
-     * @throws NetworkException thrown when the user doesn't exist
-    */
-    void addComment(final Song song, final Comment comment)
-            throws NetworkException;
+
     /**
      * Network message send to a distant user to ask him to send his songList.
      *

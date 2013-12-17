@@ -112,6 +112,7 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
 
             // On n'actualise pas les Songs à l'intérieur du Tab, la méthode est asynchrone
             // On les recevra quand le réseau nous notifiera avec la méthode notifySongListBySearchId
+            tabToFocusOn.getModel().getModeleTable().removeAllSongs();
 
             // Met le focus sur le Tab de notre requête
             centralAreaComponent.getView().getTabbedPane().setSelectedComponent(tabToFocusOn.getView().getPanel());
