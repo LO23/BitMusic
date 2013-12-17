@@ -31,6 +31,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     private final JLabel rateSongLabel = new JLabel("Noter un morceau");
     private final JButton validateButton = new JButton("Valider");
     private final JButton cancelButton = new JButton("Annuler");
+    private final JButton deleteRate = new JButton("Supprimer");
     private ButtonGroup groupRadio = new ButtonGroup();
     private JRadioButton songRater0 = new JRadioButton("0", false);
     private JRadioButton songRater1 = new JRadioButton("1", false);
@@ -62,6 +63,8 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
         this.validateButton.addActionListener(this.getController().new ValiderListener());
         this.cancelButton.setSize(d);
         this.cancelButton.addActionListener(this.getController().new CancelListener());
+        this.deleteRate.setSize(d);
+        this.deleteRate.addActionListener(this.getController().new DeleteListener());
 
         Song song = this.getController().getModel().getSong();
         String currentUserId = WindowComponent.getInstance().getApiProfile().getCurrentUser().getUserId();
@@ -125,6 +128,9 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
                     .addComponent(this.songRater5)
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(this.deleteRate)
+                )
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(this.validateButton)
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -146,6 +152,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
                     .addComponent(this.songRater5)
                 )
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(this.deleteRate)
                     .addComponent(this.validateButton)
                     .addComponent(this.cancelButton)
                 )
