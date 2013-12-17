@@ -34,6 +34,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     private JRadioButton titleButton = new JRadioButton("Par titre", false);
     private JRadioButton authorButton = new JRadioButton("Par auteur", false);
     private JRadioButton tagButton = new JRadioButton("Par tag", false);
+    private JRadioButton albumButton = new JRadioButton("Par album", false);
 
     /**
      *
@@ -57,6 +58,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         this.titleButton.setSize(d);
         this.authorButton.setSize(d);
         this.tagButton.setSize(d);
+        this.albumButton.setSize(d);
 
         //this.searchLabel.setSize(d);
         this.searchField.setColumns(10);
@@ -65,6 +67,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
         groupeRadio.add(titleButton);
         groupeRadio.add(authorButton);
         groupeRadio.add(tagButton);
+        groupeRadio.add(albumButton);
 
         this.researchButton.addActionListener(this.getController().new ResearchListener());
 
@@ -92,6 +95,9 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addComponent(tagButton)
             )
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(albumButton)
+            )
 
         );
         layout.setVerticalGroup(layout.createSequentialGroup()
@@ -105,6 +111,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
                 .addComponent(titleButton)
                 .addComponent(authorButton)
                 .addComponent(tagButton)
+                .addComponent(albumButton)
             )
         );
 
@@ -174,6 +181,14 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
      */
     public JRadioButton getTagButton() {
         return this.tagButton;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JRadioButton getAlbumButton() {
+        return this.albumButton;
     }
 
     /**

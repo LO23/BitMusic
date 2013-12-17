@@ -55,6 +55,10 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
     /**
      *
      */
+    protected final String FILTER_ALBUM = "album";
+    /**
+     *
+     */
     protected final String FILTER_USER = "user";
 
     /**
@@ -153,6 +157,22 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
      */
     public String getFILTER_TAG() {
         return FILTER_TAG;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getFILTER_ALBUM() {
+        return FILTER_ALBUM;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getFILTER_USER() {
+        return FILTER_USER;
     }
 
 
