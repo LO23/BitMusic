@@ -17,8 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 /**
- *
- * @author unkedeuxke
+ * Classe de la vue de ImportSongPopUp
+ * @author IHM
  */
 public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpController> {
 
@@ -47,7 +47,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private JScrollPane tagsTablePane = new JScrollPane(this.tagList);
 
     /**
-     *
+     * Constructeur de ImportSongPopUpView
      */
     public ImportSongPopUpView() {
         super();
@@ -156,8 +156,8 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     *Retourne le type de la PopUp qui correspend à son emplacement dans la fenêtre
+     * @return le type de la PopUp
      */
     @Override
     public String getType() {
@@ -165,7 +165,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
+     * Fonction mettant à jour la vue
      * @param obj
      * @param str
      */
@@ -177,15 +177,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne le path du morceau
+     * @return fileField
      */
     public JTextField getFileField() {
         return fileField;
     }
 
     /**
-     *
+     * Met à jour le path du morceau
      * @param fileField
      */
     public void setFileField(JTextField fileField) {
@@ -193,15 +193,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne une liste de JTextField de la vue
+     * @return listCompulsoryFields
      */
     public ArrayList<JTextField> getListCompulsoryFields() {
         return listCompulsoryFields;
     }
 
     /**
-     *
+     * Met à jour la liste de JTextField de la vue
      * @param listCompulsoryFields
      */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
@@ -209,15 +209,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne le titre du morceau
+     * @return titleField
      */
     public JTextField getTitleField() {
         return titleField;
     }
 
     /**
-     *
+     * Met à jour le titre du morceau
      * @param titleField
      */
     public void setTitleField(JTextField titleField) {
@@ -225,15 +225,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne l'artiste
+     * @return artistField
      */
     public JTextField getArtistField() {
         return artistField;
     }
 
     /**
-     *
+     * Met à jour l'artiste d'un morceau
      * @param artistField
      */
     public void setArtistField(JTextField artistField) {
@@ -241,15 +241,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne l'album du morceau
+     * @return albumField
      */
     public JTextField getAlbumField() {
         return albumField;
     }
 
     /**
-     *
+     * Met à jour l'album du morceau
      * @param albumField
      */
     public void setAlbumField(JTextField albumField) {
@@ -257,31 +257,33 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne le panel des tags
+     * @return tagsTablePane
+     * @see JScrollPane
      */
     public JScrollPane getTagsTablePane() {
         return tagsTablePane;
     }
 
     /**
-     *
+     * Met à jour le panel des tags
      * @param tagsTablePane
+     * @see JScrollPane
      */
     public void setTagsTablePane(JScrollPane tagsTablePane) {
         this.tagsTablePane = tagsTablePane;
     }
 
     /**
-     *
-     * @return
+     * Retourne le nouveau tag
+     * @return newTagField
      */
     public JTextField getNewTagField() {
         return newTagField;
     }
 
     /**
-     *
+     * Met à jour le nouveau tag
      * @param newTagField
      */
     public void setNewTagField(JTextField newTagField) {
@@ -289,15 +291,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne le bouton ajouter un tag
+     * @return addTagButton
      */
     public JButton getAddTagButton() {
         return addTagButton;
     }
 
     /**
-     *
+     * Met à jour le bouton ajouter un tag
      * @param addTagButton
      */
     public void setAddTagButton(JButton addTagButton) {
@@ -305,21 +307,19 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Retourne la liste des tags
+     * @return tagList
      */
     public JList getTagList() {
         return tagList;
     }
 
     /**
-     *
+     * Met à jour la liste des tags
      * @param tagList
      */
     public void setTagList(JList tagList) {
         this.tagList = tagList;
     }
-
-
 
 }
