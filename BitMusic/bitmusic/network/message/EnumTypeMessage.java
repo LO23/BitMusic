@@ -44,6 +44,10 @@ public enum EnumTypeMessage {
      */
     NotifyNewConnection,
     /**
+    * Rate a distant song.
+    */
+    RateSong,
+    /**
      * Reply to a newly connected user with our own profile.
      */
     ReplyConnectionUser,
