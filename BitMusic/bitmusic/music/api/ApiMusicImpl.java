@@ -226,12 +226,35 @@ public final class ApiMusicImpl implements ApiMusic {
         } catch (CopyMP3Exception excep) {
             System.out.println(excep.getMessage());
             return false;
-        } catch ( IOException excep) {
+        } catch (IOException excep) {
             System.out.println(excep.getMessage());
             return false;
         }
         return true;
 
+    }
+    
+    /**
+     * Delete a song from the Songlibrary (and the local mp3).
+     * 
+     * @param songId
+     * @return true if deleted, else false
+     */
+    public boolean deleteSong(String songId){
+        SongLoader songLoader = new SongLoader();
+        try {
+            songLoader.deleteSong(songId);
+        } catch (CopyMP3Exception excep) {
+            System.out.println(excep.getMessage());
+            return false;
+        } catch (IOException excep) {
+            System.out.println(excep.getMessage());
+            return false;
+        }
+        SongLibrary localSongLibrary = 
+                ApiProfileImpl.getApiProfile().getSongLibrary();
+        localSongLibrary.removeSong(songId);        
+        return true;
     }
     
     public void playSong(Song song) {
@@ -345,17 +368,20 @@ public final class ApiMusicImpl implements ApiMusic {
         return songLoader.generateTempSongPath(userId, songId);
     }
     
-    public boolean saveTempSong(String userId, String songId, String destination){
+    public void saveSong(String userId, String songId, String destination){
         SongLoader songLoader = new SongLoader();
         try{
-            return songLoader.saveTempSong(userId, songId,destination);
+            songLoader.saveSong(userId, songId, destination);
         } catch(CopyMP3Exception excep){
             System.out.println(excep.getMessage());
-            return false;
         } catch(IOException ie){
             System.out.println(ie.getMessage());
-            return false;
         }
+    }
+    
+    public String getSavedSongPath(String userId, String songId){
+        SongLoader songLoader = new SongLoader();
+        return songLoader.getSongToDownload(userId, songId);
     }
     
     /**
