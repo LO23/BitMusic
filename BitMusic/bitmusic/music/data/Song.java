@@ -288,6 +288,7 @@ public class Song implements Serializable{
      * @param tags References the list of tag.
      * @param rightsByCategory References a map of rightsByCategory.*/
         String s = "Song -- songId : " + songId + " ; title : " + title + " ; artist : " + artist +" ; album : " + album;
+        s += "\nOwner : "+ownerId;
         s += "\n  Tags :";
         for (String tag : tags)
             s += " " + tag;
