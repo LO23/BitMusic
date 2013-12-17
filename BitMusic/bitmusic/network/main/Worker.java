@@ -8,7 +8,6 @@ package bitmusic.network.main;
 
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.network.message.AbstractMessage;
-import bitmusic.network.message.EnumTypeMessage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;

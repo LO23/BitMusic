@@ -15,11 +15,16 @@ import java.net.SocketException;
  *
  * @author Pak
  */
-public class UDPNetworkListener extends AbstractNetworkListener {
-        /**
+public final class UDPNetworkListener extends AbstractNetworkListener {
+    /**
      * UDP channel.
      */
-    private DatagramSocket UDPSERVER;
+    private transient DatagramSocket UDPSERVER;
+
+    /**
+     * UDP PORT
+     */
+    private static final int UDP_PORT = 4445;
 
         /**
      * @return unique instance of NetworkListener.
@@ -27,14 +32,18 @@ public class UDPNetworkListener extends AbstractNetworkListener {
     public static AbstractNetworkListener getInstance() {
         if (netlistener == null) {
             System.out.println("Init UDP LISTENER");
-            netlistener = new UDPNetworkListener(4445);
+            netlistener = new UDPNetworkListener(UDP_PORT);
         }
         return netlistener;
     }
 
+    /**
+     * Constructor.
+     * @param portToListen The port on which we want to listen
+     */
     public UDPNetworkListener(final int portToListen) {
         super(portToListen);
-        try{
+        try {
             UDPSERVER = new DatagramSocket(portListened);
         } catch (SocketException e) {
             WindowComponent.getInstance().getApiHmi()
@@ -48,7 +57,7 @@ public class UDPNetworkListener extends AbstractNetworkListener {
         try {
             Controller.getInstance().getThreadManager().
                                         assignTaskToDatagramWorker(UDPSERVER);
-        } catch(NetworkException e) {
+        } catch (NetworkException e) {
             e.printStackTrace();
         }
     }

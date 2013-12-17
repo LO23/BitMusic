@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 
 /**
  *
@@ -26,6 +24,11 @@ public class DatagramWorker extends AbstractManageable {
      * The socket use to exchange.
      */
     private final transient DatagramSocket socket;
+
+    /**
+     * Buffer size.
+     */
+    private static final int SIZE = 8000;
 
     /**
     *@param paramSocket The socket
@@ -40,12 +43,12 @@ public class DatagramWorker extends AbstractManageable {
      */
     @Override
     public final void run() {
-        byte[] buf = new byte[8000];
+        byte[] buf = new byte[SIZE];
 
         final DatagramPacket datagramPaquet = new DatagramPacket(buf,
                 buf.length);
 
-        while(true) {
+        while (true) {
             try {
                 socket.receive(datagramPaquet);
 
@@ -63,13 +66,14 @@ public class DatagramWorker extends AbstractManageable {
                         for example, because of Broadcast,
                         we don't treat it.
                     */
-                    System.out.println("m = "+message);
+                    System.out.println("m = " + message);
                     if (!message.getIpSource().
                             equals(Controller.getNetworkAddress())) {
                         message.treatment();
                     }
                 } catch (ClassNotFoundException e) {
-                    WindowComponent.getInstance().getApiHmi().errorNotification("Network", e.getMessage());
+                    WindowComponent.getInstance().getApiHmi().
+                            errorNotification("Network", e.getMessage());
                 }
             } catch (IOException e) {
                  WindowComponent.getInstance().getApiHmi()
