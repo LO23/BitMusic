@@ -48,7 +48,7 @@ public class SongRater {
      */
     public boolean addGradeFromHMI(String songId, int grade) {
         Song mySong = songLib.getSong(songId);
-        String author = apiProfil.getCurrentUser().getLogin();
+        String author = apiProfil.getCurrentUser().getUserId();
         Grade myGrade = new Grade(author, grade);
 
         mySong.addGrade(myGrade);
