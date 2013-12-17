@@ -11,12 +11,16 @@ import bitmusic.hmi.modules.playbar.PlayBarModel;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.music.data.Comment;
+import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.Vector;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -85,6 +89,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         this.songTitleLabel.setText(song.getTitle());
         this.songArtistLabel.setText(song.getArtist());
         this.songAlbumLabel.setText(song.getAlbum());
+        //update rateLabel
+        //this.rateLabel.setText(song.ge);
+        this.updateRateLabel();
 
         //BorderLayout commentsLayout = new BorderLayout();
 
@@ -147,6 +154,25 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // TODO
     }
 
+    public void updateRateLabel() {
+        String gradeAverage = "0";
+        double grade = 0;
+        Song song = this.getController().getModel().getSong();
+        HashMap<String, Grade> hashMap = song.getGrades();
+
+        // pour chaque entree de la table de hashage
+        for(Entry<String, Grade> entry : hashMap.entrySet()) {
+            //String author = entry.getKey();
+            grade = entry.getValue().getGrade() + grade;
+        }
+
+        // on fait la moyenne des notes obtenus
+        grade = (double) grade / (double) hashMap.size();
+        gradeAverage = String.valueOf(grade).toString();
+
+        // pour afficher note/nombre de notes
+        this.rateValueLabel.setText(gradeAverage + "/" + String.valueOf(hashMap.size()));
+    }
 
     // à mettre dans le model
 
