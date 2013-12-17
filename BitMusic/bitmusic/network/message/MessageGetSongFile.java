@@ -9,6 +9,7 @@ package bitmusic.network.message;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.music.api.ApiMusicImpl;
 import bitmusic.network.main.Controller;
+import bitmusic.profile.api.ApiProfileImpl;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -72,7 +73,7 @@ public final class MessageGetSongFile extends AbstractMessage {
                     //ipDest
                     this.ipSource,
                     //user id mp3 owner
-                    this.userId,
+                    ApiProfileImpl.getApiProfile().getCurrentUser().getUserId(),
                     //song id
                     this.songId,
                     //temporary file
