@@ -69,7 +69,8 @@ public class Hermes extends AbstractManageable {
             oos.writeObject(message);
 
             oos.flush();
-
+            
+            socket.close();
         } catch (IOException e) {
             WindowComponent.getInstance().getApiHmi()
                     .errorNotification("Network", e.getMessage());
@@ -100,6 +101,8 @@ public class Hermes extends AbstractManageable {
             oos.writeObject(message);
 
             oos.flush();
+
+            socket.close();
         } catch (IOException e) {
             WindowComponent.getInstance().getApiHmi()
                     .errorNotification("Network", e.getMessage());
