@@ -36,7 +36,31 @@ public interface ApiMusic {
     void getSongsByUser(final String operator, final String askedUser,
             final String researchId) throws NetworkException;
     /**
-     * Search songs in the LAN  with tag specified in the search.
+     * Search songs by album in the LAN  with tag specified in the search.
+     *
+     * @param operator asking user
+     * @param userIdDest id of the distant user
+     * @param searchId id of the research
+     * @param tagList list of tags
+     * @throws NetworkException thrown when the user doesn't exist
+     */
+    void searchSongsByAlbum(final String operator, final String userIdDest,
+            final String searchId, final List<String> tagList)
+            throws NetworkException;
+    /**
+     * Search songs by artist in the LAN  with tag specified in the search.
+     *
+     * @param operator asking user
+     * @param userIdDest id of the distant user
+     * @param searchId id of the research
+     * @param tagList list of tags
+     * @throws NetworkException thrown when the user doesn't exist
+     */
+    void searchSongsByArtist(final String operator, final String userIdDest,
+            final String searchId, final List<String> tagList)
+            throws NetworkException;
+    /**
+     * Search songs by tags in the LAN  with tag specified in the search.
      *
      * @param operator asking user
      * @param userIdDest id of the distant user
@@ -45,6 +69,18 @@ public interface ApiMusic {
      * @throws NetworkException thrown when the user doesn't exist
      */
     void searchSongsByTags(final String operator, final String userIdDest,
+            final String searchId, final List<String> tagList)
+            throws NetworkException;
+    /**
+     * Search songs by title in the LAN  with tag specified in the search.
+     *
+     * @param operator asking user
+     * @param userIdDest id of the distant user
+     * @param searchId id of the research
+     * @param tagList list of tags
+     * @throws NetworkException thrown when the user doesn't exist
+     */
+    void searchSongsByTitle(final String operator, final String userIdDest,
             final String searchId, final List<String> tagList)
             throws NetworkException;
     /**

@@ -51,7 +51,22 @@ public enum EnumTypeMessage {
      * Network message send to / receive from a distant user
      * to ask for songs with specific tags.
      */
-    SearchSongsByTag,
+    SearchSongsByAlbum,
+    /**
+     * Network message send to / receive from a distant user
+     * to ask for songs with specific tags.
+     */
+    SearchSongsByArtist,
+    /**
+     * Network message send to / receive from a distant user
+     * to ask for songs with specific tags.
+     */
+    SearchSongsByTags,
+    /**
+     * Network message send to / receive from a distant user
+     * to ask for songs with specific tags.
+     */
+    SearchSongsByTitle,
     /**
      * Network message send to / received from a distant user in response of
      * a TagRequestMessage or GetSongsMessage.

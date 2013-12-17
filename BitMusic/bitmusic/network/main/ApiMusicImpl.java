@@ -14,7 +14,10 @@ import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageAddComment;
 import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageGetSongsByUser;
-import bitmusic.network.message.MessageSearchSongsByTag;
+import bitmusic.network.message.MessageSearchSongsByAlbum;
+import bitmusic.network.message.MessageSearchSongsByArtist;
+import bitmusic.network.message.MessageSearchSongsByTags;
+import bitmusic.network.message.MessageSearchSongsByTitle;
 import java.util.List;
 
 /**
@@ -102,7 +105,70 @@ public final class ApiMusicImpl implements ApiMusic {
         Controller.getInstance().getThreadManager().assignTaskToHermes(message);
     }
     /**
-     * Search songs in the LAN  with tag specified in the search.
+     * Search songs by album in the LAN  with tag specified in the search.
+     *
+     * @param operator asking user
+     * @param userIdDest id of the distant user
+     * @param searchId id of the research
+     * @param tagList list of tags
+     * @throws NetworkException thrown when the user doesn't exist
+     */
+    @Override
+    public void searchSongsByAlbum(final String operator,
+            final String userIdDest, final String searchId,
+            final List<String> tagList) throws NetworkException {
+        //Get the source address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String sourceAddress = Controller.getNetworkAddress();
+
+        //Get the remote address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String destAddress = Controller.getInstance().
+                getUserIpFromDirectory(userIdDest);
+
+        final MessageSearchSongsByAlbum message = new MessageSearchSongsByAlbum(
+                EnumTypeMessage.SearchSongsByAlbum,
+                sourceAddress,
+                destAddress,
+                searchId,
+                tagList,
+                userIdDest);
+        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
+    }
+    /**
+     * Search songs by artist in the LAN  with tag specified in the search.
+     *
+     * @param operator asking user
+     * @param userIdDest id of the distant user
+     * @param searchId id of the research
+     * @param tagList list of tags
+     * @throws NetworkException thrown when the user doesn't exist
+     */
+    @Override
+    public void searchSongsByArtist(final String operator,
+            final String userIdDest, final String searchId,
+            final List<String> tagList) throws NetworkException {
+        //Get the source address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String sourceAddress = Controller.getNetworkAddress();
+
+        //Get the remote address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String destAddress = Controller.getInstance().
+                getUserIpFromDirectory(userIdDest);
+
+        final MessageSearchSongsByArtist message =
+                new MessageSearchSongsByArtist(
+                EnumTypeMessage.SearchSongsByArtist,
+                sourceAddress,
+                destAddress,
+                searchId,
+                tagList,
+                userIdDest);
+        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
+    }
+    /**
+     * Search songs by tags in the LAN  with tag specified in the search.
      *
      * @param operator asking user
      * @param userIdDest id of the distant user
@@ -123,8 +189,39 @@ public final class ApiMusicImpl implements ApiMusic {
         final String destAddress = Controller.getInstance().
                 getUserIpFromDirectory(userIdDest);
 
-        final MessageSearchSongsByTag message = new MessageSearchSongsByTag(
-                EnumTypeMessage.SearchSongsByTag,
+        final MessageSearchSongsByTags message = new MessageSearchSongsByTags(
+                EnumTypeMessage.SearchSongsByTags,
+                sourceAddress,
+                destAddress,
+                searchId,
+                tagList,
+                userIdDest);
+        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
+    }
+    /**
+     * Search songs by title in the LAN  with tag specified in the search.
+     *
+     * @param operator asking user
+     * @param userIdDest id of the distant user
+     * @param searchId id of the research
+     * @param tagList list of tags
+     * @throws NetworkException thrown when the user doesn't exist
+     */
+    @Override
+    public void searchSongsByTitle(final String operator,
+            final String userIdDest, final String searchId,
+            final List<String> tagList) throws NetworkException {
+        //Get the source address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String sourceAddress = Controller.getNetworkAddress();
+
+        //Get the remote address
+        //Warning, it may emmit an exception thrown to the calling method!
+        final String destAddress = Controller.getInstance().
+                getUserIpFromDirectory(userIdDest);
+
+        final MessageSearchSongsByTitle message = new MessageSearchSongsByTitle(
+                EnumTypeMessage.SearchSongsByTitle,
                 sourceAddress,
                 destAddress,
                 searchId,
