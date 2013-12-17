@@ -24,13 +24,13 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+ * Classe du controlleur de EditSongPopUp
  * @author unkedeuxke
  */
 public final class EditSongPopUpController extends AbstractController<EditSongPopUpModel, EditSongPopUpView> {
 
     /**
-     *
+     * Constructeur de EditSongPopUpController
      * @param model
      * @param view
      */
@@ -39,6 +39,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
+     * Listener sur le bouton parcourir de l'upload du nouveau son
      *
      */
     public class FileBrowseListener implements ActionListener {
@@ -58,7 +59,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
+     * Listener sur le bouton Annuler
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -71,7 +72,8 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
+     * Listener sur le bouton Editer
+     * Transmission des modifications sur le morceau
      */
     public class EditListener implements ActionListener {
         @Override
