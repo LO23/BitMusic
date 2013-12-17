@@ -25,11 +25,11 @@ public final class Controller {
     /**
      * The broadcast address of the network.
      */
-    private transient String broadcastAddress = "";
+    private transient String broadcastAddress;
     /**
      * The network address of the network.
      */
-    private transient String networkAddress = "";
+    private transient String networkAddress;
     /**
      * Contains the singleton instance.
      */
@@ -55,6 +55,10 @@ public final class Controller {
      */
     private final transient AbstractNetworkListener tcpListener;
 
+    /**
+     * References the network listener
+     * (Due to the composition link on the class diagram).
+     */
     private final transient AbstractNetworkListener udpListener;
 
 
@@ -75,8 +79,6 @@ public final class Controller {
      * Construct a new controller and links all the singleton's instances.
      */
     private Controller() {
-        this.networkAddress = "";
-        this.broadcastAddress = "";
         try {
             this.networkAddress = InetAddress.getLocalHost().getHostAddress();
             this.broadcastAddress = findBroadCastAddress();
@@ -229,7 +231,7 @@ public final class Controller {
 
         /**
      * .
-     * @param userId Id of the user
+     * @param userIp Ip of the user
      * @return the Ip corresponding to the userId given
      * @throws NetworkDirectoryException An exception is thrown if the userId
      * doesn't exist
@@ -240,12 +242,8 @@ public final class Controller {
             throw new NetworkDirectoryException(
                     "The ip " + userIp + " doesn't exist in the directory.");
         }
-        String userId = "";
-        for (Entry<String, String> entry : directory.entrySet()) {
-            if (entry.getValue().equals(userIp)) {
-                userId = entry.getKey();
-            }
-        }
+        final String userId = directory.get(userIp);
+
         return userId;
     }
 
@@ -278,8 +276,11 @@ public final class Controller {
         return userList;
     }
 
-
-    private String findBroadCastAddress(){
+    /**
+     * Method used to find the broadcast address.
+     * @return The broadcast address
+     */
+    private String findBroadCastAddress() {
         String brcstAddr = "172.22.255.255";
         /*
         try {
@@ -298,15 +299,16 @@ public final class Controller {
         return brcstAddr;
     }
 
-    private final String OS = System.getProperty("os.name").toLowerCase();
-
-    private boolean isMac() {
-        return (OS.indexOf("mac") >= 0);
-    }
-
     /*
     ###   MAY BE USEFUL   ###
     #########################
+
+    private static final String OPSYS = System.
+            getProperty("os.name").toLowerCase();
+
+    private boolean isMac() {
+        return (OPSYS.indexOf("mac") >= 0);
+    }
 
     private boolean isWindows() {
         return (OS.indexOf("win") >= 0);
