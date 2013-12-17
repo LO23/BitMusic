@@ -6,13 +6,16 @@
 
 package bitmusic.network.main;
 
+import bitmusic.music.data.Song;
 import bitmusic.network.api.ApiHmi;
+import bitmusic.network.exception.NetworkDirectoryException;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.network.message.EnumTypeMessage;
 import bitmusic.network.message.MessageGetSongFile;
 import bitmusic.network.message.MessageLogOut;
 import bitmusic.network.message.MessageGetUser;
 import bitmusic.network.message.MessageNotifyNewConnection;
+import bitmusic.network.message.MessageRateSong;
 import bitmusic.profile.classes.User;
 import java.util.List;
 import java.util.Map;
@@ -162,6 +165,31 @@ public final class ApiHmiImpl implements ApiHmi {
 
         Controller.getInstance().getThreadManager()
                 .getExecutorService().shutdown();
+
+    }
+
+    /**
+     * Rate a distant song.
+     * @param paramSong The song to rate
+     * @param paramUserId ID of the user that rates the song
+     */
+    @Override
+    public void rateSong(final Song paramSong, final String paramUserId) {
+        final String owner = paramSong.getOwnerId();
+        try {
+            final MessageRateSong message = new MessageRateSong(
+                EnumTypeMessage.RateSong,
+                Controller.getNetworkAddress(),
+                Controller.getInstance().getUserIpFromDirectory(owner),
+                paramSong,
+                paramUserId);
+
+            Controller.getInstance().
+                    getThreadManager().assignTaskToHermes(message);
+
+        } catch (NetworkDirectoryException e) {
+
+        }
 
     }
 

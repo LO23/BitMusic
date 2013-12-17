@@ -6,6 +6,7 @@
 
 package bitmusic.network.api;
 
+import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
 import java.util.List;
@@ -44,6 +45,17 @@ public interface ApiHmi {
     void getSongFile(final String operator, final String userId,
             final String songId, final boolean paramTemporary)
             throws NetworkException;
+
+    /**
+     * Rate a distant song.
+     *
+     * @param paramSong The song to rate
+     * @param paramUserId ID of the user that rates the song
+     * @throws NetworkException thrown when the get fail
+    */
+    void rateSong(final Song paramSong, final String paramUserId)
+            throws NetworkException;
+
     /**
      *  Shutdown the Executor service (thread pool) when program exits.
      */
