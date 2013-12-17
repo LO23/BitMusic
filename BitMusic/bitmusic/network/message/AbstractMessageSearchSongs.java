@@ -5,9 +5,12 @@
  */
 
 package bitmusic.network.message;
-import bitmusic.music.api.ApiMusicImpl;
+import bitmusic.music.business.SongSearcher;
+import bitmusic.music.business.strategies.TagSearchStrategy;
+import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.network.main.Controller;
+import bitmusic.profile.api.ApiProfileImpl;
 import java.util.ArrayList;
 import java.util.List;
 

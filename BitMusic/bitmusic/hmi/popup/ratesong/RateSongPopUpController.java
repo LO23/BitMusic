@@ -91,4 +91,19 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
             win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
         }
     }
+
+     public class DeleteListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("---- Clic sur le bouton delete");
+
+            Song song = RateSongPopUpController.this.getModel().getSong();
+            WindowComponent win = WindowComponent.getInstance();
+            String currentUserId = win.getApiProfile().getCurrentUser().getUserId();
+
+            win.getApiMusic().deleteGrade(song.getSongId(), currentUserId);
+            int parentTabId = RateSongPopUpController.this.getView().getParentTabId();
+            win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
+        }
+     }
 }

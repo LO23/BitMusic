@@ -9,8 +9,10 @@ import bitmusic.music.data.Song;
 import bitmusic.music.data.SongLibrary;
 import bitmusic.music.data.Rights;
 import bitmusic.music.exception.CopyMP3Exception;
+import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.Category;
+import bitmusic.network.main.Controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,6 +30,7 @@ import java.nio.file.StandardCopyOption;
  * @author Music Team
  */
 public class SongLoader {
+    static HashMap<String,String> songsToDownload = new HashMap<String,String>();
 
     /**
      * Copy a song. Target Directory :
@@ -240,15 +243,33 @@ public class SongLoader {
         return Files.exists(destination);
     }
     
-    public boolean saveTempSong(String userId, String songId, 
+    public void saveSong(String userId, String songId, 
             String destinationPath) throws CopyMP3Exception, IOException{
+        
+        //If song is already in temp folder, copy directly into destinationPath
         if (tempFileExists(userId, songId)){
             copyMP3(this.generateTempSongPath(userId, songId), destinationPath);
-            return true;
         }
+        
+        //else add to the HashMap songsToDownload and notify Network
         else{
-            return false;
+            String downloadId = new String(userId + songId);
+            songsToDownload.put(downloadId, destinationPath);
+            ApiProfileImpl ApiProfile = ApiProfileImpl.getApiProfile();
+            try{
+                Controller.getInstance().getApiMusic().getSongFile(
+                    ApiProfile.getCurrentUser().getUserId(),
+                    userId, songId, false);
+            } catch(NetworkException excep){
+                System.out.println(excep.getMessage());
+            }
         }     
+    }
+    
+    public String getSongToDownload(String userId, String songId){
+        String path = songsToDownload.get(userId + songId);
+        songsToDownload.remove(userId+songId);
+        return path;
     }
 }
 
