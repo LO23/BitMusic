@@ -12,8 +12,11 @@ import bitmusic.hmi.popup.informationssong.InfosSongPopUpController;
 import bitmusic.hmi.popup.informationssong.InfosSongPopUpModel;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
+import bitmusic.network.exception.NetworkException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,7 +58,12 @@ public final class CommentSongPopUpController extends AbstractController<Comment
                     isComment = win.getApiMusic().addCommentFromHmi(song.getSongId(), comment);
                 }
                 else {
-                    isComment = win.getApiMusic().addCommentFromNetwork(song.getSongId(), new Comment(currentUserId, comment));
+                    isComment = true;
+                    try {
+                        win.getApiNetwork().addComment(song, new Comment(win.getApiProfile().getCurrentUser().getLogin(), comment));
+                    } catch (NetworkException ex) {
+                        isComment = false;
+                    }
                 }
 
                 if(!isComment) {

@@ -13,8 +13,8 @@ import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 
 /**
- *
- * @author unkedeuxke
+ * Classe du modèle de EditSongPopUp
+ * @author IHM
  */
 public final class EditSongPopUpModel extends AbstractModel {
 
@@ -22,7 +22,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     private DefaultListModel listTagsModel = new DefaultListModel();
 
     /**
-     *
+     * Contructeur de EditSongPopUpModel
      * @param song
      */
     public EditSongPopUpModel(Song song) {
@@ -32,15 +32,15 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @return
+     * Retourne le son à éditer
+     * @return song le son à éditer sous forme d'un objet de type song
      */
     public Song getSong() {
         return song;
     }
 
     /**
-     *
+     * Met à jour le son à éditer
      * @param song
      */
     public void setSong(Song song) {
@@ -49,15 +49,15 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @return
+     * Retourne la liste des tags
+     * @return listTagsModel
      */
     public DefaultListModel getListModel() {
         return listTagsModel;
     }
 
     /**
-     *
+     * Set une liste de tags
      * @param listTags
      */
     public void setListModel(DefaultListModel listTags) {
@@ -67,7 +67,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Met à jour la liste des tags
      * @param listTags
      */
     public void setListModel(ArrayList<String> listTags) {
@@ -79,7 +79,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Met à jour la liste des tags
      * @param listTags
      */
     public void setListModel(LinkedList<String> listTags) {
@@ -91,8 +91,8 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @param tag
+     * Ajouter un tag à la liste des tags
+     * @param tag Objet de type string
      */
     public void addTag(String tag) {
         this.listTagsModel.addElement(tag);
@@ -100,7 +100,10 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Supprime un tag de la liste des tags
+     * On parcourt la liste des tags
+     * Si le tag existe alors il est supprimé
+     * Si le tag à supprimer n'existe pas on affiche un message d'erreur
      * @param tag
      */
     public void removeTag(String tag) {

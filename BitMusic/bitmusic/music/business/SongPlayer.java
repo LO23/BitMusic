@@ -45,7 +45,7 @@ public class SongPlayer {
         // If the song is local play the temporary file else call the network.
         if (isLocal) {
             try {
-                BitMusicPlayer.getInstance().play(songLoader.getSongPath(song.getSongId()));
+                BitMusicPlayer.getInstance().play(path);
             } catch (JavaLayerException ex) {
                 Logger.getLogger(SongPlayer.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {

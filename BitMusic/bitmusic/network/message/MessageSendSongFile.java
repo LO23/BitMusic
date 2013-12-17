@@ -88,8 +88,7 @@ public final class MessageSendSongFile extends AbstractMessage {
             
             // In case the temporary flag is set to true, play the song
             if (temporary) {
-                bitmusic.music.api.ApiMusicImpl.getInstance().
-                        playSongFromStart(pathFile);
+                WindowComponent.getInstance().getPlayBarComponent().getController().new PlayListener().actionPerformed(null);
             }
             
         } catch (IOException e) {

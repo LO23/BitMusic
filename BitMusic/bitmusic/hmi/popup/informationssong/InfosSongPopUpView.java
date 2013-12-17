@@ -11,11 +11,16 @@ import bitmusic.hmi.modules.playbar.PlayBarModel;
 import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.music.data.Comment;
+import bitmusic.music.data.Grade;
 import bitmusic.music.data.Song;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.Vector;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -23,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -45,6 +51,11 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     private final JLabel songArtistLabel = new JLabel("Artiste son : ");
     private final JLabel songAlbumLabel = new JLabel("Album son : ");
     private final JLabel commentLabel = new JLabel("Commentaires : ");
+    // mettre le nombre de notes ?
+    private final JLabel rateLabel = new JLabel("Note moyenne: ");
+    private JLabel rateValueLabel = new JLabel("0 (pas de note) ");
+
+
     private JTextField commentField = new JTextField("");
     private final JButton commentButton = new JButton("Commenter");
     private JTable commentsTable ;
@@ -78,6 +89,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         this.songTitleLabel.setText(song.getTitle());
         this.songArtistLabel.setText(song.getArtist());
         this.songAlbumLabel.setText(song.getAlbum());
+        //update rateLabel
+        //this.rateLabel.setText(song.ge);
+        this.updateRateLabel();
 
         //BorderLayout commentsLayout = new BorderLayout();
 
@@ -108,6 +122,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 .addComponent(this.albumLabel)
                 .addComponent(this.songAlbumLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(this.rateLabel)
+                .addComponent(this.rateValueLabel))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(this.commentLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(this.commentsPanel))
@@ -122,11 +139,13 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
                 .addComponent(this.titleLabel)
                 .addComponent(this.artistLabel)
                 .addComponent(this.albumLabel)
+                .addComponent(this.rateLabel)
                 .addComponent(this.commentLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addComponent(this.songTitleLabel)
                 .addComponent(this.songArtistLabel)
                 .addComponent(this.songAlbumLabel)
+                .addComponent(this.rateValueLabel)
                 .addComponent(this.commentButton)
                 .addComponent(this.commentsPanel))
             );
@@ -135,6 +154,25 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // TODO
     }
 
+    public void updateRateLabel() {
+        String gradeAverage = "0";
+        double grade = 0;
+        Song song = this.getController().getModel().getSong();
+        HashMap<String, Grade> hashMap = song.getGrades();
+
+        // pour chaque entree de la table de hashage
+        for(Entry<String, Grade> entry : hashMap.entrySet()) {
+            //String author = entry.getKey();
+            grade = entry.getValue().getGrade() + grade;
+        }
+
+        // on fait la moyenne des notes obtenus
+        grade = (double) grade / (double) hashMap.size();
+        gradeAverage = String.valueOf(grade).toString();
+
+        // pour afficher note/nombre de notes
+        this.rateValueLabel.setText(gradeAverage + "/" + String.valueOf(hashMap.size()));
+    }
 
     // à mettre dans le model
 
@@ -142,7 +180,8 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         //SpringLayout commentsLayout = new SpringLayout();
         GridLayout commentsLayout = new GridLayout(comments.size(), 3); // rows, col, hgap, vgap
 
-        panel.setSize(500,100);
+        //panel.setSize(500,100);
+        panel.setMaximumSize(new Dimension(500, 100));
         panel.setLayout(commentsLayout);
         panel.setBackground(Color.white);
         String songID = this.getController().getModel().getSong().getSongId();
@@ -157,15 +196,29 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         else {
             for (Comment c: comments) {
                 JLabel author = new JLabel(c.getAuthor());
-                JLabel commentValue = new JLabel(c.getComment());
+                int numberOfRows = c.getComment().length() % 25;
+                JTextArea commentValue = new JTextArea("Commentaire vide...");
+                commentValue.setColumns(numberOfRows);
+                //commentValue.setRows(numberOfRows);
+
+
+                if (c.getComment().length() > 100) {
+                    commentValue.setText(c.getComment().substring(1, 100)+ "...");
+                    commentValue.setPreferredSize(new Dimension(100, 20));
+                }
+                else {
+                    commentValue.setText(c.getComment());
+                    commentValue.setPreferredSize(new Dimension(100, 20));
+                }
+                commentValue.setEditable(false);
+
+                Dimension d = new Dimension(80,20);
+                /// TODO : Gerer la longueur des commentaires
+                commentValue.setMaximumSize(d);
                 JButton deleteCommentButton = new JButton("X");
                 deleteCommentButton.addActionListener(
                         this.getController().new DeleteCommentListener(songID, c.getAuthor(), c.getDate()));
-                /*commentsLayout.putConstraint(SpringLayout.WEST, author, 5, SpringLayout.WEST, panel);
-                commentsLayout.putConstraint(SpringLayout.NORTH, author, 5, SpringLayout.NORTH, panel);
 
-                commentsLayout.putConstraint(SpringLayout.WEST, commentValue, 5, SpringLayout.EAST, author);
-                commentsLayout.putConstraint(SpringLayout.NORTH, commentValue, 5, SpringLayout.NORTH, panel);*/
                 panel.add(author);
                 panel.add(commentValue);
                 panel.add(deleteCommentButton);
