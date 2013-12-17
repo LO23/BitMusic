@@ -206,6 +206,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().validate();
         win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().repaint();
 
+        win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().pack();
     }
 
     /**

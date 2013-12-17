@@ -101,8 +101,7 @@ public class SongSearcher {
      * @param strategy
      * @return
      */
-    public SongLibrary searchSongs(String searchId,
-            List<String> matcherList, SongSearcherStrategy strategy) {
+    public SongLibrary searchSongs(String searchId,List<String> matcherList, SongSearcherStrategy strategy) {
         SongLibrary matchedSongs;
         ApiMusicImpl apiMusicFromNetwork;
         List<String> connectedUsers;
@@ -113,7 +112,7 @@ public class SongSearcher {
         apiMusicFromNetwork = Controller.getInstance().getApiMusic();
         connectedUsers = apiMusicFromNetwork.getAllUserId();
 
-        //for each user, go fetch their songs with the right tags
+        //for each user, go fetch their songs with the right criteria
         it = connectedUsers.iterator();
         ApiProfileImpl apiProfile = ApiProfileImpl.getApiProfile();
         String localUserId = apiProfile.getCurrentUser().getUserId();
@@ -180,10 +179,8 @@ public class SongSearcher {
     public Song getLightSong(Song currentSong, String userId) {
 
         Song lightSong = new Song(currentSong.getSongId(),
-                currentSong.getTitle(),
-                currentSong.getArtist(),
-                currentSong.getAlbum(),
-                currentSong.getTags(),
+                currentSong.getTitle(), currentSong.getArtist(),
+                currentSong.getAlbum(),currentSong.getOwnerId(), currentSong.getTags(),
                 currentSong.getRightsByCategory());
         try {
             ArrayList<String> categoryList =

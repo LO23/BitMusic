@@ -227,6 +227,28 @@ public final class Controller {
         return directory.get(userId);
     }
 
+        /**
+     * .
+     * @param userId Id of the user
+     * @return the Ip corresponding to the userId given
+     * @throws NetworkDirectoryException An exception is thrown if the userId
+     * doesn't exist
+     */
+    public String getUserIdFromDirectory(final String userIp)
+            throws NetworkDirectoryException {
+        if (!directory.containsValue(userIp)) {
+            throw new NetworkDirectoryException(
+                    "The ip " + userIp + " doesn't exist in the directory.");
+        }
+        String userId = "";
+        for (Entry<String, String> entry : directory.entrySet()) {
+            if (entry.getValue().equals(userIp)) {
+                userId = entry.getKey();
+            }
+        }
+        return userId;
+    }
+
     /**
      * @return List containing all IP addresses contained in the directory
      */

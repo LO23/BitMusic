@@ -23,7 +23,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
     private final String type = "EAST";
 
-    private final JLabel onlineUsersLabel = new JLabel("En ligne :");
+    private final JLabel onlineUsersLabel = new JLabel("Utilisateurs actuellement en ligne");
     private JTable table;
     private JScrollPane onlineUsersTablePane;
 
@@ -49,7 +49,9 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
         // Attache des listeners aux colonnes concernées
         ButtonColumn infosColumn = new ButtonColumn(this.table, this.getController().getInfos(), 1);
+        this.table.getColumnModel().getColumn(1).setPreferredWidth(5);
         ButtonColumn mp3Column = new ButtonColumn(this.table, this.getController().getMp3(), 2);
+        this.table.getColumnModel().getColumn(2).setPreferredWidth(5);
 
         this.onlineUsersTablePane = new JScrollPane(this.table);
 
@@ -61,18 +63,18 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
         layout.setHorizontalGroup(
             layout.createSequentialGroup()
-                .addComponent(onlineUsersLabel)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(onlineUsersLabel)
                     .addComponent(onlineUsersTablePane)
                 )
          );
         layout.setVerticalGroup(
             layout.createSequentialGroup()
                .addComponent(onlineUsersLabel)
-               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(onlineUsersTablePane)
-               )
+               .addComponent(onlineUsersTablePane)
         );
+
+        this.getPanel().setPreferredSize(new Dimension(250,250));
     }
 
     /**

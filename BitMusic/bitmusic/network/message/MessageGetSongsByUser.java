@@ -58,9 +58,9 @@ public final class MessageGetSongsByUser extends AbstractMessage {
         final String currentUserId = ApiProfileImpl.getApiProfile().
                 getCurrentUser().getUserId();
         if (this.getAskedUser().equals(currentUserId)) {
-            final SongLibrary songLib = null;
-            //final SongLibrary songLib = ApiMusicImpl.getInstance().
-              //              getSongsByUser(this.getAskedUser());
+            final SongLibrary songLib = ApiProfileImpl.getApiProfile().
+                    getSongLibrary();
+
             final MessageSendSongList message = new MessageSendSongList(
                     //type of message
                     EnumTypeMessage.SendSongList,

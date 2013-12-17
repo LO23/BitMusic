@@ -18,21 +18,21 @@ import java.util.List;
  * Message used to search songs with tags on the LAN.
  * @author alexis
  */
-public final class MessageSearchSongsByTag extends AbstractMessage {
+public abstract class AbstractMessageSearchSongs extends AbstractMessage {
     /**
      * ID of the user that asked for the search.
      */
-    private String operator;
+    protected String operator;
 
     /**
      * ID of the search.
      */
-    private String searchId;
+    protected String searchId;
 
     /**
      * List of tags.
      */
-    private List<String> tagList;
+    protected List<String> tagList;
 
     /**
      * Constructor.
@@ -43,7 +43,7 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
      * @param paramTagList List of tags
      * @param paramUserId ID the user that asked for the search
      */
-    public MessageSearchSongsByTag(final EnumTypeMessage paramType,
+    public AbstractMessageSearchSongs(final EnumTypeMessage paramType,
             final String paramIpSource, final String paramIpDest,
             final String paramSearchId, final List<String> paramTagList,
             final String paramUserId) {
@@ -57,41 +57,7 @@ public final class MessageSearchSongsByTag extends AbstractMessage {
      * Method that implements the treatment of the message.
      */
     @Override
-    public void treatment() {
-        SongLibrary localSongLibrary = ApiProfileImpl.getApiProfile().getSongLibrary();
-        SongSearcher songSearcher = new SongSearcher(localSongLibrary);
-        System.out.print("###"+this.operator+" request match : ");
-        for (String s : this.tagList) {
-            System.out.print(s);
-        }
-        System.out.println("");
-        final SongLibrary songLib = songSearcher.getLocalSongs(this.operator, this.tagList, new TagSearchStrategy());
-        //ApiMusicImpl.getInstance().getgetLocalSongs(null, matcherList, strategy);
-
-                /*ApiMusicImpl.getInstance().
-                searchSongsByTags(
-                    //search id
-                    this.searchId,
-                    //tag list
-                    this.tagList);*/
-        System.out.println("Result :");
-        for (Song s : songLib.getlibrary()) {
-            System.out.println("songId :"+s.getSongId()+" / Owner : "+s.getOwnerId());
-        }
-        final MessageSendSongList message = new MessageSendSongList(
-                //type of message
-                EnumTypeMessage.SendSongList,
-                //ip source
-                Controller.getNetworkAddress(),
-                //ip dest
-                this.ipSource,
-                //search id
-                this.searchId,
-                //song library
-                songLib);
-
-        Controller.getInstance().getThreadManager().assignTaskToHermes(message);
-    }
+    public abstract void treatment();
 
     /**
      * Setter of the searchId attribute.

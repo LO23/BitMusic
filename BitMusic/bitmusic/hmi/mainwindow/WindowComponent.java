@@ -67,6 +67,7 @@ public class WindowComponent {
      */
     public void startNetwork() {
         this.apiNetwork = Controller.getInstance().getApiHmi();
+        //On notifie le réseau que l'on s'est connecté
         this.apiNetwork.notifyNewConnection(apiProfile.getCurrentUser());
     }
 

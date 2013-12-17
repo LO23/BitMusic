@@ -38,7 +38,7 @@ public class SongPlayer {
             path = songLoader.getSongPath(song.getSongId());
             isLocal = true;
         } else if (isTmp(song)) {
-            path = songLoader.getTempSongPath(song.getOwnerId(), song.getSongId());
+            path = songLoader.generateTempSongPath(song.getOwnerId(), song.getSongId());
             isLocal = true;
         }
             
@@ -64,7 +64,7 @@ public class SongPlayer {
      */
     private boolean isTmp(Song song) {
         SongLoader songLoader = new SongLoader();
-        File f = new File(songLoader.getTempSongPath(song.getOwnerId(), song.getSongId()));
+        File f = new File(songLoader.generateTempSongPath(song.getOwnerId(), song.getSongId()));
         return f.exists();
     }
 }
