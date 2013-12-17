@@ -64,7 +64,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
         this.cancelButton.addActionListener(this.getController().new CancelListener());
 
         Song song = this.getController().getModel().getSong();
-        String currentUserId = WindowComponent.getInstance().getApiProfile().getCurrentUser().getLogin(); //devrait être un userId !!! Issue à Profile
+        String currentUserId = WindowComponent.getInstance().getApiProfile().getCurrentUser().getUserId();
         int rate = -1;
         HashMap<String,Grade> mapGrade = song.getGrades();
         if (mapGrade != null) {
