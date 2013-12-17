@@ -183,14 +183,22 @@ public interface ApiMusic {
     public boolean importSong(String path, String title, String artist, String album, LinkedList<String> tags, HashMap<String,Rights> rights);
     
     /**
+     * Delete a song from the SongLibrary (and the associated file).
+     * 
+     * @param songId
+     * @return 
+     */
+    public boolean deleteSong(String songId);
+    
+    
+    /**
      * Copy a song in temp folder to destination.
      * 
      * @param userId
      * @param songId
      * @param destination
-     * @return true if file saved, else false
      */
-    public boolean saveTempSong(String userId, String songId, String destination);
+    public void saveSong(String userId, String songId, String destination);
     
     /**
      * play a song from a distant user
@@ -247,12 +255,20 @@ public interface ApiMusic {
     public String getSongFile (String songId);
     
     /**
-     * Get the path of a temporary song identified by userId & songId
+     * Get the path of a temporary song identified by userId & songId.
      * @param userId userId
      * @param songId songId
      * @return path path of the song
      */
     public String getTempSongFile(String userId, String songId);
+    
+    /**
+     * Get the destination path of the song to dowload.
+     * @param userId
+     * @param songId
+     * @return path of the song to download
+     */
+    public String getSavedSongPath(String userId, String songId);
        
     /**
      * Initialization of the current user's music folder.
