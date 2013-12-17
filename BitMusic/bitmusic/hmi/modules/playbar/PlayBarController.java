@@ -9,16 +9,10 @@ package bitmusic.hmi.modules.playbar;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.patterns.AbstractController;
 import bitmusic.music.player.BitMusicPlayer;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -99,11 +93,6 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
         while( PlayBarController.this.getModel().isPlaying() ) {
             playBar.setValue(win.getApiMusic().getCurrentFrame());
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PlayBarController.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 
