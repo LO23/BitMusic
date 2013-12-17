@@ -42,7 +42,7 @@ public class MessageSearchSongsByTitle extends AbstractMessageSearchSongs {
     public final void treatment() {
         try {
             final String userRequestedId = Controller.getInstance().
-                    getUserIdFromDirectory(this.ipDest);
+                    getUserIdFromDirectory(this.ipSource);
 
             final SongLibrary songLib = ApiMusicImpl.getInstance().
                     searchLocalSongsByTitle(

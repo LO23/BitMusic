@@ -70,5 +70,4 @@ public final class ApiProfileImpl implements ApiProfile {
         Controller.getInstance().getThreadManager().assignTaskToHermes(message);
     }
 
-    
 }

@@ -41,8 +41,9 @@ public class MessageSearchSongsByTags extends AbstractMessageSearchSongs {
     @Override
     public final void treatment() {
         try {
+            // recupérer id du demandeur (qui a l'ip source)
             final String userRequestedId = Controller.getInstance().
-                    getUserIdFromDirectory(this.ipDest);
+                    getUserIdFromDirectory(this.ipSource);
 
             final SongLibrary songLib = ApiMusicImpl.getInstance().
                     searchLocalSongsByTags(

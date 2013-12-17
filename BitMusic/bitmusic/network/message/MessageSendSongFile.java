@@ -76,19 +76,22 @@ public final class MessageSendSongFile extends AbstractMessage {
                 pathFile = MusicController.getInstance().getApiMusic().
                         getTempSongFile(this.userId, this.songId);
             } else {
-                //pathFile = WindowComponent.getInstance().getApiNetwork().???;
-                // ask pathFile to HMI, should be a blocking method call
-                pathFile = "tmp/" + this.userId + "_" + this.songId + ".mp3";
+                pathFile = MusicController.getInstance().getApiMusic().
+                        getSavedSongPath(this.userId, this.songId);
             }
-            //final String pathFile = "/tmp/" + this.userId + this.songId;
+            
             final Path path = Paths.get(pathFile);
+            
             //write byte into a file
             Files.write(path, this.mp3Array,
                     StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+            
+            // In case the temporary flag is set to true, play the song
             if (temporary) {
                 bitmusic.music.api.ApiMusicImpl.getInstance().
                         playSongFromStart(pathFile);
             }
+            
         } catch (IOException e) {
             WindowComponent.getInstance().getApiHmi()
                     .errorNotification("Network", e.getMessage());

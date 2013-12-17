@@ -8,6 +8,7 @@ package bitmusic.music.business.strategies;
 
 import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
+import bitmusic.network.main.Controller;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class ArtistSearchStrategy extends SongSearcherStrategy{
     
     @Override
     public void distantSearch(String localUserId, String userIdDest, String searchId, List<String> matcherList) throws NetworkException {
-        // Controller.getInstance().getApiMusic().searchSongsByAristes(localUserId, userIdDest, searchId, matcherList);
+        Controller.getInstance().getApiMusic().searchSongsByArtist(localUserId, userIdDest, searchId, matcherList);
     };
 
     @Override

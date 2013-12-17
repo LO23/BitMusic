@@ -73,8 +73,10 @@ public final class ThreadManager {
         }
     }
     /**
-     * .
-    */
+     * Method used to assign a task to DatagramWorker.
+     * @param socket The opened socket
+     * @throws NetworkException Send a NetworkException
+     */
     public void assignTaskToDatagramWorker(final DatagramSocket socket)
             throws NetworkException {
                 if (weAreTesting()) {
@@ -128,12 +130,19 @@ public final class ThreadManager {
         this.jUnitTest = jUnitTestArg;
     }
 
+    /**
+     * .
+     */
     public void onSocketReceived() {
         this.jUnitTest.notify();
     }
 
+    /**
+     * .
+     * @return .
+     */
     public Socket getLastSocketReceived() {
-        return null;//this.lastSocketReceived;
+        return null;
     }
 
     /**
