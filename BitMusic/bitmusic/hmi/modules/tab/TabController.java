@@ -96,7 +96,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
             System.out.println("---- Clic sur Supprimer de la Song : " + song.getSongId());
 
             WindowComponent win = WindowComponent.getInstance();
-            //win.getApiMusic().deleteSong();
+            win.getApiMusic().deleteSong(song.getSongId());
 
             TabController.this.getModel().notifyObservers("Suppression d'une Song");
         }
