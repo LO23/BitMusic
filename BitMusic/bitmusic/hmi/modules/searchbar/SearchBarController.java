@@ -56,6 +56,9 @@ public final class SearchBarController extends AbstractController<SearchBarModel
             else if (view.getAuthorButton().isSelected()) {
                 requestFilter = FILTER_AUTHOR;
             }
+            else if (view.getAlbumButton().isSelected()) {
+                requestFilter = FILTER_AUTHOR;
+            }
             else {
                 requestFilter = FILTER_TAG;
             }
@@ -100,6 +103,9 @@ public final class SearchBarController extends AbstractController<SearchBarModel
             }
             else if (view.getAuthorButton().isSelected()) {
                 songResults = model.searchSongsWithAuthorFilter(tabId, requestText);
+            }
+            else if (view.getAlbumButton().isSelected()) {
+                songResults = model.searchSongsWithAlbumFilter(tabId, requestText);
             }
             else {
                 songResults = model.searchSongsWithTagFilter(tabId, requestText);
