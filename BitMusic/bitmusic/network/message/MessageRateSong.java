@@ -45,7 +45,8 @@ public final class MessageRateSong extends AbstractMessage {
      */
     @Override
     public void treatment() {
-        WindowComponent.getInstance().getApiNetwork().updateRate(song, userId);
+        //mise à jour de la note sur l'IHM
+        WindowComponent.getInstance().getApiHmi().updateRate(song, userId);
    }
 
     /**
