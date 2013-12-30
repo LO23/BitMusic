@@ -21,8 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
 /**
- *
- * @author unkedeuxke
+ * View class of RateSongPopUp
+ * @author IHM
  */
 public final class RateSongPopUpView extends AbstractView<RateSongPopUpController> {
 
@@ -41,7 +41,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     private JRadioButton songRater5 = new JRadioButton("5", false);
 
     /**
-     *
+     * Constructor of RateSongPopUpView
      * @param parentTabId
      */
     public RateSongPopUpView(int parentTabId) {
@@ -50,7 +50,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     }
 
     /**
-     *
+     * Initializes the view of RateSongPopUp
      */
     @Override
     public void initPanel() {
@@ -165,8 +165,9 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -174,7 +175,7 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     }
 
     /**
-     *
+     * Updates the view of RateSongPopUp
      * @param obj
      * @param str
      */
@@ -184,15 +185,15 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns groupRadio
+     * @return groupRadio
      */
     public ButtonGroup getGroupRadio() {
         return groupRadio;
     }
 
     /**
-     *
+     * Updates group radio
      * @param groupRadio
      */
     public void setGroupRadio(ButtonGroup groupRadio) {
@@ -200,8 +201,8 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns song rater
+     * @return songRater0
      */
     public JRadioButton getSongRater0() {
         return songRater0;
@@ -296,8 +297,8 @@ public final class RateSongPopUpView extends AbstractView<RateSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns parent id of the current tab
+     * @return int parentTabId
      */
     public int getParentTabId() {
         return parentTabId;

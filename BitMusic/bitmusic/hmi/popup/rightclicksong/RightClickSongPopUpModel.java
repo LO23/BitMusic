@@ -9,13 +9,13 @@ package bitmusic.hmi.popup.rightclicksong;
 import bitmusic.hmi.patterns.AbstractModel;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of RightClickSongPopUp
+ * @author IHM
  */
 public final class RightClickSongPopUpModel extends AbstractModel {
 
     /**
-     *
+     * Constructor of RightClickSongPopUpModel
      */
     public RightClickSongPopUpModel() {
         super();

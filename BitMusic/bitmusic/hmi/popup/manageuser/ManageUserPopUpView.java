@@ -10,22 +10,22 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 
 /**
- *
- * @author unkedeuxke
+ * View class of ManageUserPopUp
+ * @author IHM
  */
 public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpController> {
 
     private final String type = "POPUP";
 
     /**
-     *
+     * Constructor of ManageUserPopUpView
      */
     public ManageUserPopUpView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view of ManageUserPopUp
      */
     @Override
     public void initPanel() {
@@ -35,8 +35,9 @@ public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -44,7 +45,7 @@ public final class ManageUserPopUpView extends AbstractView<ManageUserPopUpContr
     }
 
     /**
-     *
+     * Updates the view of ManageUserPopUp
      * @param obj
      * @param str
      */
