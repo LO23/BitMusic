@@ -17,8 +17,8 @@ import javax.swing.JTextField;
 
 //import com.toedter.calendar.JDateChooser;
 /**
- * <b> AccountCreationPopUpView est la classe de la vue de la fenêtre de connexion</br>
- *
+ * View class of AccountCreationPopUpView
+ * This class is the view of the connexion window
  * @author IHM
  */
 public final class AccountCreationPopUpView extends AbstractView<AccountCreationPopUpController> {
@@ -49,14 +49,14 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     private ArrayList<JTextField> listCompulsoryFields = new ArrayList();
 
     /**
-     * Constructeur de la vue
+     * Constructor of AccountCreationPopUpView
      */
     public AccountCreationPopUpView() {
         super();
     }
 
     /**
-     *
+     * Initializes the account creation view
      */
     @Override
     public void initPanel() {
@@ -164,8 +164,9 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     }
 
     /**
-     * Le type de la PopUp correspend à son emplacement dans l'écran
-     * @return Le type de la popup
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -173,7 +174,7 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     }
 
     /**
-     * Mise à jour de la vue
+     * Updates the view
      * @param obj
      * @param str
      */
@@ -183,134 +184,129 @@ public final class AccountCreationPopUpView extends AbstractView<AccountCreation
     }
 
     /**
-     * Retourne le login de l'utilisateur.
-     * @return Le login de l'utilisateur, sous forme d'un JTextField.
+     * Returns the login of the user
+     * @return JTextField loginField
      */
     public JTextField getLoginField() {
         return loginField;
     }
 
     /**
-     * Met à jour le login de l'utilisateur.
+     * Updates the login of the user
      * @param loginField
-     *                  Le nouveau Login de l'utilisateur.
+     *                  The new Login
      */
     public void setLoginField(JTextField loginField) {
         this.loginField = loginField;
     }
 
     /**
-     * Retourne la date de naissance de l'utilisateur.
-     * @return La date de naissance de l'utilisateur, sous forme d'un JTextField.
+     * Returns the birth date of the user
+     * @return birthdateField
      */
     public JTextField getBirthdateField() {
         return birthdateField;
     }
 
     /**
-     * Met à jour la date de naissance de l'utilisateur.
+     * Updates the birth date of the user
      * @param birthdateField
-     *                      Date de naissance de l'utilisateur.
+     *                      The new birth date
      */
     public void setBirthdateField(JTextField birthdateField) {
         this.birthdateField = birthdateField;
     }
 
     /**
-     * Retourne le mot de passe saisi.
-     * @return Le mot de passe saisi, sous forme d'un JTextField.
+     * Returns the password
+     * @return JTextField passwordField
      */
     public JTextField getPasswordField() {
         return passwordField;
     }
 
     /**
-     * Met à jour le mot de passe de l'utilisateur.
+     * Updates the password
      * @param passwordField
-     *                      Mot de passe de l'utilisateur.
      */
     public void setPasswordField(JTextField passwordField) {
         this.passwordField = passwordField;
     }
 
     /**
-     * Retourne la confirmation du mot de passe saisi.
-     * @return la confirmation du mot de passe saisi, sous forme d'un JTextField.
+     * Returns the confirmation of the password
+     * @return JTextField confirmField
      */
     public JTextField getConfirmField() {
         return confirmField;
     }
 
     /**
-     * Met à jour la confirmation du mot de passe.
+     * Updates the confirmation of the password
      * @param confirmField
-     *                    Champs de confirmation du mot de passe.
      */
     public void setConfirmField(JTextField confirmField) {
         this.confirmField = confirmField;
     }
 
     /**
-     * Retourne le prénom de l'utilisateur.
-     * @return le prénom de l'utilisateur sous forme d'un JTextField.
+     * Returns the first name of the user
+     * @return JTextField firstnameField
      */
     public JTextField getFirstnameField() {
         return firstnameField;
     }
 
     /**
-     * Met à jour le prénom de l'utilisateur.
+     * Updates the first name of the user
      * @param firstnameField
-     *                      Nom de l'utilisateur.
      */
     public void setFirstnameField(JTextField firstnameField) {
         this.firstnameField = firstnameField;
     }
 
     /**
-     * Retourne le nom de l'utilisateur.
-     * @return le nom de l'utilisateur sous forme d'un JTextField
+     * Returns the last name of the user
+     * @return JTextField lastnameField
      */
     public JTextField getLastnameField() {
         return lastnameField;
     }
 
     /**
-     * Met à jour le nom de l'utilisateur
+     * Updates the last name of the user
      * @param lastnameField
-     *                  Nom de l'utilisateur.
      */
     public void setLastnameField(JTextField lastnameField) {
         this.lastnameField = lastnameField;
     }
 
     /**
-     * Retourne le path de l'avatar.
-     * @return le path de l'avatar sous forme d'un JTextField.
+     * Returns the path of the avatar
+     * @return JTextField avatarField
      */
     public JTextField getAvatarField() {
         return avatarField;
     }
 
     /**
-     * Met à jour le path de l'avatar
+     * Updates the path of the avatar
      * @param avatarField
-     *              Path de l'avatar
      */
     public void setAvatarField(JTextField avatarField) {
         this.avatarField = avatarField;
     }
 
     /**
-     *
-     * @return
+     * Returns a list of the Compulsory fields
+     * @return ArratList listCompulsoryFields
      */
     public ArrayList<JTextField> getListCompulsoryFields() {
         return listCompulsoryFields;
     }
 
     /**
-     *
+     * Updates a list of compulsory fields
      * @param listCompulsoryFields
      */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
