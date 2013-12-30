@@ -7,8 +7,8 @@
 package bitmusic.hmi.patterns;
 
 /**
- *
- * @author hebergui, unkedeuxke
+ * Class of abstract component
+ * @author IHM
  * @param <M>
  * @param <C>
  * @param <V>
@@ -38,15 +38,15 @@ public abstract class AbstractComponent<M extends AbstractModel, V extends Abstr
     }
 
     /**
-     *
-     * @return
+     * Returns the model
+     * @return model
      */
     public final M getModel() {
         return this.model;
     }
 
     /**
-     *
+     * Updates the model
      * @param model
      */
     public final void setModel(final M model) {
@@ -54,15 +54,15 @@ public abstract class AbstractComponent<M extends AbstractModel, V extends Abstr
     }
 
     /**
-     *
-     * @return
+     * Returns the view
+     * @return view
      */
     public final V getView() {
         return this.view;
     }
 
     /**
-     *
+     * Updates the view
      * @param view
      */
     public final void setView(final V view) {
@@ -70,15 +70,15 @@ public abstract class AbstractComponent<M extends AbstractModel, V extends Abstr
     }
 
     /**
-     *
-     * @return
+     * Returns the controller
+     * @return controller
      */
     public final C getController() {
         return this.controller;
     }
 
     /**
-     *
+     * Updates the controller
      * @param controller
      */
     public final void setController(final C controller) {
