@@ -10,8 +10,8 @@ import bitmusic.hmi.patterns.AbstractView;
 import bitmusic.hmi.patterns.Observable;
 
 /**
- *
- * @author unkedeuxke
+ * View class of RightsSongPopUp
+ * @author IHM
  */
 public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpController> {
 
@@ -19,7 +19,7 @@ public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpContr
     private int parentTabId;
 
     /**
-     *
+     * Constructor of RightsSongPopUpView
      * @param parentTabId
      */
     public RightsSongPopUpView(int parentTabId) {
@@ -28,7 +28,7 @@ public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpContr
     }
 
     /**
-     *
+     * Initializes the view of RightsSongPopUp
      */
     @Override
     public void initPanel() {
@@ -38,8 +38,9 @@ public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -47,7 +48,7 @@ public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpContr
     }
 
     /**
-     *
+     * Updates the view of RightsSongPopUp
      * @param obj
      * @param str
      */
@@ -57,11 +58,11 @@ public final class RightsSongPopUpView extends AbstractView<RightsSongPopUpContr
     }
 
     /**
-     *
-     * @return
+     * Returns the parent id of the current tab
+     * @return int parentTabId
      */
     public int getParentTabId() {
         return parentTabId;
     }
-    
+
 }
