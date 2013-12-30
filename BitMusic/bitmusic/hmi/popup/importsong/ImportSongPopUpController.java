@@ -19,13 +19,13 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * Classe du controlleur de ImportSongPopUp
+ * Controller class of ImportSongPopUp
  * @author IHM
  */
 public final class ImportSongPopUpController extends AbstractController<ImportSongPopUpModel, ImportSongPopUpView> {
 
     /**
-     * Contructeur de ImportSongPopUpController
+     * Contructor of ImportSongPopUpController
      * @param model
      * @param view
      */
@@ -34,8 +34,9 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     * Listener sur le bouton parcourir permettant de selectionner le path du morceau à importer
-     * Après récupération du path du fichier, grâce à un filtre, on vérifie si le fichier choisi est de type mp3
+     * Listener on browse button
+     * This listener allows to chose the song to import
+     * Due to a filter, only mp3 files can be chosen
      * @see JFileChooser
      * @see FileNameExtensionFilter
      */
@@ -56,9 +57,8 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     * Listener sur le bouton ajouter un tag
-     * Cela permet d'ajouter un tag au morceau à importer
-     * Si le tag peut être pris en compte(c'est à dire n'est pas une chaine vide), il est ajouté au modèle et la vue est mise à jour
+     * Listener on add tag button
+     * Adds a tag to the song to import
      */
     public class AddNewTagListener implements ActionListener {
         @Override
@@ -76,7 +76,7 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     * Listener sur le bouton annuler de la PopUp
+     * Listener on cancel button
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -87,12 +87,11 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     * Listener sur le bouton valider
-     * Si tous les champs obligatoires ne sont pas saisis, un message d'avertissement est declenché
-     * Si tous les champs obligatoires sont mentionnés, on fait appel à l'API du module Musique
-     * En passant comme paramètres : titre, artiste, album, path et tags du morceau
-     * Et finalement, on met à jour le profil de l'utilisateur
-     * Si l'importation du morceau échoue, un message d'avertissement est declenché
+     * Listener on submit button
+     * If all the compulsory fields aren't checked, an error message is shown.
+     * If all the compulsory fields are checked, we use the API of musique module.
+     * And finally, we update the user pofil
+     * If the importation fails, a warning message is shown
      */
     public class SubmitListener implements ActionListener {
         @Override
@@ -137,9 +136,8 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     * Fonction verifiant si tous les champs obligatoires ont été mentionnés
-     * @return true si tous les champs obligatoires ont été mentionnés
-     * @return false sinon
+     * Checks if all the compulsory fields are filled
+     * @return boolean
      */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();

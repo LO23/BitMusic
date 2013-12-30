@@ -10,7 +10,7 @@ import bitmusic.hmi.patterns.AbstractComponent;
 import bitmusic.music.data.Song;
 
 /**
- * classe des components de EditSongPopUp
+ * Components class of EditSongPopUp
  * @author IHM
  */
 public final class EditSongPopUpComponent extends AbstractComponent<EditSongPopUpModel, EditSongPopUpView, EditSongPopUpController> {
@@ -18,7 +18,7 @@ public final class EditSongPopUpComponent extends AbstractComponent<EditSongPopU
     private Song song;
 
     /**
-     * Constructeur de EditSongPopUpComponent
+     * Constructor of EditSongPopUpComponent
      * @param song
      * @param parentTabId
      */

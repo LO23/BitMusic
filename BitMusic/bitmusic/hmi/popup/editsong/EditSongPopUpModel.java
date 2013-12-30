@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 
 /**
- * Classe du modèle de EditSongPopUp
+ * Model class of EditSongPopUp
  * @author IHM
  */
 public final class EditSongPopUpModel extends AbstractModel {
@@ -22,7 +22,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     private DefaultListModel listTagsModel = new DefaultListModel();
 
     /**
-     * Contructeur de EditSongPopUpModel
+     * Contructor of EditSongPopUpModel
      * @param song
      */
     public EditSongPopUpModel(Song song) {
@@ -32,15 +32,15 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     * Retourne le son à éditer
-     * @return song le son à éditer sous forme d'un objet de type song
+     * Returns a song to edit
+     * @return Song song
      */
     public Song getSong() {
         return song;
     }
 
     /**
-     * Met à jour le son à éditer
+     * Updates a song
      * @param song
      */
     public void setSong(Song song) {
@@ -49,7 +49,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     * Retourne la liste des tags
+     * Returns a list of tags
      * @return listTagsModel
      */
     public DefaultListModel getListModel() {
@@ -57,7 +57,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     * Set une liste de tags
+     * Sets a list of tags
      * @param listTags
      */
     public void setListModel(DefaultListModel listTags) {
@@ -67,7 +67,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     * Met à jour la liste des tags
+     * Updates a list of tags
      * @param listTags
      */
     public void setListModel(ArrayList<String> listTags) {
@@ -79,7 +79,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     * Met à jour la liste des tags
+     * Updates a list of tags
      * @param listTags
      */
     public void setListModel(LinkedList<String> listTags) {
@@ -91,8 +91,8 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     * Ajouter un tag à la liste des tags
-     * @param tag Objet de type string
+     * Adds a tag
+     * @param tag
      */
     public void addTag(String tag) {
         this.listTagsModel.addElement(tag);
@@ -100,10 +100,8 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     * Supprime un tag de la liste des tags
-     * On parcourt la liste des tags
-     * Si le tag existe alors il est supprimé
-     * Si le tag à supprimer n'existe pas on affiche un message d'erreur
+     * Deletes a tag from the tag list
+     * If the tag to delete deosn't exist, an error message is shown
      * @param tag
      */
     public void removeTag(String tag) {

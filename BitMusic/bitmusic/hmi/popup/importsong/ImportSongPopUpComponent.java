@@ -9,13 +9,13 @@ package bitmusic.hmi.popup.importsong;
 import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
- * Classe des components de ImportSongPopUp
+ * Components class of ImportSongPopUp
  * @author IHM
  */
 public final class ImportSongPopUpComponent extends AbstractComponent<ImportSongPopUpModel, ImportSongPopUpView, ImportSongPopUpController> {
 
     /**
-     * Constructeur de ImportSongPopUpComponent
+     * Constructor of ImportSongPopUpComponent
      */
     public ImportSongPopUpComponent() {
         this.model = new ImportSongPopUpModel();
