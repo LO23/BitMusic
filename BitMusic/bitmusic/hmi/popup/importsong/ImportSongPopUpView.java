@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 /**
- * Classe de la vue de ImportSongPopUp
+ * View class of ImportSongPopUp
  * @author IHM
  */
 public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpController> {
@@ -47,14 +47,14 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     private JScrollPane tagsTablePane = new JScrollPane(this.tagList);
 
     /**
-     * Constructeur de ImportSongPopUpView
+     * Constructor of ImportSongPopUpView
      */
     public ImportSongPopUpView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view of import song popup
      */
     public void initPanel() {
         System.out.println("--- ImportSongPopUpView.initPanel()");
@@ -156,8 +156,9 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     *Retourne le type de la PopUp qui correspend à son emplacement dans la fenêtre
-     * @return le type de la PopUp
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -165,7 +166,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Fonction mettant à jour la vue
+     * Updates the view
      * @param obj
      * @param str
      */
@@ -177,15 +178,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne le path du morceau
-     * @return fileField
+     * Returns a path of a song
+     * @return JTextField fileField
      */
     public JTextField getFileField() {
         return fileField;
     }
 
     /**
-     * Met à jour le path du morceau
+     * Updates a path of a song
      * @param fileField
      */
     public void setFileField(JTextField fileField) {
@@ -193,7 +194,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne une liste de JTextField de la vue
+     * Returns a list of compulsory fields
      * @return listCompulsoryFields
      */
     public ArrayList<JTextField> getListCompulsoryFields() {
@@ -201,7 +202,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Met à jour la liste de JTextField de la vue
+     * Updates a list of compulsory fields
      * @param listCompulsoryFields
      */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
@@ -209,15 +210,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne le titre du morceau
-     * @return titleField
+     * Returns a title of a song
+     * @return JTextField titleField
      */
     public JTextField getTitleField() {
         return titleField;
     }
 
     /**
-     * Met à jour le titre du morceau
+     * Updates a title of a song
      * @param titleField
      */
     public void setTitleField(JTextField titleField) {
@@ -225,15 +226,15 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne l'artiste
-     * @return artistField
+     * Returns the artist of a song
+     * @return JTextField artistField
      */
     public JTextField getArtistField() {
         return artistField;
     }
 
     /**
-     * Met à jour l'artiste d'un morceau
+     * Updates the artist of a song
      * @param artistField
      */
     public void setArtistField(JTextField artistField) {
@@ -241,7 +242,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne l'album du morceau
+     * Returns the album of a song
      * @return albumField
      */
     public JTextField getAlbumField() {
@@ -249,7 +250,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Met à jour l'album du morceau
+     * Updates the album of a song
      * @param albumField
      */
     public void setAlbumField(JTextField albumField) {
@@ -257,7 +258,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne le panel des tags
+     * Returns the tag panel
      * @return tagsTablePane
      * @see JScrollPane
      */
@@ -266,7 +267,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Met à jour le panel des tags
+     * Updates the tag panel
      * @param tagsTablePane
      * @see JScrollPane
      */
@@ -275,7 +276,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne le nouveau tag
+     * Returns a new tag
      * @return newTagField
      */
     public JTextField getNewTagField() {
@@ -283,7 +284,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Met à jour le nouveau tag
+     * Updates a new tag
      * @param newTagField
      */
     public void setNewTagField(JTextField newTagField) {
@@ -291,7 +292,6 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne le bouton ajouter un tag
      * @return addTagButton
      */
     public JButton getAddTagButton() {
@@ -299,7 +299,6 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Met à jour le bouton ajouter un tag
      * @param addTagButton
      */
     public void setAddTagButton(JButton addTagButton) {
@@ -307,7 +306,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Retourne la liste des tags
+     * Returns a list of tags
      * @return tagList
      */
     public JList getTagList() {
@@ -315,7 +314,7 @@ public final class ImportSongPopUpView extends AbstractView<ImportSongPopUpContr
     }
 
     /**
-     * Met à jour la liste des tags
+     * Updates a list of tags
      * @param tagList
      */
     public void setTagList(JList tagList) {

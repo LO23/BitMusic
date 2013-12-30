@@ -24,13 +24,13 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * Classe du controlleur de EditSongPopUp
- * @author unkedeuxke
+ * Controller class of EditSongPopUp
+ * @author IHM
  */
 public final class EditSongPopUpController extends AbstractController<EditSongPopUpModel, EditSongPopUpView> {
 
     /**
-     * Constructeur de EditSongPopUpController
+     * Constructor of EditSongPopUpController
      * @param model
      * @param view
      */
@@ -39,8 +39,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     * Listener sur le bouton parcourir de l'upload du nouveau son
-     *
+     * Listener class on the browse button to upload a new song
      */
     public class FileBrowseListener implements ActionListener {
         @Override
@@ -59,7 +58,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     * Listener sur le bouton Annuler
+     * Listener on the cancel button
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -72,8 +71,8 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     * Listener sur le bouton Editer
-     * Transmission des modifications sur le morceau
+     * Listener on edit button
+     * Transmits the song modifications
      */
     public class EditListener implements ActionListener {
         @Override
@@ -111,8 +110,8 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
-     * @return
+     * Check all the compulsory fields
+     * @return boolean
      */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
@@ -127,7 +126,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
+     * Listener on add new tag button
      */
     public class AddNewTagListener implements ActionListener {
         @Override

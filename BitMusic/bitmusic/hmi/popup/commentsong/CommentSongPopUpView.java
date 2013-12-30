@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- * La classe de la vue de CommentSongPopUp
+ * View class of CommentSongPopUp
  * @author IHM
  */
 public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpController> {
@@ -33,7 +33,7 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     private final JButton resetButton = new JButton("Réinitialiser");
 
 /**
- * Constructeur CommentSongPopUpView
+ * Constructor of CommentSongPopUpView
  * @param parentTabId
  */
 
@@ -45,7 +45,7 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -97,8 +97,9 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     }
 
     /**
-     * Retourne le type de la PopUp qui correspend à son emplacement dans la fenêtre
-     * @return le type de la PopUp
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -106,7 +107,7 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     }
 
     /**
-     *
+     * Shows a message of update on the console
      * @param obj
      * @param str
      */
@@ -116,24 +117,23 @@ public final class CommentSongPopUpView extends AbstractView<CommentSongPopUpCon
     }
 
     /**
-     * Retourne le commentaire saisi par l'utilisateur.
-     * @return le commentaire saisi par l'utilisateur sous forme d'un JTextField.
+     * Returns a comment of a song
+     * @return JTextField commentField
      */
     public JTextField getCommentField() {
         return commentField;
     }
 
     /**
-     * Met à jour le commentaire saisi par l'utilisateur.
+     * Updates a comment of a song
      * @param comment
-     *              Commentaire saisi par l'utilisateur.
      */
     public void setCommentField(JTextField comment) {
         this.commentField = comment;
     }
     /**
-     *
-     * @return
+     * Returns the parent id of the current tab
+     * @return int parentTabId
      */
     public int getParentTabId() {
         return parentTabId;

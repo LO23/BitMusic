@@ -22,11 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- * Classe de la vue de EditSongPopUp
- * Cette vue est une fenêtre de type PopUp prenant comme arguments :
- *
+ * View class of EditSongPopUp
  * @author IHM
- *
  */
 public final class EditSongPopUpView extends AbstractView<EditSongPopUpController> {
 
@@ -56,7 +53,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     private JScrollPane tagsTablePane = new JScrollPane(this.tagList);
 
     /**
-     * Constructeur de EditSongPopUpView
+     * Constructor of EditSongPopUpView
      * @param parentTabId
      */
     public EditSongPopUpView(int parentTabId) {
@@ -65,7 +62,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
+     * Initializes the view of EditSongPopUp
      */
     @Override
     public void initPanel() {
@@ -178,8 +175,9 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne le type de la PopUp qui correspend à son emplacement dans la fenêtre
-     * @return type le type de la PopUp
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -187,7 +185,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Fonction mettant à jour la vue
+     * Shows a message of update on the console
      * @param obj
      * @param str
      */
@@ -200,23 +198,23 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne titre du morceau
-     * @return titleField titre du morceau
+     * Returns the title of a song
+     * @return JTextField titleField
      */
     public JTextField getTitleField() {
         return titleField;
     }
 
     /**
-     * Met à jour le titre du morceau
-     * @param titleField titre du morceau
+     * Updates the title of a song
+     * @param titleField
      */
     public void setTitleField(JTextField titleField) {
         this.titleField = titleField;
     }
 
     /**
-     * Retourne l'artiste du morceau
+     * Returns the artist of a song
      * @return artistField
      */
     public JTextField getArtistField() {
@@ -224,7 +222,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Met à jour le nom de l'artiste du morceau
+     * Updates the artist of a song
      * @param artistField
      */
     public void setArtistField(JTextField artistField) {
@@ -232,7 +230,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne le titre de l'album
+     * Returns the title of an album
      * @return albumField
      */
     public JTextField getAlbumField() {
@@ -240,7 +238,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Met à jour le titre de l'album
+     * Updates the title of an album
      * @param albumField
      */
     public void setAlbumField(JTextField albumField) {
@@ -248,15 +246,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne le path du nouveau morceau
-     * @return fileField path du nouveau morceau
+     * Returns the path of the new song
+     * @return JTextField fileField
      */
     public JTextField getFileField() {
         return fileField;
     }
 
     /**
-     * Met à jour le path du morceau à éditer
+     * Updates the path of a song
      * @param fileField
      */
     public void setFileField(JTextField fileField) {
@@ -264,7 +262,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne le tag sur le morceau
+     * Returns a tag of a song
      * @return newTagField
      */
     public JTextField getNewTagField() {
@@ -272,7 +270,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Met à jour le tag sur le morceau
+     * Updates a tag of a song
      * @param newTagField
      */
     public void setNewTagField(JTextField newTagField) {
@@ -280,15 +278,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne le bouton ajouter tag
-     * @return AddTagButton Retourne un objet de type JButton
+     * Returns the add tag button
+     * @return JButton AddTagButton
      */
     public JButton getAddTagButton() {
         return addTagButton;
     }
 
     /**
-     * Met à jour le bouton tag
+     * Updates the add tag button
      * @param addTagButton
      */
     public void setAddTagButton(JButton addTagButton) {
@@ -296,7 +294,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne le champs d'informations concernant les tags
+     * Returns informations about tags
      * @return infoClickLabel
      */
     public JLabel getInfoClickLabel() {
@@ -304,7 +302,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Met à jour le champs d'informations concernant les tags
+     * Updates informations about tags
      * @param infoClickLabel
      */
     public void setInfoClickLabel(JLabel infoClickLabel) {
@@ -312,8 +310,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne une liste des différents champs JTextField
-     * Un tableau dynamique de JTextField
+     * Returns a list of compulsory fields
      * @return listCompulsoryFields
      */
     public ArrayList<JTextField> getListCompulsoryFields() {
@@ -321,7 +318,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Met à jour la liste des JTextField
+     * Updates a list of compulsory fields
      * @param listCompulsoryFields
      */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
@@ -329,7 +326,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne la liste des tags
+     * Returns a tag list
      * @return tagList
      */
     public JList getTagList() {
@@ -337,7 +334,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Met à jour la liste des tags
+     * Updates a tag list
      * @param tagList
      */
     public void setTagList(JList tagList) {
@@ -345,7 +342,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne la barre de défilement associée à la liste des tags
+     *
      * @return tagsTablePane
      */
     public JScrollPane getTagsTablePane() {
@@ -353,7 +350,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Met à jour la barre de défilement de la liste des tags
+     * Updates the scroll pane
      * @param tagsTablePane
      */
     public void setTagsTablePane(JScrollPane tagsTablePane) {
@@ -361,7 +358,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     * Retourne l'id de l'onglet
+     * Returns the parent id of the current tab
      * @return parentTabId
      */
     public int getParentTabId() {
