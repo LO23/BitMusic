@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of InfosSongPopUp
+ * @author IHM
  */
 public final class InfosSongPopUpModel extends AbstractModel {
 
@@ -31,7 +31,7 @@ public final class InfosSongPopUpModel extends AbstractModel {
 
 
     /**
-     *
+     * Contructor of InfosSongPopUpModel
      * @param song
      */
     public InfosSongPopUpModel(Song song) {
@@ -45,26 +45,32 @@ public final class InfosSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @return
+     * Returns a song
+     * @return Song song
      */
     public Song getSong() {
         return song;
     }
 
     /**
-     *
+     * Updates a song
      * @param song
      */
     public void setSong(Song song) {
         this.song = song;
         this.notifyObservers("SHOW_SONG_INFOS");
     }
-
+    /**
+     * Returns a list of comments of a song
+     * @return LinkedList commentsOnTheSong
+     */
     public LinkedList<Comment> getCommentsOnTheSong() {
         return commentsOnTheSong;
     }
-
+    /**
+     * Returns a list of comments
+     * @return List comments
+     */
     public List<String[]> getComments() {
         return comments;
     }

@@ -9,13 +9,13 @@ package bitmusic.hmi.popup.managecategory;
 import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
- *
- * @author unkedeuxke
+ * Components class of ManageCategoryPopUp
+ * @author IHM
  */
 public final class ManageCategoryPopUpComponent extends AbstractComponent<ManageCategoryPopUpModel, ManageCategoryPopUpView, ManageCategoryPopUpController> {
 
     /**
-     *
+     * Constructor of ManageCategoryPopUpComponent
      */
     public ManageCategoryPopUpComponent() {
         this.model = new ManageCategoryPopUpModel();

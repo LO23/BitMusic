@@ -33,15 +33,13 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 /**
- *
- * @author unkedeuxke
+ * View class of InfosSongPopUp
+ * @author IHM
  */
 public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpController> {
 
     private final String type = "POPUP";
     private int parentTabId;
-
-
 
     private final JLabel titleLabel = new JLabel("Titre : ");
     private final JLabel artistLabel = new JLabel("Artiste : ");
@@ -65,7 +63,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     // Conteneur des commentaires
     private JPanel commentsPanel;
     /**
-     *
+     * Constructor of InfosSongPopUpView
      * @param parentTabId
      */
 
@@ -77,7 +75,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
+     * Initializes the view of InfosSongPopUp
      */
     @Override
     public void initPanel() {
@@ -153,7 +151,9 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
         // TODO
     }
-
+/**
+ * Updates the rate of a song
+ */
     public void updateRateLabel() {
         String gradeAverage = "0";
         double grade = 0;
@@ -227,14 +227,18 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         }
     }
 
-
+    /**
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
+     */
     @Override
     public String getType() {
         return type;
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */
@@ -263,15 +267,15 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
-     * @return
+     * Returns the parent id of the current tab
+     * @return int parentTabId
      */
     public int getParentTabId() {
         return parentTabId;
     }
 
     /**
-     *
+     * Returns the title label of a song
      * @return
      */
     public JLabel getTitleLabel() {
@@ -279,23 +283,23 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
-     * @return
+     * Returns the artist label of a song
+     * @return JLabel artistLabel
      */
     public JLabel getArtistLabel() {
         return artistLabel;
     }
 
     /**
-     *
-     * @return
+     * Returns the album label of a song
+     * @return JLabel albumLabel
      */
     public JLabel getAlbumLabel() {
         return albumLabel;
     }
 
     /**
-     *
+     * Returns the title label of a song
      * @return
      */
     public JLabel getSongTitleLabel() {
@@ -303,7 +307,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
+     * Returns the artist label of a song
      * @return
      */
     public JLabel getSongArtistLabel() {
@@ -311,17 +315,24 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
+     * Returns the album label of a song
      * @return
      */
     public JLabel getSongAlbumLabel() {
         return songAlbumLabel;
     }
 
+    /**
+     * Returns a comment
+     * @return JTextField commentField
+     */
     public JTextField getCommentField() {
         return commentField;
     }
 
+    /**
+     * @return JPanel commentsPanel
+     */
     public JPanel getCommentsPanel() {
         return commentsPanel;
     }
