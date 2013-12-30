@@ -9,13 +9,13 @@ package bitmusic.hmi.popup.managecategory;
 import bitmusic.hmi.patterns.AbstractModel;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of ManageCategoryPopUp
+ * @author IHM
  */
 public final class ManageCategoryPopUpModel extends AbstractModel {
 
     /**
-     *
+     * Constructor of ManageCategoryPopUpModel
      */
     public ManageCategoryPopUpModel() {
         super();
