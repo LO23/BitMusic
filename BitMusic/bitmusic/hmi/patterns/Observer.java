@@ -8,12 +8,12 @@ package bitmusic.hmi.patterns;
 
 /**
  *
- * @author hebergui, unkedeuxke
+ * @author IHM
  */
 public interface Observer {
 
     /**
-     *
+     * 
      * @param obj
      * @param str
      */
