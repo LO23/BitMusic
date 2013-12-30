@@ -10,15 +10,15 @@ import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.music.data.Song;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of RateSongPopUp
+ * @author IHM
  */
 public final class RateSongPopUpModel extends AbstractModel {
 
     private Song song;
 
     /**
-     *
+     * Constructor of RateSongPopUpModel
      * @param song
      */
     public RateSongPopUpModel(Song song) {
@@ -27,15 +27,15 @@ public final class RateSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @return
+     * Returns a song model
+     * @return Song song
      */
     public Song getSong() {
         return song;
     }
 
     /**
-     *
+     * Updates a song model
      * @param song
      */
     public void setSong(Song song) {

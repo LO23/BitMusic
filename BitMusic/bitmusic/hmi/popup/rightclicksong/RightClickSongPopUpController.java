@@ -9,13 +9,13 @@ package bitmusic.hmi.popup.rightclicksong;
 import bitmusic.hmi.patterns.AbstractController;
 
 /**
- *
- * @author unkedeuxke
+ * Controller of RightClickSongPopUp
+ * @author IHM
  */
 public final class RightClickSongPopUpController extends AbstractController<RightClickSongPopUpModel, RightClickSongPopUpView> {
 
     /**
-     *
+     * Constructor of RightClickSongPopUpController
      * @param model
      * @param view
      */

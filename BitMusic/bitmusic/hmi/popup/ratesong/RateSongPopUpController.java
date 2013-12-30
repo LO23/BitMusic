@@ -15,13 +15,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author unkedeuxke
+ * Controller class of RateSongPopUp
+ * @author IHM
  */
 public final class RateSongPopUpController extends AbstractController<RateSongPopUpModel, RateSongPopUpView> {
 
     /**
-     *
+     * Constructor of RateSongPopUpController
      * @param model
      * @param view
      */
@@ -30,7 +30,7 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
     }
 
     /**
-     *
+     * Listener on cancel button
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -41,7 +41,9 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
             win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
         }
     }
-
+    /**
+     * Listener on submit button
+     */
      public class ValiderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -91,7 +93,9 @@ public final class RateSongPopUpController extends AbstractController<RateSongPo
             win.getCentralAreaComponent().getView().getTabComponent(parentTabId).getController().getPopUp().dispose();
         }
     }
-
+     /**
+      * Listener on delete button
+      */
      public class DeleteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

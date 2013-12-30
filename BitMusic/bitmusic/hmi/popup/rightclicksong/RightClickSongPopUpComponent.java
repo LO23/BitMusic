@@ -10,15 +10,15 @@ import bitmusic.hmi.patterns.AbstractComponent;
 import bitmusic.music.data.Song;
 
 /**
- *
- * @author unkedeuxke
+ * Components class of RightClickSongPopUp
+ * @author IHM
  */
 public final class RightClickSongPopUpComponent extends AbstractComponent<RightClickSongPopUpModel, RightClickSongPopUpView, RightClickSongPopUpController> {
 
     private Song song;
 
     /**
-     *
+     * Constructor of RightClickSongPopUpComponent
      * @param song
      * @param parentTabId
      */

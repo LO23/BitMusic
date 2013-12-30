@@ -10,8 +10,8 @@ import bitmusic.hmi.patterns.AbstractComponent;
 import bitmusic.music.data.Song;
 
 /**
- *
- * @author unkedeuxke
+ * Components class of RateSongPopUp
+ * @author IHM
  */
 public final class RateSongPopUpComponent extends AbstractComponent<RateSongPopUpModel, RateSongPopUpView, RateSongPopUpController> {
 
@@ -19,7 +19,7 @@ public final class RateSongPopUpComponent extends AbstractComponent<RateSongPopU
 
 
     /**
-     *
+     * Constructor of RateSongPopUpComponent
      * @param song
      * @param parentTabId
      */

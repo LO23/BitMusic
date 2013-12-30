@@ -11,13 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
- * @author unkedeuxke
+ * Controller class of ManageUserPopUp
+ * @author IHM
  */
 public final class ManageUserPopUpController extends AbstractController<ManageUserPopUpModel, ManageUserPopUpView> {
 
     /**
-     *
+     * Constructor of ManageUserPopUpController
      * @param model
      * @param view
      */
@@ -26,7 +26,7 @@ public final class ManageUserPopUpController extends AbstractController<ManageUs
     }
 
     /**
-     *
+     * Listener on cancel button
      */
     public class CancelListener implements ActionListener {
         @Override

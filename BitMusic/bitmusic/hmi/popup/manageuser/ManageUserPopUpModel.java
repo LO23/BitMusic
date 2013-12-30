@@ -9,13 +9,13 @@ package bitmusic.hmi.popup.manageuser;
 import bitmusic.hmi.patterns.AbstractModel;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of ManageUserPopUp
+ * @author IHM
  */
 public final class ManageUserPopUpModel extends AbstractModel {
 
     /**
-     *
+     * Constructor of ManageUserPopUpModel
      */
     public ManageUserPopUpModel() {
         super();
