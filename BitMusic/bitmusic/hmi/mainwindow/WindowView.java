@@ -16,8 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
- * @author hebergui, unkedeuxke
+ * View class of main window
+ * @author IHM
  */
 public class WindowView extends JFrame implements Observer {
 
@@ -35,7 +35,7 @@ public class WindowView extends JFrame implements Observer {
 
     /**
      *
-     * @return
+     * @return windowController
      */
     public WindowController getWindowController() {
         return this.windowController;
@@ -50,7 +50,7 @@ public class WindowView extends JFrame implements Observer {
     }
 
     /**
-     *
+     * Initializes the view of main window
      */
     public void initFrame() {
         System.out.println("-- WindowView.initFrame()");
@@ -61,7 +61,7 @@ public class WindowView extends JFrame implements Observer {
     }
 
     /**
-     *
+     * Adds a view according to its type
      * @param view
      */
     public void addView(AbstractView view) {
@@ -101,7 +101,7 @@ public class WindowView extends JFrame implements Observer {
     }
 
     /**
-     *
+     * Removes a view
      * @param view
      */
     public void removeView(AbstractView view) {
@@ -113,7 +113,7 @@ public class WindowView extends JFrame implements Observer {
     }
 
     /**
-     *
+     * Updates a view
      * @param obj
      * @param str
      */
@@ -124,7 +124,7 @@ public class WindowView extends JFrame implements Observer {
 
     /**
      *
-     * @return
+     * @return contentPanel
      */
     public JPanel getContentPanel() {
         return contentPanel;
@@ -140,7 +140,7 @@ public class WindowView extends JFrame implements Observer {
 
     /**
      *
-     * @return
+     * @return gridBagConstraints
      */
     public GridBagConstraints getGridBagConstraints() {
         return gridBagConstraints;

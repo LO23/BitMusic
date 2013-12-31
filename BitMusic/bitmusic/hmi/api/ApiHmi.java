@@ -21,14 +21,14 @@ import java.util.ArrayList;
 public interface ApiHmi {
 
     /**
-    * Notify a new user connection to HMI
+    * Notifies a new user connection to HMI
     *
     * @param lightUserLan   The light user profile
     */
     void notifyNewConnection(User lightUserLan);
 
     /**
-    * Remove user from the online-users-frame of others users still online
+    * Removes user from the online-users-frame of others users still online
     *
     * @param userId
     * @return void
@@ -182,10 +182,9 @@ public interface ApiHmi {
     void errorNotification(String moduleName, String errorMessage);
 
     /**
-     * This method updates the rates of a song in the network
+     * Updates the rates of a song in the network
      * @param song
-     * @param
-     * @return void
+     * @param userId
      */
     void updateRate(Song song, String userId);
 }
