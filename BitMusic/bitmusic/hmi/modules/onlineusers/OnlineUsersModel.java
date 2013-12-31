@@ -16,14 +16,14 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class OnlineUsersModel extends AbstractModel {
 
     private OnlineUsersTableModel modeleTable = new OnlineUsersTableModel();
 
     /**
-     *
+     * Constructor of OnlineUsersModel
      */
     public OnlineUsersModel() {
         super();
@@ -37,7 +37,7 @@ public final class OnlineUsersModel extends AbstractModel {
         private ArrayList<User> onlineUsers = new ArrayList();
 
         /**
-         *
+         * Constructor of OnlineUsersTableModel
          */
         public OnlineUsersTableModel() {
             super();
@@ -58,16 +58,16 @@ public final class OnlineUsersModel extends AbstractModel {
         }
 
         /**
-         *
+         * Returns a user from a list of online users
          * @param row
-         * @return
+         * @return User
          */
         public User getUserAt(int row) {
             return this.onlineUsers.get(row);
         }
 
         /**
-         *
+         * Adds an user to a list of online users
          * @param user
          */
         public void addOnlineUser(final User user) {
@@ -77,7 +77,7 @@ public final class OnlineUsersModel extends AbstractModel {
         }
 
         /**
-         *
+         * Removes an user from a list of online users
          * @param userId
          */
         public void removeOnlineUser(final String userId) {
@@ -90,6 +90,12 @@ public final class OnlineUsersModel extends AbstractModel {
             (OnlineUsersModel.this).notifyObservers("ONLINE_USER_REMOVED");
         }
 
+        /**
+         * Checks if a cell is editable
+         * @param row
+         * @param col
+         * @return boolean
+         */
         @Override
         public boolean isCellEditable(int row, int col) {
             if (col == 1 || col == 2) {
@@ -98,31 +104,44 @@ public final class OnlineUsersModel extends AbstractModel {
             return false;
         }
 
+        /**
+         * Returns the number of column
+         * @return number of columns
+         */
         @Override
         public int getColumnCount() {
             return this.columnNames.length;
         }
 
+        /**
+         * Returns the number of rows
+         * @return number of rows
+         */
         @Override
         public int getRowCount() {
             return this.onlineUsers.size();
         }
 
+        /**
+         * Returns a column name
+         * @param col
+         * @return String ColumnNames
+         */
         @Override
         public String getColumnName(int col) {
             return this.columnNames[col];
         }
 
         /**
-         *
-         * @return
+         * Returns names of a list of columns
+         * @return String[] columnNames
          */
         public String[] getColumnNames() {
             return this.columnNames;
         }
 
         /**
-         *
+         * Updates a columns names
          * @param stringTable
          */
         public void setColumnNames(String[] stringTable) {
@@ -130,15 +149,15 @@ public final class OnlineUsersModel extends AbstractModel {
         }
 
         /**
-         *
-         * @return
+         * Returns a list of online users
+         * @return ArrayList onlineUsers
          */
         public ArrayList<User> getOnlineUsers() {
             return this.onlineUsers;
         }
 
         /**
-         *
+         * Updates a list of online users
          * @param userList
          */
         public void setOnlineUsers(ArrayList<User> userList) {
@@ -149,7 +168,7 @@ public final class OnlineUsersModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return modelTable
      */
     public OnlineUsersTableModel getModeleTable() {
         return this.modeleTable;
@@ -164,7 +183,7 @@ public final class OnlineUsersModel extends AbstractModel {
     }
 
     /**
-     *
+     * Searches songs from user id
      * @param searchId
      * @param userId
      */

@@ -10,12 +10,12 @@ import bitmusic.hmi.patterns.AbstractModel;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class CategoriesModel extends AbstractModel {
 
     /**
-     *
+     * Constructor of CategoriesModel
      */
     public CategoriesModel() {
         super();

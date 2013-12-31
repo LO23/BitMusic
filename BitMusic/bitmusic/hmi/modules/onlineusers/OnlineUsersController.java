@@ -22,7 +22,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class OnlineUsersController extends AbstractController<OnlineUsersModel, OnlineUsersView> {
 
@@ -36,7 +36,9 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
     public OnlineUsersController(final OnlineUsersModel model, final OnlineUsersView view) {
         super(model, view);
     }
-
+    /**
+     * Shows informations about a user
+     */
     private Action infos = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable)e.getSource();
@@ -54,7 +56,9 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
             popUp.show();
         }
     };
-
+    /**
+     * Shows informations about a song
+     */
     private Action mp3 = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable)e.getSource();
@@ -121,7 +125,7 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
 
     /**
      *
-     * @return
+     * @return Action infos
      */
     public Action getInfos() {
         return infos;
@@ -129,7 +133,7 @@ public final class OnlineUsersController extends AbstractController<OnlineUsersM
 
     /**
      *
-     * @return
+     * @return Action mp3
      */
     public Action getMp3() {
         return mp3;

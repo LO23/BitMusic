@@ -23,15 +23,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
- * @author hebergui, unkedeuxke
+ * Controller class of connection
+ * @author IHM
  */
 public final class ConnectionController extends AbstractController<ConnectionModel, ConnectionView> {
 
     private JDialog popUp;
 
     /**
-     *
+     * Constructor of ConnectionController
      * @param model
      * @param view
      */
@@ -40,15 +40,15 @@ public final class ConnectionController extends AbstractController<ConnectionMod
     }
 
     /**
-     *
-     * @return
+     * Returns a pop up
+     * @return popUp
      */
     public JDialog getPopUp() {
         return this.popUp;
     }
 
     /**
-     *
+     * Updates a pop up
      * @param popUp
      */
     public void setPopUp(JDialog popUp) {
@@ -56,7 +56,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
     }
 
     /**
-     *
+     * Listener of connection button
      */
     public class ConnectionListener implements ActionListener {
         @Override
@@ -109,12 +109,21 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             }
         }
     }
-
+    /**
+     * Listener on enterkey button
+     */
     public class EnterKeyListener implements KeyListener {
-
+        /**
+         * if the enterkey button is typed
+         * @param ke
+         */
         @Override
         public void keyTyped(KeyEvent ke) {}
 
+        /**
+         * if the enterkey button is pressed
+         * @param ke
+         */
         @Override
         public void keyPressed(KeyEvent ke) {
             if (ke.getKeyCode()==KeyEvent.VK_ENTER){
@@ -122,13 +131,17 @@ public final class ConnectionController extends AbstractController<ConnectionMod
             }
         }
 
+        /**
+         * if the enterkey is released
+         * @param ke
+         */
         @Override
         public void keyReleased(KeyEvent ke) {}
 
     }
 
     /**
-     *
+     * Listener on reset button
      */
     public class ResetListener implements ActionListener {
         @Override
@@ -142,7 +155,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
     }
 
     /**
-     *
+     * Listener on create user button
      */
     public class CreateNewUserListener implements ActionListener {
         @Override
@@ -161,7 +174,7 @@ public final class ConnectionController extends AbstractController<ConnectionMod
     }
 
     /**
-     *
+     * Checks all the compulsory fields
      * @return
      */
     public boolean checkAllCompulsoryFields() {

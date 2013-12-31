@@ -26,14 +26,14 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class MyProfileController extends AbstractController<MyProfileModel, MyProfileView> {
 
     private JDialog popUp;
 
     /**
-     *
+     * Constructor of MyProfileController
      * @param model
      * @param view
      */
@@ -43,7 +43,7 @@ public final class MyProfileController extends AbstractController<MyProfileModel
 
     /**
      *
-     * @return
+     * @return JDialog popUp
      */
     public JDialog getPopUp() {
         return this.popUp;
@@ -58,7 +58,8 @@ public final class MyProfileController extends AbstractController<MyProfileModel
     }
 
     /**
-     *
+     * Listener on logout button
+     * Closes the threads running on backgroud
      */
     public class LogoutListener implements ActionListener {
 
@@ -83,7 +84,8 @@ public final class MyProfileController extends AbstractController<MyProfileModel
     }
 
     /**
-     *
+     * Listener on import song button
+     * Displays a dialog window to import a song
      */
     public class ImportNewSongListener implements ActionListener {
 
@@ -104,7 +106,8 @@ public final class MyProfileController extends AbstractController<MyProfileModel
     }
 
     /**
-     *
+     * Listener on modify profile button
+     * Displays a dialog window to modify a profile
      */
     public class ModifyProfileListener implements ActionListener {
 
@@ -124,7 +127,9 @@ public final class MyProfileController extends AbstractController<MyProfileModel
     }
 
     /**
-     *
+     * Listener on my songs button
+     * Opens a tab which contains the songs of the user
+     * If this tab is already open, we refresh the list of user's songs
      */
     public class MySongsListener implements ActionListener {
 

@@ -18,8 +18,8 @@ import javax.swing.GroupLayout;
 import javax.swing.SwingUtilities;
 
 /**
- *
- * @author hebergui, unkedeuxke
+ * View class of the connection window
+ * @author IHM
  */
 public final class ConnectionView extends AbstractView<ConnectionController> {
 
@@ -36,15 +36,16 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     private ArrayList<JTextField> listCompulsoryFields = new ArrayList();
 
     /**
-     *
+     * Constructor of ConnectionView
      */
     public ConnectionView() {
         super();
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the window
+     * The type of the window refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType(){
@@ -52,7 +53,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -118,24 +119,24 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     }
 
     /**
-     *
-     * @return
+     * Returns the title of the window
+     * @return connectionLabel
      */
     public JLabel getConnectionLabel() {
         return this.connectionLabel;
     }
 
     /**
-     *
-     * @return
+     * Returns the login
+     * @return loginLabel
      */
     public JLabel getLoginLabel() {
         return this.loginLabel;
     }
 
     /**
-     *
-     * @return
+     * Returns the password
+     * @return passwordLabel
      */
     public JLabel getPasswordLabel() {
         return this.passwordLabel;
@@ -143,7 +144,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     /**
      *
-     * @return
+     * @return connectButton
      */
     public JButton getConnectButton() {
         return this.connectButton;
@@ -151,7 +152,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     /**
      *
-     * @return
+     * @return resetButton
      */
     public JButton getResetButton() {
         return this.resetButton;
@@ -159,7 +160,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     /**
      *
-     * @return
+     * @return createUserButton
      */
     public JButton getCreateUserButton() {
         return this.createUserButton;
@@ -167,7 +168,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     /**
      *
-     * @return
+     * @return loginField
      */
     public JTextField getLoginField() {
         return this.loginField;
@@ -175,14 +176,14 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     /**
      *
-     * @return
+     * @return passwordField
      */
     public JPasswordField getPasswordField() {
         return this.passwordField;
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */
@@ -193,7 +194,7 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
 
     /**
      *
-     * @return
+     * @return ArrayList listCompulsoryFields
      */
     public ArrayList<JTextField> getListCompulsoryFields() {
         return listCompulsoryFields;
@@ -206,7 +207,5 @@ public final class ConnectionView extends AbstractView<ConnectionController> {
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
         this.listCompulsoryFields = listCompulsoryFields;
     }
-
-
 
 }

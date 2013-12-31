@@ -11,21 +11,21 @@ import bitmusic.hmi.patterns.Observable;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class CategoriesView extends AbstractView<CategoriesController> {
 
     private static final String type = "WEST";
 
     /**
-     *
+     * Constructor of CategoriesView
      */
     public CategoriesView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -36,7 +36,7 @@ public final class CategoriesView extends AbstractView<CategoriesController> {
 
     /**
      *
-     * @return
+     * @return type
      */
     @Override
     public String getType() {

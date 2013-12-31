@@ -9,13 +9,13 @@ package bitmusic.hmi.modules.categories;
 import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
- *
- * @author unkedeuxke
+ * 
+ * @author IHM
  */
 public final class CategoriesComponent extends AbstractComponent<CategoriesModel, CategoriesView, CategoriesController> {
 
     /**
-     *
+     * Constructor of CategoriesComponent
      */
     public CategoriesComponent() {
         this.model = new CategoriesModel();

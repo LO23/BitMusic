@@ -12,7 +12,7 @@ import bitmusic.music.data.Song;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class PlayBarModel extends AbstractModel {
 
@@ -21,7 +21,7 @@ public final class PlayBarModel extends AbstractModel {
     private Song song = null;
 
     /**
-     *
+     * Constructor of PlayBarModel
      */
     public PlayBarModel() {
         super();
@@ -29,7 +29,7 @@ public final class PlayBarModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return Song song
      */
     public Song getSong() {
         return song;
@@ -48,7 +48,7 @@ public final class PlayBarModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return boolean
      */
     public boolean isPlaying() {
         return isPlaying;
@@ -65,7 +65,7 @@ public final class PlayBarModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return frame
      */
     public int getFrame() {
         return frame;
@@ -78,6 +78,5 @@ public final class PlayBarModel extends AbstractModel {
     public void setFrame(int frame) {
         this.frame = frame;
     }
-
 
 }

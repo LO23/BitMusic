@@ -12,12 +12,12 @@ import bitmusic.profile.utilities.ProfileExceptions;
 
 /**
  *
- * @author hebergui, unkedeuxke
+ * @author IHM
  */
 public final class ConnectionModel extends AbstractModel {
 
     /**
-     *
+     * Constructor of ConnectionModel
      */
     public ConnectionModel() {
         super();
