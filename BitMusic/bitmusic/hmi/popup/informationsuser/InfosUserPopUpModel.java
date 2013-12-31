@@ -10,15 +10,15 @@ import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.profile.classes.User;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of InfosUserPopUp
+ * @author IHM
  */
 public final class InfosUserPopUpModel extends AbstractModel {
 
     private User user;
 
     /**
-     *
+     * Constructor of InfosUserPopUpModel
      * @param user
      */
     public InfosUserPopUpModel(User user) {
@@ -27,15 +27,15 @@ public final class InfosUserPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @return
+     * Returns the user
+     * @return User user
      */
     public User getUser() {
         return user;
     }
 
     /**
-     *
+     * Updates user
      * @param user
      */
     public void setUser(User user) {

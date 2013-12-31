@@ -9,21 +9,21 @@ package bitmusic.hmi.patterns;
 import java.util.ArrayList;
 
 /**
- *
- * @author hebergui, unkedeuxke
+ * Class of abstract model
+ * @author IHM
  */
 public abstract class AbstractModel extends Observable {
 
     private ArrayList<Observer> listObservers = new ArrayList();
 
     /**
-     *
+     * Constructor of AbstractModel
      */
     public AbstractModel() {
     }
 
     /**
-     *
+     * Adds an observer
      * @param obs
      */
     @Override
@@ -32,7 +32,7 @@ public abstract class AbstractModel extends Observable {
     }
 
     /**
-     *
+     * Deletes observer
      * @param obs
      */
     @Override
@@ -41,7 +41,7 @@ public abstract class AbstractModel extends Observable {
     }
 
     /**
-     *
+     * Deletes all the observers
      */
     @Override
     public void removeAllObservers() {
@@ -49,7 +49,7 @@ public abstract class AbstractModel extends Observable {
     }
 
     /**
-     *
+     * Notifies all the observers
      * @param str
      */
     @Override

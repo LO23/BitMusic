@@ -113,9 +113,9 @@ public final class TabModel extends AbstractModel {
 
         public void removeAllSongs() {
             for (int row = 0; row < this.arrayListSong.size(); row++) {
-                this.arrayListSong.remove(row);
                 fireTableRowsDeleted(row, row);
             }
+            this.arrayListSong.clear();
             (TabModel.this).notifyObservers("ALL_SONGS_REMOVED");
         }
 

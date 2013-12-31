@@ -22,9 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- *
- * @author delbouki
- * il manque le champs tags
+ * View class of EditSongPopUp
+ * @author IHM
  */
 public final class EditSongPopUpView extends AbstractView<EditSongPopUpController> {
 
@@ -54,7 +53,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     private JScrollPane tagsTablePane = new JScrollPane(this.tagList);
 
     /**
-     *
+     * Constructor of EditSongPopUpView
      * @param parentTabId
      */
     public EditSongPopUpView(int parentTabId) {
@@ -63,7 +62,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
+     * Initializes the view of EditSongPopUp
      */
     @Override
     public void initPanel() {
@@ -176,8 +175,9 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -185,7 +185,7 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
+     * Shows a message of update on the console
      * @param obj
      * @param str
      */
@@ -198,15 +198,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the title of a song
+     * @return JTextField titleField
      */
     public JTextField getTitleField() {
         return titleField;
     }
 
     /**
-     *
+     * Updates the title of a song
      * @param titleField
      */
     public void setTitleField(JTextField titleField) {
@@ -214,15 +214,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the artist of a song
+     * @return artistField
      */
     public JTextField getArtistField() {
         return artistField;
     }
 
     /**
-     *
+     * Updates the artist of a song
      * @param artistField
      */
     public void setArtistField(JTextField artistField) {
@@ -230,15 +230,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the title of an album
+     * @return albumField
      */
     public JTextField getAlbumField() {
         return albumField;
     }
 
     /**
-     *
+     * Updates the title of an album
      * @param albumField
      */
     public void setAlbumField(JTextField albumField) {
@@ -246,15 +246,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the path of the new song
+     * @return JTextField fileField
      */
     public JTextField getFileField() {
         return fileField;
     }
 
     /**
-     *
+     * Updates the path of a song
      * @param fileField
      */
     public void setFileField(JTextField fileField) {
@@ -262,15 +262,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns a tag of a song
+     * @return newTagField
      */
     public JTextField getNewTagField() {
         return newTagField;
     }
 
     /**
-     *
+     * Updates a tag of a song
      * @param newTagField
      */
     public void setNewTagField(JTextField newTagField) {
@@ -278,15 +278,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the add tag button
+     * @return JButton AddTagButton
      */
     public JButton getAddTagButton() {
         return addTagButton;
     }
 
     /**
-     *
+     * Updates the add tag button
      * @param addTagButton
      */
     public void setAddTagButton(JButton addTagButton) {
@@ -294,15 +294,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns informations about tags
+     * @return infoClickLabel
      */
     public JLabel getInfoClickLabel() {
         return infoClickLabel;
     }
 
     /**
-     *
+     * Updates informations about tags
      * @param infoClickLabel
      */
     public void setInfoClickLabel(JLabel infoClickLabel) {
@@ -310,15 +310,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns a list of compulsory fields
+     * @return listCompulsoryFields
      */
     public ArrayList<JTextField> getListCompulsoryFields() {
         return listCompulsoryFields;
     }
 
     /**
-     *
+     * Updates a list of compulsory fields
      * @param listCompulsoryFields
      */
     public void setListCompulsoryFields(ArrayList<JTextField> listCompulsoryFields) {
@@ -326,15 +326,15 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns a tag list
+     * @return tagList
      */
     public JList getTagList() {
         return tagList;
     }
 
     /**
-     *
+     * Updates a tag list
      * @param tagList
      */
     public void setTagList(JList tagList) {
@@ -343,14 +343,14 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
 
     /**
      *
-     * @return
+     * @return tagsTablePane
      */
     public JScrollPane getTagsTablePane() {
         return tagsTablePane;
     }
 
     /**
-     *
+     * Updates the scroll pane
      * @param tagsTablePane
      */
     public void setTagsTablePane(JScrollPane tagsTablePane) {
@@ -358,12 +358,10 @@ public final class EditSongPopUpView extends AbstractView<EditSongPopUpControlle
     }
 
     /**
-     *
-     * @return
+     * Returns the parent id of the current tab
+     * @return parentTabId
      */
     public int getParentTabId() {
         return parentTabId;
     }
-
-
 }

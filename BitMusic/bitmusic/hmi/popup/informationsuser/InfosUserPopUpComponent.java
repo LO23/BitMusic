@@ -10,15 +10,15 @@ import bitmusic.hmi.patterns.AbstractComponent;
 import bitmusic.profile.classes.User;
 
 /**
- *
- * @author unkedeuxke
+ * Components class of InfosUserPopUp
+ * @author IHM
  */
 public final class InfosUserPopUpComponent extends AbstractComponent<InfosUserPopUpModel, InfosUserPopUpView, InfosUserPopUpController> {
 
     private User user;
 
     /**
-     *
+     * Constructor of InfosUserPopUpComponent
      * @param user
      */
     public InfosUserPopUpComponent(User user) {

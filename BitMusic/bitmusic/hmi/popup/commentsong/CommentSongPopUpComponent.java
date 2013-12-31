@@ -10,7 +10,7 @@ import bitmusic.hmi.patterns.AbstractComponent;
 import bitmusic.music.data.Song;
 
 /**
- * classe des components du SongPopUp
+ * Components Class of SongPopUp
  * @author IHM
  */
 public final class CommentSongPopUpComponent extends AbstractComponent<CommentSongPopUpModel, CommentSongPopUpView, CommentSongPopUpController> {

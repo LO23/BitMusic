@@ -13,8 +13,8 @@ import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of EditSongPopUp
+ * @author IHM
  */
 public final class EditSongPopUpModel extends AbstractModel {
 
@@ -22,7 +22,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     private DefaultListModel listTagsModel = new DefaultListModel();
 
     /**
-     *
+     * Contructor of EditSongPopUpModel
      * @param song
      */
     public EditSongPopUpModel(Song song) {
@@ -32,15 +32,15 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @return
+     * Returns a song to edit
+     * @return Song song
      */
     public Song getSong() {
         return song;
     }
 
     /**
-     *
+     * Updates a song
      * @param song
      */
     public void setSong(Song song) {
@@ -49,15 +49,15 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
-     * @return
+     * Returns a list of tags
+     * @return listTagsModel
      */
     public DefaultListModel getListModel() {
         return listTagsModel;
     }
 
     /**
-     *
+     * Sets a list of tags
      * @param listTags
      */
     public void setListModel(DefaultListModel listTags) {
@@ -67,7 +67,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Updates a list of tags
      * @param listTags
      */
     public void setListModel(ArrayList<String> listTags) {
@@ -79,7 +79,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Updates a list of tags
      * @param listTags
      */
     public void setListModel(LinkedList<String> listTags) {
@@ -91,7 +91,7 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Adds a tag
      * @param tag
      */
     public void addTag(String tag) {
@@ -100,7 +100,8 @@ public final class EditSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Deletes a tag from the tag list
+     * If the tag to delete deosn't exist, an error message is shown
      * @param tag
      */
     public void removeTag(String tag) {

@@ -19,13 +19,13 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author unkedeuxke
+ * Controller class of ImportSongPopUp
+ * @author IHM
  */
 public final class ImportSongPopUpController extends AbstractController<ImportSongPopUpModel, ImportSongPopUpView> {
 
     /**
-     *
+     * Contructor of ImportSongPopUpController
      * @param model
      * @param view
      */
@@ -34,7 +34,11 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     *
+     * Listener on browse button
+     * This listener allows to chose the song to import
+     * Due to a filter, only mp3 files can be chosen
+     * @see JFileChooser
+     * @see FileNameExtensionFilter
      */
     public class FileBrowseListener implements ActionListener {
         @Override
@@ -53,7 +57,8 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     *
+     * Listener on add tag button
+     * Adds a tag to the song to import
      */
     public class AddNewTagListener implements ActionListener {
         @Override
@@ -71,7 +76,7 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     *
+     * Listener on cancel button
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -82,7 +87,11 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     *
+     * Listener on submit button
+     * If all the compulsory fields aren't checked, an error message is shown.
+     * If all the compulsory fields are checked, we use the API of musique module.
+     * And finally, we update the user pofil
+     * If the importation fails, a warning message is shown
      */
     public class SubmitListener implements ActionListener {
         @Override
@@ -127,8 +136,8 @@ public final class ImportSongPopUpController extends AbstractController<ImportSo
     }
 
     /**
-     *
-     * @return
+     * Checks if all the compulsory fields are filled
+     * @return boolean
      */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();

@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author unkedeuxke
+ * View class of InfoUserPopUp
+ * @author IHM
  */
 public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpController> {
 
@@ -28,21 +28,21 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
     private JLabel lastnameLabel = new JLabel("");
     private JLabel oldLabel = new JLabel("");
     private JLabel inscriptionLabel = new JLabel("");
-    
+
 
     private final JPanel avatarPanel = new JPanel();
     private final ImageIcon avatarImage = new ImageIcon(this.getClass().getResource("/bitmusic/hmi/modules/myprofile/images/defaultAvatar_120.png"));
     private JLabel avatarLabel = new JLabel("", this.avatarImage, JLabel.CENTER);
 
     /**
-     *
+     * Contructor of InfosUserPopUpView
      */
     public InfosUserPopUpView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view of InfoUserPopUp
      */
     @Override
     public void initPanel() {
@@ -96,8 +96,9 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -105,7 +106,7 @@ public final class InfosUserPopUpView extends AbstractView<InfosUserPopUpControl
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */

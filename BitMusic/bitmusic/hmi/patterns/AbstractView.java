@@ -11,8 +11,8 @@ import java.awt.Font;
 import javax.swing.JPanel;
 
 /**
- *
- * @author hebergui, unkedeuxke
+ * Class of AbstractView
+ * @author IHM
  * @param <C>
  */
 public abstract class AbstractView<C extends AbstractController> extends JPanel implements Observer {
@@ -28,33 +28,34 @@ public abstract class AbstractView<C extends AbstractController> extends JPanel 
     private final Font dialog = new Font("Dialog", Font.BOLD + Font.ITALIC, 15);
 
     /**
-     *
+     * Initializes the view
      */
     protected abstract void initPanel();
 
     /**
-     *
-     * @return
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     public abstract String getType();
 
     /**
-     *
+     * Constructor of AbstractView
      */
     public AbstractView() {
         super();
     }
 
     /**
-     *
-     * @return
+     * Returns controller
+     * @return abstractController
      */
     public final C getController() {
         return this.abstractController;
     }
 
     /**
-     *
+     * Updates controller
      * @param abstractController
      */
     public final void setController(final C abstractController) {
@@ -62,15 +63,15 @@ public abstract class AbstractView<C extends AbstractController> extends JPanel 
     }
 
     /**
-     *
-     * @return
+     * Returns the panel
+     * @return JPanel panel
      */
     public final JPanel getPanel() {
         return this.panel;
     }
 
     /**
-     *
+     * Updates the panel
      * @param panel
      */
     public final void setPanel(final JPanel panel) {
@@ -78,15 +79,15 @@ public abstract class AbstractView<C extends AbstractController> extends JPanel 
     }
 
     /**
-     *
-     * @return
+     * Returns the dimension
+     * @return Dimension dim
      */
     public final Dimension getDim() {
         return this.dim;
     }
 
     /**
-     *
+     * Updates the dimension
      * @param dim
      */
     public final void setDim(final Dimension dim) {
@@ -94,7 +95,7 @@ public abstract class AbstractView<C extends AbstractController> extends JPanel 
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */

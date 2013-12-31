@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author unkedeuxke
+ * View class of ModifyProfilePopUp
+ * @author IHM
  */
 public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopUpController> {
 
@@ -37,14 +37,14 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     private final JButton cancelButton = new JButton("Annuler");
 
     /**
-     *
+     * Constructor of ModifyProfilePopUpView
      */
     public ModifyProfilePopUpView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view of ModifyProfilePopUp
      */
     @Override
     public void initPanel() {
@@ -132,8 +132,9 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -141,7 +142,7 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     }
 
     /**
-     *
+     * Updates the view of ModifyProfilePopUpView
      * @param obj
      * @param str
      */
@@ -161,15 +162,15 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     }
 
     /**
-     *
-     * @return
+     * Returns first name of an user
+     * @return JTextField firstNameField
      */
     public JTextField getFirstNameField() {
         return firstNameField;
     }
 
     /**
-     *
+     * Updates first name of an user
      * @param firstNameField
      */
     public void setFirstNameField(JTextField firstNameField) {
@@ -177,15 +178,15 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     }
 
     /**
-     *
-     * @return
+     * Returns last name of an user
+     * @return JTextField lastNameField
      */
     public JTextField getLastNameField() {
         return lastNameField;
     }
 
     /**
-     *
+     * Updates last name of an user
      * @param lastNameField
      */
     public void setLastNameField(JTextField lastNameField) {
@@ -209,15 +210,15 @@ public final class ModifyProfilePopUpView extends AbstractView<ModifyProfilePopU
     }*/
 
     /**
-     *
-     * @return
+     * Returns avatar of an user
+     * @return avatarField
      */
     public JTextField getAvatarField() {
         return avatarField;
     }
 
     /**
-     *
+     * Updates avatar of an user
      * @param avatarField
      */
     public void setAvatarField(JTextField avatarField) {

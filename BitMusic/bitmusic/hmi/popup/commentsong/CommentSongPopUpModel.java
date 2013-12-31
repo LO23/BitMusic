@@ -10,7 +10,7 @@ import bitmusic.hmi.patterns.AbstractModel;
 import bitmusic.music.data.Song;
 
 /**
- * La classe du modèle de CommentSongPopUp
+ * Model class of CommentSongPopUp
  * @author IHM
  */
 public final class CommentSongPopUpModel extends AbstractModel {
@@ -18,7 +18,7 @@ public final class CommentSongPopUpModel extends AbstractModel {
 
     private Song song;
 /**
- * Constructeur de la classe CommentSongPopUp
+ * Constructor of CommentSongPopUp
  * @param song
  */
     public CommentSongPopUpModel(Song song) {
@@ -26,8 +26,8 @@ public final class CommentSongPopUpModel extends AbstractModel {
         this.song = song;
     }
 /**
- * Retourne le song à commenter
- * @return le song à commenter sous forme d'un objet de type song.
+ * Returns a song to comment
+ * @return Song song
  */
     public Song getSong() {
         return song;

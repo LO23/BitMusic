@@ -17,8 +17,8 @@ import java.util.Date;
 import javax.swing.JDialog;
 
 /**
- *
- * @author unkedeuxke
+ * Controller class of InfosSongPopUp
+ * @author IHM
  */
 public final class InfosSongPopUpController extends AbstractController<InfosSongPopUpModel, InfosSongPopUpView> {
 
@@ -26,7 +26,7 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
     public static JDialog popUp;
 
     /**
-     *
+     * Constructor of InfosSongPopUpController
      * @param model
      * @param view
      */
@@ -36,7 +36,7 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
     }
 
     /**
-     *
+     * Listener on cancel button
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -46,15 +46,15 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
             //WindowComponent.getInstance().getXXXXXXXXComponent().getController().getPopUp().dispose();
         }
     }
-
+    /**
+     * Listener on delete comment button
+     */
     public class DeleteCommentListener implements ActionListener {
         // peut-être il faudra ajouter l'ID de l'auteur du commentaire
         // on a déjà le song ID
         Date commentDate ;
         String authorID;
         String songID;
-
-
 
         public DeleteCommentListener( String songID, String authorID,Date date ) {
             super();
@@ -80,7 +80,9 @@ public final class InfosSongPopUpController extends AbstractController<InfosSong
 
         }
     }
-
+    /**
+     * Listener on Comment song button
+     */
     public class CommentPopUpOpenListener implements ActionListener {
 
         @Override

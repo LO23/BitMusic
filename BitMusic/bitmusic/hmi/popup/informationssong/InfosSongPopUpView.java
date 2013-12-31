@@ -33,15 +33,13 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 /**
- *
- * @author unkedeuxke
+ * View class of InfosSongPopUp
+ * @author IHM
  */
 public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpController> {
 
     private final String type = "POPUP";
     private int parentTabId;
-
-
 
     private final JLabel titleLabel = new JLabel("Titre : ");
     private final JLabel artistLabel = new JLabel("Artiste : ");
@@ -65,7 +63,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     // Conteneur des commentaires
     private JPanel commentsPanel;
     /**
-     *
+     * Constructor of InfosSongPopUpView
      * @param parentTabId
      */
 
@@ -77,7 +75,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
+     * Initializes the view of InfosSongPopUp
      */
     @Override
     public void initPanel() {
@@ -154,24 +152,29 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // TODO
     }
 
-    public void updateRateLabel(Song song, String userID) {
+/**
+ * Updates the rate of a song
+ */
+    public void updateRateLabel() {
+        //String currentUserId = win.getApiProfile().getCurrentUser().getUserId();
+        // traiter le cas où le son est local
         String gradeAverage = "0";
         double grade = 0;
-        ///Song song = this.getController().getModel().getSong();
-        HashMap<String, Grade> hashMap = song.getGrades();
+            Song song = this.getController().getModel().getSong();
+            HashMap<String, Grade> hashMap = song.getGrades();
 
-        // pour chaque entree de la table de hashage
-        for(Entry<String, Grade> entry : hashMap.entrySet()) {
-            //String author = entry.getKey();
-            grade = entry.getValue().getGrade() + grade;
-        }
+            // pour chaque entree de la table de hashage
+            for(Entry<String, Grade> entry : hashMap.entrySet()) {
+                //String author = entry.getKey();
+                grade = entry.getValue().getGrade() + grade;
+            }
 
-        // on fait la moyenne des notes obtenus
-        grade = (double) grade / (double) hashMap.size();
-        gradeAverage = String.valueOf(grade).toString();
+            // on fait la moyenne des notes obtenus
+            grade = (double) grade / (double) hashMap.size();
+            gradeAverage = String.valueOf(grade).toString();
 
-        // pour afficher note/nombre de notes
-        this.rateValueLabel.setText(gradeAverage + "/" + String.valueOf(hashMap.size()));
+            // pour afficher note/nombre de notes
+            this.rateValueLabel.setText(gradeAverage + "/" + String.valueOf(hashMap.size()));
     }
 
     // à mettre dans le model
@@ -225,14 +228,18 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         }
     }
 
-
+    /**
+     * Returns the type of the PopUp
+     * The type of the PopUp refers to its location in the screen
+     * @return type
+     */
     @Override
     public String getType() {
         return type;
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */
@@ -246,10 +253,13 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // on effectue la mise à jour de la vue ici
         WindowComponent win = WindowComponent.getInstance();
 
+        // pour mettre à jour les notes de musique puisqu'elles ont peut-être pu être modifiées dans le réseau
+        this.updateRateLabel();
+
         this.commentsPanel.removeAll();
 
         this.updateCommentsPanel(commentsPanel, model.getCommentsOnTheSong());
-        //
+
         //this.getCommentsPanel().repaint();
         this.commentsPanel.validate();
         this.commentsPanel.repaint();
@@ -261,15 +271,15 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
-     * @return
+     * Returns the parent id of the current tab
+     * @return int parentTabId
      */
     public int getParentTabId() {
         return parentTabId;
     }
 
     /**
-     *
+     * Returns the title label of a song
      * @return
      */
     public JLabel getTitleLabel() {
@@ -277,23 +287,23 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
-     * @return
+     * Returns the artist label of a song
+     * @return JLabel artistLabel
      */
     public JLabel getArtistLabel() {
         return artistLabel;
     }
 
     /**
-     *
-     * @return
+     * Returns the album label of a song
+     * @return JLabel albumLabel
      */
     public JLabel getAlbumLabel() {
         return albumLabel;
     }
 
     /**
-     *
+     * Returns the title label of a song
      * @return
      */
     public JLabel getSongTitleLabel() {
@@ -301,7 +311,7 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
+     * Returns the artist label of a song
      * @return
      */
     public JLabel getSongArtistLabel() {
@@ -309,17 +319,24 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
     }
 
     /**
-     *
+     * Returns the album label of a song
      * @return
      */
     public JLabel getSongAlbumLabel() {
         return songAlbumLabel;
     }
 
+    /**
+     * Returns a comment
+     * @return JTextField commentField
+     */
     public JTextField getCommentField() {
         return commentField;
     }
 
+    /**
+     * @return JPanel commentsPanel
+     */
     public JPanel getCommentsPanel() {
         return commentsPanel;
     }

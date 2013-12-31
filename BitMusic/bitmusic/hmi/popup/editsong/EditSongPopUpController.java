@@ -24,13 +24,13 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author unkedeuxke
+ * Controller class of EditSongPopUp
+ * @author IHM
  */
 public final class EditSongPopUpController extends AbstractController<EditSongPopUpModel, EditSongPopUpView> {
 
     /**
-     *
+     * Constructor of EditSongPopUpController
      * @param model
      * @param view
      */
@@ -39,7 +39,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
+     * Listener class on the browse button to upload a new song
      */
     public class FileBrowseListener implements ActionListener {
         @Override
@@ -58,7 +58,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
+     * Listener on the cancel button
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -71,7 +71,8 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
+     * Listener on edit button
+     * Transmits the song modifications
      */
     public class EditListener implements ActionListener {
         @Override
@@ -109,8 +110,8 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
-     * @return
+     * Check all the compulsory fields
+     * @return boolean
      */
     public boolean checkAllCompulsoryFields(){
         ArrayList<JTextField> listCompulsoryFields = this.getView().getListCompulsoryFields();
@@ -125,7 +126,7 @@ public final class EditSongPopUpController extends AbstractController<EditSongPo
     }
 
     /**
-     *
+     * Listener on add new tag button
      */
     public class AddNewTagListener implements ActionListener {
         @Override

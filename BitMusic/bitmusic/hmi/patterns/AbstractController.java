@@ -7,8 +7,8 @@
 package bitmusic.hmi.patterns;
 
 /**
- *
- * @author hebergui, unkedeuxke
+ * Class of abstract controller
+ * @author IHM
  * @param <M>
  * @param <V>
  */
@@ -55,10 +55,14 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
     /**
      *
      */
+    protected final String FILTER_ALBUM = "album";
+    /**
+     *
+     */
     protected final String FILTER_USER = "user";
 
     /**
-     *
+     * Constructor of AbstractController
      * @param model
      * @param view
      */
@@ -68,15 +72,15 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
     }
 
     /**
-     *
-     * @return
+     * Returns the model
+     * @return model
      */
     public final M getModel() {
         return this.model;
     }
 
     /**
-     *
+     * Updates the model
      * @param model
      */
     public final void setModel(final M model) {
@@ -84,15 +88,15 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
     }
 
     /**
-     *
-     * @return
+     * Returns the view
+     * @return view
      */
     public final V getView() {
         return this.view;
     }
 
     /**
-     *
+     * Updates the view
      * @param view
      */
     public final void setView(final V view) {
@@ -100,59 +104,75 @@ public abstract class AbstractController<M extends AbstractModel, V extends Abst
     }
 
     /**
-     *
-     * @return
+     * Returns the origin search bar
+     * @return String ORIGIN_SEARCH_BAR
      */
     public String getORIGIN_SEARCH_BAR() {
         return ORIGIN_SEARCH_BAR;
     }
 
     /**
-     *
-     * @return
+     * Returns the origin profile
+     * @return String ORIGIN_MY_PROFILE
      */
     public String getORIGIN_MY_PROFILE() {
         return ORIGIN_MY_PROFILE;
     }
 
     /**
-     *
-     * @return
+     * Returns the origin online users
+     * @return String ORIGIN_ONLINE_USERS
      */
     public String getORIGIN_ONLINE_USERS() {
         return ORIGIN_ONLINE_USERS;
     }
 
     /**
-     *
-     * @return
+     * Returns the filter
+     * @return String FILTER_NONE
      */
     public String getFILTER_NONE() {
         return FILTER_NONE;
     }
 
     /**
-     *
-     * @return
+     * Returns the filter title
+     * @return String FILTER_TITLE
      */
     public String getFILTER_TITLE() {
         return FILTER_TITLE;
     }
 
     /**
-     *
-     * @return
+     * Returns the filter author
+     * @return String FILTER_AUTHOR
      */
     public String getFILTER_AUTHOR() {
         return FILTER_AUTHOR;
     }
 
     /**
-     *
-     * @return
+     * Returns the filter tag
+     * @return String FILTER_TAG
      */
     public String getFILTER_TAG() {
         return FILTER_TAG;
+    }
+
+    /**
+     * Returns the filter album
+     * @return String FILTER_ALBUM
+     */
+    public String getFILTER_ALBUM() {
+        return FILTER_ALBUM;
+    }
+
+    /**
+     * Returns the filter user
+     * @return String FILTER_USER
+     */
+    public String getFILTER_USER() {
+        return FILTER_USER;
     }
 
 

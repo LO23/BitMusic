@@ -17,13 +17,13 @@ import java.util.logging.Logger;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author unkedeuxke
+ * Controller class of ModifyProfilePopUp
+ * @author IHM
  */
 public final class ModifyProfilePopUpController extends AbstractController<ModifyProfilePopUpModel, ModifyProfilePopUpView> {
 
     /**
-     *
+     * Constructor of ModifyProfilePopUpController
      * @param model
      * @param view
      */
@@ -32,7 +32,9 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
     }
 
     /**
-     *
+     * Listener on avatar browse button
+     * This listener allows to chose the avatar to import
+     * Due to a filter, only bmp, png, jpg, jpeg files can be chosen
      */
     public class AvatarBrowseListener implements ActionListener {
         @Override
@@ -51,7 +53,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
     }
 
     /**
-     *
+     * Listener on cancel button
      */
     public class CancelListener implements ActionListener {
         @Override
@@ -62,7 +64,7 @@ public final class ModifyProfilePopUpController extends AbstractController<Modif
     }
 
     /**
-     *
+     * Listener on submit button
      */
     public class ModifyMyProfileListener implements ActionListener {
         @Override

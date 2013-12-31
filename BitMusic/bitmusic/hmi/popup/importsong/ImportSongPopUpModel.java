@@ -11,30 +11,30 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 /**
- *
- * @author unkedeuxke
+ * Model class of ImportSongPopUp
+ * @author IHM
  */
 public final class ImportSongPopUpModel extends AbstractModel {
 
     private DefaultListModel listTagsModel = new DefaultListModel();
 
     /**
-     *
+     * Constructor of ImportSongPopUpModel
      */
     public ImportSongPopUpModel() {
         super();
     }
 
     /**
-     *
-     * @return
+     * Returns a tag list of the model
+     * @return listTagsModel
      */
     public DefaultListModel getListModel() {
         return listTagsModel;
     }
 
     /**
-     *
+     * Creates a list of tags
      * @param listTags
      */
     public void setListModel(DefaultListModel listTags) {
@@ -44,7 +44,7 @@ public final class ImportSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Updates a list of tags
      * @param listTags
      */
     public void setListModel(ArrayList<String> listTags) {
@@ -56,7 +56,7 @@ public final class ImportSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Adds a new tag
      * @param tag
      */
     public void addTag(String tag) {
@@ -65,7 +65,7 @@ public final class ImportSongPopUpModel extends AbstractModel {
     }
 
     /**
-     *
+     * Deletes a tag
      * @param tag
      */
     public void removeTag(String tag) {

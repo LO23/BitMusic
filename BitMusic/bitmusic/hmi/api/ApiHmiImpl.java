@@ -9,7 +9,9 @@ package bitmusic.hmi.api;
 import bitmusic.hmi.mainwindow.WindowComponent;
 import bitmusic.hmi.modules.centralarea.CentralAreaComponent;
 import bitmusic.hmi.modules.tab.TabComponent;
+import bitmusic.hmi.modules.tab.TabController;
 import bitmusic.hmi.modules.tab.TabModel;
+import bitmusic.hmi.popup.informationssong.InfosSongPopUpComponent;
 import bitmusic.music.business.SongPlayer;
 import bitmusic.music.data.Rights;
 import bitmusic.music.data.Song;
@@ -248,7 +250,18 @@ public final class ApiHmiImpl implements ApiHmi {
     public void updateRate(Song song, String userId) {
         // call updateRateLabel
         WindowComponent win = WindowComponent.getInstance();
-       // Arrwin.getCentralAreaComponent().getView().getListTabComponent();
-        // TODO : 
+        ArrayList<TabComponent> listTabComponent = win.getCentralAreaComponent().getView().getListTabComponent();
+        //InfosSongPopUpComponent infosSongPopUpComponent = new InfosSongPopUpComponent(song, win.getCentralAreaComponent().getView().getListTabComponent().ge.getView().getTabId());
+        for (TabComponent t : listTabComponent) {
+                for (int row = 0; row< t.getModel().getModeleTable().getRowCount(); row++) {
+                    if(t.getModel().getModeleTable().getSongAt(row).equals(song)) {
+                        // ici on souhaite mettre à jour directement la pop infosSong concernee
+                        InfosSongPopUpComponent infosSongPopUpComponent = new InfosSongPopUpComponent(song, t.getView().getTabId());
+                        infosSongPopUpComponent.getView().update(infosSongPopUpComponent.getModel(), userId);
+                }
+            }
+        }
+        // TODO :
+
     }
 }

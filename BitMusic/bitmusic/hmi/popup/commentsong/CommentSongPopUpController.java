@@ -12,18 +12,21 @@ import bitmusic.hmi.popup.informationssong.InfosSongPopUpController;
 import bitmusic.hmi.popup.informationssong.InfosSongPopUpModel;
 import bitmusic.music.data.Comment;
 import bitmusic.music.data.Song;
+import bitmusic.network.exception.NetworkException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- * La classe du controlleur de la SongPopUp
+ * Controller class of SongPopUp
  * @author IHM
  */
 public final class CommentSongPopUpController extends AbstractController<CommentSongPopUpModel, CommentSongPopUpView> {
 
     /**
-     * Constructeur de la SongPopUp
+     * Constructor of SongPopUp
      * @param model
      * @param view
      */
@@ -32,8 +35,8 @@ public final class CommentSongPopUpController extends AbstractController<Comment
     }
 
     /**
-     * Classe du listener sur le bouton valider.
-     * Soumettre un commentaire.
+     * Listener class on validate button
+     * Submits a comment
      */
     public class ValidateListener implements ActionListener {
         @Override
@@ -55,7 +58,12 @@ public final class CommentSongPopUpController extends AbstractController<Comment
                     isComment = win.getApiMusic().addCommentFromHmi(song.getSongId(), comment);
                 }
                 else {
-                    isComment = win.getApiMusic().addCommentFromNetwork(song.getSongId(), new Comment(currentUserId, comment));
+                    isComment = true;
+                    try {
+                        win.getApiNetwork().addComment(song, new Comment(win.getApiProfile().getCurrentUser().getLogin(), comment));
+                    } catch (NetworkException ex) {
+                        isComment = false;
+                    }
                 }
 
                 if(!isComment) {
@@ -85,8 +93,8 @@ public final class CommentSongPopUpController extends AbstractController<Comment
     }
 
     /**
-     * Classe du listener sur le bouton réinitialiser.
-     * Réinitialise tous les champs.
+     * Listener on reset button
+     * Resets all the fields
      */
     public class ResetListener implements ActionListener    {
         @Override
@@ -98,7 +106,7 @@ public final class CommentSongPopUpController extends AbstractController<Comment
     }
 
     /**
-     * Classe du listener du bouton Annuler.
+     * Listener class on cancel button
      */
     public class CancelListener implements ActionListener {
         @Override

@@ -110,4 +110,18 @@ public final class SearchBarModel extends AbstractModel {
 
         return songResults.getlibrary();
     }
+
+    /**
+     *
+     * @param tabId
+     * @param keywords
+     * @return
+     */
+    public ArrayList<Song> searchSongsWithAlbumFilter(final int tabId, final String keywords) {
+        WindowComponent win = WindowComponent.getInstance();
+        List<String> tagList = Arrays.asList(keywords.split(" "));
+        SongLibrary songResults = win.getApiMusic().searchSongsByAlbum(Integer.toString(tabId), tagList);
+
+        return songResults.getlibrary();
+    }
 }

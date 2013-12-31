@@ -6,6 +6,8 @@
 
 package bitmusic.network.api;
 
+import bitmusic.music.data.Comment;
+import bitmusic.music.data.Song;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.classes.User;
 import java.util.List;
@@ -15,6 +17,15 @@ import java.util.List;
  * @author florian, alexis
  */
 public interface ApiHmi {
+    /**
+     * Send a comment about a song to a distant user.
+     *
+     * @param song song concerned
+     * @param comment the new comment to add
+     * @throws NetworkException thrown when the user doesn't exist
+    */
+    void addComment(final Song song, final Comment comment)
+            throws NetworkException;
     /**
      * Notify every distant user that we are logging out.
      *
@@ -44,6 +55,17 @@ public interface ApiHmi {
     void getSongFile(final String operator, final String userId,
             final String songId, final boolean paramTemporary)
             throws NetworkException;
+
+    /**
+     * Rate a distant song.
+     *
+     * @param paramSong The song to rate
+     * @param paramUserId ID of the user that rates the song
+     * @throws NetworkException thrown when the get fail
+    */
+    void rateSong(final Song paramSong, final String paramUserId)
+            throws NetworkException;
+
     /**
      *  Shutdown the Executor service (thread pool) when program exits.
      */

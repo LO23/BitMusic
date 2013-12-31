@@ -24,5 +24,4 @@ public final class CentralAreaComponent extends AbstractComponent<CentralAreaMod
         this.view.initPanel();
         this.model.addObserver(this.view);
     }
-
 }
