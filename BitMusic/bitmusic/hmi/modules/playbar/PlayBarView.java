@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class PlayBarView extends AbstractView<PlayBarController> {
 
@@ -40,14 +40,14 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     private JSlider playBar = new JSlider(0, 1);
 
     /**
-     *
+     * Constructor of PlayBarView
      */
     public PlayBarView() {
         super();
    }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -104,8 +104,9 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the window
+     * The type of the window refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -114,7 +115,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     /**
      *
-     * @return
+     * @return playButton
      */
     public JButton getPlayButton() {
         return playButton;
@@ -122,7 +123,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     /**
      *
-     * @return
+     * @return stopButton
      */
     public JButton getStopButton() {
         return stopButton;
@@ -130,7 +131,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     /**
      *
-     * @return
+     * @return downloadButton
      */
     public JButton getDownloadButton() {
         return downloadButton;
@@ -138,7 +139,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     /**
      *
-     * @return
+     * @return playIcon
      */
     public ImageIcon getPlayIcon() {
         return playIcon;
@@ -171,7 +172,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     /**
      *
-     * @return
+     * @return downloadIcon
      */
     public ImageIcon getDownloadIcon() {
         return downloadIcon;
@@ -187,7 +188,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     /**
      *
-     * @return
+     * @return pauseIcon
      */
     public ImageIcon getPauseIcon() {
         return pauseIcon;
@@ -203,7 +204,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
 
     /**
      *
-     * @return
+     * @return playBar
      */
     public JSlider getPlayBar() {
         return playBar;
@@ -218,7 +219,7 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */
@@ -237,6 +238,5 @@ public final class PlayBarView extends AbstractView<PlayBarController> {
             this.playButton.setIcon(playIcon);
         }
     }
-
 
 }

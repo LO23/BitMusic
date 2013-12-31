@@ -18,8 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
- * @author unkedeuxke
+ * View class of Myprofile
+ * @author IHM
  */
 public final class MyProfileView extends AbstractView<MyProfileController> {
 
@@ -34,7 +34,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     private JLabel avatarLabel;
 
     /**
-     *
+     * Constructor of MyProfileView
      */
     public MyProfileView() {
         super();
@@ -42,7 +42,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     /**
      *
-     * @return
+     * @return myProfileButton
      */
     public JButton getMyProfileButton() {
         return myProfileButton;
@@ -50,7 +50,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     /**
      *
-     * @return
+     * @return mySongsButton
      */
     public JButton getMySongsButton() {
         return mySongsButton;
@@ -58,7 +58,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     /**
      *
-     * @return
+     * @return logoutButton
      */
     public JButton getDisconnectButton() {
         return logoutButton;
@@ -66,14 +66,14 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
 
     /**
      *
-     * @return
+     * @return importSongButton
      */
     public JButton getImportSongButton() {
         return importSongButton;
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -138,8 +138,9 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the window
+     * The type of the window refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -147,7 +148,7 @@ public final class MyProfileView extends AbstractView<MyProfileController> {
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */

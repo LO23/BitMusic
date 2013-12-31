@@ -17,7 +17,7 @@ import javax.swing.JTabbedPane;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
@@ -29,14 +29,14 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
     private Integer tabCounter = 0;
 
     /**
-     *
+     * Constructor of CentralAreaView
      */
     public CentralAreaView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -47,9 +47,10 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
     }
 
     /**
-     *
+     * Returns a tab component according to a tab id
+     * If the tab id doesn't exist, it returns null
      * @param tabId
-     * @return
+     * @return TabComponent
      */
     public TabComponent getTabComponent(int tabId) {
         for (int i = 0; i < this.listTabComponent.size(); i++) {
@@ -62,7 +63,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     /**
      *
-     * @return
+     * @return listTabComponent
      */
     public ArrayList<TabComponent> getListTabComponent() {
         return this.listTabComponent;
@@ -120,7 +121,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     /**
      *
-     * @return
+     * @return JTabbedPane tabbedPane
      */
     public JTabbedPane getTabbedPane() {
         return this.tabbedPane;
@@ -136,7 +137,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     /**
      *
-     * @return
+     * @return int tabCounter
      */
     public Integer getTabCounter() {
         return this.tabCounter;
@@ -152,7 +153,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
 
     /**
      *
-     * @return
+     * @return type
      */
     @Override
     public String getType() {
@@ -160,7 +161,7 @@ public final class CentralAreaView extends AbstractView<CentralAreaController> {
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */

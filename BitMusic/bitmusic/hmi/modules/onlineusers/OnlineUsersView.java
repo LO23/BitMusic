@@ -16,8 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
- *
- * @author unkedeuxke
+ * View class of OnlineUsers
+ * @author IHM
  */
 public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
 
@@ -28,14 +28,14 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     private JScrollPane onlineUsersTablePane;
 
     /**
-     *
+     * Constructor
      */
     public OnlineUsersView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -78,8 +78,9 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the window
+     * The type of the window refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -87,7 +88,7 @@ public final class OnlineUsersView extends AbstractView<OnlineUsersController> {
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */

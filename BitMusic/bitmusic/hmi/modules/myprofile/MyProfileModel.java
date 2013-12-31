@@ -10,12 +10,12 @@ import bitmusic.hmi.patterns.AbstractModel;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class MyProfileModel extends AbstractModel {
 
     /**
-     *
+     * Constructor of MyProfileModel
      */
     public MyProfileModel() {
         super();

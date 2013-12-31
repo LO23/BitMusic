@@ -20,7 +20,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class PlayBarController extends AbstractController<PlayBarModel, PlayBarView> {
 
@@ -36,7 +36,8 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     }
 
     /**
-     *
+     * Listener on play button
+     * If no song was loaded, a warning message is displayed
      */
     public class PlayListener implements ActionListener  {
 
@@ -88,6 +89,10 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         }
     }
 
+    /**
+     * Update the slider when a song is played
+     * @param win
+     */
     public void sliderUpdater(WindowComponent win) {
         JSlider playBar = win.getPlayBarComponent().getView().getPlayBar();
         playBar.setMaximum(win.getApiMusic().getNumberOfFrame());
@@ -105,7 +110,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     }
 
     /**
-     *
+     * Listener on stop button
      */
     public class StopListener implements ActionListener {
         @Override
@@ -123,7 +128,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     }
 
     /**
-     *
+     * Listener on download button
      */
     public class DownloadListener implements ActionListener {
         @Override
@@ -151,7 +156,7 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
     }
 
     /**
-     *
+     * Listener on cursor
      */
     public class CursorListener implements MouseListener {
 
@@ -161,7 +166,9 @@ public final class PlayBarController extends AbstractController<PlayBarModel, Pl
         public void mouseClicked(MouseEvent e) {
         }
 
-        // move the slider to the value that a user clicks on and plays from that
+        /**
+         * Moves the slider to the value that a user clicks on and plays from that
+         */
         @Override
         public void mousePressed(MouseEvent e) {
             System.out.println("---- Mouse pressed on Slider");

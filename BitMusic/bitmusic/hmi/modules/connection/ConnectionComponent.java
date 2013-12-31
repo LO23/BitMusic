@@ -10,12 +10,12 @@ import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
  *
- * @author hebergui, unkedeuxke
+ * @author IHM
  */
 public final class ConnectionComponent extends AbstractComponent<ConnectionModel, ConnectionView, ConnectionController> {
 
     /**
-     *
+     * Constructor of ConnectionComponent
      */
     public ConnectionComponent() {
         this.model = new ConnectionModel();
