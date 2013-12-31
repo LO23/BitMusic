@@ -21,8 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
- *
- * @author unkedeuxke
+ * View class of tab
+ * @author IHM
  */
 public final class TabView extends AbstractView<TabController> {
 
@@ -41,14 +41,14 @@ public final class TabView extends AbstractView<TabController> {
     // End of variables declaration
 
     /**
-     *
+     * Constructor of TabView
      */
     public TabView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -123,7 +123,7 @@ public final class TabView extends AbstractView<TabController> {
 
     /**
      *
-     * @return
+     * @return title
      */
     public String getTitle() {
        return this.title;
@@ -139,7 +139,7 @@ public final class TabView extends AbstractView<TabController> {
 
     /**
      *
-     * @return
+     * @return labelTitle
      */
     public JLabel getLabelTitle() {
         return this.labelTitle;
@@ -155,7 +155,7 @@ public final class TabView extends AbstractView<TabController> {
 
     /**
      *
-     * @return
+     * @return btnClose
      */
     public JButton getBtnClose() {
         return this.btnClose;
@@ -171,7 +171,7 @@ public final class TabView extends AbstractView<TabController> {
 
     /**
      *
-     * @return
+     * @return panelTab
      */
     public JPanel getPanelTab() {
         return this.panelTab;
@@ -186,8 +186,9 @@ public final class TabView extends AbstractView<TabController> {
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the window
+     * The type of the window refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -195,7 +196,7 @@ public final class TabView extends AbstractView<TabController> {
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */
@@ -209,7 +210,7 @@ public final class TabView extends AbstractView<TabController> {
 
     /**
      *
-     * @return
+     * @return tabId
      */
     public Integer getTabId() {
         return this.tabId;
@@ -225,7 +226,7 @@ public final class TabView extends AbstractView<TabController> {
 
     /**
      *
-     * @return
+     * @return jScrollPanel
      */
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;
@@ -241,7 +242,7 @@ public final class TabView extends AbstractView<TabController> {
 
     /**
      *
-     * @return
+     * @return jTable1
      */
     public JTable getjTable1() {
         return jTable1;
@@ -254,6 +255,5 @@ public final class TabView extends AbstractView<TabController> {
     public void setjTable1(JTable jTable1) {
         this.jTable1 = jTable1;
     }
-
 
 }

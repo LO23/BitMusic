@@ -20,7 +20,7 @@ import javax.swing.JRadioButton;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class SearchBarView extends AbstractView<SearchBarController> {
 
@@ -37,14 +37,14 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     private JRadioButton albumButton = new JRadioButton("Par album", false);
 
     /**
-     *
+     * Constructor of SearchBarView
      */
     public SearchBarView() {
         super();
     }
 
     /**
-     *
+     * Initializes the view
      */
     @Override
     public void initPanel() {
@@ -121,7 +121,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     /**
      *
-     * @return
+     * @return searchField
      */
     public JTextField getSearchField() {
         return this.searchField;
@@ -137,7 +137,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     /**
      *
-     * @return
+     * @return groupeRadio
      */
     public ButtonGroup getGroupeRadio() {
         return this.groupeRadio;
@@ -153,7 +153,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     /**
      *
-     * @return
+     * @return noneButton
      */
     public JRadioButton getNoneButton() {
         return this.noneButton;
@@ -161,7 +161,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     /**
      *
-     * @return
+     * @return titleButton
      */
     public JRadioButton getTitleButton() {
         return this.titleButton;
@@ -169,7 +169,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     /**
      *
-     * @return
+     * @return authorButton
      */
     public JRadioButton getAuthorButton() {
         return this.authorButton;
@@ -177,7 +177,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     /**
      *
-     * @return
+     * @return tagButton
      */
     public JRadioButton getTagButton() {
         return this.tagButton;
@@ -185,15 +185,16 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
 
     /**
      *
-     * @return
+     * @return albumButton
      */
     public JRadioButton getAlbumButton() {
         return this.albumButton;
     }
 
     /**
-     *
-     * @return
+     * Returns the type of the window
+     * The type of the window refers to its location in the screen
+     * @return type
      */
     @Override
     public String getType() {
@@ -201,7 +202,7 @@ public final class SearchBarView extends AbstractView<SearchBarController> {
     }
 
     /**
-     *
+     * Updates the view
      * @param obj
      * @param str
      */

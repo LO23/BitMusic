@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class SearchBarController extends AbstractController<SearchBarModel, SearchBarView> {
 
     /**
-     *
+     * Constructor of SearchBarController
      * @param model
      * @param view
      */
@@ -31,9 +31,14 @@ public final class SearchBarController extends AbstractController<SearchBarModel
     }
 
     /**
-     *
+     * Listener on research button
      */
     public class ResearchListener implements ActionListener {
+        /**
+         * Searches a song by title, tag, author or album
+         * If the research had already been done, we refresh its tab
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("---- Clic sur le bouton Rechercher");

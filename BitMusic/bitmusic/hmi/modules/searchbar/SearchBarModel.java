@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class SearchBarModel extends AbstractModel {
 

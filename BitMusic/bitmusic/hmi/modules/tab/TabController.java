@@ -25,14 +25,14 @@ import javax.swing.JTable;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class TabController extends AbstractController<TabModel, TabView> {
 
     private JDialog popUp;
 
     /**
-     *
+     * Constructor of TabController
      * @param model
      * @param view
      */
@@ -41,10 +41,14 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     }
 
     /**
-     *
+     * Listener on close button of a tab
      */
     public class CloseTabListener implements ActionListener {
 
+        /**
+         * Closes a tab
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             int tabId = TabController.this.getView().getTabId();
             WindowComponent.getInstance().getCentralAreaComponent().getView().removeTabComponent(tabId);
@@ -52,7 +56,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     }
 
     /**
-     *
+     * Listener on double click
      */
     public class DoubleClickListener extends MouseAdapter {
 
@@ -69,7 +73,12 @@ public final class TabController extends AbstractController<TabModel, TabView> {
         }
     }
 
+
     private Action editer = new AbstractAction() {
+        /**
+         * Listener on edit song button
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable) e.getSource();
             int row = Integer.valueOf(e.getActionCommand());
@@ -89,6 +98,10 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     };
 
     private Action supprimer = new AbstractAction() {
+        /**
+         * Listener on delete song button
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable) e.getSource();
             int row = Integer.valueOf(e.getActionCommand());
@@ -103,6 +116,10 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     };
 
     private Action infos = new AbstractAction() {
+        /**
+         * Listener on information about song button
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable) e.getSource();
             int row = Integer.valueOf(e.getActionCommand());
@@ -122,6 +139,10 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     };
 
     private Action noter = new AbstractAction() {
+        /**
+         * Listener on rate a song button
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable) e.getSource();
             int row = Integer.valueOf(e.getActionCommand());
@@ -140,6 +161,10 @@ public final class TabController extends AbstractController<TabModel, TabView> {
     };
 
     private Action sauvegarder = new AbstractAction() {
+        /**
+         * Listener on save song button
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             JTable table = (JTable) e.getSource();
             int row = Integer.valueOf(e.getActionCommand());
@@ -204,7 +229,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     /**
      *
-     * @return
+     * @return Action editer
      */
     public Action getEditer() {
         return this.editer;
@@ -212,7 +237,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     /**
      *
-     * @return
+     * @return Action infos
      */
     public Action getInfos() {
         return this.infos;
@@ -220,7 +245,7 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     /**
      *
-     * @return
+     * @return Action noter
      */
     public Action getNoter() {
         return this.noter;
@@ -228,19 +253,23 @@ public final class TabController extends AbstractController<TabModel, TabView> {
 
     /**
      *
-     * @return
+     * @return Action sauvegarder
      */
     public Action getSauvegarder() {
         return this.sauvegarder;
     }
 
+    /**
+     *
+     * @return Action supprimer
+     */
     public Action getSupprimer() {
         return this.supprimer;
     }
 
     /**
      *
-     * @return
+     * @return JDialog popUp
      */
     public JDialog getPopUp() {
         return popUp;
