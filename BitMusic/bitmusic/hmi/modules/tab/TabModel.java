@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class TabModel extends AbstractModel {
 
@@ -24,7 +24,7 @@ public final class TabModel extends AbstractModel {
     private TabTableModel modeleTable = new TabTableModel();
 
     /**
-     *
+     * Constructor of TabModel
      */
     public TabModel() {
         super();
@@ -69,16 +69,16 @@ public final class TabModel extends AbstractModel {
         }
 
         /**
-         *
+         * Returns song according to its row
          * @param row
-         * @return
+         * @return Song
          */
         public Song getSongAt(int row) {
             return this.arrayListSong.get(row);
         }
 
         /**
-         *
+         * Add song to a list
          * @param song
          */
         public void addSong(final Song song) {
@@ -88,7 +88,7 @@ public final class TabModel extends AbstractModel {
         }
 
         /**
-         *
+         * Returns a list of songs
          * @param listSongs
          */
         public void addSongs(final ArrayList<Song> listSongs) {
@@ -98,7 +98,7 @@ public final class TabModel extends AbstractModel {
         }
 
         /**
-         *
+         * Deletes a song according to its Id
          * @param songId
          */
         public void removeSong(final Song songId) {
@@ -111,6 +111,9 @@ public final class TabModel extends AbstractModel {
             (TabModel.this).notifyObservers("SONG_REMOVED");
         }
 
+        /**
+         * Deletes all the songs
+         */
         public void removeAllSongs() {
             for (int row = 0; row < this.arrayListSong.size(); row++) {
                 fireTableRowsDeleted(row, row);
@@ -119,6 +122,12 @@ public final class TabModel extends AbstractModel {
             (TabModel.this).notifyObservers("ALL_SONGS_REMOVED");
         }
 
+        /**
+         * Checks if a cell is editable
+         * @param row
+         * @param col
+         * @return boolean
+         */
         @Override
         public boolean isCellEditable(int row, int col) {
             if (col == 3 || col == 4 || col == 5 || col == 6 || col == 7) {
@@ -127,24 +136,37 @@ public final class TabModel extends AbstractModel {
             return false;
         }
 
+        /**
+         * Returns number of columns
+         * @return
+         */
         @Override
         public int getColumnCount() {
             return this.columnNames.length;
         }
 
+        /**
+         * Returns the number of rows
+         * @return
+         */
         @Override
         public int getRowCount() {
             return this.arrayListSong.size();
         }
 
+        /**
+         * Returns a name of a column
+         * @param col
+         * @return String
+         */
         @Override
         public String getColumnName(int col) {
             return this.columnNames[col];
         }
 
         /**
-         *
-         * @return
+         * Returns names of columns
+         * @return String[]
          */
         public String[] getColumnNames() {
             return this.columnNames;
@@ -159,7 +181,7 @@ public final class TabModel extends AbstractModel {
         }
 
         /**
-         *
+         * Returns a list of songs
          * @return
          */
         public ArrayList<Song> getSongs() {
@@ -167,7 +189,7 @@ public final class TabModel extends AbstractModel {
         }
 
         /**
-         *
+         * Updates a list of songs
          * @param songList
          */
         public void setSong(ArrayList<Song> songList) {
@@ -178,7 +200,7 @@ public final class TabModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return modeleTable
      */
     public TabTableModel getModeleTable() {
         return this.modeleTable;
@@ -186,7 +208,7 @@ public final class TabModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return requestOrigin
      */
     public String getRequestOrigin() {
         return this.requestOrigin;
@@ -202,7 +224,7 @@ public final class TabModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return requestText
      */
     public String getRequestText() {
         return this.requestText;
@@ -218,7 +240,7 @@ public final class TabModel extends AbstractModel {
 
     /**
      *
-     * @return
+     * @return requestFilter
      */
     public String getRequestFilter() {
         return this.requestFilter;

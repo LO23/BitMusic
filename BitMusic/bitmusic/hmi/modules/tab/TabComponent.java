@@ -10,12 +10,12 @@ import bitmusic.hmi.patterns.AbstractComponent;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class TabComponent extends AbstractComponent<TabModel, TabView, TabController> {
-    
+
     /**
-     *
+     * Constructor of TabComponent
      */
     public TabComponent() {
         this.model = new TabModel();
