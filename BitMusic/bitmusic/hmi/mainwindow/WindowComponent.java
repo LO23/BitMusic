@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  *
- * @author hebergui, unkedeuxke
+ * @author IHM
  */
 public class WindowComponent {
 
@@ -63,7 +63,7 @@ public class WindowComponent {
     }
 
     /**
-     *
+     * Notifies the network that the connection is established
      */
     public void startNetwork() {
         this.apiNetwork = Controller.getInstance().getApiHmi();
@@ -71,20 +71,28 @@ public class WindowComponent {
         this.apiNetwork.notifyNewConnection(apiProfile.getCurrentUser());
     }
 
-    /** Holder */
+    /**
+     * Holder
+     */
     private static class WindowComponentHolder {
-        /** Instance unique non préinitialisée */
+        /**
+         * Unique instance none pre-initialized
+         */
         private final static WindowComponent instance = new WindowComponent();
     }
 
-    /** Point d'accès pour l'instance unique du singleton
-     * @return  */
+    /**
+     * Access point to the single instance of the singleton
+     * @return instance
+     */
     public static WindowComponent getInstance() {
             return WindowComponentHolder.instance;
     }
 
     /**
-     *
+     * Initializes all the window components
+     * Creates all the components
+     * Gets a list of online users to display it in the OnlineUsersComponent
      */
     public void initAllComponents() {
         // Création des différents Components
@@ -128,7 +136,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return model
      */
     public WindowModel getWindowModel() {
         return this.model;
@@ -136,7 +144,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return view
      */
     public WindowView getWindowView() {
         return this.view;
@@ -144,7 +152,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return controller
      */
     public WindowController getWindowController() {
         return this.controller;
@@ -152,7 +160,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return apiHmi
      */
     public ApiHmiImpl getApiHmi() {
         return this.apiHmi;
@@ -168,7 +176,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return apiProfile
      */
     public ApiProfileImpl getApiProfile() {
         return this.apiProfile;
@@ -184,7 +192,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return apiMusic
      */
     public ApiMusicImpl getApiMusic() {
         return this.apiMusic;
@@ -200,7 +208,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return apiNetwork
      */
     public bitmusic.network.main.ApiHmiImpl getApiNetwork() {
         return this.apiNetwork;
@@ -216,7 +224,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return categoriesComponent
      */
     public CategoriesComponent getCategoriesComponent() {
         return this.categoriesComponent;
@@ -232,7 +240,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return connectionComponent
      */
     public ConnectionComponent getConnectionComponent() {
         return this.connectionComponent;
@@ -248,7 +256,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return myProfileComponent
      */
     public MyProfileComponent getMyProfileComponent() {
         return this.myProfileComponent;
@@ -264,7 +272,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return onlineUsersComponent
      */
     public OnlineUsersComponent getOnlineUsersComponent() {
         return this.onlineUsersComponent;
@@ -280,7 +288,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return playBarComponent
      */
     public PlayBarComponent getPlayBarComponent() {
         return this.playBarComponent;
@@ -296,7 +304,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return searchBarComponent
      */
     public SearchBarComponent getSearchBarComponent() {
         return this.searchBarComponent;
@@ -312,7 +320,7 @@ public class WindowComponent {
 
     /**
      *
-     * @return
+     * @return centralAreaComponent
      */
     public CentralAreaComponent getCentralAreaComponent() {
         return this.centralAreaComponent;

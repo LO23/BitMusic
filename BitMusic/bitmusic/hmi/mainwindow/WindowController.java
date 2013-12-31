@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author hebergui, unkedeuxke
+ * @author IHM
  */
 public class WindowController {
 
@@ -25,7 +25,7 @@ public class WindowController {
     private WindowView windowView;
 
     /**
-     *
+     * Constructor of WindowController
      * @param model
      * @param view
      */
@@ -35,10 +35,14 @@ public class WindowController {
     }
 
     /**
-     *
+     * Listener on main window
      */
     public class WindowComponentListener implements WindowListener {
         @Override
+        /**
+         * Listener on the close button of the window
+         * Closes the pool threads working in background
+         */
         public void windowClosing(WindowEvent e) {
             System.out.println("- Fermeture de l'application en cours...");
             try {
@@ -79,7 +83,7 @@ public class WindowController {
 
     /**
      *
-     * @return
+     * @return windowModel
      */
     public WindowModel getWindowModel() {
         return this.windowModel;
@@ -95,7 +99,7 @@ public class WindowController {
 
     /**
      *
-     * @return
+     * @return windowView
      */
     public WindowView getWindowView() {
         return this.windowView;

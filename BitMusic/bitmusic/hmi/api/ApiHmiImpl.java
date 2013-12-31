@@ -23,15 +23,21 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author unkedeuxke
+ * @author IHM
  */
 public final class ApiHmiImpl implements ApiHmi {
-
+    /**
+     * Notifies a new connection
+     * @param lightUserLan
+     */
     @Override
     public void notifyNewConnection(final User lightUserLan) {
         WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().addOnlineUser(lightUserLan);
     }
-
+    /**
+     * Removes user from the online users list
+     * @param userId
+     */
     @Override
     public void removeUserFromOnlineUsers(final String userId) {
         WindowComponent.getInstance().getOnlineUsersComponent().getModel().getModeleTable().removeOnlineUser(userId);
@@ -48,7 +54,11 @@ public final class ApiHmiImpl implements ApiHmi {
 //    public void notifySongListByUserId(final String userId, final SongLibrary songList) {
 //        //TODO
 //    }
-
+    /**
+     * Searches a song
+     * @param searchId
+     * @param songList
+     */
     @Override
     public void notifySongListBySearchId(final String searchId, final SongLibrary songList) {
         CentralAreaComponent cac = WindowComponent.getInstance().getCentralAreaComponent();
@@ -241,10 +251,9 @@ public final class ApiHmiImpl implements ApiHmi {
     }
 
     /**
-     * This method updates the rate song component of a song in the network : distant user
+     * Updates the rate song component of a song in the network : distant user
      * @param song
-     * @param userid
-     * @return void
+     * @param userId
      */
     @Override
     public void updateRate(Song song, String userId) {

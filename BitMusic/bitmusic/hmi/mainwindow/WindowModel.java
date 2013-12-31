@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author hebergui, unkedeuxke
+ * @author IHM
  */
 public class WindowModel extends Observable {
 
@@ -32,7 +32,8 @@ public class WindowModel extends Observable {
     }
 
     /**
-     *
+     * Log out function
+     * If we are connected, we warn others, else, we simply close the application
      * @throws NetworkException
      * @throws ProfileExceptions
      */
@@ -58,7 +59,7 @@ public class WindowModel extends Observable {
     }
 
     /**
-     *
+     * Removes Observer
      * @param obs
      */
     @Override
@@ -67,7 +68,7 @@ public class WindowModel extends Observable {
     }
 
     /**
-     *
+     * Remove all the observers
      */
     @Override
     public void removeAllObservers() {
