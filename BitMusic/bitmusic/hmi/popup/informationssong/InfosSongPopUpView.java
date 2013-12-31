@@ -154,10 +154,10 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // TODO
     }
 
-    public void updateRateLabel() {
+    public void updateRateLabel(Song song, String userID) {
         String gradeAverage = "0";
         double grade = 0;
-        Song song = this.getController().getModel().getSong();
+        ///Song song = this.getController().getModel().getSong();
         HashMap<String, Grade> hashMap = song.getGrades();
 
         // pour chaque entree de la table de hashage
@@ -189,8 +189,6 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // pour chaque commentaire, on cree deux labels: author et commentValue
         if (comments.isEmpty()) {
             JLabel noComment = new JLabel("Aucun commentaire...");
-
-            //commentsLayout.putConstraint(SpringLayout.WEST, noComment, 5, SpringLayout.WEST, panel);
             panel.add(noComment);
         }
         else {

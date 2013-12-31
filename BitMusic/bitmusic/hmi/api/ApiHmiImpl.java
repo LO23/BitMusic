@@ -237,4 +237,18 @@ public final class ApiHmiImpl implements ApiHmi {
                          "Erreur de " + moduleName,
                          JOptionPane.ERROR_MESSAGE);
     }
+
+    /**
+     * This method updates the rate song component of a song in the network : distant user
+     * @param song
+     * @param userid
+     * @return void
+     */
+    @Override
+    public void updateRate(Song song, String userId) {
+        // call updateRateLabel
+        WindowComponent win = WindowComponent.getInstance();
+       // Arrwin.getCentralAreaComponent().getView().getListTabComponent();
+        // TODO : 
+    }
 }
