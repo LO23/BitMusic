@@ -151,27 +151,30 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
 
         // TODO
     }
+
 /**
  * Updates the rate of a song
  */
     public void updateRateLabel() {
+        //String currentUserId = win.getApiProfile().getCurrentUser().getUserId();
+        // traiter le cas où le son est local
         String gradeAverage = "0";
         double grade = 0;
-        Song song = this.getController().getModel().getSong();
-        HashMap<String, Grade> hashMap = song.getGrades();
+            Song song = this.getController().getModel().getSong();
+            HashMap<String, Grade> hashMap = song.getGrades();
 
-        // pour chaque entree de la table de hashage
-        for(Entry<String, Grade> entry : hashMap.entrySet()) {
-            //String author = entry.getKey();
-            grade = entry.getValue().getGrade() + grade;
-        }
+            // pour chaque entree de la table de hashage
+            for(Entry<String, Grade> entry : hashMap.entrySet()) {
+                //String author = entry.getKey();
+                grade = entry.getValue().getGrade() + grade;
+            }
 
-        // on fait la moyenne des notes obtenus
-        grade = (double) grade / (double) hashMap.size();
-        gradeAverage = String.valueOf(grade).toString();
+            // on fait la moyenne des notes obtenus
+            grade = (double) grade / (double) hashMap.size();
+            gradeAverage = String.valueOf(grade).toString();
 
-        // pour afficher note/nombre de notes
-        this.rateValueLabel.setText(gradeAverage + "/" + String.valueOf(hashMap.size()));
+            // pour afficher note/nombre de notes
+            this.rateValueLabel.setText(gradeAverage + "/" + String.valueOf(hashMap.size()));
     }
 
     // à mettre dans le model
@@ -189,8 +192,6 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // pour chaque commentaire, on cree deux labels: author et commentValue
         if (comments.isEmpty()) {
             JLabel noComment = new JLabel("Aucun commentaire...");
-
-            //commentsLayout.putConstraint(SpringLayout.WEST, noComment, 5, SpringLayout.WEST, panel);
             panel.add(noComment);
         }
         else {
@@ -252,10 +253,13 @@ public final class InfosSongPopUpView extends AbstractView<InfosSongPopUpControl
         // on effectue la mise à jour de la vue ici
         WindowComponent win = WindowComponent.getInstance();
 
+        // pour mettre à jour les notes de musique puisqu'elles ont peut-être pu être modifiées dans le réseau
+        this.updateRateLabel();
+
         this.commentsPanel.removeAll();
 
         this.updateCommentsPanel(commentsPanel, model.getCommentsOnTheSong());
-        //
+
         //this.getCommentsPanel().repaint();
         this.commentsPanel.validate();
         this.commentsPanel.repaint();

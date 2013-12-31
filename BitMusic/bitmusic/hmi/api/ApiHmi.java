@@ -180,4 +180,12 @@ public interface ApiHmi {
      * @param errorMessage
      */
     void errorNotification(String moduleName, String errorMessage);
+
+    /**
+     * This method updates the rates of a song in the network
+     * @param song
+     * @param
+     * @return void
+     */
+    void updateRate(Song song, String userId);
 }
