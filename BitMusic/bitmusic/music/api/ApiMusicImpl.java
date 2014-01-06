@@ -147,7 +147,7 @@ public final class ApiMusicImpl implements ApiMusic {
         return wasRated;
     }
     
-      /**
+    /**
      *
      * delete comment
      *
@@ -156,9 +156,7 @@ public final class ApiMusicImpl implements ApiMusic {
      * @param date
      * @return false in order to send a comment request to the distant user
      */
-     
-     
-    public boolean deleteComment(String songId, String authorId, Date date) 
+     public boolean deleteComment(String songId, String authorId, Date date) 
     
     {
         SongCommenter songCommenter;
@@ -257,6 +255,10 @@ public final class ApiMusicImpl implements ApiMusic {
         return true;
     }
     
+    /**
+     * Play a remote or a local song.
+     * @param song 
+     */
     public void playSong(Song song) {
         SongPlayer songPlayer = new SongPlayer();
         try {
@@ -368,6 +370,13 @@ public final class ApiMusicImpl implements ApiMusic {
         return songLoader.generateTempSongPath(userId, songId);
     }
     
+    /**
+     * Copy a song in temp folder to destination.
+     * 
+     * @param userId
+     * @param songId
+     * @param destination
+     */
     public void saveSong(String userId, String songId, String destination){
         SongLoader songLoader = new SongLoader();
         try{
@@ -379,6 +388,12 @@ public final class ApiMusicImpl implements ApiMusic {
         }
     }
     
+    /**
+     * Get the destination path of the song to dowload.
+     * @param userId 
+     * @param songId
+     * @return path of the song to download
+     */
     public String getSavedSongPath(String userId, String songId){
         SongLoader songLoader = new SongLoader();
         return songLoader.getSongToDownload(userId, songId);
