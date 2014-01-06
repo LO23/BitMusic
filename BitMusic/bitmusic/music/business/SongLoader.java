@@ -30,6 +30,10 @@ import java.nio.file.StandardCopyOption;
  * @author Music Team
  */
 public class SongLoader {
+    
+    /**
+     * HashMap used to store a list of the path of distant songs to download.
+     */
     static HashMap<String,String> songsToDownload = new HashMap<String,String>();
 
     /**
@@ -76,6 +80,13 @@ public class SongLoader {
         Files.copy(source, destinationMP3, StandardCopyOption.REPLACE_EXISTING);
     }
     
+    /**
+     * Copy a MP3 from a source path to a destination path.
+     * @param source
+     * @param destination
+     * @throws CopyMP3Exception
+     * @throws IOException 
+     */
     private void copyMP3(String source, String destination)
             throws CopyMP3Exception, IOException {
 
@@ -108,7 +119,6 @@ public class SongLoader {
      * @param artist artist of the song
      * @param album album of the song
      * @param tags tags of the song
-     * @param rightsByCategory access rights of the song
      */
     public void importSong(String path, String title, String artist,
             String album, LinkedList<String> tags)
@@ -191,7 +201,7 @@ public class SongLoader {
         String currentUserFolder
                 = new String(ApiProfile.getCurrentUserFolder());
 
-        //Creating /Music/Library folder
+        //Creating /music/library folder
         String separator = FileSystems.getDefault().getSeparator();
         String fileDirectory = new String("BitTest" + separator 
                 + "profiles" + separator + currentUserFolder + separator 
@@ -199,13 +209,21 @@ public class SongLoader {
         Path destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
 
-        //Creating /Music/Library folder
+        //Creating /music/temp folder
         fileDirectory = "BitTest" + separator + "profiles" 
                 + separator + currentUserFolder + separator + "music" 
                 + separator + "temp" + separator;
         destination = Paths.get(fileDirectory);
         Files.createDirectories(destination);
     }
+    
+    /**
+     * Delete a Song from the SongLibrary.
+     * @param songId    Id of the song to remove
+     * @throws CopyMP3Exception
+     * @throws IOException
+     * @throws DirectoryNotEmptyException 
+     */
     public void deleteSong(String songId) throws CopyMP3Exception, IOException, 
             DirectoryNotEmptyException{
         
@@ -237,12 +255,27 @@ public class SongLoader {
         Files.deleteIfExists(destination);
     }
     
+    /**
+     * Check if a distant song is already in the temp directory.
+     * @param userId owner of the song
+     * @param songId Id of the song
+     * @return true if exists
+     */
     public boolean tempFileExists(String userId, String songId){
         String tempPath = this.generateTempSongPath(userId, songId);
         Path destination = Paths.get(tempPath);
         return Files.exists(destination);
     }
     
+    /**
+     * Save a distant song.
+     * 
+     * @param userId owner of the song
+     * @param songId Id of the song
+     * @param destinationPath  target directory
+     * @throws CopyMP3Exception
+     * @throws IOException 
+     */
     public void saveSong(String userId, String songId, 
             String destinationPath) throws CopyMP3Exception, IOException{
         
@@ -266,6 +299,12 @@ public class SongLoader {
         }     
     }
     
+    /**
+     * Get the specific song to download from the static HashMap
+     * @param userId owner of the song
+     * @param songId Id of the song
+     * @return path target directory
+     */
     public String getSongToDownload(String userId, String songId){
         String path = songsToDownload.get(userId + songId);
         songsToDownload.remove(userId+songId);
