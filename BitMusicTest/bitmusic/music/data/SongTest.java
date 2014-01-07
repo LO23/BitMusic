@@ -22,22 +22,22 @@ import static org.junit.Assert.*;
  * @author MB
  */
 public class SongTest {
-    
+
     public SongTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -52,7 +52,7 @@ public class SongTest {
         LinkedList listTag = new LinkedList<String>();
         listTag.add(new String("tag1"));
         listTag.add(new String("tag2"));
-        Song instance = new Song("1", "titre", "artiste", "album", listTag);
+        Song instance = new Song("1", "titre", "artiste", "album", "Bob", listTag);
         instance.addComment(comment);
         // TODO review the generated test code and remove the default call to fail.
         assertEquals(instance.getComments().get(1),comment.getComment());
@@ -292,5 +292,5 @@ public class SongTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

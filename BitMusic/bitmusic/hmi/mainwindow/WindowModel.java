@@ -8,6 +8,7 @@ package bitmusic.hmi.mainwindow;
 
 import bitmusic.hmi.patterns.Observable;
 import bitmusic.hmi.patterns.Observer;
+import bitmusic.music.api.ApiMusic;
 import bitmusic.network.exception.NetworkException;
 import bitmusic.profile.api.ApiProfileImpl;
 import bitmusic.profile.classes.User;
@@ -45,6 +46,7 @@ public class WindowModel extends Observable {
             ApiProfileImpl.getApiProfile().saveCurrentUser();
             String myId = currentUser.getUserId();
             WindowComponent.getInstance().getApiNetwork().logOut(myId);
+            WindowComponent.getInstance().getApiMusic().stop();
         }
         this.notifyObservers("LOGOUT");
     }

@@ -157,7 +157,7 @@ public class ApiProfileImplTest extends NetworkingTest {
         this.threadManager.suscribe(this);
 
         // Appel de la fonction à tester
-        api.notifyNewConnection(userInit);
+        //api.notifyNewConnection(userInit);
 
         // attente de la socket en retour
         this.waitForSocket();
