@@ -26,7 +26,7 @@ public final class Hermes extends AbstractManageable {
      * The message that hermes has to send.
      */
     private final transient AbstractMessage message;
-    private final transient int UDP_SENDING_PORT=4446;
+    private final transient int UDP_SENDING_PORT=4445;
 
     /**
      * Create a new instance of Hermes messenger.
