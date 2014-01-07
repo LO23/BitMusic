@@ -26,6 +26,7 @@ public final class Hermes extends AbstractManageable {
      * The message that hermes has to send.
      */
     private final transient AbstractMessage message;
+    private final transient int UDP_SENDING_PORT=4446;
 
     /**
      * Create a new instance of Hermes messenger.
@@ -86,10 +87,7 @@ public final class Hermes extends AbstractManageable {
      */
     private void sendUdpMessage() {
         try {
-            final DatagramSocket socket = new DatagramSocket(
-                    Controller.getInstance().getUDPNetworkListener().
-                            getPortListened(), InetAddress.getLocalHost());
-
+            final DatagramSocket socket = new DatagramSocket(UDP_SENDING_PORT , InetAddress.getLocalHost());
             final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             final ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -100,9 +98,7 @@ public final class Hermes extends AbstractManageable {
 
             final DatagramPacket packet = new DatagramPacket(data, data.length,
                     InetAddress.getByName(Controller.getBroadcastAddress()),
-                    Controller.getInstance().getUDPNetworkListener().
-                            getPortListened());
-
+                    UDP_SENDING_PORT);
             socket.send(packet);
 
             oos.writeObject(message);

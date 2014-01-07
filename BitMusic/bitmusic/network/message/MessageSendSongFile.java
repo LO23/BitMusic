@@ -88,6 +88,7 @@ public final class MessageSendSongFile extends AbstractMessage {
 
             // In case the temporary flag is set to true, play the song
             if (temporary) {
+
                 WindowComponent.getInstance().getPlayBarComponent().
                         getController().new StopListener().
                         actionPerformed(null);
